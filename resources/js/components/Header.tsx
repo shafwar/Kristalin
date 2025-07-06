@@ -6,7 +6,7 @@ export default function Header() {
       {/* Logo/Home */}
       <div className="flex items-center min-w-[120px]">
         <a href="/" className="flex items-center">
-          <img src="/logo.svg" alt="Kristalin Eka Lestari Logo" className="h-16 w-auto object-contain" />
+          <img src="/logo.svg" alt="Kristalin Eka Lestari Logo" className="h-16 md:h-20 w-auto object-contain mr-4" />
         </a>
       </div>
       
@@ -40,11 +40,11 @@ export default function Header() {
               <div className="py-6 px-6">
                 <div className="space-y-3">
                   <a href="/about#about-kristalin" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">ABOUT KRISTALIN EKA LESTARI</a>
-                  <a href="/about#milestones" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MILESTONES</a>
-                  <a href="/about#vision-mission" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR VISION & MISSION</a>
-                  <a href="/about#core-values" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR CORE VALUES</a>
-                  <a href="/about#leadership-team" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">LEADERSHIP TEAM</a>
-                  <a href="/about#message-founder" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM FOUNDER</a>
+                  <a href="/milestones" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MILESTONES</a>
+                  <a href="/vision-mission" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR VISION & MISSION</a>
+                  <a href="/core-values" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR CORE VALUES</a>
+                  <a href="/leadership-traits" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">LEADERSHIP TRAITS</a>
+                  <a href="/message-from-founder" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM FOUNDER</a>
                   <a href="/about#message-president" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM PRESIDENT DIRECTOR</a>
                   <a href="/about#profile-board" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">PROFILE FOUNDER, BOARD OF COMMISSIONERS AND BOARD OF DIRECTORS</a>
                   <a href="/about#brand-evolution" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">BRAND EVOLUTION</a>
