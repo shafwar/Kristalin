@@ -118,7 +118,7 @@ export default function Welcome() {
           onMouseLeave={() => setHoveredCard(null)}
         >
           <img
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            src="https://kristalin.co.id/wp-content/uploads/2020/05/Anak-Papua.jpg"
             alt="Our Portfolio"
             className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
               hoveredCard === 0 ? 'opacity-60 scale-110' : 'opacity-40 scale-100'
@@ -152,15 +152,15 @@ export default function Welcome() {
           </div>
         </div>
 
-        {/* Governance */}
+        {/* Business Activities */}
         <div 
           className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
           onMouseEnter={() => setHoveredCard(1)}
           onMouseLeave={() => setHoveredCard(null)}
         >
           <img
-            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Corporate Governance"
+            src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
+            alt="Business Activities"
             className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
               hoveredCard === 1 ? 'opacity-60 scale-110' : 'opacity-40 scale-100'
             }`}
@@ -180,7 +180,7 @@ export default function Welcome() {
             <div className={`text-2xl md:text-3xl font-bold text-white mb-2 transition-all duration-300 ${
               hoveredCard === 1 ? 'transform translate-x-2' : ''
             }`}>
-              Good Corporate<br />Governance
+              Business Activities
             </div>
             <button className={`underline text-white hover:text-yellow-400 text-lg md:text-xl mt-2 transition-all duration-300 ${
               hoveredCard === 1 ? 'text-yellow-400' : ''
@@ -190,82 +190,82 @@ export default function Welcome() {
           </div>
         </div>
 
-        {/* News with enhanced animations */}
-        <div 
-          className="flex-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex flex-col justify-between px-14 py-10 relative overflow-hidden"
-          onMouseEnter={() => setHoveredCard(2)}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          {/* Premium background effects */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-full h-full">
-              <div className="absolute top-8 right-8 w-32 h-32 border border-black rounded-full animate-pulse opacity-30"></div>
-              <div className="absolute top-16 right-16 w-16 h-16 border border-black rounded-full animate-pulse opacity-20" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute bottom-8 left-8 w-24 h-24 border border-black rounded-full animate-pulse opacity-25" style={{ animationDelay: '2s' }}></div>
-            </div>
-          </div>
+                 {/* News with proper normal sizing */}
+         <div 
+           className="flex-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex flex-col justify-between px-14 py-10 relative overflow-hidden"
+           onMouseEnter={() => setHoveredCard(2)}
+           onMouseLeave={() => setHoveredCard(null)}
+         >
+           {/* Clean background */}
+           <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
 
-          {/* Gradient overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
-
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`text-2xl md:text-3xl font-bold transition-all duration-500 ${
-                hoveredCard === 2 ? 'transform scale-110 text-black' : 'text-gray-900'
-              }`}>
-                <span className="inline-block animate-[slideInLeft_0.6s_ease-out]">News</span>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length)}
-                  className="w-10 h-10 flex items-center justify-center text-black hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110 hover:rotate-12"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => setCurrentNews((prev) => (prev + 1) % newsItems.length)}
-                  className="w-10 h-10 flex items-center justify-center text-black hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110 hover:-rotate-12"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            
-            {/* News content with sophisticated animations */}
-            <div key={currentNews} className="animate-[newsSlideIn_0.8s_ease-out]">
-              <div className="text-sm text-gray-800 mb-3 font-medium opacity-80">
-                {newsItems[currentNews].date}
-              </div>
-              <div className="text-lg md:text-xl font-bold text-black mb-4 leading-tight animate-[textReveal_0.6s_ease-out_0.2s_both]">
-                {newsItems[currentNews].title}
-              </div>
-              <div className="text-sm md:text-base text-gray-900 mb-6 leading-relaxed opacity-90 animate-[textReveal_0.6s_ease-out_0.4s_both]">
-                {newsItems[currentNews].excerpt}
-              </div>
-              <div className="animate-[buttonReveal_0.6s_ease-out_0.6s_both]">
-                <a 
-                  href="#" 
-                  className="inline-flex items-center text-black hover:text-gray-800 text-lg font-bold group relative"
-                >
-                  <span className="relative z-10">View</span>
-                  <div className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -z-0"></div>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          {/* Bottom accent line */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-black to-transparent opacity-20"></div>
-        </div>
+           {/* Top Section - Header */}
+           <div className="relative z-10">
+             <div className="flex items-center justify-between mb-4">
+               <div className={`text-2xl md:text-3xl font-bold transition-all duration-500 ${
+                 hoveredCard === 2 ? 'transform scale-110 text-black' : 'text-gray-900'
+               }`}>
+                 News
+               </div>
+               <div className="flex gap-2">
+                 <button
+                   onClick={() => setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length)}
+                   className="w-8 h-8 flex items-center justify-center text-black hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
+                 >
+                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                   </svg>
+                 </button>
+                 <button
+                   onClick={() => setCurrentNews((prev) => (prev + 1) % newsItems.length)}
+                   className="w-8 h-8 flex items-center justify-center text-black hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
+                 >
+                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                   </svg>
+                 </button>
+               </div>
+             </div>
+           </div>
+           
+           {/* Middle Section - Content with proper spacing */}
+           <div className="relative z-10 flex-1 flex flex-col justify-center space-y-3">
+             <div key={currentNews} className="transform transition-all duration-500">
+               {/* Date */}
+               <div className="text-xs text-gray-800 mb-2 font-medium opacity-80">
+                 {newsItems[currentNews].date}
+               </div>
+               
+               {/* Title */}
+               <div className="text-lg md:text-xl font-bold text-black mb-3 leading-tight">
+                 {newsItems[currentNews].title}
+               </div>
+               
+               {/* Description */}
+               <div className="text-sm md:text-base text-gray-900 leading-relaxed opacity-90">
+                 {newsItems[currentNews].excerpt}
+               </div>
+             </div>
+           </div>
+           
+           {/* Bottom Section - View button with proper spacing */}
+           <div className="relative z-10 mt-4">
+             <a 
+               href="#" 
+               className="inline-flex items-center text-black hover:text-gray-800 text-lg md:text-xl font-medium group transition-all duration-300"
+             >
+               <span className="relative z-10">View</span>
+               <div className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
+                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                 </svg>
+               </div>
+             </a>
+           </div>
+           
+           {/* Bottom accent line */}
+           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-black/20 to-transparent"></div>
+         </div>
       </section>
 
       {/* Footer */}
