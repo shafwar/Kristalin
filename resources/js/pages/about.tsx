@@ -164,7 +164,7 @@ export default function AboutPage() {
           }`}>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
               <div className="grid grid-cols-2 gap-4 text-center">
-                {Object.entries(companyStats).map(([key, value], index) => (
+                {Object.entries(companyStats).map(([key, value]) => (
                   <div key={key} className="space-y-1">
                     <div className="text-yellow-400 font-bold text-lg">{value}</div>
                     <div className="text-white/80 text-xs uppercase tracking-wide">{key.replace(/([A-Z])/g, ' $1').trim()}</div>

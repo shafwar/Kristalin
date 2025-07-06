@@ -33,7 +33,7 @@ export default function About() {
           Kristalin Eka Lestari adalah perusahaan pertambangan dan perdagangan emas yang berkomitmen pada integritas, keberlanjutan, dan inovasi. Kami hadir untuk memberikan nilai tambah bagi Indonesia melalui pengelolaan sumber daya alam yang bertanggung jawab.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          {aboutItems.map((item, idx) => (
+          {aboutItems.map((item) => (
             <div
               key={item.title}
               className="flex flex-col items-center bg-gray-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-gray-100"

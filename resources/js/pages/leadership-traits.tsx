@@ -43,7 +43,6 @@ const IconHumble = () => (
 export default function LeadershipTraitsPage() {
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [activeTrait, setActiveTrait] = useState(0);
 
   const HEADER_HEIGHT = 80;

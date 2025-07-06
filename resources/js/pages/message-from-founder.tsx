@@ -36,7 +36,6 @@ const IconIndonesia = () => (
 export default function MessageFromFounder() {
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(0);
 
   const HEADER_HEIGHT = 80;

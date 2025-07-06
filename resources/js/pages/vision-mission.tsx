@@ -10,12 +10,7 @@ const IconEye = () => (
   </svg>
 );
 
-const IconCompass = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/>
-    <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76"/>
-  </svg>
-);
+
 
 const IconTrendingUp = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -85,12 +80,7 @@ export default function VisionMissionPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const companyStats = {
-    vision: "One Vision",
-    mission: "Six Pillars",
-    established: "Since 1989",
-    commitment: "Excellence"
-  };
+
 
   const missionPillars = [
     {

@@ -3,22 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 // SVG Icon Components
-const IconCalendar = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-    <line x1="16" y1="2" x2="16" y2="6"/>
-    <line x1="8" y1="2" x2="8" y2="6"/>
-    <line x1="3" y1="10" x2="21" y2="10"/>
-  </svg>
-);
-
-const IconTrophy = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="8" y1="21" x2="16" y2="21"/>
-    <line x1="12" y1="17" x2="12" y2="21"/>
-    <path d="M5.7 8C6.2 8 6.7 8.1 7.1 8.3L12 2l4.9 6.3c.4-.2.9-.3 1.4-.3 1.7 0 3 1.3 3 3s-1.3 3-3 3c-.5 0-.9-.1-1.4-.3L12 20 7.1 13.7c-.4.2-.9.3-1.4.3-1.7 0-3-1.3-3-3s1.3-3 3-3z"/>
-  </svg>
-);
 
 const IconArrowLeft = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -202,7 +186,6 @@ export default function MilestonesPage() {
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeYear, setActiveYear] = useState<string>('2020-2025');
-  const [selectedMilestone, setSelectedMilestone] = useState<number>(0);
 
   const HEADER_HEIGHT = 80;
   const FOOTER_HEIGHT = 40;
@@ -215,16 +198,7 @@ export default function MilestonesPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Auto-cycle through milestones for demo
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentYearData = milestonesData[activeYear];
-      if (currentYearData) {
-        setSelectedMilestone(prev => (prev + 1) % currentYearData.length);
-      }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [activeYear]);
+
 
   const yearPeriods: string[] = ['2020-2025', '2015-2019', '2010-2014', '2005-2009', '2000-2004', '1989-1999'];
 
@@ -417,7 +391,7 @@ export default function MilestonesPage() {
           }`}>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
               <div className="grid grid-cols-2 gap-4 text-center">
-                {Object.entries(companyStats).map(([key, value]: [string, string], index: number) => (
+                {Object.entries(companyStats).map(([key, value]: [string, string]) => (
                   <div key={key} className="space-y-1">
                     <div className="text-yellow-400 font-bold text-lg">{value}</div>
                     <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
@@ -436,24 +410,24 @@ export default function MilestonesPage() {
           {/* Content Container */}
           <div className="h-full flex flex-col" style={{ padding: '2rem' }}>
             {/* Year Navigation */}
-            <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={setSelectedMilestone} isLoaded={isLoaded} />
+            <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
             {/* Milestones Content */}
             <div
               ref={rightPanelRef}
               className="flex-1 overflow-y-auto space-y-6"
             >
-              {currentMilestones.map((milestone: Milestone, index: number) => (
+              {currentMilestones.map((milestone: Milestone) => (
                 <div
-                  key={`${milestone.year}-${index}`}
+                  key={`${milestone.year}-${milestone.title}`}
                   className={`transform transition-all duration-1000 cursor-pointer group ${
                     isLoaded 
                       ? 'translate-y-0 opacity-100' 
                       : 'translate-y-8 opacity-0'
                   } hover:bg-gray-50 rounded-2xl p-6 -mx-2`}
                   style={{ 
-                    transitionDelay: `${600 + (index * 200)}ms` 
+                    transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms` 
                   }}
-                  onClick={() => setSelectedMilestone(index)}
+                  onClick={() => {}}
                 >
                   <div className="flex items-start space-x-4">
                     {/* Year Badge */}
