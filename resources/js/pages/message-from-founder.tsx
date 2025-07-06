@@ -100,12 +100,14 @@ export default function MessageFromFounder() {
         style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}
       >
         {/* Left Side - Image and Title */}
-        <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
+        <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden min-h-[600px]">
           {/* Gambar statis, tidak pernah terkena animasi */}
           <div className="absolute inset-0 w-full h-full">
             <img 
-              src="https://agarocorp.com/images/about-us/arifbudi.jpg"
+              src="/arifbudi.jpg"
               alt="Message from Founder"
+              width={600}
+              height={600}
               className="w-full h-full object-cover opacity-70"
               draggable="false"
             />
