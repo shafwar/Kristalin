@@ -24,64 +24,6 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1 },
 };
 
-const services = [
-  {
-    icon: "🧭",
-    title: "Eksplorasi & Survei Geologi",
-    desc: "Survei mineral, pemetaan geologi, pengeboran, dan pengujian laboratorium."
-  },
-  {
-    icon: "⛏️",
-    title: "Penambangan Emas Skala Menengah hingga Besar",
-    desc: "Open-pit & underground mining dengan teknologi modern."
-  },
-  {
-    icon: "⚗️",
-    title: "Pengolahan & Pemurnian",
-    desc: "Proses CIL (Carbon in Leach) untuk ekstraksi emas murni."
-  },
-  {
-    icon: "🚚",
-    title: "Distribusi & Penjualan",
-    desc: "Kemitraan dengan smelter dan lembaga keuangan nasional/internasional."
-  },
-  {
-    icon: "🌱",
-    title: "Pengelolaan Lingkungan",
-    desc: "Reklamasi lahan, pengolahan limbah, dan audit lingkungan berkala."
-  },
-];
-
-const projects = [
-  {
-    title: "Blok Gunung Kristal – Kalimantan Tengah",
-    image: "/gold-bars.jpg",
-    details: [
-      { label: "Luas Wilayah", value: "± 5.000 ha" },
-      { label: "Status", value: "Produksi sejak 2018" },
-      { label: "Cadangan Emas", value: "1,2 juta oz" },
-      { label: "Kapasitas Produksi", value: "± 120.000 oz/tahun" },
-    ],
-  },
-  {
-    title: "Tambang Lestari – Sulawesi Selatan",
-    image: "/building.jpg",
-    details: [
-      { label: "Luas Wilayah", value: "± 3.200 ha" },
-      { label: "Status", value: "Tahap Eksplorasi" },
-      { label: "Potensi Kandungan", value: "Emas & Tembaga" },
-    ],
-  },
-  {
-    title: "Pabrik Pemurnian Kristalin – Jawa Barat",
-    image: "/portfolio.jpg",
-    details: [
-      { label: "Kapasitas", value: "150.000 ton ore/tahun" },
-      { label: "Fasilitas", value: "Lab Uji Mineral, Pengolahan Kimia, Pemurnian Emas" },
-    ],
-  },
-];
-
 const partners = [
   { 
     name: "Bank Mandiri", 
@@ -130,23 +72,6 @@ const partners = [
       </svg>
     )
   },
-];
-
-const achievements = [
-  { year: "2021", produksi: "80.000", pendapatan: "1.100", laba: "210" },
-  { year: "2022", produksi: "95.000", pendapatan: "1.350", laba: "275" },
-  { year: "2023", produksi: "120.000", pendapatan: "1.750", laba: "360" },
-];
-
-const certifications = [
-  "ISO 14001:2015",
-  "PROPER Hijau KLHK"
-];
-
-const csrPrograms = [
-  "Beasiswa Tambang Emas Cerdas",
-  "Klinik Gratis untuk Warga",
-  "Pelatihan UMKM"
 ];
 
 const contact = {
