@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
 
 export default function Header() {
   return (
@@ -14,6 +15,29 @@ export default function Header() {
       <nav className="flex-1 flex justify-center">
         <ul className="flex gap-10 text-base font-extrabold text-white uppercase tracking-wide">
           <li><a href="/" className="hover:text-yellow-400 transition">Home</a></li>
+          <li className="relative group">
+            <a href="#" className="hover:text-yellow-400 transition flex items-center gap-1">
+              About Us
+              <svg className="w-4 h-4 transform group-hover:rotate-180 transition-transform" fill="currentColor" viewBox="0 0 12 12">
+                <path d="M6 8L2 4h8l-4 4z"/>
+              </svg>
+            </a>
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-0 mt-2 w-80 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 rounded-lg border border-gray-600">
+              <div className="py-6 px-6">
+                <div className="space-y-3">
+                  <Link href="/about#about-kristalin" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">ABOUT KRISTALIN EKA LESTARI</Link>
+                  <Link href="/line-of-business" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR LINE OF BUSINESS</Link>
+                  <Link href="/milestones" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MILESTONES</Link>
+                  <Link href="/vision-mission" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR VISION & MISSION</Link>
+                  <Link href="/core-values" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR CORE VALUES</Link>
+                  <Link href="/leadership-traits" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">LEADERSHIP TRAITS</Link>
+                  <Link href="/message-from-founder" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM FOUNDER</Link>
+                  <Link href="/news" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">NEWS</Link>
+                </div>
+              </div>
+            </div>
+          </li>
           <li>
             <a
               href="https://modi.esdm.go.id/portal/detailPerusahaan/14963?jp=1"
@@ -24,35 +48,17 @@ export default function Header() {
               Modi
             </a>
           </li>
-          <li><a href="/company-overview" className="hover:text-yellow-400 transition">Company Overview</a></li>
-          
-          {/* About Us dengan Dropdown */}
-          <li className="relative group">
-            <a href="#" className="hover:text-yellow-400 transition flex items-center gap-1">
-              About Us
-              <svg className="w-4 h-4 transform group-hover:rotate-180 transition-transform" fill="currentColor" viewBox="0 0 12 12">
-                <path d="M6 8L2 4h8l-4 4z"/>
-              </svg>
+          <li>
+            <a
+              href="https://goldprice.org/gold-price-indonesia.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-yellow-400 transition"
+            >
+              Gold Price
             </a>
-            
-            {/* Dropdown Menu */}
-            <div className="absolute top-full left-0 mt-2 w-80 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 rounded-lg border border-gray-600">
-              <div className="py-6 px-6">
-                <div className="space-y-3">
-                  <a href="/about#about-kristalin" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">ABOUT KRISTALIN EKA LESTARI</a>
-                  <a href="/milestones" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MILESTONES</a>
-                  <a href="/vision-mission" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR VISION & MISSION</a>
-                  <a href="/core-values" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">OUR CORE VALUES</a>
-                  <a href="/leadership-traits" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">LEADERSHIP TRAITS</a>
-                  <a href="/message-from-founder" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM FOUNDER</a>
-                  <a href="/about#message-president" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">MESSAGE FROM PRESIDENT DIRECTOR</a>
-                  <a href="/about#profile-board" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">PROFILE FOUNDER, BOARD OF COMMISSIONERS AND BOARD OF DIRECTORS</a>
-                  <a href="/about#brand-evolution" className="block text-sm hover:text-yellow-300 transition-colors py-1 hover:bg-white hover:bg-opacity-10 px-2 rounded">BRAND EVOLUTION</a>
-                </div>
-              </div>
-            </div>
           </li>
-          
+          <li><a href="/company-overview" className="hover:text-yellow-400 transition">Company Overview</a></li>
           <li><a href="#" className="hover:text-yellow-400 transition">Business Activities</a></li>
           <li><a href="#" className="hover:text-yellow-400 transition">CSR</a></li>
           <li><a href="#" className="hover:text-yellow-400 transition">Contact</a></li>
