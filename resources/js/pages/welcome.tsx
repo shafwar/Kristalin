@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
+import { Link } from "@inertiajs/react";
 
 const PlaceholderImg = ({ text }: { text: string }) => (
   <svg width="100%" height="100%" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -115,6 +116,7 @@ export default function Welcome() {
           className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
           onMouseEnter={() => setHoveredCard(0)}
           onMouseLeave={() => setHoveredCard(null)}
+          onClick={() => window.location.href = '/line-of-business'}
         >
           <img
             src="https://kristalin.co.id/wp-content/uploads/2020/05/Anak-Papua.jpg"
@@ -249,8 +251,8 @@ export default function Welcome() {
            
            {/* Bottom Section - View button with proper spacing */}
            <div className="relative z-10 mt-4">
-             <a 
-               href="#" 
+             <Link 
+               href="/news"
                className="inline-flex items-center text-black hover:text-gray-800 text-lg md:text-xl font-medium group transition-all duration-300"
              >
                <span className="relative z-10">View</span>
@@ -259,7 +261,7 @@ export default function Welcome() {
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                  </svg>
                </div>
-             </a>
+             </Link>
            </div>
            
            {/* Bottom accent line */}

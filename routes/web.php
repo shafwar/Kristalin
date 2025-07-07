@@ -41,5 +41,13 @@ Route::get('/message-from-founder', function () {
     return Inertia::render('message-from-founder');
 })->name('message-from-founder');
 
+Route::get('/line-of-business', function () {
+    return Inertia::render('line-of-business');
+})->name('line-of-business');
+
+Route::get('/news', function () {
+    return Inertia::render('news');
+})->name('news');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
