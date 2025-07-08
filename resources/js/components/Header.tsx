@@ -50,7 +50,9 @@ export default function Header() {
           <li>
             <a href="/line-of-business" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Our Line of Business</a>
           </li>
-          <li><a href="#" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Business Activities</a></li>
+          <li>
+            <Link href="/business-activity" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Business Activities</Link>
+          </li>
           <li><a href="#" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">CSR</a></li>
           <li><a href="#" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Contact</a></li>
         </ul>
