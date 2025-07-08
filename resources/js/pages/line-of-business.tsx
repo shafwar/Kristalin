@@ -138,8 +138,8 @@ export default function KristalinPortfolio() {
       <section className="relative min-h-[100vh] flex flex-col justify-center items-center overflow-hidden">
         {/* Background image */}
         <img
-          src="/goldmining.jpg"
-          alt="Gold Mining"
+          src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
+          alt="Mining the Future"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         {/* Overlay */}
@@ -152,11 +152,12 @@ export default function KristalinPortfolio() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2 drop-shadow-lg">
-              LINE OF BUSINESS
+            <h1 className="mt-12 text-3xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">
+              <span className="text-white">Our </span>
+              <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent">Portfolio</span>
             </h1>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-lg" style={{ letterSpacing: '-2px' }}>
-              FUELING THE FUTURE
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg" style={{ letterSpacing: '-1px' }}>
+              MINING THE FUTURE
             </h2>
             <p className="text-lg md:text-xl text-white/90 font-light max-w-3xl mx-auto mb-8 drop-shadow leading-relaxed">
               PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia's future.

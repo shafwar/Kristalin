@@ -154,7 +154,8 @@ export default function Welcome() {
         </div>
 
         {/* Business Activities */}
-        <div 
+        <Link 
+          href="/business-activity"
           className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
           onMouseEnter={() => setHoveredCard(1)}
           onMouseLeave={() => setHoveredCard(null)}
@@ -183,13 +184,15 @@ export default function Welcome() {
             }`}>
               Business Activities
             </div>
-            <button className={`underline text-white hover:text-yellow-400 text-lg md:text-xl mt-2 transition-all duration-300 ${
-              hoveredCard === 1 ? 'text-yellow-400' : ''
-            }`}>
+            <span 
+              className={`underline text-white hover:text-yellow-400 text-lg md:text-xl mt-2 transition-all duration-300 ${
+                hoveredCard === 1 ? 'text-yellow-400' : ''
+              }`}
+            >
               Find out more →
-            </button>
+            </span>
           </div>
-        </div>
+        </Link>
 
                  {/* News with proper normal sizing */}
          <div 

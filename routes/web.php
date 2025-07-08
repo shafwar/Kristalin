@@ -49,5 +49,9 @@ Route::get('/news', function () {
     return Inertia::render('news');
 })->name('news');
 
+Route::get('/business-activity', function () {
+    return Inertia::render('business-activity');
+})->name('business-activity');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
