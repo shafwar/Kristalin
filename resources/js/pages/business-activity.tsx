@@ -518,6 +518,158 @@ function EnhancedMiningSectors() {
   );
 }
 
+// NEW ENHANCED ALLUVIAL GOLD MINING SECTION - MINIMALIST VERSION
+function AlluvialGoldMiningSection() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Header Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "4rem" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-0.5 bg-gradient-to-r from-amber-500 to-yellow-600 mx-auto mb-6"
+          />
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            ALLUVIAL GOLD MINING
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Sustainable mining operations in Papua's mineral-rich region
+          </p>
+        </motion.div>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Left Column - Content */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2 space-y-8"
+          >
+            {/* Main Text */}
+            <div className="prose prose-lg max-w-none">
+              <p className="text-gray-700 leading-relaxed mb-6">
+                The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963 
+                with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square. 
+                The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia, 
+                the biggest mining company with the most gold and silver output in the nation is located.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-6">
+                Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district, 
+                the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector 
+                in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village, 
+                along the musairo river, Nabire, Papua.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                In 2010, the authority to mine changed into mining lisence for exploration. In addition, in 2011, PT Kristalin Ekalestari 
+                was also granted mining lisence for operational production for 198 hectares in Makimi village. To conduct mass mining for 
+                alluvial gold, PT Kristalin Ekalestari is cooperating with local and foreign investors to optimize the mining sector, 
+                with a noble purpose to improve the local and national economies.
+              </p>
+            </div>
+            {/* Key Operations */}
+            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-6">Current Operations</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                    <span className="font-medium text-gray-700">Gold exploration in Nabire, Papua</span>
+                  </div>
+                  <span className="text-amber-600 font-semibold">5,000 Ha</span>
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                    <span className="font-medium text-gray-700">Gold processing in Nabire, Papua</span>
+                  </div>
+                  <span className="text-amber-600 font-semibold">198 Ha</span>
+                </div>
+              </div>
+            </div>
+            {/* Economic Impact */}
+            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Economic Impact</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Gold minerals have a significant role in improving the nation's economy. PT Kristalin Ekalestari aims to contribute 
+                to the region's government, optimizing underdeveloped economies of local areas, and support potential mining sites in Nabire, Papua.
+              </p>
+            </div>
+          </motion.div>
+          {/* Right Column - Image & Stats */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6"
+          >
+            {/* Main Image */}
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/tracktor.png"
+                alt="Gold mining operations" 
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="text-sm font-medium">Modern Mining Equipment</p>
+                <p className="text-xs opacity-90">Nabire, Papua</p>
+              </div>
+            </div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 text-center">
+                <div className="text-2xl font-bold text-amber-600 mb-1">2007</div>
+                <div className="text-sm text-gray-600">Est. Year</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 text-center">
+                <div className="text-2xl font-bold text-amber-600 mb-1">17+</div>
+                <div className="text-sm text-gray-600">Years Exp</div>
+              </div>
+            </div>
+            {/* Timeline */}
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <h4 className="font-semibold text-gray-800 mb-4">Timeline</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-gray-800">2007</span>
+                    <span className="text-gray-600 text-sm ml-2">Mining authority granted</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-gray-800">2010</span>
+                    <span className="text-gray-600 text-sm ml-2">Exploration license</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div>
+                    <span className="font-medium text-gray-800">2011</span>
+                    <span className="text-gray-600 text-sm ml-2">Production license</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function BusinessActivityPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -793,117 +945,8 @@ export default function BusinessActivityPage() {
         </div>
       </motion.section>
 
-      {/* Advanced Technology Section - WHITE BACKGROUND */}
-      <motion.section 
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1, color: "#fbbf24" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
-            >
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                Advanced
-              </span>
-              <span className="text-gray-800"> Technology</span>
-            </motion.h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 mx-auto mb-6"></div>
-            <p className="text-base md:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed font-normal">
-              Leveraging cutting-edge technology for efficient, sustainable, and safe mining operations
-            </p>
-          </motion.div>
-
-          <motion.div 
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {[
-              { 
-                title: "AI Analytics", 
-                description: "Machine learning algorithms for resource optimization, predictive maintenance, and operational efficiency enhancement", 
-                icon: "analytics",
-                features: ["Predictive Analysis", "Real-time Monitoring", "Automated Optimization", "Risk Assessment"],
-                percentage: "40% Efficiency Gain"
-              },
-              { 
-                title: "Drone Surveillance", 
-                description: "Advanced aerial monitoring systems for safety protocols, environmental compliance, and site security", 
-                icon: "drone",
-                features: ["24/7 Monitoring", "Safety Compliance", "Environmental Tracking", "Security Patrol"],
-                percentage: "95% Coverage"
-              },
-              { 
-                title: "IoT Network", 
-                description: "Connected sensor networks for equipment monitoring, automated control systems, and data analytics", 
-                icon: "network",
-                features: ["Smart Sensors", "Remote Control", "Data Analytics", "Equipment Health"],
-                percentage: "99.9% Uptime"
-              }
-            ].map((tech) => (
-              <motion.div 
-                key={tech.title}
-                variants={fadeInUp}
-                whileHover={{ 
-                  y: -10,
-                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)"
-                }}
-                className="group bg-gray-50 backdrop-blur-sm border border-gray-200 hover:border-amber-400/40 rounded-2xl p-8 transition-all duration-500 relative overflow-hidden"
-              >
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl group-hover:bg-amber-500/10 transition-colors duration-500"></div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.8, ease: "easeInOut" }}
-                      className="p-4 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl"
-                    >
-                      <Icon type={tech.icon} className="w-8 h-8 text-white" />
-                    </motion.div>
-                    <span className="text-sm font-semibold text-amber-600 bg-amber-500/20 px-3 py-1 rounded-full">
-                      {tech.percentage}
-                    </span>
-                  </div>
-                  
-                  <h4 className="text-xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors duration-300 mb-4">
-                    {tech.title}
-                  </h4>
-                  
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 mb-6 leading-relaxed text-sm font-normal">
-                    {tech.description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    {tech.features.map((feature) => (
-                      <motion.div 
-                        key={feature} 
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex items-center text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300"
-                      >
-                        <motion.div 
-                          whileHover={{ scale: 1.2 }}
-                          className="w-2 h-2 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full mr-3"
-                        />
-                        {feature}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+      {/* Alluvial Gold Mining Section */}
+      <AlluvialGoldMiningSection />
 
       {/* Our Achievements Section - BLACK BACKGROUND */}
       <motion.section 
@@ -1001,146 +1044,206 @@ export default function BusinessActivityPage() {
         </div>
       </motion.section>
 
-      {/* Community Impact - WHITE BACKGROUND */}
+      {/* Community Impact - ENHANCED BACKGROUND */}
       <motion.section 
         initial="hidden" 
         whileInView="visible" 
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-20 bg-white"
+        viewport={{ once: true, margin: "-50px" }}
+        className="py-24 bg-gradient-to-br from-gray-50 via-white to-amber-50/30 relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1, color: "#fbbf24" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
-            >
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                Community
-              </span>
-              <span className="text-gray-800"> Impact</span>
-            </motion.h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 mx-auto mb-6"></div>
-            <p className="text-base md:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed font-normal">
-              Creating lasting positive impact through sustainable development and environmental stewardship
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-300 rounded-full blur-3xl opacity-20"></div>
+        </div>
+
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="h-full w-full" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f59e0b' fill-opacity='0.3'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h-2z'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          
+          {/* Enhanced Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-amber-200 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+              Community Impact
+            </div>
+            
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Community <span className="text-amber-600">Impact</span>
+            </h2>
+            <div className="w-16 h-0.5 bg-amber-600 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Creating meaningful change through sustainable development and community empowerment
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div variants={staggerContainer} className="space-y-8">
-              {[
-                { 
-                  icon: "users", 
-                  title: "Local Employment", 
-                  description: "Sustainable employment opportunities for local communities with competitive compensation packages and comprehensive benefits",
-                  stat: "750+ Jobs Created",
-                  impact: "Direct employment"
-                },
-                { 
-                  icon: "education", 
-                  title: "Skills Development", 
-                  description: "Comprehensive training programs in mining technology, safety protocols, and technical expertise development",
-                  stat: "350+ Trained",
-                  impact: "Certified professionals"
-                },
-                { 
-                  icon: "environment", 
-                  title: "Environmental Restoration", 
-                  description: "Land rehabilitation, reforestation initiatives, and biodiversity conservation programs with measurable outcomes",
-                  stat: "200+ Hectares",
-                  impact: "Restored land"
-                },
-                { 
-                  icon: "health", 
-                  title: "Healthcare Infrastructure", 
-                  description: "Modern medical facilities and comprehensive health programs for community healthcare advancement",
-                  stat: "8 Facilities",
-                  impact: "Healthcare centers"
-                }
-              ].map((impact) => (
-                <motion.div 
-                  key={impact.title}
-                  variants={fadeInUp}
-                  whileHover={{ 
-                    x: 10,
-                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)"
-                  }}
-                  className="group bg-gray-50 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 hover:border-amber-400/40 transition-all duration-500"
-                >
-                  <div className="flex items-start gap-6">
-                    <motion.div 
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.8, ease: "easeInOut" }}
-                      className="p-4 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl"
-                    >
-                      <Icon type={impact.icon} className="w-8 h-8 text-white" />
-                    </motion.div>
-                    
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="text-xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors duration-300">
-                          {impact.title}
-                        </h4>
-                        <div className="text-right">
-                          <div className="text-lg font-semibold text-amber-600">{impact.stat}</div>
-                          <div className="text-xs text-gray-500">{impact.impact}</div>
-                        </div>
-                      </div>
-                      <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed text-sm font-normal">
-                        {impact.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+          {/* Main Content - Enhanced */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20"
+          >
+            {/* Image with Enhanced Background */}
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/20 to-yellow-400/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-2">
+                <img
+                  src="/comdevelop.jpg"
+                  alt="Community Development"
+                  className="w-full h-80 object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-2 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
+              </div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
-              <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-10 rounded-3xl border border-amber-500/20 overflow-hidden">
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl"></div>
-                
-                <div className="relative z-10 text-center text-white">
-                  <motion.div 
-                    whileHover={{ scale: 1.1 }}
-                    className="w-24 h-24 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-8"
-                  >
-                    <Icon type="handshake" className="w-12 h-12 text-white" />
-                  </motion.div>
-                  
-                  <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                    Community Partnership
+            {/* Content with Enhanced Background */}
+            <div className="relative">
+              <div className="absolute -inset-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200/50"></div>
+              <div className="relative p-6 space-y-8">
+                <div>
+                  <div className="inline-block bg-gradient-to-r from-amber-100 to-yellow-100 border border-amber-200 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                    Community Development
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    Empowering Local Communities
                   </h3>
-                  
-                  <p className="text-base text-gray-300 mb-10 leading-relaxed font-normal">
-                    Building lasting relationships through sustainable development initiatives 
-                    and collaborative growth strategies that benefit all stakeholders
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Aside from big scale gold mining activities, PT Kristalin Ekalestari also supports gold mining businesses of the locals. This collaboration with the locals with customary rights aim to improve local gold commodity. Local minings are supported and trained to assure excellent processing, effectivity, and efficiency.
                   </p>
-                  
-                  <div className="grid grid-cols-2 gap-6">
-                    {[
-                      { label: "Communities", value: "25+", desc: "Partner villages" },
-                      { label: "Programs", value: "40+", desc: "Active initiatives" },
-                      { label: "Investment", value: "$2.5M", desc: "Annual funding" },
-                      { label: "Impact", value: "5000+", desc: "Lives improved" }
-                    ].map((stat) => (
-                      <motion.div 
-                        key={stat.label} 
-                        whileHover={{ scale: 1.05 }}
-                        className="text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-amber-500/20"
-                      >
-                        <div className="text-2xl font-bold text-amber-400">{stat.value}</div>
-                        <div className="text-sm text-white font-medium">{stat.label}</div>
-                        <div className="text-xs text-gray-400">{stat.desc}</div>
-                      </motion.div>
-                    ))}
+                </div>
+                
+                {/* Enhanced Stats */}
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
+                    <div className="text-2xl font-bold text-amber-600 mb-1">350+</div>
+                    <div className="text-sm text-gray-500">Miners Trained</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
+                    <div className="text-2xl font-bold text-amber-600 mb-1">95%</div>
+                    <div className="text-sm text-gray-500">Success Rate</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
+                    <div className="text-2xl font-bold text-amber-600 mb-1">12</div>
+                    <div className="text-sm text-gray-500">Villages</div>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Impact Areas - Enhanced */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            {[
+              {
+                icon: "users",
+                title: "Employment",
+                value: "750+",
+                description: "Jobs created for local communities"
+              },
+              {
+                icon: "education", 
+                title: "Training",
+                value: "350+",
+                description: "People trained in mining skills"
+              },
+              {
+                icon: "environment",
+                title: "Environment",
+                value: "200+",
+                description: "Hectares of land restored"
+              },
+              {
+                icon: "health",
+                title: "Healthcare",
+                value: "8",
+                description: "Medical facilities established"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -5 }}
+                className="relative group"
+              >
+                {/* Card Background Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-amber-400/20 to-yellow-400/20 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+                
+                <div className="relative text-center p-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 bg-gradient-to-br from-amber-100 to-yellow-100 border border-amber-200 rounded-full flex items-center justify-center mx-auto mb-4"
+                  >
+                    <Icon type={item.icon} className="w-7 h-7 text-amber-600" />
+                  </motion.div>
+                  
+                  <div className="text-3xl font-bold text-gray-900 mb-2">{item.value}</div>
+                  <div className="text-lg font-semibold text-gray-800 mb-2">{item.title}</div>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Partnership Summary - Enhanced */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative"
+          >
+            {/* Background Glow */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/10 to-yellow-400/10 rounded-3xl blur-2xl"></div>
+            
+            <div className="relative bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 md:p-12 text-center">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Building Sustainable Communities
+              </h3>
+              <p className="text-gray-600 text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
+                Our commitment to community development goes beyond mining operations. We advocate for local miners to get proper licensing and optimize gold commodity through sustainable practices, improving living standards in Nabire, Papua.
+              </p>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {[
+                  { value: "25+", label: "Partner Villages" },
+                  { value: "40+", label: "Active Programs" },
+                  { value: "$2.5M", label: "Annual Investment" },
+                  { value: "5000+", label: "Lives Improved" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                    whileHover={{ scale: 1.05 }}
+                    className="text-center p-4 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-xl hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="text-3xl font-bold text-amber-600 mb-2">{stat.value}</div>
+                    <div className="text-gray-600">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 
