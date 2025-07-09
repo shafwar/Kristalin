@@ -193,30 +193,6 @@ const slideInRight = {
 };
 
 function EnhancedMiningSectors() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -40 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.7, ease: "easeOut" }
-    }
-  };
-  const slideInRight = {
-    hidden: { opacity: 0, x: 40 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.7, ease: "easeOut" }
-    }
-  };
   const sectors = [
     {
       name: "Gold",
@@ -244,7 +220,7 @@ function EnhancedMiningSectors() {
       setActiveIndex((prev) => (prev + 1) % images.length);
     }, 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
   const [showGoldDetail, setShowGoldDetail] = useState(false);
   // Lock body scroll when modal is open (Gold or Silver)
   const [showSilverDetail, setShowSilverDetail] = useState(false);
