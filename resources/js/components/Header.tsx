@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 
 export default function Header() {
+  const [language, setLanguage] = useState("ID");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
   return (
     <header className="flex items-center h-20 w-full bg-gradient-to-b from-[#444] via-[#888] to-[#e5e7eb] shadow-lg relative z-50 px-4 md:px-8">
       {/* Logo Section */}
@@ -53,19 +74,46 @@ export default function Header() {
           <li>
             <Link href="/business-activity" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Business Activities</Link>
           </li>
-          <li><a href="#" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">CSR</a></li>
-          <li><a href="#" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Contact</a></li>
+          <li><a href="/csr" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">CSR</a></li>
+          <li><a href="/contact" className="hover:text-yellow-400 transition-colors duration-200 px-2 py-1">Contact</a></li>
         </ul>
       </nav>
       {/* Right Side Features */}
       <div className="flex items-center gap-1 text-[15px] font-semibold uppercase tracking-wide h-full">
         {/* Language Switcher */}
-        <button className="text-white font-semibold text-[15px] uppercase tracking-wide flex items-center justify-center min-w-[44px] px-2 py-1 h-10 hover:text-yellow-400 transition-colors duration-200">
-          ID
-          <svg width="12" height="12" fill="none" className="transform group-hover:rotate-180 transition-transform duration-200">
-            <path d="M3 4.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+        <div className="relative" ref={dropdownRef}>
+          <button
+            className="text-white font-semibold text-[15px] uppercase tracking-wide flex items-center justify-center min-w-[44px] px-2 py-1 h-10 hover:text-yellow-400 transition-colors duration-200 focus:outline-none"
+            onClick={() => setDropdownOpen((open) => !open)}
+            aria-haspopup="listbox"
+            aria-expanded={dropdownOpen}
+          >
+            {language}
+            <svg width="12" height="12" fill="none" className={`ml-1 transform transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}>
+              <path d="M3 4.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-24 bg-white rounded shadow-lg z-50 border border-gray-200 animate-fadeIn" role="listbox">
+              <button
+                className={`block w-full text-left px-4 py-2 text-sm uppercase font-semibold hover:bg-yellow-100 transition-colors ${language === 'ID' ? 'text-yellow-600' : 'text-gray-800'}`}
+                onClick={() => { setLanguage('ID'); setDropdownOpen(false); }}
+                role="option"
+                aria-selected={language === 'ID'}
+              >
+                ID
+              </button>
+              <button
+                className={`block w-full text-left px-4 py-2 text-sm uppercase font-semibold hover:bg-yellow-100 transition-colors ${language === 'EN' ? 'text-yellow-600' : 'text-gray-800'}`}
+                onClick={() => { setLanguage('EN'); setDropdownOpen(false); }}
+                role="option"
+                aria-selected={language === 'EN'}
+              >
+                EN
+              </button>
+            </div>
+          )}
+        </div>
         {/* Search Icon */}
         <button className="text-white font-semibold text-[15px] uppercase tracking-wide flex items-center justify-center px-2 py-1 h-10 hover:text-yellow-400 transition-colors duration-200" aria-label="Search">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24">

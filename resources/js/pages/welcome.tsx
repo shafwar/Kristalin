@@ -17,34 +17,40 @@ export default function Welcome() {
 
   const newsItems = [
     {
+      date: "Just Updated",
+      title: "News on Social Media About the Sale of Kristalin Eka Lestari is a HOAX.",
+      excerpt: "Kristalin Eka Lestari has never been offered for sale to any party..."
+    },
+    {
       date: "15 Jun 2025",
-      title: "Kristalin Eka Lestari Ekspansi Operasi Tambang Emas di Papua Barat",
-      excerpt: "Perusahaan membuka area tambang baru dengan teknologi ramah lingkungan..."
+      title: "Kristalin Eka Lestari Expands Gold Mining Operations in West Papua",
+      excerpt: "The company opens a new mining area using environmentally friendly technology..."
     },
     {
-      date: "28 Mei 2025",
-      title: "Program CSR Pemberdayaan Masyarakat Lokal Mencapai Target 1000 Keluarga",
-      excerpt: "Komitmen terhadap kesejahteraan masyarakat Papua terus ditingkatkan..."
+      date: "28 May 2025",
+      title: "CSR Program for Community Empowerment Reaches Target of 1,000 Families",
+      excerpt: "Commitment to the welfare of Papua's communities continues to grow..."
     },
     {
-      date: "10 Mei 2025",
-      title: "Sertifikasi ISO 14001 untuk Standar Pengelolaan Lingkungan Pertambangan",
-      excerpt: "Kristalin Eka Lestari meraih sertifikat internasional untuk komitmen lingkungan..."
-    }
+      date: "10 May 2025",
+      title: "ISO 14001 Certification for Environmental Management Standards in Mining",
+      excerpt: "Kristalin Eka Lestari earns international certification for its environmental commitment..."
+    },
   ];
+  
 
   const contentSets = [
     {
       title1: "Introducing",
       title2: "Kristalin Ekalestari",
-      subtitle: "Perusahaan pertambangan emas terpercaya sejak 1989",
+      subtitle: "Trusted gold mining company since 1989",
       titleColors: "text-gray-900",
       title2Colors: "bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 bg-clip-text text-transparent"
     },
     {
-      title1: "Mitra Terpercaya",
-      title2: "Eksplorasi & Perdagangan Emas",
-      subtitle: "Sejak 1989, berkomitmen untuk pertambangan emas berkelanjutan di Papua.",
+      title1: "Trusted Partner",
+      title2: "Gold Exploration & Trading",
+      subtitle: "Since 1989, committed to sustainable gold mining in Papua.",
       titleColors: "text-gray-900",
       title2Colors: "text-yellow-600"
     }
@@ -128,7 +134,7 @@ export default function Welcome() {
               href="/about#about-kristalin"
               className="bg-yellow-500 text-gray-900 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block mt-6 transform animate-staggeredFadeScale delay-600"
             >
-              Pelajari Lebih Lanjut
+              Learn More
             </a>
           </div>
         </div>
@@ -157,7 +163,7 @@ export default function Welcome() {
           onClick={() => window.location.href = '/line-of-business'}
         >
           <img
-            src="https://kristalin.co.id/wp-content/uploads/2020/05/Anak-Papua.jpg"
+            src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
             alt="Our Portfolio"
             className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
               hoveredCard === 0 ? 'opacity-60 scale-110' : 'opacity-40 scale-100'

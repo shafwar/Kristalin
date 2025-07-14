@@ -130,6 +130,12 @@ const CounterAnimation = ({ target, duration = 1000 }: { target: number; duratio
 };
 
 export default function KristalinPortfolio() {
+  const companyProfileRef = React.useRef<HTMLDivElement>(null);
+  const handleScrollToCompanyProfile = () => {
+    if (companyProfileRef.current) {
+      companyProfileRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
@@ -230,12 +236,30 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
             </motion.div>
+            <div className="flex justify-center mt-10">
+              <motion.button
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(251, 191, 36, 0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-10 py-4 rounded-lg font-semibold text-lg overflow-hidden transition-all duration-300"
+                onClick={handleScrollToCompanyProfile}
+              >
+                <span className="relative z-10">Explore Portfolio</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Company Profile Section */}
       <motion.section 
+        ref={companyProfileRef}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -633,186 +657,7 @@ export default function KristalinPortfolio() {
           </div>
         </div>
       </motion.section>
-
-      {/* Why Choose Us Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative py-20 bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/goldmining.jpg')`
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <motion.div 
-              variants={slideInLeft}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
-              <h2 className="text-sm font-semibold text-white tracking-[0.25em] mb-4">
-                WHY CHOOSE US
-              </h2>
-              <div className="w-20 h-0.5 bg-yellow-600 mb-8"></div>
-              <h3 className="text-4xl md:text-5xl font-normal text-white mb-6 leading-tight">
-                Experience Work With Global Industries
-              </h3>
-              <p className="text-xl text-white/90 mb-8">
-                ARE ALWAYS READY TO SERVE
-              </p>
-              
-              <motion.button 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.4, ease: "easeInOut" }}
-                whileHover={{ scale: 1.05, backgroundColor: "white", color: "black" }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300"
-              >
-                CONTACT US
-              </motion.button>
-            </motion.div>
-
-            {/* Right Content - Features */}
-            <motion.div 
-              variants={slideInRight}
-              transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
-              className="space-y-6"
-            >
-              {[
-                "We Have Professional Workers",
-                "On Time In Progress", 
-                "Friendly To Serve Customers",
-                "Give The Best & Fair"
-              ].map((feature, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * index, duration: 0.4, ease: "easeInOut" }}
-                  className="flex items-center space-x-4 group"
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.4 }}
-                    className="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0"
-                  >
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 16.2L4.8 12L3.4 13.4L9 19L21 7L19.6 5.6L9 16.2Z"/>
-                    </svg>
-                  </motion.div>
-                  <span className="text-white text-lg group-hover:text-yellow-300 transition-colors duration-300">{feature}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Enhanced Contact Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="bg-white py-20"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            variants={fadeInUp} 
-            transition={{ duration: 0.4, ease: "easeInOut" }} 
-            className="text-center mb-16"
-          >
-            <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              GET IN TOUCH
-            </h2>
-            <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              Do Not Hesitate To Contact Us
-            </h3>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Phone */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
-              className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
-            >
-              <motion.div
-                whileHover={{ rotate: 15 }}
-                transition={{ duration: 0.4 }}
-                className="flex justify-center mb-4"
-              >
-                <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
-                  </svg>
-                </div>
-              </motion.div>
-              <h4 className="text-2xl font-normal text-gray-800 mb-4">Phone</h4>
-              <span className="text-gray-700 text-lg">{contact.phone}</span>
-            </motion.div>
-
-            {/* Email */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
-              className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
-            >
-              <motion.div
-                whileHover={{ rotate: 15 }}
-                transition={{ duration: 0.4 }}
-                className="flex justify-center mb-4"
-              >
-                <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
-                  </svg>
-                </div>
-              </motion.div>
-              <h4 className="text-2xl font-normal text-gray-800 mb-4">Email</h4>
-              <a href={`mailto:${contact.email}`} className="text-yellow-600 hover:text-yellow-700 transition-colors text-lg">
-                {contact.email}
-              </a>
-            </motion.div>
-
-            {/* Address */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
-              className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
-            >
-              <motion.div
-                whileHover={{ rotate: 15 }}
-                transition={{ duration: 0.4 }}
-                className="flex justify-center mb-4"
-              >
-                <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
-                  </svg>
-                </div>
-              </motion.div>
-              <h4 className="text-2xl font-normal text-gray-800 mb-4">Address</h4>
-              <div className="text-gray-700">
-                <div className="font-semibold text-yellow-700 mb-2">{contact.location}</div>
-                <div className="text-sm leading-relaxed">
-                  {contact.address}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
+      
       {/* Enhanced Partners Collaboration Section */}
       <motion.section 
         initial="hidden"
@@ -863,6 +708,85 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </motion.section>
+
+            {/* Why Choose Us Section */}
+            <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="relative py-20 bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/goldmining.jpg')`
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div 
+              variants={slideInLeft}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              <h2 className="text-sm font-semibold text-white tracking-[0.25em] mb-4">
+                WHY CHOOSE US
+              </h2>
+              <div className="w-20 h-0.5 bg-yellow-600 mb-8"></div>
+              <h3 className="text-4xl md:text-5xl font-normal text-white mb-6 leading-tight">
+                Experience Work With Global Industries
+              </h3>
+              <p className="text-xl text-white/90 mb-8">
+                ARE ALWAYS READY TO SERVE
+              </p>
+              
+              <motion.button 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.4, ease: "easeInOut" }}
+                whileHover={{ scale: 1.05, backgroundColor: "white", color: "black" }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-white text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300"
+              >
+                <a href="/contact">
+                CONTACT US
+                </a>
+              </motion.button>
+            </motion.div>
+
+            {/* Right Content - Features */}
+            <motion.div 
+              variants={slideInRight}
+              transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              {[
+                "We Have Professional Workers",
+                "On Time In Progress", 
+                "Friendly To Serve Customers",
+                "Give The Best & Fair"
+              ].map((feature, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * index, duration: 0.4, ease: "easeInOut" }}
+                  className="flex items-center space-x-4 group"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 16.2L4.8 12L3.4 13.4L9 19L21 7L19.6 5.6L9 16.2Z"/>
+                    </svg>
+                  </motion.div>
+                  <span className="text-white text-lg group-hover:text-yellow-300 transition-colors duration-300">{feature}</span>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </motion.section>
