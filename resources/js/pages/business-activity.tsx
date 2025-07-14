@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, Variants, Easing, AnimatePresence } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -671,6 +671,8 @@ function AlluvialGoldMiningSection() {
 }
 
 export default function BusinessActivityPage() {
+  const miningSectorsRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -717,6 +719,11 @@ export default function BusinessActivityPage() {
               }}
               whileTap={{ scale: 0.95 }}
               className="relative group bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-10 py-4 rounded-lg font-semibold text-lg overflow-hidden transition-all duration-300"
+              onClick={() => {
+                if (miningSectorsRef.current) {
+                  miningSectorsRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               <span className="relative z-10">Explore Operations</span>
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -726,7 +733,9 @@ export default function BusinessActivityPage() {
       </section>
 
       {/* Enhanced Mining Sectors Section */}
-      <EnhancedMiningSectors />
+      <div ref={miningSectorsRef}>
+        <EnhancedMiningSectors />
+      </div>
 
       {/* Our Location Section - BLACK BACKGROUND */}
       <motion.section 
@@ -1284,7 +1293,9 @@ export default function BusinessActivityPage() {
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300"
               >
+                <a href="/contact">
                 CONTACT US
+                </a>
               </motion.button>
             </motion.div>
 
@@ -1321,109 +1332,6 @@ export default function BusinessActivityPage() {
               ))}
             </motion.div>
           </div>
-        </div>
-      </motion.section>
-
-      {/* Contact Section - WHITE BACKGROUND */}
-      <motion.section 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, margin: "-100px" }}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <span className="text-amber-600 text-sm font-medium tracking-wider uppercase">
-              GET IN TOUCH
-            </span>
-            <div className="w-16 h-0.5 bg-amber-600 mx-auto mt-2 mb-8"></div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
-              Do Not Hesitate To Contact Us
-            </h2>
-          </motion.div>
-
-          <motion.div 
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12"
-          >
-            {/* Phone */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className="text-center group"
-            >
-              <motion.div 
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-700 transition-colors duration-300"
-              >
-                <Icon type="phone" className="w-8 h-8 text-white" />
-              </motion.div>
-              
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-amber-600 transition-colors duration-300">
-                Phone
-              </h3>
-              
-              <p className="text-gray-600 text-base font-normal">
-                (021) 22978900
-              </p>
-            </motion.div>
-
-            {/* Email */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className="text-center group"
-            >
-              <motion.div 
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-700 transition-colors duration-300"
-              >
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </motion.div>
-              
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-amber-600 transition-colors duration-300">
-                Email
-              </h3>
-              
-              <p className="text-gray-600 text-base font-normal">
-                info@kristalin.co.id
-              </p>
-            </motion.div>
-
-            {/* Address */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className="text-center group"
-            >
-              <motion.div 
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-700 transition-colors duration-300"
-              >
-                <Icon type="location" className="w-8 h-8 text-white" />
-              </motion.div>
-              
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-amber-600 transition-colors duration-300">
-                Address
-              </h3>
-              
-              <div className="text-gray-600 text-base leading-relaxed font-normal">
-                <p className="font-medium mb-2">ESO Leadership Centre - 165 Tower</p>
-                <p className="text-sm">
-                  Menara 165 Lantai 21 A-C, Jl. TB Simatupang<br />
-                  No.Kav 1, RT.3/RW.3, Cilandak Tim., Ps.<br />
-                  Minggu, Kota Jakarta Selatan, DKI Jakarta<br />
-                  12560
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </motion.section>
 

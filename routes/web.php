@@ -53,5 +53,13 @@ Route::get('/business-activity', function () {
     return Inertia::render('business-activity');
 })->name('business-activity');
 
+Route::get('/csr', function () {
+    return Inertia::render('csr');
+})->name('csr');
+
+Route::get('/contact', function () {
+    return Inertia::render('contact');
+})->name('contact');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

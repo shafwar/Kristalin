@@ -268,7 +268,9 @@ export default function MessageFromFounder() {
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
-                      Contact Us
+                      <a href="/contact">
+                        Contact Us
+                      </a>
                     </button>
                   </div>
                 </div>
