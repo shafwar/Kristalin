@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, Share, ArrowLeft, Sparkles, Mountain, Search, Filter, Eye, User, Clock, TrendingUp, ExternalLink, Award, Target, Users, BarChart3, Zap, Shield, Globe, Play, ArrowRight, Bookmark } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, Share, ArrowLeft, Sparkles, Search, Eye, User, Clock, TrendingUp, ExternalLink, BarChart3, ArrowRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -19,10 +19,6 @@ interface NewsItem {
   trending?: boolean;
   type?: string;
   metrics?: { [key: string]: string };
-}
-
-interface IsVisibleState {
-  [key: string]: boolean;
 }
 
 // Enhanced news data for gold mining company
@@ -204,7 +200,6 @@ const KristalinNewsPage: React.FC = () => {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isVisible, setIsVisible] = useState<IsVisibleState>({});
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [viewMode, setViewMode] = useState<'masonry' | 'grid'>('masonry');
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -322,11 +317,6 @@ const KristalinNewsPage: React.FC = () => {
   useEffect(() => {
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const id = entry.target.id;
-        setIsVisible(prev => ({
-          ...prev,
-          [id]: entry.isIntersecting
-        }));
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fadeInUp');
           // Add staggered animation delay for multiple elements
@@ -440,53 +430,44 @@ const KristalinNewsPage: React.FC = () => {
             
             {/* Left Column - Image (2/5 width) */}
             <div className="lg:col-span-2">
-              <div className="sticky top-24">
-                <div className="relative rounded-xl overflow-hidden group">
-                  <img
-                    src={selectedNews.imageUrl}
-                    alt={selectedNews.title}
-                    className="w-full h-auto max-h-[70vh] object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
-                    style={{ display: 'block', margin: 0 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <div className={`bg-gradient-to-r ${getCategoryColor(selectedNews.category)} text-black px-3 py-1.5 rounded-full text-xs font-bold shadow-lg`}>
-                      {selectedNews.category}
+              <div className="relative w-full aspect-[4/3] max-h-[70vh] rounded-xl overflow-hidden">
+                <img
+                  src={selectedNews.imageUrl}
+                  alt={selectedNews.title}
+                  className="w-full h-full object-cover rounded-xl"
+                  style={{ display: 'block' }}
+                />
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4">
+                  <div className={`bg-gradient-to-r ${getCategoryColor(selectedNews.category)} text-black px-3 py-1.5 rounded-full text-xs font-bold shadow-lg`}>
+                    {selectedNews.category}
+                  </div>
+                </div>
+                {/* Trending Badge */}
+                {selectedNews.trending && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-red-500 text-white p-1.5 rounded-full">
+                      <TrendingUp className="w-3 h-3" />
                     </div>
                   </div>
-
-                  {/* Trending Badge */}
-                  {selectedNews.trending && (
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-red-500 text-white p-1.5 rounded-full">
-                        <TrendingUp className="w-3 h-3" />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Project Metrics - Smaller */}
-                  {selectedNews.metrics && (
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3 border border-yellow-400/20">
-                        <h4 className="text-white font-semibold mb-2 flex items-center text-xs">
-                          <BarChart3 className="w-3 h-3 mr-1 text-yellow-400" />
-                          Project Metrics
-                        </h4>
-                        <div className="space-y-1">
-                          {Object.entries(selectedNews.metrics).map(([key, value]) => (
-                            <div key={key} className="flex justify-between text-xs">
-                              <span className="text-yellow-400 uppercase tracking-wider">{key}</span>
-                              <span className="text-white font-medium">{value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
+              {selectedNews.metrics && (
+                <div className="glass-card rounded-2xl p-4 mt-4 w-full">
+                  <h4 className="text-white font-bold mb-2 flex items-center text-sm">
+                    <BarChart3 className="w-4 h-4 mr-2 text-yellow-400" />
+                    Project Metrics
+                  </h4>
+                  <div className="flex flex-col gap-2">
+                    {Object.entries(selectedNews.metrics).map(([key, value]) => (
+                      <div key={key}>
+                        <span className="text-yellow-400 uppercase tracking-wider text-xs">{key}</span>
+                        <span className="block text-white font-medium text-xs break-words">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right Column - Content (3/5 width) */}

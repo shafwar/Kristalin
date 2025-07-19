@@ -74,16 +74,6 @@ const partners = [
   },
 ];
 
-const contact = {
-  address: "Menara 165 Lantai 21 A~C, Jl. TB Simatupang No.Kav 1, RT.3/RW.3, Cilandak Tim., Ps. Minggu, Kota Jakarta Selatan, DKI Jakarta 12560",
-  location: "ESQ Leadership Centre - 165 Tower",
-  phone: "(021) 22978900",
-  email: "info@kristalin.co.id",
-  website: "www.kristalin.co.id",
-  instagram: "@kristalinmining",
-  linkedin: "PT Kristalin Eka Lestari"
-};
-
 // CounterAnimation component for smooth animated counter
 const CounterAnimation = ({ target, duration = 1000 }: { target: number; duration?: number }) => {
   const [count, setCount] = useState(0);

@@ -35,11 +35,6 @@ const galeriPapua2 = [
   "/galeri-papua2-5.jpeg",
 ];
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
 // Gabungkan data galeri ke satu array
 const gallerySections = [
   {
@@ -135,10 +130,7 @@ function GalleryShowcaseCarousel({ sections }: { sections: typeof gallerySection
 }
 
 export default function CSRPage() {
-  const firstGalleryRef = React.useRef<HTMLDivElement>(null);
   const commitmentRef = React.useRef<HTMLDivElement>(null);
-  // State untuk section yang aktif/di-klik
-  const [activeSection, setActiveSection] = React.useState<number | null>(null);
   const handleLearnMore = () => {
     if (commitmentRef.current) {
       commitmentRef.current.scrollIntoView({ behavior: 'smooth' });
