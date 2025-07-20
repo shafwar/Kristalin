@@ -121,6 +121,15 @@ const CounterAnimation = ({ target, duration = 1000 }: { target: number; duratio
 
 export default function KristalinPortfolio() {
   const companyProfileRef = React.useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax effect
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleScrollToCompanyProfile = () => {
     if (companyProfileRef.current) {
       companyProfileRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -128,54 +137,114 @@ export default function KristalinPortfolio() {
   };
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header />
+      <Header sticky={true} transparent={true} />
       
-      {/* Hero Section with background image and value row */}
-      <section className="relative min-h-[100vh] flex flex-col justify-center items-center overflow-hidden">
-        {/* Background image */}
-        <img
-          src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-          alt="Mining the Future"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/70 z-10" />
-        
-        {/* Main Content */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto text-center px-4 mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            <h1 className="mt-12 text-3xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">
-              <span className="text-white">Our </span>
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent">Portfolio</span>
-            </h1>
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg" style={{ letterSpacing: '-1px' }}>
-              MINING THE FUTURE
-            </h2>
-            <p className="text-lg md:text-xl text-white/90 font-light max-w-3xl mx-auto mb-8 drop-shadow leading-relaxed">
-              PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia's future.
-            </p>
-          </motion.div>
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
+          <img
+            src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
+            alt="Mining the Future"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
         </div>
         
-        {/* Value Cards - Fixed Layout */}
-        <div className="relative z-20 w-full px-4 mb-16">
+        <motion.div 
+          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 pt-16 pb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <motion.div
+            className="transform transition-all duration-1000 ease-out"
+            style={{
+              transform: `translateY(${scrollY * 0.2}px)`,
+              opacity: Math.max(0, 1 - scrollY / 600)
+            }}
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            >
+              <motion.span 
+                className="text-white drop-shadow-lg"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Our{" "}
+              </motion.span>
+              <motion.span 
+                className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                Portfolio
+              </motion.span>
+            </motion.h1>
+            <motion.h2 
+              className="text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg" 
+              style={{ letterSpacing: '-1px' }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            >
+              MINING THE FUTURE
+            </motion.h2>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/95 mb-4 max-w-4xl mx-auto leading-relaxed font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
+            >
+              PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia's future.
+            </motion.p>
+          </motion.div>
+        </motion.div>
+
+        {/* Value Cards with Parallax */}
+        <motion.div 
+          className="relative z-20 w-full px-4 mb-6 -mt-4"
+          style={{
+            transform: `translateY(${scrollY * 0.15}px)`,
+            opacity: Math.max(0.3, 1 - scrollY / 800)
+          }}
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.6, ease: "easeOut" }}
+        >
           <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3, ease: "easeInOut" }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
             >
               {/* Integrity Card */}
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.4, ease: "easeInOut" }}
-                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 hover:scale-105 hover:shadow-3xl transition-all duration-300 hover:bg-black/90"
+                initial={{ opacity: 0, x: -50, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.3)"
+                }}
+                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 flex items-center justify-center">
@@ -200,10 +269,16 @@ export default function KristalinPortfolio() {
               </motion.div>
               {/* Commitment Card */}
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7, duration: 0.4, ease: "easeInOut" }}
-                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 hover:scale-105 hover:shadow-3xl transition-all duration-300 hover:bg-black/90"
+                initial={{ opacity: 0, x: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.3)"
+                }}
+                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 flex items-center justify-center">
@@ -226,25 +301,58 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
             </motion.div>
-            <div className="flex justify-center mt-10">
-              <motion.button
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(251, 191, 36, 0.3)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-10 py-4 rounded-lg font-semibold text-lg overflow-hidden transition-all duration-300"
-                onClick={handleScrollToCompanyProfile}
-              >
-                <span className="relative z-10">Explore Portfolio</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.button>
-            </div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Explore Operations Button */}
+        <motion.div 
+          className="relative z-20 w-full px-4 mb-8"
+          style={{
+            transform: `translateY(${scrollY * 0.1}px)`,
+            opacity: Math.max(0.4, 1 - scrollY / 700)
+          }}
+          initial={{ opacity: 0, y: 40, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 2.2, ease: "easeOut" }}
+        >
+          <div className="flex justify-center">
+            <motion.button
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileHover={{
+                scale: 1.05,
+                y: -3,
+                boxShadow: "0 20px 40px rgba(251, 191, 36, 0.4)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleScrollToCompanyProfile}
+              className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-12 py-5 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                Explore Operations
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 2.8, ease: "easeOut" }}
+        >
+          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </motion.div>
+
       </section>
 
       {/* Company Profile Section */}
@@ -709,7 +817,7 @@ export default function KristalinPortfolio() {
         viewport={{ once: true, amount: 0.3 }}
         className="relative py-20 bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/goldmining.jpg')`
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-linebusiness.png')`
         }}
       >
         <div className="max-w-6xl mx-auto px-4">

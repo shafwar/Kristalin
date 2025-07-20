@@ -28,50 +28,97 @@ const staggerContainer: Variants = {
   },
 };
 
-// Enhanced Counter Animation with gold shimmer effect
+// Enhanced Counter Animation with counting up effect
 interface CounterAnimationProps {
   target: number;
-  duration?: number;
   suffix?: string;
+  duration?: number;
+  delay?: number;
 }
-const CounterAnimation = ({ target, duration = 2500, suffix = "+" }: CounterAnimationProps) => {
+
+const CounterAnimation = ({ target, suffix = "", duration = 2000, delay = 0 }: CounterAnimationProps) => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startCounting = () => {
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    setCount(0);
+    
+    const increment = target / (duration / 50); // Update every 50ms
+    let current = 0;
+    
+    intervalRef.current = setInterval(() => {
+      current += increment;
+      
+      if (current >= target) {
+        setCount(target);
+        setIsAnimating(false);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, 50);
+  };
+
   useEffect(() => {
-    if (hasStarted) {
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        setCount(prevCount => {
-          const nextCount = prevCount + increment;
-          if (nextCount >= target) {
-            clearInterval(timer);
-            return target;
-          }
-          return nextCount;
-        });
-      }, 16);
-      return () => clearInterval(timer);
-    }
-  }, [hasStarted, target, duration]);
-  
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      onViewportEnter={() => setHasStarted(true)}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="relative"
+      onViewportEnter={() => {
+        setTimeout(startCounting, delay);
+      }}
+      transition={{ 
+        duration: 0.8, 
+        delay: delay / 1000, 
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent mb-2 relative overflow-hidden"
+      style={{ 
+        backgroundImage: 'linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24)',
+        WebkitBackgroundClip: 'text',
+        color: 'transparent'
+      }}
     >
-      <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent mb-2 animate-shimmer">
-        {Math.floor(count)}{suffix}
-      </div>
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-        animate={hasStarted ? { backgroundPosition: ["-200% 0", "200% 0"] } : {}}
-        transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <motion.span
+        animate={{ 
+          scale: isAnimating ? [1, 1.05, 1] : 1,
+          color: isAnimating ? ["#fbbf24", "#f59e0b", "#fbbf24"] : "#fbbf24"
+        }}
+        transition={{ 
+          duration: 0.5,
+          repeat: isAnimating ? Infinity : 0,
+          repeatType: "reverse"
+        }}
+      >
+        {count.toLocaleString()}{suffix}
+      </motion.span>
+      
+      {/* Shimmer effect that starts after counting */}
+      {!isAnimating && count === target && (
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+          animate={{ x: ['-100%', '100%'] }}
+          transition={{ 
+            duration: 2, 
+            repeat: Infinity, 
+            ease: "linear"
+          }}
+        />
+      )}
     </motion.div>
   );
 };
@@ -672,64 +719,126 @@ function AlluvialGoldMiningSection() {
 
 export default function BusinessActivityPage() {
   const miningSectorsRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax effect
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header sticky={true} transparent={true} />
       
-      {/* Hero Section */}
-      <section className="relative min-h-[100vh] flex flex-col justify-center items-center overflow-hidden">
-        {/* Background image */}
-        <img
-          src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-          alt="Mining Operations"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        {/* Main Content */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto text-center px-4 mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent">
-                Business
-              </span>
-              <br />
-              <span className="text-white">Activities</span>
-            </h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="text-lg md:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-normal drop-shadow"
-            >
-              Premium gold mining operations with sustainable practices and cutting-edge technology
-            </motion.p>
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 40px rgba(251, 191, 36, 0.3)"
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="relative group bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-10 py-4 rounded-lg font-semibold text-lg overflow-hidden transition-all duration-300"
-              onClick={() => {
-                if (miningSectorsRef.current) {
-                  miningSectorsRef.current.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              <span className="relative z-10">Explore Operations</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </motion.button>
-          </motion.div>
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
+          <img
+            src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
+            alt="Mining Operations"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
         </div>
+        <motion.div 
+          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 py-24"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <motion.div
+            className="transform transition-all duration-1000 ease-out"
+            style={{
+              transform: `translateY(${scrollY * 0.2}px)`,
+              opacity: Math.max(0, 1 - scrollY / 600)
+            }}
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            >
+              <motion.span 
+                className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Business
+              </motion.span>
+              <br />
+              <motion.span 
+                className="text-white drop-shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                Activities
+              </motion.span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl text-white/95 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            >
+              Premium gold mining operations with sustainable practices and cutting-edge technology for Indonesia's future.
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              initial={{ opacity: 0, y: 30, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
+            >
+              <motion.button
+                onClick={() => {
+                  if (miningSectorsRef.current) {
+                    miningSectorsRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-12 py-5 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(251, 191, 36, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  Explore Operations
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" }}
+        >
+          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Enhanced Mining Sectors Section */}
@@ -982,10 +1091,7 @@ export default function BusinessActivityPage() {
             </p>
           </motion.div>
           {/* Achievements Grid */}
-          <motion.div 
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-4 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               { 
                 number: 18, 
@@ -1015,13 +1121,22 @@ export default function BusinessActivityPage() {
                 icon: "analytics",
                 suffix: "%"
               }
-            ].map((stat) => (
+            ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                variants={fadeInUp}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: index * 0.15, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
                 whileHover={{ 
-                  y: -10,
-                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)"
+                  y: -12,
+                  scale: 1.02,
+                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.25)",
+                  borderColor: "rgba(251, 191, 36, 0.6)"
                 }}
                 className="group text-center p-8 bg-gray-900/50 backdrop-blur-sm border border-amber-500/20 hover:border-amber-400/40 rounded-2xl transition-all duration-500 relative overflow-hidden"
               >
@@ -1037,7 +1152,12 @@ export default function BusinessActivityPage() {
                     <Icon type={stat.icon} className="w-8 h-8 text-white" />
                   </motion.div>
                   
-                  <CounterAnimation target={stat.number} suffix={stat.suffix} />
+                  <CounterAnimation 
+                    target={stat.number} 
+                    suffix={stat.suffix}
+                    duration={2000}
+                    delay={index * 300}
+                  />
                   
                   <h4 className="text-lg font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-3">
                     {stat.label}
@@ -1049,7 +1169,7 @@ export default function BusinessActivityPage() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
