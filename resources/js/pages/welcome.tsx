@@ -310,7 +310,7 @@ export default function Welcome() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [currentContent, setCurrentContent] = useState(0);
-  
+
   // Contact form states
   const [formData, setFormData] = useState({
     name: '',
@@ -428,7 +428,7 @@ export default function Welcome() {
     setAlert(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
-  
+
   const contentSets = [
     {
       title1: "Introducing",
@@ -470,10 +470,10 @@ export default function Welcome() {
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-hidden">
       {/* Header */}
-      <Header />
+      <Header sticky={true} />
 
       {/* Hero Section */}
-      <section className="h-[60vh] w-full flex flex-col md:flex-row bg-white relative py-6 md:py-8">
+      <section className="h-[66.5vh] w-full flex flex-col md:flex-row bg-white relative py-6 md:py-8 pt-20">
         {/* Left Content */}
         <div className="flex-1 flex flex-col justify-center pl-8 md:pl-20 pr-4 relative">
           {/* Animated SVG Pattern */}
@@ -726,14 +726,20 @@ export default function Welcome() {
 
 
       {/* Contact Section */}
-      <section className="bg-white py-20">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="bg-white mt-16"
+      >
         <div className="flex flex-col lg:flex-row flex-1 min-h-screen relative w-full max-w-none">
           {/* Form Section - Expands to fill available space */}
           <div className="w-full lg:flex-1 bg-white flex flex-col justify-start px-6 md:px-12 py-2 md:py-4 relative z-20">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
               className="mb-2 text-left"
             >
               <div className="h-1 bg-gradient-to-r from-amber-400 to-yellow-500 mb-2 w-20" />
@@ -744,8 +750,9 @@ export default function Welcome() {
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
               className="text-black/90 font-medium mb-1 mt-0 text-left"
             >
               Find out more information about Kristalin Eka Lestari
@@ -754,8 +761,9 @@ export default function Welcome() {
             {/* Form takes full available width */}
             <motion.form
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-2xl p-3 md:p-5 w-full max-w-none z-10 mb-4"
               onSubmit={handleSubmit}
               autoComplete="off"
@@ -797,7 +805,7 @@ export default function Welcome() {
                     style={{ boxSizing: 'border-box' }}
                   />
                   {errors.name && <div id="name-error" className="text-xs text-red-500 mt-1">{errors.name}</div>}
-                </div>
+        </div>
                 <div className="w-full">
                   <Label htmlFor="email" className="text-base text-gray-900 font-semibold">Email *</Label>
                   <Input
@@ -901,7 +909,7 @@ export default function Welcome() {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <div className="text-sm text-gray-600 font-medium">Click or drag file here</div>
+                        <div className="text-sm text-gray-600 font-medium">Click or drag file here (optional)</div>
                         <div className="text-xs text-gray-500 mt-1">PDF, JPG, PNG, PPT (max 10MB)</div>
                       </div>
                     )}
@@ -950,7 +958,7 @@ export default function Welcome() {
           </div>
           
           {/* Image Section - Fixed width at right edge */}
-          <div className="w-full h-64 lg:w-[500px] lg:min-w-[500px] lg:h-auto relative bg-black overflow-hidden flex-shrink-0 z-10">
+          <div className="w-full h-64 lg:w-[500px] lg:min-w-[500px] lg:h-auto lg:mt-[-4rem] relative bg-black overflow-hidden flex-shrink-0 z-10">
             <img
               src="/menara165-sore.webp"
               alt="Menara 165"
@@ -958,7 +966,7 @@ export default function Welcome() {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Info Section */}
       <motion.section 
@@ -988,7 +996,7 @@ export default function Welcome() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
             >
               <motion.div 
@@ -1005,17 +1013,23 @@ export default function Welcome() {
                 }}
                 viewport={{ once: true }}
                 whileHover={{ 
-                  scale: 1.1, 
+                  scale: 1.15, 
                   rotate: 360,
-                  transition: { duration: 0.4 }
+                  transition: { duration: 0.6, ease: "easeInOut" }
                 }}
                 className="flex justify-center mb-4"
               >
-                <div className="w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center shadow-lg">
+                <motion.div 
+                  className="w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center shadow-lg"
+                  whileHover={{ 
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                    transition: { duration: 0.3 }
+                  }}
+                >
                   <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
                   </svg>
-                </div>
+                </motion.div>
               </motion.div>
               <h4 className="text-2xl font-normal text-white mb-4">Phone</h4>
               <span className="text-gray-300 text-lg">{contact.phone}</span>
@@ -1026,7 +1040,7 @@ export default function Welcome() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
             >
               <motion.div 
@@ -1066,7 +1080,7 @@ export default function Welcome() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="text-center p-6 rounded-2xl hover:shadow-lg transition-all duration-300"
             >
               <motion.div 
