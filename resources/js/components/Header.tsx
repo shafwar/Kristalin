@@ -106,11 +106,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
       <div className="flex items-center pl-6 pr-8">
         <a href="/" className="flex items-center" aria-label="Company Logo">
           <img 
-            src="/logo.svg" 
+            src={transparent ? (scrollY < 50 ? "https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png" : "https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png") : "https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png"}
             alt="Kristalin Eka Lestari Logo" 
-            className="h-16 md:h-20 w-auto object-contain transition-all duration-300 ease-out"
+            className="h-12 md:h-16 w-auto object-contain transition-all duration-700 ease-out"
             style={{
-              filter: getLogoFilter()
+              filter: transparent && scrollY < 50 ? 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.3))' : 'none'
             }}
           />
         </a>

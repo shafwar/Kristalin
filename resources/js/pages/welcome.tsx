@@ -415,7 +415,7 @@ export default function Welcome() {
               {currentContent === 0 && (
                 <motion.img
                   key="logo"
-                  src="/KRISTALINFIXLOGO.PNG"
+                  src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png"
                   alt="Kristalin Logo"
                   initial={{ opacity: 0, scale: 0.7, y: 30, rotate: -8 }}
                   animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}

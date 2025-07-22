@@ -23,7 +23,7 @@ export default function Hero() {
           Pelajari Lebih Lanjut
         </button>
       </div>
-      <img src="/logo.svg" alt="Kristalin Logo" className="w-64 h-64 object-contain mx-auto md:mx-0 z-10" />
+      <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Logo" className="w-64 h-64 object-contain mx-auto md:mx-0 z-10" />
     </section>
   );
 } 

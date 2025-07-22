@@ -35,7 +35,7 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href="/dashboard" prefetch>
-                                <img src="/logo.svg" alt="Kristalin Eka Lestari Logo" className="h-10 w-auto object-contain" />
+                                <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Eka Lestari Logo" className="h-10 w-auto object-contain" />
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

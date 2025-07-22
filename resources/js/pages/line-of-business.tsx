@@ -475,7 +475,7 @@ export default function KristalinPortfolio() {
               transition={{ duration: 0.4 }}
               className="w-full max-w-md mx-auto text-center"
             >
-              <img src="/logo.svg" alt="Kristalin Logo" className="mx-auto mb-6 h-40 w-40 md:h-56 md:w-56 object-contain" />
+              <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Logo" className="mx-auto mb-6 h-40 w-40 md:h-56 md:w-56 object-contain" />
             </motion.div>
           </motion.div>
         </div>
@@ -810,6 +810,75 @@ export default function KristalinPortfolio() {
         </div>
       </motion.section>
 
+{/* Gold Price Information Section */}
+<motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="bg-white py-20"
+      >
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div 
+            variants={fadeInUp} 
+            transition={{ duration: 0.4, ease: "easeInOut" }} 
+            className="text-center mb-16"
+          >
+            <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
+              GLOBAL GOLD PRICE
+            </h2>
+            <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
+              Daily / Weekly Gold Price
+              <br className="hidden md:block" />
+              Information
+            </h3>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Image */}
+            <motion.div 
+              variants={slideInLeft}
+              transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <img 
+                src="/gold-bars.jpg" 
+                alt="Gold Mining Operations" 
+                className="w-full h-96 object-cover rounded-2xl shadow-lg"
+              />
+            </motion.div>
+
+            {/* Right Content */}
+            <motion.div 
+              variants={slideInRight}
+              transition={{ delay: 0.4, duration: 0.4, ease: "easeInOut" }}
+              className="flex flex-col items-center justify-center text-center"
+            >
+              <p className="text-lg md:text-xl text-gray-700 mb-8 font-light max-w-lg">
+                Stay updated with the latest global gold price trends. For real-time gold, silver, and precious metal prices, click below to view the official gold price chart.
+              </p>
+              <a
+                href="https://goldprice.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full max-w-xs bg-yellow-500 text-white py-4 px-8 font-bold text-lg rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all duration-300 hover:bg-yellow-600 hover:scale-105"
+              >
+                <motion.svg 
+                  whileHover={{ rotate: 180 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-6 h-6" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                </motion.svg>
+                <span>SHOW MORE</span>
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
             {/* Why Choose Us Section */}
             <motion.section 
         initial="hidden"
@@ -884,75 +953,6 @@ export default function KristalinPortfolio() {
                   <span className="text-white text-lg group-hover:text-yellow-300 transition-colors duration-300">{feature}</span>
                 </motion.div>
               ))}
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Gold Price Information Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="bg-white py-20"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            variants={fadeInUp} 
-            transition={{ duration: 0.4, ease: "easeInOut" }} 
-            className="text-center mb-16"
-          >
-            <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              GLOBAL GOLD PRICE
-            </h2>
-            <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              Daily / Weekly Gold Price
-              <br className="hidden md:block" />
-              Information
-            </h3>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Image */}
-            <motion.div 
-              variants={slideInLeft}
-              transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img 
-                src="/gold-bars.jpg" 
-                alt="Gold Mining Operations" 
-                className="w-full h-96 object-cover rounded-2xl shadow-lg"
-              />
-            </motion.div>
-
-            {/* Right Content */}
-            <motion.div 
-              variants={slideInRight}
-              transition={{ delay: 0.4, duration: 0.4, ease: "easeInOut" }}
-              className="flex flex-col items-center justify-center text-center"
-            >
-              <p className="text-lg md:text-xl text-gray-700 mb-8 font-light max-w-lg">
-                Stay updated with the latest global gold price trends. For real-time gold, silver, and precious metal prices, click below to view the official gold price chart.
-              </p>
-              <a
-                href="https://goldprice.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full max-w-xs bg-yellow-500 text-white py-4 px-8 font-bold text-lg rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all duration-300 hover:bg-yellow-600 hover:scale-105"
-              >
-                <motion.svg 
-                  whileHover={{ rotate: 180 }}
-                  transition={{ duration: 0.4 }}
-                  className="w-6 h-6" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-                </motion.svg>
-                <span>SHOW MORE</span>
-              </a>
             </motion.div>
           </div>
         </div>
