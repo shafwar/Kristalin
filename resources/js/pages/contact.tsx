@@ -385,7 +385,7 @@ export default function ContactPage() {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <div className="text-sm text-gray-600 font-medium">Click or drag file here</div>
+                        <div className="text-sm text-gray-600 font-medium">Click or drag file here (optional)</div>
                         <div className="text-xs text-gray-500 mt-1">PDF, JPG, PNG, PPT (max 10MB)</div>
                       </div>
                     )}
