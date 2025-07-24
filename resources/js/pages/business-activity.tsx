@@ -17,17 +17,6 @@ const fadeInUp: Variants = {
   },
 };
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
 // Enhanced Counter Animation with counting up effect
 interface CounterAnimationProps {
   target: number;
@@ -43,16 +32,16 @@ const CounterAnimation = ({ target, suffix = "", duration = 2000, delay = 0 }: C
 
   const startCounting = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     setCount(0);
-    
+
     const increment = target / (duration / 50); // Update every 50ms
     let current = 0;
-    
+
     intervalRef.current = setInterval(() => {
       current += increment;
-      
+
       if (current >= target) {
         setCount(target);
         setIsAnimating(false);
@@ -81,24 +70,24 @@ const CounterAnimation = ({ target, suffix = "", duration = 2000, delay = 0 }: C
       onViewportEnter={() => {
         setTimeout(startCounting, delay);
       }}
-      transition={{ 
-        duration: 0.8, 
-        delay: delay / 1000, 
+      transition={{
+        duration: 0.8,
+        delay: delay / 1000,
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
       className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent mb-2 relative overflow-hidden"
-      style={{ 
+      style={{
         backgroundImage: 'linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24)',
         WebkitBackgroundClip: 'text',
         color: 'transparent'
       }}
     >
       <motion.span
-        animate={{ 
+        animate={{
           scale: isAnimating ? [1, 1.05, 1] : 1,
           color: isAnimating ? ["#fbbf24", "#f59e0b", "#fbbf24"] : "#fbbf24"
         }}
-        transition={{ 
+        transition={{
           duration: 0.5,
           repeat: isAnimating ? Infinity : 0,
           repeatType: "reverse"
@@ -106,15 +95,15 @@ const CounterAnimation = ({ target, suffix = "", duration = 2000, delay = 0 }: C
       >
         {count.toLocaleString()}{suffix}
       </motion.span>
-      
+
       {/* Shimmer effect that starts after counting */}
       {!isAnimating && count === target && (
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
           animate={{ x: ['-100%', '100%'] }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
+          transition={{
+            duration: 2,
+            repeat: Infinity,
             ease: "linear"
           }}
         />
@@ -247,7 +236,7 @@ function EnhancedMiningSectors() {
       highlight: "Primary Focus"
     },
     {
-      name: "Silver", 
+      name: "Silver",
       description: "Pemrosesan perak dan logam mulia lainnya melalui sistem separasi terintegrasi. Teknologi penyulingan canggih memastikan kemurnian tinggi dan kualitas terbaik.",
       highlight: "Secondary Operations"
     },
@@ -285,7 +274,7 @@ function EnhancedMiningSectors() {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -305,14 +294,14 @@ function EnhancedMiningSectors() {
             <span className="text-gray-800">Sectors</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            To achieve our goals, our company operates in several specialized sectors with 
+            To achieve our goals, our company operates in several specialized sectors with
             advanced technology and sustainable practices across premium mineral extraction operations.
           </p>
         </motion.div>
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-12 items-center">
           {/* Left Side - Detailed List */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -325,12 +314,12 @@ function EnhancedMiningSectors() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: index * 0.2,
                   ease: "easeOut"
                 }}
-                whileHover={{ 
+                whileHover={{
                   x: 8,
                   transition: { duration: 0.3 }
                 }}
@@ -338,7 +327,7 @@ function EnhancedMiningSectors() {
               >
                 <div className="flex items-start gap-6">
                   {/* Enhanced Bullet Point */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.2, rotate: 360 }}
                     transition={{ duration: 0.5 }}
                     className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg mt-1"
@@ -361,7 +350,7 @@ function EnhancedMiningSectors() {
                     </p>
                     {/* Learn More Link for Gold */}
                     {sector.name === "Gold" && (
-                      <motion.div 
+                      <motion.div
                         className="mt-4 opacity-100"
                         whileHover={{ x: 5 }}
                       >
@@ -379,7 +368,7 @@ function EnhancedMiningSectors() {
                     )}
                     {/* Learn More Link for Silver */}
                     {sector.name === "Silver" && (
-                      <motion.div 
+                      <motion.div
                         className="mt-4 opacity-100"
                         whileHover={{ x: 5 }}
                       >
@@ -402,7 +391,7 @@ function EnhancedMiningSectors() {
           </motion.div>
           {/* Right Side - Enhanced Visual */}
           <div className="relative overflow-visible xl:col-span-2">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -544,7 +533,7 @@ function EnhancedMiningSectors() {
         )}
         </AnimatePresence>
         {/* Bottom Summary */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -555,8 +544,8 @@ function EnhancedMiningSectors() {
             Sustainable Mining Excellence
           </h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            Our diversified approach across gold, silver, and other metals ensures comprehensive 
-            resource utilization while maintaining the highest environmental and safety standards 
+            Our diversified approach across gold, silver, and other metals ensures comprehensive
+            resource utilization while maintaining the highest environmental and safety standards
             throughout all operations in the mineral-rich Musairo River basin.
           </p>
         </motion.div>
@@ -571,7 +560,7 @@ function AlluvialGoldMiningSection() {
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -594,7 +583,7 @@ function AlluvialGoldMiningSection() {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Left Column - Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -604,21 +593,21 @@ function AlluvialGoldMiningSection() {
             {/* Main Text */}
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-700 leading-relaxed mb-6">
-                The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963 
-                with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square. 
-                The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia, 
+                The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963
+                with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square.
+                The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia,
                 the biggest mining company with the most gold and silver output in the nation is located.
               </p>
               <p className="text-gray-700 leading-relaxed mb-6">
-                Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district, 
-                the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector 
-                in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village, 
+                Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district,
+                the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector
+                in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village,
                 along the musairo river, Nabire, Papua.
               </p>
               <p className="text-gray-700 leading-relaxed mb-8">
-                In 2010, the authority to mine changed into mining lisence for exploration. In addition, in 2011, PT Kristalin Ekalestari 
-                was also granted mining lisence for operational production for 198 hectares in Makimi village. To conduct mass mining for 
-                alluvial gold, PT Kristalin Ekalestari is cooperating with local and foreign investors to optimize the mining sector, 
+                In 2010, the authority to mine changed into mining lisence for exploration. In addition, in 2011, PT Kristalin Ekalestari
+                was also granted mining lisence for operational production for 198 hectares in Makimi village. To conduct mass mining for
+                alluvial gold, PT Kristalin Ekalestari is cooperating with local and foreign investors to optimize the mining sector,
                 with a noble purpose to improve the local and national economies.
               </p>
             </div>
@@ -646,13 +635,13 @@ function AlluvialGoldMiningSection() {
             <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
               <h3 className="text-xl font-semibold text-gray-800 mb-4">Economic Impact</h3>
               <p className="text-gray-700 leading-relaxed">
-                Gold minerals have a significant role in improving the nation's economy. PT Kristalin Ekalestari aims to contribute 
+                Gold minerals have a significant role in improving the nation's economy. PT Kristalin Ekalestari aims to contribute
                 to the region's government, optimizing underdeveloped economies of local areas, and support potential mining sites in Nabire, Papua.
               </p>
             </div>
           </motion.div>
           {/* Right Column - Image & Stats */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -661,9 +650,9 @@ function AlluvialGoldMiningSection() {
           >
             {/* Main Image */}
             <div className="relative rounded-xl overflow-hidden shadow-lg">
-              <img 
+              <img
                 src="/tracktor.png"
-                alt="Gold mining operations" 
+                alt="Gold mining operations"
                 className="w-full h-64 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -731,10 +720,10 @@ export default function BusinessActivityPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header sticky={true} transparent={true} />
-      
+
       {/* Hero Section with Parallax */}
       <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 w-full h-full"
           style={{
             transform: `translateY(${scrollY * 0.5}px)`,
@@ -747,7 +736,7 @@ export default function BusinessActivityPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
         </div>
-        <motion.div 
+        <motion.div
           className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 py-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -763,13 +752,13 @@ export default function BusinessActivityPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <motion.h1 
+            <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             >
-              <motion.span 
+              <motion.span
                 className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -778,7 +767,7 @@ export default function BusinessActivityPage() {
                 Business
               </motion.span>
               <br />
-              <motion.span 
+              <motion.span
                 className="text-white drop-shadow-lg"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -787,8 +776,8 @@ export default function BusinessActivityPage() {
                 Activities
               </motion.span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl md:text-2xl text-white/95 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -796,8 +785,8 @@ export default function BusinessActivityPage() {
             >
               Premium gold mining operations with sustainable practices and cutting-edge technology for Indonesia's future.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
               initial={{ opacity: 0, y: 30, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -829,7 +818,7 @@ export default function BusinessActivityPage() {
         </motion.div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -847,7 +836,7 @@ export default function BusinessActivityPage() {
       </div>
 
       {/* Our Location Section - BLACK BACKGROUND */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -857,12 +846,12 @@ export default function BusinessActivityPage() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="text-center mb-16"
           >
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -870,13 +859,13 @@ export default function BusinessActivityPage() {
             >
               OUR LOCATION
             </motion.span>
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "4rem" }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="h-0.5 bg-amber-400 mx-auto mt-2 mb-8"
             />
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -884,22 +873,22 @@ export default function BusinessActivityPage() {
             >
               Strategic Mining Location
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base md:text-lg text-gray-200 max-w-5xl mx-auto leading-relaxed font-normal mb-12"
             >
-              PT Kristalin Ekalestari explores gold along the Musairo River, in Makimi district, Nabire, Papua. 
-              The exploration site spans 60km towards the eastern town of Nabire. Our location can be travelled 
-              by land transportation for 1.5 to 2 hours, reaching Legari village/SP-1, then using a specialized 
+              PT Kristalin Ekalestari explores gold along the Musairo River, in Makimi district, Nabire, Papua.
+              The exploration site spans 60km towards the eastern town of Nabire. Our location can be travelled
+              by land transportation for 1.5 to 2 hours, reaching Legari village/SP-1, then using a specialized
               4x4 vehicle along the Musairo river for another 10km that takes about 0.5 hours.
             </motion.p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Map/Visual */}
-            <motion.div 
+            <motion.div
               variants={slideInLeft}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
@@ -913,15 +902,15 @@ export default function BusinessActivityPage() {
                     <div className="absolute inset-4 bg-gradient-to-br from-green-700 to-green-800 rounded-lg opacity-80 transform rotate-12"></div>
                     <div className="absolute inset-6 bg-gradient-to-br from-green-600 to-green-700 rounded-lg opacity-90 transform rotate-6"></div>
                     {/* Location Marker */}
-                    <motion.div 
+                    <motion.div
                       initial={{ scale: 0, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.8, delay: 0.5, type: "spring", bounce: 0.4 }}
                       className="absolute top-1/2 right-1/3 transform -translate-x-1/2 -translate-y-1/2 z-10"
                     >
                       <div className="relative">
-                        <motion.div 
-                          animate={{ 
+                        <motion.div
+                          animate={{
                             scale: [1, 1.3, 1],
                             boxShadow: [
                               "0 0 0 0 rgba(251, 191, 36, 0.7)",
@@ -933,7 +922,7 @@ export default function BusinessActivityPage() {
                           className="w-5 h-5 bg-amber-400 rounded-full shadow-lg"
                         />
                       </div>
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 1 }}
@@ -945,7 +934,7 @@ export default function BusinessActivityPage() {
                     </motion.div>
                   </div>
                 </div>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
@@ -960,13 +949,13 @@ export default function BusinessActivityPage() {
 
             {/* Right Side - Details */}
             <motion.div variants={slideInRight} className="space-y-8">
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-amber-500/20 hover:border-amber-400/40 transition-all duration-500">
-                  <motion.h3 
+                  <motion.h3
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
@@ -981,7 +970,7 @@ export default function BusinessActivityPage() {
                       { label: "Land Transportation", value: "1.5 - 2 Hours", icon: "truck" },
                       { label: "River Access", value: "10 km (30 mins)", icon: "location" }
                     ].map((detail) => (
-                      <motion.div 
+                      <motion.div
                         key={detail.label}
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -990,7 +979,7 @@ export default function BusinessActivityPage() {
                         className="flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <motion.div 
+                          <motion.div
                             whileHover={{ rotate: 360 }}
                             transition={{ duration: 0.6 }}
                             className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300"
@@ -1010,13 +999,13 @@ export default function BusinessActivityPage() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-amber-500/20 hover:border-amber-400/40 transition-all duration-500">
-                  <motion.h3 
+                  <motion.h3
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
@@ -1024,14 +1013,14 @@ export default function BusinessActivityPage() {
                   >
                     Mineral Resources
                   </motion.h3>
-                  <motion.p 
+                  <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-gray-400 text-sm font-normal leading-relaxed mb-6"
                   >
-                    Based on geological observation of the surface and construction of testing wells 
-                    as well as drillings conducted by our internal exploration team, the potential area 
+                    Based on geological observation of the surface and construction of testing wells
+                    as well as drillings conducted by our internal exploration team, the potential area
                     covers 4,200 hectares with significant inferred mineral resources.
                   </motion.p>
                   <div className="grid grid-cols-2 gap-4">
@@ -1039,7 +1028,7 @@ export default function BusinessActivityPage() {
                       { value: "32.7", label: "Tons AU (Total Resources)" },
                       { value: "13.7", label: "Tons AU (Ready to Mine)" }
                     ].map((stat) => (
-                      <motion.div 
+                      <motion.div
                         key={stat.label}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -1067,7 +1056,7 @@ export default function BusinessActivityPage() {
       <AlluvialGoldMiningSection />
 
       {/* Our Achievements Section - BLACK BACKGROUND */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -1093,46 +1082,46 @@ export default function BusinessActivityPage() {
           {/* Achievements Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { 
-                number: 18, 
-                label: "Years Experience", 
+              {
+                number: 18,
+                label: "Years Experience",
                 description: "Proven mining operations with sustainable practices",
                 icon: "trophy",
                 suffix: "+"
               },
-              { 
-                number: 12, 
-                label: "Mining Sites", 
+              {
+                number: 12,
+                label: "Mining Sites",
                 description: "Active locations across Papua region",
                 icon: "location",
                 suffix: ""
               },
-              { 
-                number: 46, 
-                label: "Gold Reserves", 
+              {
+                number: 46,
+                label: "Gold Reserves",
                 description: "Tons of proven mineral resources identified",
                 icon: "mining",
                 suffix: ".4T"
               },
-              { 
-                number: 99, 
-                label: "Success Rate", 
+              {
+                number: 99,
+                label: "Success Rate",
                 description: "Project completion and safety compliance",
                 icon: "analytics",
                 suffix: "%"
               }
             ].map((stat, index) => (
-              <motion.div 
+              <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ 
-                  duration: 0.7, 
-                  delay: index * 0.15, 
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.15,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                whileHover={{ 
+                whileHover={{
                   y: -12,
                   scale: 1.02,
                   boxShadow: "0 25px 50px rgba(251, 191, 36, 0.25)",
@@ -1142,27 +1131,27 @@ export default function BusinessActivityPage() {
               >
                 {/* Background decoration */}
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative z-10">
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.1, rotate: 360 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                     className="p-4 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl w-fit mx-auto mb-6"
                   >
                     <Icon type={stat.icon} className="w-8 h-8 text-white" />
                   </motion.div>
-                  
-                  <CounterAnimation 
-                    target={stat.number} 
+
+                  <CounterAnimation
+                    target={stat.number}
                     suffix={stat.suffix}
                     duration={2000}
                     delay={index * 300}
                   />
-                  
+
                   <h4 className="text-lg font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-3">
                     {stat.label}
                   </h4>
-                  
+
                   <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed font-normal">
                     {stat.description}
                   </p>
@@ -1174,9 +1163,9 @@ export default function BusinessActivityPage() {
       </motion.section>
 
       {/* Community Impact - ENHANCED BACKGROUND */}
-      <motion.section 
-        initial="hidden" 
-        whileInView="visible" 
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         className="py-24 bg-gradient-to-br from-gray-50 via-white to-amber-50/30 relative overflow-hidden"
       >
@@ -1196,7 +1185,7 @@ export default function BusinessActivityPage() {
         </div>
 
         <div className="max-w-5xl mx-auto px-4 relative z-10">
-          
+
           {/* Enhanced Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1209,7 +1198,7 @@ export default function BusinessActivityPage() {
               <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
               Community Impact
             </div>
-            
+
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               Community <span className="text-amber-600">Impact</span>
             </h2>
@@ -1255,7 +1244,7 @@ export default function BusinessActivityPage() {
                     Aside from big scale gold mining activities, PT Kristalin Ekalestari also supports gold mining businesses of the locals. This collaboration with the locals with customary rights aim to improve local gold commodity. Local minings are supported and trained to assure excellent processing, effectivity, and efficiency.
                   </p>
                 </div>
-                
+
                 {/* Enhanced Stats */}
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
@@ -1285,7 +1274,7 @@ export default function BusinessActivityPage() {
                 description: "Jobs created for local communities"
               },
               {
-                icon: "education", 
+                icon: "education",
                 title: "Training",
                 value: "350+",
                 description: "People trained in mining skills"
@@ -1314,7 +1303,7 @@ export default function BusinessActivityPage() {
               >
                 {/* Card Background Glow */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-400/20 to-yellow-400/20 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-                
+
                 <div className="relative text-center p-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -1322,7 +1311,7 @@ export default function BusinessActivityPage() {
                   >
                     <Icon type={item.icon} className="w-7 h-7 text-amber-600" />
                   </motion.div>
-                  
+
                   <div className="text-3xl font-bold text-gray-900 mb-2">{item.value}</div>
                   <div className="text-lg font-semibold text-gray-800 mb-2">{item.title}</div>
                   <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
@@ -1341,7 +1330,7 @@ export default function BusinessActivityPage() {
           >
             {/* Background Glow */}
             <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/10 to-yellow-400/10 rounded-3xl blur-2xl"></div>
-            
+
             <div className="relative bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 md:p-12 text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Building Sustainable Communities
@@ -1349,7 +1338,7 @@ export default function BusinessActivityPage() {
               <p className="text-gray-600 text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
                 Our commitment to community development goes beyond mining operations. We advocate for local miners to get proper licensing and optimize gold commodity through sustainable practices, improving living standards in Nabire, Papua.
               </p>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {[
                   { value: "25+", label: "Partner Villages" },
@@ -1377,7 +1366,7 @@ export default function BusinessActivityPage() {
       </motion.section>
 
       {/* Why Choose Us Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -1389,7 +1378,7 @@ export default function BusinessActivityPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <motion.div 
+            <motion.div
               variants={slideInLeft}
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
@@ -1403,8 +1392,8 @@ export default function BusinessActivityPage() {
               <p className="text-xl text-white/90 mb-8">
                 ARE ALWAYS READY TO SERVE
               </p>
-              
-              <motion.button 
+
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1420,25 +1409,25 @@ export default function BusinessActivityPage() {
             </motion.div>
 
             {/* Right Content - Features */}
-            <motion.div 
+            <motion.div
               variants={slideInRight}
               transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
               className="space-y-6"
             >
               {[
                 "We Have Professional Workers",
-                "On Time In Progress", 
+                "On Time In Progress",
                 "Friendly To Serve Customers",
                 "Give The Best & Fair"
               ].map((feature, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * index, duration: 0.4, ease: "easeInOut" }}
                   className="flex items-center space-x-4 group"
                 >
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.2, rotate: 360 }}
                     transition={{ duration: 0.4 }}
                     className="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0"
