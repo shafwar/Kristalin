@@ -68,215 +68,7 @@ const newsData = [
     trending: false,
     type: "Infrastruktur Anak",
     metrics: { luas: "500 m²", durasi: "3 Bulan" }
-  },
-  {
-    id: 34,
-    title: "Program Pelatihan Kerajinan Tangan",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan kerajinan tangan untuk pemberdayaan ekonomi perempuan",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.39.01 (1).jpeg",
-    excerpt: "Program pelatihan kerajinan tangan yang bertujuan untuk memberdayakan ekonomi perempuan melalui pengembangan keterampilan kreatif.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan kerajinan tangan untuk perempuan di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk memberdayakan ekonomi perempuan melalui pengembangan keterampilan kreatif dan wirausaha.\n\n"Kami percaya bahwa pemberdayaan perempuan adalah kunci untuk pembangunan masyarakat yang berkelanjutan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup pembuatan kerajinan dari bahan lokal seperti rotan, bambu, dan kain tradisional Papua.\n\n"Kami mengundang pengrajin lokal dan ahli desain untuk memberikan pelatihan yang berkualitas kepada peserta," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 60 perempuan dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat membantu perempuan mengembangkan usaha kerajinan dan meningkatkan pendapatan keluarga," ujar Maria.\n\nSelain pelatihan, perusahaan juga membantu pemasaran produk kerajinan melalui berbagai saluran distribusi.`,
-    author: "Tim Pemberdayaan PT Kristalin Ekalestari",
-    views: "1.0K",
-    readTime: "3 min",
-    trending: false,
-    type: "Kerajinan Tangan",
-    metrics: { peserta: "60 Perempuan", produk: "10+ Jenis" }
-  },
-  {
-    id: 33,
-    title: "Bantuan Peralatan Olahraga untuk Sekolah",
-    subtitle: "PT Kristalin Ekalestari memberikan bantuan peralatan olahraga untuk sekolah-sekolah di Desa Nifasi",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.39.01.jpeg",
-    excerpt: "Program bantuan peralatan olahraga yang bertujuan untuk mendukung pengembangan olahraga di sekolah-sekolah.",
-    content: `PT Kristalin Ekalestari memberikan bantuan peralatan olahraga kepada sekolah-sekolah di Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mendukung pengembangan olahraga dan kesehatan siswa melalui penyediaan peralatan olahraga yang memadai.\n\n"Kami berkomitmen untuk mendukung pengembangan olahraga di sekolah sebagai bagian dari pendidikan yang holistik," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi bola sepak, bola basket, bola voli, net, dan peralatan olahraga lainnya.\n\n"Kami bekerja sama dengan guru olahraga untuk memastikan peralatan yang diberikan sesuai dengan kebutuhan sekolah," tambah Andrian Lubis.\n\nProgram ini mencakup 3 sekolah dasar dan 1 sekolah menengah pertama di Desa Nifasi dan sekitarnya.\n\n"Kami berharap bantuan ini dapat mendorong siswa untuk lebih aktif berolahraga dan mengembangkan bakat olahraga mereka," ujar Maria.\n\nSelain bantuan peralatan, perusahaan juga mendukung penyelenggaraan turnamen olahraga antar sekolah.`,
-    author: "Tim Pendidikan PT Kristalin Ekalestari",
-    views: "850",
-    readTime: "2 min",
-    trending: false,
-    type: "Peralatan Olahraga",
-    metrics: { sekolah: "4 Sekolah", peralatan: "50+ Item" }
-  },
-  {
-    id: 32,
-    title: "Program Pelatihan Bahasa Inggris",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan bahasa Inggris gratis untuk masyarakat",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.39.00 (1).jpeg",
-    excerpt: "Program pelatihan bahasa Inggris yang bertujuan untuk meningkatkan keterampilan komunikasi dan peluang kerja masyarakat.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan bahasa Inggris gratis untuk masyarakat di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan keterampilan komunikasi dan membuka peluang kerja yang lebih luas bagi masyarakat.\n\n"Kami percaya bahwa penguasaan bahasa Inggris adalah keterampilan penting di era global ini," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup percakapan sehari-hari, tata bahasa dasar, dan persiapan untuk tes bahasa Inggris.\n\n"Kami mengundang pengajar bahasa Inggris profesional untuk memberikan pelatihan yang berkualitas kepada peserta," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 80 peserta dari berbagai usia dan latar belakang pendidikan.\n\n"Kami berharap pelatihan ini dapat meningkatkan kepercayaan diri peserta dalam berkomunikasi dalam bahasa Inggris," ujar Maria.\n\nSelain pelatihan, perusahaan juga menyediakan buku pelajaran dan materi pembelajaran digital.`,
-    author: "Tim Pendidikan PT Kristalin Ekalestari",
-    views: "1.2K",
-    readTime: "3 min",
-    trending: false,
-    type: "Pelatihan Bahasa",
-    metrics: { peserta: "80 Orang", durasi: "3 Bulan" }
-  },
-  {
-    id: 31,
-    title: "Bantuan Alat Kebersihan untuk Masyarakat",
-    subtitle: "PT Kristalin Ekalestari memberikan bantuan alat kebersihan untuk menjaga kebersihan lingkungan",
-    date: "20 Jul 2025",
-    category: "Environmental",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.39.00.jpeg",
-    excerpt: "Program bantuan alat kebersihan yang bertujuan untuk mendukung program kebersihan lingkungan masyarakat.",
-    content: `PT Kristalin Ekalestari memberikan bantuan alat kebersihan kepada masyarakat di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mendukung program kebersihan lingkungan dan meningkatkan kesadaran masyarakat akan pentingnya menjaga kebersihan.\n\n"Kami berkomitmen untuk mendukung program kebersihan lingkungan sebagai bagian dari tanggung jawab sosial perusahaan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi sapu, tempat sampah, alat pel, dan perlengkapan kebersihan lainnya.\n\n"Kami bekerja sama dengan pemerintah desa untuk memastikan bantuan didistribusikan secara merata kepada masyarakat," tambah Andrian Lubis.\n\nProgram ini mencakup 5 desa di sekitar area operasional perusahaan dengan total 200 kepala keluarga.\n\n"Kami berharap bantuan ini dapat mendorong masyarakat untuk lebih aktif dalam menjaga kebersihan lingkungan," ujar Maria.\n\nSelain bantuan alat, perusahaan juga mengadakan sosialisasi tentang pentingnya kebersihan lingkungan.`,
-    author: "Tim Lingkungan PT Kristalin Ekalestari",
-    views: "750",
-    readTime: "2 min",
-    trending: false,
-    type: "Alat Kebersihan",
-    metrics: { kk: "200 KK", desa: "5 Desa" }
-  },
-  {
-    id: 30,
-    title: "Program Pelatihan Fotografi",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan fotografi untuk mengembangkan bakat kreatif masyarakat",
-    date: "20 Jul 2025",
-    category: "Community Development",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.58 (1).jpeg",
-    excerpt: "Program pelatihan fotografi yang bertujuan untuk mengembangkan bakat kreatif dan potensi ekonomi masyarakat.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan fotografi untuk masyarakat di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mengembangkan bakat kreatif masyarakat dan membuka peluang ekonomi baru di bidang fotografi.\n\n"Kami percaya bahwa fotografi adalah seni yang dapat mengembangkan kreativitas dan membuka peluang usaha baru," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup teknik fotografi dasar, pengeditan foto, dan pemasaran jasa fotografi.\n\n"Kami mengundang fotografer profesional untuk memberikan pelatihan yang berkualitas kepada peserta," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 40 peserta dari berbagai usia dan latar belakang.\n\n"Kami berharap pelatihan ini dapat membantu peserta mengembangkan bakat fotografi mereka dan membuka usaha fotografi," ujar Maria.\n\nSelain pelatihan, perusahaan juga menyediakan kamera dan peralatan fotografi untuk praktik.`,
-    author: "Tim Kreatif PT Kristalin Ekalestari",
-    views: "1.1K",
-    readTime: "3 min",
-    trending: false,
-    type: "Pelatihan Fotografi",
-    metrics: { peserta: "40 Orang", kamera: "10 Unit" }
-  },
-  {
-    id: 29,
-    title: "Bantuan Alat Memasak untuk Dapur Umum",
-    subtitle: "PT Kristalin Ekalestari memberikan bantuan alat memasak untuk dapur umum masyarakat",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.58.jpeg",
-    excerpt: "Program bantuan alat memasak yang bertujuan untuk mendukung kegiatan dapur umum dan pemberdayaan ekonomi masyarakat.",
-    content: `PT Kristalin Ekalestari memberikan bantuan alat memasak kepada dapur umum masyarakat di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mendukung kegiatan dapur umum dan pemberdayaan ekonomi masyarakat melalui pengembangan usaha kuliner.\n\n"Kami berkomitmen untuk mendukung pengembangan usaha kuliner masyarakat sebagai bagian dari pemberdayaan ekonomi," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi kompor gas, panci, wajan, dan peralatan memasak lainnya.\n\n"Kami bekerja sama dengan kelompok wanita tani untuk memastikan bantuan diberikan kepada yang benar-benar membutuhkan," tambah Andrian Lubis.\n\nProgram ini mencakup 3 dapur umum yang melayani 150 keluarga di berbagai desa.\n\n"Kami berharap bantuan ini dapat meningkatkan kualitas makanan dan mendorong pengembangan usaha kuliner masyarakat," ujar Maria.\n\nSelain bantuan alat, perusahaan juga memberikan pelatihan pengolahan makanan yang sehat dan bergizi.`,
-    author: "Tim Pemberdayaan PT Kristalin Ekalestari",
-    views: "900",
-    readTime: "2 min",
-    trending: false,
-    type: "Alat Memasak",
-    metrics: { dapur: "3 Dapur", keluarga: "150 KK" }
-  },
-  {
-    id: 28,
-    title: "Program Pelatihan Menjahit",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan menjahit untuk pemberdayaan ekonomi perempuan",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.57.jpeg",
-    excerpt: "Program pelatihan menjahit yang bertujuan untuk memberdayakan ekonomi perempuan melalui pengembangan keterampilan menjahit.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan menjahit untuk perempuan di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk memberdayakan ekonomi perempuan melalui pengembangan keterampilan menjahit dan wirausaha.\n\n"Kami percaya bahwa keterampilan menjahit dapat menjadi sumber penghasilan yang stabil bagi perempuan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup teknik menjahit dasar, pembuatan pakaian, dan manajemen usaha jahit.\n\n"Kami mengundang penjahit profesional untuk memberikan pelatihan yang berkualitas kepada peserta," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 45 perempuan dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat membantu perempuan mengembangkan usaha jahit dan meningkatkan pendapatan keluarga," ujar Maria.\n\nSelain pelatihan, perusahaan juga menyediakan mesin jahit dan peralatan menjahit untuk praktik.`,
-    author: "Tim Pemberdayaan PT Kristalin Ekalestari",
-    views: "1.0K",
-    readTime: "3 min",
-    trending: false,
-    type: "Pelatihan Menjahit",
-    metrics: { peserta: "45 Perempuan", mesin: "15 Unit" }
-  },
-  {
-    id: 27,
-    title: "Bantuan Alat Pertukangan",
-    subtitle: "PT Kristalin Ekalestari memberikan bantuan alat pertukangan untuk tukang lokal",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.56.jpeg",
-    excerpt: "Program bantuan alat pertukangan yang bertujuan untuk meningkatkan produktivitas dan kesejahteraan tukang lokal.",
-    content: `PT Kristalin Ekalestari memberikan bantuan alat pertukangan kepada tukang lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan produktivitas dan kesejahteraan tukang lokal melalui penyediaan alat pertukangan yang berkualitas.\n\n"Kami berkomitmen untuk mendukung pengembangan keterampilan pertukangan dan meningkatkan kesejahteraan tukang lokal," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi gergaji, palu, obeng, dan alat pertukangan lainnya yang dapat meningkatkan efisiensi kerja.\n\n"Kami bekerja sama dengan tukang senior untuk memastikan alat yang diberikan sesuai dengan kebutuhan dan standar keamanan," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 30 tukang dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap bantuan ini dapat meningkatkan kualitas hasil kerja dan pendapatan tukang lokal," ujar Maria.\n\nSelain bantuan alat, perusahaan juga memberikan pelatihan keselamatan kerja dan teknik pertukangan modern.`,
-    author: "Tim Infrastruktur PT Kristalin Ekalestari",
-    views: "800",
-    readTime: "2 min",
-    trending: false,
-    type: "Alat Pertukangan",
-    metrics: { tukang: "30 Orang", alat: "50+ Item" }
-  },
-  {
-    id: 26,
-    title: "Program Pelatihan Perikanan",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan perikanan untuk nelayan lokal",
-    date: "20 Jul 2025",
-    category: "Environmental",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.55 (1).jpeg",
-    excerpt: "Program pelatihan perikanan yang bertujuan untuk meningkatkan produktivitas dan kesejahteraan nelayan lokal.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan perikanan untuk nelayan lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan produktivitas dan kesejahteraan nelayan melalui pengembangan teknik perikanan yang modern dan berkelanjutan.\n\n"Kami berkomitmen untuk mendukung pengembangan sektor perikanan lokal yang merupakan sumber penghidupan penting masyarakat," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup teknik penangkapan ikan yang ramah lingkungan, pengolahan hasil tangkapan, dan pemasaran produk perikanan.\n\n"Kami mengundang ahli perikanan untuk memberikan pelatihan yang berkualitas kepada nelayan," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 40 nelayan dari berbagai desa pesisir di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat meningkatkan hasil tangkapan dan pendapatan nelayan lokal," ujar Maria.\n\nSelain pelatihan, perusahaan juga memberikan bantuan alat tangkap dan peralatan pengolahan ikan.`,
-    author: "Tim Perikanan PT Kristalin Ekalestari",
-    views: "950",
-    readTime: "3 min",
-    trending: false,
-    type: "Pelatihan Perikanan",
-    metrics: { nelayan: "40 Orang", durasi: "2 Minggu" }
-  },
-  {
-    id: 25,
-    title: "Bantuan Alat Elektronik untuk Sekolah",
-    subtitle: "PT Kristalin Ekalestari memberikan bantuan alat elektronik untuk mendukung pembelajaran digital",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.55.jpeg",
-    excerpt: "Program bantuan alat elektronik yang bertujuan untuk mendukung pembelajaran digital di sekolah-sekolah.",
-    content: `PT Kristalin Ekalestari memberikan bantuan alat elektronik kepada sekolah-sekolah di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mendukung pembelajaran digital dan meningkatkan kualitas pendidikan melalui penggunaan teknologi.\n\n"Kami berkomitmen untuk mendukung pengembangan pendidikan digital sebagai bagian dari peningkatan kualitas pendidikan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi laptop, proyektor, speaker, dan peralatan elektronik pendukung pembelajaran lainnya.\n\n"Kami bekerja sama dengan guru dan kepala sekolah untuk memastikan peralatan yang diberikan sesuai dengan kebutuhan pembelajaran," tambah Andrian Lubis.\n\nProgram ini mencakup 2 sekolah dasar dan 1 sekolah menengah pertama di Desa Nifasi dan sekitarnya.\n\n"Kami berharap bantuan ini dapat meningkatkan kualitas pembelajaran dan mempersiapkan siswa menghadapi era digital," ujar Maria.\n\nSelain bantuan alat, perusahaan juga memberikan pelatihan penggunaan teknologi dalam pembelajaran kepada guru.`,
-    author: "Tim Pendidikan PT Kristalin Ekalestari",
-    views: "1.1K",
-    readTime: "3 min",
-    trending: false,
-    type: "Alat Elektronik",
-    metrics: { sekolah: "3 Sekolah", laptop: "15 Unit" }
-  },
-  {
-    id: 15,
-    title: "Program Pelatihan Kewirausahaan untuk Masyarakat Lokal",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan kewirausahaan untuk memberdayakan ekonomi masyarakat",
-    date: "12 Jul 2025",
-    category: "Community Development",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 09.57.44.jpeg",
-    excerpt: "Program pelatihan kewirausahaan yang bertujuan untuk memberdayakan ekonomi masyarakat melalui pengembangan keterampilan bisnis.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan kewirausahaan untuk masyarakat lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk memberdayakan ekonomi masyarakat melalui pengembangan keterampilan bisnis dan manajemen usaha.\n\n"Kami percaya bahwa pemberdayaan ekonomi masyarakat adalah kunci untuk pembangunan yang berkelanjutan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup berbagai aspek kewirausahaan termasuk perencanaan bisnis, manajemen keuangan, pemasaran, dan pengembangan produk.\n\n"Kami mengundang para ahli bisnis dan konsultan untuk memberikan pelatihan yang berkualitas kepada peserta," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 100 peserta dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat membantu masyarakat mengembangkan usaha mereka dan meningkatkan pendapatan keluarga," ujar Maria.\n\nSelain pelatihan, perusahaan juga akan memberikan bantuan modal usaha kepada peserta yang memiliki rencana bisnis yang feasible.\n\nProgram ini merupakan bagian dari komitmen perusahaan dalam pengembangan ekonomi masyarakat lokal.`,
-    author: "Tim Pengembangan Ekonomi PT Kristalin Ekalestari",
-    views: "1.0K",
-    readTime: "3 min",
-    trending: false,
-    type: "Pengembangan Ekonomi",
-    metrics: { peserta: "100 Orang", durasi: "2 Minggu" }
-  },
-  {
-    id: 24,
-    title: "Program Pelatihan Peternakan",
-    subtitle: "PT Kristalin Ekalestari mengadakan pelatihan peternakan untuk peternak lokal",
-    date: "20 Jul 2025",
-    category: "Environmental",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 10.38.54.jpeg",
-    excerpt: "Program pelatihan peternakan yang bertujuan untuk meningkatkan produktivitas dan kesejahteraan peternak lokal.",
-    content: `PT Kristalin Ekalestari mengadakan program pelatihan peternakan untuk peternak lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan produktivitas dan kesejahteraan peternak melalui pengembangan teknik peternakan yang modern dan berkelanjutan.\n\n"Kami berkomitmen untuk mendukung pengembangan sektor peternakan lokal yang merupakan sumber penghidupan penting masyarakat," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup teknik pemeliharaan ternak, pencegahan penyakit, dan pengolahan hasil ternak.\n\n"Kami mengundang ahli peternakan untuk memberikan pelatihan yang berkualitas kepada peternak," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 35 peternak dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat meningkatkan hasil ternak dan pendapatan peternak lokal," ujar Maria.\n\nSelain pelatihan, perusahaan juga memberikan bantuan bibit ternak dan peralatan peternakan.`,
-    author: "Tim Peternakan PT Kristalin Ekalestari",
-    views: "900",
-    readTime: "3 min",
-    trending: false,
-    type: "Pelatihan Peternakan",
-    metrics: { peternak: "35 Orang", ternak: "100+ Ekor" }
-  },
-  {
-    id: 23,
-    title: "Distribusi Sembako 500 Paket untuk Warga Desa Nifasi",
-    subtitle: "Program CSR bulanan PT Kristalin Ekalestari berhasil menyalurkan 500 paket sembako kepada warga Desa Nifasi dan sekitarnya",
-    date: "20 Jul 2025",
-    category: "CSR Initiative",
-    imageUrl: "/WhatsApp Image 2025-07-20 at 09.57.47 (2).jpeg",
-    excerpt: "PT Kristalin Ekalestari kembali menunjukkan komitmennya dalam membantu masyarakat sekitar dengan menyalurkan 500 paket sembako melalui program CSR bulanan.",
-    content: `PT Kristalin Ekalestari kembali menunjukkan komitmennya dalam membantu masyarakat sekitar dengan menyalurkan 500 paket sembako melalui program Corporate Social Responsibility (CSR) bulanan.\n\nProgram ini merupakan bagian dari komitmen perusahaan untuk memberikan dampak positif bagi masyarakat Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.\n\n"Kami konsisten dalam menjalankan program CSR ini setiap bulannya. Kali ini kami menyalurkan 500 paket sembako yang berisi beras, telur, mie instan, minyak goreng, dan kebutuhan pokok lainnya," ujar Andrian Lubis, Senior Manager & Finance Division PT Kristalin Ekalestari.\n\nDistribusi dilakukan secara merata kepada 500 Kepala Keluarga (KK) yang tersebar di berbagai kampung termasuk Nifasi, Biha, Samabusa, Wahario, Polsek, dan Koramil.\n\nProgram ini tidak hanya memberikan bantuan material, tetapi juga menunjukkan kepedulian perusahaan terhadap kesejahteraan masyarakat sekitar area operasional.\n\n"Kami berharap bantuan ini dapat meringankan beban ekonomi keluarga dan memberikan manfaat nyata bagi masyarakat," tambah Maria Erari, Humas PT Kristalin Ekalestari.\n\nSelain program sembako, PT Kristalin Ekalestari juga telah melaksanakan berbagai program CSR lainnya seperti pembangunan infrastruktur, bantuan pendidikan, dan pengembangan ekonomi masyarakat.`,
-    author: "Humas PT Kristalin Ekalestari",
-    views: "2.1K",
-    readTime: "4 min",
-    trending: true,
-    type: "CSR Sembako",
-    metrics: { paket: "500 Paket", lokasi: "Desa Nifasi & Sekitarnya" }
-  },
+  }
 ];
 
 const PlaceholderImg = ({ text }: { text: string }) => (
@@ -286,7 +78,545 @@ const PlaceholderImg = ({ text }: { text: string }) => (
   </svg>
 );
 
-export default function Welcome() {
+const FeedbackForm = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [activeTab, setActiveTab] = useState('masukan');
+  const [formData, setFormData] = useState({
+    nama: '',
+    email: '',
+    telepon: '',
+    instansi: '',
+    kategori: '',
+    subjek: '',
+    pesan: '',
+    bukti: null as File | null,
+    jenisKelamin: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const kategoriOptions = [
+    { value: 'saran', label: 'Saran' },
+    { value: 'pengaduan', label: 'Pengaduan' },
+    { value: 'keluhan', label: 'Keluhan' },
+    { value: 'pujian', label: 'Pujian' },
+    { value: 'lainnya', label: 'Lainnya' }
+  ];
+
+  const instansiOptions = [
+    { value: 'internal', label: 'Internal Perusahaan' },
+    { value: 'eksternal', label: 'Eksternal Perusahaan' },
+    { value: 'masyarakat', label: 'Masyarakat Umum' }
+  ];
+
+  const jenisKelaminOptions = [
+    { value: 'laki', label: 'Laki-laki' },
+    { value: 'perempuan', label: 'Perempuan' }
+  ];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData(prev => ({ ...prev, bukti: e.target.files![0] }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulasi pengiriman form
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setSubmitStatus('success');
+      
+      // Reset form setelah berhasil
+      setTimeout(() => {
+        setFormData({
+          nama: '',
+          email: '',
+          telepon: '',
+          instansi: '',
+          kategori: '',
+          subjek: '',
+          pesan: '',
+          bukti: null,
+          jenisKelamin: ''
+        });
+        setSubmitStatus('');
+        onClose();
+      }, 3000);
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header dengan gradient */}
+            <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-8 relative">
+              <div className="absolute inset-0 bg-black/10"></div>
+              <div className="relative z-10 flex justify-between items-center">
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Form Masukan & Keluhan</h2>
+                  <p className="text-yellow-100 mt-2 text-lg">PT Kristalin Ekalestari</p>
+                  <p className="text-yellow-200 text-sm mt-1">Suara Anda adalah prioritas kami</p>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="text-white hover:text-yellow-200 transition-all duration-300 p-3 hover:bg-white/20 rounded-full group"
+                >
+                  <svg className="w-7 h-7 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Tab Navigation */}
+            <div className="bg-gray-50 border-b border-gray-200">
+              <div className="px-8">
+                <nav className="flex space-x-8">
+                  <button
+                    onClick={() => setActiveTab('masukan')}
+                    className={`relative py-4 px-2 text-lg font-semibold transition-all duration-300 ${
+                      activeTab === 'masukan' 
+                        ? 'text-yellow-600 border-b-3 border-yellow-500' 
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                      <span>Form Masukan</span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('tracking')}
+                    className={`relative py-4 px-2 text-lg font-semibold transition-all duration-300 ${
+                      activeTab === 'tracking' 
+                        ? 'text-yellow-600 border-b-3 border-yellow-500' 
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                      <span>Tracking Masukan</span>
+                    </div>
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Content Area */}
+            <div className="p-8 overflow-y-auto max-h-[calc(95vh-200px)]">
+              {/* Success Notification */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="bg-green-50 border-l-4 border-green-400 p-6 mb-8 rounded-lg"
+                >
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-lg font-medium text-green-800">Masukan Berhasil Dikirim!</h3>
+                      <p className="text-sm text-green-700 mt-1">
+                        Terima kasih atas masukan Anda. Tim kami akan meninjau dan merespons dalam 1x24 jam.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === 'masukan' ? (
+                <div className="space-y-8">
+                  <div>
+                    <div className="space-y-6">
+                      {/* Data Pelapor Section */}
+                      <div className="bg-white border border-gray-200 rounded-xl p-6">
+                        <div className="flex items-center space-x-3 mb-6">
+                          <div className="bg-yellow-100 p-2 rounded-lg">
+                            <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                          </div>
+                          <h3 className="text-xl font-semibold text-gray-800">Data Pelapor</h3>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Nama Lengkap <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="nama"
+                              value={formData.nama}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                              placeholder="Masukkan nama lengkap"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Jenis Kelamin <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                              name="jenisKelamin"
+                              value={formData.jenisKelamin}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                            >
+                              <option value="">Pilih Jenis Kelamin</option>
+                              {jenisKelaminOptions.map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Email <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                              placeholder="contoh@email.com"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              No. Telepon/HP <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              name="telepon"
+                              value={formData.telepon}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                              placeholder="08xxxxxxxxx"
+                            />
+                          </div>
+                          
+                          <div className="md:col-span-2">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Instansi/Perusahaan <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                              name="instansi"
+                              value={formData.instansi}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                            >
+                              <option value="">Pilih Instansi/Perusahaan</option>
+                              {instansiOptions.map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Detail Masukan Section */}
+                      <div className="bg-white border border-gray-200 rounded-xl p-6">
+                        <div className="flex items-center space-x-3 mb-6">
+                          <div className="bg-blue-100 p-2 rounded-lg">
+                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <h3 className="text-xl font-semibold text-gray-800">Detail Masukan/Keluhan</h3>
+                        </div>
+                        
+                        <div className="space-y-6">
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Kategori <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                              name="kategori"
+                              value={formData.kategori}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                            >
+                              <option value="">Pilih Kategori</option>
+                              {kategoriOptions.map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Subjek <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="subjek"
+                              value={formData.subjek}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
+                              placeholder="Masukkan subjek"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Isi Pesan <span className="text-red-500">*</span>
+                            </label>
+                            <textarea
+                              name="pesan"
+                              value={formData.pesan}
+                              onChange={handleInputChange}
+                              required
+                              rows={6}
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 resize-none hover:border-gray-400"
+                              placeholder="Tuliskan pesan Anda disini dengan detail..."
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                              Lampiran Bukti (Opsional)
+                            </label>
+                            <div className="mt-1 flex justify-center px-6 pt-8 pb-8 border-2 border-gray-300 border-dashed rounded-xl hover:border-yellow-400 transition-colors duration-300">
+                              <div className="space-y-2 text-center">
+                                <svg
+                                  className="mx-auto h-16 w-16 text-gray-400"
+                                  stroke="currentColor"
+                                  fill="none"
+                                  viewBox="0 0 48 48"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                                <div className="flex text-base text-gray-600">
+                                  <label
+                                    htmlFor="file-upload"
+                                    className="relative cursor-pointer bg-white rounded-md font-semibold text-yellow-600 hover:text-yellow-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-yellow-500"
+                                  >
+                                    <span>Unggah file</span>
+                                    <input
+                                      id="file-upload"
+                                      name="file-upload"
+                                      type="file"
+                                      className="sr-only"
+                                      onChange={handleFileChange}
+                                      accept="image/*,.pdf,.doc,.docx"
+                                    />
+                                  </label>
+                                  <p className="pl-1">atau drag and drop</p>
+                                </div>
+                                <p className="text-sm text-gray-500">
+                                  PNG, JPG, PDF, DOC, DOCX (maksimal 5MB)
+                                </p>
+                                {formData.bukti && (
+                                  <div className="mt-3 p-3 bg-green-50 rounded-lg">
+                                    <p className="text-sm text-green-800 font-medium">
+                                      File terpilih: {formData.bukti.name}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Privacy Notice */}
+                      <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+                        <div className="flex">
+                          <div className="flex-shrink-0">
+                            <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <div className="ml-3">
+                            <h4 className="text-sm font-semibold text-blue-800">Perlindungan Data & Privasi</h4>
+                            <p className="text-sm text-blue-700 mt-1">
+                              Semua informasi yang Anda berikan akan dijaga kerahasiaan dan hanya digunakan untuk menindaklanjuti masukan/keluhan Anda. PT Kristalin Ekalestari berkomitmen melindungi privasi pelapor sesuai dengan peraturan yang berlaku.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Submit Buttons */}
+                      <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-gray-200">
+                        <button
+                          type="button"
+                          onClick={onClose}
+                          className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300 font-semibold"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="submit"
+                          onClick={handleSubmit}
+                          disabled={isSubmitting}
+                          className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-amber-500 text-white rounded-lg hover:from-yellow-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-semibold transform hover:scale-105 disabled:hover:scale-100"
+                        >
+                          {isSubmitting ? (
+                            <div className="flex items-center">
+                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              Mengirim...
+                            </div>
+                          ) : (
+                            <div className="flex items-center">
+                              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                              </svg>
+                              Kirim Masukan
+                            </div>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-16">
+                  <div className="max-w-md mx-auto">
+                    <div className="bg-yellow-100 rounded-full p-6 w-24 h-24 mx-auto mb-6">
+                      <svg className="w-12 h-12 text-yellow-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Tracking Masukan</h3>
+                    <p className="text-gray-600 mb-8 leading-relaxed">
+                      Masukkan nomor tiket atau email yang Anda gunakan saat mengisi form untuk melacak status masukan Anda.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <input
+                        type="text"
+                        placeholder="Nomor Tiket atau Email"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300"
+                      />
+                      <button
+                        type="button"
+                        className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-3 px-6 rounded-lg hover:from-yellow-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-300 font-semibold transform hover:scale-105"
+                      >
+                        <div className="flex items-center justify-center">
+                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                          Lacak Status
+                        </div>
+                      </button>
+                    </div>
+
+                    <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                      <p className="text-sm text-gray-600">
+                        <strong>Catatan:</strong> Anda akan menerima nomor tiket melalui email setelah mengirim masukan.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+// Floating Feedback Button Component
+const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.button
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 2, duration: 0.5 }}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-yellow-500 to-amber-500 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
+    >
+      <div className="flex items-center space-x-2">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m0 0v10a2 2 0 002 2h6a2 2 0 002-2V8M9 12h6" />
+        </svg>
+        <AnimatePresence>
+          {isHovered && (
+            <motion.span
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "auto" }}
+              exit={{ opacity: 0, width: 0 }}
+              className="text-sm font-medium whitespace-nowrap overflow-hidden"
+            >
+              Kirim Masukan
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
+      
+      {/* Pulse Effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full animate-ping opacity-20"></div>
+    </motion.button>
+  );
+};
+
+const Welcome = () => {
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [currentNews, setCurrentNews] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -298,7 +628,6 @@ export default function Welcome() {
     title: news.title,
     excerpt: news.excerpt
   }));
-  
 
   const contentSets = [
     {
@@ -342,6 +671,15 @@ export default function Welcome() {
     <div className="min-h-screen flex flex-col bg-white overflow-hidden">
       {/* Header */}
       <Header />
+      
+      {/* Feedback Form Modal */}
+      <FeedbackForm 
+        isOpen={showFeedbackForm} 
+        onClose={() => setShowFeedbackForm(false)} 
+      />
+
+      {/* Floating Feedback Button */}
+      <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
 
       {/* Hero Section */}
       <section className="flex-1 w-full flex flex-col md:flex-row bg-white relative py-6 md:py-8">
@@ -364,7 +702,7 @@ export default function Welcome() {
           }`}>
             {/* Premium Staggered Animation with Fade + Scale */}
             <div className="relative">
-              <div 
+              <div
                 key={currentContent}
                 className="animate-containerFade"
               >
@@ -382,7 +720,7 @@ export default function Welcome() {
 
             {/* Subtitle with Elegant Fade */}
             <div className="relative">
-              <p 
+              <p
                 key={`subtitle-${currentContent}`}
                 className="mb-4 text-base md:text-lg text-gray-700 animate-staggeredFadeScale delay-400"
               >
@@ -391,12 +729,20 @@ export default function Welcome() {
             </div>
 
             {/* Button with Final Reveal */}
-            <a
-              href="/about#about-kristalin"
-              className="bg-yellow-500 text-gray-900 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block mt-6 transform animate-staggeredFadeScale delay-600"
-            >
-              Learn More
-            </a>
+            <div className="flex flex-wrap gap-4 mt-6">
+              <a
+                href="/about#about-kristalin"
+                className="bg-yellow-500 text-gray-900 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block transform animate-staggeredFadeScale delay-600"
+              >
+                Learn More
+              </a>
+              <button
+                onClick={() => setShowFeedbackForm(true)}
+                className="bg-white text-gray-800 border border-gray-300 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-50 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block transform animate-staggeredFadeScale delay-600"
+              >
+                Kirim Masukan
+              </button>
+            </div>
           </div>
         </div>
 
@@ -433,7 +779,7 @@ export default function Welcome() {
       {/* Grid Section with enhanced animations */}
       <section className="w-full flex flex-col md:flex-row h-[260px] md:h-[320px] bg-black items-stretch">
         {/* Portfolio */}
-        <div 
+        <div
           className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
           onMouseEnter={() => setHoveredCard(0)}
           onMouseLeave={() => setHoveredCard(null)}
@@ -475,7 +821,7 @@ export default function Welcome() {
         </div>
 
         {/* Business Activities */}
-        <Link 
+        <Link
           href="/business-activity"
           className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
           onMouseEnter={() => setHoveredCard(1)}
@@ -505,7 +851,7 @@ export default function Welcome() {
             }`}>
               Business Activities
             </div>
-            <span 
+            <span
               className={`underline text-white hover:text-yellow-400 text-lg md:text-xl mt-2 transition-all duration-300 ${
                 hoveredCard === 1 ? 'text-yellow-400' : ''
               }`}
@@ -516,7 +862,7 @@ export default function Welcome() {
         </Link>
 
         {/* News with proper normal sizing */}
-        <Link 
+        <Link
           href="/news"
           className="flex-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex flex-col justify-between px-8 md:px-12 py-8 relative overflow-hidden transition-all duration-700 group cursor-pointer"
           onMouseEnter={() => setHoveredCard(2)}
@@ -582,7 +928,7 @@ export default function Welcome() {
               </div>
               
               {/* Title with line clamp */}
-              <div className="text-base md:text-lg lg:text-xl font-bold text-black group-hover:text-white leading-tight line-clamp-3 transition-all duration-500">
+              <div className="text-base md:text-lg font-bold text-black group-hover:text-white leading-tight line-clamp-3 transition-all duration-500">
                 {newsItems[currentNews].title}
               </div>
               
@@ -744,8 +1090,59 @@ export default function Welcome() {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
           }
+
+          /* Custom scrollbar styling */
+          .overflow-y-auto::-webkit-scrollbar {
+            width: 8px;
+          }
+          
+          .overflow-y-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+          }
+          
+          .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+          }
+          
+          .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+          }
+
+          /* Enhanced input focus states */
+          input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+          }
+
+          /* File upload hover effects */
+          .border-dashed:hover {
+            border-color: #f59e0b;
+            background-color: #fef3c7;
+          }
+
+          /* Button hover effects */
+          button:hover {
+            transform: translateY(-1px);
+          }
+
+          button:active {
+            transform: translateY(0);
+          }
+
+          /* Tab animation */
+          .border-b-3 {
+            border-bottom-width: 3px;
+          }
+
+          /* Modal backdrop */
+          .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
+          }
         `
       }} />
     </div>
   );
 }
+
+export default Welcome;
