@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import { Link } from "@inertiajs/react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -78,502 +78,243 @@ const PlaceholderImg = ({ text }: { text: string }) => (
   </svg>
 );
 
-const FeedbackForm = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const [activeTab, setActiveTab] = useState('masukan');
-  const [formData, setFormData] = useState({
-    nama: '',
-    email: '',
-    telepon: '',
-    instansi: '',
-    kategori: '',
-    subjek: '',
-    pesan: '',
-    bukti: null as File | null,
-    jenisKelamin: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
+  const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
+  const [category, setCategory] = useState('');
+  const [department, setDepartment] = useState('');
+  const [priority, setPriority] = useState('');
+  const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
+  const [incidentDate, setIncidentDate] = useState('');
+  const [files, setFiles] = useState<File[]>([]);
+  const [ticketNumber, setTicketNumber] = useState('');
+  const [showTicket, setShowTicket] = useState(false);
+  const [trackInput, setTrackInput] = useState('');
+  const [trackResult, setTrackResult] = useState<null | any>(null);
+  const [fileNames, setFileNames] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const ticketRef = useRef<HTMLDivElement>(null);
 
-  const kategoriOptions = [
-    { value: 'saran', label: 'Saran' },
-    { value: 'pengaduan', label: 'Pengaduan' },
-    { value: 'keluhan', label: 'Keluhan' },
-    { value: 'pujian', label: 'Pujian' },
-    { value: 'lainnya', label: 'Lainnya' }
-  ];
-
-  const instansiOptions = [
-    { value: 'internal', label: 'Internal Perusahaan' },
-    { value: 'eksternal', label: 'Eksternal Perusahaan' },
-    { value: 'masyarakat', label: 'Masyarakat Umum' }
-  ];
-
-  const jenisKelaminOptions = [
-    { value: 'laki', label: 'Laki-laki' },
-    { value: 'perempuan', label: 'Perempuan' }
-  ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const statusText: Record<string, string> = {
+    submitted: 'Submitted',
+    review: 'Under Review',
+    progress: 'In Progress',
+    resolved: 'Resolved',
   };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({ ...prev, bukti: e.target.files![0] }));
-    }
+  const priorityText: Record<string, string> = {
+    low: 'Low',
+    medium: 'Medium',
+    high: 'High',
+    urgent: 'Urgent',
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  function generateTicketNumber() {
+    const prefix = 'TKT-2025-';
+    const number = Math.floor(Math.random() * 999999).toString().padStart(6, '0');
+    return prefix + number;
+  }
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulasi pengiriman form
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      
-      // Reset form setelah berhasil
-      setTimeout(() => {
-        setFormData({
-          nama: '',
-          email: '',
-          telepon: '',
-          instansi: '',
-          kategori: '',
-          subjek: '',
-          pesan: '',
-          bukti: null,
-          jenisKelamin: ''
-        });
-        setSubmitStatus('');
-        onClose();
-      }, 3000);
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    const formData = new FormData();
+    formData.append('category', category);
+    formData.append('department', department);
+    formData.append('priority', priority);
+    formData.append('subject', subject);
+    formData.append('description', description);
+    formData.append('incident_date', incidentDate);
+    if (files[0]) formData.append('file', files[0]);
+
+    // Ambil CSRF token dari meta tag
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+    fetch('/feedback', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-CSRF-TOKEN': csrfToken || '',
+      },
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok && data.ticket_number) {
+          setTicketNumber(data.ticket_number);
+          setShowTicket(true);
+          setCategory('');
+          setDepartment('');
+          setPriority('');
+          setSubject('');
+          setDescription('');
+          setIncidentDate('');
+          setFiles([]);
+          setFileNames('');
+          setTimeout(() => {
+            if (ticketRef.current) ticketRef.current.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        } else {
+          alert(data.error || 'Failed to submit feedback.');
+        }
+      })
+      .catch(() => alert('Failed to submit feedback.'));
+  }
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const fileList = e.target.files ? Array.from(e.target.files) : [];
+    setFiles(fileList);
+    setFileNames(fileList.map(f => f.name).join(', '));
+  }
+  function handleTrack() {
+    if (!trackInput.trim()) {
+      setTrackResult({ error: 'Please enter a ticket number.' });
+      return;
     }
-  };
-
-  if (!isOpen) return null;
-
+    fetch(`/feedback/${trackInput.trim()}`)
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok && data.ticket_number) {
+          setTrackResult(data);
+        } else {
+          setTrackResult({ error: data.error || 'Ticket number not found.' });
+        }
+      })
+      .catch(() => setTrackResult({ error: 'Failed to fetch ticket.' }));
+  }
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header dengan gradient */}
-            <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-8 relative">
-              <div className="absolute inset-0 bg-black/10"></div>
-              <div className="relative z-10 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto" onClick={onClose}>
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[95vh] overflow-hidden relative animate-containerFade" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 text-gray-400 hover:text-yellow-500 bg-gray-100 hover:bg-yellow-100 rounded-full w-10 h-10 flex items-center justify-center z-10 transition-all duration-200">
+          <span className="text-2xl">×</span>
+        </button>
+        <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-6 pb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow">Internal Feedback System</h1>
+          <p className="text-yellow-100 text-center mt-1">Secure Channel for Employee Feedback and Complaints</p>
+        </div>
+        <div className="bg-gray-50 border-b border-gray-200 px-6">
+          <nav className="flex space-x-4 justify-center">
+            <button onClick={() => { setActiveTab('report'); setShowTicket(false); }} className={`py-3 px-6 text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'report' ? 'text-yellow-600 border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Submit Report</button>
+            <button onClick={() => setActiveTab('track')} className={`py-3 px-6 text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'track' ? 'text-yellow-600 border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Track Status</button>
+          </nav>
+        </div>
+        <div className="p-6 overflow-y-auto max-h-[calc(95vh-180px)]">
+          {activeTab === 'report' && (
+            <div className="space-y-6">
+              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg text-blue-800 text-sm">
+                <strong>Anonymous Report:</strong> Your identity is fully protected. The system does not store any data that can trace back to individual users.
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <h2 className="text-3xl font-bold text-white">Form Masukan & Keluhan</h2>
-                  <p className="text-yellow-100 mt-2 text-lg">PT Kristalin Ekalestari</p>
-                  <p className="text-yellow-200 text-sm mt-1">Suara Anda adalah prioritas kami</p>
+                  <label htmlFor="category" className="block text-sm font-semibold text-gray-700 mb-1">Report Category <span className="text-red-500">*</span></label>
+                  <select id="category" required value={category} onChange={e => setCategory(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300">
+                    <option value="">Select category...</option>
+                    <option value="workplace">Workplace Environment</option>
+                    <option value="safety">Safety & Health</option>
+                    <option value="harassment">Harassment/Discrimination</option>
+                    <option value="policy">Company Policy</option>
+                    <option value="management">Management Issues</option>
+                    <option value="facilities">Facilities</option>
+                    <option value="ethics">Work Ethics</option>
+                    <option value="suggestion">Improvement Suggestion</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
-                <button
-                  onClick={onClose}
-                  className="text-white hover:text-yellow-200 transition-all duration-300 p-3 hover:bg-white/20 rounded-full group"
-                >
-                  <svg className="w-7 h-7 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Tab Navigation */}
-            <div className="bg-gray-50 border-b border-gray-200">
-              <div className="px-8">
-                <nav className="flex space-x-8">
-                  <button
-                    onClick={() => setActiveTab('masukan')}
-                    className={`relative py-4 px-2 text-lg font-semibold transition-all duration-300 ${
-                      activeTab === 'masukan' 
-                        ? 'text-yellow-600 border-b-3 border-yellow-500' 
-                        : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                      <span>Form Masukan</span>
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('tracking')}
-                    className={`relative py-4 px-2 text-lg font-semibold transition-all duration-300 ${
-                      activeTab === 'tracking' 
-                        ? 'text-yellow-600 border-b-3 border-yellow-500' 
-                        : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                      <span>Tracking Masukan</span>
-                    </div>
-                  </button>
-                </nav>
-              </div>
-            </div>
-
-            {/* Content Area */}
-            <div className="p-8 overflow-y-auto max-h-[calc(95vh-200px)]">
-              {/* Success Notification */}
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: -20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  className="bg-green-50 border-l-4 border-green-400 p-6 mb-8 rounded-lg"
-                >
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-lg font-medium text-green-800">Masukan Berhasil Dikirim!</h3>
-                      <p className="text-sm text-green-700 mt-1">
-                        Terima kasih atas masukan Anda. Tim kami akan meninjau dan merespons dalam 1x24 jam.
-                      </p>
-                    </div>
+                <div>
+                  <label htmlFor="department" className="block text-sm font-semibold text-gray-700 mb-1">Related Department (Optional)</label>
+                  <select id="department" value={department} onChange={e => setDepartment(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300">
+                    <option value="">Select department...</option>
+                    <option value="hr">Human Resources</option>
+                    <option value="finance">Finance</option>
+                    <option value="it">Information Technology</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="operations">Operations</option>
+                    <option value="management">Management</option>
+                    <option value="general">General</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Priority Level <span className="text-red-500">*</span></label>
+                  <div className="flex gap-3 flex-wrap">
+                    {['low', 'medium', 'high', 'urgent'].map(level => (
+                      <label key={level} className={`flex-1 min-w-[100px] cursor-pointer border-2 rounded-lg px-2 py-2 text-center font-medium transition-all duration-200 select-none ${priority === level ? (level === 'low' ? 'border-green-500 bg-green-50 text-green-700' : level === 'medium' ? 'border-yellow-400 bg-yellow-50 text-yellow-700' : level === 'high' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-red-500 bg-red-50 text-red-700') : 'border-gray-200 text-gray-500 hover:border-yellow-400'}`}>
+                        <input type="radio" id={level} name="priority" value={level} checked={priority === level} onChange={e => setPriority(e.target.value)} className="hidden" />
+                        {level === 'low' ? '📗 Low' : level === 'medium' ? '📙 Medium' : level === 'high' ? '📕 High' : '🚨 Urgent'}
+                      </label>
+                    ))}
                   </div>
-                </motion.div>
-              )}
-
-              {activeTab === 'masukan' ? (
-                <div className="space-y-8">
-                  <div>
-                    <div className="space-y-6">
-                      {/* Data Pelapor Section */}
-                      <div className="bg-white border border-gray-200 rounded-xl p-6">
-                        <div className="flex items-center space-x-3 mb-6">
-                          <div className="bg-yellow-100 p-2 rounded-lg">
-                            <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                          </div>
-                          <h3 className="text-xl font-semibold text-gray-800">Data Pelapor</h3>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Nama Lengkap <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              name="nama"
-                              value={formData.nama}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                              placeholder="Masukkan nama lengkap"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Jenis Kelamin <span className="text-red-500">*</span>
-                            </label>
-                            <select
-                              name="jenisKelamin"
-                              value={formData.jenisKelamin}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                            >
-                              <option value="">Pilih Jenis Kelamin</option>
-                              {jenisKelaminOptions.map(option => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Email <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              value={formData.email}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                              placeholder="contoh@email.com"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              No. Telepon/HP <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                              type="tel"
-                              name="telepon"
-                              value={formData.telepon}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                              placeholder="08xxxxxxxxx"
-                            />
-                          </div>
-                          
-                          <div className="md:col-span-2">
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Instansi/Perusahaan <span className="text-red-500">*</span>
-                            </label>
-                            <select
-                              name="instansi"
-                              value={formData.instansi}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                            >
-                              <option value="">Pilih Instansi/Perusahaan</option>
-                              {instansiOptions.map(option => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Detail Masukan Section */}
-                      <div className="bg-white border border-gray-200 rounded-xl p-6">
-                        <div className="flex items-center space-x-3 mb-6">
-                          <div className="bg-blue-100 p-2 rounded-lg">
-                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                          </div>
-                          <h3 className="text-xl font-semibold text-gray-800">Detail Masukan/Keluhan</h3>
-                        </div>
-                        
-                        <div className="space-y-6">
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Kategori <span className="text-red-500">*</span>
-                            </label>
-                            <select
-                              name="kategori"
-                              value={formData.kategori}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                            >
-                              <option value="">Pilih Kategori</option>
-                              {kategoriOptions.map(option => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Subjek <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              name="subjek"
-                              value={formData.subjek}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 hover:border-gray-400"
-                              placeholder="Masukkan subjek"
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Isi Pesan <span className="text-red-500">*</span>
-                            </label>
-                            <textarea
-                              name="pesan"
-                              value={formData.pesan}
-                              onChange={handleInputChange}
-                              required
-                              rows={6}
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 resize-none hover:border-gray-400"
-                              placeholder="Tuliskan pesan Anda disini dengan detail..."
-                            />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Lampiran Bukti (Opsional)
-                            </label>
-                            <div className="mt-1 flex justify-center px-6 pt-8 pb-8 border-2 border-gray-300 border-dashed rounded-xl hover:border-yellow-400 transition-colors duration-300">
-                              <div className="space-y-2 text-center">
-                                <svg
-                                  className="mx-auto h-16 w-16 text-gray-400"
-                                  stroke="currentColor"
-                                  fill="none"
-                                  viewBox="0 0 48 48"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                                <div className="flex text-base text-gray-600">
-                                  <label
-                                    htmlFor="file-upload"
-                                    className="relative cursor-pointer bg-white rounded-md font-semibold text-yellow-600 hover:text-yellow-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-yellow-500"
-                                  >
-                                    <span>Unggah file</span>
-                                    <input
-                                      id="file-upload"
-                                      name="file-upload"
-                                      type="file"
-                                      className="sr-only"
-                                      onChange={handleFileChange}
-                                      accept="image/*,.pdf,.doc,.docx"
-                                    />
-                                  </label>
-                                  <p className="pl-1">atau drag and drop</p>
-                                </div>
-                                <p className="text-sm text-gray-500">
-                                  PNG, JPG, PDF, DOC, DOCX (maksimal 5MB)
-                                </p>
-                                {formData.bukti && (
-                                  <div className="mt-3 p-3 bg-green-50 rounded-lg">
-                                    <p className="text-sm text-green-800 font-medium">
-                                      File terpilih: {formData.bukti.name}
-                                    </p>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Privacy Notice */}
-                      <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
-                        <div className="flex">
-                          <div className="flex-shrink-0">
-                            <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                          <div className="ml-3">
-                            <h4 className="text-sm font-semibold text-blue-800">Perlindungan Data & Privasi</h4>
-                            <p className="text-sm text-blue-700 mt-1">
-                              Semua informasi yang Anda berikan akan dijaga kerahasiaan dan hanya digunakan untuk menindaklanjuti masukan/keluhan Anda. PT Kristalin Ekalestari berkomitmen melindungi privasi pelapor sesuai dengan peraturan yang berlaku.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Submit Buttons */}
-                      <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-gray-200">
-                        <button
-                          type="button"
-                          onClick={onClose}
-                          className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300 font-semibold"
-                        >
-                          Batal
-                        </button>
-                        <button
-                          type="submit"
-                          onClick={handleSubmit}
-                          disabled={isSubmitting}
-                          className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-amber-500 text-white rounded-lg hover:from-yellow-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-semibold transform hover:scale-105 disabled:hover:scale-100"
-                        >
-                          {isSubmitting ? (
-                            <div className="flex items-center">
-                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                              </svg>
-                              Mengirim...
-                            </div>
-                          ) : (
-                            <div className="flex items-center">
-                              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                              </svg>
-                              Kirim Masukan
-                            </div>
-                          )}
-                        </button>
-                      </div>
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-1">Report Title <span className="text-red-500">*</span></label>
+                  <input type="text" id="subject" required value={subject} onChange={e => setSubject(e.target.value)} placeholder="Brief summary of the issue..." className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" />
+                </div>
+                <div>
+                  <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-1">Detailed Description <span className="text-red-500">*</span></label>
+                  <textarea id="description" required value={description} onChange={e => setDescription(e.target.value)} placeholder="Please describe the issue in detail, including chronology of events, impact experienced, and suggested solutions if any..." className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 resize-none" rows={5} />
+                </div>
+                <div>
+                  <label htmlFor="incident-date" className="block text-sm font-semibold text-gray-700 mb-1">Incident Date (Optional)</label>
+                  <input type="date" id="incident-date" value={incidentDate} onChange={e => setIncidentDate(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Upload Supporting Evidence (Optional)</label>
+                  <div className="mt-1 flex flex-col items-center justify-center px-6 pt-6 pb-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-yellow-400 transition-colors duration-300 cursor-pointer" onClick={() => fileInputRef.current?.click()}>
+                    <input type="file" ref={fileInputRef} multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" className="hidden" onChange={handleFileChange} />
+                    <div className="text-gray-500 text-sm">
+                      {files.length === 0 ? (
+                        <><span role="img" aria-label="clip">📎</span> Click to upload files<br /><span className="text-xs">Format: JPG, PNG, PDF, DOC (Max 10MB)</span></>
+                      ) : (
+                        <><span role="img" aria-label="check">✅</span> {files.length} file(s) selected:<br /><span className="text-xs">{fileNames}</span></>
+                      )}
                     </div>
                   </div>
                 </div>
-              ) : (
-                <div className="text-center py-16">
-                  <div className="max-w-md mx-auto">
-                    <div className="bg-yellow-100 rounded-full p-6 w-24 h-24 mx-auto mb-6">
-                      <svg className="w-12 h-12 text-yellow-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Tracking Masukan</h3>
-                    <p className="text-gray-600 mb-8 leading-relaxed">
-                      Masukkan nomor tiket atau email yang Anda gunakan saat mengisi form untuk melacak status masukan Anda.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <input
-                        type="text"
-                        placeholder="Nomor Tiket atau Email"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300"
-                      />
-                      <button
-                        type="button"
-                        className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-3 px-6 rounded-lg hover:from-yellow-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-300 font-semibold transform hover:scale-105"
-                      >
-                        <div className="flex items-center justify-center">
-                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                          </svg>
-                          Lacak Status
-                        </div>
-                      </button>
-                    </div>
-
-                    <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-600">
-                        <strong>Catatan:</strong> Anda akan menerima nomor tiket melalui email setelah mengirim masukan.
-                      </p>
-                    </div>
-                  </div>
+                <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:from-yellow-600 hover:to-amber-600 transition-all duration-300 mt-2">🚀 Submit Report</button>
+              </form>
+              {showTicket && (
+                <div ref={ticketRef} className="bg-gradient-to-r from-green-400 to-teal-400 text-white p-6 rounded-xl text-center mt-6 animate-premiumFadeIn">
+                  <h3 className="text-xl font-bold mb-2">✅ Report Successfully Submitted!</h3>
+                  <p>Your Ticket Number:</p>
+                  <div className="text-2xl font-bold my-2 tracking-widest">{ticketNumber}</div>
+                  <p className="text-sm">Save this number to track your report status</p>
                 </div>
               )}
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          )}
+          {activeTab === 'track' && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-800 mb-2">Track Report Status</h2>
+              <p className="text-gray-600 mb-4">Enter your ticket number to view your report status</p>
+              <div className="flex gap-3 items-end">
+                <input type="text" value={trackInput} onChange={e => setTrackInput(e.target.value)} placeholder="Example: TKT-2025-001234" className="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" onKeyDown={e => { if (e.key === 'Enter') handleTrack(); }} />
+                <button type="button" className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-600 transition-all duration-300" onClick={handleTrack}>Track</button>
+              </div>
+              {trackResult && (
+                <div className="bg-white border border-gray-200 rounded-xl p-6 mt-4 shadow animate-premiumFadeIn">
+                  {trackResult.error ? (
+                    <>
+                      <p className="text-red-600 font-semibold">{trackResult.error}</p>
+                      <p className="mt-2 text-xs text-gray-500">Ticket number format: TKT-YYYY-XXXXXX</p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-between items-center mb-3">
+                        <h3 className="font-bold text-lg text-black">{trackResult.subject}</h3>
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${trackResult.status === 'submitted' ? 'bg-blue-100 text-blue-700' : trackResult.status === 'review' ? 'bg-orange-100 text-orange-700' : trackResult.status === 'progress' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'}`}>{statusText[trackResult.status]}</span>
+                      </div>
+                      <div className="text-sm text-gray-700 space-y-1">
+                        <div><strong>Ticket Number:</strong> {trackResult.ticket_number}</div>
+                        <div><strong>Category:</strong> {trackResult.category}</div>
+                        <div><strong>Priority:</strong> {priorityText[trackResult.priority]}</div>
+                        <div><strong>Report Date:</strong> {trackResult.incident_date}</div>
+                        <div><strong>Status:</strong> {statusText[trackResult.status]}</div>
+                      </div>
+                      <div className="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
+                        <strong>Latest Update:</strong> The relevant team is handling your report. Estimated resolution time: 3-5 business days.
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -608,12 +349,43 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
           )}
         </AnimatePresence>
       </div>
-      
+
       {/* Pulse Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full animate-ping opacity-20"></div>
     </motion.button>
   );
 };
+
+// Inline styles for the modal system
+const tabBtnStyle: React.CSSProperties = { background: 'none', border: 'none', color: '#667eea', padding: '12px 25px', borderRadius: 25, cursor: 'pointer', fontSize: 16, fontWeight: 500, transition: 'all 0.3s', margin: '0 5px' };
+const tabBtnActiveStyle: React.CSSProperties = { background: 'rgba(102,126,234,0.1)', transform: 'translateY(-2px)', boxShadow: '0 5px 15px rgba(102,126,234,0.1)' };
+const tabContentStyle: React.CSSProperties = { background: 'white', borderRadius: 20, padding: 24, boxShadow: '0 20px 40px rgba(0,0,0,0.05)', animation: 'fadeIn 0.5s', marginBottom: 16 };
+const formGroupStyle: React.CSSProperties = { marginBottom: 18 };
+const inputStyle: React.CSSProperties = { width: '100%', padding: 12, border: '2px solid #e1e5e9', borderRadius: 10, fontSize: 16, background: '#f8f9fa', marginBottom: 0 };
+const priorityBadgeStyle: React.CSSProperties = { display: 'block', padding: 12, border: '2px solid #e1e5e9', borderRadius: 10, textAlign: 'center', cursor: 'pointer', fontWeight: 500, marginBottom: 0, transition: 'all 0.3s' };
+const priorityBadgeColors: Record<string, React.CSSProperties> = {
+  low: { borderColor: '#28a745', color: '#28a745' },
+  medium: { borderColor: '#ffc107', color: '#ffc107' },
+  high: { borderColor: '#fd7e14', color: '#fd7e14' },
+  urgent: { borderColor: '#dc3545', color: '#dc3545' },
+};
+const priorityBadgeCheckedStyle: React.CSSProperties = { background: 'currentColor', color: 'white', transform: 'translateY(-2px)', boxShadow: '0 5px 15px rgba(0,0,0,0.2)' };
+const fileUploadStyle: React.CSSProperties = { border: '2px dashed #e1e5e9', borderRadius: 10, padding: 20, textAlign: 'center', transition: 'all 0.3s', cursor: 'pointer', marginBottom: 0 };
+const submitBtnStyle: React.CSSProperties = { background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '14px 32px', borderRadius: 50, fontSize: 18, fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s', width: '100%', marginTop: 16 };
+const ticketDisplayStyle: React.CSSProperties = { background: 'linear-gradient(135deg, #28a745, #20c997)', color: 'white', padding: 24, borderRadius: 15, textAlign: 'center', marginTop: 20 };
+const anonymousNoticeStyle: React.CSSProperties = { background: 'rgba(40, 167, 69, 0.1)', border: '1px solid rgba(40, 167, 69, 0.3)', borderRadius: 10, padding: 16, marginBottom: 18, color: '#155724' };
+const trackBtnStyle: React.CSSProperties = { background: '#667eea', color: 'white', border: 'none', padding: '12px 24px', borderRadius: 10, cursor: 'pointer', fontWeight: 600, transition: 'all 0.3s' };
+const statusCardStyle: React.CSSProperties = { background: 'white', border: '1px solid #e1e5e9', borderRadius: 15, padding: 18, margin: '20px 0', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' };
+const statusBadgeStyle: React.CSSProperties = { padding: '8px 16px', borderRadius: 20, fontSize: 14, fontWeight: 600 };
+const statusBadgeColors: Record<string, React.CSSProperties> = {
+  submitted: { background: '#e3f2fd', color: '#1976d2' },
+  review: { background: '#fff3e0', color: '#f57c00' },
+  progress: { background: '#f3e5f5', color: '#7b1fa2' },
+  resolved: { background: '#e8f5e8', color: '#388e3c' },
+};
+const statCardStyle: React.CSSProperties = { background: 'white', padding: 18, borderRadius: 15, textAlign: 'center', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' };
+const thStyle: React.CSSProperties = { background: '#f8f9fa', fontWeight: 600, color: '#555', padding: 12, textAlign: 'left' };
+const tdStyle: React.CSSProperties = { padding: 12, textAlign: 'left', borderBottom: '1px solid #e1e5e9' };
 
 const Welcome = () => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
@@ -671,12 +443,9 @@ const Welcome = () => {
     <div className="min-h-screen flex flex-col bg-white overflow-hidden">
       {/* Header */}
       <Header />
-      
+
       {/* Feedback Form Modal */}
-      <FeedbackForm 
-        isOpen={showFeedbackForm} 
-        onClose={() => setShowFeedbackForm(false)} 
-      />
+      {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
 
       {/* Floating Feedback Button */}
       <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
@@ -696,7 +465,7 @@ const Welcome = () => {
             </defs>
             <rect width="100%" height="100%" fill="url(#dots)"/>
           </svg>
-          
+
           <div className={`relative z-10 max-w-xl transition-all duration-1000 ${
             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
           }`}>
@@ -918,7 +687,7 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Middle Section - Content with improved spacing and text handling */}
           <div className="relative z-10 flex-1 flex flex-col justify-center min-h-0">
             <div key={currentNews} className="transform transition-all duration-500 space-y-4">
@@ -926,19 +695,19 @@ const Welcome = () => {
               <div className="text-xs text-gray-800 group-hover:text-gray-200 font-medium opacity-80 transition-all duration-500">
                 {newsItems[currentNews].date}
               </div>
-              
+
               {/* Title with line clamp */}
               <div className="text-base md:text-lg font-bold text-black group-hover:text-white leading-tight line-clamp-3 transition-all duration-500">
                 {newsItems[currentNews].title}
               </div>
-              
+
               {/* Description with line clamp */}
               <div className="text-sm md:text-base text-gray-900 group-hover:text-gray-200 leading-relaxed opacity-90 line-clamp-3 transition-all duration-500">
                 {newsItems[currentNews].excerpt}
               </div>
             </div>
           </div>
-          
+
           {/* Bottom Section - View button with proper spacing */}
           <div className="relative z-10 mt-6 pt-4 border-t border-black/10 group-hover:border-white/20 transition-all duration-500">
             <div className="inline-flex items-center text-black group-hover:text-white font-semibold text-base md:text-lg group transition-all duration-300">
@@ -950,7 +719,7 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Bottom accent line */}
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-black/20 to-transparent group-hover:via-white/30 transition-all duration-500"></div>
         </Link>
@@ -974,7 +743,7 @@ const Welcome = () => {
               opacity: 1;
             }
           }
-          
+
           @keyframes staggeredFadeScale {
             0% {
               opacity: 0;
@@ -992,7 +761,7 @@ const Welcome = () => {
               filter: blur(0px);
             }
           }
-          
+
           @keyframes premiumFadeIn {
             0% {
               opacity: 0;
@@ -1003,7 +772,7 @@ const Welcome = () => {
               transform: translateY(0);
             }
           }
-          
+
           @keyframes newsSlideIn {
             from {
               opacity: 0;
@@ -1014,78 +783,78 @@ const Welcome = () => {
               transform: translateY(0) scale(1);
             }
           }
-          
+
           @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
           }
-          
+
           .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          
+
           .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          
+
           .line-clamp-4 {
             display: -webkit-box;
             -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          
+
           .animate-gradient {
             background-size: 200% 200%;
             animation: gradientShift 3s ease infinite;
           }
-          
+
           .animate-containerFade {
             animation: containerFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
-          
+
           .animate-staggeredFadeScale {
             opacity: 0;
             animation: staggeredFadeScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
-          
+
           .animate-premiumFadeIn {
             animation: premiumFadeIn 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
-          
+
           /* Delay Classes for Staggered Effect */
           .delay-0 {
             animation-delay: 0ms;
           }
-          
+
           .delay-200 {
             animation-delay: 200ms;
           }
-          
+
           .delay-400 {
             animation-delay: 400ms;
           }
-          
+
           .delay-600 {
             animation-delay: 600ms;
           }
-          
+
           .delay-800 {
             animation-delay: 800ms;
           }
-          
+
           /* Hover Enhancement */
           .hover-enhance {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           }
-          
+
           .hover-enhance:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -1095,17 +864,17 @@ const Welcome = () => {
           .overflow-y-auto::-webkit-scrollbar {
             width: 8px;
           }
-          
+
           .overflow-y-auto::-webkit-scrollbar-track {
             background: #f1f5f9;
             border-radius: 4px;
           }
-          
+
           .overflow-y-auto::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
           }
-          
+
           .overflow-y-auto::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
           }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\FeedbackReportController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -60,6 +61,9 @@ Route::get('/csr', function () {
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
+
+Route::post('/feedback', [FeedbackReportController::class, 'store']);
+Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
