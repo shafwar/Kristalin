@@ -368,7 +368,7 @@ export default function MilestonesPage() {
       >
         {/* Left Side - Image and Title with animations */}
         <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
-          <img 
+          <img
             src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
             alt="Mining Operations History"
             className="w-full h-full object-cover opacity-70"
@@ -401,12 +401,12 @@ export default function MilestonesPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Right Side - Milestones Content */}
         <div className="w-1/2 bg-white relative h-full flex-shrink-0">
           {/* Accent Line */}
           <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
-          
+
           {/* Content Container */}
           <div className="h-full flex flex-col" style={{ padding: '2rem' }}>
             {/* Year Navigation */}
@@ -420,12 +420,12 @@ export default function MilestonesPage() {
                 <div
                   key={`${milestone.year}-${milestone.title}`}
                   className={`transform transition-all duration-1000 cursor-pointer group ${
-                    isLoaded 
-                      ? 'translate-y-0 opacity-100' 
+                    isLoaded
+                      ? 'translate-y-0 opacity-100'
                       : 'translate-y-8 opacity-0'
                   } hover:bg-gray-50 rounded-2xl p-6 -mx-2`}
-                  style={{ 
-                    transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms` 
+                  style={{
+                    transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms`
                   }}
                   onClick={() => {}}
                 >
@@ -488,4 +488,4 @@ export default function MilestonesPage() {
       `}} />
     </div>
   );
-} 
+}

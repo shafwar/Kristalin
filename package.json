@@ -12,14 +12,19 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
+        "@tailwindcss/postcss": "^4.1.11",
         "@types/node": "^22.13.5",
+        "autoprefixer": "^10.4.21",
         "eslint": "^9.17.0",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-react": "^7.37.3",
         "eslint-plugin-react-hooks": "^5.1.0",
+        "postcss": "^8.5.6",
         "prettier": "^3.4.2",
         "prettier-plugin-organize-imports": "^4.1.0",
         "prettier-plugin-tailwindcss": "^0.6.11",
+        "tailwindcss": "^4.1.11",
+        "tailwindcss-cli": "^0.1.2",
         "typescript-eslint": "^8.23.0"
     },
     "dependencies": {
@@ -39,6 +44,7 @@
         "@radix-ui/react-toggle-group": "^1.1.2",
         "@radix-ui/react-tooltip": "^1.1.8",
         "@tailwindcss/vite": "^4.0.6",
+        "@tinymce/tinymce-react": "^6.2.1",
         "@types/react": "^19.0.3",
         "@types/react-dom": "^19.0.2",
         "@types/react-router-dom": "^5.3.3",
@@ -53,12 +59,13 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-helmet-async": "^2.0.5",
+        "react-hot-toast": "^2.5.2",
         "react-router-dom": "^7.7.0",
         "tailwind-merge": "^3.0.1",
-        "tailwindcss": "^4.0.0",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "^5.7.2",
-        "vite": "^6.0"
+        "vite": "^6.0",
+        "ziggy-js": "^2.5.3"
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
