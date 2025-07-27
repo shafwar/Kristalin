@@ -1,0 +1,33 @@
+run = "php artisan serve --host=0.0.0.0 --port=443"
+entrypoint = "index.php"
+
+[nix]
+channel = "stable-24_11"
+
+[env]
+PATH = "/home/runner/$REPL_SLUG/.config/composer/vendor/bin"
+COMPOSER_ALLOW_SUPERUSER = "1"
+
+[packager]
+language = "php"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+
+[languages]
+[languages.php]
+pattern = "**/*.php"
+syntax = "php"
+
+[languages.javascript]
+pattern = "**/*.{js,jsx,ts,tsx}"
+syntax = "javascript"
+
+[languages.css]
+pattern = "**/*.css"
+syntax = "css"
+
+[languages.html]
+pattern = "**/*.{html,htm,blade.php}"
+syntax = "html"
