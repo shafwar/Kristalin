@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Setup script for Replit deployment
-echo "🚀 Setting up Kristalin Laravel project on Replit..."
+# Alternative setup script for Replit deployment
+echo "🚀 Setting up Kristalin Laravel project on Replit (Alternative Method)..."
 
 # Function to handle errors
 handle_error() {
@@ -25,29 +25,69 @@ npm install
 echo "🔨 Building frontend assets..."
 npm run build
 
-# Copy environment file
-echo "⚙️ Setting up environment..."
-cp .env.example .env
+# Create environment file from scratch for Replit
+echo "⚙️ Creating environment file for Replit..."
+cat > .env << 'EOF'
+APP_NAME=Kristalin
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+APP_URL=https://your-repl-name.your-username.repl.co
 
-# Update environment for Replit
-echo "🔧 Configuring environment for Replit..."
-sed -i 's/APP_NAME=Laravel/APP_NAME=Kristalin/' .env
-sed -i 's/APP_ENV=local/APP_ENV=production/' .env
-sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env
-sed -i 's|APP_URL=http://localhost|APP_URL=https://your-repl-name.your-username.repl.co|' .env
-sed -i 's/LOG_LEVEL=debug/LOG_LEVEL=error/' .env
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
 
-# Configure database for SQLite
-echo "🗄️ Configuring database for SQLite..."
-# Ensure DB_CONNECTION is set to sqlite
-sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
+APP_MAINTENANCE_DRIVER=file
 
-# Comment out MySQL database settings
-sed -i 's/^DB_HOST=/# DB_HOST=/' .env
-sed -i 's/^DB_PORT=/# DB_PORT=/' .env
-sed -i 's/^DB_DATABASE=/# DB_DATABASE=/' .env
-sed -i 's/^DB_USERNAME=/# DB_USERNAME=/' .env
-sed -i 's/^DB_PASSWORD=/# DB_PASSWORD=/' .env
+PHP_CLI_SERVER_WORKERS=4
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=error
+
+# Database configuration for Replit (SQLite)
+DB_CONNECTION=sqlite
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=log
+MAIL_SCHEME=null
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_FROM_ADDRESS="hello@kristalin.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+VITE_APP_NAME="${APP_NAME}"
+EOF
 
 # Generate application key
 echo "🔑 Generating application key..."

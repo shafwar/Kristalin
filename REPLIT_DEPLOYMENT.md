@@ -32,13 +32,21 @@
 
 ### 2. Run Setup Script
 
-Once the repl is created, run the setup script:
+Once the repl is created, you have two options:
+
+#### **Option A: Standard Setup (Recommended)**
 
 ```bash
 ./setup.sh
 ```
 
-**What the script does:**
+#### **Option B: Alternative Setup (If Option A fails)**
+
+```bash
+./setup-alternative.sh
+```
+
+**What the scripts do:**
 
 - ✅ Installs PHP and Node.js dependencies
 - ✅ Builds frontend assets
@@ -46,10 +54,11 @@ Once the repl is created, run the setup script:
 - ✅ Creates SQLite database file
 - ✅ Runs migrations and seeders
 - ✅ Sets proper permissions
+- ✅ Includes error handling
 
-### 3. Manual Setup (if script fails)
+### 3. Manual Setup (if both scripts fail)
 
-If the setup script doesn't work, run these commands manually:
+If the setup scripts don't work, run these commands manually:
 
 ```bash
 # Install PHP dependencies
@@ -61,16 +70,16 @@ npm install
 # Build frontend assets
 npm run build
 
-# Setup environment
+# Create environment file manually
 cp .env.example .env
 
-# Configure for Replit
-sed -i 's/APP_NAME=Laravel/APP_NAME=Kristalin/' .env
-sed -i 's/APP_ENV=local/APP_ENV=production/' .env
-sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env
-sed -i 's|APP_URL=http://localhost|APP_URL=https://your-repl-name.your-username.repl.co|' .env
-sed -i 's/DB_CONNECTION=sqlite/DB_CONNECTION=sqlite/' .env
-sed -i 's/LOG_LEVEL=debug/LOG_LEVEL=error/' .env
+# Edit .env file manually and change:
+# APP_NAME=Kristalin
+# APP_ENV=production
+# APP_DEBUG=false
+# APP_URL=https://your-repl-name.your-username.repl.co
+# DB_CONNECTION=sqlite
+# LOG_LEVEL=error
 
 # Generate application key
 php artisan key:generate
@@ -181,6 +190,32 @@ Your app will be available at:
     php artisan migrate --force
     ```
 
+7. **Setup Script Fails**
+
+    ```bash
+    # Try alternative script
+    ./setup-alternative.sh
+
+    # Or check script permissions
+    chmod +x setup.sh
+    chmod +x setup-alternative.sh
+    ```
+
+8. **Composer/NPM Issues**
+
+    ```bash
+    # Clear composer cache
+    composer clear-cache
+
+    # Clear npm cache
+    npm cache clean --force
+
+    # Reinstall dependencies
+    rm -rf vendor node_modules
+    composer install --no-dev --optimize-autoloader
+    npm install
+    ```
+
 ## 📁 Project Structure
 
 ```
@@ -191,6 +226,8 @@ Kristalin/
 ├── database/               # Migrations and seeders
 │   └── database.sqlite     # SQLite database (created on Replit)
 ├── routes/                 # Route definitions
+├── setup.sh               # Standard setup script
+├── setup-alternative.sh   # Alternative setup script
 └── config/                 # Configuration files
 ```
 
@@ -244,3 +281,13 @@ If you want to migrate data from local MySQL to Replit SQLite:
 3. **Import to Replit** (after deployment)
 
 **Note**: For most cases, fresh data in Replit is sufficient for testing/demo purposes.
+
+## 🛠️ Script Differences
+
+| Script                 | Method                 | Use Case            |
+| ---------------------- | ---------------------- | ------------------- |
+| `setup.sh`             | Modifies existing .env | Standard deployment |
+| `setup-alternative.sh` | Creates new .env       | When standard fails |
+| Manual                 | Step-by-step           | Complete control    |
+
+**Recommendation**: Try `setup.sh` first, then `setup-alternative.sh` if it fails.
