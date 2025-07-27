@@ -13,6 +13,11 @@ handle_error() {
 # Set error handling
 trap 'handle_error $LINENO' ERR
 
+# Check Node.js version
+echo "📋 Checking Node.js version..."
+node --version
+npm --version
+
 # Install PHP dependencies
 echo "📦 Installing PHP dependencies..."
 composer install --no-dev --optimize-autoloader

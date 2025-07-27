@@ -10,24 +10,3 @@ COMPOSER_ALLOW_SUPERUSER = "1"
 
 [packager]
 language = "php"
-
-[packager.features]
-packageSearch = true
-guessImports = true
-
-[languages]
-[languages.php]
-pattern = "**/*.php"
-syntax = "php"
-
-[languages.javascript]
-pattern = "**/*.{js,jsx,ts,tsx}"
-syntax = "javascript"
-
-[languages.css]
-pattern = "**/*.css"
-syntax = "css"
-
-[languages.html]
-pattern = "**/*.{html,htm,blade.php}"
-syntax = "html"
