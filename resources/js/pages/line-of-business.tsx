@@ -119,6 +119,8 @@ const CounterAnimation = ({ target, duration = 1000 }: { target: number; duratio
   );
 };
 
+
+
 export default function KristalinPortfolio() {
   const companyProfileRef = React.useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -136,10 +138,10 @@ export default function KristalinPortfolio() {
     }
   };
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white relative overflow-x-hidden">
       <Header sticky={true} transparent={true} />
       
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Parallax - PERBAIKAN MOBILE */}
       <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
         <div 
           className="absolute inset-0 w-full h-full"
@@ -156,7 +158,7 @@ export default function KristalinPortfolio() {
         </div>
         
         <motion.div 
-          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 pt-16 pb-8"
+          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 pt-16 pb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -172,7 +174,7 @@ export default function KristalinPortfolio() {
             transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -195,7 +197,7 @@ export default function KristalinPortfolio() {
               </motion.span>
             </motion.h1>
             <motion.h2 
-              className="text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg" 
+              className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 drop-shadow-lg" 
               style={{ letterSpacing: '-1px' }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -204,7 +206,7 @@ export default function KristalinPortfolio() {
               MINING THE FUTURE
             </motion.h2>
             <motion.p 
-              className="text-xl md:text-2xl text-white/95 mb-4 max-w-4xl mx-auto leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-4 max-w-4xl mx-auto leading-relaxed font-light px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
@@ -214,9 +216,9 @@ export default function KristalinPortfolio() {
           </motion.div>
         </motion.div>
 
-        {/* Value Cards with Parallax */}
+        {/* Value Cards with FIXED Mobile Responsive */}
         <motion.div 
-          className="relative z-20 w-full px-4 mb-6 -mt-4"
+          className="relative z-20 w-full px-3 sm:px-4 mb-4 sm:mb-6 -mt-2"
           style={{
             transform: `translateY(${scrollY * 0.15}px)`,
             opacity: Math.max(0.3, 1 - scrollY / 800)
@@ -231,25 +233,25 @@ export default function KristalinPortfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
             >
-              {/* Integrity Card */}
+              {/* Integrity Card - MOBILE OPTIMIZED */}
               <motion.div
                 initial={{ opacity: 0, x: -50, scale: 0.9 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.3)"
+                  scale: 1.02,
+                  y: -2,
+                  boxShadow: "0 15px 30px rgba(251, 191, 36, 0.2)"
                 }}
-                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
+                className="bg-black/85 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0 flex items-center justify-center">
-                    {/* Globe SVG Icon */}
-                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    {/* Globe SVG Icon - MOBILE SIZED */}
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
                       <ellipse cx="12" cy="12" rx="10" ry="4" stroke="white" strokeWidth="2" />
                       <path d="M2 12a10 10 0 0 0 20 0" stroke="white" strokeWidth="2" />
@@ -257,44 +259,45 @@ export default function KristalinPortfolio() {
                       <path d="M12 2a15 15 0 0 0 0 20" stroke="white" strokeWidth="2" />
                     </svg>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-white font-bold text-xl lg:text-2xl mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3">
                       INTEGRITY
                     </h3>
-                    <p className="text-white/85 text-sm lg:text-base font-light leading-relaxed">
+                    <p className="text-white/85 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
                       We uphold the highest standards of integrity in all our actions, ensuring transparency and ethical practices.
                     </p>
                   </div>
                 </div>
               </motion.div>
-              {/* Commitment Card */}
+
+              {/* Commitment Card - MOBILE OPTIMIZED */}
               <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.9 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.3)"
+                  scale: 1.02,
+                  y: -2,
+                  boxShadow: "0 15px 30px rgba(251, 191, 36, 0.2)"
                 }}
-                className="bg-black/85 backdrop-blur-lg rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
+                className="bg-black/85 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-white/20 transition-all duration-300 hover:bg-black/90 hover:border-amber-400/30"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0 flex items-center justify-center">
-                    {/* People/Team SVG Icon */}
-                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    {/* People/Team SVG Icon - MOBILE SIZED */}
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <circle cx="9" cy="10" r="4" stroke="white" strokeWidth="2" />
                       <circle cx="17" cy="13" r="3" stroke="white" strokeWidth="2" />
                       <path d="M2 20c0-2.5 3.5-4.5 7-4.5s7 2 7 4.5" stroke="white" strokeWidth="2" />
                       <path d="M14 20c0-1.5 2-2.5 4-2.5s4 1 4 2.5" stroke="white" strokeWidth="2" />
                     </svg>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-white font-bold text-xl lg:text-2xl mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3">
                       COMMITMENT
                     </h3>
-                    <p className="text-white/85 text-sm lg:text-base font-light leading-relaxed">
+                    <p className="text-white/85 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
                       Dedicated to delivering value and sustainable growth for all stakeholders and communities.
                     </p>
                   </div>
@@ -304,9 +307,9 @@ export default function KristalinPortfolio() {
           </div>
         </motion.div>
 
-        {/* Explore Operations Button */}
+        {/* Explore Operations Button - MOBILE OPTIMIZED */}
         <motion.div 
-          className="relative z-20 w-full px-4 mb-8"
+          className="relative z-20 w-full px-4 mb-6 sm:mb-8"
           style={{
             transform: `translateY(${scrollY * 0.1}px)`,
             opacity: Math.max(0.4, 1 - scrollY / 700)
@@ -328,11 +331,11 @@ export default function KristalinPortfolio() {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={handleScrollToCompanyProfile}
-              className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-12 py-5 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300"
+              className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full font-semibold text-sm sm:text-base lg:text-lg overflow-hidden transition-all duration-300 shadow-lg"
             >
-              <span className="relative z-10 flex items-center gap-3">
+              <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                 Explore Operations
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
@@ -341,15 +344,15 @@ export default function KristalinPortfolio() {
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - MOBILE OPTIMIZED */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 2.8, ease: "easeOut" }}
         >
-          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-1 sm:mt-2 animate-bounce"></div>
           </div>
         </motion.div>
 

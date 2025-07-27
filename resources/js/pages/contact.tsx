@@ -184,18 +184,41 @@ export default function ContactPage() {
     if (!validateForm()) return;
     setLoading(true);
     setAlert(null);
-    setTimeout(() => {
-      setAlert({
-        type: 'success',
-        message: '✨ Your message has been sent successfully! We\'ll get back to you within 24 hours.'
+
+    const form = new FormData();
+    form.append('name', formData.name);
+    form.append('email', formData.email);
+    form.append('subject', formData.subject);
+    form.append('message', formData.inquiry);
+    if (formData.attachment) form.append('file', formData.attachment);
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+    fetch('/contact-message', {
+      method: 'POST',
+      body: form,
+      headers: {
+        'X-CSRF-TOKEN': csrfToken || '',
+      },
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setAlert({ type: 'success', message: '✨ Your message has been sent successfully! We\'ll get back to you within 24 hours.' });
+          setFormData({ name: '', email: '', phone: '', subject: '', inquiry: '', attachment: null });
+          setFileName('');
+          setFileError('');
+          setErrors({});
+          if (fileInputRef.current) fileInputRef.current.value = '';
+        } else {
+          setAlert({ type: 'error', message: data.error || 'Failed to send message.' });
+        }
+        setLoading(false);
+      })
+      .catch(() => {
+        setAlert({ type: 'error', message: 'Failed to send message.' });
+        setLoading(false);
       });
-      setLoading(false);
-      setFormData({ name: '', email: '', phone: '', subject: '', inquiry: '', attachment: null });
-      setFileName('');
-      setFileError('');
-      setErrors({});
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    }, 1500);
   };
 
   const handleReset = () => {
@@ -208,7 +231,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col bg-white relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-white relative overflow-x-hidden">
       <Header sticky={true} transparent={false} />
       <div className="flex-1 flex flex-col z-10 pt-20">  
         <div className="flex flex-col lg:flex-row flex-1 min-h-screen relative w-full max-w-none">

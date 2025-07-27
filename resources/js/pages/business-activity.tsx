@@ -228,6 +228,7 @@ const slideInRight = {
   visible: { opacity: 1, x: 0 },
 };
 
+// Fixed Mining Sectors Section untuk Mobile
 function EnhancedMiningSectors() {
   const sectors = [
     {
@@ -236,7 +237,7 @@ function EnhancedMiningSectors() {
       highlight: "Primary Focus"
     },
     {
-      name: "Silver",
+      name: "Silver", 
       description: "Pemrosesan perak dan logam mulia lainnya melalui sistem separasi terintegrasi. Teknologi penyulingan canggih memastikan kemurnian tinggi dan kualitas terbaik.",
       highlight: "Secondary Operations"
     },
@@ -246,21 +247,25 @@ function EnhancedMiningSectors() {
       highlight: "Future Development"
     }
   ];
+
   const images = [
     { src: "/gold1.jpg", alt: "Gold mining" },
     { src: "/silver.jpg", alt: "Silver mining" }
   ];
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  React.useEffect(() => {
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showGoldDetail, setShowGoldDetail] = useState(false);
+  const [showSilverDetail, setShowSilverDetail] = useState(false);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length);
     }, 3500);
     return () => clearInterval(interval);
   }, [images.length]);
-  const [showGoldDetail, setShowGoldDetail] = useState(false);
-  // Lock body scroll when modal is open (Gold or Silver)
-  const [showSilverDetail, setShowSilverDetail] = useState(false);
-  React.useEffect(() => {
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
     if (showGoldDetail || showSilverDetail) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -270,43 +275,45 @@ function EnhancedMiningSectors() {
       document.body.style.overflow = '';
     };
   }, [showGoldDetail, showSilverDetail]);
+
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header Section */}
+    <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Header Section - MOBILE OPTIMIZED */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "5rem" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-1 bg-gradient-to-r from-amber-400 to-yellow-500 mx-auto mb-6"
+            className="h-1 bg-gradient-to-r from-amber-400 to-yellow-500 mx-auto mb-4 sm:mb-6"
           />
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
             <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
               Mining
             </span>{" "}
             <span className="text-gray-800">Sectors</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
             To achieve our goals, our company operates in several specialized sectors with
             advanced technology and sustainable practices across premium mineral extraction operations.
           </p>
         </motion.div>
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-12 items-center">
-          {/* Left Side - Detailed List */}
+
+        {/* Main Content Grid - MOBILE RESPONSIVE */}
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 sm:gap-12 items-start">
+          {/* Left Side - Detailed List - MOBILE OPTIMIZED */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="xl:col-span-3 space-y-8"
+            className="xl:col-span-3 space-y-6 sm:space-y-8"
           >
             {sectors.map((sector, index) => (
               <motion.div
@@ -320,65 +327,68 @@ function EnhancedMiningSectors() {
                   ease: "easeOut"
                 }}
                 whileHover={{
-                  x: 8,
+                  x: 4,
                   transition: { duration: 0.3 }
                 }}
-                className="group bg-white rounded-xl p-8 shadow-sm hover:shadow-lg border border-gray-100 hover:border-amber-200 transition-all duration-300"
+                className="group bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-lg border border-gray-100 hover:border-amber-200 transition-all duration-300"
               >
-                <div className="flex items-start gap-6">
-                  {/* Enhanced Bullet Point */}
+                <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
+                  {/* Enhanced Bullet Point - MOBILE SIZED */}
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    whileHover={{ scale: 1.1, rotate: 180 }}
                     transition={{ duration: 0.5 }}
-                    className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg mt-1"
+                    className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg mt-0 sm:mt-1"
                   >
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-white rounded-full"></div>
                   </motion.div>
-                  <div className="flex-1">
-                    {/* Sector Name and Badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-gray-800 group-hover:text-amber-600 transition-colors duration-300">
+                  
+                  <div className="flex-1 min-w-0">
+                    {/* Sector Name and Badge - MOBILE RESPONSIVE */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 gap-2">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 group-hover:text-amber-600 transition-colors duration-300">
                         {sector.name}
                       </h3>
-                      <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">
+                      <span className="bg-amber-100 text-amber-700 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold w-fit">
                         {sector.highlight}
                       </span>
                     </div>
-                    {/* Description */}
-                    <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    
+                    {/* Description - MOBILE OPTIMIZED */}
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 mb-3 sm:mb-4">
                       {sector.description}
                     </p>
-                    {/* Learn More Link for Gold */}
+                    
+                    {/* Learn More Links - MOBILE FRIENDLY */}
                     {sector.name === "Gold" && (
                       <motion.div
-                        className="mt-4 opacity-100"
-                        whileHover={{ x: 5 }}
+                        className="opacity-100"
+                        whileHover={{ x: 3 }}
                       >
                         <button
                           type="button"
                           onClick={() => setShowGoldDetail(true)}
-                          className="text-amber-600 font-medium text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-2 focus:outline-none focus:underline"
+                          className="text-amber-600 font-medium text-xs sm:text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-1 sm:gap-2 focus:outline-none focus:underline"
                         >
                           Learn more about gold operations
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
                       </motion.div>
                     )}
-                    {/* Learn More Link for Silver */}
+                    
                     {sector.name === "Silver" && (
                       <motion.div
-                        className="mt-4 opacity-100"
-                        whileHover={{ x: 5 }}
+                        className="opacity-100"
+                        whileHover={{ x: 3 }}
                       >
                         <button
                           type="button"
                           onClick={() => setShowSilverDetail(true)}
-                          className="text-amber-600 font-medium text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-2 focus:outline-none focus:underline"
+                          className="text-amber-600 font-medium text-xs sm:text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-1 sm:gap-2 focus:outline-none focus:underline"
                         >
                           Learn more about silver operations
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
@@ -389,7 +399,8 @@ function EnhancedMiningSectors() {
               </motion.div>
             ))}
           </motion.div>
-          {/* Right Side - Enhanced Visual */}
+
+          {/* Right Side - Enhanced Visual - MOBILE OPTIMIZED */}
           <div className="relative overflow-visible xl:col-span-2">
             <motion.div
               initial={{ opacity: 0, x: 40 }}
@@ -397,15 +408,15 @@ function EnhancedMiningSectors() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <div className="relative overflow-visible rounded-2xl shadow-xl bg-white p-12 flex flex-col items-center justify-center">
-                <div className="w-full flex items-center justify-center overflow-hidden rounded-lg" style={{ minHeight: 240 }}>
+              <div className="relative overflow-visible rounded-2xl shadow-xl bg-white p-6 sm:p-8 lg:p-12 flex flex-col items-center justify-center">
+                <div className="w-full flex items-center justify-center overflow-hidden rounded-lg" style={{ minHeight: 200 }}>
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={images[activeIndex].src}
                       src={images[activeIndex].src}
                       alt={images[activeIndex].alt}
-                      className="w-full h-auto rounded-lg"
-                      style={{ maxHeight: 320 }}
+                      className="w-full h-auto rounded-lg object-cover"
+                      style={{ maxHeight: 280 }}
                       initial={{ x: 100, opacity: 0, scale: 0.98, filter: 'blur(6px)' }}
                       animate={{ x: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
                       exit={{ x: -100, opacity: 0, scale: 0.98, filter: 'blur(6px)' }}
@@ -413,12 +424,13 @@ function EnhancedMiningSectors() {
                     />
                   </AnimatePresence>
                 </div>
-                {/* Image Caption */}
+                
+                {/* Image Caption - MOBILE RESPONSIVE */}
                 <div className="mt-4 text-center">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-2">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                     Modern Mining Operations
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs sm:text-sm text-gray-600">
                     Advanced equipment and sustainable practices in mineral extraction
                   </p>
                 </div>
@@ -426,124 +438,122 @@ function EnhancedMiningSectors() {
             </motion.div>
           </div>
         </div>
-        {/* Gold Detail Popup */}
+
+        {/* Modals - MOBILE OPTIMIZED */}
         <AnimatePresence>
-        {showGoldDetail && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, filter: 'blur(4px)' }}
-              onClick={() => setShowGoldDetail(false)}
-            />
-            {/* Card */}
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.92, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 40 }}
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            >
-              <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full px-4 sm:px-8 py-8 border border-amber-200 flex flex-col items-center">
-                {/* Close Button */}
-                <button
-                  className="absolute top-4 right-4 z-20"
-                  onClick={() => setShowGoldDetail(false)}
-                  aria-label="Close"
-                  tabIndex={0}
-                >
-                  <span
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100/80 text-gray-500 hover:bg-red-100 hover:text-red-500 shadow transition-colors duration-200 text-xl border border-gray-200"
+          {showGoldDetail && (
+            <>
+              <motion.div
+                className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setShowGoldDetail(false)}
+              />
+              <motion.div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: 40 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 px-4 sm:px-6 py-6 sm:py-8 border border-amber-200 flex flex-col items-center max-h-[90vh] overflow-y-auto">
+                  <button
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20"
+                    onClick={() => setShowGoldDetail(false)}
+                    aria-label="Close"
                   >
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7 7L15 15M15 7L7 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </button>
-                <div className="w-full flex justify-center">
-                  <img src="/gold1.jpg" alt="Gold Operation" className="rounded-xl object-contain aspect-[4/3] w-full max-w-xs mb-6 bg-white" />
+                    <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100/80 text-gray-500 hover:bg-red-100 hover:text-red-500 shadow transition-colors duration-200 border border-gray-200">
+                      <svg width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 7L15 15M15 7L7 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                  </button>
+                  
+                  <div className="w-full flex justify-center">
+                    <img src="/gold1.jpg" alt="Gold Operation" className="rounded-xl object-cover aspect-[4/3] w-full max-w-xs mb-4 sm:mb-6 bg-white" />
+                  </div>
+                  
+                  <h2 className="text-xl sm:text-2xl font-bold text-amber-600 mb-3 sm:mb-4 text-center">Gold Operations</h2>
+                  
+                  <p className="text-gray-700 text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed text-center max-w-md">
+                    Operasi pertambangan emas kami memanfaatkan teknologi aluvial modern di daerah aliran Sungai Musairo, Papua. Kami berkomitmen pada penambangan yang berkelanjutan, menjaga kelestarian lingkungan, dan memaksimalkan hasil dengan peralatan canggih.
+                  </p>
+                  
+                  <ul className="text-gray-600 text-sm sm:text-base list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 mb-2 max-w-md mx-auto">
+                    <li>Teknologi aluvial modern dan efisien</li>
+                    <li>Pengelolaan lingkungan yang ketat</li>
+                    <li>Program pemberdayaan masyarakat sekitar</li>
+                    <li>Produksi emas berkadar tinggi</li>
+                  </ul>
                 </div>
-                <h2 className="text-2xl font-bold text-amber-600 mb-4 text-center">Gold Operations</h2>
-                <p className="text-gray-700 text-base mb-5 leading-relaxed text-center max-w-md">
-                  Operasi pertambangan emas kami memanfaatkan teknologi aluvial modern di daerah aliran Sungai Musairo, Papua. Kami berkomitmen pada penambangan yang berkelanjutan, menjaga kelestarian lingkungan, dan memaksimalkan hasil dengan peralatan canggih. Tim kami juga aktif membangun kemitraan dengan masyarakat lokal serta terus berinovasi untuk menciptakan nilai jangka panjang bagi seluruh pemangku kepentingan.
-                </p>
-                <ul className="text-gray-600 text-base list-disc pl-5 space-y-2 mb-2 max-w-md mx-auto">
-                  <li>Teknologi aluvial modern dan efisien</li>
-                  <li>Pengelolaan lingkungan yang ketat</li>
-                  <li>Program pemberdayaan masyarakat sekitar</li>
-                  <li>Produksi emas berkadar tinggi</li>
-                </ul>
-              </div>
-            </motion.div>
-          </>
-        )}
-        {/* Silver Detail Popup */}
-        {showSilverDetail && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, filter: 'blur(4px)' }}
-              onClick={() => setShowSilverDetail(false)}
-            />
-            {/* Card */}
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.92, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 40 }}
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            >
-              <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full px-4 sm:px-8 py-8 border border-amber-200 flex flex-col items-center">
-                {/* Close Button */}
-                <button
-                  className="absolute top-4 right-4 z-20"
-                  onClick={() => setShowSilverDetail(false)}
-                  aria-label="Close"
-                  tabIndex={0}
-                >
-                  <span
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100/80 text-gray-500 hover:bg-red-100 hover:text-red-500 shadow transition-colors duration-200 text-xl border border-gray-200"
+              </motion.div>
+            </>
+          )}
+
+          {showSilverDetail && (
+            <>
+              <motion.div
+                className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setShowSilverDetail(false)}
+              />
+              <motion.div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: 40 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 px-4 sm:px-6 py-6 sm:py-8 border border-amber-200 flex flex-col items-center max-h-[90vh] overflow-y-auto">
+                  <button
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20"
+                    onClick={() => setShowSilverDetail(false)}
+                    aria-label="Close"
                   >
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7 7L15 15M15 7L7 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </button>
-                <div className="w-full flex justify-center">
-                  <img src="/silver.jpg" alt="Silver Operation" className="rounded-xl object-contain aspect-[4/3] w-full max-w-xs mb-6 bg-white" />
+                    <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100/80 text-gray-500 hover:bg-red-100 hover:text-red-500 shadow transition-colors duration-200 border border-gray-200">
+                      <svg width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 7L15 15M15 7L7 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                  </button>
+                  
+                  <div className="w-full flex justify-center">
+                    <img src="/silver.jpg" alt="Silver Operation" className="rounded-xl object-cover aspect-[4/3] w-full max-w-xs mb-4 sm:mb-6 bg-white" />
+                  </div>
+                  
+                  <h2 className="text-xl sm:text-2xl font-bold text-amber-600 mb-3 sm:mb-4 text-center">Silver Operations</h2>
+                  
+                  <p className="text-gray-700 text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed text-center max-w-md">
+                    Operasi pemrosesan perak kami menggunakan teknologi pemurnian canggih untuk menghasilkan perak berkadar tinggi dengan standar kualitas ekspor. Proses terintegrasi kami memastikan efisiensi, ramah lingkungan, dan konsistensi hasil.
+                  </p>
+                  
+                  <ul className="text-gray-600 text-sm sm:text-base list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2 mb-2 max-w-md mx-auto">
+                    <li>Teknologi pemurnian canggih</li>
+                    <li>Kadar kemurnian tinggi</li>
+                    <li>Proses ramah lingkungan</li>
+                    <li>Produk perak berkualitas ekspor</li>
+                  </ul>
                 </div>
-                <h2 className="text-2xl font-bold text-amber-600 mb-4 text-center">Silver Operations</h2>
-                <p className="text-gray-700 text-base mb-5 leading-relaxed text-center max-w-md">
-                  Operasi pemrosesan perak kami menggunakan teknologi pemurnian canggih untuk menghasilkan perak berkadar tinggi dengan standar kualitas ekspor. Proses terintegrasi kami memastikan efisiensi, ramah lingkungan, dan konsistensi hasil. Tim kami berkomitmen pada inovasi berkelanjutan dan pengelolaan limbah yang bertanggung jawab demi menjaga kelestarian lingkungan dan memberikan nilai tambah bagi seluruh pemangku kepentingan.
-                </p>
-                <ul className="text-gray-600 text-base list-disc pl-5 space-y-2 mb-2 max-w-md mx-auto">
-                  <li>Teknologi pemurnian canggih</li>
-                  <li>Kadar kemurnian tinggi</li>
-                  <li>Proses ramah lingkungan</li>
-                  <li>Produk perak berkualitas ekspor</li>
-                </ul>
-              </div>
-            </motion.div>
-          </>
-        )}
+              </motion.div>
+            </>
+          )}
         </AnimatePresence>
-        {/* Bottom Summary */}
+
+        {/* Bottom Summary - MOBILE OPTIMIZED */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center bg-gray-800 rounded-2xl p-8 text-white"
+          className="mt-12 sm:mt-16 text-center bg-gray-800 rounded-2xl p-6 sm:p-8 text-white"
         >
-          <h3 className="text-xl font-semibold mb-4">
+          <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
             Sustainable Mining Excellence
           </h3>
-          <p className="text-gray-300 max-w-3xl mx-auto">
+          <p className="text-gray-300 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
             Our diversified approach across gold, silver, and other metals ensures comprehensive
             resource utilization while maintaining the highest environmental and safety standards
             throughout all operations in the mineral-rich Musairo River basin.
@@ -718,11 +728,11 @@ export default function BusinessActivityPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen flex flex-col bg-white relative overflow-x-hidden">
       <Header sticky={true} transparent={true} />
 
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+            {/* Hero Section - MOBILE OPTIMIZED */}
+            <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
         <div
           className="absolute inset-0 w-full h-full"
           style={{
@@ -736,8 +746,9 @@ export default function BusinessActivityPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
         </div>
+        
         <motion.div
-          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 py-24"
+          className="relative z-20 w-full max-w-5xl mx-auto text-center px-4 py-16 sm:py-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -752,8 +763,9 @@ export default function BusinessActivityPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
+            {/* MOBILE RESPONSIVE HEADING */}
             <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight"
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -777,8 +789,9 @@ export default function BusinessActivityPage() {
               </motion.span>
             </motion.h1>
 
+            {/* MOBILE RESPONSIVE DESCRIPTION */}
             <motion.p
-              className="text-xl md:text-2xl text-white/95 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed font-light px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
@@ -786,8 +799,9 @@ export default function BusinessActivityPage() {
               Premium gold mining operations with sustainable practices and cutting-edge technology for Indonesia's future.
             </motion.p>
 
+            {/* FIXED MOBILE BUTTON */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
               initial={{ opacity: 0, y: 30, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
@@ -798,16 +812,16 @@ export default function BusinessActivityPage() {
                     miningSectorsRef.current.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-12 py-5 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full font-semibold text-sm sm:text-base lg:text-lg overflow-hidden transition-all duration-300 shadow-lg"
                 whileHover={{
-                  scale: 1.05,
+                  scale: 1.02,
                   boxShadow: "0 20px 40px rgba(251, 191, 36, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10 flex items-center gap-3">
+                <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                   Explore Operations
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
@@ -817,15 +831,15 @@ export default function BusinessActivityPage() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" }}
         >
-          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-1 sm:mt-2 animate-bounce"></div>
           </div>
         </motion.div>
       </section>

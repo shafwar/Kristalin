@@ -4,23 +4,21 @@ import Footer from '../components/Footer';
 
 // SVG Icon Components
 const IconEye = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 sm:w-7 sm:h-7">
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
     <circle cx="12" cy="12" r="3"/>
   </svg>
 );
 
-
-
 const IconTrendingUp = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
     <polyline points="17 6 23 6 23 12"/>
   </svg>
 );
 
 const IconUsers = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
     <circle cx="9" cy="7" r="4"/>
     <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -29,14 +27,14 @@ const IconUsers = () => (
 );
 
 const IconSettings = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <circle cx="12" cy="12" r="3"/>
     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
   </svg>
 );
 
 const IconTarget = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <circle cx="12" cy="12" r="10"/>
     <circle cx="12" cy="12" r="6"/>
     <circle cx="12" cy="12" r="2"/>
@@ -44,14 +42,14 @@ const IconTarget = () => (
 );
 
 const IconLeaf = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <path d="M7 20s4-9 6-13 6-2 6-2-3 14-5 18"/>
     <path d="M22 9s-7-6-13-6c-3 0-9 4-9 9 0 1 0 3 0 3s1 1 3 1c6 0 13-6 13-6"/>
   </svg>
 );
 
 const IconHeart = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
   </svg>
 );
@@ -79,8 +77,6 @@ export default function VisionMissionPage() {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-
-
 
   const missionPillars = [
     {
@@ -122,81 +118,75 @@ export default function VisionMissionPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
-      {/* Main Content */}
-      <div
-        className="flex w-full relative"
-        style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}
-      >
-        {/* Left Side - Image and Title with animations */}
-        <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
-          <img 
-            src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
-            alt="Gold bars and gold powder on scale"
-            className="w-full h-full object-cover opacity-80"
-          />
-          <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
-            isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
-            <h1 className="text-white text-5xl font-light leading-tight">
-              Our Vision<br />
-              <span className="font-normal">& Mission</span>
-            </h1>
-            <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
-            <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-              Guiding principles that drive our commitment to excellence, sustainability, and community prosperity.
-            </p>
-          </div>
-        </div>
+    <div className="flex flex-col bg-white relative overflow-x-hidden min-h-screen">
+      <Header sticky={true} transparent={false} />
+      <div className="flex-1 flex flex-col z-10 pt-16 sm:pt-20">
         
-        {/* Right Side - Vision & Mission Content */}
-        <div className="w-1/2 bg-white relative h-full flex-shrink-0">
-          {/* Accent Line */}
-          <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
+        {/* Mobile Layout - Stack Vertically */}
+        <div className="block lg:hidden">
           
-          {/* Content Container */}
-          <div
-            ref={rightPanelRef}
-            className="h-full overflow-y-auto"
-            style={{ padding: '3rem 4rem' }}
-          >
-            <div className="max-w-xl">
+          {/* Mobile Hero Section */}
+          <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
+            <img 
+              src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
+              alt="Gold bars and gold powder on scale"
+              className="w-full h-full object-cover opacity-80"
+            />
+            
+            {/* Mobile Title */}
+            <div className={`absolute bottom-6 left-4 right-4 transform transition-all duration-1000 ease-out ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
+                Our Vision<br />
+                <span className="font-normal">& Mission</span>
+              </h1>
+              <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
+              <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
+                Guiding principles that drive our commitment to excellence, sustainability, and community prosperity.
+              </p>
+            </div>
+          </div>
+
+          {/* Mobile Content */}
+          <div className="bg-white p-4 sm:p-6">
+            <div className="max-w-2xl mx-auto">
+              
               {/* Header */}
-              <div className={`mb-12 transform transition-all duration-1000 delay-300 ${
+              <div className={`mb-8 transform transition-all duration-1000 delay-300 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
+                  <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
                     Vision & Mission
                   </span>
                 </div>
-                <h2 className="text-3xl font-light text-gray-900 leading-relaxed">
+                <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed">
                   Guiding Principles for
                   <span className="text-yellow-600 font-medium"> Sustainable Excellence</span>
                 </h2>
               </div>
 
               {/* Vision Section */}
-              <div className={`mb-16 transform transition-all duration-1000 delay-500 ${
+              <div className={`mb-12 transform transition-all duration-1000 delay-500 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
-                <div className="bg-yellow-50 rounded-2xl p-8 border border-yellow-200">
-                  <div className="flex items-start space-x-6">
-                    <div className="text-3xl flex-shrink-0">
+                <div className="bg-yellow-50 rounded-xl p-4 sm:p-6 border border-yellow-200">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 mt-1">
                       <IconEye />
                     </div>
-                    <div className="flex-1 space-y-4">
+                    <div className="flex-1 space-y-3">
                       <div>
-                        <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-2">
+                        <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-1">
                           Our Vision
                         </div>
-                        <h3 className="text-2xl font-semibold text-yellow-800 leading-tight">
+                        <h3 className="text-lg sm:text-xl font-semibold text-yellow-800 leading-tight">
                           Leading Indonesia's Sustainable Mining Future
                         </h3>
                       </div>
-                      <p className="text-yellow-700 leading-relaxed">
+                      <p className="text-yellow-700 leading-relaxed text-sm sm:text-base">
                         To become a transformative entity that orchestrates Indonesia's abundant natural resources with unparalleled optimization and unwavering responsibility, creating sustainable prosperity that enriches local communities, strengthens our nation's economic foundation, and establishes new paradigms of ethical mining practices that serve as a beacon for the global mining industry.
                       </p>
                     </div>
@@ -205,23 +195,23 @@ export default function VisionMissionPage() {
               </div>
 
               {/* Mission Header */}
-              <div className={`mb-8 transform transition-all duration-1000 delay-700 ${
+              <div className={`mb-6 transform transition-all duration-1000 delay-700 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
+                  <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
                     Our Mission
                   </span>
                 </div>
-                <h3 className="text-2xl font-light text-gray-900 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-light text-gray-900 leading-relaxed">
                   Six Pillars of
                   <span className="text-yellow-600 font-medium"> Operational Excellence</span>
                 </h3>
               </div>
 
               {/* Mission Pillars */}
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {missionPillars.map((pillar, index) => (
                   <div
                     key={index}
@@ -231,28 +221,28 @@ export default function VisionMissionPage() {
                         : 'translate-y-8 opacity-0'
                     } ${
                       activeMission === index 
-                        ? 'scale-105 bg-yellow-50 shadow-lg rounded-2xl p-6 -mx-2' 
-                        : 'hover:bg-gray-50 rounded-2xl p-6 -mx-2'
+                        ? 'scale-[1.02] bg-yellow-50 shadow-lg rounded-xl p-4' 
+                        : 'hover:bg-gray-50 rounded-xl p-4'
                     }`}
                     style={{ 
                       transitionDelay: `${900 + (index * 150)}ms` 
                     }}
                     onClick={() => setActiveMission(index)}
                   >
-                    <div className="flex items-start space-x-4">
+                    <div className="flex items-start space-x-3">
                       {/* Icon */}
-                      <div className={`text-2xl flex-shrink-0 transition-all duration-500 ${
+                      <div className={`flex-shrink-0 transition-all duration-500 ${
                         activeMission === index ? 'scale-125 rotate-12' : 'group-hover:scale-110'
                       }`}>
                         {pillar.icon}
                       </div>
                       {/* Content */}
-                      <div className="flex-1 space-y-3">
+                      <div className="flex-1 space-y-2">
                         <div>
                           <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-1">
                             {pillar.subtitle}
                           </div>
-                          <h4 className={`text-lg font-semibold transition-colors duration-300 leading-tight ${
+                          <h4 className={`text-sm sm:text-base font-semibold transition-colors duration-300 leading-tight ${
                             activeMission === index ? 'text-yellow-700' : 'text-gray-900 group-hover:text-yellow-600'
                           }`}>
                             {pillar.title}
@@ -260,7 +250,7 @@ export default function VisionMissionPage() {
                         </div>
                         <p className={`leading-relaxed transition-all duration-500 ${
                           activeMission === index 
-                            ? 'text-gray-800 text-sm' 
+                            ? 'text-gray-800 text-xs sm:text-sm' 
                             : 'text-gray-600 text-xs group-hover:text-gray-800'
                         }`}>
                           {pillar.description}
@@ -279,26 +269,206 @@ export default function VisionMissionPage() {
                 ))}
               </div>
 
-              {/* Bottom Section */}
-              <div className={`mt-16 pt-8 border-t border-gray-200 transform transition-all duration-1500 delay-1400 ${
+              {/* Mobile Call to Action */}
+              <div className={`mt-12 pt-6 border-t border-gray-200 transform transition-all duration-1500 delay-1400 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
-                <div className="text-center space-y-6">
+                <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-lg font-medium text-gray-900">Committed to Indonesia's Prosperity</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Committed to Indonesia's Prosperity</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                       Through our vision and mission, we strive to create lasting positive impact that transcends traditional mining operations, 
                       building a legacy of responsible resource stewardship and community empowerment.
                     </p>
                   </div>
-                  <div className="flex justify-center space-x-4">
-                    <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                    <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
                       <span className="relative z-10">Our Impact Stories</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
-                    <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
+                    <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
                       Learn More
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Side by Side */}
+        <div className="hidden lg:flex w-full relative" style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}>
+          {/* Left Side - Image and Title with animations */}
+          <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
+            <img 
+              src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
+              alt="Gold bars and gold powder on scale"
+              className="w-full h-full object-cover opacity-80"
+            />
+            <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <h1 className="text-white text-5xl font-light leading-tight">
+                Our Vision<br />
+                <span className="font-normal">& Mission</span>
+              </h1>
+              <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
+              <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
+                Guiding principles that drive our commitment to excellence, sustainability, and community prosperity.
+              </p>
+            </div>
+          </div>
+          
+          {/* Right Side - Vision & Mission Content */}
+          <div className="w-1/2 bg-white relative h-full flex-shrink-0">
+            {/* Accent Line */}
+            <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
+            
+            {/* Content Container */}
+            <div
+              ref={rightPanelRef}
+              className="h-full overflow-y-auto"
+              style={{ padding: '3rem 4rem' }}
+            >
+              <div className="max-w-xl">
+                {/* Header */}
+                <div className={`mb-12 transform transition-all duration-1000 delay-300 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}>
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
+                      Vision & Mission
+                    </span>
+                  </div>
+                  <h2 className="text-3xl font-light text-gray-900 leading-relaxed">
+                    Guiding Principles for
+                    <span className="text-yellow-600 font-medium"> Sustainable Excellence</span>
+                  </h2>
+                </div>
+
+                {/* Vision Section */}
+                <div className={`mb-16 transform transition-all duration-1000 delay-500 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}>
+                  <div className="bg-yellow-50 rounded-2xl p-8 border border-yellow-200">
+                    <div className="flex items-start space-x-6">
+                      <div className="text-3xl flex-shrink-0">
+                        <IconEye />
+                      </div>
+                      <div className="flex-1 space-y-4">
+                        <div>
+                          <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-2">
+                            Our Vision
+                          </div>
+                          <h3 className="text-2xl font-semibold text-yellow-800 leading-tight">
+                            Leading Indonesia's Sustainable Mining Future
+                          </h3>
+                        </div>
+                        <p className="text-yellow-700 leading-relaxed">
+                          To become a transformative entity that orchestrates Indonesia's abundant natural resources with unparalleled optimization and unwavering responsibility, creating sustainable prosperity that enriches local communities, strengthens our nation's economic foundation, and establishes new paradigms of ethical mining practices that serve as a beacon for the global mining industry.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mission Header */}
+                <div className={`mb-8 transform transition-all duration-1000 delay-700 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}>
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
+                      Our Mission
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-light text-gray-900 leading-relaxed">
+                    Six Pillars of
+                    <span className="text-yellow-600 font-medium"> Operational Excellence</span>
+                  </h3>
+                </div>
+
+                {/* Mission Pillars */}
+                <div className="space-y-6">
+                  {missionPillars.map((pillar, index) => (
+                    <div
+                      key={index}
+                      className={`transform transition-all duration-1000 cursor-pointer group ${
+                        isLoaded 
+                          ? 'translate-y-0 opacity-100' 
+                          : 'translate-y-8 opacity-0'
+                      } ${
+                        activeMission === index 
+                          ? 'scale-105 bg-yellow-50 shadow-lg rounded-2xl p-6 -mx-2' 
+                          : 'hover:bg-gray-50 rounded-2xl p-6 -mx-2'
+                      }`}
+                      style={{ 
+                        transitionDelay: `${900 + (index * 150)}ms` 
+                      }}
+                      onClick={() => setActiveMission(index)}
+                    >
+                      <div className="flex items-start space-x-4">
+                        {/* Icon */}
+                        <div className={`text-2xl flex-shrink-0 transition-all duration-500 ${
+                          activeMission === index ? 'scale-125 rotate-12' : 'group-hover:scale-110'
+                        }`}>
+                          {pillar.icon}
+                        </div>
+                        {/* Content */}
+                        <div className="flex-1 space-y-3">
+                          <div>
+                            <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-1">
+                              {pillar.subtitle}
+                            </div>
+                            <h4 className={`text-lg font-semibold transition-colors duration-300 leading-tight ${
+                              activeMission === index ? 'text-yellow-700' : 'text-gray-900 group-hover:text-yellow-600'
+                            }`}>
+                              {pillar.title}
+                            </h4>
+                          </div>
+                          <p className={`leading-relaxed transition-all duration-500 ${
+                            activeMission === index 
+                              ? 'text-gray-800 text-sm' 
+                              : 'text-gray-600 text-xs group-hover:text-gray-800'
+                          }`}>
+                            {pillar.description}
+                          </p>
+                          {/* Progress Bar */}
+                          <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
+                            <div 
+                              className={`h-full bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-1000 ${
+                                activeMission === index ? 'w-full' : 'w-0'
+                              }`}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom Section */}
+                <div className={`mt-16 pt-8 border-t border-gray-200 transform transition-all duration-1500 delay-1400 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                }`}>
+                  <div className="text-center space-y-6">
+                    <div className="space-y-2">
+                      <h4 className="text-lg font-medium text-gray-900">Committed to Indonesia's Prosperity</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Through our vision and mission, we strive to create lasting positive impact that transcends traditional mining operations, 
+                        building a legacy of responsible resource stewardship and community empowerment.
+                      </p>
+                    </div>
+                    <div className="flex justify-center space-x-4">
+                      <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <span className="relative z-10">Our Impact Stories</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                      </button>
+                      <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
+                        Learn More
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

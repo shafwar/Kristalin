@@ -78,6 +78,7 @@ const PlaceholderImg = ({ text }: { text: string }) => (
   </svg>
 );
 
+// --- Modal diperbaiki agar tidak terpotong ---
 const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
   const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
   const [category, setCategory] = useState('');
@@ -107,11 +108,13 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     high: 'High',
     urgent: 'Urgent',
   };
+
   function generateTicketNumber() {
     const prefix = 'TKT-2025-';
     const number = Math.floor(Math.random() * 999999).toString().padStart(6, '0');
     return prefix + number;
   }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const formData = new FormData();
@@ -123,7 +126,6 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     formData.append('incident_date', incidentDate);
     if (files[0]) formData.append('file', files[0]);
 
-    // Ambil CSRF token dari meta tag
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
     fetch('/feedback', {
@@ -155,11 +157,13 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
       })
       .catch(() => alert('Failed to submit feedback.'));
   }
+
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const fileList = e.target.files ? Array.from(e.target.files) : [];
     setFiles(fileList);
     setFileNames(fileList.map(f => f.name).join(', '));
   }
+
   function handleTrack() {
     if (!trackInput.trim()) {
       setTrackResult({ error: 'Please enter a ticket number.' });
@@ -176,32 +180,33 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
       })
       .catch(() => setTrackResult({ error: 'Failed to fetch ticket.' }));
   }
+
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto" onClick={onClose}>
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[95vh] overflow-hidden relative animate-containerFade" onClick={e => e.stopPropagation()}>
-        <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 text-gray-400 hover:text-yellow-500 bg-gray-100 hover:bg-yellow-100 rounded-full w-10 h-10 flex items-center justify-center z-10 transition-all duration-200">
-          <span className="text-2xl">×</span>
-        </button>
-        <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-6 pb-4">
-          <h1 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow">Internal Feedback System</h1>
-          <p className="text-yellow-100 text-center mt-1">Secure Channel for Employee Feedback and Complaints</p>
-        </div>
-        <div className="bg-gray-50 border-b border-gray-200 px-6">
-          <nav className="flex space-x-4 justify-center">
-            <button onClick={() => { setActiveTab('report'); setShowTicket(false); }} className={`py-3 px-6 text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'report' ? 'text-yellow-600 border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Submit Report</button>
-            <button onClick={() => setActiveTab('track')} className={`py-3 px-6 text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'track' ? 'text-yellow-600 border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Track Status</button>
-          </nav>
-        </div>
-        <div className="p-6 overflow-y-auto max-h-[calc(95vh-180px)]">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center p-2 sm:p-4 pt-20 sm:pt-24" onClick={onClose}>
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-y-auto animate-containerFade" onClick={e => e.stopPropagation()}>
+          <button onClick={onClose} aria-label="Close" className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-yellow-500 bg-gray-100 hover:bg-yellow-100 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center z-10 transition-all duration-200">
+            <span className="text-xl sm:text-2xl">×</span>
+          </button>
+          <div className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-4 sm:p-6 pb-3 sm:pb-4 rounded-t-2xl sm:rounded-t-3xl">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center drop-shadow">Internal Feedback System</h1>
+            <p className="text-yellow-100 text-center mt-1 text-sm sm:text-base">Secure Channel for Employee Feedback and Complaints</p>
+          </div>
+          <div className="bg-gray-50 border-b border-gray-200 px-4 sm:px-6">
+            <nav className="flex space-x-2 sm:space-x-4 justify-center">
+              <button onClick={() => { setActiveTab('report'); setShowTicket(false); }} className={`py-2 sm:py-3 px-3 sm:px-6 text-sm sm:text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'report' ? 'text-yellow-600 border-b-3 sm:border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Submit Report</button>
+              <button onClick={() => setActiveTab('track')} className={`py-2 sm:py-3 px-3 sm:px-6 text-sm sm:text-base font-semibold rounded-t-lg transition-all duration-200 focus:outline-none ${activeTab === 'track' ? 'text-yellow-600 border-b-3 sm:border-b-4 border-yellow-500 bg-white shadow' : 'text-gray-500 hover:text-yellow-700'}`}>Track Status</button>
+            </nav>
+          </div>
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           {activeTab === 'report' && (
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-4">
               <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg text-blue-800 text-sm">
                 <strong>Anonymous Report:</strong> Your identity is fully protected. The system does not store any data that can trace back to individual users.
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 pb-6">
                 <div>
-                  <label htmlFor="category" className="block text-sm font-semibold text-gray-700 mb-1">Report Category <span className="text-red-500">*</span></label>
-                  <select id="category" required value={category} onChange={e => setCategory(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300">
+                  <label htmlFor="category" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Report Category <span className="text-red-500">*</span></label>
+                  <select id="category" required value={category} onChange={e => setCategory(e.target.value)} className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 text-sm sm:text-base">
                     <option value="">Select category...</option>
                     <option value="workplace">Workplace Environment</option>
                     <option value="safety">Safety & Health</option>
@@ -213,10 +218,10 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                     <option value="suggestion">Improvement Suggestion</option>
                     <option value="other">Other</option>
                   </select>
-                </div>
-                <div>
-                  <label htmlFor="department" className="block text-sm font-semibold text-gray-700 mb-1">Related Department (Optional)</label>
-                  <select id="department" value={department} onChange={e => setDepartment(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300">
+                    </div>
+                  <div>
+                  <label htmlFor="department" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Related Department (Optional)</label>
+                  <select id="department" value={department} onChange={e => setDepartment(e.target.value)} className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 text-sm sm:text-base">
                     <option value="">Select department...</option>
                     <option value="hr">Human Resources</option>
                     <option value="finance">Finance</option>
@@ -226,87 +231,89 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                     <option value="management">Management</option>
                     <option value="general">General</option>
                   </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Priority Level <span className="text-red-500">*</span></label>
-                  <div className="flex gap-3 flex-wrap">
+                          </div>
+                          <div>
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Priority Level <span className="text-red-500">*</span></label>
+                  <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
                     {['low', 'medium', 'high', 'urgent'].map(level => (
-                      <label key={level} className={`flex-1 min-w-[100px] cursor-pointer border-2 rounded-lg px-2 py-2 text-center font-medium transition-all duration-200 select-none ${priority === level ? (level === 'low' ? 'border-green-500 bg-green-50 text-green-700' : level === 'medium' ? 'border-yellow-400 bg-yellow-50 text-yellow-700' : level === 'high' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-red-500 bg-red-50 text-red-700') : 'border-gray-200 text-gray-500 hover:border-yellow-400'}`}>
+                      <label key={level} className={`cursor-pointer border-2 rounded-lg px-2 py-2 text-center font-medium transition-all duration-200 select-none text-xs sm:text-sm ${priority === level ? (level === 'low' ? 'border-green-500 bg-green-50 text-green-700' : level === 'medium' ? 'border-yellow-400 bg-yellow-50 text-yellow-700' : level === 'high' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-red-500 bg-red-50 text-red-700') : 'border-gray-200 text-gray-500 hover:border-yellow-400'}`}>
                         <input type="radio" id={level} name="priority" value={level} checked={priority === level} onChange={e => setPriority(e.target.value)} className="hidden" />
                         {level === 'low' ? '📗 Low' : level === 'medium' ? '📙 Medium' : level === 'high' ? '📕 High' : '🚨 Urgent'}
-                      </label>
-                    ))}
-                  </div>
+                            </label>
+                              ))}
+                          </div>
                 </div>
+                          <div>
+                  <label htmlFor="subject" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Report Title <span className="text-red-500">*</span></label>
+                  <input type="text" id="subject" required value={subject} onChange={e => setSubject(e.target.value)} placeholder="Brief summary of the issue..." className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 text-sm sm:text-base" />
+                          </div>
+                          <div>
+                  <label htmlFor="description" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Detailed Description <span className="text-red-500">*</span></label>
+                  <textarea id="description" required value={description} onChange={e => setDescription(e.target.value)} placeholder="Please describe the issue in detail, including chronology of events, impact experienced, and suggested solutions if any..." className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 resize-none text-sm sm:text-base" rows={3} />
+                          </div>
+                          <div>
+                  <label htmlFor="incident-date" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Incident Date (Optional)</label>
+                  <input type="date" id="incident-date" value={incidentDate} onChange={e => setIncidentDate(e.target.value)} className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 text-sm sm:text-base" />
+                                </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-1">Report Title <span className="text-red-500">*</span></label>
-                  <input type="text" id="subject" required value={subject} onChange={e => setSubject(e.target.value)} placeholder="Brief summary of the issue..." className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" />
-                </div>
-                <div>
-                  <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-1">Detailed Description <span className="text-red-500">*</span></label>
-                  <textarea id="description" required value={description} onChange={e => setDescription(e.target.value)} placeholder="Please describe the issue in detail, including chronology of events, impact experienced, and suggested solutions if any..." className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 resize-none" rows={5} />
-                </div>
-                <div>
-                  <label htmlFor="incident-date" className="block text-sm font-semibold text-gray-700 mb-1">Incident Date (Optional)</label>
-                  <input type="date" id="incident-date" value={incidentDate} onChange={e => setIncidentDate(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Upload Supporting Evidence (Optional)</label>
-                  <div className="mt-1 flex flex-col items-center justify-center px-6 pt-6 pb-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-yellow-400 transition-colors duration-300 cursor-pointer" onClick={() => fileInputRef.current?.click()}>
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Upload Supporting Evidence (Optional)</label>
+                  <div className="mt-1 flex flex-col items-center justify-center px-3 sm:px-6 pt-3 sm:pt-4 pb-3 sm:pb-4 border-2 border-dashed border-gray-300 rounded-xl hover:border-yellow-400 transition-colors duration-300 cursor-pointer" onClick={() => fileInputRef.current?.click()}>
                     <input type="file" ref={fileInputRef} multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" className="hidden" onChange={handleFileChange} />
-                    <div className="text-gray-500 text-sm">
+                    <div className="text-gray-500 text-xs sm:text-sm text-center">
                       {files.length === 0 ? (
                         <><span role="img" aria-label="clip">📎</span> Click to upload files<br /><span className="text-xs">Format: JPG, PNG, PDF, DOC (Max 10MB)</span></>
                       ) : (
                         <><span role="img" aria-label="check">✅</span> {files.length} file(s) selected:<br /><span className="text-xs">{fileNames}</span></>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:from-yellow-600 hover:to-amber-600 transition-all duration-300 mt-2">🚀 Submit Report</button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                <button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold shadow-lg hover:from-yellow-600 hover:to-amber-600 transition-all duration-300 text-sm sm:text-base">🚀 Submit Report</button>
               </form>
               {showTicket && (
-                <div ref={ticketRef} className="bg-gradient-to-r from-green-400 to-teal-400 text-white p-6 rounded-xl text-center mt-6 animate-premiumFadeIn">
-                  <h3 className="text-xl font-bold mb-2">✅ Report Successfully Submitted!</h3>
-                  <p>Your Ticket Number:</p>
-                  <div className="text-2xl font-bold my-2 tracking-widest">{ticketNumber}</div>
-                  <p className="text-sm">Save this number to track your report status</p>
-                </div>
+                <div ref={ticketRef} className="bg-gradient-to-r from-green-400 to-teal-400 text-white p-3 sm:p-4 rounded-xl text-center mt-3 animate-premiumFadeIn">
+                  <h3 className="text-base sm:text-lg font-bold mb-1">✅ Report Successfully Submitted!</h3>
+                  <p className="text-sm">Your Ticket Number:</p>
+                  <div className="text-lg sm:text-xl font-bold my-1 tracking-widest break-all">{ticketNumber}</div>
+                  <p className="text-xs">Save this number to track your report status</p>
+                        </div>
               )}
-            </div>
-          )}
+                            </div>
+                          )}
           {activeTab === 'track' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-bold text-gray-800 mb-2">Track Report Status</h2>
-              <p className="text-gray-600 mb-4">Enter your ticket number to view your report status</p>
-              <div className="flex gap-3 items-end">
-                <input type="text" value={trackInput} onChange={e => setTrackInput(e.target.value)} placeholder="Example: TKT-2025-001234" className="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300" onKeyDown={e => { if (e.key === 'Enter') handleTrack(); }} />
-                <button type="button" className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-600 transition-all duration-300" onClick={handleTrack}>Track</button>
+            <div className="space-y-3 sm:space-y-4">
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Track Report Status</h2>
+                <p className="text-gray-600 mb-3 text-sm sm:text-base">Enter your ticket number to view your report status</p>
               </div>
-              {trackResult && (
-                <div className="bg-white border border-gray-200 rounded-xl p-6 mt-4 shadow animate-premiumFadeIn">
-                  {trackResult.error ? (
-                    <>
-                      <p className="text-red-600 font-semibold">{trackResult.error}</p>
-                      <p className="mt-2 text-xs text-gray-500">Ticket number format: TKT-YYYY-XXXXXX</p>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex justify-between items-center mb-3">
-                        <h3 className="font-bold text-lg text-black">{trackResult.subject}</h3>
-                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${trackResult.status === 'submitted' ? 'bg-blue-100 text-blue-700' : trackResult.status === 'review' ? 'bg-orange-100 text-orange-700' : trackResult.status === 'progress' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'}`}>{statusText[trackResult.status]}</span>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <input type="text" value={trackInput} onChange={e => setTrackInput(e.target.value)} placeholder="Example: TKT-2025-001234" className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-300 text-sm sm:text-base" onKeyDown={e => { if (e.key === 'Enter') handleTrack(); }} />
+                <button type="button" className="bg-yellow-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold shadow hover:bg-yellow-600 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto" onClick={handleTrack}>Track</button>
                       </div>
-                      <div className="text-sm text-gray-700 space-y-1">
-                        <div><strong>Ticket Number:</strong> {trackResult.ticket_number}</div>
+              {trackResult && (
+                <div className="bg-white border border-gray-200 rounded-xl p-3 mt-3 shadow animate-premiumFadeIn">
+                  {trackResult.error ? (
+                    <div>
+                      <p className="text-red-600 font-semibold text-sm">{trackResult.error}</p>
+                      <p className="mt-1 text-xs text-gray-500">Ticket number format: TKT-YYYY-XXXXXX</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-1 sm:gap-2">
+                        <h3 className="font-bold text-sm sm:text-base text-black line-clamp-2 flex-1">{trackResult.subject}</h3>
+                        <span className={`px-2 py-1 rounded-full text-xs font-bold w-fit shrink-0 ${trackResult.status === 'submitted' ? 'bg-blue-100 text-blue-700' : trackResult.status === 'review' ? 'bg-orange-100 text-orange-700' : trackResult.status === 'progress' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'}`}>{statusText[trackResult.status]}</span>
+                    </div>
+                      <div className="text-xs text-gray-700 space-y-1">
+                        <div><strong>Ticket Number:</strong> <span className="break-all">{trackResult.ticket_number}</span></div>
                         <div><strong>Category:</strong> {trackResult.category}</div>
                         <div><strong>Priority:</strong> {priorityText[trackResult.priority]}</div>
                         <div><strong>Report Date:</strong> {trackResult.incident_date}</div>
                         <div><strong>Status:</strong> {statusText[trackResult.status]}</div>
-                      </div>
-                      <div className="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
+                        </div>
+                      <div className="mt-2 p-2 bg-gray-50 rounded-lg text-xs text-gray-600">
                         <strong>Latest Update:</strong> The relevant team is handling your report. Estimated resolution time: 3-5 business days.
-                      </div>
-                    </>
+                    </div>
+                    </div>
                   )}
                 </div>
               )}
@@ -330,10 +337,10 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-yellow-500 to-amber-500 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-gradient-to-r from-yellow-500 to-amber-500 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
     >
       <div className="flex items-center space-x-2">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m0 0v10a2 2 0 002 2h6a2 2 0 002-2V8M9 12h6" />
         </svg>
         <AnimatePresence>
@@ -342,7 +349,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}
-              className="text-sm font-medium whitespace-nowrap overflow-hidden"
+              className="text-xs sm:text-sm font-medium whitespace-nowrap overflow-hidden hidden sm:inline"
             >
               Kirim Masukan
             </motion.span>
@@ -356,37 +363,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-// Inline styles for the modal system
-const tabBtnStyle: React.CSSProperties = { background: 'none', border: 'none', color: '#667eea', padding: '12px 25px', borderRadius: 25, cursor: 'pointer', fontSize: 16, fontWeight: 500, transition: 'all 0.3s', margin: '0 5px' };
-const tabBtnActiveStyle: React.CSSProperties = { background: 'rgba(102,126,234,0.1)', transform: 'translateY(-2px)', boxShadow: '0 5px 15px rgba(102,126,234,0.1)' };
-const tabContentStyle: React.CSSProperties = { background: 'white', borderRadius: 20, padding: 24, boxShadow: '0 20px 40px rgba(0,0,0,0.05)', animation: 'fadeIn 0.5s', marginBottom: 16 };
-const formGroupStyle: React.CSSProperties = { marginBottom: 18 };
-const inputStyle: React.CSSProperties = { width: '100%', padding: 12, border: '2px solid #e1e5e9', borderRadius: 10, fontSize: 16, background: '#f8f9fa', marginBottom: 0 };
-const priorityBadgeStyle: React.CSSProperties = { display: 'block', padding: 12, border: '2px solid #e1e5e9', borderRadius: 10, textAlign: 'center', cursor: 'pointer', fontWeight: 500, marginBottom: 0, transition: 'all 0.3s' };
-const priorityBadgeColors: Record<string, React.CSSProperties> = {
-  low: { borderColor: '#28a745', color: '#28a745' },
-  medium: { borderColor: '#ffc107', color: '#ffc107' },
-  high: { borderColor: '#fd7e14', color: '#fd7e14' },
-  urgent: { borderColor: '#dc3545', color: '#dc3545' },
-};
-const priorityBadgeCheckedStyle: React.CSSProperties = { background: 'currentColor', color: 'white', transform: 'translateY(-2px)', boxShadow: '0 5px 15px rgba(0,0,0,0.2)' };
-const fileUploadStyle: React.CSSProperties = { border: '2px dashed #e1e5e9', borderRadius: 10, padding: 20, textAlign: 'center', transition: 'all 0.3s', cursor: 'pointer', marginBottom: 0 };
-const submitBtnStyle: React.CSSProperties = { background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '14px 32px', borderRadius: 50, fontSize: 18, fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s', width: '100%', marginTop: 16 };
-const ticketDisplayStyle: React.CSSProperties = { background: 'linear-gradient(135deg, #28a745, #20c997)', color: 'white', padding: 24, borderRadius: 15, textAlign: 'center', marginTop: 20 };
-const anonymousNoticeStyle: React.CSSProperties = { background: 'rgba(40, 167, 69, 0.1)', border: '1px solid rgba(40, 167, 69, 0.3)', borderRadius: 10, padding: 16, marginBottom: 18, color: '#155724' };
-const trackBtnStyle: React.CSSProperties = { background: '#667eea', color: 'white', border: 'none', padding: '12px 24px', borderRadius: 10, cursor: 'pointer', fontWeight: 600, transition: 'all 0.3s' };
-const statusCardStyle: React.CSSProperties = { background: 'white', border: '1px solid #e1e5e9', borderRadius: 15, padding: 18, margin: '20px 0', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' };
-const statusBadgeStyle: React.CSSProperties = { padding: '8px 16px', borderRadius: 20, fontSize: 14, fontWeight: 600 };
-const statusBadgeColors: Record<string, React.CSSProperties> = {
-  submitted: { background: '#e3f2fd', color: '#1976d2' },
-  review: { background: '#fff3e0', color: '#f57c00' },
-  progress: { background: '#f3e5f5', color: '#7b1fa2' },
-  resolved: { background: '#e8f5e8', color: '#388e3c' },
-};
-const statCardStyle: React.CSSProperties = { background: 'white', padding: 18, borderRadius: 15, textAlign: 'center', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' };
-const thStyle: React.CSSProperties = { background: '#f8f9fa', fontWeight: 600, color: '#555', padding: 12, textAlign: 'left' };
-const tdStyle: React.CSSProperties = { padding: 12, textAlign: 'left', borderBottom: '1px solid #e1e5e9' };
-
+// Main Welcome Component
 const Welcome = () => {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [currentNews, setCurrentNews] = useState(0);
@@ -440,20 +417,19 @@ const Welcome = () => {
 
   // Main Content
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-hidden">
-      {/* Header */}
-      <Header />
+    <div className="min-h-screen flex flex-col bg-white relative overflow-x-hidden">
+      <Header sticky={true} transparent={false} />
+      <div className="flex-1 flex flex-col z-10 pt-16 sm:pt-20">
+        {/* Feedback Form Modal */}
+        {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
 
-      {/* Feedback Form Modal */}
-      {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
+        {/* Floating Feedback Button */}
+        <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
 
-      {/* Floating Feedback Button */}
-      <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
-
-      {/* Hero Section */}
-      <section className="flex-1 w-full flex flex-col md:flex-row bg-white relative py-6 md:py-8">
+        {/* Hero Section */}
+        <section className="flex-1 w-full flex flex-col lg:flex-row bg-white relative py-4 sm:py-6 lg:py-8">
         {/* Left Content */}
-        <div className="flex-1 flex flex-col justify-center pl-8 md:pl-20 pr-4 relative">
+        <div className="flex-1 flex flex-col justify-center px-4 sm:px-8 lg:pl-20 lg:pr-4 relative order-2 lg:order-1">
           {/* Animated SVG Pattern */}
           <svg className="absolute inset-0 w-full h-full opacity-5 pointer-events-none" viewBox="0 0 600 400">
             <defs>
@@ -475,7 +451,7 @@ const Welcome = () => {
                 key={currentContent}
                 className="animate-containerFade"
               >
-                <h1 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">
+                <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-3 sm:mb-4 leading-tight">
                   <span className={`inline-block animate-staggeredFadeScale delay-0 ${contentSets[currentContent].titleColors}`}>
                     {contentSets[currentContent].title1}
                   </span>
@@ -491,23 +467,23 @@ const Welcome = () => {
             <div className="relative">
               <p
                 key={`subtitle-${currentContent}`}
-                className="mb-4 text-base md:text-lg text-gray-700 animate-staggeredFadeScale delay-400"
+                className="mb-4 text-sm sm:text-base lg:text-lg text-gray-700 animate-staggeredFadeScale delay-400"
               >
                 {contentSets[currentContent].subtitle}
               </p>
             </div>
 
             {/* Button with Final Reveal */}
-            <div className="flex flex-wrap gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6">
               <a
                 href="/about#about-kristalin"
-                className="bg-yellow-500 text-gray-900 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block transform animate-staggeredFadeScale delay-600"
+                className="bg-yellow-500 text-gray-900 font-bold px-6 sm:px-8 py-2 sm:py-3 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base lg:text-lg text-center transform animate-staggeredFadeScale delay-600"
               >
                 Learn More
               </a>
               <button
                 onClick={() => setShowFeedbackForm(true)}
-                className="bg-white text-gray-800 border border-gray-300 font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-50 hover:shadow-xl hover:scale-105 transition-all duration-300 text-base md:text-lg inline-block transform animate-staggeredFadeScale delay-600"
+                className="bg-white text-gray-800 border border-gray-300 font-bold px-6 sm:px-8 py-2 sm:py-3 rounded-lg shadow-lg hover:bg-gray-50 hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base lg:text-lg text-center transform animate-staggeredFadeScale delay-600"
               >
                 Kirim Masukan
               </button>
@@ -516,14 +492,14 @@ const Welcome = () => {
         </div>
 
         {/* Right Image */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className={`relative transition-all duration-1000 delay-400 ${
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-0 order-1 lg:order-2">
+          <div className={`relative transition-all duration-1000 delay-400 w-full max-w-md lg:max-w-none ${
             isLoaded ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-10 opacity-0 scale-95'
           }`}>
             <img
               src="/menara165.jpg"
               alt="Menara 165"
-              className="w-full max-w-[420px] h-[220px] md:h-[320px] object-cover object-top rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105"
+              className="w-full max-w-[420px] h-[200px] sm:h-[250px] lg:h-[320px] object-cover object-top rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 mx-auto"
             />
             {/* Overlay logo dengan animasi, hanya saat currentContent === 0 */}
             <AnimatePresence>
@@ -546,10 +522,10 @@ const Welcome = () => {
       </section>
 
       {/* Grid Section with enhanced animations */}
-      <section className="w-full flex flex-col md:flex-row h-[260px] md:h-[320px] bg-black items-stretch">
+      <section className="w-full flex flex-col lg:flex-row bg-black items-stretch min-h-[320px]">
         {/* Portfolio */}
         <div
-          className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
+          className="flex-1 relative flex flex-col justify-end px-6 sm:px-10 lg:px-14 py-6 sm:py-8 lg:py-10 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-800 cursor-pointer group min-h-[220px] sm:min-h-[260px] lg:min-h-[320px]"
           onMouseEnter={() => setHoveredCard(0)}
           onMouseLeave={() => setHoveredCard(null)}
           onClick={() => window.location.href = '/line-of-business'}
@@ -578,13 +554,13 @@ const Welcome = () => {
             }`}>
               Business Line
             </div>
-            <div className={`text-2xl md:text-3xl font-bold text-white mb-2 transition-all duration-300 ${
+            <div className={`text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 transition-all duration-300 ${
               hoveredCard === 0 ? 'transform translate-x-2' : ''
             }`}>
               Our Portfolio
             </div>
             <div className={`h-1 bg-yellow-500 rounded mb-2 transition-all duration-300 ${
-              hoveredCard === 0 ? 'w-16' : 'w-10'
+              hoveredCard === 0 ? 'w-12 sm:w-16' : 'w-8 sm:w-10'
             }`}></div>
           </div>
         </div>
@@ -592,7 +568,7 @@ const Welcome = () => {
         {/* Business Activities */}
         <Link
           href="/business-activity"
-          className="flex-1 relative flex flex-col justify-end px-14 py-10 overflow-hidden border-r border-gray-800 cursor-pointer group"
+          className="flex-1 relative flex flex-col justify-end px-6 sm:px-10 lg:px-14 py-6 sm:py-8 lg:py-10 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-800 cursor-pointer group min-h-[220px] sm:min-h-[260px] lg:min-h-[320px]"
           onMouseEnter={() => setHoveredCard(1)}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -615,13 +591,13 @@ const Welcome = () => {
             <PlaceholderImg text="Governance Image" />
           </div>
           <div className="relative z-10">
-            <div className={`text-2xl md:text-3xl font-bold text-white mb-2 transition-all duration-300 ${
+            <div className={`text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 transition-all duration-300 ${
               hoveredCard === 1 ? 'transform translate-x-2' : ''
             }`}>
               Business Activities
             </div>
             <span
-              className={`underline text-white hover:text-yellow-400 text-lg md:text-xl mt-2 transition-all duration-300 ${
+              className={`underline text-white hover:text-yellow-400 text-base sm:text-lg lg:text-xl mt-2 transition-all duration-300 ${
                 hoveredCard === 1 ? 'text-yellow-400' : ''
               }`}
             >
@@ -630,10 +606,10 @@ const Welcome = () => {
           </div>
         </Link>
 
-        {/* News with proper normal sizing */}
+        {/* News with proper responsive sizing */}
         <Link
           href="/news"
-          className="flex-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex flex-col justify-between px-8 md:px-12 py-8 relative overflow-hidden transition-all duration-700 group cursor-pointer"
+          className="flex-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 flex flex-col justify-between px-6 sm:px-8 lg:px-12 py-6 sm:py-8 relative overflow-hidden transition-all duration-700 group cursor-pointer min-h-[280px] sm:min-h-[300px] lg:min-h-[320px]"
           onMouseEnter={() => setHoveredCard(2)}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -653,22 +629,22 @@ const Welcome = () => {
 
           {/* Top Section - Header */}
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-6">
-              <div className={`text-2xl md:text-3xl font-bold transition-all duration-500 ${
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <div className={`text-xl sm:text-2xl lg:text-3xl font-bold transition-all duration-500 ${
                 hoveredCard === 2 ? 'transform scale-110 text-white' : 'text-gray-900'
               }`}>
                 News
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-1 sm:gap-2">
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
                   }}
-                  className="w-8 h-8 flex items-center justify-center text-black group-hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
+                  className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-black group-hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -678,9 +654,9 @@ const Welcome = () => {
                     e.stopPropagation();
                     setCurrentNews((prev) => (prev + 1) % newsItems.length);
                   }}
-                  className="w-8 h-8 flex items-center justify-center text-black group-hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
+                  className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-black group-hover:text-white hover:bg-black hover:bg-opacity-20 rounded-full transition-all duration-300 transform hover:scale-110"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -690,30 +666,30 @@ const Welcome = () => {
 
           {/* Middle Section - Content with improved spacing and text handling */}
           <div className="relative z-10 flex-1 flex flex-col justify-center min-h-0">
-            <div key={currentNews} className="transform transition-all duration-500 space-y-4">
+            <div key={currentNews} className="transform transition-all duration-500 space-y-2 sm:space-y-3 lg:space-y-4">
               {/* Date */}
-              <div className="text-xs text-gray-800 group-hover:text-gray-200 font-medium opacity-80 transition-all duration-500">
+              <div className="text-xs sm:text-sm text-gray-800 group-hover:text-gray-200 font-medium opacity-80 transition-all duration-500">
                 {newsItems[currentNews].date}
               </div>
 
               {/* Title with line clamp */}
-              <div className="text-base md:text-lg font-bold text-black group-hover:text-white leading-tight line-clamp-3 transition-all duration-500">
+              <div className="text-sm sm:text-base lg:text-lg font-bold text-black group-hover:text-white leading-tight line-clamp-2 sm:line-clamp-3 transition-all duration-500">
                 {newsItems[currentNews].title}
               </div>
 
               {/* Description with line clamp */}
-              <div className="text-sm md:text-base text-gray-900 group-hover:text-gray-200 leading-relaxed opacity-90 line-clamp-3 transition-all duration-500">
+              <div className="text-xs sm:text-sm lg:text-base text-gray-900 group-hover:text-gray-200 leading-relaxed opacity-90 line-clamp-2 sm:line-clamp-3 transition-all duration-500">
                 {newsItems[currentNews].excerpt}
               </div>
             </div>
           </div>
 
           {/* Bottom Section - View button with proper spacing */}
-          <div className="relative z-10 mt-6 pt-4 border-t border-black/10 group-hover:border-white/20 transition-all duration-500">
-            <div className="inline-flex items-center text-black group-hover:text-white font-semibold text-base md:text-lg group transition-all duration-300">
+          <div className="relative z-10 mt-3 sm:mt-4 lg:mt-6 pt-3 sm:pt-4 border-t border-black/10 group-hover:border-white/20 transition-all duration-500">
+            <div className="inline-flex items-center text-black group-hover:text-white font-semibold text-sm sm:text-base lg:text-lg group transition-all duration-300">
               <span className="relative z-10">View</span>
               <div className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
@@ -725,12 +701,13 @@ const Welcome = () => {
         </Link>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#232323] text-white text-left py-4 text-xs px-8">
-        <div className="animate-pulse">
-          © 2025 PT Kristalin Eka Lestari. All rights reserved.
-        </div>
-      </footer>
+        {/* Footer */}
+        <footer className="bg-[#232323] text-white text-left py-3 sm:py-4 text-xs sm:text-sm px-4 sm:px-8">
+          <div className="animate-pulse">
+            © 2025 PT Kristalin Eka Lestari. All rights reserved.
+          </div>
+        </footer>
+      </div>
 
       {/* Premium Staggered Animation Styles */}
       <style dangerouslySetInnerHTML={{
@@ -907,6 +884,17 @@ const Welcome = () => {
           /* Modal backdrop */
           .backdrop-blur-sm {
             backdrop-filter: blur(4px);
+          }
+
+          /* Mobile responsive improvements */
+          @media (max-width: 640px) {
+            .line-clamp-2 {
+              -webkit-line-clamp: 2;
+            }
+            
+            .line-clamp-3 {
+              -webkit-line-clamp: 2;
+            }
           }
         `
       }} />

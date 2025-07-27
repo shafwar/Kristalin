@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 // SVG Icon Components
-
 const IconArrowLeft = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="19" y1="12" x2="5" y2="12"/>
@@ -59,18 +58,18 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
   const isRightDisabled = currentIndex === yearPeriods.length - 1;
 
   return (
-    <div className={`mb-6 transform transition-all duration-1000 delay-300 ${
+    <div className={`mb-4 sm:mb-6 transform transition-all duration-1000 delay-300 ${
       isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
     }`}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
             <line x1="16" y1="2" x2="16" y2="6"/>
             <line x1="8" y1="2" x2="8" y2="6"/>
             <line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
-          <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
+          <span className="text-gray-500 uppercase tracking-wider text-xs sm:text-sm font-medium">
             Company Milestones
           </span>
         </div>
@@ -78,12 +77,12 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
       {/* Enhanced Year Navigation */}
       <div className="relative">
         {/* Background Track */}
-        <div className="absolute inset-0 bg-gray-100 rounded-2xl h-14"></div>
+        <div className="absolute inset-0 bg-gray-100 rounded-xl sm:rounded-2xl h-12 sm:h-14"></div>
         {/* Navigation Container */}
-        <div className="relative flex items-center h-14 px-3">
+        <div className="relative flex items-center h-12 sm:h-14 px-2 sm:px-3">
           {/* Left Arrow */}
           <button
-            className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 z-10 flex-shrink-0 ${
+            className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl transition-all duration-300 z-10 flex-shrink-0 ${
               isLeftDisabled
                 ? 'text-gray-300 cursor-not-allowed'
                 : 'text-gray-500 hover:text-yellow-600 hover:bg-white hover:shadow-md'
@@ -103,9 +102,9 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
 
           {/* Year Pills Container */}
           <div
-            className="flex-1 flex items-center justify-start w-full space-x-2 mx-3 overflow-x-auto scrollbar-hide px-6 pr-8"
+            className="flex-1 flex items-center justify-start w-full space-x-1 sm:space-x-2 mx-2 sm:mx-3 overflow-x-auto scrollbar-hide px-3 sm:px-6 pr-4 sm:pr-8"
             ref={containerRef}
-            style={{ scrollBehavior: 'smooth', minWidth: 0, scrollPaddingLeft: '32px', scrollPaddingRight: '32px' }}
+            style={{ scrollBehavior: 'smooth', minWidth: 0, scrollPaddingLeft: '16px', scrollPaddingRight: '16px' }}
           >
             {yearPeriods.map((period: string, index: number) => {
               const isActive = activeYear === period;
@@ -118,7 +117,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
                     setActiveYear(period);
                     setSelectedMilestone(0);
                   }}
-                  className={`relative flex-shrink-0 px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-500 whitespace-nowrap min-w-[100px] max-w-[160px] transform focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  className={`relative flex-shrink-0 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium rounded-lg sm:rounded-xl transition-all duration-500 whitespace-nowrap min-w-[80px] sm:min-w-[100px] max-w-[120px] sm:max-w-[160px] transform focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
                     isActive
                       ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-lg scale-105 z-20'
                       : isAdjacent
@@ -134,7 +133,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
                 >
                   {/* Active Glow Effect */}
                   {isActive && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl blur-sm opacity-30 -z-10 animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg sm:rounded-xl blur-sm opacity-30 -z-10 animate-pulse"></div>
                   )}
                   {/* Period Text */}
                   <span className="relative z-10 text-center block w-full">{period}</span>
@@ -149,7 +148,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
 
           {/* Right Arrow */}
           <button
-            className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 z-10 flex-shrink-0 ${
+            className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl transition-all duration-300 z-10 flex-shrink-0 ${
               isRightDisabled
                 ? 'text-gray-300 cursor-not-allowed'
                 : 'text-gray-500 hover:text-yellow-600 hover:bg-white hover:shadow-md'
@@ -197,8 +196,6 @@ export default function MilestonesPage() {
     const timer = setTimeout(() => setIsLoaded(true), 300);
     return () => clearTimeout(timer);
   }, []);
-
-
 
   const yearPeriods: string[] = ['2020-2025', '2015-2019', '2010-2014', '2005-2009', '2000-2004', '1989-1999'];
 
@@ -359,101 +356,195 @@ export default function MilestonesPage() {
   const currentMilestones: Milestone[] = milestonesData[activeYear] || [];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
-      {/* Main Content */}
-      <div
-        className="flex w-full relative"
-        style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}
-      >
-        {/* Left Side - Image and Title with animations */}
-        <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
-          <img 
-            src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
-            alt="Mining Operations History"
-            className="w-full h-full object-cover opacity-70"
-          />
-          <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
-            isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>
-            <h1 className="text-white text-5xl font-light leading-tight">
-              Our<br />
-              <span className="font-normal">Milestones</span>
-            </h1>
-            <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
-            <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-              This is how we began and embarked on our journey to become great.
-            </p>
+    <div className="flex flex-col bg-white relative overflow-x-hidden min-h-screen">
+      <Header sticky={true} transparent={false} />
+      <div className="flex-1 flex flex-col z-10 pt-16 sm:pt-20">
+        
+        {/* Mobile Layout - Stack Vertically */}
+        <div className="block lg:hidden">
+          
+          {/* Mobile Hero Section */}
+          <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
+            <img 
+              src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
+              alt="Mining Operations History"
+              className="w-full h-full object-cover opacity-70"
+            />
+            
+            {/* Mobile Title */}
+            <div className={`absolute bottom-6 left-4 right-4 transform transition-all duration-1000 ease-out ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
+                Our<br />
+                <span className="font-normal">Milestones</span>
+              </h1>
+              <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
+              <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
+                This is how we began and embarked on our journey to become great.
+              </p>
+            </div>
+            
+            {/* Mobile Company Stats */}
+            <div className={`absolute top-4 right-4 transform transition-all duration-1500 delay-500 ${
+              isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+            }`}>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  {Object.entries(companyStats).map(([key, value]: [string, string]) => (
+                    <div key={key} className="space-y-1">
+                      <div className="text-yellow-400 font-bold text-sm">{value}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          {/* Floating Company Stats */}
-          <div className={`absolute top-16 right-16 transform transition-all duration-1500 delay-500 ${
-            isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-          }`}>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-              <div className="grid grid-cols-2 gap-4 text-center">
-                {Object.entries(companyStats).map(([key, value]: [string, string]) => (
-                  <div key={key} className="space-y-1">
-                    <div className="text-yellow-400 font-bold text-lg">{value}</div>
-                    <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+
+          {/* Mobile Content */}
+          <div className="bg-white p-4 sm:p-6">
+            <div className="max-w-2xl mx-auto">
+              
+              {/* Year Navigation */}
+              <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
+              
+              {/* Milestones Content */}
+              <div className="space-y-4">
+                {currentMilestones.map((milestone: Milestone) => (
+                  <div
+                    key={`${milestone.year}-${milestone.title}`}
+                    className={`transform transition-all duration-1000 cursor-pointer group ${
+                      isLoaded 
+                        ? 'translate-y-0 opacity-100' 
+                        : 'translate-y-8 opacity-0'
+                    } hover:bg-gray-50 rounded-xl p-4`}
+                    style={{ 
+                      transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms` 
+                    }}
+                    onClick={() => {}}
+                  >
+                    <div className="flex items-start space-x-3">
+                      {/* Year Badge */}
+                      <div className="flex-shrink-0 transition-all duration-500">
+                        <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white rounded-lg px-3 py-2 text-center min-w-[60px] sm:min-w-[70px]">
+                          <div className="font-bold text-sm sm:text-base">{milestone.year}</div>
+                          <div className="text-xs opacity-90">{milestone.month}</div>
+                        </div>
+                      </div>
+                      {/* Content */}
+                      <div className="flex-1 space-y-2">
+                        <div>
+                          <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium mb-2 ${getCategoryColor(milestone.category)}`}>
+                            {milestone.category}
+                          </div>
+                          <h3 className={`text-base sm:text-lg font-semibold transition-colors duration-300 leading-tight text-gray-900 group-hover:text-yellow-600`}>
+                            {milestone.title}
+                          </h3>
+                        </div>
+                        <p className={`leading-relaxed transition-all duration-500 text-gray-600 text-xs sm:text-sm group-hover:text-gray-800`}>
+                          {milestone.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-        
-        {/* Right Side - Milestones Content */}
-        <div className="w-1/2 bg-white relative h-full flex-shrink-0">
-          {/* Accent Line */}
-          <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
-          
-          {/* Content Container */}
-          <div className="h-full flex flex-col" style={{ padding: '2rem' }}>
-            {/* Year Navigation */}
-            <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
-            {/* Milestones Content */}
-            <div
-              ref={rightPanelRef}
-              className="flex-1 overflow-y-auto space-y-6"
-            >
-              {currentMilestones.map((milestone: Milestone) => (
-                <div
-                  key={`${milestone.year}-${milestone.title}`}
-                  className={`transform transition-all duration-1000 cursor-pointer group ${
-                    isLoaded 
-                      ? 'translate-y-0 opacity-100' 
-                      : 'translate-y-8 opacity-0'
-                  } hover:bg-gray-50 rounded-2xl p-6 -mx-2`}
-                  style={{ 
-                    transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms` 
-                  }}
-                  onClick={() => {}}
-                >
-                  <div className="flex items-start space-x-4">
-                    {/* Year Badge */}
-                    <div className="flex-shrink-0 transition-all duration-500">
-                      <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white rounded-xl px-4 py-2 text-center min-w-[80px]">
-                        <div className="font-bold text-lg">{milestone.year}</div>
-                        <div className="text-xs opacity-90">{milestone.month}</div>
-                      </div>
+
+        {/* Desktop Layout - Side by Side */}
+        <div className="hidden lg:flex w-full relative" style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}>
+          {/* Left Side - Image and Title with animations */}
+          <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
+            <img 
+              src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
+              alt="Mining Operations History"
+              className="w-full h-full object-cover opacity-70"
+            />
+            <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <h1 className="text-white text-5xl font-light leading-tight">
+                Our<br />
+                <span className="font-normal">Milestones</span>
+              </h1>
+              <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
+              <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
+                This is how we began and embarked on our journey to become great.
+              </p>
+            </div>
+            {/* Floating Company Stats */}
+            <div className={`absolute top-16 right-16 transform transition-all duration-1500 delay-500 ${
+              isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+            }`}>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  {Object.entries(companyStats).map(([key, value]: [string, string]) => (
+                    <div key={key} className="space-y-1">
+                      <div className="text-yellow-400 font-bold text-lg">{value}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
                     </div>
-                    {/* Content */}
-                    <div className="flex-1 space-y-3">
-                      <div>
-                        <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-2 ${getCategoryColor(milestone.category)}`}>
-                          {milestone.category}
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right Side - Milestones Content */}
+          <div className="w-1/2 bg-white relative h-full flex-shrink-0">
+            {/* Accent Line */}
+            <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
+            
+            {/* Content Container */}
+            <div className="h-full flex flex-col" style={{ padding: '2rem' }}>
+              {/* Year Navigation */}
+              <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
+              {/* Milestones Content */}
+              <div
+                ref={rightPanelRef}
+                className="flex-1 overflow-y-auto space-y-6"
+              >
+                {currentMilestones.map((milestone: Milestone) => (
+                  <div
+                    key={`${milestone.year}-${milestone.title}`}
+                    className={`transform transition-all duration-1000 cursor-pointer group ${
+                      isLoaded 
+                        ? 'translate-y-0 opacity-100' 
+                        : 'translate-y-8 opacity-0'
+                    } hover:bg-gray-50 rounded-2xl p-6 -mx-2`}
+                    style={{ 
+                      transitionDelay: `${600 + (currentMilestones.indexOf(milestone) * 200)}ms` 
+                    }}
+                    onClick={() => {}}
+                  >
+                    <div className="flex items-start space-x-4">
+                      {/* Year Badge */}
+                      <div className="flex-shrink-0 transition-all duration-500">
+                        <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 text-white rounded-xl px-4 py-2 text-center min-w-[80px]">
+                          <div className="font-bold text-lg">{milestone.year}</div>
+                          <div className="text-xs opacity-90">{milestone.month}</div>
                         </div>
-                        <h3 className={`text-xl font-semibold transition-colors duration-300 leading-tight text-gray-900 group-hover:text-yellow-600`}>
-                          {milestone.title}
-                        </h3>
                       </div>
-                      <p className={`leading-relaxed transition-all duration-500 text-gray-600 text-sm group-hover:text-gray-800`}>
-                        {milestone.description}
-                      </p>
+                      {/* Content */}
+                      <div className="flex-1 space-y-3">
+                        <div>
+                          <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-2 ${getCategoryColor(milestone.category)}`}>
+                            {milestone.category}
+                          </div>
+                          <h3 className={`text-xl font-semibold transition-colors duration-300 leading-tight text-gray-900 group-hover:text-yellow-600`}>
+                            {milestone.title}
+                          </h3>
+                        </div>
+                        <p className={`leading-relaxed transition-all duration-500 text-gray-600 text-sm group-hover:text-gray-800`}>
+                          {milestone.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -488,4 +579,4 @@ export default function MilestonesPage() {
       `}} />
     </div>
   );
-} 
+}
