@@ -1,8 +1,8 @@
 [build]
-builder = "nixpacks"
+builder = "dockerfile"
 
 [deploy]
-startCommand = "php artisan serve --host=0.0.0.0 --port=$PORT"
+startCommand = "docker/startup.sh"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
@@ -13,4 +13,4 @@ APP_DEBUG = "false"
 LOG_CHANNEL = "stderr"
 CACHE_DRIVER = "file"
 SESSION_DRIVER = "file"
-QUEUE_CONNECTION = "sync" 
+QUEUE_CONNECTION = "sync"
