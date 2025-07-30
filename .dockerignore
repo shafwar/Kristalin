@@ -54,3 +54,12 @@ docs/
 Dockerfile*
 docker-compose*
 .dockerignore
+
+# Backup files
+*.bak
+*.backup
+
+# Local development
+docker/
+docker-compose.yml
+docker-compose.override.yml
