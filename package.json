@@ -1,4 +1,5 @@
 {
+    "name": "kristalin-website",
     "private": true,
     "type": "module",
     "scripts": {
