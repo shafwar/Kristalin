@@ -4,11 +4,13 @@
     "scripts": {
         "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
+        "build:production": "vite build --mode production",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
-        "types": "tsc --noEmit"
+        "types": "tsc --noEmit",
+        "postinstall": "npm run build"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
