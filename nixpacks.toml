@@ -1,9 +1,8 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "php82", "php82Extensions.pdo_mysql"]
+nixPkgs = ["nodejs_20", "php82", "php82Extensions.pdo_mysql", "composer"]
 
 [phases.install]
 cmds = [
-    "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer",
     "composer install --optimize-autoloader --no-dev",
     "npm ci"
 ]
