@@ -1,0 +1,8 @@
+{
+  "breakpoints": [
+    {
+      "path": "app/Http/Controllers/Controller.php",
+      "line": 1
+    }
+  ]
+}
