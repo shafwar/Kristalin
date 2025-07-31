@@ -10,6 +10,8 @@
 .env
 .env.backup
 .env.production
+.env.local
+.env.*.local
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -22,3 +24,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+*.log
+.DS_Store
+Thumbs.db

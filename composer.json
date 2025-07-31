@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/react-starter-kit",
+    "name": "kristalin/website",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -52,6 +52,10 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
+        ],
+        "post-install-cmd": [
+            "@php artisan optimize:clear",
+            "@php artisan config:cache"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
