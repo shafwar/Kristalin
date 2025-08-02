@@ -71,16 +71,6 @@ const newsData = [
     },
 ];
 
-const PlaceholderImg = ({ text }: { text: string }) => (
-    <svg width="100%" height="100%" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-        <rect width="600" height="400" fill="#e5e7eb" />
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="24" fill="#6b7280">
-            {text}
-        </text>
-    </svg>
-);
-
-// --- Modal diperbaiki agar tidak terpotong ---
 const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
     const [category, setCategory] = useState('');
@@ -118,8 +108,6 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
         high: 'High',
         urgent: 'Urgent',
     };
-
-    // Removed unused function to fix ESLint error
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -188,101 +176,145 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-2 pt-20 backdrop-blur-sm sm:p-4 sm:pt-24" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" onClick={onClose}>
             <div
-                className="animate-containerFade max-h-[calc(100vh-8rem)] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl sm:rounded-3xl"
+                className="animate-containerFade max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
-                <button
-                    onClick={onClose}
-                    aria-label="Close"
-                    className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-400 transition-all duration-200 hover:bg-yellow-100 hover:text-yellow-500 sm:top-4 sm:right-4 sm:h-10 sm:w-10"
-                >
-                    <span className="text-xl sm:text-2xl">×</span>
-                </button>
-                <div className="rounded-t-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-4 pb-3 sm:rounded-t-3xl sm:p-6 sm:pb-4">
-                    <h1 className="text-center text-xl font-bold text-white drop-shadow sm:text-2xl md:text-3xl">Internal Feedback System</h1>
-                    <p className="mt-1 text-center text-sm text-yellow-100 sm:text-base">Secure Channel for Employee Feedback and Complaints</p>
+                {/* Header dengan close button yang lebih terlihat */}
+                <div className="relative rounded-t-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-6">
+                    <button
+                        onClick={onClose}
+                        aria-label="Close"
+                        className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
+                    >
+                        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <div className="pr-12">
+                        <h1 className="text-2xl font-bold text-white drop-shadow md:text-3xl">Internal Feedback System</h1>
+                        <p className="mt-2 text-yellow-100">Secure Channel for Employee Feedback and Complaints</p>
+                    </div>
                 </div>
-                <div className="border-b border-gray-200 bg-gray-50 px-4 sm:px-6">
-                    <nav className="flex justify-center space-x-2 sm:space-x-4">
+
+                {/* Tab Navigation */}
+                <div className="border-b border-gray-200 bg-gray-50 px-6">
+                    <nav className="flex justify-center space-x-8">
                         <button
                             onClick={() => {
                                 setActiveTab('report');
                                 setShowTicket(false);
                             }}
-                            className={`rounded-t-lg px-3 py-2 text-sm font-semibold transition-all duration-200 focus:outline-none sm:px-6 sm:py-3 sm:text-base ${activeTab === 'report' ? 'border-b-3 border-yellow-500 bg-white text-yellow-600 shadow sm:border-b-4' : 'text-gray-500 hover:text-yellow-700'}`}
+                            className={`px-6 py-4 text-sm font-semibold transition-all duration-200 focus:outline-none ${
+                                activeTab === 'report' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
+                            }`}
                         >
                             Submit Report
                         </button>
                         <button
                             onClick={() => setActiveTab('track')}
-                            className={`rounded-t-lg px-3 py-2 text-sm font-semibold transition-all duration-200 focus:outline-none sm:px-6 sm:py-3 sm:text-base ${activeTab === 'track' ? 'border-b-3 border-yellow-500 bg-white text-yellow-600 shadow sm:border-b-4' : 'text-gray-500 hover:text-yellow-700'}`}
+                            className={`px-6 py-4 text-sm font-semibold transition-all duration-200 focus:outline-none ${
+                                activeTab === 'track' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
+                            }`}
                         >
                             Track Status
                         </button>
                     </nav>
                 </div>
-                <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+
+                {/* Content Area */}
+                <div className="max-h-[60vh] overflow-y-auto p-6">
                     {activeTab === 'report' && (
-                        <div className="space-y-3 sm:space-y-4">
+                        <div className="space-y-6">
+                            {/* Anonymous Notice */}
                             <div className="rounded-lg border-l-4 border-blue-400 bg-blue-50 p-4 text-sm text-blue-800">
-                                <strong>Anonymous Report:</strong> Your identity is fully protected. The system does not store any data that can trace
-                                back to individual users.
+                                <div className="flex items-start">
+                                    <svg className="mt-0.5 mr-3 h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                        />
+                                    </svg>
+                                    <div>
+                                        <strong>Anonymous Report:</strong> Your identity is fully protected. The system does not store any data that
+                                        can trace back to individual users.
+                                    </div>
+                                </div>
                             </div>
-                            <form onSubmit={handleSubmit} className="space-y-3 pb-6 sm:space-y-4">
-                                <div>
-                                    <label htmlFor="category" className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
-                                        Report Category <span className="text-red-500">*</span>
-                                    </label>
-                                    <select
-                                        id="category"
-                                        required
-                                        value={category}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
-                                    >
-                                        <option value="">Select category...</option>
-                                        <option value="workplace">Workplace Environment</option>
-                                        <option value="safety">Safety & Health</option>
-                                        <option value="harassment">Harassment/Discrimination</option>
-                                        <option value="policy">Company Policy</option>
-                                        <option value="management">Management Issues</option>
-                                        <option value="facilities">Facilities</option>
-                                        <option value="ethics">Work Ethics</option>
-                                        <option value="suggestion">Improvement Suggestion</option>
-                                        <option value="other">Other</option>
-                                    </select>
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* 2-Column Grid untuk Category & Department */}
+                                <div className="grid gap-6 md:grid-cols-2">
+                                    <div>
+                                        <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">
+                                            Report Category <span className="text-red-500">*</span>
+                                        </label>
+                                        <select
+                                            id="category"
+                                            required
+                                            value={category}
+                                            onChange={(e) => setCategory(e.target.value)}
+                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
+                                        >
+                                            <option value="">Select category...</option>
+                                            <option value="workplace">Workplace Environment</option>
+                                            <option value="safety">Safety & Health</option>
+                                            <option value="harassment">Harassment/Discrimination</option>
+                                            <option value="policy">Company Policy</option>
+                                            <option value="management">Management Issues</option>
+                                            <option value="facilities">Facilities</option>
+                                            <option value="ethics">Work Ethics</option>
+                                            <option value="suggestion">Improvement Suggestion</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="department" className="mb-2 block text-sm font-semibold text-gray-700">
+                                            Related Department (Optional)
+                                        </label>
+                                        <select
+                                            id="department"
+                                            value={department}
+                                            onChange={(e) => setDepartment(e.target.value)}
+                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
+                                        >
+                                            <option value="">Select department...</option>
+                                            <option value="hr">Human Resources</option>
+                                            <option value="finance">Finance</option>
+                                            <option value="it">Information Technology</option>
+                                            <option value="marketing">Marketing</option>
+                                            <option value="operations">Operations</option>
+                                            <option value="management">Management</option>
+                                            <option value="general">General</option>
+                                        </select>
+                                    </div>
                                 </div>
+
+                                {/* Priority Level - Responsive Grid */}
                                 <div>
-                                    <label htmlFor="department" className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
-                                        Related Department (Optional)
-                                    </label>
-                                    <select
-                                        id="department"
-                                        value={department}
-                                        onChange={(e) => setDepartment(e.target.value)}
-                                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
-                                    >
-                                        <option value="">Select department...</option>
-                                        <option value="hr">Human Resources</option>
-                                        <option value="finance">Finance</option>
-                                        <option value="it">Information Technology</option>
-                                        <option value="marketing">Marketing</option>
-                                        <option value="operations">Operations</option>
-                                        <option value="management">Management</option>
-                                        <option value="general">General</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
+                                    <label className="mb-3 block text-sm font-semibold text-gray-700">
                                         Priority Level <span className="text-red-500">*</span>
                                     </label>
-                                    <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
+                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                                         {['low', 'medium', 'high', 'urgent'].map((level) => (
                                             <label
                                                 key={level}
-                                                className={`cursor-pointer rounded-lg border-2 px-2 py-2 text-center text-xs font-medium transition-all duration-200 select-none sm:text-sm ${priority === level ? (level === 'low' ? 'border-green-500 bg-green-50 text-green-700' : level === 'medium' ? 'border-yellow-400 bg-yellow-50 text-yellow-700' : level === 'high' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-red-500 bg-red-50 text-red-700') : 'border-gray-200 text-gray-500 hover:border-yellow-400'}`}
+                                                className={`cursor-pointer rounded-lg border-2 px-4 py-3 text-center text-sm font-medium transition-all duration-200 select-none ${
+                                                    priority === level
+                                                        ? level === 'low'
+                                                            ? 'border-green-500 bg-green-50 text-green-700'
+                                                            : level === 'medium'
+                                                              ? 'border-yellow-400 bg-yellow-50 text-yellow-700'
+                                                              : level === 'high'
+                                                                ? 'border-orange-500 bg-orange-50 text-orange-700'
+                                                                : 'border-red-500 bg-red-50 text-red-700'
+                                                        : 'border-gray-200 text-gray-500 hover:border-yellow-400'
+                                                }`}
                                             >
                                                 <input
                                                     type="radio"
@@ -304,8 +336,10 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* Report Title */}
                                 <div>
-                                    <label htmlFor="subject" className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
+                                    <label htmlFor="subject" className="mb-2 block text-sm font-semibold text-gray-700">
                                         Report Title <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -315,11 +349,13 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         value={subject}
                                         onChange={(e) => setSubject(e.target.value)}
                                         placeholder="Brief summary of the issue..."
-                                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
+                                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                     />
                                 </div>
+
+                                {/* Description */}
                                 <div>
-                                    <label htmlFor="description" className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
+                                    <label htmlFor="description" className="mb-2 block text-sm font-semibold text-gray-700">
                                         Detailed Description <span className="text-red-500">*</span>
                                     </label>
                                     <textarea
@@ -328,145 +364,217 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                         placeholder="Please describe the issue in detail, including chronology of events, impact experienced, and suggested solutions if any..."
-                                        className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
-                                        rows={3}
+                                        className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
+                                        rows={4}
                                     />
                                 </div>
-                                <div>
-                                    <label htmlFor="incident-date" className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
-                                        Incident Date (Optional)
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="incident-date"
-                                        value={incidentDate}
-                                        onChange={(e) => setIncidentDate(e.target.value)}
-                                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="mb-1 block text-xs font-semibold text-gray-700 sm:text-sm">
-                                        Upload Supporting Evidence (Optional)
-                                    </label>
-                                    <div
-                                        className="mt-1 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 px-3 pt-3 pb-3 transition-colors duration-300 hover:border-yellow-400 sm:px-6 sm:pt-4 sm:pb-4"
-                                        onClick={() => fileInputRef.current?.click()}
-                                    >
+
+                                {/* 2-Column Grid untuk Date & File Upload */}
+                                <div className="grid gap-6 md:grid-cols-2">
+                                    <div>
+                                        <label htmlFor="incident-date" className="mb-2 block text-sm font-semibold text-gray-700">
+                                            Incident Date (Optional)
+                                        </label>
                                         <input
-                                            type="file"
-                                            ref={fileInputRef}
-                                            multiple
-                                            accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
-                                            className="hidden"
-                                            onChange={handleFileChange}
+                                            type="date"
+                                            id="incident-date"
+                                            value={incidentDate}
+                                            onChange={(e) => setIncidentDate(e.target.value)}
+                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                         />
-                                        <div className="text-center text-xs text-gray-500 sm:text-sm">
-                                            {files.length === 0 ? (
-                                                <>
-                                                    <span role="img" aria-label="clip">
-                                                        📎
-                                                    </span>{' '}
-                                                    Click to upload files
-                                                    <br />
-                                                    <span className="text-xs">Format: JPG, PNG, PDF, DOC (Max 10MB)</span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <span role="img" aria-label="check">
-                                                        ✅
-                                                    </span>{' '}
-                                                    {files.length} file(s) selected:
-                                                    <br />
-                                                    <span className="text-xs">{fileNames}</span>
-                                                </>
-                                            )}
+                                    </div>
+
+                                    <div>
+                                        <label className="mb-2 block text-sm font-semibold text-gray-700">Upload Evidence (Optional)</label>
+                                        <div
+                                            className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 px-4 py-8 transition-colors duration-300 hover:border-yellow-400 hover:bg-yellow-50"
+                                            onClick={() => fileInputRef.current?.click()}
+                                        >
+                                            <input
+                                                type="file"
+                                                ref={fileInputRef}
+                                                multiple
+                                                accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+                                                className="hidden"
+                                                onChange={handleFileChange}
+                                            />
+                                            <div className="text-center text-xs text-gray-500">
+                                                {files.length === 0 ? (
+                                                    <>
+                                                        <svg
+                                                            className="mx-auto mb-2 h-8 w-8 text-gray-400"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                                            />
+                                                        </svg>
+                                                        Click to upload files
+                                                        <br />
+                                                        <span className="text-xs">JPG, PNG, PDF, DOC (Max 10MB)</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <svg
+                                                            className="mx-auto mb-2 h-8 w-8 text-green-500"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                            />
+                                                        </svg>
+                                                        {files.length} file(s) selected
+                                                        <br />
+                                                        <span className="text-xs">{fileNames}</span>
+                                                    </>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* Submit Button */}
                                 <button
                                     type="submit"
-                                    className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-amber-600 sm:px-6 sm:py-3 sm:text-base"
+                                    className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-amber-600 hover:shadow-xl"
                                 >
                                     🚀 Submit Report
                                 </button>
                             </form>
+
+                            {/* Success Ticket Display */}
                             {showTicket && (
                                 <div
                                     ref={ticketRef}
-                                    className="animate-premiumFadeIn mt-3 rounded-xl bg-gradient-to-r from-green-400 to-teal-400 p-3 text-center text-white sm:p-4"
+                                    className="animate-premiumFadeIn mt-6 rounded-xl bg-gradient-to-r from-green-400 to-teal-400 p-6 text-center text-white"
                                 >
-                                    <h3 className="mb-1 text-base font-bold sm:text-lg">✅ Report Successfully Submitted!</h3>
-                                    <p className="text-sm">Your Ticket Number:</p>
-                                    <div className="my-1 text-lg font-bold tracking-widest break-all sm:text-xl">{ticketNumber}</div>
-                                    <p className="text-xs">Save this number to track your report status</p>
+                                    <div className="mb-2 text-4xl">✅</div>
+                                    <h3 className="mb-2 text-lg font-bold">Report Successfully Submitted!</h3>
+                                    <p className="text-sm opacity-90">Your Ticket Number:</p>
+                                    <div className="my-3 rounded-lg bg-white/20 px-4 py-2 text-xl font-bold tracking-widest break-all backdrop-blur-sm">
+                                        {ticketNumber}
+                                    </div>
+                                    <p className="text-xs opacity-80">Save this number to track your report status</p>
                                 </div>
                             )}
                         </div>
                     )}
+
+                    {/* Track Status Tab */}
                     {activeTab === 'track' && (
-                        <div className="space-y-3 sm:space-y-4">
-                            <div>
-                                <h2 className="mb-1 text-lg font-bold text-gray-800 sm:text-xl">Track Report Status</h2>
-                                <p className="mb-3 text-sm text-gray-600 sm:text-base">Enter your ticket number to view your report status</p>
+                        <div className="space-y-6">
+                            <div className="text-center">
+                                <h2 className="mb-2 text-xl font-bold text-gray-800">Track Report Status</h2>
+                                <p className="text-gray-600">Enter your ticket number to view your report status</p>
                             </div>
-                            <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
-                                <input
-                                    type="text"
-                                    value={trackInput}
-                                    onChange={(e) => setTrackInput(e.target.value)}
-                                    placeholder="Example: TKT-2025-001234"
-                                    className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 sm:px-4 sm:py-3 sm:text-base"
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter') handleTrack();
-                                    }}
-                                />
-                                <button
-                                    type="button"
-                                    className="w-full rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-yellow-600 sm:w-auto sm:px-6 sm:py-3 sm:text-base"
-                                    onClick={handleTrack}
-                                >
-                                    Track
-                                </button>
+
+                            <div className="rounded-lg bg-gray-50 p-6">
+                                <div className="flex flex-col gap-4 sm:flex-row">
+                                    <input
+                                        type="text"
+                                        value={trackInput}
+                                        onChange={(e) => setTrackInput(e.target.value)}
+                                        placeholder="Example: TKT-2025-001234"
+                                        className="flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') handleTrack();
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        className="rounded-lg bg-yellow-500 px-6 py-3 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-yellow-600 hover:shadow-lg sm:w-auto"
+                                        onClick={handleTrack}
+                                    >
+                                        🔍 Track Report
+                                    </button>
+                                </div>
                             </div>
+
+                            {/* Track Results */}
                             {trackResult && (
-                                <div className="animate-premiumFadeIn mt-3 rounded-xl border border-gray-200 bg-white p-3 shadow">
+                                <div className="animate-premiumFadeIn rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
                                     {trackResult.error ? (
-                                        <div>
-                                            <p className="text-sm font-semibold text-red-600">{trackResult.error}</p>
-                                            <p className="mt-1 text-xs text-gray-500">Ticket number format: TKT-YYYY-XXXXXX</p>
+                                        <div className="text-center">
+                                            <div className="mb-4 text-4xl">❌</div>
+                                            <p className="mb-2 text-lg font-semibold text-red-600">{trackResult.error}</p>
+                                            <p className="text-sm text-gray-500">
+                                                Ticket number format: TKT-YYYY-XXXXXX
+                                                <br />
+                                                Please check your ticket number and try again.
+                                            </p>
                                         </div>
                                     ) : (
                                         <div>
-                                            <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
-                                                <h3 className="line-clamp-2 flex-1 text-sm font-bold text-black sm:text-base">
-                                                    {trackResult.subject}
-                                                </h3>
+                                            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                                <h3 className="flex-1 text-lg font-bold text-black">{trackResult.subject}</h3>
                                                 <span
-                                                    className={`w-fit shrink-0 rounded-full px-2 py-1 text-xs font-bold ${trackResult.status === 'submitted' ? 'bg-blue-100 text-blue-700' : trackResult.status === 'review' ? 'bg-orange-100 text-orange-700' : trackResult.status === 'progress' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'}`}
+                                                    className={`w-fit rounded-full px-3 py-1 text-xs font-bold ${
+                                                        trackResult.status === 'submitted'
+                                                            ? 'bg-blue-100 text-blue-700'
+                                                            : trackResult.status === 'review'
+                                                              ? 'bg-orange-100 text-orange-700'
+                                                              : trackResult.status === 'progress'
+                                                                ? 'bg-purple-100 text-purple-700'
+                                                                : 'bg-green-100 text-green-700'
+                                                    }`}
                                                 >
                                                     {trackResult.status ? statusText[trackResult.status] : 'Unknown'}
                                                 </span>
                                             </div>
-                                            <div className="space-y-1 text-xs text-gray-700">
-                                                <div>
-                                                    <strong>Ticket Number:</strong> <span className="break-all">{trackResult.ticket_number}</span>
+
+                                            <div className="mb-4 grid gap-4 sm:grid-cols-2">
+                                                <div className="rounded-lg bg-gray-50 p-4">
+                                                    <div className="text-sm font-medium text-gray-700">Ticket Number</div>
+                                                    <div className="font-mono text-sm break-all text-gray-900">{trackResult.ticket_number}</div>
                                                 </div>
-                                                <div>
-                                                    <strong>Category:</strong> {trackResult.category}
+                                                <div className="rounded-lg bg-gray-50 p-4">
+                                                    <div className="text-sm font-medium text-gray-700">Category</div>
+                                                    <div className="text-sm text-gray-900">{trackResult.category}</div>
                                                 </div>
-                                                <div>
-                                                    <strong>Priority:</strong> {trackResult.priority ? priorityText[trackResult.priority] : 'Unknown'}
+                                                <div className="rounded-lg bg-gray-50 p-4">
+                                                    <div className="text-sm font-medium text-gray-700">Priority</div>
+                                                    <div className="text-sm text-gray-900">
+                                                        {trackResult.priority ? priorityText[trackResult.priority] : 'Unknown'}
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <strong>Report Date:</strong> {trackResult.incident_date}
-                                                </div>
-                                                <div>
-                                                    <strong>Status:</strong> {trackResult.status ? statusText[trackResult.status] : 'Unknown'}
+                                                <div className="rounded-lg bg-gray-50 p-4">
+                                                    <div className="text-sm font-medium text-gray-700">Report Date</div>
+                                                    <div className="text-sm text-gray-900">{trackResult.incident_date}</div>
                                                 </div>
                                             </div>
-                                            <div className="mt-2 rounded-lg bg-gray-50 p-2 text-xs text-gray-600">
-                                                <strong>Latest Update:</strong> The relevant team is handling your report. Estimated resolution time:
-                                                3-5 business days.
+
+                                            <div className="rounded-lg bg-blue-50 p-4">
+                                                <div className="flex items-start">
+                                                    <svg
+                                                        className="mt-0.5 mr-3 h-5 w-5 text-blue-500"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                        />
+                                                    </svg>
+                                                    <div>
+                                                        <div className="text-sm font-medium text-blue-800">Latest Update</div>
+                                                        <div className="text-sm text-blue-700">
+                                                            The relevant team is handling your report. Estimated resolution time: 3-5 business days.
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -543,15 +651,15 @@ const Welcome = () => {
             title1: 'Introducing',
             title2: 'Kristalin Ekalestari',
             subtitle: 'Trusted gold mining company since 1989',
-            titleColors: 'text-gray-900',
-            title2Colors: 'bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 bg-clip-text text-transparent',
+            titleColors: 'text-white',
+            title2Colors: 'text-white',
         },
         {
             title1: 'Trusted Partner',
             title2: 'Gold Exploration & Trading',
             subtitle: 'Since 1989, committed to sustainable gold mining in Papua.',
-            titleColors: 'text-gray-900',
-            title2Colors: 'text-yellow-600',
+            titleColors: 'text-white',
+            title2Colors: 'text-white',
         },
     ];
 
@@ -564,7 +672,7 @@ const Welcome = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentContent((prev) => (prev + 1) % contentSets.length);
-        }, 5000); // Change content every 5 seconds
+        }, 5000);
         return () => clearInterval(interval);
     }, [contentSets.length]);
 
@@ -579,6 +687,7 @@ const Welcome = () => {
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
             <Header sticky={true} transparent={false} />
+
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {/* Feedback Form Modal */}
                 {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
@@ -586,192 +695,184 @@ const Welcome = () => {
                 {/* Floating Feedback Button */}
                 <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
 
-                {/* Hero Section */}
-                <section className="relative flex w-full flex-1 flex-col bg-white py-4 sm:py-6 lg:flex-row lg:py-8">
-                    {/* Left Content */}
-                    <div className="relative order-2 flex flex-1 flex-col justify-center px-4 sm:px-8 lg:order-1 lg:pr-4 lg:pl-20">
-                        {/* Animated SVG Pattern */}
-                        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-5" viewBox="0 0 600 400">
-                            <defs>
-                                <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                                    <circle cx="20" cy="20" r="2" fill="#FFD700">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" />
-                                    </circle>
-                                </pattern>
-                            </defs>
-                            <rect width="100%" height="100%" fill="url(#dots)" />
-                        </svg>
-
+                {/* Hero Section - Layout Tiara Marga dengan konten Kristalin, warna konsisten */}
+                <section className="flex h-auto flex-col lg:h-[400px] lg:flex-row">
+                    {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
+                    <div className="relative flex w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
                         <div
-                            className={`relative z-10 max-w-xl transition-all duration-1000 ${
+                            className={`relative z-10 transition-all duration-1000 ${
                                 isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                             }`}
                         >
-                            {/* Premium Staggered Animation with Fade + Scale */}
+                            {/* Konten Kristalin dengan animasi */}
                             <div className="relative">
                                 <div key={currentContent} className="animate-containerFade">
-                                    <h1 className="mb-3 text-xl leading-tight font-bold sm:mb-4 sm:text-2xl lg:text-4xl">
-                                        <span
-                                            className={`animate-staggeredFadeScale inline-block delay-0 ${contentSets[currentContent].titleColors}`}
-                                        >
+                                    <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
+                                        <div className="animate-staggeredFadeScale inline-block text-gray-800 delay-0">
                                             {contentSets[currentContent].title1}
-                                        </span>
+                                        </div>
                                         <br />
-                                        <span
-                                            className={`animate-staggeredFadeScale inline-block delay-200 ${contentSets[currentContent].title2Colors}`}
+                                        <div
+                                            className="animate-staggeredFadeScale inline-block delay-200"
+                                            style={{
+                                                background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                WebkitBackgroundClip: 'text',
+                                                WebkitTextFillColor: 'transparent',
+                                                backgroundClip: 'text',
+                                            }}
                                         >
                                             {contentSets[currentContent].title2}
-                                        </span>
+                                        </div>
                                     </h1>
                                 </div>
                             </div>
 
-                            {/* Subtitle with Elegant Fade */}
+                            {/* Subtitle dengan warna abu-abu terang */}
                             <div className="relative">
                                 <p
                                     key={`subtitle-${currentContent}`}
-                                    className="animate-staggeredFadeScale mb-4 text-sm text-gray-700 delay-400 sm:text-base lg:text-lg"
+                                    className="animate-staggeredFadeScale mb-6 text-center text-sm text-gray-600 delay-400 sm:text-center sm:text-base lg:text-left lg:text-lg"
                                 >
                                     {contentSets[currentContent].subtitle}
                                 </p>
                             </div>
 
-                            {/* Button with Final Reveal */}
-                            <div className="mt-4 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:gap-4">
-                                <a
-                                    href="/about#about-kristalin"
-                                    className="animate-staggeredFadeScale transform rounded-lg bg-yellow-500 px-6 py-2 text-center text-sm font-bold text-gray-900 shadow-lg transition-all delay-600 duration-300 hover:scale-105 hover:bg-yellow-600 hover:shadow-xl sm:px-8 sm:py-3 sm:text-base lg:text-lg"
+                            {/* Buttons - desain yang lebih user-friendly dan estetik */}
+                            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:gap-4">
+                                <button
+                                    className="flex h-12 min-w-full cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:min-w-[180px]"
+                                    onClick={() => (window.location.href = '/about#about-kristalin')}
                                 >
                                     Learn More
-                                </a>
+                                </button>
+
                                 <button
+                                    className="relative flex h-12 min-w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:min-w-[180px]"
                                     onClick={() => setShowFeedbackForm(true)}
-                                    className="animate-staggeredFadeScale transform rounded-lg border border-gray-300 bg-white px-6 py-2 text-center text-sm font-bold text-gray-800 shadow-lg transition-all delay-600 duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-xl sm:px-8 sm:py-3 sm:text-base lg:text-lg"
                                 >
                                     Kirim Masukan
                                 </button>
                             </div>
+
+                            {/* Konten tanpa elemen dekoratif */}
+                            <div className="relative"></div>
                         </div>
                     </div>
 
-                    {/* Right Image */}
-                    <div className="order-1 flex flex-1 items-center justify-center p-4 sm:p-6 lg:order-2 lg:p-0">
-                        <div
-                            className={`relative w-full max-w-md transition-all delay-400 duration-1000 lg:max-w-none ${
-                                isLoaded ? 'translate-x-0 scale-100 opacity-100' : 'translate-x-10 scale-95 opacity-0'
+                    {/* Right Section - CSR Card dengan gambar papua-children.png */}
+                    <Link
+                        href="/csr"
+                        className="relative flex min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12"
+                        onMouseEnter={() => setHoveredCard(4)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                    >
+                        {/* Background Image - papua-children.png */}
+                        <img
+                            src="/papua-children.png"
+                            alt="CSR - Papua Children"
+                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                hoveredCard === 4 ? 'scale-105' : 'scale-100'
                             }`}
-                        >
-                            <img
-                                src="/menara165.jpg"
-                                alt="Menara 165"
-                                className="hover:shadow-3xl mx-auto h-[200px] w-full max-w-[420px] rounded-xl object-cover object-top shadow-2xl transition-all duration-500 hover:scale-105 sm:h-[250px] lg:h-[320px]"
-                            />
-                            {/* Overlay logo dengan animasi, hanya saat currentContent === 0 */}
-                            <AnimatePresence>
-                                {currentContent === 0 && (
-                                    <motion.img
-                                        key="logo"
-                                        src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png"
-                                        alt="Kristalin Logo"
-                                        initial={{ opacity: 0, scale: 0.7, y: 30, rotate: -8 }}
-                                        animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-                                        exit={{ opacity: 0, scale: 0.7, y: -30, rotate: 8 }}
-                                        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                        className="pointer-events-none absolute inset-0 h-full w-full rounded-xl object-contain"
-                                        style={{ background: 'rgba(255,255,255,0.7)' }}
-                                    />
-                                )}
-                            </AnimatePresence>
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                            }}
+                        />
+
+                        {/* Dark overlay untuk readability text */}
+                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                        <div className="relative z-10">
+                            <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                CORPORATE SOCIAL RESPONSIBILITY
+                            </div>
+                            <h3
+                                className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-300 sm:text-3xl lg:text-4xl ${
+                                    hoveredCard === 4 ? 'translate-x-2' : 'translate-x-0'
+                                }`}
+                            >
+                                Community Development
+                            </h3>
+                            <span
+                                className={`text-base font-medium underline transition-colors duration-300 ${
+                                    hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
+                                }`}
+                            >
+                                Learn more →
+                            </span>
                         </div>
-                    </div>
+                    </Link>
                 </section>
 
-                {/* Grid Section with enhanced animations */}
-                <section className="flex min-h-[320px] w-full flex-col items-stretch bg-black lg:flex-row">
-                    {/* Portfolio */}
+                {/* Grid Section - Layout 3 kolom dengan warna konsisten putih-emas-hitam */}
+                <section className="flex h-auto flex-col lg:h-[300px] lg:flex-row">
+                    {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
                     <div
-                        className="group relative flex min-h-[220px] flex-1 cursor-pointer flex-col justify-end overflow-hidden border-b border-gray-800 px-6 py-6 sm:min-h-[260px] sm:px-10 sm:py-8 lg:min-h-[320px] lg:border-r lg:border-b-0 lg:px-14 lg:py-10"
+                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
                         onMouseEnter={() => setHoveredCard(0)}
                         onMouseLeave={() => setHoveredCard(null)}
                         onClick={() => (window.location.href = '/line-of-business')}
                     >
+                        {/* Background Image tanpa filter warna */}
                         <img
                             src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
                             alt="Our Portfolio"
-                            className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
-                                hoveredCard === 0 ? 'scale-110 opacity-60' : 'scale-100 opacity-40'
+                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                hoveredCard === 0 ? 'scale-105' : 'scale-100'
                             }`}
-                            style={{ zIndex: 1 }}
                             onError={(e) => {
                                 e.currentTarget.style.display = 'none';
-                                const next = e.currentTarget.nextElementSibling;
-                                if (next && next instanceof HTMLElement) {
-                                    next.style.display = 'block';
-                                }
                             }}
                         />
-                        <div className="absolute inset-0 hidden h-full w-full" style={{ zIndex: 1 }}>
-                            <PlaceholderImg text="Portfolio Image" />
-                        </div>
+
+                        {/* Dark overlay untuk readability text */}
+                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
                         <div className="relative z-10">
-                            <div
-                                className={`mb-1 text-xs tracking-widest text-gray-300 uppercase transition-all duration-300 ${
-                                    hoveredCard === 0 ? 'text-yellow-300' : ''
-                                }`}
-                            >
-                                Business Line
-                            </div>
-                            <div
-                                className={`mb-2 text-xl font-bold text-white transition-all duration-300 sm:text-2xl lg:text-3xl ${
-                                    hoveredCard === 0 ? 'translate-x-2 transform' : ''
+                            <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">BUSINESS LINE</div>
+                            <h3
+                                className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
+                                    hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
                                 }`}
                             >
                                 Our Portfolio
-                            </div>
-                            <div
-                                className={`mb-2 h-1 rounded bg-yellow-500 transition-all duration-300 ${
-                                    hoveredCard === 0 ? 'w-12 sm:w-16' : 'w-8 sm:w-10'
-                                }`}
-                            ></div>
+                            </h3>
+                            <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
                         </div>
                     </div>
 
-                    {/* Business Activities */}
+                    {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                     <Link
                         href="/business-activity"
-                        className="group relative flex min-h-[220px] flex-1 cursor-pointer flex-col justify-end overflow-hidden border-b border-gray-800 px-6 py-6 sm:min-h-[260px] sm:px-10 sm:py-8 lg:min-h-[320px] lg:border-r lg:border-b-0 lg:px-14 lg:py-10"
+                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
                         onMouseEnter={() => setHoveredCard(1)}
                         onMouseLeave={() => setHoveredCard(null)}
                     >
+                        {/* Background Image tanpa filter warna */}
                         <img
                             src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
                             alt="Business Activities"
-                            className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
-                                hoveredCard === 1 ? 'scale-110 opacity-60' : 'scale-100 opacity-40'
+                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                hoveredCard === 1 ? 'scale-105' : 'scale-100'
                             }`}
-                            style={{ zIndex: 1 }}
                             onError={(e) => {
                                 e.currentTarget.style.display = 'none';
-                                const next = e.currentTarget.nextElementSibling;
-                                if (next && next instanceof HTMLElement) {
-                                    next.style.display = 'block';
-                                }
                             }}
                         />
-                        <div className="absolute inset-0 hidden h-full w-full" style={{ zIndex: 1 }}>
-                            <PlaceholderImg text="Governance Image" />
-                        </div>
+
+                        {/* Dark overlay untuk readability text */}
+                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
                         <div className="relative z-10">
-                            <div
-                                className={`mb-2 text-xl font-bold text-white transition-all duration-300 sm:text-2xl lg:text-3xl ${
-                                    hoveredCard === 1 ? 'translate-x-2 transform' : ''
+                            <h3
+                                className={`mb-4 text-lg leading-tight font-bold transition-transform duration-300 sm:text-xl lg:text-2xl ${
+                                    hoveredCard === 1 ? 'translate-x-2' : 'translate-x-0'
                                 }`}
                             >
                                 Business Activities
-                            </div>
+                            </h3>
                             <span
-                                className={`mt-2 text-base text-white underline transition-all duration-300 hover:text-yellow-400 sm:text-lg lg:text-xl ${
-                                    hoveredCard === 1 ? 'text-yellow-400' : ''
+                                className={`text-sm font-medium underline transition-colors duration-300 ${
+                                    hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
                                 }`}
                             >
                                 Find out more →
@@ -779,43 +880,46 @@ const Welcome = () => {
                         </div>
                     </Link>
 
-                    {/* News with proper responsive sizing */}
+                    {/* News Card - 25% width, warna emas konsisten */}
                     <Link
                         href="/news"
-                        className="group relative flex min-h-[280px] flex-1 cursor-pointer flex-col justify-between overflow-hidden bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 px-6 py-6 transition-all duration-700 sm:min-h-[300px] sm:px-8 sm:py-8 lg:min-h-[320px] lg:px-12"
+                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
                         onMouseEnter={() => setHoveredCard(2)}
                         onMouseLeave={() => setHoveredCard(null)}
                     >
                         {/* Background Image - Hidden by default, shown on hover */}
-                        <div className="absolute inset-0 opacity-0 transition-all duration-700 group-hover:opacity-100">
+                        <div
+                            className={`absolute top-0 right-0 bottom-0 left-0 transition-opacity duration-700 ${
+                                hoveredCard === 2 ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        >
                             <img src={newsData[currentNews].imageUrl} alt={newsData[currentNews].title} className="h-full w-full object-cover" />
                             {/* Dark overlay for text readability */}
-                            <div className="absolute inset-0 bg-black/60 transition-all duration-700 group-hover:bg-black/70"></div>
+                            <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/70 transition-all duration-700" />
                         </div>
 
-                        {/* Clean background - Visible by default, hidden on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent transition-all duration-700 group-hover:opacity-0"></div>
-
                         {/* Top Section - Header */}
-                        <div className="relative z-10">
-                            <div className="mb-4 flex items-center justify-between sm:mb-6">
+                        <div className="relative z-10 mb-4">
+                            <div className="flex items-center justify-between">
                                 <div
                                     className={`text-xl font-bold transition-all duration-500 sm:text-2xl lg:text-3xl ${
-                                        hoveredCard === 2 ? 'scale-110 transform text-white' : 'text-gray-900'
+                                        hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
                                     }`}
                                 >
                                     News
                                 </div>
-                                <div className="flex gap-1 sm:gap-2">
+                                <div className="flex gap-2">
                                     <button
                                         onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                             setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
                                         }}
-                                        className="hover:bg-opacity-20 flex h-7 w-7 transform items-center justify-center rounded-full text-black transition-all duration-300 group-hover:text-white hover:scale-110 hover:bg-black sm:h-8 sm:w-8"
+                                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
+                                            hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                        }`}
                                     >
-                                        <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                         </svg>
                                     </button>
@@ -825,9 +929,11 @@ const Welcome = () => {
                                             e.stopPropagation();
                                             setCurrentNews((prev) => (prev + 1) % newsItems.length);
                                         }}
-                                        className="hover:bg-opacity-20 flex h-7 w-7 transform items-center justify-center rounded-full text-black transition-all duration-300 group-hover:text-white hover:scale-110 hover:bg-black sm:h-8 sm:w-8"
+                                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
+                                            hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                        }`}
                                     >
-                                        <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                     </button>
@@ -835,45 +941,80 @@ const Welcome = () => {
                             </div>
                         </div>
 
-                        {/* Middle Section - Content with improved spacing and text handling */}
-                        <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center">
-                            <div key={currentNews} className="transform space-y-2 transition-all duration-500 sm:space-y-3 lg:space-y-4">
+                        {/* Middle Section - Content dengan berita Kristalin */}
+                        <div className="relative z-10 flex flex-1 flex-col justify-center">
+                            <div key={currentNews} className="mb-4 translate-y-0 transform transition-all duration-500">
                                 {/* Date */}
-                                <div className="text-xs font-medium text-gray-800 opacity-80 transition-all duration-500 group-hover:text-gray-200 sm:text-sm">
+                                <div
+                                    className={`mb-2 text-xs font-medium opacity-80 transition-colors duration-500 sm:text-sm ${
+                                        hoveredCard === 2 ? 'text-gray-300' : 'text-gray-600'
+                                    }`}
+                                >
                                     {newsItems[currentNews].date}
                                 </div>
 
-                                {/* Title with line clamp */}
-                                <div className="line-clamp-2 text-sm leading-tight font-bold text-black transition-all duration-500 group-hover:text-white sm:line-clamp-3 sm:text-base lg:text-lg">
+                                {/* Title dengan line clamp */}
+                                <div
+                                    className={`mb-2 line-clamp-3 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
+                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                    }`}
+                                >
                                     {newsItems[currentNews].title}
                                 </div>
 
-                                {/* Description with line clamp */}
-                                <div className="line-clamp-2 text-xs leading-relaxed text-gray-900 opacity-90 transition-all duration-500 group-hover:text-gray-200 sm:line-clamp-3 sm:text-sm lg:text-base">
+                                {/* Description dengan line clamp */}
+                                <div
+                                    className={`line-clamp-2 text-xs leading-relaxed opacity-90 transition-colors duration-500 sm:text-sm ${
+                                        hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
+                                    }`}
+                                >
                                     {newsItems[currentNews].excerpt}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Bottom Section - View button with proper spacing */}
-                        <div className="relative z-10 mt-3 border-t border-black/10 pt-3 transition-all duration-500 group-hover:border-white/20 sm:mt-4 sm:pt-4 lg:mt-6">
-                            <div className="group inline-flex items-center text-sm font-semibold text-black transition-all duration-300 group-hover:text-white sm:text-base lg:text-lg">
-                                <span className="relative z-10">View</span>
-                                <div className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
-                                    <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {/* Bottom Section - View button */}
+                        <div
+                            className={`relative z-10 border-t pt-4 transition-colors duration-500 ${
+                                hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
+                            }`}
+                        >
+                            <div
+                                className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
+                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                }`}
+                            >
+                                <span>View</span>
+                                <div className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}>
+                                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Bottom accent line */}
-                        <div className="absolute right-0 bottom-0 left-0 h-1 bg-gradient-to-r from-transparent via-black/20 to-transparent transition-all duration-500 group-hover:via-white/30"></div>
+                        {/* Navigation dots - tanpa dot kotak */}
+                        <div className="absolute right-4 bottom-4 z-10 flex gap-2 lg:right-6 lg:bottom-6">
+                            {[...Array(4)].map((_, index) => (
+                                <div
+                                    key={index}
+                                    className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                                        index === currentNews
+                                            ? hoveredCard === 2
+                                                ? 'bg-white'
+                                                : 'bg-gray-800'
+                                            : hoveredCard === 2
+                                              ? 'bg-white/30'
+                                              : 'bg-gray-800/30'
+                                    }`}
+                                />
+                            ))}
+                        </div>
                     </Link>
                 </section>
 
-                {/* Footer */}
-                <footer className="bg-[#232323] px-4 py-3 text-left text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
+                {/* Footer - Footer Kristalin */}
+                <footer className="bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
                     <div className="animate-pulse">© 2025 PT Kristalin Eka Lestari. All rights reserved.</div>
                 </footer>
             </div>
@@ -899,7 +1040,7 @@ const Welcome = () => {
             }
             60% {
               opacity: 0.8;
-  transform: translateY(5px) scale(0.98);
+              transform: translateY(5px) scale(0.98);
               filter: blur(1px);
             }
             100% {
@@ -911,7 +1052,6 @@ const Welcome = () => {
 
           @keyframes premiumFadeIn {
             0% {
-
               opacity: 0;
               transform: translateY(15px);
             }
@@ -1066,6 +1206,171 @@ const Welcome = () => {
             .line-clamp-3 {
               -webkit-line-clamp: 2;
             }
+          }
+
+          /* Additional responsive utilities */
+          @media (max-width: 1024px) {
+            .lg\\:h-\\[400px\\] {
+              height: auto;
+              min-height: 400px;
+            }
+
+            .lg\\:h-\\[300px\\] {
+              height: auto;
+              min-height: 300px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .md\\:h-\\[350px\\] {
+              height: auto;
+              min-height: 350px;
+            }
+
+            .md\\:h-\\[250px\\] {
+              height: auto;
+              min-height: 250px;
+            }
+          }
+
+          /* Responsive section heights */
+          @media (max-width: 1023px) {
+            section {
+              height: auto !important;
+            }
+
+            section > div {
+              min-height: 300px;
+            }
+          }
+
+          @media (max-width: 640px) {
+            section > div {
+              min-height: 250px;
+            }
+
+            .text-2xl {
+              font-size: 1.75rem;
+            }
+
+            .text-3xl {
+              font-size: 2rem;
+            }
+
+            .text-4xl {
+              font-size: 2.25rem;
+            }
+          }
+
+          /* Smooth transitions for all interactive elements */
+          * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+          }
+
+          /* Enhanced hover states for cards */
+          .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          }
+
+          /* Image optimization for different screen sizes */
+          img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+          }
+
+          /* Typography responsive scaling */
+          @media (max-width: 480px) {
+            h1 {
+              line-height: 1.1;
+            }
+
+            h2, h3 {
+              line-height: 1.2;
+            }
+
+            p {
+              line-height: 1.5;
+            }
+          }
+
+          /* Loading states */
+          .loading {
+            opacity: 0.7;
+            pointer-events: none;
+          }
+
+          /* Focus states for accessibility */
+          *:focus {
+            outline: 2px solid #fbbf24;
+            outline-offset: 2px;
+          }
+
+          /* Print styles */
+          @media print {
+            .no-print {
+              display: none !important;
+            }
+
+            * {
+              color: black !important;
+              background: white !important;
+            }
+          }
+
+          /* High contrast mode support */
+          @media (prefers-contrast: high) {
+            .text-gray-600 {
+              color: #000000 !important;
+            }
+
+            .text-gray-800 {
+              color: #000000 !important;
+            }
+
+            .bg-yellow-400 {
+              background-color: #000000 !important;
+              color: #ffffff !important;
+            }
+          }
+
+          /* Reduced motion support */
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+
+          /* Dark mode support (if needed in future) */
+          @media (prefers-color-scheme: dark) {
+            .dark-mode-ready {
+              background-color: #1f2937;
+              color: #f9fafb;
+            }
+          }
+
+          /* Performance optimizations */
+          .will-change-transform {
+            will-change: transform;
+          }
+
+          .will-change-opacity {
+            will-change: opacity;
+          }
+
+          /* GPU acceleration for smooth animations */
+          .gpu-accelerated {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000;
           }
         `,
                 }}
