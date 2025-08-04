@@ -11,8 +11,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
+    const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const aboutDropdownRef = useRef<HTMLDivElement>(null);
 
     // Handle scroll effect for transparent/sticky behavior
     useEffect(() => {
@@ -33,6 +35,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setDropdownOpen(false);
             }
+            if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
+                setAboutDropdownOpen(false);
+            }
             if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
                 const hamburgerButton = (event.target as Element).closest('[aria-label*="menu"]');
                 if (!hamburgerButton) {
@@ -40,7 +45,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 }
             }
         }
-        if (dropdownOpen || mobileMenuOpen) {
+        if (dropdownOpen || aboutDropdownOpen || mobileMenuOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         } else {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -48,7 +53,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [dropdownOpen, mobileMenuOpen]);
+    }, [dropdownOpen, aboutDropdownOpen, mobileMenuOpen]);
 
     // Close mobile menu when window resizes to desktop
     useEffect(() => {
@@ -201,14 +206,19 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     {navigationItems.map((item, index) => (
                         <li key={index} className={item.hasDropdown ? 'group relative' : ''}>
                             {item.hasDropdown ? (
-                                <>
+                                <div
+                                    className="relative"
+                                    ref={aboutDropdownRef}
+                                    onMouseEnter={() => setAboutDropdownOpen(true)}
+                                    onMouseLeave={() => setAboutDropdownOpen(false)}
+                                >
                                     <a
                                         href={item.href}
                                         className="flex items-center gap-1 px-2 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400"
                                     >
                                         {item.label}
                                         <svg
-                                            className="h-3 w-3 transform transition-transform duration-300 ease-out group-hover:rotate-180"
+                                            className={`h-3 w-3 transform transition-transform duration-300 ease-out ${aboutDropdownOpen ? 'rotate-180' : ''}`}
                                             fill="currentColor"
                                             viewBox="0 0 12 12"
                                         >
@@ -216,7 +226,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         </svg>
                                     </a>
                                     {/* Desktop Dropdown Menu */}
-                                    <div className="invisible absolute top-full left-0 z-50 mt-2 w-64 translate-y-2 transform rounded-lg border border-gray-600 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white opacity-0 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 xl:w-72">
+                                    <div
+                                        className={`absolute top-full left-0 z-50 mt-2 w-64 transform rounded-lg border border-gray-600 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out xl:w-72 ${
+                                            aboutDropdownOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-2 opacity-0'
+                                        }`}
+                                    >
                                         <div className="px-4 py-4">
                                             <div className="space-y-2">
                                                 {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
@@ -231,7 +245,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                             </div>
                                         </div>
                                     </div>
-                                </>
+                                </div>
                             ) : item.external ? (
                                 <a
                                     href={item.href}

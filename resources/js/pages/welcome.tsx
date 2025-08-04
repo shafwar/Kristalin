@@ -638,6 +638,7 @@ const Welcome = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
+    const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
     // Menggunakan 4 berita terbaru dari newsData
     const newsItems = newsData.slice(0, 4).map((news) => ({
@@ -663,17 +664,47 @@ const Welcome = () => {
         },
     ];
 
-    // Content rotation
+    // Loading screen effect - show on first visit or page reload
+    useEffect(() => {
+        // Check if this is a page reload (sessionStorage is cleared on reload)
+        const isReload = !sessionStorage.getItem('kristalin_session');
+
+        if (isReload) {
+            // This is a reload, show loading screen
+            const loadingTimer = setTimeout(() => {
+                setShowLoadingScreen(false);
+                // Mark session as started
+                sessionStorage.setItem('kristalin_session', 'true');
+            }, 3500); // 3.5 seconds loading duration to match LoadingScreen
+
+            return () => clearTimeout(loadingTimer);
+        } else {
+            // This is navigation within the same session, skip loading screen
+            setShowLoadingScreen(false);
+        }
+    }, []);
+
+    // Content rotation - Slower rotation for better UX
     useEffect(() => {
         const timer = setTimeout(() => setIsLoaded(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
+        // Start with "Introducing" and give it more time
+        const initialDelay = setTimeout(() => {
+            setCurrentContent(0); // Start with "Introducing"
+        }, 1000); // Wait 1 second after loading
+
+        // Then rotate content every 10 seconds (longer duration)
         const interval = setInterval(() => {
             setCurrentContent((prev) => (prev + 1) % contentSets.length);
-        }, 5000);
-        return () => clearInterval(interval);
+        }, 10000); // 10 seconds - longer and more comfortable
+
+        return () => {
+            clearTimeout(initialDelay);
+            clearInterval(interval);
+        };
     }, [contentSets.length]);
 
     useEffect(() => {
@@ -683,340 +714,781 @@ const Welcome = () => {
         return () => clearInterval(interval);
     }, [newsItems.length]);
 
+    // Loading Screen Component - Clean & Professional
+    const LoadingScreen = () => {
+        const [isComplete, setIsComplete] = useState(false);
+
+        useEffect(() => {
+            // Simulate loading completion after 3.5 seconds
+            const timer = setTimeout(() => {
+                setIsComplete(true);
+            }, 3500);
+
+            return () => clearTimeout(timer);
+        }, []);
+
+        return (
+            <AnimatePresence>
+                {!isComplete && (
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        exit={{
+                            opacity: 0,
+                            scale: 1.05,
+                            filter: 'blur(10px)',
+                        }}
+                        transition={{
+                            duration: 0.8,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-white"
+                        style={{
+                            background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%)',
+                        }}
+                    >
+                        {/* Subtle background pattern */}
+                        <div className="absolute inset-0 opacity-[0.02]">
+                            <div
+                                className="absolute inset-0"
+                                style={{
+                                    backgroundImage: `radial-gradient(circle at 25% 25%, #FFD700 1px, transparent 1px),
+                                                    radial-gradient(circle at 75% 75%, #FFD700 1px, transparent 1px)`,
+                                    backgroundSize: '50px 50px',
+                                    backgroundPosition: '0 0, 25px 25px',
+                                }}
+                            />
+                        </div>
+
+                        <div className="relative mx-auto flex max-w-md flex-col items-center justify-center px-6">
+                            {/* Logo Container */}
+                            <motion.div
+                                initial={{
+                                    scale: 0.3,
+                                    opacity: 0,
+                                    rotateY: -15,
+                                }}
+                                animate={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    rotateY: 0,
+                                }}
+                                transition={{
+                                    duration: 1.2,
+                                    ease: [0.22, 1, 0.36, 1],
+                                    delay: 0.2,
+                                }}
+                                className="relative mb-8"
+                                style={{ perspective: '1000px' }}
+                            >
+                                {/* Subtle glow effect */}
+                                <motion.div
+                                    className="absolute inset-0 -z-10 rounded-2xl"
+                                    style={{
+                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%)',
+                                        filter: 'blur(20px)',
+                                    }}
+                                    initial={{ scale: 0.5, opacity: 0 }}
+                                    animate={{ scale: 1.2, opacity: 1 }}
+                                    transition={{
+                                        duration: 1.5,
+                                        ease: [0.22, 1, 0.36, 1],
+                                        delay: 0.6,
+                                    }}
+                                />
+
+                                {/* Logo */}
+                                <motion.img
+                                    src="/kristalinlogotransisi.jpeg"
+                                    alt="Kristalin Eka Lestari Logo"
+                                    className="relative z-10 h-24 w-24 rounded-xl object-contain shadow-2xl sm:h-32 sm:w-32 md:h-36 md:w-36"
+                                    style={{
+                                        filter: 'drop-shadow(0 8px 32px rgba(0, 0, 0, 0.12))',
+                                    }}
+                                    initial={{
+                                        filter: 'blur(4px) brightness(0.8)',
+                                        scale: 0.9,
+                                    }}
+                                    animate={{
+                                        filter: 'blur(0px) brightness(1)',
+                                        scale: 1,
+                                    }}
+                                    transition={{
+                                        duration: 1,
+                                        ease: [0.22, 1, 0.36, 1],
+                                        delay: 0.8,
+                                    }}
+                                />
+
+                                {/* Rotating ring indicator */}
+                                <motion.div
+                                    className="absolute inset-0 rounded-xl border-2 border-transparent"
+                                    style={{
+                                        background: 'linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent) border-box',
+                                        mask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+                                        maskComposite: 'exclude',
+                                    }}
+                                    initial={{ rotate: 0, opacity: 0 }}
+                                    animate={{
+                                        rotate: 360,
+                                        opacity: [0, 0.6, 0],
+                                    }}
+                                    transition={{
+                                        rotate: {
+                                            duration: 3,
+                                            ease: 'linear',
+                                            repeat: Infinity,
+                                            delay: 1.2,
+                                        },
+                                        opacity: {
+                                            duration: 2,
+                                            ease: 'easeInOut',
+                                            repeat: Infinity,
+                                            delay: 1.2,
+                                        },
+                                    }}
+                                />
+                            </motion.div>
+
+                            {/* Welcome Text - Ultra Elegant */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                    duration: 1,
+                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                    delay: 1.2,
+                                }}
+                                className="mb-8 text-center"
+                            >
+                                <motion.div className="relative inline-block">
+                                    {/* Subtle underline accent */}
+                                    <motion.div
+                                        className="absolute -bottom-1 left-1/2 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
+                                        initial={{ width: 0, x: '-50%' }}
+                                        animate={{ width: '120%' }}
+                                        transition={{
+                                            duration: 1.8,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 2,
+                                        }}
+                                    />
+
+                                    <motion.h3
+                                        className="text-sm font-normal tracking-[0.3em] text-gray-500 sm:text-base md:text-lg"
+                                        initial={{
+                                            opacity: 0,
+                                            y: 15,
+                                            letterSpacing: '0.1em',
+                                        }}
+                                        animate={{
+                                            opacity: 1,
+                                            y: 0,
+                                            letterSpacing: '0.3em',
+                                        }}
+                                        transition={{
+                                            duration: 1.5,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 1.4,
+                                        }}
+                                    >
+                                        WELCOME TO
+                                    </motion.h3>
+                                </motion.div>
+                            </motion.div>
+
+                            {/* Company Name - Clean & Professional */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    duration: 1.2,
+                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                    delay: 1.8,
+                                }}
+                                className="mb-6 space-y-3 text-center"
+                            >
+                                {/* KRISTALIN - Clean Elegance */}
+                                <motion.h1
+                                    className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
+                                    style={{
+                                        color: '#1F2937',
+                                        fontWeight: '300',
+                                        letterSpacing: '-0.02em',
+                                    }}
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0.95,
+                                        filter: 'blur(4px)',
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        scale: 1,
+                                        filter: 'blur(0px)',
+                                    }}
+                                    transition={{
+                                        duration: 1.4,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                        delay: 2,
+                                    }}
+                                >
+                                    KRISTALIN
+                                </motion.h1>
+
+                                {/* EKA LESTARI - Golden Accent */}
+                                <motion.div className="relative">
+                                    {/* Minimal golden glow */}
+                                    <motion.div
+                                        className="absolute inset-0 -z-10 opacity-20 blur-3xl"
+                                        style={{
+                                            background: 'radial-gradient(ellipse 100% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 70%)',
+                                        }}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 0.2, scale: 1 }}
+                                        transition={{
+                                            duration: 2,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 2.4,
+                                        }}
+                                    />
+
+                                    <motion.h2
+                                        className="relative text-xl font-normal tracking-wide sm:text-2xl md:text-3xl lg:text-4xl"
+                                        style={{
+                                            background: 'linear-gradient(135deg, #B8860B 0%, #FFD700 50%, #DAA520 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text',
+                                            fontWeight: '400',
+                                        }}
+                                        initial={{
+                                            opacity: 0,
+                                            scale: 0.95,
+                                            filter: 'blur(4px)',
+                                        }}
+                                        animate={{
+                                            opacity: 1,
+                                            scale: 1,
+                                            filter: 'blur(0px)',
+                                        }}
+                                        transition={{
+                                            duration: 1.4,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 2.3,
+                                        }}
+                                    >
+                                        EKA LESTARI
+                                    </motion.h2>
+                                </motion.div>
+
+                                {/* Tagline - Refined */}
+                                <motion.p
+                                    className="mt-8 text-sm font-normal tracking-wide text-gray-600 sm:text-base md:text-lg"
+                                    style={{
+                                        fontWeight: '400',
+                                        lineHeight: '1.6',
+                                    }}
+                                    initial={{
+                                        opacity: 0,
+                                        y: 10,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                    }}
+                                    transition={{
+                                        duration: 1,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                        delay: 2.6,
+                                    }}
+                                >
+                                    Trusted Gold Mining Company{' '}
+                                    <motion.span
+                                        className="font-medium"
+                                        style={{
+                                            color: '#B8860B',
+                                        }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{
+                                            duration: 0.8,
+                                            delay: 2.8,
+                                        }}
+                                    >
+                                        Since 1989
+                                    </motion.span>
+                                </motion.p>
+                            </motion.div>
+
+                            {/* Loading Progress */}
+                            <motion.div
+                                initial={{ opacity: 0, width: 0 }}
+                                animate={{ opacity: 1, width: 'auto' }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: 2.2,
+                                }}
+                                className="mt-8 w-48"
+                            >
+                                <div className="h-0.5 overflow-hidden rounded-full bg-gray-200">
+                                    <motion.div
+                                        className="h-full rounded-full"
+                                        style={{
+                                            background: 'linear-gradient(90deg, #FFD700 0%, #FFA500 100%)',
+                                        }}
+                                        initial={{ width: '0%' }}
+                                        animate={{ width: '100%' }}
+                                        transition={{
+                                            duration: 1.2,
+                                            ease: [0.22, 1, 0.36, 1],
+                                            delay: 2.4,
+                                        }}
+                                    />
+                                </div>
+
+                                {/* Loading text */}
+                                <motion.p
+                                    className="mt-3 text-center text-xs font-medium text-gray-500"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: [0, 1, 0] }}
+                                    transition={{
+                                        duration: 2,
+                                        ease: 'easeInOut',
+                                        repeat: Infinity,
+                                        delay: 2.6,
+                                    }}
+                                >
+                                    Loading...
+                                </motion.p>
+                            </motion.div>
+
+                            {/* Subtle accent elements */}
+                            <motion.div
+                                className="absolute top-1/4 left-1/4 h-1 w-1 rounded-full bg-yellow-400/40"
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{
+                                    scale: [0, 1, 0],
+                                    opacity: [0, 0.6, 0],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    ease: 'easeInOut',
+                                    repeat: Infinity,
+                                    delay: 2,
+                                }}
+                            />
+
+                            <motion.div
+                                className="absolute right-1/4 bottom-1/4 h-1 w-1 rounded-full bg-yellow-400/40"
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{
+                                    scale: [0, 1, 0],
+                                    opacity: [0, 0.6, 0],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    ease: 'easeInOut',
+                                    repeat: Infinity,
+                                    delay: 2.5,
+                                }}
+                            />
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        );
+    };
+
     // Main Content
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-            <Header sticky={true} transparent={false} />
+            {/* Loading Screen */}
+            <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
+
+            {/* Header - Hidden during loading */}
+            <AnimatePresence>
+                {!showLoadingScreen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+                    >
+                        <Header sticky={true} transparent={false} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
-                {/* Feedback Form Modal */}
-                {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
-
-                {/* Floating Feedback Button */}
-                <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
-
-                {/* Hero Section - Layout Tiara Marga dengan konten Kristalin, warna konsisten */}
-                <section className="flex h-auto flex-col lg:h-[400px] lg:flex-row">
-                    {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
-                    <div className="relative flex w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
-                        <div
-                            className={`relative z-10 transition-all duration-1000 ${
-                                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-                            }`}
+                {/* Main Content with Elegant Fade In */}
+                <AnimatePresence>
+                    {!showLoadingScreen && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
                         >
-                            {/* Konten Kristalin dengan animasi */}
-                            <div className="relative">
-                                <div key={currentContent} className="animate-containerFade">
-                                    <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                        <div className="animate-staggeredFadeScale inline-block text-gray-800 delay-0">
-                                            {contentSets[currentContent].title1}
+                            {/* Feedback Form Modal */}
+                            {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
+
+                            {/* Floating Feedback Button */}
+                            <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
+
+                            {/* Hero Section - Layout Tiara Marga dengan konten Kristalin, warna konsisten */}
+                            <section className="flex h-auto flex-col lg:h-[400px] lg:flex-row">
+                                {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
+                                <div className="relative flex w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
+                                    <div
+                                        className={`relative z-10 transition-all duration-1000 ${
+                                            isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+                                        }`}
+                                    >
+                                        {/* Konten Kristalin dengan animasi letter by letter hanya untuk "Introducing" */}
+                                        <div className="relative">
+                                            <div key={currentContent} className="animate-containerFade">
+                                                <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
+                                                    {/* Introducing - Letter by Letter Animation */}
+                                                    <div className="inline-block text-gray-800">
+                                                        {contentSets[currentContent].title1.split('').map((letter, index) => (
+                                                            <motion.span
+                                                                key={index}
+                                                                initial={{
+                                                                    opacity: 0,
+                                                                    y: 20,
+                                                                    scale: 0.8,
+                                                                    filter: 'blur(4px)',
+                                                                }}
+                                                                animate={{
+                                                                    opacity: 1,
+                                                                    y: 0,
+                                                                    scale: 1,
+                                                                    filter: 'blur(0px)',
+                                                                }}
+                                                                transition={{
+                                                                    duration: 0.8,
+                                                                    ease: [0.22, 1, 0.36, 1],
+                                                                    delay: 0.5 + index * 0.12, // Staggered delay per letter (lebih lama)
+                                                                }}
+                                                                className="inline-block"
+                                                            >
+                                                                {letter === ' ' ? '\u00A0' : letter}
+                                                            </motion.span>
+                                                        ))}
+                                                    </div>
+                                                    <br />
+                                                    {/* Kristalin Ekalestari - Tetap seperti sebelumnya */}
+                                                    <div
+                                                        className="animate-staggeredFadeScale inline-block delay-200"
+                                                        style={{
+                                                            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                            WebkitBackgroundClip: 'text',
+                                                            WebkitTextFillColor: 'transparent',
+                                                            backgroundClip: 'text',
+                                                        }}
+                                                    >
+                                                        {contentSets[currentContent].title2}
+                                                    </div>
+                                                </h1>
+                                            </div>
                                         </div>
-                                        <br />
-                                        <div
-                                            className="animate-staggeredFadeScale inline-block delay-200"
-                                            style={{
-                                                background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-                                                WebkitBackgroundClip: 'text',
-                                                WebkitTextFillColor: 'transparent',
-                                                backgroundClip: 'text',
-                                            }}
+
+                                        {/* Subtitle dengan warna abu-abu terang */}
+                                        <div className="relative">
+                                            <p
+                                                key={`subtitle-${currentContent}`}
+                                                className="animate-staggeredFadeScale mb-6 text-center text-sm text-gray-600 delay-400 sm:text-center sm:text-base lg:text-left lg:text-lg"
+                                            >
+                                                {contentSets[currentContent].subtitle}
+                                            </p>
+                                        </div>
+
+                                        {/* Buttons - desain yang lebih user-friendly dan estetik */}
+                                        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:gap-4">
+                                            <button
+                                                className="flex h-12 min-w-full cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:min-w-[180px]"
+                                                onClick={() => (window.location.href = '/about#about-kristalin')}
+                                            >
+                                                Learn More
+                                            </button>
+
+                                            <button
+                                                className="relative flex h-12 min-w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:min-w-[180px]"
+                                                onClick={() => setShowFeedbackForm(true)}
+                                            >
+                                                Kirim Masukan
+                                            </button>
+                                        </div>
+
+                                        {/* Konten tanpa elemen dekoratif */}
+                                        <div className="relative"></div>
+                                    </div>
+                                </div>
+
+                                {/* Right Section - CSR Card dengan gambar papua-children.png */}
+                                <Link
+                                    href="/csr"
+                                    className="relative flex min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12"
+                                    onMouseEnter={() => setHoveredCard(4)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                >
+                                    {/* Background Image - papua-children.png */}
+                                    <img
+                                        src="/papua-children.png"
+                                        alt="CSR - Papua Children"
+                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                            hoveredCard === 4 ? 'scale-105' : 'scale-100'
+                                        }`}
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                        }}
+                                    />
+
+                                    {/* Dark overlay untuk readability text */}
+                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                                    <div className="relative z-10">
+                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                            CORPORATE SOCIAL RESPONSIBILITY
+                                        </div>
+                                        <h3
+                                            className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-300 sm:text-3xl lg:text-4xl ${
+                                                hoveredCard === 4 ? 'translate-x-2' : 'translate-x-0'
+                                            }`}
                                         >
-                                            {contentSets[currentContent].title2}
+                                            Community Development
+                                        </h3>
+                                        <span
+                                            className={`text-base font-medium underline transition-colors duration-300 ${
+                                                hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
+                                            }`}
+                                        >
+                                            Learn more →
+                                        </span>
+                                    </div>
+                                </Link>
+                            </section>
+
+                            {/* Grid Section - Layout 3 kolom dengan warna konsisten putih-emas-hitam */}
+                            <section className="flex h-auto flex-col lg:h-[300px] lg:flex-row">
+                                {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
+                                <div
+                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
+                                    onMouseEnter={() => setHoveredCard(0)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                    onClick={() => (window.location.href = '/line-of-business')}
+                                >
+                                    {/* Background Image tanpa filter warna */}
+                                    <img
+                                        src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
+                                        alt="Our Portfolio"
+                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                            hoveredCard === 0 ? 'scale-105' : 'scale-100'
+                                        }`}
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                        }}
+                                    />
+
+                                    {/* Dark overlay untuk readability text */}
+                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                                    <div className="relative z-10">
+                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">BUSINESS LINE</div>
+                                        <h3
+                                            className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
+                                                hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
+                                            }`}
+                                        >
+                                            Our Portfolio
+                                        </h3>
+                                        <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                                    </div>
+                                </div>
+
+                                {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
+                                <Link
+                                    href="/business-activity"
+                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    onMouseEnter={() => setHoveredCard(1)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                >
+                                    {/* Background Image tanpa filter warna */}
+                                    <img
+                                        src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
+                                        alt="Business Activities"
+                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+                                            hoveredCard === 1 ? 'scale-105' : 'scale-100'
+                                        }`}
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                        }}
+                                    />
+
+                                    {/* Dark overlay untuk readability text */}
+                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                                    <div className="relative z-10">
+                                        <h3
+                                            className={`mb-4 text-lg leading-tight font-bold transition-transform duration-300 sm:text-xl lg:text-2xl ${
+                                                hoveredCard === 1 ? 'translate-x-2' : 'translate-x-0'
+                                            }`}
+                                        >
+                                            Business Activities
+                                        </h3>
+                                        <span
+                                            className={`text-sm font-medium underline transition-colors duration-300 ${
+                                                hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
+                                            }`}
+                                        >
+                                            Find out more →
+                                        </span>
+                                    </div>
+                                </Link>
+
+                                {/* News Card - 25% width, warna emas konsisten */}
+                                <Link
+                                    href="/news"
+                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    onMouseEnter={() => setHoveredCard(2)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                >
+                                    {/* Background Image - Hidden by default, shown on hover */}
+                                    <div
+                                        className={`absolute top-0 right-0 bottom-0 left-0 transition-opacity duration-700 ${
+                                            hoveredCard === 2 ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                    >
+                                        <img
+                                            src={newsData[currentNews].imageUrl}
+                                            alt={newsData[currentNews].title}
+                                            className="h-full w-full object-cover"
+                                        />
+                                        {/* Dark overlay for text readability */}
+                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/70 transition-all duration-700" />
+                                    </div>
+
+                                    {/* Top Section - Header */}
+                                    <div className="relative z-10 mb-4">
+                                        <div className="flex items-center justify-between">
+                                            <div
+                                                className={`text-xl font-bold transition-all duration-500 sm:text-2xl lg:text-3xl ${
+                                                    hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
+                                                }`}
+                                            >
+                                                News
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
+                                                    }}
+                                                    className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
+                                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                    }`}
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        setCurrentNews((prev) => (prev + 1) % newsItems.length);
+                                                    }}
+                                                    className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
+                                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                    }`}
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </h1>
-                                </div>
-                            </div>
+                                    </div>
 
-                            {/* Subtitle dengan warna abu-abu terang */}
-                            <div className="relative">
-                                <p
-                                    key={`subtitle-${currentContent}`}
-                                    className="animate-staggeredFadeScale mb-6 text-center text-sm text-gray-600 delay-400 sm:text-center sm:text-base lg:text-left lg:text-lg"
-                                >
-                                    {contentSets[currentContent].subtitle}
-                                </p>
-                            </div>
+                                    {/* Middle Section - Content dengan berita Kristalin */}
+                                    <div className="relative z-10 flex flex-1 flex-col justify-center">
+                                        <div key={currentNews} className="mb-4 translate-y-0 transform transition-all duration-500">
+                                            {/* Date */}
+                                            <div
+                                                className={`mb-2 text-xs font-medium opacity-80 transition-colors duration-500 sm:text-sm ${
+                                                    hoveredCard === 2 ? 'text-gray-300' : 'text-gray-600'
+                                                }`}
+                                            >
+                                                {newsItems[currentNews].date}
+                                            </div>
 
-                            {/* Buttons - desain yang lebih user-friendly dan estetik */}
-                            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:gap-4">
-                                <button
-                                    className="flex h-12 min-w-full cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:min-w-[180px]"
-                                    onClick={() => (window.location.href = '/about#about-kristalin')}
-                                >
-                                    Learn More
-                                </button>
+                                            {/* Title dengan line clamp */}
+                                            <div
+                                                className={`mb-2 line-clamp-3 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
+                                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                }`}
+                                            >
+                                                {newsItems[currentNews].title}
+                                            </div>
 
-                                <button
-                                    className="relative flex h-12 min-w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:min-w-[180px]"
-                                    onClick={() => setShowFeedbackForm(true)}
-                                >
-                                    Kirim Masukan
-                                </button>
-                            </div>
+                                            {/* Description dengan line clamp */}
+                                            <div
+                                                className={`line-clamp-2 text-xs leading-relaxed opacity-90 transition-colors duration-500 sm:text-sm ${
+                                                    hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
+                                                }`}
+                                            >
+                                                {newsItems[currentNews].excerpt}
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            {/* Konten tanpa elemen dekoratif */}
-                            <div className="relative"></div>
-                        </div>
-                    </div>
-
-                    {/* Right Section - CSR Card dengan gambar papua-children.png */}
-                    <Link
-                        href="/csr"
-                        className="relative flex min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12"
-                        onMouseEnter={() => setHoveredCard(4)}
-                        onMouseLeave={() => setHoveredCard(null)}
-                    >
-                        {/* Background Image - papua-children.png */}
-                        <img
-                            src="/papua-children.png"
-                            alt="CSR - Papua Children"
-                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                hoveredCard === 4 ? 'scale-105' : 'scale-100'
-                            }`}
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-
-                        {/* Dark overlay untuk readability text */}
-                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-
-                        <div className="relative z-10">
-                            <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                CORPORATE SOCIAL RESPONSIBILITY
-                            </div>
-                            <h3
-                                className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-300 sm:text-3xl lg:text-4xl ${
-                                    hoveredCard === 4 ? 'translate-x-2' : 'translate-x-0'
-                                }`}
-                            >
-                                Community Development
-                            </h3>
-                            <span
-                                className={`text-base font-medium underline transition-colors duration-300 ${
-                                    hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
-                                }`}
-                            >
-                                Learn more →
-                            </span>
-                        </div>
-                    </Link>
-                </section>
-
-                {/* Grid Section - Layout 3 kolom dengan warna konsisten putih-emas-hitam */}
-                <section className="flex h-auto flex-col lg:h-[300px] lg:flex-row">
-                    {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
-                    <div
-                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
-                        onMouseEnter={() => setHoveredCard(0)}
-                        onMouseLeave={() => setHoveredCard(null)}
-                        onClick={() => (window.location.href = '/line-of-business')}
-                    >
-                        {/* Background Image tanpa filter warna */}
-                        <img
-                            src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-                            alt="Our Portfolio"
-                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                hoveredCard === 0 ? 'scale-105' : 'scale-100'
-                            }`}
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-
-                        {/* Dark overlay untuk readability text */}
-                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-
-                        <div className="relative z-10">
-                            <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">BUSINESS LINE</div>
-                            <h3
-                                className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
-                                    hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
-                                }`}
-                            >
-                                Our Portfolio
-                            </h3>
-                            <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                        </div>
-                    </div>
-
-                    {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
-                    <Link
-                        href="/business-activity"
-                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
-                        onMouseEnter={() => setHoveredCard(1)}
-                        onMouseLeave={() => setHoveredCard(null)}
-                    >
-                        {/* Background Image tanpa filter warna */}
-                        <img
-                            src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-                            alt="Business Activities"
-                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                hoveredCard === 1 ? 'scale-105' : 'scale-100'
-                            }`}
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-
-                        {/* Dark overlay untuk readability text */}
-                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-
-                        <div className="relative z-10">
-                            <h3
-                                className={`mb-4 text-lg leading-tight font-bold transition-transform duration-300 sm:text-xl lg:text-2xl ${
-                                    hoveredCard === 1 ? 'translate-x-2' : 'translate-x-0'
-                                }`}
-                            >
-                                Business Activities
-                            </h3>
-                            <span
-                                className={`text-sm font-medium underline transition-colors duration-300 ${
-                                    hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
-                                }`}
-                            >
-                                Find out more →
-                            </span>
-                        </div>
-                    </Link>
-
-                    {/* News Card - 25% width, warna emas konsisten */}
-                    <Link
-                        href="/news"
-                        className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
-                        onMouseEnter={() => setHoveredCard(2)}
-                        onMouseLeave={() => setHoveredCard(null)}
-                    >
-                        {/* Background Image - Hidden by default, shown on hover */}
-                        <div
-                            className={`absolute top-0 right-0 bottom-0 left-0 transition-opacity duration-700 ${
-                                hoveredCard === 2 ? 'opacity-100' : 'opacity-0'
-                            }`}
-                        >
-                            <img src={newsData[currentNews].imageUrl} alt={newsData[currentNews].title} className="h-full w-full object-cover" />
-                            {/* Dark overlay for text readability */}
-                            <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/70 transition-all duration-700" />
-                        </div>
-
-                        {/* Top Section - Header */}
-                        <div className="relative z-10 mb-4">
-                            <div className="flex items-center justify-between">
-                                <div
-                                    className={`text-xl font-bold transition-all duration-500 sm:text-2xl lg:text-3xl ${
-                                        hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
-                                    }`}
-                                >
-                                    News
-                                </div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
-                                        }}
-                                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
-                                            hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                    {/* Bottom Section - View button */}
+                                    <div
+                                        className={`relative z-10 border-t pt-4 transition-colors duration-500 ${
+                                            hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
                                         }`}
                                     >
-                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                        </svg>
-                                    </button>
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            setCurrentNews((prev) => (prev + 1) % newsItems.length);
-                                        }}
-                                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
-                                            hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                        }`}
-                                    >
-                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                                        <div
+                                            className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
+                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                            }`}
+                                        >
+                                            <span>View</span>
+                                            <div
+                                                className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
+                                            >
+                                                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        {/* Middle Section - Content dengan berita Kristalin */}
-                        <div className="relative z-10 flex flex-1 flex-col justify-center">
-                            <div key={currentNews} className="mb-4 translate-y-0 transform transition-all duration-500">
-                                {/* Date */}
-                                <div
-                                    className={`mb-2 text-xs font-medium opacity-80 transition-colors duration-500 sm:text-sm ${
-                                        hoveredCard === 2 ? 'text-gray-300' : 'text-gray-600'
-                                    }`}
-                                >
-                                    {newsItems[currentNews].date}
-                                </div>
+                                    {/* Navigation dots - tanpa dot kotak */}
+                                    <div className="absolute right-4 bottom-4 z-10 flex gap-2 lg:right-6 lg:bottom-6">
+                                        {[...Array(4)].map((_, index) => (
+                                            <div
+                                                key={index}
+                                                className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                                                    index === currentNews
+                                                        ? hoveredCard === 2
+                                                            ? 'bg-white'
+                                                            : 'bg-gray-800'
+                                                        : hoveredCard === 2
+                                                          ? 'bg-white/30'
+                                                          : 'bg-gray-800/30'
+                                                }`}
+                                            />
+                                        ))}
+                                    </div>
+                                </Link>
+                            </section>
 
-                                {/* Title dengan line clamp */}
-                                <div
-                                    className={`mb-2 line-clamp-3 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
-                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                    }`}
-                                >
-                                    {newsItems[currentNews].title}
-                                </div>
-
-                                {/* Description dengan line clamp */}
-                                <div
-                                    className={`line-clamp-2 text-xs leading-relaxed opacity-90 transition-colors duration-500 sm:text-sm ${
-                                        hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
-                                    }`}
-                                >
-                                    {newsItems[currentNews].excerpt}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Bottom Section - View button */}
-                        <div
-                            className={`relative z-10 border-t pt-4 transition-colors duration-500 ${
-                                hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
-                            }`}
-                        >
-                            <div
-                                className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
-                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                }`}
-                            >
-                                <span>View</span>
-                                <div className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}>
-                                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Navigation dots - tanpa dot kotak */}
-                        <div className="absolute right-4 bottom-4 z-10 flex gap-2 lg:right-6 lg:bottom-6">
-                            {[...Array(4)].map((_, index) => (
-                                <div
-                                    key={index}
-                                    className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                                        index === currentNews
-                                            ? hoveredCard === 2
-                                                ? 'bg-white'
-                                                : 'bg-gray-800'
-                                            : hoveredCard === 2
-                                              ? 'bg-white/30'
-                                              : 'bg-gray-800/30'
-                                    }`}
-                                />
-                            ))}
-                        </div>
-                    </Link>
-                </section>
-
-                {/* Footer - Footer Kristalin */}
-                <footer className="bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
-                    <div className="animate-pulse">© 2025 PT Kristalin Eka Lestari. All rights reserved.</div>
-                </footer>
+                            {/* Footer - Footer Kristalin */}
+                            <footer className="bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
+                                <div className="animate-pulse">© 2025 PT Kristalin Eka Lestari. All rights reserved.</div>
+                            </footer>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
 
             {/* Premium Staggered Animation Styles */}
@@ -1371,6 +1843,120 @@ const Welcome = () => {
             transform: translateZ(0);
             backface-visibility: hidden;
             perspective: 1000;
+          }
+
+          /* Perspective utilities for 3D effects */
+          .perspective-1000 {
+            perspective: 1000px;
+          }
+
+          .perspective-500 {
+            perspective: 500px;
+          }
+
+          /* Enhanced drop shadow for premium feel */
+          .drop-shadow-premium {
+            filter: drop-shadow(0 25px 50px rgba(251, 191, 36, 0.2));
+          }
+
+          /* Smooth blur transitions */
+          .blur-transition {
+            transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          /* Floating animation keyframes */
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+
+          .animate-float {
+            animation: float 3s ease-in-out infinite;
+          }
+
+          /* Particle animation keyframes */
+          @keyframes particle-float {
+            0% {
+              transform: translateY(0px) scale(0);
+              opacity: 0;
+            }
+            50% {
+              transform: translateY(-20px) scale(1);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(-40px) scale(0);
+              opacity: 0;
+            }
+          }
+
+          .animate-particle {
+            animation: particle-float 4s ease-in-out infinite;
+          }
+
+          /* Gradient text animation */
+          @keyframes gradient-shift {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+
+          .animate-gradient-text {
+            animation: gradient-shift 3s ease infinite;
+          }
+
+          /* Enhanced logo rotation */
+          @keyframes logo-float {
+            0%, 100% {
+              transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+              transform: translateY(-5px) rotate(180deg);
+            }
+          }
+
+          .animate-logo-float {
+            animation: logo-float 8s ease-in-out infinite;
+          }
+
+          /* Premium glow animation */
+          @keyframes premium-glow {
+            0%, 100% {
+              opacity: 0.4;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.6;
+              transform: scale(1.1);
+            }
+          }
+
+          .animate-premium-glow {
+            animation: premium-glow 4s ease-in-out infinite;
+          }
+
+          /* Loading bar animation */
+          @keyframes loading-pulse {
+            0%, 100% {
+              opacity: 0.7;
+            }
+            50% {
+              opacity: 1;
+            }
+          }
+
+          .animate-loading-pulse {
+            animation: loading-pulse 2s ease-in-out infinite;
           }
         `,
                 }}
