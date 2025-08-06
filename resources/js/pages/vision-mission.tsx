@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconEye = () => (
@@ -55,6 +56,7 @@ const IconHeart = () => (
 );
 
 export default function VisionMissionPage() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeMission, setActiveMission] = useState(0);
@@ -80,39 +82,39 @@ export default function VisionMissionPage() {
 
   const missionPillars = [
     {
-      title: "Continuous Growth & Development",
-      subtitle: "Innovation Excellence",
-      description: "We are committed to perpetual advancement through strategic innovation, embracing cutting-edge technologies and methodologies that drive sustainable growth across all operational dimensions.",
+      title: t('pages.vision_mission.mission.pillars.growth_development.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.growth_development.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.growth_development.description'),
       icon: <IconTrendingUp />
     },
     {
-      title: "Professional Entity Development",
-      subtitle: "Organizational Excellence",
-      description: "We cultivate a culture of professionalism by investing in human capital development, implementing world-class operational standards, and fostering organizational capabilities.",
+      title: t('pages.vision_mission.mission.pillars.professional_entity.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.professional_entity.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.professional_entity.description'),
       icon: <IconUsers />
     },
     {
-      title: "Sound Managerial Principles",
-      subtitle: "Leadership Excellence",
-      description: "Our management philosophy is anchored in transparency, accountability, and strategic decision-making that balances stakeholder interests while ensuring operational efficiency.",
+      title: t('pages.vision_mission.mission.pillars.managerial_principles.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.managerial_principles.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.managerial_principles.description'),
       icon: <IconSettings />
     },
     {
-      title: "Advanced Technology Integration",
-      subtitle: "Technological Innovation",
-      description: "We leverage state-of-the-art, economically viable, and highly productive technologies that optimize resource extraction efficiency while minimizing environmental impact.",
+      title: t('pages.vision_mission.mission.pillars.technology_integration.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.technology_integration.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.technology_integration.description'),
       icon: <IconTarget />
     },
     {
-      title: "Environmental Stewardship",
-      subtitle: "Ecological Responsibility",
-      description: "Our unwavering commitment to environmental conservation encompasses maintaining ecosystem balance and pioneering sustainable mining practices that protect Papua's biodiversity.",
+      title: t('pages.vision_mission.mission.pillars.environmental_stewardship.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.environmental_stewardship.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.environmental_stewardship.description'),
       icon: <IconLeaf />
     },
     {
-      title: "Community Empowerment",
-      subtitle: "Social Impact",
-      description: "We actively explore and develop local community potential through comprehensive empowerment programs, skill development initiatives, and economic opportunities that create lasting prosperity.",
+      title: t('pages.vision_mission.mission.pillars.community_empowerment.title'),
+      subtitle: t('pages.vision_mission.mission.pillars.community_empowerment.subtitle'),
+      description: t('pages.vision_mission.mission.pillars.community_empowerment.description'),
       icon: <IconHeart />
     }
   ];
@@ -129,7 +131,7 @@ export default function VisionMissionPage() {
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
               src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
-              alt="Gold bars and gold powder on scale"
+              alt={t('pages.vision_mission.alt_texts.gold_bars')}
               className="w-full h-full object-cover opacity-80"
             />
             
@@ -138,12 +140,24 @@ export default function VisionMissionPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Our Vision<br />
-                <span className="font-normal">& Mission</span>
+                {(() => {
+                  const title = t('pages.vision_mission.page_title');
+                  if (title.includes(' & ')) {
+                    const parts = title.split(' & ');
+                    return (
+                      <>
+                        {parts[0]}<br />
+                        <span className="font-normal">& {parts[1]}</span>
+                      </>
+                    );
+                  } else {
+                    return <span className="font-normal">{title}</span>;
+                  }
+                })()}
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
               <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
-                Guiding principles that drive our commitment to excellence, sustainability, and community prosperity.
+                {t('pages.vision_mission.description')}
               </p>
             </div>
           </div>
@@ -159,12 +173,11 @@ export default function VisionMissionPage() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Vision & Mission
+                    {t('pages.vision_mission.subtitle')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed">
-                  Guiding Principles for
-                  <span className="text-yellow-600 font-medium"> Sustainable Excellence</span>
+                  {t('pages.vision_mission.main_heading')}
                 </h2>
               </div>
 
@@ -180,14 +193,14 @@ export default function VisionMissionPage() {
                     <div className="flex-1 space-y-3">
                       <div>
                         <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-1">
-                          Our Vision
+                          {t('pages.vision_mission.vision.label')}
                         </div>
                         <h3 className="text-lg sm:text-xl font-semibold text-yellow-800 leading-tight">
-                          Leading Indonesia's Sustainable Mining Future
+                          {t('pages.vision_mission.vision.title')}
                         </h3>
                       </div>
                       <p className="text-yellow-700 leading-relaxed text-sm sm:text-base">
-                        To become a transformative entity that orchestrates Indonesia's abundant natural resources with unparalleled optimization and unwavering responsibility, creating sustainable prosperity that enriches local communities, strengthens our nation's economic foundation, and establishes new paradigms of ethical mining practices that serve as a beacon for the global mining industry.
+                        {t('pages.vision_mission.vision.content')}
                       </p>
                     </div>
                   </div>
@@ -201,12 +214,11 @@ export default function VisionMissionPage() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Our Mission
+                    {t('pages.vision_mission.mission.label')}
                   </span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-light text-gray-900 leading-relaxed">
-                  Six Pillars of
-                  <span className="text-yellow-600 font-medium"> Operational Excellence</span>
+                  {t('pages.vision_mission.mission.title')}
                 </h3>
               </div>
 
@@ -275,19 +287,18 @@ export default function VisionMissionPage() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Committed to Indonesia's Prosperity</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.vision_mission.cta.prosperity_title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Through our vision and mission, we strive to create lasting positive impact that transcends traditional mining operations, 
-                      building a legacy of responsible resource stewardship and community empowerment.
+                      {t('pages.vision_mission.cta.prosperity_desc')}
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
-                      <span className="relative z-10">Our Impact Stories</span>
+                      <span className="relative z-10">{t('pages.vision_mission.cta.impact_stories_btn')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
-                      Learn More
+                      {t('pages.vision_mission.cta.learn_more_btn')}
                     </button>
                   </div>
                 </div>
@@ -302,19 +313,31 @@ export default function VisionMissionPage() {
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
               src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
-              alt="Gold bars and gold powder on scale"
+              alt={t('pages.vision_mission.alt_texts.gold_bars')}
               className="w-full h-full object-cover opacity-80"
             />
             <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Our Vision<br />
-                <span className="font-normal">& Mission</span>
+                {(() => {
+                  const title = t('pages.vision_mission.page_title');
+                  if (title.includes(' & ')) {
+                    const parts = title.split(' & ');
+                    return (
+                      <>
+                        {parts[0]}<br />
+                        <span className="font-normal">& {parts[1]}</span>
+                      </>
+                    );
+                  } else {
+                    return <span className="font-normal">{title}</span>;
+                  }
+                })()}
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
               <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-                Guiding principles that drive our commitment to excellence, sustainability, and community prosperity.
+                {t('pages.vision_mission.description')}
               </p>
             </div>
           </div>
@@ -338,12 +361,11 @@ export default function VisionMissionPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Vision & Mission
+                      {t('pages.vision_mission.subtitle')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed">
-                    Guiding Principles for
-                    <span className="text-yellow-600 font-medium"> Sustainable Excellence</span>
+                    {t('pages.vision_mission.main_heading')}
                   </h2>
                 </div>
 
@@ -359,14 +381,14 @@ export default function VisionMissionPage() {
                       <div className="flex-1 space-y-4">
                         <div>
                           <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider mb-2">
-                            Our Vision
+                            {t('pages.vision_mission.vision.label')}
                           </div>
                           <h3 className="text-2xl font-semibold text-yellow-800 leading-tight">
-                            Leading Indonesia's Sustainable Mining Future
+                            {t('pages.vision_mission.vision.title')}
                           </h3>
                         </div>
                         <p className="text-yellow-700 leading-relaxed">
-                          To become a transformative entity that orchestrates Indonesia's abundant natural resources with unparalleled optimization and unwavering responsibility, creating sustainable prosperity that enriches local communities, strengthens our nation's economic foundation, and establishes new paradigms of ethical mining practices that serve as a beacon for the global mining industry.
+                          {t('pages.vision_mission.vision.content')}
                         </p>
                       </div>
                     </div>
@@ -380,12 +402,11 @@ export default function VisionMissionPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Our Mission
+                      {t('pages.vision_mission.mission.label')}
                     </span>
                   </div>
                   <h3 className="text-2xl font-light text-gray-900 leading-relaxed">
-                    Six Pillars of
-                    <span className="text-yellow-600 font-medium"> Operational Excellence</span>
+                    {t('pages.vision_mission.mission.title')}
                   </h3>
                 </div>
 
@@ -454,19 +475,18 @@ export default function VisionMissionPage() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Committed to Indonesia's Prosperity</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.vision_mission.cta.prosperity_title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Through our vision and mission, we strive to create lasting positive impact that transcends traditional mining operations, 
-                        building a legacy of responsible resource stewardship and community empowerment.
+                        {t('pages.vision_mission.cta.prosperity_desc')}
                       </p>
                     </div>
                     <div className="flex justify-center space-x-4">
                       <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                        <span className="relative z-10">Our Impact Stories</span>
+                        <span className="relative z-10">{t('pages.vision_mission.cta.impact_stories_btn')}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                       </button>
                       <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
-                        Learn More
+                        {t('pages.vision_mission.cta.learn_more_btn')}
                       </button>
                     </div>
                   </div>

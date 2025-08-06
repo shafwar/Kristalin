@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface HeaderProps {
     sticky?: boolean;
@@ -7,7 +8,8 @@ interface HeaderProps {
 }
 
 export default function Header({ sticky = false, transparent = false }: HeaderProps) {
-    const [language, setLanguage] = useState('ID');
+    const { t, locale, switchLanguage, getCurrentLanguageCode } = useTranslation();
+    
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
@@ -159,28 +161,28 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Navigation items for reusability
     const navigationItems = [
-        { label: 'Home', href: '/' },
+        { label: t('nav.home'), href: '/' },
         {
-            label: 'About Us',
+            label: t('nav.about_us'),
             href: '#',
             hasDropdown: true,
             dropdownItems: [
-                { label: 'About Kristalin Eka Lestari', href: '/about#about-kristalin' },
-                { label: 'Our Vision & Mission', href: '/vision-mission' },
-                { label: 'Company Overview', href: '/company-overview' },
-                { label: 'Milestones', href: '/milestones' },
-                { label: 'Our Core Values', href: '/core-values' },
-                { label: 'Leadership Traits', href: '/leadership-traits' },
-                { label: 'Message From Founder', href: '/message-from-founder' },
-                { label: 'News', href: '/news' },
+                { label: t('nav.about_kristalin'), href: '/about#about-kristalin' },
+                { label: t('nav.vision_mission'), href: '/vision-mission' },
+                { label: t('nav.company_overview'), href: '/company-overview' },
+                { label: t('nav.milestones'), href: '/milestones' },
+                { label: t('nav.core_values'), href: '/core-values' },
+                { label: t('nav.leadership_traits'), href: '/leadership-traits' },
+                { label: t('nav.message_from_founder'), href: '/message-from-founder' },
+                { label: t('nav.news'), href: '/news' },
             ],
         },
-        { label: 'Modi', href: 'https://modi.esdm.go.id/portal/detailPerusahaan/14963?jp=1', external: true },
-        { label: 'Gold Price', href: 'https://goldprice.org/', external: true },
-        { label: 'Line of Business', href: '/line-of-business' },
-        { label: 'Business Activities', href: '/business-activity' },
-        { label: 'CSR', href: '/csr' },
-        { label: 'Contact', href: '/contact' },
+        { label: t('nav.modi'), href: 'https://modi.esdm.go.id/portal/detailPerusahaan/14963?jp=1', external: true },
+        { label: t('nav.gold_price'), href: 'https://goldprice.org/', external: true },
+        { label: t('nav.line_of_business'), href: '/line-of-business' },
+        { label: t('nav.business_activities'), href: '/business-activity' },
+        { label: t('nav.csr'), href: '/csr' },
+        { label: t('nav.contact'), href: '/contact' },
     ];
 
     return (
@@ -198,9 +200,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             </div>
 
             {/* Desktop Navigation Menu */}
-            <nav className="hidden flex-1 justify-center lg:flex">
+            <nav className="hidden flex-1 justify-center lg:flex lg:px-2 xl:px-4">
                 <ul
-                    className="flex items-center gap-4 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out xl:gap-7 xl:text-sm"
+                    className="flex items-center gap-3 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-4 xl:gap-6 2xl:gap-8 lg:text-xs xl:text-sm"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
@@ -214,7 +216,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-1 px-2 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400"
+                                        className="flex items-center gap-1 px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
                                     >
                                         {item.label}
                                         <svg
@@ -251,14 +253,14 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     href={item.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-2 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400"
+                                    className="px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
                                 >
                                     {item.label}
                                 </a>
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="px-2 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400"
+                                    className="px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
                                 >
                                     {item.label}
                                 </Link>
@@ -288,18 +290,18 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
             {/* Right Side Features - Desktop Only */}
             <div
-                className="hidden h-full items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex xl:text-sm"
+                className="hidden h-full items-center gap-2 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex lg:gap-1 xl:gap-3 xl:text-sm"
                 style={{ opacity: textOpacity }}
             >
                 {/* Language Switcher */}
                 <div className="relative" ref={dropdownRef}>
                     <button
-                        className="flex h-10 min-w-[44px] items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none xl:text-sm"
+                        className="flex h-10 min-w-[44px] items-center justify-center px-1 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none lg:px-2 xl:text-sm"
                         onClick={() => setDropdownOpen(!dropdownOpen)}
                         aria-haspopup="listbox"
                         aria-expanded={dropdownOpen}
                     >
-                        {language}
+                        {getCurrentLanguageCode()}
                         <svg
                             width="12"
                             height="12"
@@ -315,34 +317,45 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             role="listbox"
                         >
                             <button
-                                className={`block w-full px-4 py-2 text-left text-sm font-semibold uppercase transition-all duration-300 ease-out hover:scale-105 hover:bg-yellow-100 ${language === 'ID' ? 'text-yellow-600' : 'text-gray-800'}`}
+                                className={`block w-full px-4 py-2 text-left text-sm font-semibold uppercase transition-all duration-300 ease-out hover:scale-105 hover:bg-yellow-100 ${locale === 'id' ? 'text-yellow-600' : 'text-gray-800'}`}
                                 onClick={() => {
-                                    setLanguage('ID');
+                                    switchLanguage('id');
                                     setDropdownOpen(false);
                                 }}
                                 role="option"
-                                aria-selected={language === 'ID'}
+                                aria-selected={locale === 'id'}
                             >
                                 ID
                             </button>
                             <button
-                                className={`block w-full px-4 py-2 text-left text-sm font-semibold uppercase transition-all duration-300 ease-out hover:scale-105 hover:bg-yellow-100 ${language === 'EN' ? 'text-yellow-600' : 'text-gray-800'}`}
+                                className={`block w-full px-4 py-2 text-left text-sm font-semibold uppercase transition-all duration-300 ease-out hover:scale-105 hover:bg-yellow-100 ${locale === 'en' ? 'text-yellow-600' : 'text-gray-800'}`}
                                 onClick={() => {
-                                    setLanguage('EN');
+                                    switchLanguage('en');
                                     setDropdownOpen(false);
                                 }}
                                 role="option"
-                                aria-selected={language === 'EN'}
+                                aria-selected={locale === 'en'}
                             >
                                 EN
+                            </button>
+                            <button
+                                className={`block w-full px-4 py-2 text-left text-sm font-semibold uppercase transition-all duration-300 ease-out hover:scale-105 hover:bg-yellow-100 ${locale === 'zh' ? 'text-yellow-600' : 'text-gray-800'}`}
+                                onClick={() => {
+                                    switchLanguage('zh');
+                                    setDropdownOpen(false);
+                                }}
+                                role="option"
+                                aria-selected={locale === 'zh'}
+                            >
+                                ZH
                             </button>
                         </div>
                     )}
                 </div>
                 {/* Search Icon */}
                 <button
-                    className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
-                    aria-label="Search"
+                    className="flex h-10 items-center justify-center px-1 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none lg:px-2 xl:text-sm"
+                    aria-label={t('common.search')}
                 >
                     <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
                         <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
@@ -369,19 +382,25 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     <div className="min-h-full space-y-4 px-4 py-6">
                         {/* Mobile Language Switcher */}
                         <div className="flex items-center justify-between border-b border-gray-600 pb-4">
-                            <span className="text-sm font-semibold text-white">Language:</span>
+                            <span className="text-sm font-semibold text-white">{t('common.language')}:</span>
                             <div className="flex gap-2">
                                 <button
-                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${language === 'ID' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
-                                    onClick={() => setLanguage('ID')}
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'id' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    onClick={() => switchLanguage('id')}
                                 >
                                     ID
                                 </button>
                                 <button
-                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${language === 'EN' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
-                                    onClick={() => setLanguage('EN')}
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'en' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    onClick={() => switchLanguage('en')}
                                 >
                                     EN
+                                </button>
+                                <button
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'zh' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    onClick={() => switchLanguage('zh')}
+                                >
+                                    ZH
                                 </button>
                             </div>
                         </div>
@@ -445,7 +464,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     <circle cx="11" cy="11" r="8" />
                                     <path d="M21 21l-4.35-4.35" />
                                 </svg>
-                                Search
+                                {t('common.search')}
                             </button>
                         </div>
                     </div>

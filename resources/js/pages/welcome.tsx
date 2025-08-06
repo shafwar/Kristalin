@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // Import data berita dari news.tsx
 const newsData = [
@@ -72,6 +73,7 @@ const newsData = [
 ];
 
 const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
     const [category, setCategory] = useState('');
     const [department, setDepartment] = useState('');
@@ -97,16 +99,16 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     const ticketRef = useRef<HTMLDivElement>(null);
 
     const statusText: Record<string, string> = {
-        submitted: 'Submitted',
-        review: 'Under Review',
-        progress: 'In Progress',
-        resolved: 'Resolved',
+        submitted: t('pages.welcome.feedback.status.submitted'),
+        review: t('pages.welcome.feedback.status.review'),
+        progress: t('pages.welcome.feedback.status.progress'),
+        resolved: t('pages.welcome.feedback.status.resolved'),
     };
     const priorityText: Record<string, string> = {
-        low: 'Low',
-        medium: 'Medium',
-        high: 'High',
-        urgent: 'Urgent',
+        low: t('pages.welcome.feedback.priority.low'),
+        medium: t('pages.welcome.feedback.priority.medium'),
+        high: t('pages.welcome.feedback.priority.high'),
+        urgent: t('pages.welcome.feedback.priority.urgent'),
     };
 
     function handleSubmit(e: React.FormEvent) {
@@ -194,8 +196,8 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                     </button>
 
                     <div className="pr-12">
-                        <h1 className="text-2xl font-bold text-white drop-shadow md:text-3xl">Internal Feedback System</h1>
-                        <p className="mt-2 text-yellow-100">Secure Channel for Employee Feedback and Complaints</p>
+                        <h1 className="text-2xl font-bold text-white drop-shadow md:text-3xl">{t('pages.welcome.feedback.modal_title')}</h1>
+                        <p className="mt-2 text-yellow-100">{t('pages.welcome.feedback.modal_subtitle')}</p>
                     </div>
                 </div>
 
@@ -211,7 +213,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 activeTab === 'report' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
                             }`}
                         >
-                            Submit Report
+                            {t('pages.welcome.feedback.report_tab')}
                         </button>
                         <button
                             onClick={() => setActiveTab('track')}
@@ -219,7 +221,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 activeTab === 'track' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
                             }`}
                         >
-                            Track Status
+                            {t('pages.welcome.feedback.track_tab')}
                         </button>
                     </nav>
                 </div>
@@ -240,8 +242,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         />
                                     </svg>
                                     <div>
-                                        <strong>Anonymous Report:</strong> Your identity is fully protected. The system does not store any data that
-                                        can trace back to individual users.
+{t('pages.welcome.feedback.anonymous_notice')}
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +252,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 <div className="grid gap-6 md:grid-cols-2">
                                     <div>
                                         <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            Report Category <span className="text-red-500">*</span>
+                                            {t('pages.welcome.feedback.category_label')} <span className="text-red-500">*</span>
                                         </label>
                                         <select
                                             id="category"
@@ -260,22 +261,22 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                             onChange={(e) => setCategory(e.target.value)}
                                             className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                         >
-                                            <option value="">Select category...</option>
-                                            <option value="workplace">Workplace Environment</option>
-                                            <option value="safety">Safety & Health</option>
-                                            <option value="harassment">Harassment/Discrimination</option>
-                                            <option value="policy">Company Policy</option>
-                                            <option value="management">Management Issues</option>
-                                            <option value="facilities">Facilities</option>
-                                            <option value="ethics">Work Ethics</option>
-                                            <option value="suggestion">Improvement Suggestion</option>
-                                            <option value="other">Other</option>
+                                            <option value="">{t('pages.welcome.feedback.select_category')}</option>
+                                            <option value="workplace">{t('pages.welcome.feedback.categories.workplace')}</option>
+                                            <option value="safety">{t('pages.welcome.feedback.categories.safety')}</option>
+                                            <option value="harassment">{t('pages.welcome.feedback.categories.harassment')}</option>
+                                            <option value="policy">{t('pages.welcome.feedback.categories.policy')}</option>
+                                            <option value="management">{t('pages.welcome.feedback.categories.management')}</option>
+                                            <option value="facilities">{t('pages.welcome.feedback.categories.facilities')}</option>
+                                            <option value="ethics">{t('pages.welcome.feedback.categories.ethics')}</option>
+                                            <option value="suggestion">{t('pages.welcome.feedback.categories.suggestion')}</option>
+                                            <option value="other">{t('pages.welcome.feedback.categories.other')}</option>
                                         </select>
                                     </div>
 
                                     <div>
                                         <label htmlFor="department" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            Related Department (Optional)
+                                            {t('pages.welcome.feedback.department_label')} {t('pages.welcome.feedback.optional')}
                                         </label>
                                         <select
                                             id="department"
@@ -283,14 +284,14 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                             onChange={(e) => setDepartment(e.target.value)}
                                             className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                         >
-                                            <option value="">Select department...</option>
-                                            <option value="hr">Human Resources</option>
-                                            <option value="finance">Finance</option>
-                                            <option value="it">Information Technology</option>
-                                            <option value="marketing">Marketing</option>
-                                            <option value="operations">Operations</option>
-                                            <option value="management">Management</option>
-                                            <option value="general">General</option>
+                                            <option value="">{t('pages.welcome.feedback.select_department')}</option>
+                                            <option value="hr">{t('pages.welcome.feedback.departments.hr')}</option>
+                                            <option value="finance">{t('pages.welcome.feedback.departments.finance')}</option>
+                                            <option value="it">{t('pages.welcome.feedback.departments.it')}</option>
+                                            <option value="marketing">{t('pages.welcome.feedback.departments.marketing')}</option>
+                                            <option value="operations">{t('pages.welcome.feedback.departments.operations')}</option>
+                                            <option value="management">{t('pages.welcome.feedback.departments.management')}</option>
+                                            <option value="general">{t('pages.welcome.feedback.departments.general')}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -298,7 +299,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 {/* Priority Level - Responsive Grid */}
                                 <div>
                                     <label className="mb-3 block text-sm font-semibold text-gray-700">
-                                        Priority Level <span className="text-red-500">*</span>
+                                        {t('pages.welcome.feedback.priority_label')} <span className="text-red-500">*</span>
                                     </label>
                                     <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                                         {['low', 'medium', 'high', 'urgent'].map((level) => (
@@ -325,13 +326,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                     onChange={(e) => setPriority(e.target.value)}
                                                     className="hidden"
                                                 />
-                                                {level === 'low'
-                                                    ? '📗 Low'
-                                                    : level === 'medium'
-                                                      ? '📙 Medium'
-                                                      : level === 'high'
-                                                        ? '📕 High'
-                                                        : '🚨 Urgent'}
+{t(`pages.welcome.feedback.priority_display.${level}`)}
                                             </label>
                                         ))}
                                     </div>
@@ -340,7 +335,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 {/* Report Title */}
                                 <div>
                                     <label htmlFor="subject" className="mb-2 block text-sm font-semibold text-gray-700">
-                                        Report Title <span className="text-red-500">*</span>
+                                        {t('pages.welcome.feedback.subject_label')} <span className="text-red-500">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -348,7 +343,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         required
                                         value={subject}
                                         onChange={(e) => setSubject(e.target.value)}
-                                        placeholder="Brief summary of the issue..."
+                                        placeholder={t('pages.welcome.feedback.subject_placeholder')}
                                         className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                     />
                                 </div>
@@ -356,14 +351,14 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 {/* Description */}
                                 <div>
                                     <label htmlFor="description" className="mb-2 block text-sm font-semibold text-gray-700">
-                                        Detailed Description <span className="text-red-500">*</span>
+                                        {t('pages.welcome.feedback.description_label')} <span className="text-red-500">*</span>
                                     </label>
                                     <textarea
                                         id="description"
                                         required
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
-                                        placeholder="Please describe the issue in detail, including chronology of events, impact experienced, and suggested solutions if any..."
+                                        placeholder={t('pages.welcome.feedback.description_placeholder')}
                                         className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                         rows={4}
                                     />
@@ -373,7 +368,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                 <div className="grid gap-6 md:grid-cols-2">
                                     <div>
                                         <label htmlFor="incident-date" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            Incident Date (Optional)
+                                            {t('pages.welcome.feedback.date_label')} {t('pages.welcome.feedback.optional')}
                                         </label>
                                         <input
                                             type="date"
@@ -385,7 +380,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                     </div>
 
                                     <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">Upload Evidence (Optional)</label>
+                                        <label className="mb-2 block text-sm font-semibold text-gray-700">{t('pages.welcome.feedback.files_label')} {t('pages.welcome.feedback.optional')}</label>
                                         <div
                                             className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 px-4 py-8 transition-colors duration-300 hover:border-yellow-400 hover:bg-yellow-50"
                                             onClick={() => fileInputRef.current?.click()}
@@ -414,9 +409,9 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                                                             />
                                                         </svg>
-                                                        Click to upload files
+{t('pages.welcome.feedback.upload_text')}
                                                         <br />
-                                                        <span className="text-xs">JPG, PNG, PDF, DOC (Max 10MB)</span>
+                                                        <span className="text-xs">{t('pages.welcome.feedback.upload_format')}</span>
                                                     </>
                                                 ) : (
                                                     <>
@@ -433,7 +428,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                                             />
                                                         </svg>
-                                                        {files.length} file(s) selected
+{files.length} {t('pages.welcome.feedback.files_selected')}
                                                         <br />
                                                         <span className="text-xs">{fileNames}</span>
                                                     </>
@@ -448,7 +443,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                     type="submit"
                                     className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-amber-600 hover:shadow-xl"
                                 >
-                                    🚀 Submit Report
+                                                                                    🚀 {t('pages.welcome.feedback.submit_button')}
                                 </button>
                             </form>
 
@@ -474,8 +469,8 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                     {activeTab === 'track' && (
                         <div className="space-y-6">
                             <div className="text-center">
-                                <h2 className="mb-2 text-xl font-bold text-gray-800">Track Report Status</h2>
-                                <p className="text-gray-600">Enter your ticket number to view your report status</p>
+                                <h2 className="mb-2 text-xl font-bold text-gray-800">{t('pages.welcome.feedback.track_title')}</h2>
+                                <p className="text-gray-600">{t('pages.welcome.feedback.track_subtitle')}</p>
                             </div>
 
                             <div className="rounded-lg bg-gray-50 p-6">
@@ -484,7 +479,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         type="text"
                                         value={trackInput}
                                         onChange={(e) => setTrackInput(e.target.value)}
-                                        placeholder="Example: TKT-2025-001234"
+                                        placeholder={t('pages.welcome.feedback.track_example')}
                                         className="flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') handleTrack();
@@ -495,7 +490,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                         className="rounded-lg bg-yellow-500 px-6 py-3 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-yellow-600 hover:shadow-lg sm:w-auto"
                                         onClick={handleTrack}
                                     >
-                                        🔍 Track Report
+                                        🔍 {t('pages.welcome.feedback.track_report_button')}
                                     </button>
                                 </div>
                             </div>
@@ -508,9 +503,9 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                             <div className="mb-4 text-4xl">❌</div>
                                             <p className="mb-2 text-lg font-semibold text-red-600">{trackResult.error}</p>
                                             <p className="text-sm text-gray-500">
-                                                Ticket number format: TKT-YYYY-XXXXXX
+                                                {t('pages.welcome.feedback.track_error_format')}
                                                 <br />
-                                                Please check your ticket number and try again.
+                                                {t('pages.welcome.feedback.track_error_message')}
                                             </p>
                                         </div>
                                     ) : (
@@ -590,6 +585,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
 
 // Floating Feedback Button Component
 const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
+    const { t } = useTranslation();
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -619,7 +615,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
                             exit={{ opacity: 0, width: 0 }}
                             className="hidden overflow-hidden text-xs font-medium whitespace-nowrap sm:inline sm:text-sm"
                         >
-                            Kirim Masukan
+                            {t('pages.welcome.feedback.button_text')}
                         </motion.span>
                     )}
                 </AnimatePresence>
@@ -633,6 +629,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
 
 // Main Welcome Component
 const Welcome = () => {
+    const { t } = useTranslation();
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
     const [currentNews, setCurrentNews] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -649,16 +646,16 @@ const Welcome = () => {
 
     const contentSets = [
         {
-            title1: 'Introducing',
-            title2: 'Kristalin Ekalestari',
-            subtitle: 'Trusted gold mining company since 1989',
+            title1: t('pages.welcome.content_set_1.title1'),
+            title2: t('pages.welcome.content_set_1.title2'),
+            subtitle: t('pages.welcome.content_set_1.subtitle'),
             titleColors: 'text-white',
             title2Colors: 'text-white',
         },
         {
-            title1: 'Trusted Partner',
-            title2: 'Gold Exploration & Trading',
-            subtitle: 'Since 1989, committed to sustainable gold mining in Papua.',
+            title1: t('pages.welcome.content_set_2.title1'),
+            title2: t('pages.welcome.content_set_2.title2'),
+            subtitle: t('pages.welcome.content_set_2.subtitle'),
             titleColors: 'text-white',
             title2Colors: 'text-white',
         },
@@ -1147,7 +1144,7 @@ const Welcome = () => {
                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
                                                     {/* Introducing - Letter by Letter Animation */}
                                                     <div className="inline-block text-gray-800">
-                                                        {contentSets[currentContent].title1.split('').map((letter, index) => (
+                                                        {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
                                                             <motion.span
                                                                 key={index}
                                                                 initial={{
@@ -1206,14 +1203,14 @@ const Welcome = () => {
                                                 className="flex h-12 min-w-full cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:min-w-[180px]"
                                                 onClick={() => (window.location.href = '/about#about-kristalin')}
                                             >
-                                                Learn More
+                                                {t('pages.welcome.buttons.learn_more')}
                                             </button>
 
                                             <button
                                                 className="relative flex h-12 min-w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:min-w-[180px]"
                                                 onClick={() => setShowFeedbackForm(true)}
                                             >
-                                                Kirim Masukan
+                                                {t('pages.welcome.buttons.send_feedback')}
                                             </button>
                                         </div>
 
@@ -1246,21 +1243,21 @@ const Welcome = () => {
 
                                     <div className="relative z-10">
                                         <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                            CORPORATE SOCIAL RESPONSIBILITY
+                                            {t('pages.welcome.csr.category')}
                                         </div>
                                         <h3
                                             className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-300 sm:text-3xl lg:text-4xl ${
                                                 hoveredCard === 4 ? 'translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
-                                            Community Development
+                                            {t('pages.welcome.csr.title')}
                                         </h3>
                                         <span
                                             className={`text-base font-medium underline transition-colors duration-300 ${
                                                 hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
                                             }`}
                                         >
-                                            Learn more →
+                                            {t('pages.welcome.buttons.discover_more')}
                                         </span>
                                     </div>
                                 </Link>
@@ -1278,7 +1275,7 @@ const Welcome = () => {
                                     {/* Background Image tanpa filter warna */}
                                     <img
                                         src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-                                        alt="Our Portfolio"
+                                        alt={t('pages.welcome.portfolio_alt')}
                                         className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
                                             hoveredCard === 0 ? 'scale-105' : 'scale-100'
                                         }`}
@@ -1291,13 +1288,13 @@ const Welcome = () => {
                                     <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
                                     <div className="relative z-10">
-                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">BUSINESS LINE</div>
+                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">{t('pages.welcome.portfolio.category')}</div>
                                         <h3
                                             className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
                                                 hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
-                                            Our Portfolio
+                                            {t('pages.welcome.portfolio.title')}
                                         </h3>
                                         <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
                                     </div>
@@ -1313,7 +1310,7 @@ const Welcome = () => {
                                     {/* Background Image tanpa filter warna */}
                                     <img
                                         src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-                                        alt="Business Activities"
+                                        alt={t('pages.welcome.business_activities_alt')}
                                         className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
                                             hoveredCard === 1 ? 'scale-105' : 'scale-100'
                                         }`}
@@ -1331,14 +1328,14 @@ const Welcome = () => {
                                                 hoveredCard === 1 ? 'translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
-                                            Business Activities
+                                            {t('pages.welcome.business_activities.title')}
                                         </h3>
                                         <span
                                             className={`text-sm font-medium underline transition-colors duration-300 ${
                                                 hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
                                             }`}
                                         >
-                                            Find out more →
+                                            {t('pages.welcome.business_activities.find_out_more')}
                                         </span>
                                     </div>
                                 </Link>
@@ -1373,7 +1370,7 @@ const Welcome = () => {
                                                     hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
                                                 }`}
                                             >
-                                                News
+                                                {t('pages.welcome.news.title_short')}
                                             </div>
                                             <div className="flex gap-2">
                                                 <button
@@ -1451,7 +1448,7 @@ const Welcome = () => {
                                                 hoveredCard === 2 ? 'text-white' : 'text-gray-800'
                                             }`}
                                         >
-                                            <span>View</span>
+                                            <span>{t('pages.welcome.news.view_button')}</span>
                                             <div
                                                 className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
                                             >
@@ -1484,7 +1481,7 @@ const Welcome = () => {
 
                             {/* Footer - Footer Kristalin */}
                             <footer className="bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
-                                <div className="animate-pulse">© 2025 PT Kristalin Eka Lestari. All rights reserved.</div>
+                                <div className="animate-pulse">{t('pages.welcome.footer.copyright')}</div>
                             </footer>
                         </motion.div>
                     )}

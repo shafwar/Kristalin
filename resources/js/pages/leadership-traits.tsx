@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconCompetent = () => (
@@ -41,6 +42,7 @@ const IconHumble = () => (
 );
 
 export default function LeadershipTraitsPage() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeTrait, setActiveTrait] = useState(0);
@@ -66,33 +68,33 @@ export default function LeadershipTraitsPage() {
 
   const leadershipTraits = [
     {
-      title: "Competent",
-      subtitle: "Strategic Excellence",
-      description: "Display leadership competence in making correct decisions that drive organizational success. Our leaders demonstrate deep industry knowledge, analytical thinking, and the ability to navigate complex mining operations with precision and expertise.",
+      title: t('pages.leadership_traits.traits.0.title'),
+      subtitle: t('pages.leadership_traits.traits.0.subtitle'),
+      description: t('pages.leadership_traits.traits.0.description'),
       icon: <IconCompetent />
     },
     {
-      title: "Visionary",
-      subtitle: "Future-Oriented Leadership",
-      description: "Set encompassing goals and have a well-communicated vision that all members of the organization embrace. Our visionary leaders establish priorities based on sustainable mining practices and long-term value creation for stakeholders.",
+      title: t('pages.leadership_traits.traits.1.title'),
+      subtitle: t('pages.leadership_traits.traits.1.subtitle'),
+      description: t('pages.leadership_traits.traits.1.description'),
       icon: <IconVisionary />
     },
     {
-      title: "Inspiring",
-      subtitle: "Motivational Leadership",
-      description: "Exhibit confidence in all interactions; take charge; demonstrate endurance; communicate, inspire, and empower others to achieve new heights. Our leaders create an environment where teams are motivated to excel and innovate.",
+      title: t('pages.leadership_traits.traits.2.title'),
+      subtitle: t('pages.leadership_traits.traits.2.subtitle'),
+      description: t('pages.leadership_traits.traits.2.description'),
       icon: <IconInspiring />
     },
     {
-      title: "Self-Actualizing",
-      subtitle: "Continuous Growth",
-      description: "Develop personal potential and seek new challenges that enhance leadership capabilities. Our leaders are committed to lifelong learning, personal development, and staying at the forefront of mining industry innovations.",
+      title: t('pages.leadership_traits.traits.3.title'),
+      subtitle: t('pages.leadership_traits.traits.3.subtitle'),
+      description: t('pages.leadership_traits.traits.3.description'),
       icon: <IconSelfActualizing />
     },
     {
-      title: "Honest and Humble",
-      subtitle: "Authentic Leadership",
-      description: "Be sincere, modest, reliable, and straightforward in maintaining transparency and building trust. Our leaders demonstrate integrity in all dealings, acknowledge mistakes, and create authentic relationships with all stakeholders.",
+      title: t('pages.leadership_traits.traits.4.title'),
+      subtitle: t('pages.leadership_traits.traits.4.subtitle'),
+      description: t('pages.leadership_traits.traits.4.description'),
       icon: <IconHumble />
     }
   ];
@@ -109,7 +111,7 @@ export default function LeadershipTraitsPage() {
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
               src="https://substackcdn.com/image/fetch/$s_!RnDN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9949df21-4f48-4eae-86ed-97b002558a97_1312x928.webp"
-              alt="Leadership Traits"
+              alt={t('pages.leadership_traits.alt_texts.leadership_meeting')}
               className="w-full h-full object-cover opacity-70"
             />
             
@@ -118,13 +120,12 @@ export default function LeadershipTraitsPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Leadership<br />
-                <span className="font-normal">Traits</span>
+                {t('pages.leadership_traits.hero_title_1')}<br />
+                <span className="font-normal">{t('pages.leadership_traits.hero_title_2')}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
               <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
-                Competent, Visionary, Inspiring, Self-Actualizing, 
-                Honest and Humble.
+                {t('pages.leadership_traits.hero_list')}
               </p>
             </div>
           </div>
@@ -140,15 +141,14 @@ export default function LeadershipTraitsPage() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Leadership Traits
+                    {t('pages.leadership_traits.header')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed mb-3">
-                  LEADERSHIP TRAITS
+                  {t('pages.leadership_traits.main_heading')}
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Competent, Visionary, Inspiring, Self-Actualizing, 
-                  Honest and Humble.
+                  {t('pages.leadership_traits.hero_list')}
                 </p>
               </div>
 
@@ -219,19 +219,18 @@ export default function LeadershipTraitsPage() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Leading Indonesia's Mining Excellence</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.leadership_traits.cta_title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Through exceptional leadership, we drive innovation, inspire teams, and create 
-                      sustainable value for all stakeholders in Indonesia's mining industry.
+                      {t('pages.leadership_traits.cta_desc')}
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
-                      <span className="relative z-10">Leadership Development</span>
+                      <span className="relative z-10">{t('pages.leadership_traits.cta_btn_1')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
-                      Learn More
+                      {t('pages.leadership_traits.cta_btn_2')}
                     </button>
                   </div>
                 </div>
@@ -246,20 +245,19 @@ export default function LeadershipTraitsPage() {
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
               src="https://substackcdn.com/image/fetch/$s_!RnDN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9949df21-4f48-4eae-86ed-97b002558a97_1312x928.webp"
-              alt="Leadership Traits"
+              alt={t('pages.leadership_traits.alt_texts.leadership_meeting')}
               className="w-full h-full object-cover opacity-70"
             />
             <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Leadership<br />
-                <span className="font-normal">Traits</span>
+                {t('pages.leadership_traits.hero_title_1')}<br />
+                <span className="font-normal">{t('pages.leadership_traits.hero_title_2')}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
               <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-                Competent, Visionary, Inspiring, Self-Actualizing, 
-                Honest and Humble.
+                {t('pages.leadership_traits.hero_list')}
               </p>
             </div>
           </div>
@@ -283,15 +281,14 @@ export default function LeadershipTraitsPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Leadership Traits
+                      {t('pages.leadership_traits.header')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed mb-4">
-                    LEADERSHIP TRAITS
+                    {t('pages.leadership_traits.main_heading')}
                   </h2>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    Competent, Visionary, Inspiring, Self-Actualizing, 
-                    Honest and Humble.
+                    {t('pages.leadership_traits.hero_list')}
                   </p>
                 </div>
 
@@ -362,19 +359,18 @@ export default function LeadershipTraitsPage() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Leading Indonesia's Mining Excellence</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.leadership_traits.cta_title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Through exceptional leadership, we drive innovation, inspire teams, and create 
-                        sustainable value for all stakeholders in Indonesia's mining industry.
+                        {t('pages.leadership_traits.cta_desc')}
                       </p>
                     </div>
                     <div className="flex justify-center space-x-4">
                       <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                        <span className="relative z-10">Leadership Development</span>
+                        <span className="relative z-10">{t('pages.leadership_traits.cta_btn_1')}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                       </button>
                       <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
-                        Learn More
+                        {t('pages.leadership_traits.cta_btn_2')}
                       </button>
                     </div>
                   </div>

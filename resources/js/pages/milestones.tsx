@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconArrowLeft = () => (
@@ -37,9 +38,10 @@ interface YearSelectionProps {
   setActiveYear: (year: string) => void;
   setSelectedMilestone: (idx: number) => void;
   isLoaded: boolean;
+  t: ReturnType<typeof useTranslation>["t"];
 }
 
-const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMilestone, isLoaded }: YearSelectionProps) => {
+const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMilestone, isLoaded, t }: YearSelectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const pillRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -70,7 +72,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
             <line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
           <span className="text-gray-500 uppercase tracking-wider text-xs sm:text-sm font-medium">
-            Company Milestones
+            {t('pages.milestones.subtitle')}
           </span>
         </div>
       </div>
@@ -94,7 +96,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
               }
             }}
             disabled={isLeftDisabled}
-            aria-label="Previous year period"
+            aria-label={t('pages.milestones.navigation.previous_year')}
             tabIndex={isLeftDisabled ? -1 : 0}
           >
             <IconArrowLeft />
@@ -160,7 +162,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
               }
             }}
             disabled={isRightDisabled}
-            aria-label="Next year period"
+            aria-label={t('pages.milestones.navigation.next_year')}
             tabIndex={isRightDisabled ? -1 : 0}
           >
             <IconArrowRight />
@@ -182,6 +184,7 @@ const YearSelection = ({ yearPeriods, activeYear, setActiveYear, setSelectedMile
 };
 
 export default function MilestonesPage() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeYear, setActiveYear] = useState<string>('2020-2025');
@@ -200,157 +203,268 @@ export default function MilestonesPage() {
   const yearPeriods: string[] = ['2020-2025', '2015-2019', '2010-2014', '2005-2009', '2000-2004', '1989-1999'];
 
   const companyStats: Record<string, string> = {
-    established: "1989",
-    milestones: "35+ Years",
-    location: "Papua",
-    growth: "Continuous"
+    established: t('pages.milestones.company_values.established_year'),
+    milestones: t('pages.milestones.company_values.milestones_count'),
+    location: t('pages.milestones.company_values.location_area'),
+    growth: t('pages.milestones.company_values.growth_status')
   };
 
+  // Simplified milestones data structure with translations
   const milestonesData: MilestonesData = {
     '2020-2025': [
       {
         year: '2025',
-        month: 'April',
-        title: 'Record Gold Production Achievement',
-        description: "Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Eka Lestari's position as a leading gold mining company in Indonesia.",
-        category: 'Production Excellence'
+        month: t('pages.milestones.months.April'),
+        title: t('pages.milestones.milestones_data.2020-2025.0.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.0.description'),
+        category: t('pages.milestones.categories.Production Excellence')
       },
       {
         year: '2024',
-        month: 'December',
-        title: 'Expansion of Sustainable Gold Mining Operations',
-        description: 'Completed the expansion of sustainable gold mining operations in Nabire, Papua, increasing production capacity while maintaining strict environmental and community standards.',
-        category: 'Operational Growth'
+        month: t('pages.milestones.months.December'),
+        title: t('pages.milestones.milestones_data.2020-2025.1.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.1.description'),
+        category: t('pages.milestones.categories.Operational Growth')
       },
       {
-        year: '2023', month: 'September', title: 'Strategic Partnership Expansion', description: 'Signed comprehensive collaboration agreement with leading Chinese mining technology firm, bringing world-class processing capabilities to our Papua operations.', category: 'International Partnership'
+        year: '2023',
+        month: t('pages.milestones.months.September'),
+        title: t('pages.milestones.milestones_data.2020-2025.2.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.2.description'),
+        category: t('pages.milestones.categories.International Partnership')
       },
       {
-        year: '2022', month: 'June', title: 'Environmental Certification Achievement', description: 'Received ISO 14001 Environmental Management certification, reinforcing our commitment to sustainable mining practices and environmental stewardship in Papua.', category: 'Environmental Excellence'
+        year: '2022',
+        month: t('pages.milestones.months.June'),
+        title: t('pages.milestones.milestones_data.2020-2025.3.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.3.description'),
+        category: t('pages.milestones.categories.Environmental Excellence')
       },
       {
-        year: '2021', month: 'March', title: 'Production Capacity Expansion', description: 'Completed major infrastructure expansion project, doubling our gold processing capacity while maintaining strict environmental and safety standards.', category: 'Operational Growth'
+        year: '2021',
+        month: t('pages.milestones.months.March'),
+        title: t('pages.milestones.milestones_data.2020-2025.4.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.4.description'),
+        category: t('pages.milestones.categories.Operational Growth')
       },
       {
-        year: '2020', month: 'January', title: 'Digital Transformation Initiative', description: 'Launched comprehensive digital transformation program, implementing IoT sensors and real-time monitoring systems across all mining operations.', category: 'Technology Innovation'
+        year: '2020',
+        month: t('pages.milestones.months.January'),
+        title: t('pages.milestones.milestones_data.2020-2025.5.title'),
+        description: t('pages.milestones.milestones_data.2020-2025.5.description'),
+        category: t('pages.milestones.categories.Technology Innovation')
       }
     ],
     '2015-2019': [
       {
-        year: '2019', month: 'November', title: 'Community Development Program Launch', description: 'Established comprehensive community development program in Nabire, focusing on education, healthcare, and local economic empowerment initiatives.', category: 'Social Responsibility'
+        year: '2019',
+        month: t('pages.milestones.months.November'),
+        title: t('pages.milestones.milestones_data.2015-2019.0.title'),
+        description: t('pages.milestones.milestones_data.2015-2019.0.description'),
+        category: t('pages.milestones.categories.Social Responsibility')
       },
       {
-        year: '2018', month: 'August', title: 'Korean Technology Partnership', description: 'Formed strategic alliance with Korean mining equipment manufacturer, bringing advanced automation technology to our gold extraction processes.', category: 'International Partnership'
+        year: '2018',
+        month: t('pages.milestones.months.August'),
+        title: t('pages.milestones.milestones_data.2015-2019.1.title'),
+        description: t('pages.milestones.milestones_data.2015-2019.1.description'),
+        category: t('pages.milestones.categories.International Partnership')
       },
       {
-        year: '2017', month: 'May', title: 'Safety Excellence Recognition', description: 'Achieved zero-accident milestone for 1000+ consecutive working days, establishing new industry safety standards in Indonesian mining sector.', category: 'Safety Achievement'
+        year: '2017',
+        month: t('pages.milestones.months.May'),
+        title: t('pages.milestones.milestones_data.2015-2019.2.title'),
+        description: t('pages.milestones.milestones_data.2015-2019.2.description'),
+        category: t('pages.milestones.categories.Safety Achievement')
       },
       {
-        year: '2016', month: 'February', title: 'Sustainable Mining Certification', description: 'Became first mining company in Papua to receive sustainable mining certification, setting new environmental benchmarks for the region.', category: 'Environmental Excellence'
+        year: '2016',
+        month: t('pages.milestones.months.February'),
+        title: t('pages.milestones.milestones_data.2015-2019.3.title'),
+        description: t('pages.milestones.milestones_data.2015-2019.3.description'),
+        category: t('pages.milestones.categories.Environmental Excellence')
       },
       {
-        year: '2015', month: 'October', title: 'Chinese Investment Collaboration', description: 'Secured major investment from Chinese partners, enabling significant expansion of mining operations and advanced equipment acquisition.', category: 'Investment & Growth'
+        year: '2015',
+        month: t('pages.milestones.months.October'),
+        title: t('pages.milestones.milestones_data.2015-2019.4.title'),
+        description: t('pages.milestones.milestones_data.2015-2019.4.description'),
+        category: t('pages.milestones.categories.Investment & Growth')
       }
     ],
     '2010-2014': [
       {
-        year: '2014', month: 'December', title: 'Advanced Processing Facility', description: 'Commissioned state-of-the-art gold processing facility, incorporating international best practices and environmental protection technologies.', category: 'Infrastructure Development'
+        year: '2014',
+        month: t('pages.milestones.months.December'),
+        title: t('pages.milestones.milestones_data.2010-2014.0.title'),
+        description: t('pages.milestones.milestones_data.2010-2014.0.description'),
+        category: t('pages.milestones.categories.Infrastructure Development')
       },
       {
-        year: '2013', month: 'July', title: 'Regional Expansion Initiative', description: 'Extended operations to new mining concessions in Papua, diversifying extraction sites and increasing overall production capacity.', category: 'Operational Expansion'
+        year: '2013',
+        month: t('pages.milestones.months.July'),
+        title: t('pages.milestones.milestones_data.2010-2014.1.title'),
+        description: t('pages.milestones.milestones_data.2010-2014.1.description'),
+        category: t('pages.milestones.categories.Operational Expansion')
       },
       {
-        year: '2012', month: 'April', title: 'International Quality Standards', description: 'Achieved ISO 9001 quality management certification, demonstrating commitment to international operational excellence standards.', category: 'Quality Excellence'
+        year: '2012',
+        month: t('pages.milestones.months.April'),
+        title: t('pages.milestones.milestones_data.2010-2014.2.title'),
+        description: t('pages.milestones.milestones_data.2010-2014.2.description'),
+        category: t('pages.milestones.categories.Quality Excellence')
       },
       {
-        year: '2011', month: 'September', title: 'Workforce Development Program', description: 'Launched comprehensive training program for local workforce, creating skilled employment opportunities for Papua communities.', category: 'Human Resource Development'
+        year: '2011',
+        month: t('pages.milestones.months.September'),
+        title: t('pages.milestones.milestones_data.2010-2014.3.title'),
+        description: t('pages.milestones.milestones_data.2010-2014.3.description'),
+        category: t('pages.milestones.categories.Human Resource Development')
       },
       {
-        year: '2010', month: 'January', title: 'Modern Equipment Acquisition', description: 'Invested in modern mining equipment and machinery, significantly improving operational efficiency and safety standards.', category: 'Technology Upgrade'
+        year: '2010',
+        month: t('pages.milestones.months.January'),
+        title: t('pages.milestones.milestones_data.2010-2014.4.title'),
+        description: t('pages.milestones.milestones_data.2010-2014.4.description'),
+        category: t('pages.milestones.categories.Technology Upgrade')
       }
     ],
     '2005-2009': [
       {
-        year: '2009', month: 'November', title: 'Environmental Management System', description: 'Implemented comprehensive environmental management system, establishing rehabilitation and conservation programs for mining areas.', category: 'Environmental Initiative'
+        year: '2009',
+        month: t('pages.milestones.months.November'),
+        title: t('pages.milestones.milestones_data.2005-2009.0.title'),
+        description: t('pages.milestones.milestones_data.2005-2009.0.description'),
+        category: t('pages.milestones.categories.Environmental Initiative')
       },
       {
-        year: '2008', month: 'June', title: 'Production Milestone Achievement', description: 'Reached significant gold production milestone, establishing PT Kristalin Eka Lestari as major player in Indonesian mining industry.', category: 'Production Excellence'
+        year: '2008',
+        month: t('pages.milestones.months.June'),
+        title: t('pages.milestones.milestones_data.2005-2009.1.title'),
+        description: t('pages.milestones.milestones_data.2005-2009.1.description'),
+        category: t('pages.milestones.categories.Production Excellence')
       },
       {
-        year: '2007', month: 'March', title: 'Local Partnership Development', description: 'Strengthened partnerships with local Papua communities, creating mutual benefit programs and sustainable development initiatives.', category: 'Community Partnership'
+        year: '2007',
+        month: t('pages.milestones.months.March'),
+        title: t('pages.milestones.milestones_data.2005-2009.2.title'),
+        description: t('pages.milestones.milestones_data.2005-2009.2.description'),
+        category: t('pages.milestones.categories.Community Partnership')
       },
       {
-        year: '2006', month: 'August', title: 'Operational Excellence Program', description: 'Launched operational excellence program focusing on efficiency, safety, and environmental responsibility across all mining operations.', category: 'Operational Excellence'
+        year: '2006',
+        month: t('pages.milestones.months.August'),
+        title: t('pages.milestones.milestones_data.2005-2009.3.title'),
+        description: t('pages.milestones.milestones_data.2005-2009.3.description'),
+        category: t('pages.milestones.categories.Operational Excellence')
       },
       {
-        year: '2005', month: 'February', title: 'Infrastructure Development Project', description: 'Completed major infrastructure development project, improving access roads and establishing essential facilities for mining operations.', category: 'Infrastructure Development'
+        year: '2005',
+        month: t('pages.milestones.months.February'),
+        title: t('pages.milestones.milestones_data.2005-2009.4.title'),
+        description: t('pages.milestones.milestones_data.2005-2009.4.description'),
+        category: t('pages.milestones.categories.Infrastructure Development')
       }
     ],
     '2000-2004': [
       {
-        year: '2004', month: 'October', title: 'Mining Concession Expansion', description: 'Secured additional mining concessions in Papua region, expanding operational footprint and increasing mineral resource portfolio.', category: 'Business Expansion'
+        year: '2004',
+        month: t('pages.milestones.months.October'),
+        title: t('pages.milestones.milestones_data.2000-2004.0.title'),
+        description: t('pages.milestones.milestones_data.2000-2004.0.description'),
+        category: t('pages.milestones.categories.Business Expansion')
       },
       {
-        year: '2003', month: 'July', title: 'Technology Modernization', description: 'Initiated comprehensive technology modernization program, upgrading extraction and processing equipment for improved efficiency.', category: 'Technology Advancement'
+        year: '2003',
+        month: t('pages.milestones.months.July'),
+        title: t('pages.milestones.milestones_data.2000-2004.1.title'),
+        description: t('pages.milestones.milestones_data.2000-2004.1.description'),
+        category: t('pages.milestones.categories.Technology Advancement')
       },
       {
-        year: '2002', month: 'April', title: 'Safety Protocol Implementation', description: 'Established comprehensive safety protocols and training programs, prioritizing worker safety and operational risk management.', category: 'Safety Implementation'
+        year: '2002',
+        month: t('pages.milestones.months.April'),
+        title: t('pages.milestones.milestones_data.2000-2004.2.title'),
+        description: t('pages.milestones.milestones_data.2000-2004.2.description'),
+        category: t('pages.milestones.categories.Safety Implementation')
       },
       {
-        year: '2001', month: 'December', title: 'First Gold Production', description: 'Achieved first commercial gold production from Nabire operations, marking significant milestone in company development.', category: 'Production Milestone'
+        year: '2001',
+        month: t('pages.milestones.months.December'),
+        title: t('pages.milestones.milestones_data.2000-2004.3.title'),
+        description: t('pages.milestones.milestones_data.2000-2004.3.description'),
+        category: t('pages.milestones.categories.Production Milestone')
       },
       {
-        year: '2000', month: 'March', title: 'Exploration Success', description: 'Completed successful exploration phase, confirming significant gold reserves in Papua region and validating business development strategy.', category: 'Exploration Achievement'
+        year: '2000',
+        month: t('pages.milestones.months.March'),
+        title: t('pages.milestones.milestones_data.2000-2004.4.title'),
+        description: t('pages.milestones.milestones_data.2000-2004.4.description'),
+        category: t('pages.milestones.categories.Exploration Achievement')
       }
     ],
     '1989-1999': [
       {
-        year: '1999', month: 'September', title: 'Mining License Acquisition', description: 'Successfully obtained comprehensive mining licenses for Papua operations, laying foundation for large-scale gold mining activities.', category: 'Legal Milestone'
+        year: '1999',
+        month: t('pages.milestones.months.September'),
+        title: t('pages.milestones.milestones_data.1989-1999.0.title'),
+        description: t('pages.milestones.milestones_data.1989-1999.0.description'),
+        category: t('pages.milestones.categories.Legal Milestone')
       },
       {
-        year: '1995', month: 'June', title: 'Initial Exploration Phase', description: 'Commenced extensive geological exploration in Papua region, conducting detailed surveys and feasibility studies for gold mining potential.', category: 'Exploration Initiative'
+        year: '1995',
+        month: t('pages.milestones.months.June'),
+        title: t('pages.milestones.milestones_data.1989-1999.1.title'),
+        description: t('pages.milestones.milestones_data.1989-1999.1.description'),
+        category: t('pages.milestones.categories.Exploration Initiative')
       },
       {
-        year: '1992', month: 'November', title: 'Papua Region Entry', description: 'Established operations base in Nabire, Papua, beginning comprehensive assessment of regional mineral resources and mining opportunities.', category: 'Regional Expansion'
+        year: '1992',
+        month: t('pages.milestones.months.November'),
+        title: t('pages.milestones.milestones_data.1989-1999.2.title'),
+        description: t('pages.milestones.milestones_data.1989-1999.2.description'),
+        category: t('pages.milestones.categories.Regional Expansion')
       },
       {
-        year: '1989', month: 'August', title: 'Company Establishment', description: 'PT Kristalin Eka Lestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.', category: 'Company Foundation'
+        year: '1989',
+        month: t('pages.milestones.months.August'),
+        title: t('pages.milestones.milestones_data.1989-1999.3.title'),
+        description: t('pages.milestones.milestones_data.1989-1999.3.description'),
+        category: t('pages.milestones.categories.Company Foundation')
       }
     ]
   };
 
   const getCategoryColor = (category: string): string => {
-    const colors: Record<string, string> = {
-      'Company Foundation': 'bg-blue-100 text-blue-800',
-      'Technology Innovation': 'bg-purple-100 text-purple-800',
-      'International Partnership': 'bg-green-100 text-green-800',
-      'Environmental Excellence': 'bg-emerald-100 text-emerald-800',
-      'Operational Growth': 'bg-orange-100 text-orange-800',
-      'Social Responsibility': 'bg-pink-100 text-pink-800',
-      'Safety Achievement': 'bg-red-100 text-red-800',
-      'Investment & Growth': 'bg-indigo-100 text-indigo-800',
-      'Infrastructure Development': 'bg-gray-100 text-gray-800',
-      'Quality Excellence': 'bg-yellow-100 text-yellow-800',
-      'Production Excellence': 'bg-cyan-100 text-cyan-800',
-      'Community Partnership': 'bg-teal-100 text-teal-800',
-      'Business Expansion': 'bg-violet-100 text-violet-800',
-      'Production Milestone': 'bg-amber-100 text-amber-800',
-      'Exploration Achievement': 'bg-lime-100 text-lime-800',
-      'Legal Milestone': 'bg-slate-100 text-slate-800',
-      'Equipment Acquisition': 'bg-stone-100 text-stone-800',
-      'Survey & Mapping': 'bg-sky-100 text-sky-800',
-      'Financial Milestone': 'bg-emerald-100 text-emerald-800',
-      'Human Resource Development': 'bg-rose-100 text-rose-800',
-      'Technology Advancement': 'bg-fuchsia-100 text-fuchsia-800',
-      'Operational Excellence': 'bg-orange-100 text-orange-800',
-      'Environmental Initiative': 'bg-green-100 text-green-800',
-      'Operational Expansion': 'bg-blue-100 text-blue-800',
-      'Technology Upgrade': 'bg-purple-100 text-purple-800',
-      'Exploration Initiative': 'bg-lime-100 text-lime-800',
-      'Regional Expansion': 'bg-blue-100 text-blue-800',
-      'Safety Implementation': 'bg-red-100 text-red-800',
+    // Map translated categories to colors by checking against English version
+    const englishCategories: Record<string, string> = {
+      [t('pages.milestones.categories.Company Foundation')]: 'bg-blue-100 text-blue-800',
+      [t('pages.milestones.categories.Technology Innovation')]: 'bg-purple-100 text-purple-800',
+      [t('pages.milestones.categories.International Partnership')]: 'bg-green-100 text-green-800',
+      [t('pages.milestones.categories.Environmental Excellence')]: 'bg-emerald-100 text-emerald-800',
+      [t('pages.milestones.categories.Operational Growth')]: 'bg-orange-100 text-orange-800',
+      [t('pages.milestones.categories.Social Responsibility')]: 'bg-pink-100 text-pink-800',
+      [t('pages.milestones.categories.Safety Achievement')]: 'bg-red-100 text-red-800',
+      [t('pages.milestones.categories.Investment & Growth')]: 'bg-indigo-100 text-indigo-800',
+      [t('pages.milestones.categories.Infrastructure Development')]: 'bg-gray-100 text-gray-800',
+      [t('pages.milestones.categories.Quality Excellence')]: 'bg-yellow-100 text-yellow-800',
+      [t('pages.milestones.categories.Production Excellence')]: 'bg-cyan-100 text-cyan-800',
+      [t('pages.milestones.categories.Community Partnership')]: 'bg-teal-100 text-teal-800',
+      [t('pages.milestones.categories.Business Expansion')]: 'bg-violet-100 text-violet-800',
+      [t('pages.milestones.categories.Production Milestone')]: 'bg-amber-100 text-amber-800',
+      [t('pages.milestones.categories.Exploration Achievement')]: 'bg-lime-100 text-lime-800',
+      [t('pages.milestones.categories.Legal Milestone')]: 'bg-slate-100 text-slate-800',
+      [t('pages.milestones.categories.Human Resource Development')]: 'bg-rose-100 text-rose-800',
+      [t('pages.milestones.categories.Technology Advancement')]: 'bg-fuchsia-100 text-fuchsia-800',
+      [t('pages.milestones.categories.Operational Excellence')]: 'bg-orange-100 text-orange-800',
+      [t('pages.milestones.categories.Environmental Initiative')]: 'bg-green-100 text-green-800',
+      [t('pages.milestones.categories.Operational Expansion')]: 'bg-blue-100 text-blue-800',
+      [t('pages.milestones.categories.Technology Upgrade')]: 'bg-purple-100 text-purple-800',
+      [t('pages.milestones.categories.Exploration Initiative')]: 'bg-lime-100 text-lime-800',
+      [t('pages.milestones.categories.Regional Expansion')]: 'bg-blue-100 text-blue-800',
+      [t('pages.milestones.categories.Safety Implementation')]: 'bg-red-100 text-red-800',
     };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+    return englishCategories[category] || 'bg-gray-100 text-gray-800';
   };
 
   const currentMilestones: Milestone[] = milestonesData[activeYear] || [];
@@ -367,7 +481,7 @@ export default function MilestonesPage() {
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
               src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
-              alt="Mining Operations History"
+              alt={t('pages.milestones.alt_texts.mining_history')}
               className="w-full h-full object-cover opacity-70"
             />
             
@@ -376,12 +490,12 @@ export default function MilestonesPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Our<br />
-                <span className="font-normal">Milestones</span>
+                {t('pages.milestones.page_title').split(' ')[0]}<br />
+                <span className="font-normal">{t('pages.milestones.page_title').split(' ')[1]}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
               <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
-                This is how we began and embarked on our journey to become great.
+                {t('pages.milestones.main_description')}
               </p>
             </div>
             
@@ -394,7 +508,7 @@ export default function MilestonesPage() {
                   {Object.entries(companyStats).map(([key, value]: [string, string]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-sm">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.milestones.company_stats.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -407,7 +521,14 @@ export default function MilestonesPage() {
             <div className="max-w-2xl mx-auto">
               
               {/* Year Navigation */}
-              <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
+              <YearSelection
+                yearPeriods={yearPeriods}
+                activeYear={activeYear}
+                setActiveYear={setActiveYear}
+                setSelectedMilestone={() => {}}
+                isLoaded={isLoaded}
+                t={t}
+              />
               
               {/* Milestones Content */}
               <div className="space-y-4">
@@ -460,19 +581,19 @@ export default function MilestonesPage() {
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
               src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
-              alt="Mining Operations History"
+              alt={t('pages.milestones.alt_texts.mining_history')}
               className="w-full h-full object-cover opacity-70"
             />
             <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Our<br />
-                <span className="font-normal">Milestones</span>
+                {t('pages.milestones.page_title').split(' ')[0]}<br />
+                <span className="font-normal">{t('pages.milestones.page_title').split(' ')[1]}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
               <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-                This is how we began and embarked on our journey to become great.
+                {t('pages.milestones.main_description')}
               </p>
             </div>
             {/* Floating Company Stats */}
@@ -484,7 +605,7 @@ export default function MilestonesPage() {
                   {Object.entries(companyStats).map(([key, value]: [string, string]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-lg">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.milestones.company_stats.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -500,7 +621,14 @@ export default function MilestonesPage() {
             {/* Content Container */}
             <div className="h-full flex flex-col" style={{ padding: '2rem' }}>
               {/* Year Navigation */}
-              <YearSelection yearPeriods={yearPeriods} activeYear={activeYear} setActiveYear={setActiveYear} setSelectedMilestone={() => {}} isLoaded={isLoaded} />
+              <YearSelection
+                yearPeriods={yearPeriods}
+                activeYear={activeYear}
+                setActiveYear={setActiveYear}
+                setSelectedMilestone={() => {}}
+                isLoaded={isLoaded}
+                t={t}
+              />
               {/* Milestones Content */}
               <div
                 ref={rightPanelRef}

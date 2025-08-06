@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconTarget = () => (
@@ -25,6 +26,7 @@ const IconLightning = () => (
 );
 
 export default function CompanyOverview() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
@@ -50,35 +52,35 @@ export default function CompanyOverview() {
   }, []);
 
   const companyData = {
-    founded: "1989",
-    operations: "Nabire, Papua",
-    focus: "Gold Mining",
-    partnerships: "China & Korea"
+    founded: t('pages.company_overview.company_values.founded_year'),
+    operations: t('pages.company_overview.company_values.operations_location'),
+    focus: t('pages.company_overview.company_values.focus_area'),
+    partnerships: t('pages.company_overview.company_values.partnerships_countries')
   };
 
   const sections = [
     {
-      title: "Company Goals",
-      subtitle: "Our Foundation",
-      content: "Established to operate comprehensive business activities in the mining and processing sector, driving innovation and sustainable growth in Indonesia's natural resource industry.",
+      title: t('pages.company_overview.sections.company_goals.title'),
+      subtitle: t('pages.company_overview.sections.company_goals.subtitle'),
+      content: t('pages.company_overview.sections.company_goals.content'),
       icon: <IconTarget />
     },
     {
-      title: "Natural Resources",
-      subtitle: "Rich Heritage",
-      content: "PT Kristalin Eka Lestari focuses on the exploration and exploitation of Indonesia's abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.",
+      title: t('pages.company_overview.sections.natural_resources.title'),
+      subtitle: t('pages.company_overview.sections.natural_resources.subtitle'),
+      content: t('pages.company_overview.sections.natural_resources.content'),
       icon: <IconDiamond />
     },
     {
-      title: "Strategic Partnerships",
-      subtitle: "Global Collaboration",
-      content: "Operating hand in hand with local partners and international investors from China and Korea, we leverage world-class technology and expertise to optimize mining operations from upstream to downstream processes.",
+      title: t('pages.company_overview.sections.strategic_partnerships.title'),
+      subtitle: t('pages.company_overview.sections.strategic_partnerships.subtitle'),
+      content: t('pages.company_overview.sections.strategic_partnerships.content'),
       icon: <IconHandshake />
     },
     {
-      title: "Innovation Excellence",
-      subtitle: "Continuous Growth",
-      content: "Committed to continuous innovation and operational excellence, we refine our business processes to deliver optimal satisfaction to stakeholders while positioning ourselves at the forefront of the mining industry.",
+      title: t('pages.company_overview.sections.innovation_excellence.title'),
+      subtitle: t('pages.company_overview.sections.innovation_excellence.subtitle'),
+      content: t('pages.company_overview.sections.innovation_excellence.content'),
       icon: <IconLightning />
     }
   ];
@@ -95,7 +97,7 @@ export default function CompanyOverview() {
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
               src="https://m-mtoday.com/wp-content/uploads/sites/12/2023/10/benefits-of-gold-mining-image.jpeg"
-              alt="Papua Forest"
+              alt={t('pages.company_overview.alt_texts.papua_forest')}
               className="w-full h-full object-cover opacity-70"
             />
             
@@ -104,8 +106,8 @@ export default function CompanyOverview() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Company<br />
-                <span className="font-normal">Overview</span>
+                {t('pages.company_overview.page_title').split(' ')[0]}<br />
+                <span className="font-normal">{t('pages.company_overview.page_title').split(' ')[1]}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
             </div>
@@ -119,7 +121,7 @@ export default function CompanyOverview() {
                   {Object.entries(companyData).map(([key, value]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-sm">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.company_overview.company_data.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -138,12 +140,11 @@ export default function CompanyOverview() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Company Overview
+                    {t('pages.company_overview.subtitle')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed">
-                  Pioneering Excellence in 
-                  <span className="text-yellow-600 font-medium"> Mining Innovation</span>
+                  {t('pages.company_overview.main_heading')}
                 </h2>
               </div>
 
@@ -212,14 +213,13 @@ export default function CompanyOverview() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Building Indonesia's Future</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.company_overview.cta.future_title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Through responsible mining practices and international collaboration, 
-                      we're committed to sustainable growth and community development.
+                      {t('pages.company_overview.cta.future_desc')}
                     </p>
                   </div>
                   <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm w-full sm:w-auto">
-                    <span className="relative z-10">Learn More About Our Mission</span>
+                    <span className="relative z-10">{t('pages.company_overview.cta.learn_more_btn')}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </button>
                 </div>
@@ -234,15 +234,15 @@ export default function CompanyOverview() {
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
               src="https://m-mtoday.com/wp-content/uploads/sites/12/2023/10/benefits-of-gold-mining-image.jpeg"
-              alt="Papua Forest"
+              alt={t('pages.company_overview.alt_texts.papua_forest')}
               className="w-full h-full object-cover opacity-70"
             />
             <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Company<br />
-                <span className="font-normal">Overview</span>
+                {t('pages.company_overview.page_title').split(' ')[0]}<br />
+                <span className="font-normal">{t('pages.company_overview.page_title').split(' ')[1]}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
             </div>
@@ -255,7 +255,7 @@ export default function CompanyOverview() {
                   {Object.entries(companyData).map(([key, value]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-lg">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.company_overview.company_data.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -280,12 +280,11 @@ export default function CompanyOverview() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Company Overview
+                      {t('pages.company_overview.subtitle')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed">
-                    Pioneering Excellence in 
-                    <span className="text-yellow-600 font-medium"> Mining Innovation</span>
+                    {t('pages.company_overview.main_heading')}
                   </h2>
                 </div>
                 {/* Dynamic Content Sections */}
@@ -352,14 +351,13 @@ export default function CompanyOverview() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Building Indonesia's Future</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.company_overview.cta.future_title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Through responsible mining practices and international collaboration, 
-                        we're committed to sustainable growth and community development.
+                        {t('pages.company_overview.cta.future_desc')}
                       </p>
                     </div>
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                      <span className="relative z-10">Learn More About Our Mission</span>
+                      <span className="relative z-10">{t('pages.company_overview.cta.learn_more_btn')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                   </div>

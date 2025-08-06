@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconIntegrity = () => (
@@ -49,6 +50,7 @@ const IconTeamwork = () => (
 );
 
 export default function CoreValuesPage() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeValue, setActiveValue] = useState(0);
@@ -74,41 +76,41 @@ export default function CoreValuesPage() {
 
   const coreValues = [
     {
-      title: "Integrity",
-      subtitle: "Ethical Foundation",
-      description: "We consistently apply the highest ethical and moral standards by always prioritizing principles of honesty and fairness in every activity. Integrity serves as the foundation of trust with stakeholders and communities.",
+      title: t('pages.core_values.values.0.title'),
+      subtitle: t('pages.core_values.values.0.subtitle'),
+      description: t('pages.core_values.values.0.description'),
       icon: <IconIntegrity />
     },
     {
-      title: "Sustainable Development",
-      subtitle: "Long-term Growth", 
-      description: "We are committed to continuously developing the company and its human resources with sustainability principles that integrate economic, social, and environmental aspects for long-term advancement and prosperity.",
+      title: t('pages.core_values.values.1.title'),
+      subtitle: t('pages.core_values.values.1.subtitle'),
+      description: t('pages.core_values.values.1.description'),
       icon: <IconGrowth />
     },
     {
-      title: "Excellence",
-      subtitle: "Operational Superior",
-      description: "We continuously strive to achieve the highest performance standards in every operational aspect. Our commitment to excellence drives continuous innovation and quality service improvements that exceed expectations.",
+      title: t('pages.core_values.values.2.title'),
+      subtitle: t('pages.core_values.values.2.subtitle'),
+      description: t('pages.core_values.values.2.description'),
       icon: <IconExcellence />
     },
     {
-      title: "Proactive",
-      subtitle: "Innovation Excellence",
-      description: "We continuously seek and adopt new techniques and approaches to enhance our business quality. Proactive attitude enables anticipation of challenges and creation of innovative, sustainable solutions.",
+      title: t('pages.core_values.values.3.title'),
+      subtitle: t('pages.core_values.values.3.subtitle'),
+      description: t('pages.core_values.values.3.description'),
       icon: <IconInnovation />
     },
     {
-      title: "Responsibility",
-      subtitle: "Stakeholder Accountability",
-      description: "We are responsible to all stakeholders for the operational impacts of the company. This commitment includes responsibility towards the environment, communities, and sustainability of Papua's ecosystem.",
+      title: t('pages.core_values.values.4.title'),
+      subtitle: t('pages.core_values.values.4.subtitle'),
+      description: t('pages.core_values.values.4.description'),
       icon: <IconResponsibility />
     },
     {
-      title: "Teamwork",
-      subtitle: "Collaborative Excellence",
-      description: "We build synergy through strong collaboration between teams, departments, and stakeholders. Effective teamwork becomes the key to achieving shared goals and creating sustainable value for all parties.",
+      title: t('pages.core_values.values.5.title'),
+      subtitle: t('pages.core_values.values.5.subtitle'),
+      description: t('pages.core_values.values.5.description'),
       icon: <IconTeamwork />
-    }
+    },
   ];
 
   return (
@@ -132,13 +134,13 @@ export default function CoreValuesPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Our Core<br />
-                <span className="font-normal">Values</span>
+                {t('pages.core_values.hero_title_1')}
+                <br />
+                <span className="font-normal">{t('pages.core_values.hero_title_2')}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
               <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
-                Integrity, Sustainable Development, Excellence, Proactive, 
-                Responsibility, Teamwork.
+                {t('pages.core_values.hero_list')}
               </p>
             </div>
           </div>
@@ -154,16 +156,15 @@ export default function CoreValuesPage() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Our Core Values
+                    {t('pages.core_values.header')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed mb-3">
-                  Six Pillars of
-                  <span className="text-yellow-600 font-medium"> Fundamental Excellence</span>
+                  {t('pages.core_values.six_pillars')}
+                  <span className="text-yellow-600 font-medium"> {t('pages.core_values.six_pillars_highlight')}</span>
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Integrity, Sustainable Development, Excellence, Proactive, 
-                  Responsibility, Teamwork.
+                  {t('pages.core_values.hero_list')}
                 </p>
               </div>
 
@@ -234,19 +235,18 @@ export default function CoreValuesPage() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Building Indonesia's Future Together</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.core_values.cta_title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Through our core values, we are committed to creating sustainable positive impact 
-                      for all stakeholders and building a legacy of responsible mining stewardship.
+                      {t('pages.core_values.cta_desc')}
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
-                      <span className="relative z-10">Values Implementation</span>
+                      <span className="relative z-10">{t('pages.core_values.cta_btn_1')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
-                      Learn More
+                      {t('pages.core_values.cta_btn_2')}
                     </button>
                   </div>
                 </div>
@@ -268,13 +268,13 @@ export default function CoreValuesPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Our Core<br />
-                <span className="font-normal">Values</span>
+                {t('pages.core_values.hero_title_1')}
+                <br />
+                <span className="font-normal">{t('pages.core_values.hero_title_2')}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
               <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-                Integrity, Sustainable Development, Excellence, Proactive, 
-                Responsibility, Teamwork.
+                {t('pages.core_values.hero_list')}
               </p>
             </div>
           </div>
@@ -298,16 +298,15 @@ export default function CoreValuesPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Our Core Values
+                      {t('pages.core_values.header')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed mb-4">
-                    Six Pillars of
-                    <span className="text-yellow-600 font-medium"> Fundamental Excellence</span>
+                    {t('pages.core_values.six_pillars')}
+                    <span className="text-yellow-600 font-medium"> {t('pages.core_values.six_pillars_highlight')}</span>
                   </h2>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    Integrity, Sustainable Development, Excellence, Proactive, 
-                    Responsibility, Teamwork.
+                    {t('pages.core_values.hero_list')}
                   </p>
                 </div>
 
@@ -378,19 +377,18 @@ export default function CoreValuesPage() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Building Indonesia's Future Together</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.core_values.cta_title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Through our core values, we are committed to creating sustainable positive impact 
-                        for all stakeholders and building a legacy of responsible mining stewardship.
+                        {t('pages.core_values.cta_desc')}
                       </p>
                     </div>
                     <div className="flex justify-center space-x-4">
                       <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                        <span className="relative z-10">Values Implementation</span>
+                        <span className="relative z-10">{t('pages.core_values.cta_btn_1')}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                       </button>
                       <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
-                        Learn More
+                        {t('pages.core_values.cta_btn_2')}
                       </button>
                     </div>
                   </div>

@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\FeedbackReportController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\LanguageController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -67,6 +68,10 @@ Route::get('/contact', function () {
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
 Route::post('/contact-message', [ContactMessageController::class, 'store']);
+
+// Language switching routes
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
+Route::get('/api/translations', [LanguageController::class, 'getTranslations'])->name('translations.get');
 
 // Health check endpoint for Railway
 Route::get('/health', [HealthController::class, 'check']);

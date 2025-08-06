@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, Variants, Easing, AnimatePresence } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useTranslation } from "../hooks/useTranslation";
 
 // Enhanced animations with professional timing
 const fadeInUp: Variants = {
@@ -229,28 +230,28 @@ const slideInRight = {
 };
 
 // Fixed Mining Sectors Section untuk Mobile
-function EnhancedMiningSectors() {
+function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
   const sectors = [
     {
-      name: "Gold",
-      description: "Ekstraksi emas premium menggunakan teknologi aluvial modern di cekungan Sungai Musairo. Proses berkelanjutan dengan peralatan canggih untuk hasil maksimal sambil menjaga lingkungan.",
-      highlight: "Primary Focus"
+      name: t('pages.business_activity.mining_sectors.sectors.gold.name'),
+      description: t('pages.business_activity.mining_sectors.sectors.gold.description'),
+      highlight: t('pages.business_activity.mining_sectors.sectors.gold.highlight')
     },
     {
-      name: "Silver", 
-      description: "Pemrosesan perak dan logam mulia lainnya melalui sistem separasi terintegrasi. Teknologi penyulingan canggih memastikan kemurnian tinggi dan kualitas terbaik.",
-      highlight: "Secondary Operations"
+      name: t('pages.business_activity.mining_sectors.sectors.silver.name'), 
+      description: t('pages.business_activity.mining_sectors.sectors.silver.description'),
+      highlight: t('pages.business_activity.mining_sectors.sectors.silver.highlight')
     },
     {
-      name: "Other Metals",
-      description: "Eksplorasi dan ekstraksi mineral strategis termasuk unsur tanah jarang. Menggunakan survei geologi terdepan untuk identifikasi potensi sumber daya mineral baru.",
-      highlight: "Future Development"
+      name: t('pages.business_activity.mining_sectors.sectors.other_metals.name'),
+      description: t('pages.business_activity.mining_sectors.sectors.other_metals.description'),
+      highlight: t('pages.business_activity.mining_sectors.sectors.other_metals.highlight')
     }
   ];
 
   const images = [
-    { src: "/gold1.jpg", alt: "Gold mining" },
-    { src: "/silver.jpg", alt: "Silver mining" }
+    { src: "/gold1.jpg", alt: t('pages.business_activity.mining_sectors.images.gold_alt') },
+    { src: "/silver.jpg", alt: t('pages.business_activity.mining_sectors.images.silver_alt') }
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -295,13 +296,12 @@ function EnhancedMiningSectors() {
           />
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
             <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
-              Mining
+              {t('pages.business_activity.mining_sectors.title_line1')}
             </span>{" "}
-            <span className="text-gray-800">Sectors</span>
+            <span className="text-gray-800">{t('pages.business_activity.mining_sectors.title_line2')}</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
-            To achieve our goals, our company operates in several specialized sectors with
-            advanced technology and sustainable practices across premium mineral extraction operations.
+            {t('pages.business_activity.mining_sectors.description')}
           </p>
         </motion.div>
 
@@ -359,7 +359,7 @@ function EnhancedMiningSectors() {
                     </p>
                     
                     {/* Learn More Links - MOBILE FRIENDLY */}
-                    {sector.name === "Gold" && (
+                    {index === 0 && (
                       <motion.div
                         className="opacity-100"
                         whileHover={{ x: 3 }}
@@ -369,7 +369,7 @@ function EnhancedMiningSectors() {
                           onClick={() => setShowGoldDetail(true)}
                           className="text-amber-600 font-medium text-xs sm:text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-1 sm:gap-2 focus:outline-none focus:underline"
                         >
-                          Learn more about gold operations
+                          {t('pages.business_activity.mining_sectors.learn_more_gold')}
                           <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -377,7 +377,7 @@ function EnhancedMiningSectors() {
                       </motion.div>
                     )}
                     
-                    {sector.name === "Silver" && (
+                    {index === 1 && (
                       <motion.div
                         className="opacity-100"
                         whileHover={{ x: 3 }}
@@ -387,7 +387,24 @@ function EnhancedMiningSectors() {
                           onClick={() => setShowSilverDetail(true)}
                           className="text-amber-600 font-medium text-xs sm:text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-1 sm:gap-2 focus:outline-none focus:underline"
                         >
-                          Learn more about silver operations
+                          {t('pages.business_activity.mining_sectors.learn_more_silver')}
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </motion.div>
+                    )}
+                    
+                    {index === 2 && (
+                      <motion.div
+                        className="opacity-100"
+                        whileHover={{ x: 3 }}
+                      >
+                        <button
+                          type="button"
+                          className="text-amber-600 font-medium text-xs sm:text-sm cursor-pointer hover:text-amber-700 inline-flex items-center gap-1 sm:gap-2 focus:outline-none focus:underline"
+                        >
+                          {t('pages.business_activity.mining_sectors.learn_more_other_metals')}
                           <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -428,10 +445,10 @@ function EnhancedMiningSectors() {
                 {/* Image Caption - MOBILE RESPONSIVE */}
                 <div className="mt-4 text-center">
                   <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
-                    Modern Mining Operations
+                    {t('pages.business_activity.modern_operations.title')}
                   </h4>
                   <p className="text-xs sm:text-sm text-gray-600">
-                    Advanced equipment and sustainable practices in mineral extraction
+                    {t('pages.business_activity.modern_operations.subtitle')}
                   </p>
                 </div>
               </div>
@@ -551,12 +568,10 @@ function EnhancedMiningSectors() {
           className="mt-12 sm:mt-16 text-center bg-gray-800 rounded-2xl p-6 sm:p-8 text-white"
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
-            Sustainable Mining Excellence
+                            {t('pages.business_activity.sustainable_excellence.title')}
           </h3>
           <p className="text-gray-300 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-            Our diversified approach across gold, silver, and other metals ensures comprehensive
-            resource utilization while maintaining the highest environmental and safety standards
-            throughout all operations in the mineral-rich Musairo River basin.
+            {t('pages.business_activity.sustainable_excellence.description')}
           </p>
         </motion.div>
       </div>
@@ -565,7 +580,7 @@ function EnhancedMiningSectors() {
 }
 
 // NEW ENHANCED ALLUVIAL GOLD MINING SECTION - MINIMALIST VERSION
-function AlluvialGoldMiningSection() {
+function AlluvialGoldMiningSection({ t }: { t: (key: string) => string }) {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -584,10 +599,10 @@ function AlluvialGoldMiningSection() {
             className="h-0.5 bg-gradient-to-r from-amber-500 to-yellow-600 mx-auto mb-6"
           />
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            ALLUVIAL GOLD MINING
+            {t('pages.business_activity.alluvial_mining.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Sustainable mining operations in Papua's mineral-rich region
+            {t('pages.business_activity.alluvial_mining.subtitle')}
           </p>
         </motion.div>
         {/* Main Content */}
@@ -603,50 +618,40 @@ function AlluvialGoldMiningSection() {
             {/* Main Text */}
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-700 leading-relaxed mb-6">
-                The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963
-                with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square.
-                The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia,
-                the biggest mining company with the most gold and silver output in the nation is located.
+                {t('pages.business_activity.alluvial_mining.content.paragraph1')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-6">
-                Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district,
-                the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector
-                in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village,
-                along the musairo river, Nabire, Papua.
+                {t('pages.business_activity.alluvial_mining.content.paragraph2')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-8">
-                In 2010, the authority to mine changed into mining lisence for exploration. In addition, in 2011, PT Kristalin Ekalestari
-                was also granted mining lisence for operational production for 198 hectares in Makimi village. To conduct mass mining for
-                alluvial gold, PT Kristalin Ekalestari is cooperating with local and foreign investors to optimize the mining sector,
-                with a noble purpose to improve the local and national economies.
+                {t('pages.business_activity.alluvial_mining.content.paragraph3')}
               </p>
             </div>
             {/* Key Operations */}
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-800 mb-6">Current Operations</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-6">{t('pages.business_activity.alluvial_mining.current_operations.title')}</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span className="font-medium text-gray-700">Gold exploration in Nabire, Papua</span>
+                    <span className="font-medium text-gray-700">{t('pages.business_activity.alluvial_mining.current_operations.exploration')}</span>
                   </div>
-                  <span className="text-amber-600 font-semibold">5,000 Ha</span>
+                  <span className="text-amber-600 font-semibold">{t('pages.business_activity.alluvial_mining.current_operations.exploration_area')}</span>
                 </div>
                 <div className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span className="font-medium text-gray-700">Gold processing in Nabire, Papua</span>
+                    <span className="font-medium text-gray-700">{t('pages.business_activity.alluvial_mining.current_operations.processing')}</span>
                   </div>
-                  <span className="text-amber-600 font-semibold">198 Ha</span>
+                  <span className="text-amber-600 font-semibold">{t('pages.business_activity.alluvial_mining.current_operations.processing_area')}</span>
                 </div>
               </div>
             </div>
             {/* Economic Impact */}
             <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Economic Impact</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{t('pages.business_activity.alluvial_mining.economic_impact.title')}</h3>
               <p className="text-gray-700 leading-relaxed">
-                Gold minerals have a significant role in improving the nation's economy. PT Kristalin Ekalestari aims to contribute
-                to the region's government, optimizing underdeveloped economies of local areas, and support potential mining sites in Nabire, Papua.
+                {t('pages.business_activity.alluvial_mining.economic_impact.description')}
               </p>
             </div>
           </motion.div>
@@ -667,44 +672,44 @@ function AlluvialGoldMiningSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4 text-white">
-                <p className="text-sm font-medium">Modern Mining Equipment</p>
-                <p className="text-xs opacity-90">Nabire, Papua</p>
+                <p className="text-sm font-medium">{t('pages.business_activity.modern_operations.title')}</p>
+                <p className="text-xs opacity-90">{t('pages.business_activity.modern_operations.location')}</p>
               </div>
             </div>
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 text-center">
                 <div className="text-2xl font-bold text-amber-600 mb-1">2007</div>
-                <div className="text-sm text-gray-600">Est. Year</div>
+                <div className="text-sm text-gray-600">{t('pages.business_activity.alluvial_mining.stats.est_year')}</div>
               </div>
               <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 text-center">
                 <div className="text-2xl font-bold text-amber-600 mb-1">17+</div>
-                <div className="text-sm text-gray-600">Years Exp</div>
+                <div className="text-sm text-gray-600">{t('pages.business_activity.alluvial_mining.stats.years_exp')}</div>
               </div>
             </div>
             {/* Timeline */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-              <h4 className="font-semibold text-gray-800 mb-4">Timeline</h4>
+              <h4 className="font-semibold text-gray-800 mb-4">{t('pages.business_activity.alluvial_mining.timeline.title')}</h4>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <div>
                     <span className="font-medium text-gray-800">2007</span>
-                    <span className="text-gray-600 text-sm ml-2">Mining authority granted</span>
+                    <span className="text-gray-600 text-sm ml-2">{t('pages.business_activity.alluvial_mining.timeline.mining_authority')}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <div>
                     <span className="font-medium text-gray-800">2010</span>
-                    <span className="text-gray-600 text-sm ml-2">Exploration license</span>
+                    <span className="text-gray-600 text-sm ml-2">{t('pages.business_activity.alluvial_mining.timeline.exploration_license')}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <div>
                     <span className="font-medium text-gray-800">2011</span>
-                    <span className="text-gray-600 text-sm ml-2">Production license</span>
+                    <span className="text-gray-600 text-sm ml-2">{t('pages.business_activity.alluvial_mining.timeline.production_license')}</span>
                   </div>
                 </div>
               </div>
@@ -717,6 +722,7 @@ function AlluvialGoldMiningSection() {
 }
 
 export default function BusinessActivityPage() {
+  const { t } = useTranslation();
   const miningSectorsRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -741,7 +747,7 @@ export default function BusinessActivityPage() {
         >
           <img
             src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-            alt="Mining Operations"
+            alt={t('pages.business_activity.hero.alt_text')}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
@@ -776,7 +782,7 @@ export default function BusinessActivityPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Business
+                {t('pages.business_activity.hero.title_line1')}
               </motion.span>
               <br />
               <motion.span
@@ -785,7 +791,7 @@ export default function BusinessActivityPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
-                Activities
+                {t('pages.business_activity.hero.title_line2')}
               </motion.span>
             </motion.h1>
 
@@ -796,7 +802,7 @@ export default function BusinessActivityPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
             >
-              Premium gold mining operations with sustainable practices and cutting-edge technology for Indonesia's future.
+              {t('pages.business_activity.hero.description')}
             </motion.p>
 
             {/* FIXED MOBILE BUTTON */}
@@ -820,7 +826,7 @@ export default function BusinessActivityPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-                  Explore Operations
+                  {t('pages.business_activity.hero.explore_button')}
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -846,7 +852,7 @@ export default function BusinessActivityPage() {
 
       {/* Enhanced Mining Sectors Section */}
       <div ref={miningSectorsRef}>
-        <EnhancedMiningSectors />
+        <EnhancedMiningSectors t={t} />
       </div>
 
       {/* Our Location Section - BLACK BACKGROUND */}
@@ -871,7 +877,7 @@ export default function BusinessActivityPage() {
               transition={{ duration: 0.6 }}
               className="text-amber-400 text-sm font-medium tracking-wider uppercase"
             >
-              OUR LOCATION
+              {t('pages.business_activity.location.header')}
             </motion.span>
             <motion.div
               initial={{ width: 0 }}
@@ -885,7 +891,7 @@ export default function BusinessActivityPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight"
             >
-              Strategic Mining Location
+              {t('pages.business_activity.location.title')}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -893,10 +899,7 @@ export default function BusinessActivityPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base md:text-lg text-gray-200 max-w-5xl mx-auto leading-relaxed font-normal mb-12"
             >
-              PT Kristalin Ekalestari explores gold along the Musairo River, in Makimi district, Nabire, Papua.
-              The exploration site spans 60km towards the eastern town of Nabire. Our location can be travelled
-              by land transportation for 1.5 to 2 hours, reaching Legari village/SP-1, then using a specialized
-              4x4 vehicle along the Musairo river for another 10km that takes about 0.5 hours.
+              {t('pages.business_activity.location.description_part1')}
             </motion.p>
           </motion.div>
 
@@ -955,7 +958,7 @@ export default function BusinessActivityPage() {
                   className="mt-6 text-center"
                 >
                   <p className="text-gray-300 text-sm font-medium">
-                    Musairo River Basin, Makimi District, Nabire, Papua
+                    {t('pages.business_activity.location.map_caption')}
                   </p>
                 </motion.div>
               </div>
@@ -975,14 +978,14 @@ export default function BusinessActivityPage() {
                     transition={{ duration: 0.6 }}
                     className="text-xl font-semibold text-white mb-6"
                   >
-                    Mining Area Details
+                    {t('pages.business_activity.location.mining_area_details.title')}
                   </motion.h3>
                   <div className="space-y-4">
                     {[
-                      { label: "Total Area", value: "4,200 Hectares", icon: "location" },
-                      { label: "Distance from Nabire", value: "60 km", icon: "truck" },
-                      { label: "Land Transportation", value: "1.5 - 2 Hours", icon: "truck" },
-                      { label: "River Access", value: "10 km (30 mins)", icon: "location" }
+                      { label: t('pages.business_activity.location.mining_area_details.total_area_label'), value: t('pages.business_activity.location.mining_area_details.total_area_value'), icon: "location" },
+                      { label: t('pages.business_activity.location.mining_area_details.distance_label'), value: t('pages.business_activity.location.mining_area_details.distance_value'), icon: "truck" },
+                      { label: t('pages.business_activity.location.mining_area_details.land_transport_label'), value: t('pages.business_activity.location.mining_area_details.land_transport_value'), icon: "truck" },
+                      { label: t('pages.business_activity.location.mining_area_details.river_access_label'), value: t('pages.business_activity.location.mining_area_details.river_access_value'), icon: "location" }
                     ].map((detail) => (
                       <motion.div
                         key={detail.label}
@@ -1025,7 +1028,7 @@ export default function BusinessActivityPage() {
                     transition={{ duration: 0.6 }}
                     className="text-xl font-semibold text-white mb-6"
                   >
-                    Mineral Resources
+                    {t('pages.business_activity.location.mineral_resources.title')}
                   </motion.h3>
                   <motion.p
                     initial={{ opacity: 0 }}
@@ -1033,14 +1036,12 @@ export default function BusinessActivityPage() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-gray-400 text-sm font-normal leading-relaxed mb-6"
                   >
-                    Based on geological observation of the surface and construction of testing wells
-                    as well as drillings conducted by our internal exploration team, the potential area
-                    covers 4,200 hectares with significant inferred mineral resources.
+                    {t('pages.business_activity.location.mineral_resources.description')}
                   </motion.p>
                   <div className="grid grid-cols-2 gap-4">
                     {[
-                      { value: "32.7", label: "Tons AU (Total Resources)" },
-                      { value: "13.7", label: "Tons AU (Ready to Mine)" }
+                      { value: "32.7", label: t('pages.business_activity.location.mineral_resources.total_resources') },
+                      { value: "13.7", label: t('pages.business_activity.location.mineral_resources.ready_to_mine') }
                     ].map((stat) => (
                       <motion.div
                         key={stat.label}
@@ -1067,7 +1068,7 @@ export default function BusinessActivityPage() {
       </motion.section>
 
       {/* Alluvial Gold Mining Section */}
-      <AlluvialGoldMiningSection />
+      <AlluvialGoldMiningSection t={t} />
 
       {/* Our Achievements Section - BLACK BACKGROUND */}
       <motion.section
@@ -1085,12 +1086,11 @@ export default function BusinessActivityPage() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
             >
-              <span className="text-white">Our </span>
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">Achievements</span>
+              {t('pages.business_activity.achievements.title')}
             </motion.h2>
             <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 mx-auto mb-6"></div>
             <p className="text-base md:text-lg text-gray-400 max-w-4xl mx-auto leading-relaxed font-normal">
-              Proven track record of excellence in sustainable mining operations and community development.
+              {t('pages.business_activity.achievements.subtitle')}
             </p>
           </motion.div>
           {/* Achievements Grid */}
@@ -1098,29 +1098,29 @@ export default function BusinessActivityPage() {
             {[
               {
                 number: 18,
-                label: "Years Experience",
-                description: "Proven mining operations with sustainable practices",
+                label: t('pages.business_activity.achievements.years_experience.label'),
+                description: t('pages.business_activity.achievements.years_experience.description'),
                 icon: "trophy",
                 suffix: "+"
               },
               {
                 number: 12,
-                label: "Mining Sites",
-                description: "Active locations across Papua region",
+                label: t('pages.business_activity.achievements.mining_sites.label'),
+                description: t('pages.business_activity.achievements.mining_sites.description'),
                 icon: "location",
                 suffix: ""
               },
               {
                 number: 46,
-                label: "Gold Reserves",
-                description: "Tons of proven mineral resources identified",
+                label: t('pages.business_activity.achievements.gold_reserves.label'),
+                description: t('pages.business_activity.achievements.gold_reserves.description'),
                 icon: "mining",
                 suffix: ".4T"
               },
               {
                 number: 99,
-                label: "Success Rate",
-                description: "Project completion and safety compliance",
+                label: t('pages.business_activity.achievements.success_rate.label'),
+                description: t('pages.business_activity.achievements.success_rate.description'),
                 icon: "analytics",
                 suffix: "%"
               }
@@ -1210,15 +1210,15 @@ export default function BusinessActivityPage() {
           >
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-amber-200 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-              Community Impact
+              {t('pages.business_activity.community_impact.community_development_tag')}
             </div>
 
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Community <span className="text-amber-600">Impact</span>
+              {t('pages.business_activity.community_impact.title')}
             </h2>
             <div className="w-16 h-0.5 bg-amber-600 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Creating meaningful change through sustainable development and community empowerment
+              {t('pages.business_activity.community_impact.subtitle')}
             </p>
           </motion.div>
 
@@ -1249,29 +1249,29 @@ export default function BusinessActivityPage() {
               <div className="relative p-6 space-y-8">
                 <div>
                   <div className="inline-block bg-gradient-to-r from-amber-100 to-yellow-100 border border-amber-200 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                    Community Development
+                    {t('pages.business_activity.community_impact.community_development_tag')}
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                    Empowering Local Communities
+                    {t('pages.business_activity.community_impact.empowering_title')}
                   </h3>
                   <p className="text-gray-600 text-lg leading-relaxed">
-                    Aside from big scale gold mining activities, PT Kristalin Ekalestari also supports gold mining businesses of the locals. This collaboration with the locals with customary rights aim to improve local gold commodity. Local minings are supported and trained to assure excellent processing, effectivity, and efficiency.
+                    {t('pages.business_activity.community_impact.empowering_description')}
                   </p>
                 </div>
 
                 {/* Enhanced Stats */}
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
-                    <div className="text-2xl font-bold text-amber-600 mb-1">350+</div>
-                    <div className="text-sm text-gray-500">Miners Trained</div>
+                    <div className="text-2xl font-bold text-amber-600 mb-1">{t('pages.business_activity.community_impact.stats.miners_trained.value')}</div>
+                    <div className="text-sm text-gray-500">{t('pages.business_activity.community_impact.stats.miners_trained.label')}</div>
                   </div>
                   <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
-                    <div className="text-2xl font-bold text-amber-600 mb-1">95%</div>
-                    <div className="text-sm text-gray-500">Success Rate</div>
+                    <div className="text-2xl font-bold text-amber-600 mb-1">{t('pages.business_activity.community_impact.stats.success_rate.value')}</div>
+                    <div className="text-sm text-gray-500">{t('pages.business_activity.community_impact.stats.success_rate.label')}</div>
                   </div>
                   <div className="text-center p-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
-                    <div className="text-2xl font-bold text-amber-600 mb-1">12</div>
-                    <div className="text-sm text-gray-500">Villages</div>
+                    <div className="text-2xl font-bold text-amber-600 mb-1">{t('pages.business_activity.community_impact.stats.villages.value')}</div>
+                    <div className="text-sm text-gray-500">{t('pages.business_activity.community_impact.stats.villages.label')}</div>
                   </div>
                 </div>
               </div>
@@ -1283,27 +1283,27 @@ export default function BusinessActivityPage() {
             {[
               {
                 icon: "users",
-                title: "Employment",
-                value: "750+",
-                description: "Jobs created for local communities"
+                title: t('pages.business_activity.community_impact.stats.employment.label'),
+                value: t('pages.business_activity.community_impact.stats.employment.value'),
+                description: t('pages.business_activity.community_impact.stats.employment.description')
               },
               {
                 icon: "education",
-                title: "Training",
-                value: "350+",
-                description: "People trained in mining skills"
+                title: t('pages.business_activity.community_impact.stats.training.label'),
+                value: t('pages.business_activity.community_impact.stats.training.value'),
+                description: t('pages.business_activity.community_impact.stats.training.description')
               },
               {
                 icon: "environment",
-                title: "Environment",
-                value: "200+",
-                description: "Hectares of land restored"
+                title: t('pages.business_activity.community_impact.stats.environment.label'),
+                value: t('pages.business_activity.community_impact.stats.environment.value'),
+                description: t('pages.business_activity.community_impact.stats.environment.description')
               },
               {
                 icon: "health",
-                title: "Healthcare",
-                value: "8",
-                description: "Medical facilities established"
+                title: t('pages.business_activity.community_impact.stats.healthcare.label'),
+                value: t('pages.business_activity.community_impact.stats.healthcare.value'),
+                description: t('pages.business_activity.community_impact.stats.healthcare.description')
               }
             ].map((item, index) => (
               <motion.div
@@ -1347,18 +1347,18 @@ export default function BusinessActivityPage() {
 
             <div className="relative bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 md:p-12 text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Building Sustainable Communities
+                {t('pages.business_activity.community_impact.sustainable_communities.title')}
               </h3>
               <p className="text-gray-600 text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
-                Our commitment to community development goes beyond mining operations. We advocate for local miners to get proper licensing and optimize gold commodity through sustainable practices, improving living standards in Nabire, Papua.
+                {t('pages.business_activity.community_impact.sustainable_communities.description')}
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {[
-                  { value: "25+", label: "Partner Villages" },
-                  { value: "40+", label: "Active Programs" },
-                  { value: "$2.5M", label: "Annual Investment" },
-                  { value: "5000+", label: "Lives Improved" }
+                  { value: t('pages.business_activity.community_impact.sustainable_communities.partner_villages.value'), label: t('pages.business_activity.community_impact.sustainable_communities.partner_villages.label') },
+                  { value: t('pages.business_activity.community_impact.sustainable_communities.active_programs.value'), label: t('pages.business_activity.community_impact.sustainable_communities.active_programs.label') },
+                  { value: t('pages.business_activity.community_impact.sustainable_communities.annual_investment.value'), label: t('pages.business_activity.community_impact.sustainable_communities.annual_investment.label') },
+                  { value: t('pages.business_activity.community_impact.sustainable_communities.lives_improved.value'), label: t('pages.business_activity.community_impact.sustainable_communities.lives_improved.label') }
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}
@@ -1380,34 +1380,34 @@ export default function BusinessActivityPage() {
       </motion.section>
 
       {/* Why Choose Us Section */}
-      <motion.section
+      <motion.section 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         className="relative py-20 bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1')`
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-linebusiness.png')`
         }}
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <motion.div
+            <motion.div 
               variants={slideInLeft}
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <h2 className="text-sm font-semibold text-white tracking-[0.25em] mb-4">
-                WHY CHOOSE US
+                {t('pages.business_activity.why_choose_us.header')}
               </h2>
               <div className="w-20 h-0.5 bg-yellow-600 mb-8"></div>
               <h3 className="text-4xl md:text-5xl font-normal text-white mb-6 leading-tight">
-                Experience Work With Global Industries
+                {t('pages.business_activity.why_choose_us.title')}
               </h3>
               <p className="text-xl text-white/90 mb-8">
-                ARE ALWAYS READY TO SERVE
+                {t('pages.business_activity.why_choose_us.subtitle')}
               </p>
-
-              <motion.button
+              
+              <motion.button 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1417,31 +1417,31 @@ export default function BusinessActivityPage() {
                 className="border-2 border-white text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300"
               >
                 <a href="/contact">
-                CONTACT US
+                {t('pages.business_activity.why_choose_us.contact_button')}
                 </a>
               </motion.button>
             </motion.div>
 
             {/* Right Content - Features */}
-            <motion.div
+            <motion.div 
               variants={slideInRight}
               transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
               className="space-y-6"
             >
-              {[
-                "We Have Professional Workers",
-                "On Time In Progress",
-                "Friendly To Serve Customers",
-                "Give The Best & Fair"
+              {              [
+                t('pages.business_activity.why_choose_us.features.professional'),
+                t('pages.business_activity.why_choose_us.features.on_time'), 
+                t('pages.business_activity.why_choose_us.features.friendly'),
+                t('pages.business_activity.why_choose_us.features.best_fair')
               ].map((feature, index) => (
-                <motion.div
+                <motion.div 
                   key={index}
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * index, duration: 0.4, ease: "easeInOut" }}
                   className="flex items-center space-x-4 group"
                 >
-                  <motion.div
+                  <motion.div 
                     whileHover={{ scale: 1.2, rotate: 360 }}
                     transition={{ duration: 0.4 }}
                     className="w-6 h-6 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0"

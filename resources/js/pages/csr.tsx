@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { useTranslation } from '../hooks/useTranslation';
 
 const heroImage = '/papua-children.png';
 const galeriPoso = ['/galeri-poso1.png', '/galeri-poso2.png', '/galeri-poso3.png', '/galeri-poso4.png', '/galeri-poso5.png'];
@@ -107,7 +108,7 @@ const testimonials = [
 // Removed unused teamMembers to fix ESLint errors
 
 // Video Section Component - MOBILE OPTIMIZED
-function VideoSection() {
+function VideoSection({ t }: { t: (key: string) => string }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (
@@ -127,7 +128,7 @@ function VideoSection() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        See Our Impact in Action
+                        {t('pages.csr.video_section.title')}
                     </motion.h2>
                     <motion.p
                         className="mx-auto max-w-2xl text-sm text-gray-300 sm:text-base"
@@ -136,7 +137,7 @@ function VideoSection() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
                     >
-                        Watch how we're making a difference in communities across Indonesia
+                        {t('pages.csr.video_section.description')}
                     </motion.p>
                 </motion.div>
 
@@ -145,7 +146,7 @@ function VideoSection() {
                         {isPlaying ? (
                             <iframe
                                 src="https://www.youtube.com/embed/Lq_nOhXVt4g?autoplay=1"
-                                title="CSR Video"
+                                title={t('pages.csr.video_section.video_title')}
                                 className="h-full w-full"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
@@ -154,7 +155,7 @@ function VideoSection() {
                             <>
                                 <img
                                     src="https://img.youtube.com/vi/Lq_nOhXVt4g/maxresdefault.jpg"
-                                    alt="CSR Video Thumbnail"
+                                    alt={t('pages.csr.video_section.thumbnail_alt')}
                                     className="h-full w-full object-cover"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black/50">
@@ -177,7 +178,7 @@ function VideoSection() {
 }
 
 // Testimonials Component - MOBILE OPTIMIZED
-function TestimonialsCarousel() {
+function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: string; role: string; photo: string; quote: string}>; t: (key: string) => string }) {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
     useEffect(() => {
@@ -204,8 +205,8 @@ function TestimonialsCarousel() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">What People</span>
-                        <span className="text-black"> Say</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.testimonials.title_line1')}</span>
+                        <span className="text-black"> {t('pages.csr.testimonials.title_line2')}</span>
                     </motion.h2>
                     <motion.p
                         className="text-sm text-gray-600 sm:text-base"
@@ -214,7 +215,7 @@ function TestimonialsCarousel() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
                     >
-                        Hear from those whose lives we've touched
+                        {t('pages.csr.testimonials.description')}
                     </motion.p>
                 </motion.div>
 
@@ -255,7 +256,7 @@ function TestimonialsCarousel() {
 }
 
 // Enhanced Gallery Component - MOBILE OPTIMIZED
-function GalleryShowcaseCarousel({ sections }: { sections: typeof gallerySections }) {
+function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySections; t: (key: string) => string }) {
     const [current, setCurrent] = useState(0);
     const [imgIdx, setImgIdx] = useState(0);
 
@@ -279,7 +280,7 @@ function GalleryShowcaseCarousel({ sections }: { sections: typeof gallerySection
                 {/* Text Section - MOBILE OPTIMIZED */}
                 <div className="flex flex-1 flex-col items-center justify-center text-center md:items-start md:text-left">
                     <div className="mb-2 bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-xs font-semibold tracking-wider text-transparent uppercase sm:mb-3 sm:text-sm">
-                        CSR Activity
+                        {t('pages.csr.csr_activity_label')}
                     </div>
                     <h2 className="mb-3 bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-xl leading-tight font-bold text-transparent sm:mb-4 sm:text-2xl md:text-3xl lg:text-4xl">
                         {sections[current].title}
@@ -347,6 +348,7 @@ function GalleryShowcaseCarousel({ sections }: { sections: typeof gallerySection
 }
 
 export default function CSRPageMobileFix() {
+    const { t } = useTranslation();
     const [scrollY, setScrollY] = useState(0);
     const commitmentRef = useRef<HTMLDivElement>(null);
 
@@ -360,6 +362,91 @@ export default function CSRPageMobileFix() {
         commitmentRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Get translated gallery sections
+    const translatedGallerySections = [
+        {
+            title: t('pages.csr.gallery_sections.0.title'),
+            description: t('pages.csr.gallery_sections.0.description'),
+            images: [
+                '/WhatsApp Image 2025-07-20 at 09.57.47 (2).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.47 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.47.jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.46 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.46.jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.45 (2).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.45 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.45.jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.44 (3).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.44 (2).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.44 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 09.57.44.jpeg',
+            ],
+        },
+        {
+            title: t('pages.csr.gallery_sections.1.title'),
+            description: t('pages.csr.gallery_sections.1.description'),
+            images: [
+                '/WhatsApp Image 2025-07-20 at 10.39.03.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.02 (2).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.02 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.02.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.01 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.01.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.00 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.39.00.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.58 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.58.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.57.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.56.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.55 (1).jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.55.jpeg',
+                '/WhatsApp Image 2025-07-20 at 10.38.54.jpeg',
+            ],
+        },
+        {
+            title: t('pages.csr.gallery_sections.2.title'),
+            description: t('pages.csr.gallery_sections.2.description'),
+            images: galeriPoso,
+        },
+        {
+            title: t('pages.csr.gallery_sections.3.title'),
+            description: t('pages.csr.gallery_sections.3.description'),
+            images: galeriPapua,
+        },
+        {
+            title: t('pages.csr.gallery_sections.4.title'),
+            description: t('pages.csr.gallery_sections.4.description'),
+            images: galeriMenara,
+        },
+        {
+            title: t('pages.csr.gallery_sections.5.title'),
+            description: t('pages.csr.gallery_sections.5.description'),
+            images: galeriPapua2,
+        },
+    ];
+
+    // Get translated testimonials
+    const translatedTestimonials = [
+        {
+            name: t('pages.csr.testimonials.data.0.name'),
+            role: t('pages.csr.testimonials.data.0.role'),
+            photo: '/prfl.png',
+            quote: t('pages.csr.testimonials.data.0.quote'),
+        },
+        {
+            name: t('pages.csr.testimonials.data.1.name'),
+            role: t('pages.csr.testimonials.data.1.role'),
+            photo: '/prfl.png',
+            quote: t('pages.csr.testimonials.data.1.quote'),
+        },
+        {
+            name: t('pages.csr.testimonials.data.2.name'),
+            role: t('pages.csr.testimonials.data.2.role'),
+            photo: '/prfl.png',
+            quote: t('pages.csr.testimonials.data.2.quote'),
+        },
+    ];
+
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
             <Header sticky={true} transparent={true} />
@@ -372,7 +459,7 @@ export default function CSRPageMobileFix() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src={heroImage} alt="CSR Hero" className="h-full w-full object-cover" />
+                    <img src={heroImage} alt={t('pages.csr.hero.alt_text')} className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
@@ -405,7 +492,7 @@ export default function CSRPageMobileFix() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
                             >
-                                Corporate Social
+                                {t('pages.csr.hero.title_line1')}
                             </motion.span>
                             <br />
                             <motion.span
@@ -414,7 +501,7 @@ export default function CSRPageMobileFix() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
                             >
-                                Responsibility
+                                {t('pages.csr.hero.title_line2')}
                             </motion.span>
                         </motion.h1>
 
@@ -425,8 +512,7 @@ export default function CSRPageMobileFix() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
                         >
-                            We believe that true business success is measured not only by financial growth, but also by the positive impact we create
-                            for society and the environment.
+                            {t('pages.csr.hero.description')}
                         </motion.p>
 
                         {/* MOBILE RESPONSIVE BUTTON */}
@@ -446,7 +532,7 @@ export default function CSRPageMobileFix() {
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-                                    Learn More
+                                    {t('pages.csr.hero.learn_more_btn')}
                                     <svg
                                         className="h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5"
                                         fill="none"
@@ -460,18 +546,18 @@ export default function CSRPageMobileFix() {
                             </motion.button>
                         </motion.div>
                     </motion.div>
+                </motion.div>
 
-                    {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
-                    <motion.div
-                        className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
+                {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
+                <motion.div
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
                     >
-                        <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
-                            <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
-                        </div>
-                    </motion.div>
+                    <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
+                    <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
+                    </div>
                 </motion.div>
             </section>
 
@@ -505,7 +591,7 @@ export default function CSRPageMobileFix() {
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
                         >
-                            Our Commitment to
+                            {t('pages.csr.commitment.title_line1')}
                         </motion.span>
                         <br />
                         <motion.span
@@ -515,7 +601,7 @@ export default function CSRPageMobileFix() {
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.6, delay: 0.9, ease: 'easeOut' }}
                         >
-                            Community & Sustainability
+                            {t('pages.csr.commitment.title_line2')}
                         </motion.span>
                     </motion.h2>
                     <motion.p
@@ -525,9 +611,7 @@ export default function CSRPageMobileFix() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.7, delay: 1.1, ease: 'easeOut' }}
                     >
-                        PT Kristalin Ekalestari is staying committed to doing corporate social responsibility activities through other development
-                        activities such as constructing more clinics, giving scholarship for local children with outstanding academic performance in
-                        order to develop Nabire.
+                        {t('pages.csr.commitment.description')}
                     </motion.p>
                 </motion.div>
             </section>
@@ -548,8 +632,8 @@ export default function CSRPageMobileFix() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">Our Programs</span>
-                        <span className="text-black"> in Action</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.programs.title_line1')}</span>
+                        <span className="text-black"> {t('pages.csr.programs.title_line2')}</span>
                     </motion.h2>
                     <motion.p
                         className="mx-auto max-w-2xl text-sm text-gray-600 sm:text-base lg:text-lg"
@@ -558,7 +642,7 @@ export default function CSRPageMobileFix() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
                     >
-                        Discover the real impact of our CSR initiatives across Indonesia
+                        {t('pages.csr.programs.description')}
                     </motion.p>
                 </motion.div>
 
@@ -568,15 +652,15 @@ export default function CSRPageMobileFix() {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
                 >
-                    <GalleryShowcaseCarousel sections={gallerySections} />
+                    <GalleryShowcaseCarousel sections={translatedGallerySections} t={t} />
                 </motion.div>
             </main>
 
             {/* Video Section - MOBILE OPTIMIZED */}
-            <VideoSection />
+            <VideoSection t={t} />
 
             {/* Testimonials - MOBILE OPTIMIZED */}
-            <TestimonialsCarousel />
+            <TestimonialsCarousel testimonials={translatedTestimonials} t={t} />
 
             <Footer />
         </div>

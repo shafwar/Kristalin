@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, BarChart3, Calendar, ChevronLeft, ChevronRight, 
 import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface NewsItem {
     id: number;
@@ -748,6 +749,7 @@ const CounterAnimation = ({ target, suffix = '', duration = 2000, delay = 0 }: C
 };
 
 const KristalinNewsPage: React.FC = () => {
+    const { t } = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -761,25 +763,61 @@ const KristalinNewsPage: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Ambil id dari query string
+    // Function to get translated news data
+    const getTranslatedNews = (news: NewsItem): NewsItem => {
+        try {
+            const articleTranslation = t(`pages.news.articles.${news.id}`);
+            
+            if (articleTranslation && typeof articleTranslation === 'object') {
+                return {
+                    ...news,
+                    title: articleTranslation.title || news.title,
+                    subtitle: articleTranslation.subtitle || news.subtitle,
+                    excerpt: articleTranslation.excerpt || news.excerpt,
+                    content: articleTranslation.content || news.content,
+                    author: articleTranslation.author || news.author,
+                    type: articleTranslation.type || news.type,
+                    metrics: articleTranslation.metrics || news.metrics,
+                };
+            }
+        } catch (error) {
+            // If translation key doesn't exist, return original news
+            return news;
+        }
+        
+        return news;
+    };
+
+    // Get translated news data
+    const translatedNewsData = newsData.map(getTranslatedNews);
+
+    // Ambil id dan page dari query string
     const urlParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const idParam = urlParams.get('id');
-    const selectedNews = idParam ? newsData.find((n) => n.id === Number(idParam)) : null;
+    const pageParam = urlParams.get('page');
+    const selectedNews = idParam ? translatedNewsData.find((n) => n.id === Number(idParam)) : null;
+    
+    // Set current page dari URL parameter saat component mount
+    useEffect(() => {
+        if (pageParam && Number(pageParam) > 0) {
+            setCurrentPage(Number(pageParam));
+        }
+    }, []); // Hanya jalankan sekali saat mount
 
     const newsPerPage = 6;
     const categories = [
-        'All',
-        'Mining Operations',
-        'CSR Initiative',
-        'Environmental',
-        'Achievement',
-        'Community Development',
-        'Partnership',
-        'Technology',
+        { key: 'All', label: t('pages.news.categories.all') },
+        { key: 'Mining Operations', label: t('pages.news.categories.mining_operations') },
+        { key: 'CSR Initiative', label: t('pages.news.categories.csr_initiative') },
+        { key: 'Environmental', label: t('pages.news.categories.environmental') },
+        { key: 'Achievement', label: t('pages.news.categories.achievement') },
+        { key: 'Community Development', label: t('pages.news.categories.community_development') },
+        { key: 'Partnership', label: t('pages.news.categories.partnership') },
+        { key: 'Technology', label: t('pages.news.categories.technology') },
     ];
 
     // Filter news based on category and search
-    const filteredNews = newsData.filter((news) => {
+    const filteredNews = translatedNewsData.filter((news) => {
         const matchesCategory = selectedCategory === 'All' || news.category === selectedCategory;
         const matchesSearch =
             news.title.toLowerCase().includes(searchQuery.toLowerCase()) || news.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
@@ -792,22 +830,63 @@ const KristalinNewsPage: React.FC = () => {
     const currentNews = filteredNews.slice(startIndex, endIndex);
 
     // Enhanced navigation with smooth transitions
+    const scrollToNewsGrid = () => {
+        const newsGridSection = document.querySelector('.news-grid-section');
+        if (newsGridSection) {
+            const rect = newsGridSection.getBoundingClientRect();
+            const offsetTop = window.pageYOffset + rect.top - 200; // 200px dari atas untuk space lebih besar
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     const handlePrevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            const newPage = currentPage - 1;
+            setCurrentPage(newPage);
+            // Update URL dengan page parameter
+            const pageQuery = newPage > 1 ? `?page=${newPage}` : '';
+            window.history.pushState({}, '', `/news${pageQuery}`);
+            // Auto scroll to news grid after state update
+            setTimeout(() => {
+                scrollToNewsGrid();
+            }, 100);
         }
     };
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
+            const newPage = currentPage + 1;
+            setCurrentPage(newPage);
+            // Update URL dengan page parameter
+            window.history.pushState({}, '', `/news?page=${newPage}`);
+            // Auto scroll to news grid after state update
+            setTimeout(() => {
+                scrollToNewsGrid();
+            }, 100);
         }
     };
 
     // Removed unused function to fix ESLint error
 
     const handleBackToList = () => {
-        router.visit('/news', { replace: false });
+        // Ambil page dari URL parameter saat ini
+        const urlParams = new URLSearchParams(window.location.search);
+        const savedPage = urlParams.get('page');
+        const pageQuery = savedPage ? `?page=${savedPage}` : '';
+        
+        router.visit(`/news${pageQuery}`, { 
+            replace: false,
+            onSuccess: () => {
+                // Scroll ke news grid setelah page load
+                setTimeout(() => {
+                    scrollToNewsGrid();
+                }, 300); // Delay sedikit untuk memastikan page sudah loaded
+            }
+        });
     };
 
     const getCategoryColor = (category: string) => {
@@ -821,6 +900,19 @@ const KristalinNewsPage: React.FC = () => {
             Technology: 'from-purple-400 to-indigo-500',
         };
         return colors[category] || 'from-gray-400 to-gray-500';
+    };
+
+    const getCategoryTranslation = (category: string) => {
+        const categoryMapping: Record<string, string> = {
+            'Mining Operations': t('pages.news.categories.mining_operations'),
+            'CSR Initiative': t('pages.news.categories.csr_initiative'),
+            Environmental: t('pages.news.categories.environmental'),
+            Achievement: t('pages.news.categories.achievement'),
+            'Community Development': t('pages.news.categories.community_development'),
+            Partnership: t('pages.news.categories.partnership'),
+            Technology: t('pages.news.categories.technology'),
+        };
+        return categoryMapping[category] || category;
     };
 
     // Reset currentPage to 1 when filter/search changes
@@ -838,26 +930,13 @@ const KristalinNewsPage: React.FC = () => {
     // News Detail View
     if (selectedNews) {
         return (
-            <div className="min-h-screen bg-black">
-                <Header />
+            <div className="min-h-screen flex flex-col bg-white relative overflow-x-hidden">
+                <Header sticky={true} transparent={false} />
 
-                {/* Header Navigation */}
-                <div className="sticky top-0 z-50 border-b border-gray-800/50 bg-black">
-                    <div className="mx-auto max-w-6xl px-6 py-4">
-                        <div className="flex items-center justify-start">
-                            <button
-                                onClick={handleBackToList}
-                                className="group flex items-center rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 px-6 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:from-yellow-300 hover:to-yellow-400"
-                            >
-                                <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                                Back to List
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
 
                 {/* Main Content Container */}
-                <div className="mx-auto max-w-6xl px-6 py-8 pb-32">
+                <div className="mx-auto max-w-6xl px-6 pt-24 pb-32">
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
                         {/* Left Column - Image */}
                         <div className="lg:col-span-2">
@@ -868,7 +947,7 @@ const KristalinNewsPage: React.FC = () => {
                                     <div
                                         className={`bg-gradient-to-r ${getCategoryColor(selectedNews.category)} rounded-full px-3 py-1.5 text-xs font-bold text-black shadow-lg`}
                                     >
-                                        {selectedNews.category}
+                                        {getCategoryTranslation(selectedNews.category)}
                                     </div>
                                 </div>
                                 {/* Trending Badge */}
@@ -881,55 +960,66 @@ const KristalinNewsPage: React.FC = () => {
                                 )}
                             </div>
                             {selectedNews.metrics && (
-                                <div className="mt-4 w-full rounded-2xl border border-amber-500/20 bg-gray-900/50 p-4 backdrop-blur-sm">
-                                    <h4 className="mb-2 flex items-center text-sm font-bold text-white">
-                                        <BarChart3 className="mr-2 h-4 w-4 text-yellow-400" />
-                                        Project Metrics
+                                <div className="mt-4 w-full rounded-2xl border border-amber-500/20 bg-yellow-50 p-4">
+                                    <h4 className="mb-2 flex items-center text-sm font-bold text-gray-800">
+                                        <BarChart3 className="mr-2 h-4 w-4 text-yellow-600" />
+                                        {t('pages.news.detail.project_metrics')}
                                     </h4>
                                     <div className="flex flex-col gap-2">
                                         {Object.entries(selectedNews.metrics).map(([key, value]) => (
                                             <div key={key}>
-                                                <span className="text-xs tracking-wider text-yellow-400 uppercase">{key}</span>
-                                                <span className="block text-xs font-medium break-words text-white">{value}</span>
+                                                <span className="text-xs tracking-wider text-yellow-600 uppercase font-medium">{key}</span>
+                                                <span className="block text-xs font-medium break-words text-gray-700">{value}</span>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             )}
+                            
+                            {/* Back to List Button */}
+                            <div className="mt-4">
+                                <button
+                                    onClick={handleBackToList}
+                                    className="group flex items-center rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 px-6 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:from-yellow-300 hover:to-yellow-400 w-full justify-center"
+                                >
+                                    <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                                    {t('pages.news.detail.back_to_list')}
+                                </button>
+                            </div>
                         </div>
 
                         {/* Right Column - Content */}
                         <div className="lg:col-span-3">
                             {/* Article Metadata */}
-                            <div className="mb-5 flex flex-wrap items-center gap-4 text-xs text-gray-400">
-                                <div className="flex items-center gap-1 transition-colors hover:text-yellow-400">
+                            <div className="mb-5 flex flex-wrap items-center gap-4 text-xs text-gray-600">
+                                <div className="flex items-center gap-1 transition-colors hover:text-yellow-600">
                                     <Calendar className="h-3 w-3" />
                                     <span>{selectedNews.date}</span>
                                 </div>
-                                <div className="flex items-center gap-1 transition-colors hover:text-white">
+                                <div className="flex items-center gap-1 transition-colors hover:text-gray-800">
                                     <User className="h-3 w-3" />
                                     <span>{selectedNews.author}</span>
                                 </div>
-                                <div className="flex items-center gap-1 transition-colors hover:text-white">
+                                <div className="flex items-center gap-1 transition-colors hover:text-gray-800">
                                     <Clock className="h-3 w-3" />
                                     <span>{selectedNews.readTime}</span>
                                 </div>
-                                <div className="flex items-center gap-1 transition-colors hover:text-white">
+                                <div className="flex items-center gap-1 transition-colors hover:text-gray-800">
                                     <Eye className="h-3 w-3" />
                                     <span>{selectedNews.views}</span>
                                 </div>
                             </div>
 
                             {/* Title */}
-                            <h1 className="mb-3 text-2xl leading-tight font-bold text-white lg:text-3xl">{selectedNews.title}</h1>
+                            <h1 className="mb-3 text-2xl leading-tight font-bold text-gray-900 lg:text-3xl">{selectedNews.title}</h1>
 
                             {selectedNews.subtitle && (
-                                <h2 className="mb-5 text-base leading-relaxed font-medium text-yellow-400 lg:text-lg">{selectedNews.subtitle}</h2>
+                                <h2 className="mb-5 text-base leading-relaxed font-medium text-yellow-600 lg:text-lg">{selectedNews.subtitle}</h2>
                             )}
 
                             {/* Content */}
-                            <div className="prose prose-invert max-w-none">
-                                <div className="space-y-4 text-sm leading-relaxed text-gray-300 lg:text-base">
+                            <div className="prose prose-gray max-w-none">
+                                <div className="space-y-4 text-sm leading-relaxed text-gray-700 lg:text-base">
                                     {selectedNews.content?.split('\n\n').map((paragraph, index) => (
                                         <p key={index} className="mb-4">
                                             {paragraph}
@@ -938,49 +1028,48 @@ const KristalinNewsPage: React.FC = () => {
                                 </div>
 
                                 {/* Impact Statement */}
-                                <div className="my-6 rounded-lg border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 p-4">
-                                    <h3 className="mb-2 flex items-center text-base font-bold text-yellow-400">
+                                <div className="my-6 rounded-lg border border-yellow-300 bg-gradient-to-r from-yellow-50 to-yellow-100 p-4">
+                                    <h3 className="mb-2 flex items-center text-base font-bold text-yellow-700">
                                         <Sparkles className="mr-2 h-4 w-4" />
-                                        Impact Statement
+                                        {t('pages.news.detail.impact_statement')}
                                     </h3>
-                                    <p className="text-sm leading-relaxed text-gray-300">
-                                        Program CSR ini menunjukkan komitmen nyata PT Kristalin Ekalestari dalam memberikan dampak positif bagi
-                                        masyarakat sekitar, meningkatkan kualitas hidup dan kesejahteraan keluarga di daerah operasi.
+                                    <p className="text-sm leading-relaxed text-gray-700">
+                                        {t('pages.news.detail.impact_description')}
                                     </p>
                                 </div>
 
                                 {/* Trending Indicator */}
                                 {selectedNews.trending && (
-                                    <div className="my-6 rounded-lg border border-red-500/30 bg-black/40 p-4">
-                                        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-red-400">
+                                    <div className="my-6 rounded-lg border border-red-300 bg-red-50 p-4">
+                                        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-red-600">
                                             <TrendingUp className="h-4 w-4" />
-                                            <span>Trending Article</span>
+                                            <span>{t('pages.news.detail.trending_article')}</span>
                                         </div>
-                                        <p className="text-xs text-gray-300">
-                                            Artikel ini sedang trending dan mendapat perhatian tinggi dari pembaca.
+                                        <p className="text-xs text-gray-600">
+                                            {t('pages.news.detail.trending_description')}
                                         </p>
                                     </div>
                                 )}
                             </div>
 
                             {/* Related Articles */}
-                            <div className="mt-8 border-t border-gray-800 pt-6">
-                                <h3 className="mb-4 text-lg font-bold text-yellow-400">Related Articles</h3>
+                            <div className="mt-8 border-t border-gray-200 pt-6">
+                                <h3 className="mb-4 text-lg font-bold text-gray-800">{t('pages.news.detail.related_articles')}</h3>
                                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                                    {newsData.slice(0, 2).map((relatedNews) => (
+                                    {translatedNewsData.slice(0, 2).map((relatedNews) => (
                                         <div
                                             key={relatedNews.id}
-                                            className="group cursor-pointer rounded-lg border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 p-3 transition-all duration-300 hover:from-yellow-400/30 hover:to-yellow-500/30"
+                                            className="group cursor-pointer rounded-lg border border-gray-200 bg-gradient-to-r from-gray-50 to-yellow-50 p-3 transition-all duration-300 hover:from-yellow-50 hover:to-yellow-100 hover:border-yellow-300"
                                         >
-                                            <div className="mb-1 text-xs font-medium text-yellow-400">
-                                                {relatedNews.category} • {relatedNews.date}
+                                            <div className="mb-1 text-xs font-medium text-yellow-600">
+                                                {getCategoryTranslation(relatedNews.category)} • {relatedNews.date}
                                             </div>
-                                            <div className="mb-2 line-clamp-2 text-xs font-semibold text-white transition-colors group-hover:text-yellow-400">
+                                            <div className="mb-2 line-clamp-2 text-xs font-semibold text-gray-800 transition-colors group-hover:text-yellow-700">
                                                 {relatedNews.title}
                                             </div>
                                             <div className="flex items-center justify-between">
-                                                <span className="text-xs text-gray-400">{relatedNews.readTime}</span>
-                                                <ArrowRight className="h-3 w-3 text-yellow-400 transition-transform group-hover:translate-x-1" />
+                                                <span className="text-xs text-gray-600">{relatedNews.readTime}</span>
+                                                <ArrowRight className="h-3 w-3 text-yellow-600 transition-transform group-hover:translate-x-1" />
                                             </div>
                                         </div>
                                     ))}
@@ -1040,7 +1129,7 @@ const KristalinNewsPage: React.FC = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.8 }}
                             >
-                                News
+                                {t('pages.news.hero.title_line1')}
                             </motion.span>
                             <br />
                             <motion.span
@@ -1049,7 +1138,7 @@ const KristalinNewsPage: React.FC = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 1.0 }}
                             >
-                                Update
+                                {t('pages.news.hero.title_line2')}
                             </motion.span>
                         </motion.h1>
 
@@ -1059,7 +1148,7 @@ const KristalinNewsPage: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
                         >
-                            Latest developments in sustainable gold mining and community empowerment.
+                            {t('pages.news.hero.description')}
                         </motion.p>
 
                         {/* Enhanced Search Bar */}
@@ -1073,7 +1162,7 @@ const KristalinNewsPage: React.FC = () => {
                                 <Search className="absolute top-1/2 left-4 z-10 h-5 w-5 -translate-y-1/2 transform text-amber-400" />
                                 <input
                                     type="text"
-                                    placeholder="Search mining news..."
+                                    placeholder={t('pages.news.hero.search_placeholder')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="w-full rounded-xl border border-amber-400/30 bg-black/30 py-4 pr-4 pl-12 text-white placeholder-gray-300 backdrop-blur-md transition-all duration-300 focus:border-transparent focus:ring-2 focus:ring-amber-400"
@@ -1090,20 +1179,20 @@ const KristalinNewsPage: React.FC = () => {
                         >
                             {categories.map((category, index) => (
                                 <motion.button
-                                    key={category}
-                                    onClick={() => setSelectedCategory(category)}
+                                    key={category.key}
+                                    onClick={() => setSelectedCategory(category.key)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 1.6 + index * 0.05 }}
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     className={`rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ${
-                                        selectedCategory === category
+                                        selectedCategory === category.key
                                             ? 'bg-gradient-to-r from-amber-400 to-yellow-500 font-bold text-black shadow-lg'
                                             : 'border border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-amber-400'
                                     }`}
                                 >
-                                    {category}
+                                    {category.label}
                                 </motion.button>
                             ))}
                         </motion.div>
@@ -1144,12 +1233,12 @@ const KristalinNewsPage: React.FC = () => {
                             transition={{ duration: 0.5, ease: 'easeOut' }}
                             className="mb-6 text-4xl leading-tight font-bold md:text-5xl"
                         >
-                            <span className="text-gray-800">Our </span>
-                            <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">News Statistics</span>
+                            <span className="text-gray-800">{t('pages.news.stats.title_line1')} </span>
+                            <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.news.stats.title_line2')}</span>
                         </motion.h2>
                         <div className="mx-auto mb-6 h-0.5 w-16 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
                         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
-                            Stay informed with the latest updates from our operations and community initiatives.
+                            {t('pages.news.stats.description')}
                         </p>
                     </motion.div>
 
@@ -1158,26 +1247,26 @@ const KristalinNewsPage: React.FC = () => {
                         {[
                             {
                                 number: filteredNews.length,
-                                label: 'Total Articles',
-                                description: 'Latest news and updates from our operations',
+                                label: t('pages.news.stats.total_articles.label'),
+                                description: t('pages.news.stats.total_articles.description'),
                                 suffix: '',
                             },
                             {
                                 number: categories.length - 1,
-                                label: 'Categories',
-                                description: 'Different areas of our business coverage',
+                                label: t('pages.news.stats.categories.label'),
+                                description: t('pages.news.stats.categories.description'),
                                 suffix: '',
                             },
                             {
                                 number: filteredNews.filter((n) => n.trending).length,
-                                label: 'Trending Stories',
-                                description: 'Most popular articles this month',
+                                label: t('pages.news.stats.trending_stories.label'),
+                                description: t('pages.news.stats.trending_stories.description'),
                                 suffix: '',
                             },
                             {
                                 number: 2025,
-                                label: 'Latest Updates',
-                                description: 'Current year news and announcements',
+                                label: t('pages.news.stats.latest_updates.label'),
+                                description: t('pages.news.stats.latest_updates.description'),
                                 suffix: '',
                             },
                         ].map((stat, index) => (
@@ -1222,40 +1311,9 @@ const KristalinNewsPage: React.FC = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
-                className="bg-gradient-to-br from-white via-gray-50 to-white py-12"
+                className="news-grid-section bg-gradient-to-br from-white via-gray-50 to-white py-12"
             >
                 <div className="mx-auto max-w-7xl px-4">
-                    {/* Navigation */}
-                    <motion.div variants={fadeInUp} className="mb-12 flex items-center justify-center">
-                        <div className="flex items-center space-x-6">
-                            <motion.button
-                                onClick={handlePrevPage}
-                                disabled={currentPage === 1}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group flex h-14 w-14 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm transition-all duration-300 hover:bg-amber-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30"
-                            >
-                                <ChevronLeft className="h-6 w-6 text-amber-600 transition-transform group-hover:-translate-x-0.5" />
-                            </motion.button>
-
-                            <div className="flex items-center space-x-3 text-2xl font-light text-gray-800">
-                                <span className="font-semibold text-amber-600">{currentPage}</span>
-                                <span className="text-gray-400">/</span>
-                                <span className="text-gray-500">{totalPages}</span>
-                            </div>
-
-                            <motion.button
-                                onClick={handleNextPage}
-                                disabled={currentPage === totalPages}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group flex h-14 w-14 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm transition-all duration-300 hover:bg-amber-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30"
-                            >
-                                <ChevronRight className="h-6 w-6 text-amber-600 transition-transform group-hover:translate-x-0.5" />
-                            </motion.button>
-                        </div>
-                    </motion.div>
-
                     {/* Enhanced News Grid */}
                     <motion.div
                         variants={staggerContainer}
@@ -1272,7 +1330,7 @@ const KristalinNewsPage: React.FC = () => {
                                     scale: 1.02,
                                     boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
                                 }}
-                                onClick={() => router.visit(`/news?id=${news.id}`)}
+                                onClick={() => router.visit(`/news?id=${news.id}&page=${currentPage}`)}
                                 className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl"
                             >
                                 {/* Gambar dengan badge kategori */}
@@ -1286,7 +1344,7 @@ const KristalinNewsPage: React.FC = () => {
                                         <span
                                             className={`bg-gradient-to-r ${getCategoryColor(news.category)} rounded-full px-3 py-1.5 text-xs font-bold text-white shadow-lg`}
                                         >
-                                            {news.category}
+                                            {getCategoryTranslation(news.category)}
                                         </span>
                                     </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
@@ -1330,7 +1388,37 @@ const KristalinNewsPage: React.FC = () => {
                                 </div>
                             </motion.div>
                         ))}
-                        {currentNews.length === 0 && <div className="col-span-full py-12 text-center text-gray-500">Tidak ada berita ditemukan.</div>}
+                        {currentNews.length === 0 && <div className="col-span-full py-12 text-center text-gray-500">{t('pages.news.list.no_results')}</div>}
+                    </motion.div>
+                    {/* Navigation */}
+                    <motion.div variants={fadeInUp} className="mb-12 flex items-center justify-center mt-12">
+                        <div className="flex items-center space-x-6">
+                            <motion.button
+                                onClick={handlePrevPage}
+                                disabled={currentPage === 1}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group flex h-14 w-14 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm transition-all duration-300 hover:bg-amber-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30"
+                            >
+                                <ChevronLeft className="h-6 w-6 text-amber-600 transition-transform group-hover:-translate-x-0.5" />
+                            </motion.button>
+
+                            <div className="flex items-center space-x-3 text-2xl font-light text-gray-800">
+                                <span className="font-semibold text-amber-600">{currentPage}</span>
+                                <span className="text-gray-400">/</span>
+                                <span className="text-gray-500">{totalPages}</span>
+                            </div>
+
+                            <motion.button
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group flex h-14 w-14 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm transition-all duration-300 hover:bg-amber-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30"
+                            >
+                                <ChevronRight className="h-6 w-6 text-amber-600 transition-transform group-hover:translate-x-0.5" />
+                            </motion.button>
+                        </div>
                     </motion.div>
                 </div>
             </motion.section>

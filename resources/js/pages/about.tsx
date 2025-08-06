@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconBuilding = () => (
@@ -47,6 +48,7 @@ const IconMining = () => (
 );
 
 export default function AboutPage() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
@@ -73,64 +75,64 @@ export default function AboutPage() {
 
   const companyStats = {
     founded: "1989",
-    location: "Jakarta",
-    operations: "Nabire, Papua",
-    partnerships: "China & Korea"
+    location: t('pages.about.company_stats_values.location'),
+    operations: t('pages.about.company_stats_values.operations'),
+    partnerships: t('pages.about.company_stats_values.partnerships'),
   };
 
   const sections = [
     {
-      title: "Company Foundation",
-      subtitle: "Our Beginning",
-      content: "Established in 1989, PT Kristalin Eka Lestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia's mining industry, particularly in exploration and gold mining operations.",
+      title: t('pages.about.sections.company_foundation.title'),
+      subtitle: t('pages.about.sections.company_foundation.subtitle'),
+      content: t('pages.about.sections.company_foundation.content'),
       icon: <IconBuilding />
     },
     {
-      title: "Global Partnerships",
-      subtitle: "International Collaboration",
-      content: "We operate hand in hand with local partners and foreign investors from China and Korea, bringing world-renowned heavy equipment, advanced mining technology, and integrated solutions from upstream to downstream operations.",
+      title: t('pages.about.sections.global_partnerships.title'),
+      subtitle: t('pages.about.sections.global_partnerships.subtitle'),
+      content: t('pages.about.sections.global_partnerships.content'),
       icon: <IconGlobe />
     },
     {
-      title: "Environmental Stewardship",
-      subtitle: "Sustainable Mining",
-      content: "Our mining practices in Nabire, Papua are designed to minimize ecological impact while contributing to local economic development. We actively engage with communities to ensure our operations benefit the people of Papua.",
+      title: t('pages.about.sections.environmental_stewardship.title'),
+      subtitle: t('pages.about.sections.environmental_stewardship.subtitle'),
+      content: t('pages.about.sections.environmental_stewardship.content'),
       icon: <IconLeaf />
     },
     {
-      title: "Continuous Innovation",
-      subtitle: "Excellence Commitment",
-      content: "We are committed to refining our internal business processes and operational sites to give customers optimal satisfaction. This commitment positions us at the forefront for achieving shared goals with stakeholders.",
+      title: t('pages.about.sections.continuous_innovation.title'),
+      subtitle: t('pages.about.sections.continuous_innovation.subtitle'),
+      content: t('pages.about.sections.continuous_innovation.content'),
       icon: <IconTrendingUp />
     },
     {
-      title: "Mining Operations",
-      subtitle: "Core Business",
-      content: "Located in the resource-rich region of Nabire, Papua, our focus on sustainable alluvial gold extraction employs modern techniques that maximize operational efficiency while maintaining the highest safety standards.",
+      title: t('pages.about.sections.mining_operations.title'),
+      subtitle: t('pages.about.sections.mining_operations.subtitle'),
+      content: t('pages.about.sections.mining_operations.content'),
       icon: <IconMining />
     }
   ];
 
   const additionalContent = [
     {
-      title: "Our Operations",
-      content: "Located in the resource-rich region of Nabire, Papua, our mining operations focus on sustainable alluvial gold extraction. We employ modern mining techniques that minimize environmental impact while maximizing operational efficiency and safety standards."
+      title: t('pages.about.additional_content.our_operations.title'),
+      content: t('pages.about.additional_content.our_operations.content')
     },
     {
-      title: "International Partnerships",
-      content: "Our strategic alliances with Chinese and Korean investors bring cutting-edge technology and expertise to our operations. These partnerships enable us to access world-class mining equipment, advanced processing techniques, and international best practices."
+      title: t('pages.about.additional_content.international_partnerships.title'),
+      content: t('pages.about.additional_content.international_partnerships.content')
     },
     {
-      title: "Commitment to Excellence",
-      content: "Since our establishment in 1989, we have maintained our commitment to operational excellence, environmental responsibility, and community development. Our approach combines traditional mining knowledge with modern technology."
+      title: t('pages.about.additional_content.commitment_excellence.title'),
+      content: t('pages.about.additional_content.commitment_excellence.content')
     },
     {
-      title: "Environmental Stewardship",
-      content: "We recognize the importance of environmental protection in our operations. Our mining practices are designed to minimize ecological impact while contributing to local economic development and community engagement."
+      title: t('pages.about.additional_content.environmental_stewardship.title'),
+      content: t('pages.about.additional_content.environmental_stewardship.content')
     },
     {
-      title: "Future Vision",
-      content: "PT Kristalin Eka Lestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position."
+      title: t('pages.about.additional_content.future_vision.title'),
+      content: t('pages.about.additional_content.future_vision.content')
     }
   ];
 
@@ -146,7 +148,7 @@ export default function AboutPage() {
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
               src="https://agincourtresources.com/wp-content/uploads/2020/11/Peran-Pertambangan-Emas-Terhadap-Ekonomi-1.jpg"
-              alt="Mining Operations"
+              alt={t('pages.about.alt_texts.mining_operations')}
               className="w-full h-full object-cover opacity-70"
             />
             
@@ -155,8 +157,8 @@ export default function AboutPage() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                About Kristalin<br />
-                <span className="font-normal">Eka Lestari</span>
+                {t('pages.about.page_title').split(' ').slice(0, 2).join(' ')}<br />
+                <span className="font-normal">{t('pages.about.page_title').split(' ').slice(2).join(' ')}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
             </div>
@@ -170,7 +172,7 @@ export default function AboutPage() {
                   {Object.entries(companyStats).map(([key, value]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-sm">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.about.company_stats.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -189,12 +191,11 @@ export default function AboutPage() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    About Kristalin Eka Lestari
+                    {t('pages.about.page_title')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed">
-                  Building Indonesia's Mining
-                  <span className="text-yellow-600 font-medium"> Future Since 1989</span>
+                  {t('pages.about.main_heading')}
                 </h2>
               </div>
 
@@ -203,11 +204,7 @@ export default function AboutPage() {
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
                 <p className="text-gray-700 leading-relaxed text-sm sm:text-base mb-6">
-                  Established as <span className="font-semibold text-gray-900">PT Kristalin Eka Lestari</span> in 1989, 
-                  we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest 
-                  shareholder actively operates in the <span className="text-yellow-600 font-semibold">mining industry</span>, 
-                  specifically in <span className="text-yellow-600 font-semibold">exploration and gold mining</span> operational 
-                  production sector located in Nabire, Papua.
+                  {t('pages.about.company_intro')}
                 </p>
               </div>
 
@@ -293,20 +290,19 @@ export default function AboutPage() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Committed to Sustainable Growth</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.about.cta.sustainable_growth_title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Through responsible mining practices and international collaboration, 
-                      we continue to build Indonesia's mining future while creating lasting value for all stakeholders.
+                      {t('pages.about.cta.sustainable_growth_desc')}
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
-                      <span className="relative z-10">Our Mining Operations</span>
+                      <span className="relative z-10">{t('pages.about.cta.mining_operations_btn')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
                       <a href="/contact">
-                        Contact Us
+                        {t('pages.about.cta.contact_us_btn')}
                       </a>
                     </button>
                   </div>
@@ -322,15 +318,15 @@ export default function AboutPage() {
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
               src="https://agincourtresources.com/wp-content/uploads/2020/11/Peran-Pertambangan-Emas-Terhadap-Ekonomi-1.jpg"
-              alt="Mining Operations"
+              alt={t('pages.about.alt_texts.mining_operations')}
               className="w-full h-full object-cover opacity-70"
             />
             <div className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                About Kristalin<br />
-                <span className="font-normal">Eka Lestari</span>
+                {t('pages.about.page_title').split(' ').slice(0, 2).join(' ')}<br />
+                <span className="font-normal">{t('pages.about.page_title').split(' ').slice(2).join(' ')}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
             </div>
@@ -343,7 +339,7 @@ export default function AboutPage() {
                   {Object.entries(companyStats).map(([key, value]) => (
                     <div key={key} className="space-y-1">
                       <div className="text-yellow-400 font-bold text-lg">{value}</div>
-                      <div className="text-white/80 text-xs uppercase tracking-wide">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                      <div className="text-white/80 text-xs uppercase tracking-wide">{t(`pages.about.company_stats.${key}`)}</div>
                     </div>
                   ))}
                 </div>
@@ -370,12 +366,11 @@ export default function AboutPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      About Kristalin Eka Lestari
+                      {t('pages.about.page_title')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed">
-                    Building Indonesia's Mining
-                    <span className="text-yellow-600 font-medium"> Future Since 1989</span>
+                    {t('pages.about.main_heading')}
                   </h2>
                 </div>
 
@@ -384,11 +379,7 @@ export default function AboutPage() {
                   isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 }`}>
                   <p className="text-gray-700 leading-relaxed text-base mb-6">
-                    Established as <span className="font-semibold text-gray-900">PT Kristalin Eka Lestari</span> in 1989, 
-                    we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest 
-                    shareholder actively operates in the <span className="text-yellow-600 font-semibold">mining industry</span>, 
-                    specifically in <span className="text-yellow-600 font-semibold">exploration and gold mining</span> operational 
-                    production sector located in Nabire, Papua.
+                    {t('pages.about.company_intro')}
                   </p>
                 </div>
 
@@ -474,20 +465,19 @@ export default function AboutPage() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Committed to Sustainable Growth</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.about.cta.sustainable_growth_title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Through responsible mining practices and international collaboration, 
-                        we continue to build Indonesia's mining future while creating lasting value for all stakeholders.
+                        {t('pages.about.cta.sustainable_growth_desc')}
                       </p>
                     </div>
                     <div className="flex justify-center space-x-4">
                       <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                        <span className="relative z-10">Our Mining Operations</span>
+                        <span className="relative z-10">{t('pages.about.cta.mining_operations_btn')}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                       </button>
                       <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
                         <a href="/contact">
-                          Contact Us
+                          {t('pages.about.cta.contact_us_btn')}
                         </a>
                       </button>
                     </div>

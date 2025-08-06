@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
+import { useTranslation } from '../hooks/useTranslation';
 
 const contact = {
     phone: '(021) 22978900',
@@ -26,6 +27,7 @@ const fadeInUp = {
 // Removed unused components to fix ESLint errors
 
 export default function ContactPage() {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -44,11 +46,11 @@ export default function ContactPage() {
 
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
-        if (!formData.name.trim()) newErrors.name = 'Name is required';
-        if (!formData.email.trim()) newErrors.email = 'Email is required';
-        else if (!emailRegex.test(formData.email)) newErrors.email = 'Valid email is required';
-        if (!formData.subject) newErrors.subject = 'Subject is required';
-        if (!formData.inquiry.trim()) newErrors.inquiry = 'Message is required';
+        if (!formData.name.trim()) newErrors.name = t('pages.contact.form.validation.name_required');
+        if (!formData.email.trim()) newErrors.email = t('pages.contact.form.validation.email_required');
+        else if (!emailRegex.test(formData.email)) newErrors.email = t('pages.contact.form.validation.email_valid');
+        if (!formData.subject) newErrors.subject = t('pages.contact.form.validation.subject_required');
+        if (!formData.inquiry.trim()) newErrors.inquiry = t('pages.contact.form.validation.inquiry_required');
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -72,13 +74,13 @@ export default function ContactPage() {
                 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             ];
             if (!allowedTypes.includes(file.type)) {
-                setFileError('File type not allowed.');
+                setFileError(t('pages.contact.form.validation.file_type_error'));
                 setFileName('');
                 setFormData((prev) => ({ ...prev, attachment: null }));
                 return;
             }
             if (file.size > 10 * 1024 * 1024) {
-                setFileError('File size must be less than 10MB.');
+                setFileError(t('pages.contact.form.validation.file_size_error'));
                 setFileName('');
                 setFormData((prev) => ({ ...prev, attachment: null }));
                 return;
@@ -134,19 +136,19 @@ export default function ContactPage() {
             .then(async (res) => {
                 const data = await res.json();
                 if (res.ok && data.success) {
-                    setAlert({ type: 'success', message: "✨ Your message has been sent successfully! We'll get back to you within 24 hours." });
+                    setAlert({ type: 'success', message: t('pages.contact.form.messages.success') });
                     setFormData({ name: '', email: '', phone: '', subject: '', inquiry: '', attachment: null });
                     setFileName('');
                     setFileError('');
                     setErrors({});
                     if (fileInputRef.current) fileInputRef.current.value = '';
                 } else {
-                    setAlert({ type: 'error', message: data.error || 'Failed to send message.' });
+                    setAlert({ type: 'error', message: data.error || t('pages.contact.form.messages.error') });
                 }
                 setLoading(false);
             })
             .catch(() => {
-                setAlert({ type: 'error', message: 'Failed to send message.' });
+                setAlert({ type: 'error', message: t('pages.contact.form.messages.error') });
                 setLoading(false);
             });
     };
@@ -176,9 +178,9 @@ export default function ContactPage() {
                             <div className="mb-2 h-1 w-20 bg-gradient-to-r from-amber-400 to-yellow-500" />
                             <h1 className="mb-1 text-4xl font-bold md:text-5xl">
                                 <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent">
-                                    Contact
+                                    {t('pages.contact.hero.title_line1')}
                                 </span>{' '}
-                                <span className="text-gray-800">Us</span>
+                                <span className="text-gray-800">{t('pages.contact.hero.title_line2')}</span>
                             </h1>
                         </motion.div>
                         <motion.p
@@ -187,7 +189,7 @@ export default function ContactPage() {
                             transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
                             className="mt-0 mb-1 text-left font-medium text-black/90"
                         >
-                            Find out more information about Kristalin Eka Lestari
+                            {t('pages.contact.hero.description')}
                         </motion.p>
 
                         {/* Form takes full available width */}
@@ -222,14 +224,14 @@ export default function ContactPage() {
                             <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
                                 <div className="w-full">
                                     <Label htmlFor="name" className="text-base font-semibold text-gray-900">
-                                        Full Name *
+                                        {t('pages.contact.form.labels.full_name')} {t('pages.contact.form.labels.required')}
                                     </Label>
                                     <Input
                                         id="name"
                                         name="name"
                                         type="text"
                                         required
-                                        placeholder="Insert Name"
+                                        placeholder={t('pages.contact.form.placeholders.name')}
                                         className={`mt-2 w-full bg-white text-gray-900 placeholder:text-gray-500 ${errors.name ? 'border-red-400' : ''}`}
                                         value={formData.name}
                                         onChange={handleInputChange}
@@ -245,14 +247,14 @@ export default function ContactPage() {
                                 </div>
                                 <div className="w-full">
                                     <Label htmlFor="email" className="text-base font-semibold text-gray-900">
-                                        Email *
+                                        {t('pages.contact.form.labels.email')} {t('pages.contact.form.labels.required')}
                                     </Label>
                                     <Input
                                         id="email"
                                         name="email"
                                         type="email"
                                         required
-                                        placeholder="Insert Email"
+                                        placeholder={t('pages.contact.form.placeholders.email')}
                                         className={`mt-2 w-full bg-white text-gray-900 placeholder:text-gray-500 ${errors.email ? 'border-red-400' : ''}`}
                                         value={formData.email}
                                         onChange={handleInputChange}
@@ -269,13 +271,13 @@ export default function ContactPage() {
                             </div>
                             <div className="mt-3 w-full">
                                 <Label htmlFor="phone" className="text-base font-semibold text-gray-900">
-                                    Phone
+                                    {t('pages.contact.form.labels.phone')}
                                 </Label>
                                 <Input
                                     id="phone"
                                     name="phone"
                                     type="tel"
-                                    placeholder="Insert Phone Number (optional)"
+                                    placeholder={t('pages.contact.form.placeholders.phone')}
                                     className="mt-2 w-full bg-white text-gray-900 placeholder:text-gray-500"
                                     value={formData.phone}
                                     onChange={handleInputChange}
@@ -284,7 +286,7 @@ export default function ContactPage() {
                             </div>
                             <div className="mt-3 w-full">
                                 <Label htmlFor="subject" className="text-base font-semibold text-gray-900">
-                                    Subject *
+                                    {t('pages.contact.form.labels.subject')} {t('pages.contact.form.labels.required')}
                                 </Label>
                                 <select
                                     id="subject"
@@ -297,11 +299,11 @@ export default function ContactPage() {
                                     aria-describedby="subject-error"
                                     style={{ boxSizing: 'border-box' }}
                                 >
-                                    <option value="">Select Subject</option>
-                                    <option value="General">General</option>
-                                    <option value="Partnership">Partnership</option>
-                                    <option value="CSR">CSR</option>
-                                    <option value="Career">Career</option>
+                                    <option value="">{t('pages.contact.form.subject_options.select')}</option>
+                                    <option value="General">{t('pages.contact.form.subject_options.general')}</option>
+                                    <option value="Partnership">{t('pages.contact.form.subject_options.partnership')}</option>
+                                    <option value="CSR">{t('pages.contact.form.subject_options.csr')}</option>
+                                    <option value="Career">{t('pages.contact.form.subject_options.career')}</option>
                                 </select>
                                 {errors.subject && (
                                     <div id="subject-error" className="mt-1 text-xs text-red-500">
@@ -311,7 +313,7 @@ export default function ContactPage() {
                             </div>
                             <div className="mt-3 w-full">
                                 <Label htmlFor="attachment" className="text-base font-semibold text-gray-900">
-                                    Attachment
+                                    {t('pages.contact.form.labels.attachment')}
                                 </Label>
                                 <div
                                     className={`mt-2 flex w-full max-w-full cursor-pointer items-center gap-3 rounded-md border-2 p-4 transition-all duration-200 hover:border-amber-300 hover:bg-gray-50 ${dragActive ? 'border-amber-400 bg-amber-50' : 'border-dashed border-gray-300'}`}
@@ -322,7 +324,7 @@ export default function ContactPage() {
                                     onClick={() => fileInputRef.current?.click()}
                                     tabIndex={0}
                                     role="button"
-                                    aria-label="Upload file"
+                                    aria-label={t('pages.contact.form.file_upload.upload_label')}
                                     style={{ boxSizing: 'border-box' }}
                                 >
                                     <input
@@ -367,15 +369,15 @@ export default function ContactPage() {
                                                         e.stopPropagation();
                                                         handleFileChange(null);
                                                     }}
-                                                    aria-label="Remove file"
+                                                    aria-label={t('pages.contact.form.file_upload.remove')}
                                                 >
-                                                    Remove
+                                                    {t('pages.contact.form.file_upload.remove')}
                                                 </button>
                                             </div>
                                         ) : (
                                             <div className="text-center">
-                                                <div className="text-sm font-medium text-gray-600">Click or drag file here (optional)</div>
-                                                <div className="mt-1 text-xs text-gray-500">PDF, JPG, PNG, PPT (max 10MB)</div>
+                                                <div className="text-sm font-medium text-gray-600">{t('pages.contact.form.file_upload.drag_text')}</div>
+                                                <div className="mt-1 text-xs text-gray-500">{t('pages.contact.form.file_upload.file_types')}</div>
                                             </div>
                                         )}
                                     </div>
@@ -384,13 +386,13 @@ export default function ContactPage() {
                             </div>
                             <div className="mt-3">
                                 <Label htmlFor="inquiry" className="text-base font-semibold text-gray-900">
-                                    Inquiry *
+                                    {t('pages.contact.form.labels.inquiry')} {t('pages.contact.form.labels.required')}
                                 </Label>
                                 <textarea
                                     id="inquiry"
                                     name="inquiry"
                                     required
-                                    placeholder="Write your question here"
+                                    placeholder={t('pages.contact.form.placeholders.inquiry')}
                                     rows={4}
                                     className={`mt-2 w-full rounded-md border bg-white px-3 py-2 text-base text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-300 ${errors.inquiry ? 'border-red-400' : 'border-gray-300'}`}
                                     value={formData.inquiry}
@@ -407,7 +409,7 @@ export default function ContactPage() {
                             <div className="mt-3 flex items-center">
                                 <input type="checkbox" id="captcha" required className="mr-2" />
                                 <label htmlFor="captcha" className="text-sm font-medium text-gray-900">
-                                    I'm not a robot
+                                    {t('pages.contact.form.labels.captcha')}
                                 </label>
                             </div>
                             <div className="mt-4 flex flex-col justify-end gap-4 md:flex-row">
@@ -416,7 +418,7 @@ export default function ContactPage() {
                                     className="h-12 w-full rounded-md bg-yellow-400 px-10 text-base font-bold text-black shadow transition-all duration-200 hover:bg-yellow-500 md:w-auto"
                                     disabled={loading}
                                 >
-                                    {loading ? <span className="animate-pulse">Submitting...</span> : 'Submit Inquiry'}
+                                    {loading ? <span className="animate-pulse">{t('pages.contact.form.buttons.submitting')}</span> : t('pages.contact.form.buttons.submit')}
                                 </Button>
                                 <Button
                                     type="button"
@@ -424,7 +426,7 @@ export default function ContactPage() {
                                     onClick={handleReset}
                                     disabled={loading}
                                 >
-                                    Reset
+                                    {t('pages.contact.form.buttons.reset')}
                                 </Button>
                             </div>
                         </motion.form>
@@ -432,7 +434,7 @@ export default function ContactPage() {
 
                     {/* Image Section - Fixed width at right edge */}
                     <div className="relative z-10 h-64 w-full flex-shrink-0 overflow-hidden bg-black lg:h-auto lg:w-[500px] lg:min-w-[500px]">
-                        <img src="/menara165-sore.webp" alt="Menara 165" className="h-full w-full object-cover object-center" />
+                        <img src="/menara165-sore.webp" alt={t('pages.contact.image_alt')} className="h-full w-full object-cover object-center" />
                     </div>
                 </div>
             </div>
@@ -441,9 +443,9 @@ export default function ContactPage() {
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="bg-black py-20">
                 <div className="mx-auto max-w-6xl px-4">
                     <motion.div variants={fadeInUp} transition={{ duration: 0.4, ease: 'easeInOut' }} className="mb-16 text-center">
-                        <h2 className="mb-4 text-sm font-semibold tracking-[0.25em] text-gray-400">GET IN TOUCH</h2>
+                        <h2 className="mb-4 text-sm font-semibold tracking-[0.25em] text-gray-400">{t('pages.contact.contact_info.header')}</h2>
                         <div className="mx-auto mb-12 h-0.5 w-20 bg-yellow-600"></div>
-                        <h3 className="text-4xl font-normal text-white md:text-5xl lg:text-6xl">Do Not Hesitate To Contact Us</h3>
+                        <h3 className="text-4xl font-normal text-white md:text-5xl lg:text-6xl">{t('pages.contact.contact_info.title')}</h3>
                     </motion.div>
 
                     <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
@@ -481,7 +483,7 @@ export default function ContactPage() {
                                     </svg>
                                 </div>
                             </motion.div>
-                            <h4 className="mb-4 text-2xl font-normal text-white">Phone</h4>
+                            <h4 className="mb-4 text-2xl font-normal text-white">{t('pages.contact.contact_info.phone')}</h4>
                             <span className="text-lg text-gray-300">{contact.phone}</span>
                         </motion.div>
 
@@ -519,7 +521,7 @@ export default function ContactPage() {
                                     </svg>
                                 </div>
                             </motion.div>
-                            <h4 className="mb-4 text-2xl font-normal text-white">Email</h4>
+                            <h4 className="mb-4 text-2xl font-normal text-white">{t('pages.contact.contact_info.email')}</h4>
                             <a href={`mailto:${contact.email}`} className="text-lg text-yellow-500 transition-colors hover:text-yellow-400">
                                 {contact.email}
                             </a>
@@ -559,7 +561,7 @@ export default function ContactPage() {
                                     </svg>
                                 </div>
                             </motion.div>
-                            <h4 className="mb-4 text-2xl font-normal text-white">Address</h4>
+                            <h4 className="mb-4 text-2xl font-normal text-white">{t('pages.contact.contact_info.address')}</h4>
                             <div className="text-gray-300">
                                 <div className="mb-2 font-semibold text-yellow-500">{contact.location}</div>
                                 <div className="text-sm leading-relaxed">{contact.address}</div>

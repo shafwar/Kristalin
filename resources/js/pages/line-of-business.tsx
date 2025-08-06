@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useTranslation } from "../hooks/useTranslation";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -122,6 +123,7 @@ const CounterAnimation = ({ target, duration = 1000 }: { target: number; duratio
 
 
 export default function KristalinPortfolio() {
+  const { t } = useTranslation();
   const companyProfileRef = React.useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -151,7 +153,7 @@ export default function KristalinPortfolio() {
         >
           <img
             src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-            alt="Mining the Future"
+            alt={t('pages.line_of_business.alt_texts.mining_future')}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
@@ -185,7 +187,7 @@ export default function KristalinPortfolio() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Our{" "}
+                {t('pages.line_of_business.hero_title_1')}{" "}
               </motion.span>
               <motion.span 
                 className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
@@ -193,7 +195,7 @@ export default function KristalinPortfolio() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
-                Portfolio
+                {t('pages.line_of_business.hero_title_2')}
               </motion.span>
             </motion.h1>
             <motion.h2 
@@ -203,7 +205,7 @@ export default function KristalinPortfolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
             >
-              MINING THE FUTURE
+              {t('pages.line_of_business.hero_subtitle')}
             </motion.h2>
             <motion.p 
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-4 max-w-4xl mx-auto leading-relaxed font-light px-2"
@@ -211,7 +213,7 @@ export default function KristalinPortfolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
             >
-              PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia's future.
+              {t('pages.line_of_business.hero_description')}
             </motion.p>
           </motion.div>
         </motion.div>
@@ -261,10 +263,10 @@ export default function KristalinPortfolio() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3">
-                      INTEGRITY
+                      {t('pages.line_of_business.values.integrity.title')}
                     </h3>
                     <p className="text-white/85 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
-                      We uphold the highest standards of integrity in all our actions, ensuring transparency and ethical practices.
+                      {t('pages.line_of_business.values.integrity.description')}
                     </p>
                   </div>
                 </div>
@@ -295,10 +297,10 @@ export default function KristalinPortfolio() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3">
-                      COMMITMENT
+                      {t('pages.line_of_business.values.commitment.title')}
                     </h3>
                     <p className="text-white/85 text-xs sm:text-sm lg:text-base font-light leading-relaxed">
-                      Dedicated to delivering value and sustainable growth for all stakeholders and communities.
+                      {t('pages.line_of_business.values.commitment.description')}
                     </p>
                   </div>
                 </div>
@@ -334,7 +336,7 @@ export default function KristalinPortfolio() {
               className="group relative bg-gradient-to-r from-amber-500 to-yellow-600 text-black px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full font-semibold text-sm sm:text-base lg:text-lg overflow-hidden transition-all duration-300 shadow-lg"
             >
               <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-                Explore Operations
+                {t('pages.line_of_business.explore_operations_btn')}
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -372,13 +374,13 @@ export default function KristalinPortfolio() {
           className="text-center mb-16"
         >
           <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-            COMPANY PROFILE
+            {t('pages.line_of_business.company_profile.header')}
           </h2>
           <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
           <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-            Professional Gold Mining
+            {t('pages.line_of_business.company_profile.title_line1')}
             <br className="hidden md:block" />
-            Company Since 2009
+            {t('pages.line_of_business.company_profile.title_line2')}
           </h3>
         </motion.div>
 
@@ -398,8 +400,8 @@ export default function KristalinPortfolio() {
               >
                 <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <span className="font-semibold text-gray-800">Company Name:</span>
-                  <span className="ml-2 text-gray-700">PT Kristalin Eka Lestari</span>
+                  <span className="font-semibold text-gray-800">{t('pages.line_of_business.company_info.company_name_label')}:</span>
+                  <span className="ml-2 text-gray-700">{t('pages.line_of_business.company_info.company_name_value')}</span>
                 </div>
               </motion.div>
               
@@ -411,8 +413,8 @@ export default function KristalinPortfolio() {
               >
                 <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <span className="font-semibold text-gray-800">Business Field:</span>
-                  <span className="ml-2 text-gray-700">Gold Mining & Mineral Processing</span>
+                  <span className="font-semibold text-gray-800">{t('pages.line_of_business.company_info.business_field_label')}:</span>
+                  <span className="ml-2 text-gray-700">{t('pages.line_of_business.company_info.business_field_value')}</span>
                 </div>
               </motion.div>
               
@@ -424,8 +426,8 @@ export default function KristalinPortfolio() {
               >
                 <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <span className="font-semibold text-gray-800">Established:</span>
-                  <span className="ml-2 text-gray-700">2009</span>
+                  <span className="font-semibold text-gray-800">{t('pages.line_of_business.company_info.established_label')}:</span>
+                  <span className="ml-2 text-gray-700">{t('pages.line_of_business.company_info.established_value')}</span>
                 </div>
               </motion.div>
               
@@ -437,8 +439,8 @@ export default function KristalinPortfolio() {
               >
                 <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <span className="font-semibold text-gray-800">Head Office:</span>
-                  <span className="ml-2 text-gray-700">Jakarta, Indonesia</span>
+                  <span className="font-semibold text-gray-800">{t('pages.line_of_business.company_info.head_office_label')}:</span>
+                  <span className="ml-2 text-gray-700">{t('pages.line_of_business.company_info.head_office_value')}</span>
                 </div>
               </motion.div>
               
@@ -450,8 +452,8 @@ export default function KristalinPortfolio() {
               >
                 <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <span className="font-semibold text-gray-800">Business License:</span>
-                  <span className="ml-2 text-gray-700">IUP Operation Production No. 561/2021/DESDM</span>
+                  <span className="font-semibold text-gray-800">{t('pages.line_of_business.company_info.business_license_label')}:</span>
+                  <span className="ml-2 text-gray-700">{t('pages.line_of_business.company_info.business_license_value')}</span>
                 </div>
               </motion.div>
             </div>
@@ -462,8 +464,7 @@ export default function KristalinPortfolio() {
               transition={{ delay: 0.6, duration: 0.4, ease: "easeInOut" }}
               className="text-gray-600 leading-relaxed mt-8 text-lg"
             >
-              PT Kristalin Eka Lestari is committed to sustainable mining, innovation, and strategic partnerships 
-              for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.
+              {t('pages.line_of_business.company_description')}
             </motion.p>
           </motion.div>
 
@@ -498,11 +499,11 @@ export default function KristalinPortfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              OUR SERVICES
+              {t('pages.line_of_business.services.header')}
             </h2>
             <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              We Provide Best Services
+              {t('pages.line_of_business.services.title')}
             </h3>
           </motion.div>
 
@@ -525,7 +526,7 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-6 tracking-wide">
-                GOLD MINING & PROCESSING
+                {t('pages.line_of_business.services.gold_mining.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed font-normal">
                 PT Kristalin Eka Lestari bergerak dalam bidang pertambangan emas yang berlokasi di 
@@ -553,7 +554,7 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-6 tracking-wide">
-                ENVIRONMENTAL MANAGEMENT
+                {t('pages.line_of_business.services.environmental.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed font-normal">
                 Terdiri dari 2 divisi utama, kami siap memberikan kebutuhan pengelolaan lingkungan 
@@ -610,7 +611,7 @@ export default function KristalinPortfolio() {
               transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
               className="text-2xl md:text-3xl text-white mb-4 font-normal"
             >
-              Successful Projects Completed
+              {t('pages.line_of_business.projects.title')}
             </motion.h3>
             <CounterAnimation target={15} duration={1000} />
             <motion.p 
@@ -620,8 +621,7 @@ export default function KristalinPortfolio() {
               transition={{ delay: 0.8, duration: 0.4, ease: "easeInOut" }}
               className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
             >
-              We use an integrated mining system across our projects to create a better environment for our employees and partners, 
-              and deliver excellence to our stakeholders.
+              {t('pages.line_of_business.projects.description')}
             </motion.p>
           </motion.div>
         </div>
@@ -641,13 +641,13 @@ export default function KristalinPortfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              HOW WE WORK
+              {t('pages.line_of_business.how_we_work.header')}
             </h2>
             <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              We Constructed Secure
+              {t('pages.line_of_business.how_we_work.title_line1')}
               <br className="hidden md:block" />
-              Experience For You
+              {t('pages.line_of_business.how_we_work.title_line2')}
             </h3>
           </motion.div>
 
@@ -671,10 +671,10 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-4">
-                1. SELECT YOUR SERVICE
+                {t('pages.line_of_business.how_we_work.steps.step1.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed">
-                Please choose our service, we will provide an extraordinary experience for your mining and investment needs.
+                {t('pages.line_of_business.how_we_work.steps.step1.description')}
               </p>
             </motion.div>
 
@@ -697,10 +697,10 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-4">
-                2. MAKE APPOINTMENT
+                {t('pages.line_of_business.how_we_work.steps.step2.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed">
-                Schedule a meeting to discuss what you want to achieve in your business, we will provide the best solution.
+                {t('pages.line_of_business.how_we_work.steps.step2.description')}
               </p>
             </motion.div>
 
@@ -723,10 +723,10 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-4">
-                3. COMPLETE YOUR DATA
+                {t('pages.line_of_business.how_we_work.steps.step3.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed">
-                After your service is selected, complete your company data and requirements for seamless collaboration.
+                {t('pages.line_of_business.how_we_work.steps.step3.description')}
               </p>
             </motion.div>
 
@@ -749,10 +749,10 @@ export default function KristalinPortfolio() {
                 </div>
               </motion.div>
               <h4 className="text-xl font-semibold text-gray-800 mb-4">
-                4. GET AMAZING SERVICES
+                {t('pages.line_of_business.how_we_work.steps.step4.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed">
-                Our professional services are ready to make your business dreams come true with sustainable mining solutions.
+                {t('pages.line_of_business.how_we_work.steps.step4.description')}
               </p>
             </motion.div>
           </div>
@@ -773,11 +773,11 @@ export default function KristalinPortfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              IN COLLABORATION WITH
+              {t('pages.line_of_business.collaboration.header')}
             </h2>
             <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              Our Trusted Partners
+              {t('pages.line_of_business.collaboration.title')}
             </h3>
           </motion.div>
 
@@ -827,13 +827,13 @@ export default function KristalinPortfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-sm font-semibold text-gray-700 tracking-[0.25em] mb-4">
-              GLOBAL GOLD PRICE
+              {t('pages.line_of_business.gold_price.header')}
             </h2>
             <div className="w-20 h-0.5 bg-yellow-600 mx-auto mb-12"></div>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-800">
-              Daily / Weekly Gold Price
+              {t('pages.line_of_business.gold_price.title_line1')}
               <br className="hidden md:block" />
-              Information
+              {t('pages.line_of_business.gold_price.title_line2')}
             </h3>
           </motion.div>
 
@@ -846,7 +846,7 @@ export default function KristalinPortfolio() {
             >
               <img 
                 src="/gold-bars.jpg" 
-                alt="Gold Mining Operations" 
+                alt={t('pages.line_of_business.gold_price.alt_text')} 
                 className="w-full h-96 object-cover rounded-2xl shadow-lg"
               />
             </motion.div>
@@ -858,7 +858,7 @@ export default function KristalinPortfolio() {
               className="flex flex-col items-center justify-center text-center"
             >
               <p className="text-lg md:text-xl text-gray-700 mb-8 font-light max-w-lg">
-                Stay updated with the latest global gold price trends. For real-time gold, silver, and precious metal prices, click below to view the official gold price chart.
+                {t('pages.line_of_business.gold_price.description')}
               </p>
               <a
                 href="https://goldprice.org/"
@@ -875,7 +875,7 @@ export default function KristalinPortfolio() {
                 >
                   <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                 </motion.svg>
-                <span>SHOW MORE</span>
+                <span>{t('pages.line_of_business.gold_price.button')}</span>
               </a>
             </motion.div>
           </div>
@@ -900,14 +900,14 @@ export default function KristalinPortfolio() {
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <h2 className="text-sm font-semibold text-white tracking-[0.25em] mb-4">
-                WHY CHOOSE US
+                {t('pages.line_of_business.why_choose_us.header')}
               </h2>
               <div className="w-20 h-0.5 bg-yellow-600 mb-8"></div>
               <h3 className="text-4xl md:text-5xl font-normal text-white mb-6 leading-tight">
-                Experience Work With Global Industries
+                {t('pages.line_of_business.why_choose_us.title')}
               </h3>
               <p className="text-xl text-white/90 mb-8">
-                ARE ALWAYS READY TO SERVE
+                {t('pages.line_of_business.why_choose_us.subtitle')}
               </p>
               
               <motion.button 
@@ -920,7 +920,7 @@ export default function KristalinPortfolio() {
                 className="border-2 border-white text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300"
               >
                 <a href="/contact">
-                CONTACT US
+                {t('pages.line_of_business.why_choose_us.contact_button')}
                 </a>
               </motion.button>
             </motion.div>
@@ -931,11 +931,11 @@ export default function KristalinPortfolio() {
               transition={{ delay: 0.2, duration: 0.4, ease: "easeInOut" }}
               className="space-y-6"
             >
-              {[
-                "We Have Professional Workers",
-                "On Time In Progress", 
-                "Friendly To Serve Customers",
-                "Give The Best & Fair"
+              {              [
+                t('pages.line_of_business.why_choose_us.features.professional'),
+                t('pages.line_of_business.why_choose_us.features.on_time'), 
+                t('pages.line_of_business.why_choose_us.features.friendly'),
+                t('pages.line_of_business.why_choose_us.features.best_fair')
               ].map((feature, index) => (
                 <motion.div 
                   key={index}

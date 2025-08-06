@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTranslation } from '../hooks/useTranslation';
 
 // SVG Icon Components
 const IconQuote = () => (
@@ -34,6 +35,7 @@ const IconIndonesia = () => (
 );
 
 export default function MessageFromFounder() {
+  const { t } = useTranslation();
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(0);
@@ -59,34 +61,34 @@ export default function MessageFromFounder() {
 
   const founderQuotes = [
     {
-      text: "Indonesia's golden heritage lies not just beneath our soil, but in our commitment to extract it responsibly, ensuring that every gram of gold we mine contributes to the prosperity of our nation and the welfare of our people.",
-      focus: "National Heritage"
+      text: t('pages.message_from_founder.quotes.0.text'),
+      focus: t('pages.message_from_founder.quotes.0.focus')
     },
     {
-      text: "True mining excellence is achieved when we balance profitability with sustainability, creating lasting value that transcends generations while preserving Papua's natural beauty for our children's children.",
-      focus: "Sustainable Excellence"
+      text: t('pages.message_from_founder.quotes.1.text'),
+      focus: t('pages.message_from_founder.quotes.1.focus')
     },
     {
-      text: "In the depths of Papua's earth, we don't just mine gold – we mine opportunities, forge partnerships, and build bridges between local communities and global markets, ensuring shared prosperity for all.",
-      focus: "Community Partnership"
+      text: t('pages.message_from_founder.quotes.2.text'),
+      focus: t('pages.message_from_founder.quotes.2.focus')
     }
   ];
 
   const keyPrinciples = [
     {
       icon: <IconMining />,
-      title: "Responsible Mining",
-      description: "Pioneering sustainable extraction methods that honor both economic growth and environmental stewardship."
+      title: t('pages.message_from_founder.principles.items.0.title'),
+      description: t('pages.message_from_founder.principles.items.0.description')
     },
     {
       icon: <IconGold />,
-      title: "Excellence in Gold",
-      description: "Leveraging Indonesia's rich mineral resources to create world-class gold production standards."
+      title: t('pages.message_from_founder.principles.items.1.title'),
+      description: t('pages.message_from_founder.principles.items.1.description')
     },
     {
       icon: <IconIndonesia />,
-      title: "Indonesia's Pride",
-      description: "Building a mining legacy that strengthens Indonesia's position in the global commodities market."
+      title: t('pages.message_from_founder.principles.items.2.title'),
+      description: t('pages.message_from_founder.principles.items.2.description')
     }
   ];
 
@@ -103,7 +105,7 @@ export default function MessageFromFounder() {
             <div className="absolute inset-0 w-full h-full">
               <img 
                 src="/arifbudi.jpg"
-                alt="Message from Founder"
+                alt={t('pages.message_from_founder.hero.alt_text')}
                 className="w-full h-full object-cover opacity-70"
                 draggable="false"
               />
@@ -114,13 +116,12 @@ export default function MessageFromFounder() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-2xl sm:text-3xl font-light leading-tight">
-                Message<br />
-                <span className="font-normal">from Founder</span>
+                {t('pages.message_from_founder.hero.title_line1')}<br />
+                <span className="font-normal">{t('pages.message_from_founder.hero.title_line2')}</span>
               </h1>
               <div className="w-16 h-1 bg-yellow-400 mt-4"></div>
               <p className="text-white/80 text-sm sm:text-base mt-3 leading-relaxed">
-                A visionary perspective on Indonesia's golden future and 
-                sustainable mining excellence.
+                {t('pages.message_from_founder.hero.description')}
               </p>
             </div>
           </div>
@@ -136,12 +137,12 @@ export default function MessageFromFounder() {
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <span className="text-gray-500 uppercase tracking-wider text-xs font-medium">
-                    Message from Founder
+                    {t('pages.message_from_founder.header.subtitle')}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-light text-gray-900 leading-relaxed mb-4">
-                  Building Indonesia's
-                  <span className="text-yellow-600 font-medium"> Golden Legacy</span>
+                  {t('pages.message_from_founder.header.title_line1')}
+                  <span className="text-yellow-600 font-medium"> {t('pages.message_from_founder.header.title_line2')}</span>
                 </h2>
               </div>
 
@@ -163,9 +164,9 @@ export default function MessageFromFounder() {
                       </blockquote>
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
                         <div>
-                          <div className="font-semibold text-gray-900 text-base sm:text-lg">Arif Budi Setiawan</div>
-                          <div className="text-yellow-600 text-sm font-medium">Founder & Chairman</div>
-                          <div className="text-gray-500 text-xs">PT Kristalin Eka Lestari</div>
+                          <div className="font-semibold text-gray-900 text-base sm:text-lg">{t('pages.message_from_founder.founder_info.name')}</div>
+                          <div className="text-yellow-600 text-sm font-medium">{t('pages.message_from_founder.founder_info.title')}</div>
+                          <div className="text-gray-500 text-xs">{t('pages.message_from_founder.founder_info.company')}</div>
                         </div>
                         <div className="sm:text-right">
                           <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider">
@@ -196,26 +197,15 @@ export default function MessageFromFounder() {
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
                 <div className="space-y-4">
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Honored Stakeholders,</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{t('pages.message_from_founder.message.greeting')}</h3>
                   
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                    When we established PT Kristalin Eka Lestari in 1989, we envisioned more than just a mining company. 
-                    We saw an opportunity to <strong>transform Indonesia's natural wealth into sustainable prosperity</strong> 
-                    for our communities, our nation, and future generations.
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph1')}}>
                   </p>
                   
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                    Over three decades of operations in Papua's resource-rich landscape have taught us that  
-                    <strong> true success in mining</strong> comes not from extracting the maximum, but from 
-                    <strong> creating lasting value</strong> through responsible practices, innovative technologies, 
-                    and genuine partnerships with local communities.
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph2')}}>
                   </p>
                   
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                    Today, as we look toward the future, our commitment remains unwavering: to be 
-                    <strong> Indonesia's premier sustainable mining company</strong>, setting new standards 
-                    for environmental stewardship, community empowerment, and operational excellence 
-                    that serve as a beacon for the global mining industry.
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph3')}}>
                   </p>
                 </div>
               </div>
@@ -224,7 +214,7 @@ export default function MessageFromFounder() {
               <div className={`mb-8 transform transition-all duration-1000 delay-900 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}>
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Our Founding Principles</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">{t('pages.message_from_founder.principles.title')}</h3>
                 <div className="space-y-3">
                   {keyPrinciples.map((principle, index) => (
                     <div key={index} className="flex items-start space-x-3 p-3 rounded-xl hover:bg-gray-50 transition-colors duration-300">
@@ -246,20 +236,19 @@ export default function MessageFromFounder() {
               }`}>
                 <div className="text-center space-y-4">
                   <div className="space-y-2">
-                    <h4 className="text-base sm:text-lg font-medium text-gray-900">Together, We Build Tomorrow</h4>
+                    <h4 className="text-base sm:text-lg font-medium text-gray-900">{t('pages.message_from_founder.cta.title')}</h4>
                     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                      Join us in our mission to create a sustainable mining legacy that honors Indonesia's 
-                      natural heritage while building prosperity for all stakeholders.
+                      {t('pages.message_from_founder.cta.description')}
                     </p>
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
-                      <span className="relative z-10">Our Story</span>
+                      <span className="relative z-10">{t('pages.message_from_founder.cta.button_story')}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     </button>
                     <button className="group border-2 border-yellow-500 text-yellow-600 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105 text-sm">
                       <a href="/contact">
-                        Contact Us
+                        {t('pages.message_from_founder.cta.button_contact')}
                       </a>
                     </button>
                   </div>
@@ -277,7 +266,7 @@ export default function MessageFromFounder() {
             <div className="absolute inset-0 w-full h-full">
               <img 
                 src="/arifbudi.jpg"
-                alt="Message from Founder"
+                alt={t('pages.message_from_founder.hero.alt_text')}
                 width={600}
                 height={600}
                 className="w-full h-full object-cover opacity-70"
@@ -289,13 +278,12 @@ export default function MessageFromFounder() {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <h1 className="text-white text-5xl font-light leading-tight">
-                Message<br />
-                <span className="font-normal">from Founder</span>
+                {t('pages.message_from_founder.hero.title_line1')}<br />
+                <span className="font-normal">{t('pages.message_from_founder.hero.title_line2')}</span>
               </h1>
               <div className="w-20 h-1 bg-yellow-400 mt-6"></div>
               <p className="text-white/80 text-lg mt-4 max-w-md leading-relaxed">
-                A visionary perspective on Indonesia's golden future and 
-                sustainable mining excellence.
+                {t('pages.message_from_founder.hero.description')}
               </p>
             </div>
           </div>
@@ -319,12 +307,12 @@ export default function MessageFromFounder() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <span className="text-gray-500 uppercase tracking-wider text-sm font-medium">
-                      Message from Founder
+                      {t('pages.message_from_founder.header.subtitle')}
                     </span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 leading-relaxed mb-6">
-                    Building Indonesia's
-                    <span className="text-yellow-600 font-medium"> Golden Legacy</span>
+                    {t('pages.message_from_founder.header.title_line1')}
+                    <span className="text-yellow-600 font-medium"> {t('pages.message_from_founder.header.title_line2')}</span>
                   </h2>
                 </div>
 
@@ -346,9 +334,9 @@ export default function MessageFromFounder() {
                         </blockquote>
                         <div className="flex items-center justify-between">
                           <div>
-                            <div className="font-semibold text-gray-900 text-lg">Arif Budi Setiawan</div>
-                            <div className="text-yellow-600 text-sm font-medium">Founder & Chairman</div>
-                            <div className="text-gray-500 text-xs">PT Kristalin Eka Lestari</div>
+                            <div className="font-semibold text-gray-900 text-lg">{t('pages.message_from_founder.founder_info.name')}</div>
+                            <div className="text-yellow-600 text-sm font-medium">{t('pages.message_from_founder.founder_info.title')}</div>
+                            <div className="text-gray-500 text-xs">{t('pages.message_from_founder.founder_info.company')}</div>
                           </div>
                           <div className="text-right">
                             <div className="text-yellow-600 text-xs font-semibold uppercase tracking-wider">
@@ -379,26 +367,15 @@ export default function MessageFromFounder() {
                   isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 }`}>
                   <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Honored Stakeholders,</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{t('pages.message_from_founder.message.greeting')}</h3>
                     
-                    <p className="text-gray-700 leading-relaxed">
-                      When we established PT Kristalin Eka Lestari in 1989, we envisioned more than just a mining company. 
-                      We saw an opportunity to <strong>transform Indonesia's natural wealth into sustainable prosperity</strong> 
-                      for our communities, our nation, and future generations.
+                    <p className="text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph1')}}>
                     </p>
                     
-                    <p className="text-gray-700 leading-relaxed">
-                      Over three decades of operations in Papua's resource-rich landscape have taught us that  
-                      <strong> true success in mining</strong> comes not from extracting the maximum, but from 
-                      <strong> creating lasting value</strong> through responsible practices, innovative technologies, 
-                      and genuine partnerships with local communities.
+                    <p className="text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph2')}}>
                     </p>
                     
-                    <p className="text-gray-700 leading-relaxed">
-                      Today, as we look toward the future, our commitment remains unwavering: to be 
-                      <strong> Indonesia's premier sustainable mining company</strong>, setting new standards 
-                      for environmental stewardship, community empowerment, and operational excellence 
-                      that serve as a beacon for the global mining industry.
+                    <p className="text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{__html: t('pages.message_from_founder.message.paragraph3')}}>
                     </p>
                   </div>
                 </div>
@@ -407,7 +384,7 @@ export default function MessageFromFounder() {
                 <div className={`mb-12 transform transition-all duration-1000 delay-900 ${
                   isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 }`}>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Our Founding Principles</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">{t('pages.message_from_founder.principles.title')}</h3>
                   <div className="space-y-4">
                     {keyPrinciples.map((principle, index) => (
                       <div key={index} className="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300">
@@ -429,20 +406,19 @@ export default function MessageFromFounder() {
                 }`}>
                   <div className="text-center space-y-6">
                     <div className="space-y-2">
-                      <h4 className="text-lg font-medium text-gray-900">Together, We Build Tomorrow</h4>
+                      <h4 className="text-lg font-medium text-gray-900">{t('pages.message_from_founder.cta.title')}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Join us in our mission to create a sustainable mining legacy that honors Indonesia's 
-                        natural heritage while building prosperity for all stakeholders.
+                        {t('pages.message_from_founder.cta.description')}
                       </p>
                     </div>
                     <div className="flex justify-center space-x-4">
                       <button className="group relative overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105">
-                        <span className="relative z-10">Our Story</span>
+                        <span className="relative z-10">{t('pages.message_from_founder.cta.button_story')}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                       </button>
                       <button className="group border-2 border-yellow-500 text-yellow-600 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-yellow-500 hover:text-white hover:scale-105">
                         <a href="/contact">
-                          Contact Us
+                          {t('pages.message_from_founder.cta.button_contact')}
                         </a>
                       </button>
                     </div>
