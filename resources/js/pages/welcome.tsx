@@ -1,8 +1,8 @@
+import { useTranslation } from '@/hooks/useTranslation';
 import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
-import { useTranslation } from '@/hooks/useTranslation';
 
 // Import data berita dari news.tsx
 const newsData = [
@@ -241,9 +241,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                                         />
                                     </svg>
-                                    <div>
-{t('pages.welcome.feedback.anonymous_notice')}
-                                    </div>
+                                    <div>{t('pages.welcome.feedback.anonymous_notice')}</div>
                                 </div>
                             </div>
 
@@ -326,7 +324,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                     onChange={(e) => setPriority(e.target.value)}
                                                     className="hidden"
                                                 />
-{t(`pages.welcome.feedback.priority_display.${level}`)}
+                                                {t(`pages.welcome.feedback.priority_display.${level}`)}
                                             </label>
                                         ))}
                                     </div>
@@ -380,7 +378,9 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                     </div>
 
                                     <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">{t('pages.welcome.feedback.files_label')} {t('pages.welcome.feedback.optional')}</label>
+                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
+                                            {t('pages.welcome.feedback.files_label')} {t('pages.welcome.feedback.optional')}
+                                        </label>
                                         <div
                                             className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 px-4 py-8 transition-colors duration-300 hover:border-yellow-400 hover:bg-yellow-50"
                                             onClick={() => fileInputRef.current?.click()}
@@ -409,7 +409,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                                                             />
                                                         </svg>
-{t('pages.welcome.feedback.upload_text')}
+                                                        {t('pages.welcome.feedback.upload_text')}
                                                         <br />
                                                         <span className="text-xs">{t('pages.welcome.feedback.upload_format')}</span>
                                                     </>
@@ -428,7 +428,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                                             />
                                                         </svg>
-{files.length} {t('pages.welcome.feedback.files_selected')}
+                                                        {files.length} {t('pages.welcome.feedback.files_selected')}
                                                         <br />
                                                         <span className="text-xs">{fileNames}</span>
                                                     </>
@@ -443,7 +443,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                                     type="submit"
                                     className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-amber-600 hover:shadow-xl"
                                 >
-                                                                                    🚀 {t('pages.welcome.feedback.submit_button')}
+                                    🚀 {t('pages.welcome.feedback.submit_button')}
                                 </button>
                             </form>
 
@@ -1197,21 +1197,23 @@ const Welcome = () => {
                                             </p>
                                         </div>
 
-                                        {/* Buttons - desain yang lebih user-friendly dan estetik */}
-                                        <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4">
-                                            <button
-                                                className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px]"
-                                                onClick={() => (window.location.href = '/about#about-kristalin')}
-                                            >
-                                                {t('pages.welcome.buttons.learn_more')}
-                                            </button>
+                                        {/* Buttons - responsive alignment */}
+                                        <div className="mt-6 w-full">
+                                            <div className="button-container flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4 md:flex-row md:justify-center md:gap-4 lg:flex-row lg:justify-start lg:gap-4">
+                                                <button
+                                                    className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                    onClick={() => (window.location.href = '/about#about-kristalin')}
+                                                >
+                                                    {t('pages.welcome.buttons.learn_more')}
+                                                </button>
 
-                                            <button
-                                                className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px]"
-                                                onClick={() => setShowFeedbackForm(true)}
-                                            >
-                                                {t('pages.welcome.buttons.send_feedback')}
-                                            </button>
+                                                <button
+                                                    className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                    onClick={() => setShowFeedbackForm(true)}
+                                                >
+                                                    {t('pages.welcome.buttons.send_feedback')}
+                                                </button>
+                                            </div>
                                         </div>
 
                                         {/* Konten tanpa elemen dekoratif */}
@@ -1288,7 +1290,9 @@ const Welcome = () => {
                                     <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
                                     <div className="relative z-10">
-                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">{t('pages.welcome.portfolio.category')}</div>
+                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                            {t('pages.welcome.portfolio.category')}
+                                        </div>
                                         <h3
                                             className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
                                                 hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
@@ -1710,6 +1714,47 @@ const Welcome = () => {
 
             section > div {
               min-height: 300px;
+            }
+          }
+
+          /* Custom responsive button layout - Desktop left, mobile center */
+          @media (max-width: 639px) {
+            /* Mobile phones - buttons stacked vertically, centered */
+            .button-container {
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+            }
+          }
+
+          @media (min-width: 640px) and (max-width: 1023px) {
+            /* Tablets (iPad, iPad Air, etc.) - buttons horizontal, centered */
+            .button-container {
+              flex-direction: row !important;
+              align-items: center !important;
+              justify-content: center !important;
+              gap: 1rem !important;
+            }
+          }
+
+          @media (min-width: 1024px) {
+            /* Desktop - buttons horizontal, left-aligned */
+            .button-container {
+              flex-direction: row !important;
+              align-items: center !important;
+              justify-content: flex-start !important;
+              gap: 1rem !important;
+            }
+          }
+
+          /* Responsive button alignment */
+          .button-container {
+            align-items: center !important;
+          }
+
+          @media (min-width: 1024px) {
+            .button-container {
+              justify-content: flex-start !important;
             }
           }
 

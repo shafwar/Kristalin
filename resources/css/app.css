@@ -59,13 +59,13 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     /* Custom breakpoints untuk Gold Trading Website */
-    --breakpoint-xs: 320px;   /* Small mobile */
-    --breakpoint-sm: 640px;   /* Mobile */
-    --breakpoint-md: 768px;   /* Tablet */
-    --breakpoint-lg: 1024px;  /* Desktop */
-    --breakpoint-xl: 1280px;  /* Large desktop */
+    --breakpoint-xs: 320px; /* Small mobile */
+    --breakpoint-sm: 640px; /* Mobile */
+    --breakpoint-md: 768px; /* Tablet */
+    --breakpoint-lg: 1024px; /* Desktop */
+    --breakpoint-xl: 1280px; /* Large desktop */
     --breakpoint-2xl: 1536px; /* Extra large */
-    }
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -177,12 +177,7 @@
 
 .animate-shimmer {
     animation: shimmer 2s infinite linear;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     background-size: 200% 100%;
 }
 

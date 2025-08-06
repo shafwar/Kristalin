@@ -1,6 +1,6 @@
+import { useTranslation } from '@/hooks/useTranslation';
 import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from '@/hooks/useTranslation';
 
 interface HeaderProps {
     sticky?: boolean;
@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ sticky = false, transparent = false }: HeaderProps) {
     const { t, locale, switchLanguage, getCurrentLanguageCode } = useTranslation();
-    
+
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
@@ -72,7 +72,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     useEffect(() => {
         if (mobileMenuOpen) {
             const scrollY = window.scrollY;
-
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollY}px`;
             document.body.style.width = '100%';
@@ -91,7 +90,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     // Calculate opacity based on scroll position for smooth transition
     const getBackgroundOpacity = () => {
         if (!transparent) return 1;
-        // PERBAIKAN: Force solid background jika mobile menu terbuka
         if (mobileMenuOpen) return 1;
         const maxScroll = 100;
         const opacity = Math.min(scrollY / maxScroll, 1);
@@ -101,10 +99,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const backgroundOpacity = getBackgroundOpacity();
     const shadowOpacity = Math.min(scrollY / 50, 1);
     const blurIntensity = Math.min(scrollY / 80, 1);
-    // PERBAIKAN: Force white text jika mobile menu terbuka dan background solid
     const textOpacity = transparent && !mobileMenuOpen ? Math.max(0.8, 1 - backgroundOpacity * 0.2) : 1;
 
-    // PERBAIKAN: Determine header classes and styles dengan kondisi mobile menu
+    // Determine header classes and styles
     const getHeaderClasses = () => {
         const baseClasses = 'flex items-center h-16 sm:h-18 lg:h-20 w-full px-3 sm:px-4 md:px-6 lg:px-8 z-50';
 
@@ -118,7 +115,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     };
 
     const getHeaderStyle = () => {
-        // PERBAIKAN: Force solid background jika mobile menu terbuka
         if (!transparent || mobileMenuOpen) {
             return {
                 background: 'linear-gradient(to bottom, rgb(68, 68, 68), rgb(136, 136, 136), rgb(229, 231, 235))',
@@ -137,18 +133,16 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         };
     };
 
-    // PERBAIKAN: Logo logic dengan kondisi mobile menu
+    // Logo logic
     const getLogoSrc = () => {
         if (!transparent) {
             return 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
         }
 
-        // Jika mobile menu terbuka, gunakan logo dark
         if (mobileMenuOpen) {
             return 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
         }
 
-        // Default transparent logic
         return scrollY < 50
             ? 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png'
             : 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
@@ -188,12 +182,12 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     return (
         <header className={getHeaderClasses()} style={getHeaderStyle()}>
             {/* Logo Section */}
-            <div className="flex items-center pr-4 pl-2 sm:pr-6 sm:pl-4 lg:pr-8 lg:pl-6">
+            <div className="flex items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-6 lg:pl-4">
                 <a href="/" className="flex items-center" aria-label="Company Logo">
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
-                        className="h-8 w-auto object-contain transition-all duration-700 ease-out sm:h-10 md:h-12 lg:h-16"
+                        className="h-8 w-auto object-contain transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-12 xl:h-14"
                         style={{ filter: getLogoFilter() }}
                     />
                 </a>
@@ -202,7 +196,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             {/* Desktop Navigation Menu */}
             <nav className="hidden flex-1 justify-center lg:flex lg:px-2 xl:px-4">
                 <ul
-                    className="flex items-center gap-3 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-4 xl:gap-6 2xl:gap-8 lg:text-xs xl:text-sm"
+                    className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-2 lg:text-xs xl:gap-3 xl:text-sm 2xl:gap-4"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
@@ -211,12 +205,17 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 <div
                                     className="relative"
                                     ref={aboutDropdownRef}
-                                    onMouseEnter={() => setAboutDropdownOpen(true)}
-                                    onMouseLeave={() => setAboutDropdownOpen(false)}
+                                    onMouseEnter={() => {
+                                        setAboutDropdownOpen(true);
+                                    }}
+                                    onMouseLeave={() => {
+                                        setAboutDropdownOpen(false);
+                                    }}
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-1 px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
+                                        className="flex items-center gap-1 px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
+                                        onClick={(e) => e.preventDefault()}
                                     >
                                         {item.label}
                                         <svg
@@ -227,19 +226,21 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                             <path d="M6 8L2 4h8l-4 4z" />
                                         </svg>
                                     </a>
-                                    {/* Desktop Dropdown Menu */}
+                                    {/* Desktop Dropdown Menu with improved positioning */}
                                     <div
-                                        className={`absolute top-full left-0 z-50 mt-2 w-64 transform rounded-lg border border-gray-600 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out xl:w-72 ${
-                                            aboutDropdownOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-2 opacity-0'
+                                        className={`absolute top-full left-0 z-50 mt-1 w-64 transform rounded-lg border border-gray-600 bg-gradient-to-b from-[#444] via-[#666] to-[#888] text-white shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out xl:w-72 ${
+                                            aboutDropdownOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                                         }`}
+                                        onMouseEnter={() => setAboutDropdownOpen(true)}
+                                        onMouseLeave={() => setAboutDropdownOpen(false)}
                                     >
                                         <div className="px-4 py-4">
-                                            <div className="space-y-2">
+                                            <div className="space-y-1">
                                                 {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
                                                     <a
                                                         key={dropdownIndex}
                                                         href={dropdownItem.href}
-                                                        className="hover:bg-opacity-10 block rounded px-3 py-2 text-xs transition-all duration-300 ease-out hover:translate-x-1 hover:scale-105 hover:bg-white hover:text-yellow-300"
+                                                        className="hover:bg-opacity-10 block rounded px-3 py-2.5 text-xs transition-all duration-300 ease-out hover:translate-x-1 hover:scale-105 hover:bg-white hover:text-yellow-300"
                                                     >
                                                         {dropdownItem.label}
                                                     </a>
@@ -253,14 +254,14 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     href={item.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
+                                    className="px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
                                 >
                                     {item.label}
                                 </a>
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="px-1 py-1 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2"
+                                    className="px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
                                 >
                                     {item.label}
                                 </Link>
@@ -290,13 +291,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
             {/* Right Side Features - Desktop Only */}
             <div
-                className="hidden h-full items-center gap-2 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex lg:gap-1 xl:gap-3 xl:text-sm"
+                className="hidden h-full items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex xl:gap-2 xl:text-sm"
                 style={{ opacity: textOpacity }}
             >
                 {/* Language Switcher */}
                 <div className="relative" ref={dropdownRef}>
                     <button
-                        className="flex h-10 min-w-[44px] items-center justify-center px-1 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none lg:px-2 xl:text-sm"
+                        className="flex h-10 min-w-[44px] items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none xl:text-sm"
                         onClick={() => setDropdownOpen(!dropdownOpen)}
                         aria-haspopup="listbox"
                         aria-expanded={dropdownOpen}
@@ -354,7 +355,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </div>
                 {/* Search Icon */}
                 <button
-                    className="flex h-10 items-center justify-center px-1 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none lg:px-2 xl:text-sm"
+                    className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
                     aria-label={t('common.search')}
                 >
                     <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
