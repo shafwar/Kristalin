@@ -1198,16 +1198,16 @@ const Welcome = () => {
                                         </div>
 
                                         {/* Buttons - desain yang lebih user-friendly dan estetik */}
-                                        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:gap-4">
+                                        <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4">
                                             <button
-                                                className="flex h-12 min-w-full cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:min-w-[180px]"
+                                                className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px]"
                                                 onClick={() => (window.location.href = '/about#about-kristalin')}
                                             >
                                                 {t('pages.welcome.buttons.learn_more')}
                                             </button>
 
                                             <button
-                                                className="relative flex h-12 min-w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:min-w-[180px]"
+                                                className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px]"
                                                 onClick={() => setShowFeedbackForm(true)}
                                             >
                                                 {t('pages.welcome.buttons.send_feedback')}
