@@ -1150,6 +1150,7 @@ return [
             'title_line2' => 'Update',
             'description' => 'Latest developments in sustainable gold mining and community empowerment.',
             'search_placeholder' => 'Search mining news...',
+            'search_button' => 'Search',    
         ],
         'categories' => [
             'all' => 'All',
@@ -1992,9 +1993,30 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
                 'type' => 'Certification',
                 'metrics' => ['standard' => 'ICMM Certified', 'scope' => 'All Operations'],
             ],
-        ],  
+        ],
+        'search_news' => [
+            'title' => 'Search Results',
+            'subtitle' => 'Find the information you need quickly',
+            'input_placeholder' => 'Enter search keywords...',
+            'search_button' => 'Search',
+            'articles_found_for' => 'articles found for',
+            'prev_page_aria' => 'Previous Page',
+            'next_page_aria' => 'Next Page',
+            'no_results_title' => 'No Results',
+            'no_results_desc' => 'No articles found matching your search for',
+            'view_all' => 'Back to All News',
+        ],
     ],
-
+    'search' => [
+        'title' => 'Search Results',
+        'subtitle' => 'Find the information you need quickly',
+        'input_placeholder' => 'Enter search keywords...',
+        'search_button' => 'Search',
+        'articles_found_for' => 'results found for',
+        'no_results_title' => 'No Results',
+        'no_results_hint' => 'Try a different or more specific keyword',
+        'try_again' => 'Try Again'
+    ],
     // Footer
     'footer' => [
         'copyright' => '© 2025 PT Kristalin Ekalestari. All rights reserved.',

@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedbackReportController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -64,6 +65,9 @@ Route::get('/csr', function () {
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
+
+// Search
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
