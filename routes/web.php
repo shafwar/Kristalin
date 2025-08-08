@@ -67,10 +67,6 @@ Route::get('/careers', function () {
     return Inertia::render('careers');
 })->name('careers');
 
-Route::get('/message-from-founder', function () {
-    return Inertia::render('message-from-founder');
-})->name('message-from-founder');
-
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
 Route::post('/contact-message', [ContactMessageController::class, 'store']);
