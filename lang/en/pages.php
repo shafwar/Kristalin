@@ -2,7 +2,7 @@
 
 return [
     'welcome' => [
-        'title' => 'Welcome to Kristalin Eka Lestari',
+        'title' => 'Welcome to Kristalin Ekalestari',
         'subtitle' => 'Excellence in Mining and Trading',
         'description' => 'Leading the industry with sustainable mining practices and reliable trading solutions for precious metals and natural resources.',
         'hero_button_cta' => 'Discover Our Services',
@@ -49,9 +49,6 @@ return [
         'business_activities' => [
             'title' => 'Business Activities',
             'find_out_more' => 'Find out more →',
-        ],
-        'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. All rights reserved.',
         ],
         'feedback' => [
             'button_text' => 'Send Feedback',
@@ -129,15 +126,15 @@ return [
     ],
     
     'about' => [
-        'title' => 'About Kristalin Eka Lestari',
+        'title' => 'About Kristalin Ekalestari',
         'description' => 'Learn more about our company, history, and commitment to excellence in the mining and trading industry.',
         'section_history' => 'Our History',
         'section_mission' => 'Our Mission',
         'section_values' => 'Our Values',
         
-        'page_title' => 'About Kristalin Eka Lestari',
+        'page_title' => 'About Kristalin Ekalestari',
         'main_heading' => 'Building Indonesia\'s Mining Future Since 1989',
-        'company_intro' => 'Established as PT Kristalin Eka Lestari in 1989, we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest shareholder actively operates in the mining industry, specifically in exploration and gold mining operational production sector located in Nabire, Papua.',
+        'company_intro' => 'Established as PT Kristalin Ekalestari in 1989, we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest shareholder actively operates in the mining industry, specifically in exploration and gold mining operational production sector located in Nabire, Papua.',
         
         'company_stats' => [
             'founded' => 'Founded',
@@ -156,7 +153,7 @@ return [
             'company_foundation' => [
                 'title' => 'Company Foundation',
                 'subtitle' => 'Our Beginning',
-                'content' => 'Established in 1989, PT Kristalin Eka Lestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
+                'content' => 'Established in 1989, PT Kristalin Ekalestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
             ],
             'global_partnerships' => [
                 'title' => 'Global Partnerships',
@@ -199,7 +196,7 @@ return [
             ],
             'future_vision' => [
                 'title' => 'Future Vision',
-                'content' => 'PT Kristalin Eka Lestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
+                'content' => 'PT Kristalin Ekalestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
             ],
         ],
         
@@ -309,7 +306,7 @@ return [
             'natural_resources' => [
                 'title' => 'Natural Resources',
                 'subtitle' => 'Rich Heritage',
-                'content' => 'PT Kristalin Eka Lestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
+                'content' => 'PT Kristalin Ekalestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
             ],
             'strategic_partnerships' => [
                 'title' => 'Strategic Partnerships',
@@ -412,7 +409,7 @@ return [
             '2020-2025' => [
                 '0' => [
                     'title' => 'Record Gold Production Achievement',
-                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Eka Lestari\'s position as a leading gold mining company in Indonesia.',
+                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Ekalestari\'s position as a leading gold mining company in Indonesia.',
                 ],
                 '1' => [
                     'title' => 'Expansion of Sustainable Gold Mining Operations',
@@ -486,7 +483,7 @@ return [
                 ],
                 '1' => [
                     'title' => 'Production Milestone Achievement',
-                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Eka Lestari as major player in Indonesian mining industry.',
+                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Ekalestari as major player in Indonesian mining industry.',
                 ],
                 '2' => [
                     'title' => 'Local Partnership Development',
@@ -538,7 +535,7 @@ return [
                 ],
                 '3' => [
                     'title' => 'Company Establishment',
-                    'description' => 'PT Kristalin Eka Lestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
+                    'description' => 'PT Kristalin Ekalestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
                 ],
             ],
         ],
@@ -650,7 +647,7 @@ return [
         'hero_title_1' => 'Our',
         'hero_title_2' => 'Portfolio',
         'hero_subtitle' => 'MINING THE FUTURE',
-        'hero_description' => 'PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia\'s future.',
+        'hero_description' => 'PT Kristalin Ekalestari is committed to sustainable gold mining, innovation, and empowering Indonesia\'s future.',
         'explore_operations_btn' => 'Explore Operations',
         'values' => [
             'integrity' => [
@@ -664,7 +661,7 @@ return [
         ],
         'company_info' => [
             'company_name_label' => 'Company Name',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => 'Business Field',
             'business_field_value' => 'Gold Mining & Mineral Processing',
             'established_label' => 'Established',
@@ -674,7 +671,7 @@ return [
             'business_license_label' => 'Business License',
             'business_license_value' => 'IUP Operation Production No. 561/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Eka Lestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
+        'company_description' => 'PT Kristalin Ekalestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
         'company_profile' => [
             'header' => 'COMPANY PROFILE',
             'title_line1' => 'Professional Gold Mining',
@@ -1024,7 +1021,7 @@ return [
         'hero' => [
             'title_line1' => 'Contact',
             'title_line2' => 'Us',
-            'description' => 'Find out more information about Kristalin Eka Lestari',
+            'description' => 'Find out more information about Kristalin Ekalestari',
         ],
         'form' => [
             'labels' => [
@@ -1114,11 +1111,11 @@ return [
         'founder_info' => [
             'name' => 'Arif Budi Setiawan',
             'title' => 'Founder & Chairman',
-            'company' => 'PT Kristalin Eka Lestari',
+            'company' => 'PT Kristalin Ekalestari',
         ],
         'message' => [
             'greeting' => 'Honored Stakeholders,',
-            'paragraph1' => 'When we established PT Kristalin Eka Lestari in 1989, we envisioned more than just a mining company. We saw an opportunity to <strong>transform Indonesia\'s natural wealth into sustainable prosperity</strong> for our communities, our nation, and future generations.',
+            'paragraph1' => 'When we established PT Kristalin Ekalestari in 1989, we envisioned more than just a mining company. We saw an opportunity to <strong>transform Indonesia\'s natural wealth into sustainable prosperity</strong> for our communities, our nation, and future generations.',
             'paragraph2' => 'Over three decades of operations in Papua\'s resource-rich landscape have taught us that <strong>true success in mining</strong> comes not from extracting the maximum, but from <strong>creating lasting value</strong> through responsible practices, innovative technologies, and genuine partnerships with local communities.',
             'paragraph3' => 'Today, as we look toward the future, our commitment remains unwavering: to be <strong>Indonesia\'s premier sustainable mining company</strong>, setting new standards for environmental stewardship, community empowerment, and operational excellence that serve as a beacon for the global mining industry.',
         ],
@@ -1933,10 +1930,10 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
                 'metrics' => ['houses' => '1 Unit', 'location' => 'Nifasi Village'],
             ],
             7 => [
-                'title' => 'Kristalin Eka Lestari Achieves Record Gold Production with Revolutionary Extraction Technology',
+                'title' => 'Kristalin Ekalestari Achieves Record Gold Production with Revolutionary Extraction Technology',
                 'subtitle' => 'Breakthrough sustainable mining practices set new industry standards',
                 'excerpt' => 'Revolutionary extraction methods increase gold yield by 40% while reducing environmental impact through sustainable mining practices and cutting-edge technology implementation.',
-                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Eka Lestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
+                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Ekalestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
                 'author' => 'Mining Operations Team',
                 'type' => 'Technology Breakthrough',
                 'metrics' => ['impact' => '40% Yield Increase', 'duration' => '18 Months Development'],
@@ -1995,6 +1992,11 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
                 'type' => 'Certification',
                 'metrics' => ['standard' => 'ICMM Certified', 'scope' => 'All Operations'],
             ],
-        ],
+        ],  
+    ],
+
+    // Footer
+    'footer' => [
+        'copyright' => '© 2025 PT Kristalin Ekalestari. All rights reserved.',
     ],
 ];

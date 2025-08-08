@@ -2,7 +2,7 @@
 
 return [
     'welcome' => [
-        'title' => 'Selamat Datang di Kristalin Eka Lestari',
+        'title' => 'Selamat Datang di Kristalin Ekalestari',
         'subtitle' => 'Keunggulan dalam Pertambangan dan Perdagangan',
         'description' => 'Memimpin industri dengan praktik pertambangan berkelanjutan dan solusi perdagangan yang andal untuk logam mulia dan sumber daya alam.',
         'hero_button_cta' => 'Temukan Layanan Kami',
@@ -49,9 +49,6 @@ return [
         'business_activities' => [
             'title' => 'Aktivitas Bisnis',
             'find_out_more' => 'Pelajari lebih lanjut →',
-        ],
-        'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. Semua hak dilindungi.',
         ],
         'feedback' => [
             'button_text' => 'Kirim Masukan',
@@ -129,15 +126,15 @@ return [
     ],
     
     'about' => [
-        'title' => 'Tentang Kristalin Eka Lestari',
+        'title' => 'Tentang Kristalin Ekalestari',
         'description' => 'Pelajari lebih lanjut tentang perusahaan kami, sejarah, dan komitmen terhadap keunggulan dalam industri pertambangan dan perdagangan.',
         'section_history' => 'Sejarah Kami',
         'section_mission' => 'Misi Kami',
         'section_values' => 'Nilai-Nilai Kami',
         
-        'page_title' => 'Tentang Kristalin Eka Lestari',
+        'page_title' => 'Tentang Kristalin Ekalestari',
         'main_heading' => 'Membangun Masa Depan Pertambangan Indonesia Sejak 1989',
-        'company_intro' => 'Didirikan sebagai PT Kristalin Eka Lestari pada tahun 1989, kami tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Pendiri, ketua dan pemegang saham terbesar kami secara aktif beroperasi di industri pertambangan, khususnya di sektor produksi operasional eksplorasi dan penambangan emas yang berlokasi di Nabire, Papua.',
+        'company_intro' => 'Didirikan sebagai PT Kristalin Ekalestari pada tahun 1989, kami tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Pendiri, ketua dan pemegang saham terbesar kami secara aktif beroperasi di industri pertambangan, khususnya di sektor produksi operasional eksplorasi dan penambangan emas yang berlokasi di Nabire, Papua.',
         
         'company_stats' => [
             'founded' => 'Didirikan',
@@ -156,7 +153,7 @@ return [
             'company_foundation' => [
                 'title' => 'Pendirian Perusahaan',
                 'subtitle' => 'Awal Perjalanan Kami',
-                'content' => 'Didirikan pada tahun 1989, PT Kristalin Eka Lestari tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Didirikan dengan visi untuk unggul dalam industri pertambangan Indonesia, khususnya dalam operasi eksplorasi dan penambangan emas.',
+                'content' => 'Didirikan pada tahun 1989, PT Kristalin Ekalestari tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Didirikan dengan visi untuk unggul dalam industri pertambangan Indonesia, khususnya dalam operasi eksplorasi dan penambangan emas.',
             ],
             'global_partnerships' => [
                 'title' => 'Kemitraan Global',
@@ -199,7 +196,7 @@ return [
             ],
             'future_vision' => [
                 'title' => 'Visi Masa Depan',
-                'content' => 'PT Kristalin Eka Lestari terus mengeksplorasi peluang baru untuk pertumbuhan dan ekspansi. Kami tetap berkomitmen pada inovasi, keberlanjutan, dan menciptakan nilai jangka panjang untuk pemangku kepentingan sambil mempertahankan posisi kepemimpinan kami.',
+                'content' => 'PT Kristalin Ekalestari terus mengeksplorasi peluang baru untuk pertumbuhan dan ekspansi. Kami tetap berkomitmen pada inovasi, keberlanjutan, dan menciptakan nilai jangka panjang untuk pemangku kepentingan sambil mempertahankan posisi kepemimpinan kami.',
             ],
         ],
         
@@ -309,7 +306,7 @@ return [
             'natural_resources' => [
                 'title' => 'Sumber Daya Alam',
                 'subtitle' => 'Warisan Kaya',
-                'content' => 'PT Kristalin Eka Lestari berfokus pada eksplorasi dan eksploitasi sumber daya alam Indonesia yang melimpah, khususnya mengkhususkan diri dalam operasi penambangan emas di wilayah Nabire, Papua yang kaya sumber daya.',
+                'content' => 'PT Kristalin Ekalestari berfokus pada eksplorasi dan eksploitasi sumber daya alam Indonesia yang melimpah, khususnya mengkhususkan diri dalam operasi penambangan emas di wilayah Nabire, Papua yang kaya sumber daya.',
             ],
             'strategic_partnerships' => [
                 'title' => 'Kemitraan Strategis',
@@ -412,7 +409,7 @@ return [
             '2020-2025' => [
                 [
                     'title' => 'Pencapaian Produksi Emas Tertinggi',
-                    'description' => 'Mencapai produksi emas tahunan tertinggi dalam sejarah perusahaan, melampaui 10 ton emas murni dan memperkuat posisi Kristalin Eka Lestari sebagai perusahaan pertambangan emas terkemuka di Indonesia.',
+                    'description' => 'Mencapai produksi emas tahunan tertinggi dalam sejarah perusahaan, melampaui 10 ton emas murni dan memperkuat posisi Kristalin Ekalestari sebagai perusahaan pertambangan emas terkemuka di Indonesia.',
                 ],
                 [
                     'title' => 'Ekspansi Operasi Penambangan Emas Berkelanjutan',
@@ -486,7 +483,7 @@ return [
                 ],
                 [
                     'title' => 'Pencapaian Tonggak Produksi',
-                    'description' => 'Mencapai tonggak produksi emas yang signifikan, menetapkan PT Kristalin Eka Lestari sebagai pemain utama dalam industri pertambangan Indonesia.',
+                    'description' => 'Mencapai tonggak produksi emas yang signifikan, menetapkan PT Kristalin Ekalestari sebagai pemain utama dalam industri pertambangan Indonesia.',
                 ],
                 [
                     'title' => 'Pengembangan Kemitraan Lokal',
@@ -538,7 +535,7 @@ return [
                 ],
                 [
                     'title' => 'Pendirian Perusahaan',
-                    'description' => 'PT Kristalin Eka Lestari resmi didirikan di Jakarta sebagai perusahaan pertambangan yang berfokus pada eksplorasi dan ekstraksi sumber daya alam di Indonesia.',
+                    'description' => 'PT Kristalin Ekalestari resmi didirikan di Jakarta sebagai perusahaan pertambangan yang berfokus pada eksplorasi dan ekstraksi sumber daya alam di Indonesia.',
                 ],
             ],
         ],
@@ -650,7 +647,7 @@ return [
         'hero_title_1' => 'Portofolio',
         'hero_title_2' => 'Kami',
         'hero_subtitle' => 'MENAMBANG MASA DEPAN',
-        'hero_description' => 'PT Kristalin Eka Lestari berkomitmen untuk pertambangan emas berkelanjutan, inovasi, dan memberdayakan masa depan Indonesia.',
+        'hero_description' => 'PT Kristalin Ekalestari berkomitmen untuk pertambangan emas berkelanjutan, inovasi, dan memberdayakan masa depan Indonesia.',
         'explore_operations_btn' => 'Jelajahi Operasi',
         'values' => [
             'integrity' => [
@@ -664,7 +661,7 @@ return [
         ],
         'company_info' => [
             'company_name_label' => 'Nama Perusahaan',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => 'Bidang Usaha',
             'business_field_value' => 'Pertambangan Emas & Pengolahan Mineral',
             'established_label' => 'Didirikan',
@@ -674,7 +671,7 @@ return [
             'business_license_label' => 'Izin Usaha',
             'business_license_value' => 'IUP Operasi Produksi No. 561/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Eka Lestari berkomitmen pada pertambangan berkelanjutan, inovasi, dan kemitraan strategis untuk masa depan yang lebih baik di Indonesia. Kami beroperasi dengan standar integritas dan tanggung jawab lingkungan tertinggi.',
+        'company_description' => 'PT Kristalin Ekalestari berkomitmen pada pertambangan berkelanjutan, inovasi, dan kemitraan strategis untuk masa depan yang lebih baik di Indonesia. Kami beroperasi dengan standar integritas dan tanggung jawab lingkungan tertinggi.',
         'company_profile' => [
             'header' => 'PROFIL PERUSAHAAN',
             'title_line1' => 'Perusahaan Pertambangan Emas',
@@ -1033,7 +1030,7 @@ return [
         'hero' => [
             'title_line1' => 'Hubungi',
             'title_line2' => 'Kami',
-            'description' => 'Temukan informasi lebih lanjut tentang Kristalin Eka Lestari',
+            'description' => 'Temukan informasi lebih lanjut tentang Kristalin Ekalestari',
         ],
         'form' => [
             'labels' => [
@@ -1123,11 +1120,11 @@ return [
         'founder_info' => [
             'name' => 'Arif Budi Setiawan',
             'title' => 'Pendiri & Ketua',
-            'company' => 'PT Kristalin Eka Lestari',
+            'company' => 'PT Kristalin Ekalestari',
         ],
         'message' => [
             'greeting' => 'Para Pemangku Kepentingan yang Terhormat,',
-            'paragraph1' => 'Ketika kami mendirikan PT Kristalin Eka Lestari pada tahun 1989, kami membayangkan lebih dari sekedar perusahaan pertambangan. Kami melihat kesempatan untuk <strong>mengubah kekayaan alam Indonesia menjadi kemakmuran berkelanjutan</strong> bagi komunitas kita, bangsa kita, dan generasi masa depan.',
+            'paragraph1' => 'Ketika kami mendirikan PT Kristalin Ekalestari pada tahun 1989, kami membayangkan lebih dari sekedar perusahaan pertambangan. Kami melihat kesempatan untuk <strong>mengubah kekayaan alam Indonesia menjadi kemakmuran berkelanjutan</strong> bagi komunitas kita, bangsa kita, dan generasi masa depan.',
             'paragraph2' => 'Lebih dari tiga dekade operasi di lanskap Papua yang kaya sumber daya telah mengajarkan kepada kami bahwa <strong>kesuksesan sejati dalam pertambangan</strong> tidak datang dari mengekstraksi maksimal, tetapi dari <strong>menciptakan nilai yang bertahan lama</strong> melalui praktik bertanggung jawab, teknologi inovatif, dan kemitraan tulus dengan komunitas lokal.',
             'paragraph3' => 'Hari ini, saat kami memandang masa depan, komitmen kami tetap tak tergoyahkan: menjadi <strong>perusahaan pertambangan berkelanjutan terdepan di Indonesia</strong>, menetapkan standar baru untuk pengelolaan lingkungan, pemberdayaan masyarakat, dan keunggulan operasional yang menjadi mercusuar bagi industri pertambangan global.',
         ],
@@ -1942,10 +1939,10 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
                 'metrics' => ['rumah' => '1 Unit', 'lokasi' => 'Desa Nifasi'],
             ],
             7 => [
-                'title' => 'Kristalin Eka Lestari Meraih Rekor Produksi Emas dengan Teknologi Ekstraksi Revolusioner',
+                'title' => 'Kristalin Ekalestari Meraih Rekor Produksi Emas dengan Teknologi Ekstraksi Revolusioner',
                 'subtitle' => 'Terobosan praktik penambangan berkelanjutan menetapkan standar industri baru',
                 'excerpt' => 'Metode ekstraksi revolusioner meningkatkan hasil emas sebesar 40% sambil mengurangi dampak lingkungan melalui praktik penambangan berkelanjutan dan implementasi teknologi canggih.',
-                'content' => 'Keunggulan penambangan adalah salah satu pilar utama untuk memastikan pertumbuhan berkelanjutan dan tanggung jawab lingkungan di sektor pertambangan Indonesia. Kristalin Eka Lestari telah berhasil mengimplementasikan teknologi ekstraksi canggih yang tidak hanya meningkatkan efisiensi produksi emas tetapi juga mempertahankan standar lingkungan yang ketat. Terobosan terbaru kami dalam penambangan emas berkelanjutan telah menghasilkan peningkatan hasil ekstraksi sebesar 40% sambil mengurangi konsumsi air sebesar 35% dan meminimalkan jejak karbon melalui integrasi energi terbarukan.',
+                'content' => 'Keunggulan penambangan adalah salah satu pilar utama untuk memastikan pertumbuhan berkelanjutan dan tanggung jawab lingkungan di sektor pertambangan Indonesia. Kristalin Ekalestari telah berhasil mengimplementasikan teknologi ekstraksi canggih yang tidak hanya meningkatkan efisiensi produksi emas tetapi juga mempertahankan standar lingkungan yang ketat. Terobosan terbaru kami dalam penambangan emas berkelanjutan telah menghasilkan peningkatan hasil ekstraksi sebesar 40% sambil mengurangi konsumsi air sebesar 35% dan meminimalkan jejak karbon melalui integrasi energi terbarukan.',
                 'author' => 'Tim Operasi Pertambangan',
                 'type' => 'Terobosan Teknologi',
                 'metrics' => ['dampak' => 'Peningkatan Hasil 40%', 'durasi' => 'Pengembangan 18 Bulan'],
@@ -2005,5 +2002,8 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
                 'metrics' => ['standar' => 'Bersertifikat ICMM', 'ruang_lingkup' => 'Semua Operasi'],
             ],
         ],
+    ],
+    'footer' => [
+        'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
     ],
 ];
