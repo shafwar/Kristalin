@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Import data berita dari news.tsx
 const newsData = [
@@ -111,6 +112,15 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
         urgent: t('pages.welcome.feedback.priority.urgent'),
     };
 
+    useEffect(() => {
+        // Lock body scroll (juga di mobile)
+        document.body.classList.add('overflow-hidden');
+        // Untuk iOS Safari, bisa juga set touch-action: none pada backdrop, sudah ada di kode kamu
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
+    }, []);
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const formData = new FormData();
@@ -180,7 +190,7 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" onClick={onClose}>
             <div
-                className="animate-containerFade max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+                className="animate-containerFade max-h-[80vh] w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header dengan close button yang lebih terlihat */}
@@ -637,12 +647,24 @@ const Welcome = () => {
     const [currentContent, setCurrentContent] = useState(0);
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
-    // Menggunakan 4 berita terbaru dari newsData
-    const newsItems = newsData.slice(0, 4).map((news) => ({
-        date: news.date,
-        title: news.title,
-        excerpt: news.excerpt,
-    }));
+    // Ambil 4 berita terbaru berdasarkan 5 id terbesar lalu ambil yang teratas
+    const newsItems = React.useMemo(() => {
+        const sorted = [...newsData]
+            .sort((a, b) => b.id - a.id)
+            .slice(0, 5);
+
+        return sorted.slice(0, 4).map((n) => {
+            const titleKey = `pages.news.articles.${n.id}.title`;
+            const excerptKey = `pages.news.articles.${n.id}.excerpt`;
+            const tTitle = t(titleKey) as string;
+            const tExcerpt = t(excerptKey) as string;
+            return {
+                date: n.date,
+                title: tTitle === titleKey ? n.title : tTitle,
+                excerpt: tExcerpt === excerptKey ? n.excerpt : tExcerpt,
+            };
+        });
+    }, [t]);
 
     const contentSets = [
         {
@@ -1114,11 +1136,12 @@ const Welcome = () => {
                 )}
             </AnimatePresence>
 
-            <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
+            <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20 overflow-hidden">
                 {/* Main Content with Elegant Fade In */}
                 <AnimatePresence>
                     {!showLoadingScreen && (
                         <motion.div
+                            className="flex flex-1 flex-col"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
@@ -1129,10 +1152,10 @@ const Welcome = () => {
                             {/* Floating Feedback Button */}
                             <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
 
-                            {/* Hero Section - Layout Tiara Marga dengan konten Kristalin, warna konsisten */}
-                            <section className="flex h-auto flex-col lg:h-[400px] lg:flex-row">
+                            {/* Hero Section - top half of viewport on desktop */}
+                            <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
                                 {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
-                                <div className="relative flex w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
+                                <div className="relative flex h-full w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
                                     <div
                                         className={`relative z-10 transition-all duration-1000 ${
                                             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
@@ -1224,7 +1247,7 @@ const Welcome = () => {
                                 {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                 <Link
                                     href="/csr"
-                                    className="relative flex min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12"
+                                    className="relative flex h-full min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12 lg:min-h-0"
                                     onMouseEnter={() => setHoveredCard(4)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1265,11 +1288,11 @@ const Welcome = () => {
                                 </Link>
                             </section>
 
-                            {/* Grid Section - Layout 3 kolom dengan warna konsisten putih-emas-hitam */}
-                            <section className="flex h-auto flex-col lg:h-[300px] lg:flex-row">
+                            {/* Bottom Grid - fills remaining height and touches footer on desktop */}
+                            <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
                                 <div
-                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
+                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(0)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                     onClick={() => (window.location.href = '/line-of-business')}
@@ -1307,7 +1330,7 @@ const Welcome = () => {
                                 {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                                 <Link
                                     href="/business-activity"
-                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(1)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1347,7 +1370,7 @@ const Welcome = () => {
                                 {/* News Card - 25% width, warna emas konsisten */}
                                 <Link
                                     href="/news"
-                                    className="relative flex min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(2)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1483,14 +1506,13 @@ const Welcome = () => {
                                 </Link>
                             </section>
 
-                            {/* Footer - Footer Kristalin */}
-                            <footer className="bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm">
-                                <div className="animate-pulse">{t('pages.welcome.footer.copyright')}</div>
-                            </footer>
+                            {/* Footer moved outside animated block */}
                         </motion.div>
                     )}
                 </AnimatePresence>
             </div>
+            
+            <Footer/>
 
             {/* Premium Staggered Animation Styles */}
             <style
@@ -2007,4 +2029,4 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+export default Welcome; 
