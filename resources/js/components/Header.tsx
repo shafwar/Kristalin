@@ -167,7 +167,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 { label: t('nav.milestones'), href: '/milestones' },
                 { label: t('nav.core_values'), href: '/core-values' },
                 { label: t('nav.leadership_traits'), href: '/leadership-traits' },
-                { label: t('nav.message_from_founder'), href: '/message-from-founder' },
                 { label: t('nav.news'), href: '/news' },
             ],
         },
@@ -176,6 +175,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         { label: t('nav.line_of_business'), href: '/line-of-business' },
         { label: t('nav.business_activities'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
+        { label: t('nav.careers'), href: '/careers' },
         { label: t('nav.contact'), href: '/contact' },
     ];
 

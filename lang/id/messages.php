@@ -11,16 +11,17 @@ return [
         'milestones' => 'Pencapaian',
         'core_values' => 'Nilai-Nilai Inti Kami',
         'leadership_traits' => 'Sifat Kepemimpinan',
-        'message_from_founder' => 'Pesan Dari Pendiri',
+
         'news' => 'Berita',
         'line_of_business' => 'Bidang Usaha',
         'business_activities' => 'Aktivitas Bisnis',
         'csr' => 'CSR',
+        'careers' => 'Karir',
         'contact' => 'Kontak',
         'modi' => 'Modi',
         'gold_price' => 'Harga Emas',
     ],
-    
+
     // Common phrases
     'common' => [
         'language' => 'Bahasa',
@@ -35,14 +36,14 @@ return [
         'our_team' => 'Tim Kami',
         'our_clients' => 'Klien Kami',
     ],
-    
+
     // Company information
     'company' => [
         'name' => 'Kristalin Eka Lestari',
         'tagline' => 'Keunggulan dalam Pertambangan dan Perdagangan',
         'description' => 'Perusahaan pertambangan dan perdagangan terkemuka yang mengkhususkan diri pada logam mulia dan sumber daya alam.',
     ],
-    
+
     // Language names
     'languages' => [
         'id' => 'Bahasa Indonesia',

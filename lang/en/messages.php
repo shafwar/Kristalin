@@ -11,16 +11,17 @@ return [
         'milestones' => 'Milestones',
         'core_values' => 'Our Core Values',
         'leadership_traits' => 'Leadership Traits',
-        'message_from_founder' => 'Message From Founder',
+
         'news' => 'News',
         'line_of_business' => 'Line of Business',
         'business_activities' => 'Business Activities',
         'csr' => 'CSR',
+        'careers' => 'Careers',
         'contact' => 'Contact',
         'modi' => 'Modi',
         'gold_price' => 'Gold Price',
     ],
-    
+
     // Common phrases
     'common' => [
         'language' => 'Language',
@@ -35,14 +36,14 @@ return [
         'our_team' => 'Our Team',
         'our_clients' => 'Our Clients',
     ],
-    
+
     // Company information
     'company' => [
         'name' => 'Kristalin Eka Lestari',
         'tagline' => 'Excellence in Mining and Trading',
         'description' => 'Leading mining and trading company specializing in precious metals and natural resources.',
     ],
-    
+
     // Language names
     'languages' => [
         'id' => 'Indonesian',

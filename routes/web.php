@@ -41,9 +41,7 @@ Route::get('/leadership-traits', function () {
     return Inertia::render('leadership-traits');
 })->name('leadership-traits');
 
-Route::get('/message-from-founder', function () {
-    return Inertia::render('message-from-founder');
-})->name('message-from-founder');
+
 
 Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
@@ -64,6 +62,10 @@ Route::get('/csr', function () {
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
+
+Route::get('/careers', function () {
+    return Inertia::render('careers');
+})->name('careers');
 
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
