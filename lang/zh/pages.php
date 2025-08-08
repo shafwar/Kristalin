@@ -1,13 +1,98 @@
 <?php
 
 return [
+    'careers' => [
+        'hero' => [
+            'title' => '我们正在招聘',
+            'subtitle' => '加入我们的团队，成为可持续黄金开采未来的一部分',
+            'view_positions' => '查看职位',
+            'apply_now' => '立即申请',
+        ],
+        'tabs' => [
+            'overview' => '概述',
+            'positions' => '空缺职位',
+            'apply' => '立即申请',
+        ],
+        'overview' => [
+            'why_join' => [
+                'title' => '为什么加入 Kristalin Eka Lestari？',
+                'subtitle' => '发现成为我们不断成长团队一员的好处',
+            ],
+            'culture' => [
+                'title' => '我们的企业文化',
+                'description' => '我们培养卓越、安全和社区发展的文化。我们的团队致力于可持续采矿实践，同时为当地社区做出贡献。',
+                'values' => [
+                    '1' => '致力于安全和环境责任',
+                    '2' => '专业成长和持续学习',
+                    '3' => '社区发展和社会影响',
+                    '4' => '创新和可持续实践',
+                ],
+            ],
+            'environment' => [
+                'title' => '工作环境',
+                'description' => '体验重视您贡献并支持您专业发展的动态工作环境。',
+                'safety' => [
+                    'title' => '安全第一',
+                    'description' => '我们通过全面的安全协议和培训计划优先考虑所有员工的安全和福祉。',
+                ],
+                'growth' => [
+                    'title' => '职业发展',
+                    'description' => '为所有团队成员提供持续学习机会、指导计划和清晰的职业发展路径。',
+                ],
+            ],
+        ],
+        'positions' => [
+            'title' => '空缺职位',
+            'subtitle' => '探索 Kristalin Eka Lestari 当前的工作机会',
+            'requirements' => '要求',
+            'apply' => '立即申请',
+            'save' => '保存职位',
+        ],
+        'apply' => [
+            'title' => '申请职位',
+            'subtitle' => '提交您的申请并加入我们的团队',
+            'form' => [
+                'title' => '申请表',
+                'position' => '申请职位',
+                'select_position' => '选择职位...',
+                'first_name' => '名字',
+                'first_name_placeholder' => '输入您的名字',
+                'last_name' => '姓氏',
+                'last_name_placeholder' => '输入您的姓氏',
+                'email' => '电子邮件地址',
+                'email_placeholder' => '输入您的电子邮件地址',
+                'phone' => '电话号码',
+                'phone_placeholder' => '输入您的电话号码',
+                'message' => '求职信',
+                'message_placeholder' => '告诉我们为什么您适合这个职位...',
+                'submit' => '提交申请',
+            ],
+            'google_form' => [
+                'title' => 'Google 表单申请',
+                'description' => '或者，您可以使用我们的 Google 表单进行更全面的申请流程。',
+                'features' => [
+                    'title' => '表单功能',
+                    '1' => '简历和文件上传',
+                    '2' => '结构化申请流程',
+                    '3' => '自动确认邮件',
+                    '4' => '安全的数据处理',
+                ],
+                'open_form' => '打开 Google 表单',
+                'note' => 'Google 表单将在新标签页中打开',
+            ],
+        ],
+        'footer' => [
+            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
+            'contact_info' => '有关职业的问题，请联系我们 hr@kristalin.com',
+        ],
+    ],
     'welcome' => [
-        'title' => '欢迎来到 Kristalin Ekalestari',
+        'title' => '欢迎来到 Kristalin Eka Lestari',
         'subtitle' => '采矿与贸易的卓越',
         'description' => '以可持续的采矿实践和可靠的贸易解决方案引领行业，专业从事贵金属和自然资源。',
         'hero_button_cta' => '了解我们的服务',
         'hero_button_contact' => '立即联系我们',
-        
+
         // Hero Content Sets
         'content_set_1' => [
             'title1' => '介绍',
@@ -19,14 +104,14 @@ return [
             'title2' => '黄金勘探与贸易',
             'subtitle' => '自1989年以来，致力于在巴布亚可持续开采黄金。',
         ],
-        
+
         // Buttons
         'buttons' => [
             'learn_more' => '了解更多',
             'send_feedback' => '发送反馈',
             'discover_more' => '了解更多 →',
         ],
-        
+
         // Sections
         'csr' => [
             'category' => '企业社会责任',
@@ -49,6 +134,9 @@ return [
         'business_activities' => [
             'title' => '商业活动',
             'find_out_more' => '了解更多 →',
+        ],
+        'footer' => [
+            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
         ],
         'feedback' => [
             'button_text' => '发送反馈',
@@ -124,36 +212,36 @@ return [
             ],
         ],
     ],
-    
+
     'about' => [
-        'title' => '关于 Kristalin Ekalestari',
+        'title' => '关于 Kristalin Eka Lestari',
         'description' => '了解更多关于我们公司、历史和对采矿贸易行业卓越的承诺。',
         'section_history' => '我们的历史',
         'section_mission' => '我们的使命',
         'section_values' => '我们的价值观',
-        
-        'page_title' => '关于 Kristalin Ekalestari',
+
+        'page_title' => '关于 Kristalin Eka Lestari',
         'main_heading' => '自1989年以来构建印度尼西亚采矿业的未来',
-        'company_intro' => '作为PT Kristalin Ekalestari成立于1989年，我们仍然是一家总部位于雅加达的私人公司。我们的创始人、董事长和最大股东积极从事采矿业，特别是位于巴布亚纳比雷的勘探和黄金开采运营生产部门。',
-        
+        'company_intro' => '作为PT Kristalin Eka Lestari成立于1989年，我们仍然是一家总部位于雅加达的私人公司。我们的创始人、董事长和最大股东积极从事采矿业，特别是位于巴布亚纳比雷的勘探和黄金开采运营生产部门。',
+
         'company_stats' => [
             'founded' => '成立',
             'location' => '位置',
             'operations' => '运营',
             'partnerships' => '合作伙伴',
         ],
-        
+
         'company_stats_values' => [
             'location' => '雅加达',
             'operations' => '纳比雷, 巴布亚',
             'partnerships' => '中国和韩国',
         ],
-        
+
         'sections' => [
             'company_foundation' => [
                 'title' => '公司成立',
                 'subtitle' => '我们的开始',
-                'content' => '成立于1989年，PT Kristalin Ekalestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
+                'content' => '成立于1989年，PT Kristalin Eka Lestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
             ],
             'global_partnerships' => [
                 'title' => '全球合作伙伴关系',
@@ -176,7 +264,7 @@ return [
                 'content' => '位于巴布亚纳比雷资源丰富的地区，我们专注于可持续的冲积金开采，采用现代技术最大化运营效率，同时保持最高的安全标准。',
             ],
         ],
-        
+
         'additional_content' => [
             'our_operations' => [
                 'title' => '我们的运营',
@@ -196,36 +284,36 @@ return [
             ],
             'future_vision' => [
                 'title' => '未来愿景',
-                'content' => 'PT Kristalin Ekalestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
+                'content' => 'PT Kristalin Eka Lestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
             ],
         ],
-        
+
         'cta' => [
             'sustainable_growth_title' => '致力于可持续发展',
             'sustainable_growth_desc' => '通过负责任的采矿实践和国际合作，我们继续构建印度尼西亚的采矿未来，同时为所有利益相关者创造持久价值。',
             'mining_operations_btn' => '我们的采矿运营',
             'contact_us_btn' => '联系我们',
         ],
-        
+
         'alt_texts' => [
             'mining_operations' => '采矿运营',
         ],
     ],
-    
+
     'vision_mission' => [
         'title' => '我们的愿景与使命',
         'description' => '指导我们对卓越、可持续发展和社区繁荣承诺的指导原则。',
-        
+
         'page_title' => '我们的愿景与使命',
         'subtitle' => '愿景与使命',
         'main_heading' => '可持续卓越的指导原则',
-        
+
         'vision' => [
             'label' => '我们的愿景',
             'title' => '引领印度尼西亚可持续采矿业的未来',
             'content' => '成为一个变革性实体，以无与伦比的优化和坚定的责任感来协调印度尼西亚丰富的自然资源，创造可持续的繁荣，丰富当地社区，强化我们国家的经济基础，并建立道德采矿实践的新范式，成为全球采矿业的灯塔。',
         ],
-        
+
         'mission' => [
             'label' => '我们的使命',
             'title' => '运营卓越的六大支柱',
@@ -262,41 +350,41 @@ return [
                 ],
             ],
         ],
-        
+
         'cta' => [
             'prosperity_title' => '致力于印度尼西亚的繁荣',
             'prosperity_desc' => '通过我们的愿景和使命，我们努力创造超越传统采矿运营的持久积极影响，建立负责任的资源管理和社区赋权的遗产。',
             'impact_stories_btn' => '我们的影响故事',
             'learn_more_btn' => '了解更多',
         ],
-        
+
         'alt_texts' => [
             'gold_bars' => '天平上的金条和金粉',
         ],
     ],
-    
+
     'company_overview' => [
         'title' => '公司概况',
         'description' => '通过可持续实践和战略合作伙伴关系，在采矿创新方面开拓卓越。',
-        
+
         'page_title' => '公司概况',
         'subtitle' => '公司概况',
         'main_heading' => '在采矿创新方面开拓卓越',
-        
+
         'company_data' => [
             'founded' => '成立',
             'operations' => '运营',
             'focus' => '专注',
             'partnerships' => '合作伙伴',
         ],
-        
+
         'company_values' => [
             'founded_year' => '1989',
             'operations_location' => '纳比雷，巴布亚',
             'focus_area' => '黄金开采',
             'partnerships_countries' => '中国和韩国',
         ],
-        
+
         'sections' => [
             'company_goals' => [
                 'title' => '公司目标',
@@ -306,7 +394,7 @@ return [
             'natural_resources' => [
                 'title' => '自然资源',
                 'subtitle' => '丰富遗产',
-                'content' => 'PT Kristalin Ekalestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
+                'content' => 'PT Kristalin Eka Lestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
             ],
             'strategic_partnerships' => [
                 'title' => '战略合作伙伴关系',
@@ -319,40 +407,40 @@ return [
                 'content' => '致力于持续创新和运营卓越，我们完善业务流程，为利益相关者提供最佳满意度，同时将自己定位在采矿业的前沿。',
             ],
         ],
-        
+
         'cta' => [
             'future_title' => '建设印度尼西亚的未来',
             'future_desc' => '通过负责任的采矿实践和国际合作，我们致力于可持续增长和社区发展。',
             'learn_more_btn' => '了解更多关于我们的使命',
         ],
-        
+
         'alt_texts' => [
             'papua_forest' => '巴布亚森林',
         ],
     ],
-    
+
     'milestones' => [
         'title' => '我们的里程碑',
         'description' => '回顾我们的成就和重要时刻，这些塑造了我们作为领先采矿公司的成长历程。',
-        
+
         'page_title' => '我们的里程碑',
         'subtitle' => '公司里程碑',
         'main_description' => '这就是我们如何开始并踏上成为伟大企业的旅程。',
-        
+
         'company_stats' => [
             'established' => '成立',
             'milestones' => '里程碑',
             'location' => '位置',
             'growth' => '增长',
         ],
-        
+
         'company_values' => [
             'established_year' => '1989',
             'milestones_count' => '35+ 年',
             'location_area' => '巴布亚',
             'growth_status' => '持续',
         ],
-        
+
         'categories' => [
             'Company Foundation' => '公司成立',
             'Technology Innovation' => '技术创新',
@@ -380,7 +468,7 @@ return [
             'Regional Expansion' => '区域扩张',
             'Safety Implementation' => '安全实施',
         ],
-        
+
         'months' => [
             'January' => '一月',
             'February' => '二月',
@@ -395,21 +483,21 @@ return [
             'November' => '十一月',
             'December' => '十二月',
         ],
-        
+
         'navigation' => [
             'previous_year' => '上一个年度时期',
             'next_year' => '下一个年度时期',
         ],
-        
+
         'alt_texts' => [
             'mining_history' => '采矿作业历史',
         ],
-        
+
         'milestones_data' => [
             '2020-2025' => [
                 [
                     'title' => '创纪录黄金产量成就',
-                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Ekalestari作为印度尼西亚领先黄金开采公司的地位。',
+                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Eka Lestari作为印度尼西亚领先黄金开采公司的地位。',
                 ],
                 [
                     'title' => '可持续黄金开采业务扩展',
@@ -483,7 +571,7 @@ return [
                 ],
                 [
                     'title' => '生产里程碑成就',
-                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Ekalestari作为印度尼西亚采矿业主要参与者的地位。',
+                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Eka Lestari作为印度尼西亚采矿业主要参与者的地位。',
                 ],
                 [
                     'title' => '本地合作伙伴关系发展',
@@ -535,12 +623,12 @@ return [
                 ],
                 [
                     'title' => '公司成立',
-                    'description' => 'PT Kristalin Ekalestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
+                    'description' => 'PT Kristalin Eka Lestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
                 ],
             ],
         ],
     ],
-    
+
     'contact' => [
         'title' => '联系我们',
         'description' => '联系我们的团队，了解我们的服务和商业机会。',
@@ -647,7 +735,7 @@ return [
         'hero_title_1' => '我们的',
         'hero_title_2' => '项目组合',
         'hero_subtitle' => '开采未来',
-        'hero_description' => 'PT Kristalin Ekalestari 致力于可持续黄金开采、创新和赋能印尼的未来。',
+        'hero_description' => 'PT Kristalin Eka Lestari 致力于可持续黄金开采、创新和赋能印尼的未来。',
         'explore_operations_btn' => '探索运营',
         'values' => [
             'integrity' => [
@@ -661,7 +749,7 @@ return [
         ],
         'company_info' => [
             'company_name_label' => '公司名称',
-            'company_name_value' => 'PT Kristalin Ekalestari',
+            'company_name_value' => 'PT Kristalin Eka Lestari',
             'business_field_label' => '业务领域',
             'business_field_value' => '黄金开采与矿物加工',
             'established_label' => '成立时间',
@@ -671,7 +759,7 @@ return [
             'business_license_label' => '营业执照',
             'business_license_value' => 'IUP 运营生产许可证  第561号/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Ekalestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
+        'company_description' => 'PT Kristalin Eka Lestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_profile' => [
             'header' => '公司简介',
             'title_line1' => '专业黄金开采',
@@ -1021,7 +1109,7 @@ return [
         'hero' => [
             'title_line1' => '联系',
             'title_line2' => '我们',
-            'description' => '了解更多关于Kristalin Ekalestari的信息',
+            'description' => '了解更多关于Kristalin Eka Lestari的信息',
         ],
         'form' => [
             'labels' => [
@@ -1081,68 +1169,7 @@ return [
         ],
         'image_alt' => 'Menara 165',
     ],
-    'message_from_founder' => [
-        'page_title' => '创始人致辞 - PT Kristalin Ekalestari',
-        'hero' => [
-            'title_line1' => '创始人',
-            'title_line2' => '致辞',
-            'description' => '关于印度尼西亚黄金未来和可持续采矿卓越的远见视角。',
-            'alt_text' => '创始人致辞',
-        ],
-        'header' => [
-            'subtitle' => '创始人致辞',
-            'title_line1' => '建设印度尼西亚的',
-            'title_line2' => '黄金传承',
-        ],
-        'quotes' => [
-            [
-                'text' => '印度尼西亚的黄金遗产不仅存在于我们的土壤之下，更体现在我们负责任开采的承诺中，确保我们开采的每一克黄金都为我们国家的繁荣和人民的福祉做出贡献。',
-                'focus' => '国家遗产',
-            ],
-            [
-                'text' => '真正的采矿卓越是在我们平衡盈利能力与可持续性时实现的，创造跨越世代的持久价值，同时为我们的子孙后代保护巴布亚的自然美景。',
-                'focus' => '可持续卓越',
-            ],
-            [
-                'text' => '在巴布亚大地的深处，我们不仅仅是在开采黄金——我们在开采机遇、建立伙伴关系，在当地社区和全球市场之间架起桥梁，确保所有人共享繁荣。',
-                'focus' => '社区伙伴关系',
-            ],
-        ],
-        'founder_info' => [
-            'name' => 'Arif Budi Setiawan',
-            'title' => '创始人兼董事长',
-            'company' => 'PT Kristalin Ekalestari',
-        ],
-        'message' => [
-            'greeting' => '尊敬的利益相关者，',
-            'paragraph1' => '当我们在1989年成立PT Kristalin Ekalestari时，我们设想的不仅仅是一家采矿公司。我们看到了一个机会，将<strong>印度尼西亚的自然财富转化为可持续的繁荣</strong>，为我们的社区、国家和子孙后代服务。',
-            'paragraph2' => '在巴布亚资源丰富的土地上三十多年的运营经验告诉我们，<strong>采矿的真正成功</strong>不是来自最大化开采，而是通过负责任的实践、创新技术和与当地社区的真诚合作伙伴关系来<strong>创造持久价值</strong>。',
-            'paragraph3' => '今天，当我们展望未来时，我们的承诺依然坚定不移：成为<strong>印度尼西亚领先的可持续采矿公司</strong>，为环境管理、社区赋权和运营卓越设定新标准，成为全球采矿业的灯塔。',
-        ],
-        'principles' => [
-            'title' => '我们的创始原则',
-            'items' => [
-                [
-                    'title' => '负责任的采矿',
-                    'description' => '开创既尊重经济增长又维护环境管理的可持续开采方法。',
-                ],
-                [
-                    'title' => '黄金卓越',
-                    'description' => '利用印度尼西亚丰富的矿物资源创造世界级的黄金生产标准。',
-                ],
-                [
-                    'title' => '印度尼西亚的骄傲',
-                    'description' => '建设采矿传承，加强印度尼西亚在全球商品市场中的地位。',
-                ],
-            ],
-        ],
-        'cta' => [
-            'title' => '携手共建明天',
-            'description' => '加入我们的使命，创造尊重印度尼西亚自然遗产的可持续采矿传承，同时为所有利益相关者建设繁荣。',
-            'button_story' => '我们的故事',
-            'button_contact' => '联系我们',
-        ],
-    ],
+
     'news' => [
         'page_title' => '新闻 - PT Kristalin Ekalestari',
         'hero' => [
@@ -2018,8 +2045,5 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
         'no_results_title' => '没有结果',
         'no_results_hint' => '请尝试使用不同或更具体的关键词',
         'try_again' => '再试一次',
-    ],
-    'footer' => [
-        'copyright' => '© 2025 PT Kristalin Ekalestari。 版权所有。',
     ],
 ];
