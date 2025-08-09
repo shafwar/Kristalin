@@ -82,7 +82,7 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
             'contact_info' => '有关职业的问题，请联系我们 hr@kristalin.com',
         ],
     ],
@@ -136,7 +136,7 @@ return [
             'find_out_more' => '了解更多 →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
         ],
         'feedback' => [
             'button_text' => '发送反馈',
@@ -828,6 +828,10 @@ return [
         ],
         'alt_texts' => [
             'mining_future' => '开采未来',
+        ],
+        'torindo' => [
+            'title' => '与 Torindo Jaya 的战略合作伙伴关系',
+            'description' => 'PT Kristalin Eka Lestari 得到了 <a href="https://www.torindojaya.com/" target="_blank" rel="noopener noreferrer" class="text-amber-600 underline hover:text-amber-800 transition">Torindo Jaya</a> 的战略合作支持，Torindo Jaya 是印度尼西亚领先的黄金采矿设备供应商。该合作确保了现代采矿工具和技术的供应，支持我们矿区的高效和安全运营。',
         ],
     ],
 

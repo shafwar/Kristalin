@@ -82,7 +82,7 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. All rights reserved.',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
             'contact_info' => 'For questions about careers, contact us at hr@kristalin.com',
         ],
     ],
@@ -136,7 +136,7 @@ return [
             'find_out_more' => 'Find out more →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. All rights reserved.',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
         ],
         'feedback' => [
             'button_text' => 'Send Feedback',
@@ -904,6 +904,10 @@ return [
         'alluvial_mining' => [
             'title' => 'ALLUVIAL GOLD MINING',
             'subtitle' => 'Sustainable mining operations in Papua\'s mineral-rich region',
+            'torindo' => [
+                'title' => 'Strategic Partnership with Torindo Jaya',
+                'description' => 'PT Kristalin Eka Lestari is supported by a strategic partnership with <a href="https://www.torindojaya.com/" target="_blank" rel="noopener noreferrer" class="text-amber-600 underline hover:text-amber-800 transition">Torindo Jaya</a>, a leading provider of gold mining equipment in Indonesia. This collaboration ensures the availability of modern mining tools and technology, supporting efficient and safe operations at our mining sites.',
+            ],
             'content' => [
                 'paragraph1' => 'The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963 with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square. The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia, the biggest mining company with the most gold and silver output in the nation is located.',
                 'paragraph2' => 'Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district, the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village, along the musairo river, Nabire, Papua.',
@@ -1027,6 +1031,10 @@ return [
                 'friendly' => 'Friendly To Serve Customers',
                 'best_fair' => 'Give The Best & Fair',
             ],
+        ],
+        'torindo' => [
+            'title' => 'Strategic Partnership with Torindo Jaya',
+            'description' => 'PT Kristalin Eka Lestari is supported by a strategic partnership with <a href="https://www.torindojaya.com/" target="_blank" rel="noopener noreferrer" class="text-amber-600 underline hover:text-amber-800 transition">Torindo Jaya</a>, a leading provider of gold mining equipment in Indonesia. This collaboration ensures the availability of modern mining tools and technology, supporting efficient and safe operations at our mining sites.',
         ],
     ],
     'csr' => [

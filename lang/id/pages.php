@@ -82,7 +82,7 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. Semua hak dilindungi.',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
             'contact_info' => 'Untuk pertanyaan tentang karir, hubungi kami di hr@kristalin.com',
         ],
     ],
@@ -136,7 +136,7 @@ return [
             'find_out_more' => 'Pelajari lebih lanjut →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. Semua hak dilindungi.',
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
         ],
         'feedback' => [
             'button_text' => 'Kirim Masukan',
@@ -925,6 +925,10 @@ return [
         'alluvial_mining' => [
             'title' => 'PERTAMBANGAN EMAS ALUVIAL',
             'subtitle' => 'Operasi pertambangan berkelanjutan di wilayah Papua yang kaya mineral',
+            'torindo' => [
+                'title' => 'Kemitraan Strategis dengan Torindo Jaya',
+                'description' => 'PT Kristalin Eka Lestari didukung oleh kemitraan strategis dengan <a href="https://www.torindojaya.com/" target="_blank" rel="noopener noreferrer" class="text-amber-600 underline hover:text-amber-800 transition">Torindo Jaya</a>, penyedia utama peralatan pertambangan emas di Indonesia. Kolaborasi ini memastikan ketersediaan alat dan teknologi pertambangan modern, mendukung kelancaran dan keselamatan operasional di site Kristalin.',
+            ],
             'content' => [
                 'paragraph1' => 'Provinsi Papua di Indonesia kaya akan sumber daya alam. Papua bergabung dengan Republik Indonesia pada 1 Mei 1963 dengan total area 404.669 kilometer persegi, dan hanya dihuni oleh 7.310.000 penduduk, sekitar 18 orang per kilometer persegi. Kota Timika yang terletak di distrik Mimika mendominasi area tersebut, di mana PT Freeport Indonesia, perusahaan pertambangan terbesar dengan output emas dan perak terbanyak di negara ini berada.',
                 'paragraph2' => 'Selain dari Mimika, yang juga terletak di Nabire adalah situs pertambangan emas aluvial. Sebagai distrik yang baru didirikan, area tersebut mengandung tingkat mineral yang tinggi, terutama emas. PT Kristalin Ekalestari memasuki sektor pertambangan emas di Nabire pada tahun 2007, memiliki otoritas untuk pertambangan emas dan eksplorasi untuk 5000 hektar tanah di sekitar desa Nifase, sepanjang sungai musairo, Nabire, Papua.',
@@ -1036,6 +1040,10 @@ return [
                     'label' => 'Kehidupan Terdampak',
                 ],
             ],
+        ],
+        'torindo' => [
+            'title' => 'Kemitraan Strategis dengan Torindo Jaya',
+            'description' => 'PT Kristalin Eka Lestari didukung oleh kemitraan strategis dengan <a href="https://www.torindojaya.com/" target="_blank" rel="noopener noreferrer" class="text-amber-600 underline hover:text-amber-800 transition">Torindo Jaya</a>, penyedia utama peralatan pertambangan emas di Indonesia. Kolaborasi ini memastikan ketersediaan alat dan teknologi pertambangan modern, mendukung kelancaran dan keselamatan operasional di site Kristalin.',
         ],
     ],
     'csr' => [

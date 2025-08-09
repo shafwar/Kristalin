@@ -2,8 +2,8 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 // Import data berita dari news.tsx
 const newsData = [
@@ -649,9 +649,7 @@ const Welcome = () => {
 
     // Ambil 4 berita terbaru berdasarkan 5 id terbesar lalu ambil yang teratas
     const newsItems = React.useMemo(() => {
-        const sorted = [...newsData]
-            .sort((a, b) => b.id - a.id)
-            .slice(0, 5);
+        const sorted = [...newsData].sort((a, b) => b.id - a.id).slice(0, 5);
 
         return sorted.slice(0, 4).map((n) => {
             const titleKey = `pages.news.articles.${n.id}.title`;
@@ -817,7 +815,7 @@ const Welcome = () => {
 
                                 {/* Logo */}
                                 <motion.img
-                                    src="/kristalinlogotransisi.jpeg"
+                                    src="/kristalinlogotransisi1.jpeg"
                                     alt="Kristalin Eka Lestari Logo"
                                     className="relative z-10 h-24 w-24 rounded-xl object-contain shadow-2xl sm:h-32 sm:w-32 md:h-36 md:w-36"
                                     style={{
@@ -1136,7 +1134,7 @@ const Welcome = () => {
                 )}
             </AnimatePresence>
 
-            <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20 overflow-hidden">
+            <div className="z-10 flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
                 {/* Main Content with Elegant Fade In */}
                 <AnimatePresence>
                     {!showLoadingScreen && (
@@ -1247,7 +1245,7 @@ const Welcome = () => {
                                 {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                 <Link
                                     href="/csr"
-                                    className="relative flex h-full min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:w-1/2 lg:p-12 lg:min-h-0"
+                                    className="relative flex h-full min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:min-h-0 lg:w-1/2 lg:p-12"
                                     onMouseEnter={() => setHoveredCard(4)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1292,7 +1290,7 @@ const Welcome = () => {
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
                                 <div
-                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
+                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(0)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                     onClick={() => (window.location.href = '/line-of-business')}
@@ -1330,7 +1328,7 @@ const Welcome = () => {
                                 {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                                 <Link
                                     href="/business-activity"
-                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(1)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1370,7 +1368,7 @@ const Welcome = () => {
                                 {/* News Card - 25% width, warna emas konsisten */}
                                 <Link
                                     href="/news"
-                                    className="relative flex flex-1 min-h-[300px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(2)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
@@ -1511,8 +1509,8 @@ const Welcome = () => {
                     )}
                 </AnimatePresence>
             </div>
-            
-            <Footer/>
+
+            {!showLoadingScreen && <Footer />}
 
             {/* Premium Staggered Animation Styles */}
             <style
@@ -2029,4 +2027,4 @@ const Welcome = () => {
     );
 };
 
-export default Welcome; 
+export default Welcome;
