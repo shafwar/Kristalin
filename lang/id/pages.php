@@ -912,9 +912,11 @@ return [
             'title' => 'Kami Menyediakan Layanan Terbaik',
             'gold_mining' => [
                 'title' => 'PERTAMBANGAN & PENGOLAHAN EMAS',
+                'description' => 'PT Kristalin Ekalestari bergerak dalam bidang pertambangan emas yang berlokasi di Kalimantan Tengah, Indonesia. Wilayah ini merupakan sumber perdagangan terbesar untuk produk mineral emas seperti batangan emas, konsentrat emas, dan produk turunan lainnya.',
             ],
             'environmental' => [
                 'title' => 'PENGELOLAAN LINGKUNGAN',
+                'description' => 'Terdiri dari dua divisi utama, kami siap memenuhi kebutuhan pengelolaan lingkungan Anda di berbagai area yang dapat dijangkau tim kami melalui ASWP (Any Safe World Port). Mencakup reklamasi lahan, pengolahan limbah, dan audit lingkungan berkala.',
             ],
         ],
         'projects' => [

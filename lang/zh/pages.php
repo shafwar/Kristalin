@@ -932,9 +932,11 @@ return [
             'title' => '我们提供最佳服务',
             'gold_mining' => [
                 'title' => '黄金开采与加工',
+                'description' => 'PT Kristalin Ekalestari 在印尼中加里曼丹从事黄金开采。该地区是黄金矿产品（如金条、金精矿及其他衍生产品）的重要贸易来源。',
             ],
             'environmental' => [
                 'title' => '环境管理',
+                'description' => '我们由两个主要部门组成，可通过 ASWP（Any Safe World Port）覆盖团队可达的各个区域，满足您的环境管理需求，涵盖土地复垦、废物处理以及定期环境审计。',
             ],
         ],
         'projects' => [
