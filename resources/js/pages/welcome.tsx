@@ -606,7 +606,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="hover:shadow-3xl group fixed right-4 bottom-4 z-40 transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
+           className="hover:shadow-3xl group fixed right-4 bottom-4 z-[200] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
         >
             <div className="flex items-center space-x-2">
                 <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1147,8 +1147,7 @@ const Welcome = () => {
                             {/* Feedback Form Modal */}
                             {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
 
-                            {/* Floating Feedback Button */}
-                            <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
+                            {/* Floating Feedback Button moved outside animated block to avoid clipping/stacking issues */}
 
                             {/* Hero Section - top half of viewport on desktop */}
                             <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
@@ -1509,6 +1508,8 @@ const Welcome = () => {
                     )}
                 </AnimatePresence>
             </div>
+
+            {!showLoadingScreen && <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />}
 
             {!showLoadingScreen && <Footer />}
 
