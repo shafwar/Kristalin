@@ -14,8 +14,34 @@ return [
             'apply' => '立即申请',
         ],
         'overview' => [
+            'benefits' => [
+                'health_insurance' => [
+                    'title' => '医疗保险',
+                    'description' => '为您和您的家人提供全面的健康保障',
+                ],
+                'competitive_salary' => [
+                    'title' => '具有竞争力的薪资',
+                    'description' => '具有吸引力的薪酬方案和绩效奖金',
+                ],
+                'training_development' => [
+                    'title' => '培训与发展',
+                    'description' => '持续的学习机会与职业成长',
+                ],
+                'housing_allowance' => [
+                    'title' => '住房津贴',
+                    'description' => '为在偏远地区工作的员工提供住房支持',
+                ],
+                'transportation' => [
+                    'title' => '交通支持',
+                    'description' => '与工作相关出行的交通设施',
+                ],
+                'performance_bonus' => [
+                    'title' => '绩效奖金',
+                    'description' => '年度绩效奖金与激励',
+                ],
+            ],
             'why_join' => [
-                'title' => '为什么加入 Kristalin Eka Lestari？',
+                'title' => '为什么加入 Kristalin Ekalestari？',
                 'subtitle' => '发现成为我们不断成长团队一员的好处',
             ],
             'culture' => [
@@ -43,10 +69,102 @@ return [
         ],
         'positions' => [
             'title' => '空缺职位',
-            'subtitle' => '探索 Kristalin Eka Lestari 当前的工作机会',
+            'subtitle' => '探索 Kristalin Ekalestari 当前的工作机会',
             'requirements' => '要求',
             'apply' => '立即申请',
             'save' => '保存职位',
+        ],
+        'job_positions' => [
+            'mining_engineer' => [
+                'title' => '采矿工程师',
+                'department' => '工程部',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '3-5 年',
+                'description' => '负责规划和监督采矿作业，确保黄金开采过程中的安全与效率。',
+                'requirements' => [
+                    '1' => '采矿工程学士学位',
+                    '2' => '露天采矿作业经验',
+                    '3' => '熟悉采矿软件和设备',
+                    '4' => '较强的分析与解决问题能力',
+                    '5' => '具备安全相关证书者优先',
+                ],
+            ],
+            'geologist' => [
+                'title' => '地质学家',
+                'department' => '勘探部',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '2-4 年',
+                'description' => '开展地质勘查与分析，以识别潜在金矿并评估采矿可行性。',
+                'requirements' => [
+                    '1' => '地质学或相关专业学士学位',
+                    '2' => '矿产勘查经验',
+                    '3' => '熟练使用地质制图软件',
+                    '4' => '具有偏远地区野外工作经验',
+                    '5' => '了解金矿地质',
+                ],
+            ],
+            'environmental_specialist' => [
+                'title' => '环境专员',
+                'department' => '环境部',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '2-3 年',
+                'description' => '确保遵守环境法规并实施可持续采矿实践。',
+                'requirements' => [
+                    '1' => '环境科学学士学位',
+                    '2' => '环境影响评估经验',
+                    '3' => '了解环境法规',
+                    '4' => '有采矿行业经验者优先',
+                    '5' => '良好的沟通能力',
+                ],
+            ],
+            'safety_officer' => [
+                'title' => '安全主管',
+                'department' => '健康与安全',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '3-5 年',
+                'description' => '制定并实施安全规范，确保工作场所安全并遵守法规。',
+                'requirements' => [
+                    '1' => '职业安全或相关专业学士学位',
+                    '2' => '安全认证（K3、NEBOSH 或同等）',
+                    '3' => '采矿安全管理经验',
+                    '4' => '了解安全法规与标准',
+                    '5' => '较强的领导与培训能力',
+                ],
+            ],
+            'community_relations_officer' => [
+                'title' => '社区关系专员',
+                'department' => '企业社会责任',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '2-4 年',
+                'description' => '建立并维护与当地社区和利益相关者的良好关系。',
+                'requirements' => [
+                    '1' => '社会科学或相关领域学士学位',
+                    '2' => '社区发展经验',
+                    '3' => '出色的人际与沟通能力',
+                    '4' => '了解当地文化与习俗',
+                    '5' => '利益相关者参与经验',
+                ],
+            ],
+            'administrative_assistant' => [
+                'title' => '行政助理',
+                'department' => '行政部',
+                'location' => '纳比雷，巴布亚',
+                'type' => '全职',
+                'experience' => '1-2 年',
+                'description' => '为各部门提供行政支持，确保办公室运作顺畅。',
+                'requirements' => [
+                    '1' => '高中或同等学历',
+                    '2' => '熟练使用 Microsoft Office',
+                    '3' => '良好的组织能力',
+                    '4' => '良好的沟通能力',
+                    '5' => '有办公室行政经验者优先',
+                ],
+            ],
         ],
         'apply' => [
             'title' => '申请职位',
@@ -82,12 +200,12 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
+            'copyright' => '© 2025 PT Kristalin Ekalestari。 版权所有。',
             'contact_info' => '有关职业的问题，请联系我们 hr@kristalin.com',
         ],
     ],
     'welcome' => [
-        'title' => '欢迎来到 Kristalin Eka Lestari',
+        'title' => '欢迎来到 Kristalin Ekalestari',
         'subtitle' => '采矿与贸易的卓越',
         'description' => '以可持续的采矿实践和可靠的贸易解决方案引领行业，专业从事贵金属和自然资源。',
         'hero_button_cta' => '了解我们的服务',
@@ -139,7 +257,7 @@ return [
             'find_out_more' => '了解更多 →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari。 版权所有。',
+            'copyright' => '© 2025 PT Kristalin Ekalestari。 版权所有。',
         ],
         'feedback' => [
             'button_text' => '发送反馈',
@@ -218,15 +336,15 @@ return [
 
 
     'about' => [
-        'title' => '关于 Kristalin Eka Lestari',
+        'title' => '关于 Kristalin Ekalestari',
         'description' => '了解更多关于我们公司、历史和对采矿贸易行业卓越的承诺。',
         'section_history' => '我们的历史',
         'section_mission' => '我们的使命',
         'section_values' => '我们的价值观',
 
-        'page_title' => '关于 Kristalin Eka Lestari',
+        'page_title' => '关于 Kristalin Ekalestari',
         'main_heading' => '自1989年以来构建印度尼西亚采矿业的未来',
-        'company_intro' => '作为PT Kristalin Eka Lestari成立于1989年，我们仍然是一家总部位于雅加达的私人公司。我们的创始人、董事长和最大股东积极从事采矿业，特别是位于巴布亚纳比雷的勘探和黄金开采运营生产部门。',
+        'company_intro' => '作为PT Kristalin Ekalestari成立于1989年，我们仍然是一家总部位于雅加达的私人公司。我们的创始人、董事长和最大股东积极从事采矿业，特别是位于巴布亚纳比雷的勘探和黄金开采运营生产部门。',
 
         'company_stats' => [
             'founded' => '成立',
@@ -247,8 +365,8 @@ return [
             'company_foundation' => [
                 'title' => '公司成立',
                 'subtitle' => '我们的开始',
-                'content' => '成立于1989年，PT Kristalin Eka Lestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
-                'content' => '成立于1989年，PT Kristalin Eka Lestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
+                'content' => '成立于1989年，PT Kristalin Ekalestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
+                'content' => '成立于1989年，PT Kristalin Ekalestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
             ],
             'global_partnerships' => [
                 'title' => '全球合作伙伴关系',
@@ -292,8 +410,8 @@ return [
             ],
             'future_vision' => [
                 'title' => '未来愿景',
-                'content' => 'PT Kristalin Eka Lestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
-                'content' => 'PT Kristalin Eka Lestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
+                'content' => 'PT Kristalin Ekalestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
+                'content' => 'PT Kristalin Ekalestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
             ],
         ],
 
@@ -416,8 +534,8 @@ return [
             'natural_resources' => [
                 'title' => '自然资源',
                 'subtitle' => '丰富遗产',
-                'content' => 'PT Kristalin Eka Lestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
-                'content' => 'PT Kristalin Eka Lestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
+                'content' => 'PT Kristalin Ekalestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
+                'content' => 'PT Kristalin Ekalestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
             ],
             'strategic_partnerships' => [
                 'title' => '战略合作伙伴关系',
@@ -531,8 +649,8 @@ return [
             '2020-2025' => [
                 [
                     'title' => '创纪录黄金产量成就',
-                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Eka Lestari作为印度尼西亚领先黄金开采公司的地位。',
-                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Eka Lestari作为印度尼西亚领先黄金开采公司的地位。',
+                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Ekalestari作为印度尼西亚领先黄金开采公司的地位。',
+                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Ekalestari作为印度尼西亚领先黄金开采公司的地位。',
                 ],
                 [
                     'title' => '可持续黄金开采业务扩展',
@@ -606,8 +724,8 @@ return [
                 ],
                 [
                     'title' => '生产里程碑成就',
-                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Eka Lestari作为印度尼西亚采矿业主要参与者的地位。',
-                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Eka Lestari作为印度尼西亚采矿业主要参与者的地位。',
+                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Ekalestari作为印度尼西亚采矿业主要参与者的地位。',
+                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Ekalestari作为印度尼西亚采矿业主要参与者的地位。',
                 ],
                 [
                     'title' => '本地合作伙伴关系发展',
@@ -659,8 +777,8 @@ return [
                 ],
                 [
                     'title' => '公司成立',
-                    'description' => 'PT Kristalin Eka Lestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
-                    'description' => 'PT Kristalin Eka Lestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
+                    'description' => 'PT Kristalin Ekalestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
+                    'description' => 'PT Kristalin Ekalestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
                 ],
             ],
         ],
@@ -773,7 +891,7 @@ return [
         'hero_title_1' => '我们的',
         'hero_title_2' => '项目组合',
         'hero_subtitle' => '开采未来',
-        'hero_description' => 'PT Kristalin Eka Lestari 致力于可持续黄金开采、创新和赋能印尼的未来。',
+        'hero_description' => 'PT Kristalin Ekalestari 致力于可持续黄金开采、创新和赋能印尼的未来。',
         'explore_operations_btn' => '探索运营',
         'values' => [
             'integrity' => [
@@ -787,8 +905,8 @@ return [
         ],
         'company_info' => [
             'company_name_label' => '公司名称',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => '业务领域',
             'business_field_value' => '黄金开采与矿物加工',
             'established_label' => '成立时间',
@@ -798,8 +916,8 @@ return [
             'business_license_label' => '营业执照',
             'business_license_value' => 'IUP 运营生产许可证  第561号/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Eka Lestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
-        'company_description' => 'PT Kristalin Eka Lestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
+        'company_description' => 'PT Kristalin Ekalestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
+        'company_description' => 'PT Kristalin Ekalestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_profile' => [
             'header' => '公司简介',
             'title_line1' => '专业黄金开采',
@@ -1149,8 +1267,8 @@ return [
         'hero' => [
             'title_line1' => '联系',
             'title_line2' => '我们',
-            'description' => '了解更多关于Kristalin Eka Lestari的信息',
-            'description' => '了解更多关于Kristalin Eka Lestari的信息',
+            'description' => '了解更多关于Kristalin Ekalestari的信息',
+            'description' => '了解更多关于Kristalin Ekalestari的信息',
         ],
         'form' => [
             'labels' => [
@@ -2088,5 +2206,8 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
         'no_results_hint' => '请尝试使用不同或更具体的关键词',
         'try_again' => '再试一次',
     ],
-];
 
+    'footer' => [
+        'copyright' => '© 2025 PT Kristalin Ekalestari. 版权所有。',
+    ],
+];

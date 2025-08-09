@@ -14,8 +14,34 @@ return [
             'apply' => 'Lamar Sekarang',
         ],
         'overview' => [
+            'benefits' => [
+                'health_insurance' => [
+                    'title' => 'Asuransi Kesehatan',
+                    'description' => 'Cakupan kesehatan komprehensif untuk Anda dan keluarga',
+                ],
+                'competitive_salary' => [
+                    'title' => 'Gaji Kompetitif',
+                    'description' => 'Paket kompensasi menarik dengan bonus kinerja',
+                ],
+                'training_development' => [
+                    'title' => 'Pelatihan & Pengembangan',
+                    'description' => 'Peluang pembelajaran berkelanjutan dan pertumbuhan karier',
+                ],
+                'housing_allowance' => [
+                    'title' => 'Tunjangan Perumahan',
+                    'description' => 'Dukungan perumahan untuk karyawan di lokasi terpencil',
+                ],
+                'transportation' => [
+                    'title' => 'Transportasi',
+                    'description' => 'Fasilitas transportasi untuk perjalanan kerja',
+                ],
+                'performance_bonus' => [
+                    'title' => 'Bonus Kinerja',
+                    'description' => 'Bonus tahunan berbasis kinerja dan insentif',
+                ],
+            ],
             'why_join' => [
-                'title' => 'Mengapa Bergabung dengan Kristalin Eka Lestari?',
+                'title' => 'Mengapa Bergabung dengan Kristalin Ekalestari?',
                 'subtitle' => 'Temukan manfaat menjadi bagian dari tim kami yang terus berkembang',
             ],
             'culture' => [
@@ -43,10 +69,102 @@ return [
         ],
         'positions' => [
             'title' => 'Posisi Terbuka',
-            'subtitle' => 'Jelajahi peluang kerja saat ini di Kristalin Eka Lestari',
+            'subtitle' => 'Jelajahi peluang kerja saat ini di Kristalin Ekalestari',
             'requirements' => 'Persyaratan',
             'apply' => 'Lamar Sekarang',
             'save' => 'Simpan Posisi',
+        ],
+        'job_positions' => [
+            'mining_engineer' => [
+                'title' => 'Insinyur Pertambangan',
+                'department' => 'Teknik',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '3-5 tahun',
+                'description' => 'Bertanggung jawab merencanakan dan mengawasi operasi pertambangan, memastikan keselamatan dan efisiensi dalam proses ekstraksi emas.',
+                'requirements' => [
+                    '1' => 'Sarjana Teknik Pertambangan',
+                    '2' => 'Pengalaman pada operasi tambang terbuka',
+                    '3' => 'Pengetahuan perangkat lunak dan peralatan tambang',
+                    '4' => 'Kemampuan analitis dan pemecahan masalah yang kuat',
+                    '5' => 'Memiliki sertifikasi K3 diutamakan',
+                ],
+            ],
+            'geologist' => [
+                'title' => 'Geolog',
+                'department' => 'Eksplorasi',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '2-4 tahun',
+                'description' => 'Melakukan survei dan analisis geologi untuk mengidentifikasi cadangan emas potensial dan menilai kelayakan penambangan.',
+                'requirements' => [
+                    '1' => 'Sarjana Geologi atau bidang terkait',
+                    '2' => 'Pengalaman dalam eksplorasi mineral',
+                    '3' => 'Menguasai perangkat lunak pemetaan geologi',
+                    '4' => 'Pengalaman kerja lapangan di lokasi terpencil',
+                    '5' => 'Pengetahuan geologi endapan emas',
+                ],
+            ],
+            'environmental_specialist' => [
+                'title' => 'Spesialis Lingkungan',
+                'department' => 'Lingkungan',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '2-3 tahun',
+                'description' => 'Memastikan kepatuhan terhadap regulasi lingkungan dan menerapkan praktik pertambangan berkelanjutan.',
+                'requirements' => [
+                    '1' => 'Sarjana Ilmu Lingkungan',
+                    '2' => 'Pengalaman penilaian dampak lingkungan',
+                    '3' => 'Pengetahuan regulasi lingkungan',
+                    '4' => 'Pengalaman di industri pertambangan diutamakan',
+                    '5' => 'Keterampilan komunikasi yang baik',
+                ],
+            ],
+            'safety_officer' => [
+                'title' => 'Petugas K3',
+                'department' => 'Kesehatan & Keselamatan',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '3-5 tahun',
+                'description' => 'Mengembangkan dan menerapkan protokol keselamatan untuk memastikan keselamatan kerja dan kepatuhan terhadap peraturan.',
+                'requirements' => [
+                    '1' => 'Sarjana Keselamatan Kerja atau bidang terkait',
+                    '2' => 'Sertifikasi K3/NEBOSH atau setara',
+                    '3' => 'Pengalaman manajemen keselamatan tambang',
+                    '4' => 'Pengetahuan standar dan peraturan keselamatan',
+                    '5' => 'Kepemimpinan dan kemampuan pelatihan yang baik',
+                ],
+            ],
+            'community_relations_officer' => [
+                'title' => 'Petugas Hubungan Komunitas',
+                'department' => 'CSR',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '2-4 tahun',
+                'description' => 'Membangun dan menjaga hubungan positif dengan komunitas lokal dan pemangku kepentingan.',
+                'requirements' => [
+                    '1' => 'Sarjana Ilmu Sosial atau bidang terkait',
+                    '2' => 'Pengalaman pengembangan masyarakat',
+                    '3' => 'Kemampuan komunikasi dan interpersonal yang baik',
+                    '4' => 'Pengetahuan budaya dan adat setempat',
+                    '5' => 'Pengalaman keterlibatan pemangku kepentingan',
+                ],
+            ],
+            'administrative_assistant' => [
+                'title' => 'Asisten Administrasi',
+                'department' => 'Administrasi',
+                'location' => 'Nabire, Papua',
+                'type' => 'Penuh waktu',
+                'experience' => '1-2 tahun',
+                'description' => 'Memberikan dukungan administratif ke berbagai departemen dan memastikan operasional kantor berjalan lancar.',
+                'requirements' => [
+                    '1' => 'Minimal lulusan SMA/sederajat',
+                    '2' => 'Menguasai Microsoft Office',
+                    '3' => 'Keterampilan organisasi yang baik',
+                    '4' => 'Kemampuan komunikasi yang baik',
+                    '5' => 'Pengalaman administrasi perkantoran diutamakan',
+                ],
+            ],
         ],
         'apply' => [
             'title' => 'Lamar untuk Posisi',
@@ -82,13 +200,13 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. Semua hak dilindungi.',
+            'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
             'contact_info' => 'Untuk pertanyaan tentang karir, hubungi kami di hr@kristalin.com',
         ],
     ],
 
     'welcome' => [
-        'title' => 'Selamat Datang di Kristalin Eka Lestari',
+        'title' => 'Selamat Datang di Kristalin Ekalestari',
         'subtitle' => 'Keunggulan dalam Pertambangan dan Perdagangan',
         'description' => 'Memimpin industri dengan praktik pertambangan berkelanjutan dan solusi perdagangan yang andal untuk logam mulia dan sumber daya alam.',
         'hero_button_cta' => 'Temukan Layanan Kami',
@@ -134,7 +252,7 @@ return [
             'find_out_more' => 'Pelajari lebih lanjut →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. Semua hak dilindungi.',
+            'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
         ],
 
         'feedback' => [
@@ -214,14 +332,14 @@ return [
     ],
 
     'about' => [
-        'title' => 'Tentang Kristalin Eka Lestari',
+        'title' => 'Tentang Kristalin Ekalestari',
         'description' => 'Pelajari lebih lanjut tentang perusahaan kami, sejarah, dan komitmen terhadap keunggulan dalam industri pertambangan dan perdagangan.',
         'section_history' => 'Sejarah Kami',
         'section_mission' => 'Misi Kami',
         'section_values' => 'Nilai-Nilai Kami',
-        'page_title' => 'Tentang Kristalin Eka Lestari',
+        'page_title' => 'Tentang Kristalin Ekalestari',
         'main_heading' => 'Membangun Masa Depan Pertambangan Indonesia Sejak 1989',
-        'company_intro' => 'Didirikan sebagai PT Kristalin Eka Lestari pada tahun 1989, kami tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Pendiri, ketua dan pemegang saham terbesar kami secara aktif beroperasi di industri pertambangan, khususnya di sektor produksi operasional eksplorasi dan penambangan emas yang berlokasi di Nabire, Papua.',
+        'company_intro' => 'Didirikan sebagai PT Kristalin Ekalestari pada tahun 1989, kami tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Pendiri, ketua dan pemegang saham terbesar kami secara aktif beroperasi di industri pertambangan, khususnya di sektor produksi operasional eksplorasi dan penambangan emas yang berlokasi di Nabire, Papua.',
 
         'company_stats' => [
             'founded' => 'Didirikan',
@@ -239,7 +357,7 @@ return [
             'company_foundation' => [
                 'title' => 'Pendirian Perusahaan',
                 'subtitle' => 'Awal Perjalanan Kami',
-                'content' => 'Didirikan pada tahun 1989, PT Kristalin Eka Lestari tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Didirikan dengan visi untuk unggul dalam industri pertambangan Indonesia, khususnya dalam operasi eksplorasi dan penambangan emas.',
+                'content' => 'Didirikan pada tahun 1989, PT Kristalin Ekalestari tetap menjadi perusahaan milik pribadi yang berkantor pusat di Jakarta. Didirikan dengan visi untuk unggul dalam industri pertambangan Indonesia, khususnya dalam operasi eksplorasi dan penambangan emas.',
             ],
             'global_partnerships' => [
                 'title' => 'Kemitraan Global',
@@ -282,7 +400,7 @@ return [
             ],
             'future_vision' => [
                 'title' => 'Visi Masa Depan',
-                'content' => 'PT Kristalin Eka Lestari terus mengeksplorasi peluang baru untuk pertumbuhan dan ekspansi. Kami tetap berkomitmen pada inovasi, keberlanjutan, dan menciptakan nilai jangka panjang untuk pemangku kepentingan sambil mempertahankan posisi kepemimpinan kami.',
+                'content' => 'PT Kristalin Ekalestari terus mengeksplorasi peluang baru untuk pertumbuhan dan ekspansi. Kami tetap berkomitmen pada inovasi, keberlanjutan, dan menciptakan nilai jangka panjang untuk pemangku kepentingan sambil mempertahankan posisi kepemimpinan kami.',
             ],
         ],
 
@@ -296,6 +414,907 @@ return [
         'alt_texts' => [
             'mining_operations' => 'Operasi Pertambangan',
         ],
+    ],
+
+    'vision_mission' => [
+        'title' => 'Visi & Misi Kami',
+        'description' => 'Prinsip panduan yang mendorong komitmen kami terhadap keunggulan, keberlanjutan, dan kemakmuran masyarakat.',
+
+
+        'page_title' => 'Visi & Misi Kami',
+        'subtitle' => 'Visi & Misi',
+        'main_heading' => 'Prinsip Panduan untuk Keunggulan Berkelanjutan',
+
+
+        'vision' => [
+            'label' => 'Visi Kami',
+            'title' => 'Memimpin Masa Depan Pertambangan Berkelanjutan Indonesia',
+            'content' => 'Menjadi entitas transformatif yang mengorkestrasi sumber daya alam Indonesia yang melimpah dengan optimisasi yang tak tertandingi dan tanggung jawab yang teguh, menciptakan kemakmuran berkelanjutan yang memperkaya masyarakat lokal, memperkuat fondasi ekonomi bangsa, dan menetapkan paradigma baru praktik pertambangan etis yang menjadi mercusuar bagi industri pertambangan global.',
+        ],
+
+
+        'mission' => [
+            'label' => 'Misi Kami',
+            'title' => 'Enam Pilar Keunggulan Operasional',
+            'pillars' => [
+                'growth_development' => [
+                    'title' => 'Pertumbuhan & Pengembangan Berkelanjutan',
+                    'subtitle' => 'Keunggulan Inovasi',
+                    'description' => 'Kami berkomitmen pada kemajuan perpetual melalui inovasi strategis, merangkul teknologi dan metodologi terdepan yang mendorong pertumbuhan berkelanjutan di semua dimensi operasional.',
+                ],
+                'professional_entity' => [
+                    'title' => 'Pengembangan Entitas Profesional',
+                    'subtitle' => 'Keunggulan Organisasi',
+                    'description' => 'Kami memupuk budaya profesionalisme dengan berinvestasi dalam pengembangan modal manusia, menerapkan standar operasional kelas dunia, dan membina kemampuan organisasi.',
+                ],
+                'managerial_principles' => [
+                    'title' => 'Prinsip Manajerial yang Sehat',
+                    'subtitle' => 'Keunggulan Kepemimpinan',
+                    'description' => 'Filosofi manajemen kami berdasar pada transparansi, akuntabilitas, dan pengambilan keputusan strategis yang menyeimbangkan kepentingan pemangku kepentingan sambil memastikan efisiensi operasional.',
+                ],
+                'technology_integration' => [
+                    'title' => 'Integrasi Teknologi Canggih',
+                    'subtitle' => 'Inovasi Teknologi',
+                    'description' => 'Kami memanfaatkan teknologi terdepan, ekonomis, dan sangat produktif yang mengoptimalkan efisiensi ekstraksi sumber daya sambil meminimalkan dampak lingkungan.',
+                ],
+                'environmental_stewardship' => [
+                    'title' => 'Pengelolaan Lingkungan',
+                    'subtitle' => 'Tanggung Jawab Ekologis',
+                    'description' => 'Komitmen teguh kami terhadap konservasi lingkungan mencakup mempertahankan keseimbangan ekosistem dan memelopori praktik pertambangan berkelanjutan yang melindungi keanekaragaman hayati Papua.',
+                ],
+                'community_empowerment' => [
+                    'title' => 'Pemberdayaan Masyarakat',
+                    'subtitle' => 'Dampak Sosial',
+                    'description' => 'Kami secara aktif mengeksplorasi dan mengembangkan potensi masyarakat lokal melalui program pemberdayaan komprehensif, inisiatif pengembangan keterampilan, dan peluang ekonomi yang menciptakan kemakmuran berkelanjutan.',
+                ],
+            ],
+        ],
+
+
+        'cta' => [
+            'prosperity_title' => 'Berkomitmen pada Kemakmuran Indonesia',
+            'prosperity_desc' => 'Melalui visi dan misi kami, kami berupaya menciptakan dampak positif berkelanjutan yang melampaui operasi pertambangan tradisional, membangun warisan pengelolaan sumber daya yang bertanggung jawab dan pemberdayaan masyarakat.',
+            'impact_stories_btn' => 'Kisah Dampak Kami',
+            'learn_more_btn' => 'Pelajari Lebih Lanjut',
+        ],
+
+
+        'alt_texts' => [
+            'gold_bars' => 'Batangan emas dan bubuk emas di timbangan',
+        ],
+    ],
+
+
+    'company_overview' => [
+        'title' => 'Gambaran Perusahaan',
+        'description' => 'Memelopori keunggulan dalam inovasi pertambangan melalui praktik berkelanjutan dan kemitraan strategis.',
+
+
+        'page_title' => 'Gambaran Perusahaan',
+        'subtitle' => 'Gambaran Perusahaan',
+        'main_heading' => 'Memelopori Keunggulan dalam Inovasi Pertambangan',
+
+
+        'company_data' => [
+            'founded' => 'Didirikan',
+            'operations' => 'Operasi',
+            'focus' => 'Fokus',
+            'partnerships' => 'Kemitraan',
+        ],
+
+
+        'company_values' => [
+            'founded_year' => '1989',
+            'operations_location' => 'Nabire, Papua',
+            'focus_area' => 'Penambangan Emas',
+            'partnerships_countries' => 'China & Korea',
+        ],
+
+
+        'sections' => [
+            'company_goals' => [
+                'title' => 'Tujuan Perusahaan',
+                'subtitle' => 'Fondasi Kami',
+                'content' => 'Didirikan untuk mengoperasikan kegiatan bisnis komprehensif di sektor pertambangan dan pengolahan, mendorong inovasi dan pertumbuhan berkelanjutan dalam industri sumber daya alam Indonesia.',
+            ],
+            'natural_resources' => [
+                'title' => 'Sumber Daya Alam',
+                'subtitle' => 'Warisan Kaya',
+                'content' => 'PT Kristalin Ekalestari berfokus pada eksplorasi dan eksploitasi sumber daya alam Indonesia yang melimpah, khususnya mengkhususkan diri dalam operasi penambangan emas di wilayah Nabire, Papua yang kaya sumber daya.',
+            ],
+            'strategic_partnerships' => [
+                'title' => 'Kemitraan Strategis',
+                'subtitle' => 'Kolaborasi Global',
+                'content' => 'Beroperasi bersama-sama dengan mitra lokal dan investor internasional dari China dan Korea, kami memanfaatkan teknologi dan keahlian kelas dunia untuk mengoptimalkan operasi pertambangan dari proses hulu hingga hilir.',
+            ],
+            'innovation_excellence' => [
+                'title' => 'Keunggulan Inovasi',
+                'subtitle' => 'Pertumbuhan Berkelanjutan',
+                'content' => 'Berkomitmen pada inovasi berkelanjutan dan keunggulan operasional, kami menyempurnakan proses bisnis untuk memberikan kepuasan optimal kepada pemangku kepentingan sambil memposisikan diri di garis depan industri pertambangan.',
+            ],
+        ],
+
+
+        'cta' => [
+            'future_title' => 'Membangun Masa Depan Indonesia',
+            'future_desc' => 'Melalui praktik pertambangan yang bertanggung jawab dan kolaborasi internasional, kami berkomitmen pada pertumbuhan berkelanjutan dan pembangunan masyarakat.',
+            'learn_more_btn' => 'Pelajari Lebih Lanjut Tentang Misi Kami',
+        ],
+
+
+        'alt_texts' => [
+            'papua_forest' => 'Hutan Papua',
+        ],
+    ],
+
+
+    'milestones' => [
+        'title' => 'Pencapaian Kami',
+        'description' => 'Perjalanan melalui pencapaian dan momen penting yang membentuk pertumbuhan kami sebagai perusahaan pertambangan terkemuka.',
+
+
+        'page_title' => 'Pencapaian Kami',
+        'subtitle' => 'Pencapaian Perusahaan',
+        'main_description' => 'Beginilah cara kami memulai dan memulai perjalanan untuk menjadi hebat.',
+
+
+        'company_stats' => [
+            'established' => 'Didirikan',
+            'milestones' => 'Pencapaian',
+            'location' => 'Lokasi',
+            'growth' => 'Pertumbuhan',
+        ],
+
+
+        'company_values' => [
+            'established_year' => '1989',
+            'milestones_count' => '35+ Tahun',
+            'location_area' => 'Papua',
+            'growth_status' => 'Berkelanjutan',
+        ],
+
+
+        'categories' => [
+            'Company Foundation' => 'Pendirian Perusahaan',
+            'Technology Innovation' => 'Inovasi Teknologi',
+            'International Partnership' => 'Kemitraan Internasional',
+            'Environmental Excellence' => 'Keunggulan Lingkungan',
+            'Operational Growth' => 'Pertumbuhan Operasional',
+            'Social Responsibility' => 'Tanggung Jawab Sosial',
+            'Safety Achievement' => 'Pencapaian Keselamatan',
+            'Investment & Growth' => 'Investasi & Pertumbuhan',
+            'Infrastructure Development' => 'Pengembangan Infrastruktur',
+            'Quality Excellence' => 'Keunggulan Kualitas',
+            'Production Excellence' => 'Keunggulan Produksi',
+            'Community Partnership' => 'Kemitraan Masyarakat',
+            'Business Expansion' => 'Ekspansi Bisnis',
+            'Production Milestone' => 'Tonggak Produksi',
+            'Exploration Achievement' => 'Pencapaian Eksplorasi',
+            'Legal Milestone' => 'Tonggak Hukum',
+            'Human Resource Development' => 'Pengembangan SDM',
+            'Technology Advancement' => 'Kemajuan Teknologi',
+            'Operational Excellence' => 'Keunggulan Operasional',
+            'Environmental Initiative' => 'Inisiatif Lingkungan',
+            'Operational Expansion' => 'Ekspansi Operasional',
+            'Technology Upgrade' => 'Peningkatan Teknologi',
+            'Exploration Initiative' => 'Inisiatif Eksplorasi',
+            'Regional Expansion' => 'Ekspansi Regional',
+            'Safety Implementation' => 'Implementasi Keselamatan',
+        ],
+
+
+        'months' => [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember',
+        ],
+
+
+        'navigation' => [
+            'previous_year' => 'Periode tahun sebelumnya',
+            'next_year' => 'Periode tahun berikutnya',
+        ],
+
+
+        'alt_texts' => [
+            'mining_history' => 'Sejarah Operasi Pertambangan',
+        ],
+
+
+        'milestones_data' => [
+            '2020-2025' => [
+                [
+                    'title' => 'Pencapaian Produksi Emas Tertinggi',
+                    'description' => 'Mencapai produksi emas tahunan tertinggi dalam sejarah perusahaan, melampaui 10 ton emas murni dan memperkuat posisi Kristalin Ekalestari sebagai perusahaan pertambangan emas terkemuka di Indonesia.',
+                ],
+                [
+                    'title' => 'Ekspansi Operasi Penambangan Emas Berkelanjutan',
+                    'description' => 'Menyelesaikan ekspansi operasi penambangan emas berkelanjutan di Nabire, Papua, meningkatkan kapasitas produksi sambil mempertahankan standar lingkungan dan masyarakat yang ketat.',
+                ],
+                [
+                    'title' => 'Ekspansi Kemitraan Strategis',
+                    'description' => 'Menandatangani perjanjian kerjasama komprehensif dengan perusahaan teknologi pertambangan China terkemuka, membawa kemampuan pengolahan kelas dunia ke operasi Papua kami.',
+                ],
+                [
+                    'title' => 'Pencapaian Sertifikasi Lingkungan',
+                    'description' => 'Meraih sertifikasi ISO 14001 Manajemen Lingkungan, memperkuat komitmen kami terhadap praktik pertambangan berkelanjutan dan pengelolaan lingkungan di Papua.',
+                ],
+                [
+                    'title' => 'Ekspansi Kapasitas Produksi',
+                    'description' => 'Menyelesaikan proyek ekspansi infrastruktur besar, menggandakan kapasitas pengolahan emas sambil mempertahankan standar lingkungan dan keselamatan yang ketat.',
+                ],
+                [
+                    'title' => 'Inisiatif Transformasi Digital',
+                    'description' => 'Meluncurkan program transformasi digital komprehensif, mengimplementasikan sensor IoT dan sistem monitoring real-time di seluruh operasi pertambangan.',
+                ],
+            ],
+            '2015-2019' => [
+                [
+                    'title' => 'Peluncuran Program Pengembangan Masyarakat',
+                    'description' => 'Mendirikan program pengembangan masyarakat komprehensif di Nabire, berfokus pada pendidikan, kesehatan, dan inisiatif pemberdayaan ekonomi lokal.',
+                ],
+                [
+                    'title' => 'Kemitraan Teknologi Korea',
+                    'description' => 'Membentuk aliansi strategis dengan produsen peralatan pertambangan Korea, membawa teknologi otomatisasi canggih ke proses ekstraksi emas kami.',
+                ],
+                [
+                    'title' => 'Pengakuan Keunggulan Keselamatan',
+                    'description' => 'Mencapai tonggak zero-accident selama 1000+ hari kerja berturut-turut, menetapkan standar keselamatan industri baru di sektor pertambangan Indonesia.',
+                ],
+                [
+                    'title' => 'Sertifikasi Pertambangan Berkelanjutan',
+                    'description' => 'Menjadi perusahaan pertambangan pertama di Papua yang meraih sertifikasi pertambangan berkelanjutan, menetapkan benchmark lingkungan baru untuk wilayah ini.',
+                ],
+                [
+                    'title' => 'Kolaborasi Investasi China',
+                    'description' => 'Mengamankan investasi besar dari mitra China, memungkinkan ekspansi signifikan operasi pertambangan dan akuisisi peralatan canggih.',
+                ],
+            ],
+            '2010-2014' => [
+                [
+                    'title' => 'Fasilitas Pengolahan Canggih',
+                    'description' => 'Mengoperasikan fasilitas pengolahan emas canggih, menggabungkan praktik terbaik internasional dan teknologi perlindungan lingkungan.',
+                ],
+                [
+                    'title' => 'Inisiatif Ekspansi Regional',
+                    'description' => 'Memperluas operasi ke konsesi pertambangan baru di Papua, mendiversifikasi lokasi ekstraksi dan meningkatkan kapasitas produksi keseluruhan.',
+                ],
+                [
+                    'title' => 'Standar Kualitas Internasional',
+                    'description' => 'Meraih sertifikasi manajemen kualitas ISO 9001, mendemonstrasikan komitmen terhadap standar keunggulan operasional internasional.',
+                ],
+                [
+                    'title' => 'Program Pengembangan Tenaga Kerja',
+                    'description' => 'Meluncurkan program pelatihan komprehensif untuk tenaga kerja lokal, menciptakan peluang kerja terampil untuk komunitas Papua.',
+                ],
+                [
+                    'title' => 'Akuisisi Peralatan Modern',
+                    'description' => 'Berinvestasi dalam peralatan dan mesin pertambangan modern, secara signifikan meningkatkan efisiensi operasional dan standar keselamatan.',
+                ],
+            ],
+            '2005-2009' => [
+                [
+                    'title' => 'Sistem Manajemen Lingkungan',
+                    'description' => 'Mengimplementasikan sistem manajemen lingkungan komprehensif, menetapkan program rehabilitasi dan konservasi untuk area pertambangan.',
+                ],
+                [
+                    'title' => 'Pencapaian Tonggak Produksi',
+                    'description' => 'Mencapai tonggak produksi emas yang signifikan, menetapkan PT Kristalin Ekalestari sebagai pemain utama dalam industri pertambangan Indonesia.',
+                ],
+                [
+                    'title' => 'Pengembangan Kemitraan Lokal',
+                    'description' => 'Memperkuat kemitraan dengan komunitas lokal Papua, menciptakan program keuntungan bersama dan inisiatif pembangunan berkelanjutan.',
+                ],
+                [
+                    'title' => 'Program Keunggulan Operasional',
+                    'description' => 'Meluncurkan program keunggulan operasional yang berfokus pada efisiensi, keselamatan, dan tanggung jawab lingkungan di seluruh operasi pertambangan.',
+                ],
+                [
+                    'title' => 'Proyek Pengembangan Infrastruktur',
+                    'description' => 'Menyelesaikan proyek pengembangan infrastruktur besar, meningkatkan jalan akses dan membangun fasilitas penting untuk operasi pertambangan.',
+                ],
+            ],
+            '2000-2004' => [
+                [
+                    'title' => 'Ekspansi Konsesi Pertambangan',
+                    'description' => 'Mengamankan konsesi pertambangan tambahan di wilayah Papua, memperluas jejak operasional dan meningkatkan portofolio sumber daya mineral.',
+                ],
+                [
+                    'title' => 'Modernisasi Teknologi',
+                    'description' => 'Memulai program modernisasi teknologi komprehensif, meningkatkan peralatan ekstraksi dan pengolahan untuk efisiensi yang lebih baik.',
+                ],
+                [
+                    'title' => 'Implementasi Protokol Keselamatan',
+                    'description' => 'Menetapkan protokol keselamatan komprehensif dan program pelatihan, memprioritaskan keselamatan pekerja dan manajemen risiko operasional.',
+                ],
+                [
+                    'title' => 'Produksi Emas Pertama',
+                    'description' => 'Mencapai produksi emas komersial pertama dari operasi Nabire, menandai tonggak penting dalam pengembangan perusahaan.',
+                ],
+                [
+                    'title' => 'Kesuksesan Eksplorasi',
+                    'description' => 'Menyelesaikan fase eksplorasi yang sukses, mengkonfirmasi cadangan emas signifikan di wilayah Papua dan memvalidasi strategi pengembangan bisnis.',
+                ],
+            ],
+            '1989-1999' => [
+                [
+                    'title' => 'Akuisisi Izin Pertambangan',
+                    'description' => 'Berhasil memperoleh izin pertambangan komprehensif untuk operasi Papua, meletakkan fondasi untuk kegiatan pertambangan emas skala besar.',
+                ],
+                [
+                    'title' => 'Fase Eksplorasi Awal',
+                    'description' => 'Memulai eksplorasi geologis ekstensif di wilayah Papua, melakukan survei detail dan studi kelayakan untuk potensi pertambangan emas.',
+                ],
+                [
+                    'title' => 'Masuk Wilayah Papua',
+                    'description' => 'Mendirikan basis operasi di Nabire, Papua, memulai penilaian komprehensif sumber daya mineral regional dan peluang pertambangan.',
+                ],
+                [
+                    'title' => 'Pendirian Perusahaan',
+                    'description' => 'PT Kristalin Ekalestari resmi didirikan di Jakarta sebagai perusahaan pertambangan yang berfokus pada eksplorasi dan ekstraksi sumber daya alam di Indonesia.',
+                ],
+            ],
+        ],
+    ],
+
+
+    'contact' => [
+        'title' => 'Hubungi Kami',
+        'description' => 'Hubungi tim kami untuk pertanyaan tentang layanan dan peluang bisnis kami.',
+        'form_name' => 'Nama Lengkap',
+        'form_email' => 'Alamat Email',
+        'form_message' => 'Pesan',
+        'form_submit' => 'Kirim Pesan',
+        'address_title' => 'Alamat Kami',
+        'phone_title' => 'Telepon',
+        'email_title' => 'Email',
+    ],
+
+    'core_values' => [
+        'page_title' => 'Nilai-Nilai Inti Kami',
+        'hero_title_1' => 'Nilai-Nilai',
+        'hero_title_2' => 'Inti Kami',
+        'hero_list' => 'Integritas, Pengembangan Berkelanjutan, Keunggulan, Proaktif, Tanggung Jawab, Kerja Sama Tim.',
+        'header' => 'Nilai-Nilai Inti Kami',
+        'six_pillars' => 'Enam Pilar',
+        'six_pillars_highlight' => 'Keunggulan Fundamental',
+        'cta_title' => 'Membangun Masa Depan Indonesia Bersama',
+        'cta_desc' => 'Melalui nilai-nilai inti kami, kami berkomitmen untuk menciptakan dampak positif berkelanjutan bagi seluruh pemangku kepentingan dan membangun warisan pengelolaan pertambangan yang bertanggung jawab.',
+        'cta_btn_1' => 'Implementasi Nilai',
+        'cta_btn_2' => 'Pelajari Lebih Lanjut',
+        'values' => [
+            [
+                'title' => 'Integritas',
+                'subtitle' => 'Landasan Etika',
+                'description' => 'Kami secara konsisten menerapkan standar etika dan moral tertinggi dengan selalu mengutamakan prinsip kejujuran dan keadilan dalam setiap aktivitas. Integritas menjadi fondasi kepercayaan dengan pemangku kepentingan dan masyarakat.',
+            ],
+            [
+                'title' => 'Pengembangan Berkelanjutan',
+                'subtitle' => 'Pertumbuhan Jangka Panjang',
+                'description' => 'Kami berkomitmen untuk terus mengembangkan perusahaan dan sumber daya manusianya dengan prinsip keberlanjutan yang mengintegrasikan aspek ekonomi, sosial, dan lingkungan untuk kemajuan dan kesejahteraan jangka panjang.',
+            ],
+            [
+                'title' => 'Keunggulan',
+                'subtitle' => 'Keunggulan Operasional',
+                'description' => 'Kami terus berupaya mencapai standar kinerja tertinggi dalam setiap aspek operasional. Komitmen kami terhadap keunggulan mendorong inovasi berkelanjutan dan peningkatan layanan berkualitas yang melampaui harapan.',
+            ],
+            [
+                'title' => 'Proaktif',
+                'subtitle' => 'Keunggulan Inovasi',
+                'description' => 'Kami terus mencari dan mengadopsi teknik serta pendekatan baru untuk meningkatkan kualitas bisnis. Sikap proaktif memungkinkan antisipasi tantangan dan penciptaan solusi inovatif yang berkelanjutan.',
+            ],
+            [
+                'title' => 'Tanggung Jawab',
+                'subtitle' => 'Akuntabilitas Pemangku Kepentingan',
+                'description' => 'Kami bertanggung jawab kepada seluruh pemangku kepentingan atas dampak operasional perusahaan. Komitmen ini mencakup tanggung jawab terhadap lingkungan, masyarakat, dan keberlanjutan ekosistem Papua.',
+            ],
+            [
+                'title' => 'Kerja Sama Tim',
+                'subtitle' => 'Keunggulan Kolaboratif',
+                'description' => 'Kami membangun sinergi melalui kolaborasi yang kuat antar tim, departemen, dan pemangku kepentingan. Kerja sama tim yang efektif menjadi kunci pencapaian tujuan bersama dan menciptakan nilai berkelanjutan bagi semua pihak.',
+            ],
+        ],
+    ],
+
+    'leadership_traits' => [
+        'page_title' => 'Sifat Kepemimpinan',
+        'hero_title_1' => 'Sifat',
+        'hero_title_2' => 'Kepemimpinan',
+        'hero_list' => 'Kompeten, Visioner, Menginspirasi, Aktualisasi Diri, Jujur dan Rendah Hati.',
+        'header' => 'Sifat Kepemimpinan',
+        'main_heading' => 'SIFAT KEPEMIMPINAN',
+        'cta_title' => 'Memimpin Keunggulan Pertambangan Indonesia',
+        'cta_desc' => 'Melalui kepemimpinan yang luar biasa, kami mendorong inovasi, menginspirasi tim, dan menciptakan nilai berkelanjutan untuk semua pemangku kepentingan di industri pertambangan Indonesia.',
+        'cta_btn_1' => 'Pengembangan Kepemimpinan',
+        'cta_btn_2' => 'Pelajari Lebih Lanjut',
+        'traits' => [
+            [
+                'title' => 'Kompeten',
+                'subtitle' => 'Keunggulan Strategis',
+                'description' => 'Menampilkan kompetensi kepemimpinan dalam membuat keputusan yang tepat yang mendorong kesuksesan organisasi. Para pemimpin kami menunjukkan pengetahuan industri yang mendalam, pemikiran analitis, dan kemampuan untuk menavigasi operasi pertambangan yang kompleks dengan presisi dan keahlian.',
+            ],
+            [
+                'title' => 'Visioner',
+                'subtitle' => 'Kepemimpinan Berorientasi Masa Depan',
+                'description' => 'Menetapkan tujuan yang menyeluruh dan memiliki visi yang dikomunikasikan dengan baik yang dianut oleh semua anggota organisasi. Para pemimpin visioner kami menetapkan prioritas berdasarkan praktik pertambangan berkelanjutan dan penciptaan nilai jangka panjang untuk pemangku kepentingan.',
+            ],
+            [
+                'title' => 'Menginspirasi',
+                'subtitle' => 'Kepemimpinan Motivasional',
+                'description' => 'Menunjukkan kepercayaan diri dalam semua interaksi; mengambil tanggung jawab; menunjukkan daya tahan; berkomunikasi, menginspirasi, dan memberdayakan orang lain untuk mencapai ketinggian baru. Para pemimpin kami menciptakan lingkungan di mana tim termotivasi untuk unggul dan berinovasi.',
+            ],
+            [
+                'title' => 'Aktualisasi Diri',
+                'subtitle' => 'Pertumbuhan Berkelanjutan',
+                'description' => 'Mengembangkan potensi pribadi dan mencari tantangan baru yang meningkatkan kemampuan kepemimpinan. Para pemimpin kami berkomitmen pada pembelajaran seumur hidup, pengembangan pribadi, dan tetap di garis depan inovasi industri pertambangan.',
+            ],
+            [
+                'title' => 'Jujur dan Rendah Hati',
+                'subtitle' => 'Kepemimpinan Autentik',
+                'description' => 'Menjadi tulus, sederhana, dapat diandalkan, dan lugas dalam mempertahankan transparansi dan membangun kepercayaan. Para pemimpin kami menunjukkan integritas dalam semua urusan, mengakui kesalahan, dan menciptakan hubungan autentik dengan semua pemangku kepentingan.',
+            ],
+        ],
+        'alt_texts' => [
+            'leadership_meeting' => 'Rapat Kepemimpinan',
+        ],
+    ],
+
+    'line_of_business' => [
+        'page_title' => 'Bidang Usaha',
+        'hero_title_1' => 'Portofolio',
+        'hero_title_2' => 'Kami',
+        'hero_subtitle' => 'MENAMBANG MASA DEPAN',
+        'hero_description' => 'PT Kristalin Ekalestari berkomitmen untuk pertambangan emas berkelanjutan, inovasi, dan memberdayakan masa depan Indonesia.',
+        'explore_operations_btn' => 'Jelajahi Operasi',
+        'values' => [
+            'integrity' => [
+                'title' => 'INTEGRITAS',
+                'description' => 'Kami menjunjung tinggi standar integritas tertinggi dalam semua tindakan kami, memastikan transparansi dan praktik etis.',
+            ],
+            'commitment' => [
+                'title' => 'KOMITMEN',
+                'description' => 'Berdedikasi untuk memberikan nilai dan pertumbuhan berkelanjutan bagi semua pemangku kepentingan dan masyarakat.',
+            ],
+        ],
+        'company_info' => [
+            'company_name_label' => 'Nama Perusahaan',
+            'company_name_value' => 'PT Kristalin Ekalestari',
+            'business_field_label' => 'Bidang Usaha',
+            'business_field_value' => 'Pertambangan Emas & Pengolahan Mineral',
+            'established_label' => 'Didirikan',
+            'established_value' => '2009',
+            'head_office_label' => 'Kantor Pusat',
+            'head_office_value' => 'Jakarta, Indonesia',
+            'business_license_label' => 'Izin Usaha',
+            'business_license_value' => 'IUP Operasi Produksi No. 561/2021/DESDM',
+        ],
+        'company_description' => 'PT Kristalin Ekalestari berkomitmen pada pertambangan berkelanjutan, inovasi, dan kemitraan strategis untuk masa depan yang lebih baik di Indonesia. Kami beroperasi dengan standar integritas dan tanggung jawab lingkungan tertinggi.',
+        'company_profile' => [
+            'header' => 'PROFIL PERUSAHAAN',
+            'title_line1' => 'Perusahaan Pertambangan Emas',
+            'title_line2' => 'Profesional Sejak 2009',
+        ],
+        'services' => [
+            'header' => 'LAYANAN KAMI',
+            'title' => 'Kami Menyediakan Layanan Terbaik',
+            'gold_mining' => [
+                'title' => 'PERTAMBANGAN & PENGOLAHAN EMAS',
+            ],
+            'environmental' => [
+                'title' => 'PENGELOLAAN LINGKUNGAN',
+            ],
+        ],
+        'projects' => [
+            'title' => 'Proyek Sukses Diselesaikan',
+            'description' => 'Kami menggunakan sistem pertambangan terintegrasi di seluruh proyek untuk menciptakan lingkungan yang lebih baik bagi karyawan dan mitra, serta memberikan keunggulan kepada para pemangku kepentingan.',
+        ],
+        'how_we_work' => [
+            'header' => 'CARA KERJA KAMI',
+            'title_line1' => 'Kami Membangun Pengalaman',
+            'title_line2' => 'Aman untuk Anda',
+            'steps' => [
+                'step1' => [
+                    'title' => '1. PILIH LAYANAN ANDA',
+                    'description' => 'Silakan pilih layanan kami, kami akan memberikan pengalaman luar biasa untuk kebutuhan pertambangan dan investasi Anda.',
+                ],
+                'step2' => [
+                    'title' => '2. BUAT JANJI TEMU',
+                    'description' => 'Jadwalkan pertemuan untuk membahas apa yang ingin Anda capai dalam bisnis Anda, kami akan memberikan solusi terbaik.',
+                ],
+                'step3' => [
+                    'title' => '3. LENGKAPI DATA ANDA',
+                    'description' => 'Setelah layanan Anda dipilih, lengkapi data perusahaan dan persyaratan Anda untuk kolaborasi yang lancar.',
+                ],
+                'step4' => [
+                    'title' => '4. DAPATKAN LAYANAN MENAKJUBKAN',
+                    'description' => 'Layanan profesional kami siap mewujudkan impian bisnis Anda dengan solusi pertambangan berkelanjutan.',
+                ],
+            ],
+        ],
+        'collaboration' => [
+            'header' => 'BERKOLABORASI DENGAN',
+            'title' => 'Mitra Terpercaya Kami',
+        ],
+        'gold_price' => [
+            'header' => 'HARGA EMAS GLOBAL',
+            'title_line1' => 'Informasi Harga Emas',
+            'title_line2' => 'Harian / Mingguan',
+            'description' => 'Tetap update dengan tren harga emas global terbaru. Untuk harga emas, perak, dan logam mulia real-time, klik di bawah untuk melihat grafik harga emas resmi.',
+            'button' => 'LIHAT SELENGKAPNYA',
+            'alt_text' => 'Operasi Pertambangan Emas',
+        ],
+        'why_choose_us' => [
+            'header' => 'MENGAPA MEMILIH KAMI',
+            'title' => 'Pengalaman Bekerja dengan Industri Global',
+            'subtitle' => 'SELALU SIAP MELAYANI',
+            'contact_button' => 'HUBUNGI KAMI',
+            'features' => [
+                'professional' => 'Kami Memiliki Pekerja Profesional',
+                'on_time' => 'Tepat Waktu dalam Kemajuan',
+                'friendly' => 'Ramah dalam Melayani Pelanggan',
+                'best_fair' => 'Memberikan yang Terbaik & Adil',
+            ],
+        ],
+        'alt_texts' => [
+            'mining_future' => 'Menambang Masa Depan',
+        ],
+    ],
+
+    'business_activity' => [
+        'page_title' => 'Aktivitas Bisnis',
+        'hero' => [
+            'title_line1' => 'Aktivitas',
+            'title_line2' => 'Bisnis',
+            'description' => 'Operasi pertambangan emas premium dengan praktik berkelanjutan dan teknologi mutakhir untuk masa depan Indonesia.',
+            'explore_button' => 'Jelajahi Operasi',
+            'alt_text' => 'Operasi Pertambangan',
+        ],
+        'mining_sectors' => [
+            'title_line1' => 'Sektor',
+            'title_line2' => 'Pertambangan',
+            'description' => 'Untuk mencapai tujuan kami, perusahaan kami beroperasi di beberapa sektor khusus dengan teknologi canggih dan praktik berkelanjutan di seluruh operasi ekstraksi mineral premium.',
+            'sectors' => [
+                'gold' => [
+                    'name' => 'Emas',
+                    'description' => 'Ekstraksi emas premium menggunakan teknologi aluvial modern di cekungan Sungai Musairo. Proses berkelanjutan dengan peralatan canggih untuk hasil maksimal sambil menjaga lingkungan.',
+                    'highlight' => 'Fokus Utama',
+                ],
+                'silver' => [
+                    'name' => 'Perak',
+                    'description' => 'Pemrosesan perak dan logam mulia lainnya melalui sistem separasi terintegrasi. Teknologi penyulingan canggih memastikan kemurnian tinggi dan kualitas terbaik.',
+                    'highlight' => 'Operasi Sekunder',
+                ],
+                'other_metals' => [
+                    'name' => 'Logam Lainnya',
+                    'description' => 'Eksplorasi dan ekstraksi mineral strategis termasuk unsur tanah jarang. Menggunakan survei geologi terdepan untuk identifikasi potensi sumber daya mineral baru.',
+                    'highlight' => 'Pengembangan Masa Depan',
+                ],
+            ],
+            'images' => [
+                'gold_alt' => 'Pertambangan emas',
+                'silver_alt' => 'Pertambangan perak',
+            ],
+            'learn_more_gold' => 'Pelajari lebih lanjut tentang operasi emas',
+            'learn_more_silver' => 'Pelajari lebih lanjut tentang operasi perak',
+            'learn_more_other_metals' => 'Pelajari lebih lanjut tentang eksplorasi lainnya',
+        ],
+        'location' => [
+            'header' => 'LOKASI KAMI',
+            'title' => 'Lokasi Pertambangan Strategis',
+            'description_part1' => 'PT Kristalin Ekalestari melakukan eksplorasi emas di sepanjang Sungai Musairo, di Distrik Makimi, Nabire, Papua. Lokasi eksplorasi mencakup area sepanjang 60 km menuju kota Nabire di sebelah timur. Lokasi kami dapat dijangkau dengan transportasi darat selama 1,5 hingga 2 jam, hingga mencapai Desa Legari/SP-1, kemudian menggunakan kendaraan 4x4 khusus sepanjang Sungai Musairo selama 10 km yang memakan waktu sekitar 0,5 jam.',
+        ],
+        'why_choose_us' => [
+            'header' => 'MENGAPA MEMILIH KAMI',
+            'title' => 'Pengalaman Bekerja dengan Industri Global',
+            'subtitle' => 'SELALU SIAP MELAYANI',
+            'contact_button' => 'HUBUNGI KAMI',
+            'features' => [
+                'professional' => 'Kami Memiliki Pekerja Profesional',
+                'on_time' => 'Tepat Waktu dalam Kemajuan',
+                'friendly' => 'Ramah dalam Melayani Pelanggan',
+                'best_fair' => 'Memberikan yang Terbaik & Adil',
+            ],
+        ],
+        'modern_operations' => [
+            'title' => 'Operasi Pertambangan Modern',
+            'subtitle' => 'Peralatan canggih dan praktik berkelanjutan dalam ekstraksi mineral',
+            'location' => 'Nabire, Papua',
+        ],
+        'sustainable_excellence' => [
+            'title' => 'Keunggulan Pertambangan Berkelanjutan',
+            'description' => 'Pendekatan terdiversifikasi kami di bidang emas, perak, dan logam lainnya memastikan pemanfaatan sumber daya yang komprehensif sambil mempertahankan standar lingkungan dan keselamatan tertinggi di seluruh operasi di cekungan Sungai Musairo yang kaya mineral.',
+        ],
+        'achievements' => [
+            'title' => 'Pencapaian Kami',
+            'subtitle' => 'Rekam jejak terbukti dalam keunggulan operasi pertambangan berkelanjutan dan pengembangan masyarakat.',
+        ],
+        'location' => [
+            'header' => 'LOKASI KAMI',
+            'title' => 'Lokasi Pertambangan Strategis',
+            'description_part1' => 'PT Kristalin Ekalestari melakukan eksplorasi emas di sepanjang Sungai Musairo, di Distrik Makimi, Nabire, Papua. Lokasi eksplorasi mencakup area sepanjang 60 km menuju kota Nabire di sebelah timur. Lokasi kami dapat dijangkau dengan transportasi darat selama 1,5 hingga 2 jam, hingga mencapai Desa Legari/SP-1, kemudian menggunakan kendaraan 4x4 khusus sepanjang Sungai Musairo selama 10 km yang memakan waktu sekitar 0,5 jam.',
+            'mining_area_details' => [
+                'title' => 'Detail Area Pertambangan',
+                'total_area_label' => 'Total Area',
+                'total_area_value' => '4.200 Hektar',
+                'distance_label' => 'Jarak dari Nabire',
+                'distance_value' => '60 km',
+                'land_transport_label' => 'Transportasi Darat',
+                'land_transport_value' => '1,5 - 2 Jam',
+                'river_access_label' => 'Akses Sungai',
+                'river_access_value' => '10 km (30 menit)',
+            ],
+            'mineral_resources' => [
+                'title' => 'Sumber Daya Mineral',
+                'description' => 'Berdasarkan observasi geologis permukaan dan konstruksi sumur uji serta pengeboran yang dilakukan oleh tim eksplorasi internal kami, area potensial mencakup 4.200 hektar dengan sumber daya mineral terindikasi yang signifikan.',
+                'total_resources' => 'Ton AU (Total Sumber Daya)',
+                'ready_to_mine' => 'Ton AU (Siap Ditambang)',
+            ],
+            'map_caption' => 'Cekungan Sungai Musairo, Distrik Makimi, Nabire, Papua',
+        ],
+        'alluvial_mining' => [
+            'title' => 'PERTAMBANGAN EMAS ALUVIAL',
+            'subtitle' => 'Operasi pertambangan berkelanjutan di wilayah Papua yang kaya mineral',
+            'content' => [
+                'paragraph1' => 'Provinsi Papua di Indonesia kaya akan sumber daya alam. Papua bergabung dengan Republik Indonesia pada 1 Mei 1963 dengan total area 404.669 kilometer persegi, dan hanya dihuni oleh 7.310.000 penduduk, sekitar 18 orang per kilometer persegi. Kota Timika yang terletak di distrik Mimika mendominasi area tersebut, di mana PT Freeport Indonesia, perusahaan pertambangan terbesar dengan output emas dan perak terbanyak di negara ini berada.',
+                'paragraph2' => 'Selain dari Mimika, yang juga terletak di Nabire adalah situs pertambangan emas aluvial. Sebagai distrik yang baru didirikan, area tersebut mengandung tingkat mineral yang tinggi, terutama emas. PT Kristalin Ekalestari memasuki sektor pertambangan emas di Nabire pada tahun 2007, memiliki otoritas untuk pertambangan emas dan eksplorasi untuk 5000 hektar tanah di sekitar desa Nifase, sepanjang sungai musairo, Nabire, Papua.',
+                'paragraph3' => 'Pada tahun 2010, otoritas untuk menambang berubah menjadi lisensi pertambangan untuk eksplorasi. Selain itu, pada tahun 2011, PT Kristalin Ekalestari juga diberikan lisensi pertambangan untuk produksi operasional untuk 198 hektar di desa Makimi. Untuk melakukan pertambangan massal untuk emas aluvial, PT Kristalin Ekalestari bekerja sama dengan investor lokal dan asing untuk mengoptimalkan sektor pertambangan, dengan tujuan mulia untuk meningkatkan ekonomi lokal dan nasional.',
+            ],
+            'current_operations' => [
+                'title' => 'Operasi Saat Ini',
+                'exploration' => 'Eksplorasi emas di Nabire, Papua',
+                'processing' => 'Pengolahan emas di Nabire, Papua',
+                'exploration_area' => '5.000 Ha',
+                'processing_area' => '198 Ha',
+            ],
+            'economic_impact' => [
+                'title' => 'Dampak Ekonomi',
+                'description' => 'Mineral emas memiliki peran penting dalam meningkatkan ekonomi negara. PT Kristalin Ekalestari bertujuan untuk berkontribusi kepada pemerintah daerah, mengoptimalkan ekonomi daerah yang kurang berkembang, dan mendukung situs pertambangan potensial di Nabire, Papua.',
+            ],
+            'stats' => [
+                'est_year' => 'Tahun Berdiri',
+                'years_exp' => 'Tahun Pengalaman',
+            ],
+            'timeline' => [
+                'title' => 'Timeline',
+                'mining_authority' => 'Otoritas pertambangan diberikan',
+                'exploration_license' => 'Lisensi eksplorasi',
+                'production_license' => 'Lisensi produksi',
+            ],
+        ],
+        'achievements' => [
+            'title' => 'Pencapaian Kami',
+            'subtitle' => 'Rekam jejak terbukti dalam keunggulan operasi pertambangan berkelanjutan dan pengembangan masyarakat.',
+            'years_experience' => [
+                'value' => '18+',
+                'label' => 'Tahun Pengalaman',
+                'description' => 'Operasi pertambangan terbukti dengan praktik berkelanjutan',
+            ],
+            'mining_sites' => [
+                'value' => '12',
+                'label' => 'Lokasi Tambang',
+                'description' => 'Lokasi aktif di seluruh wilayah Papua',
+            ],
+            'gold_reserves' => [
+                'value' => '46,4T',
+                'label' => 'Cadangan Emas',
+                'description' => 'Ton sumber daya mineral terbukti yang diidentifikasi',
+            ],
+            'success_rate' => [
+                'value' => '99%',
+                'label' => 'Tingkat Keberhasilan',
+                'description' => 'Penyelesaian proyek dan kepatuhan keselamatan',
+            ],
+        ],
+        'community_impact' => [
+            'title' => 'Dampak Masyarakat',
+            'subtitle' => 'Menciptakan perubahan bermakna melalui pembangunan berkelanjutan dan pemberdayaan masyarakat',
+            'community_development_tag' => 'Pengembangan Masyarakat',
+            'empowering_title' => 'Memberdayakan Masyarakat Lokal',
+            'empowering_description' => 'Selain kegiatan pertambangan emas skala besar, PT Kristalin Ekalestari juga mendukung bisnis pertambangan emas masyarakat lokal. Kolaborasi dengan masyarakat lokal yang memiliki hak adat ini bertujuan untuk meningkatkan komoditas emas lokal. Pertambangan lokal didukung dan dilatih untuk memastikan pengolahan, efektivitas, dan efisiensi yang prima.',
+            'stats' => [
+                'miners_trained' => [
+                    'value' => '350+',
+                    'label' => 'Penambang Terlatih',
+                ],
+                'success_rate' => [
+                    'value' => '95%',
+                    'label' => 'Tingkat Keberhasilan',
+                ],
+                'villages' => [
+                    'value' => '12',
+                    'label' => 'Desa',
+                ],
+                'employment' => [
+                    'value' => '750+',
+                    'label' => 'Lapangan Kerja',
+                    'description' => 'Pekerjaan yang diciptakan untuk komunitas lokal',
+                ],
+                'training' => [
+                    'value' => '350+',
+                    'label' => 'Pelatihan',
+                    'description' => 'Orang yang dilatih keterampilan pertambangan',
+                ],
+                'environment' => [
+                    'value' => '200+',
+                    'label' => 'Lingkungan',
+                    'description' => 'Hektar lahan yang dipulihkan',
+                ],
+                'healthcare' => [
+                    'value' => '8',
+                    'label' => 'Kesehatan',
+                    'description' => 'Fasilitas medis yang didirikan',
+                ],
+            ],
+            'sustainable_communities' => [
+                'title' => 'Membangun Masyarakat Berkelanjutan',
+                'description' => 'Komitmen kami terhadap pengembangan masyarakat melampaui operasi pertambangan. Kami mengadvokasi penambang lokal untuk mendapatkan lisensi yang tepat dan mengoptimalkan komoditas emas melalui praktik berkelanjutan, meningkatkan standar hidup di Nabire, Papua.',
+                'partner_villages' => [
+                    'value' => '25+',
+                    'label' => 'Desa Mitra',
+                ],
+                'active_programs' => [
+                    'value' => '40+',
+                    'label' => 'Program Aktif',
+                ],
+                'annual_investment' => [
+                    'value' => '$2,5JT',
+                    'label' => 'Investasi Tahunan',
+                ],
+                'lives_improved' => [
+                    'value' => '5000+',
+                    'label' => 'Kehidupan Terdampak',
+                ],
+            ],
+        ],
+    ],
+    'csr' => [
+        'page_title' => 'Tanggung Jawab Sosial Perusahaan - PT Kristalin Ekalestari',
+        'hero' => [
+            'title_line1' => 'Tanggung Jawab Sosial',
+            'title_line2' => 'Perusahaan',
+            'description' => 'Kami percaya bahwa kesuksesan bisnis sejati tidak hanya diukur dari pertumbuhan finansial, tetapi juga dari dampak positif yang kami ciptakan bagi masyarakat dan lingkungan.',
+            'learn_more_btn' => 'Pelajari Lebih Lanjut',
+            'alt_text' => 'Hero CSR',
+        ],
+        'commitment' => [
+            'title_line1' => 'Komitmen Kami terhadap',
+            'title_line2' => 'Masyarakat & Keberlanjutan',
+            'description' => 'PT Kristalin Ekalestari tetap berkomitmen untuk melakukan kegiatan tanggung jawab sosial perusahaan melalui kegiatan pembangunan lainnya seperti membangun lebih banyak klinik, memberikan beasiswa untuk anak-anak lokal dengan prestasi akademik luar biasa untuk mengembangkan Nabire.',
+        ],
+        'programs' => [
+            'title_line1' => 'Program Kami',
+            'title_line2' => 'dalam Aksi',
+            'description' => 'Temukan dampak nyata dari inisiatif CSR kami di seluruh Indonesia',
+        ],
+        'video_section' => [
+            'title' => 'Lihat Dampak Kami dalam Aksi',
+            'description' => 'Saksikan bagaimana kami membuat perbedaan di komunitas-komunitas di seluruh Indonesia',
+            'video_title' => 'Video CSR',
+            'thumbnail_alt' => 'Thumbnail Video CSR',
+        ],
+        'testimonials' => [
+            'title_line1' => 'Apa yang Dikatakan',
+            'title_line2' => 'Orang-Orang',
+            'description' => 'Dengarkan dari mereka yang telah tersentuh kehidupannya',
+            'data' => [
+                [
+                    'name' => 'Maria Wamena',
+                    'role' => 'Pemimpin Komunitas, Papua',
+                    'quote' => 'Dukungan dari PT Kristalin Ekalestari sangat luar biasa. Komunitas kami sekarang memiliki akses yang lebih baik terhadap kebutuhan dasar.',
+                ],
+                [
+                    'name' => 'Ahmad Saputra',
+                    'role' => 'Kepala Desa, Poso',
+                    'quote' => 'Program CSR ini telah membuat perbedaan nyata dalam kehidupan masyarakat kami. Kami bersyukur atas dukungan berkelanjutan mereka.',
+                ],
+                [
+                    'name' => 'Sarah Numberi',
+                    'role' => 'Guru, Nabire',
+                    'quote' => 'Dukungan pendidikan dan perlengkapan telah membantu anak-anak kami belajar lebih baik. Terima kasih telah percaya pada masa depan kami.',
+                ],
+            ],
+        ],
+        'gallery_sections' => [
+            [
+                'title' => 'Kegiatan CSR 2025 - Update Terbaru',
+                'description' => 'Kegiatan tanggung jawab sosial perusahaan terbaru oleh PT Kristalin Ekalestari termasuk distribusi makanan, pengembangan infrastruktur, dan program pemberdayaan masyarakat.',
+            ],
+            [
+                'title' => 'Program Pengembangan Masyarakat 2025',
+                'description' => 'Program pengembangan masyarakat komprehensif termasuk pelatihan komputer, bantuan peralatan musik, pelatihan pertanian organik, dan pembangunan taman bermain anak-anak.',
+            ],
+            [
+                'title' => '3.000 Bahan Makanan untuk Masyarakat Poso',
+                'description' => 'PT Kristalin Ekalestari mendistribusikan 3.000 bahan makanan untuk membantu masyarakat Poso yang membutuhkan, sebagai bentuk tanggung jawab sosial perusahaan.',
+            ],
+            [
+                'title' => 'Kegiatan CSR untuk Papua',
+                'description' => 'Berbagai kegiatan sosial untuk masyarakat Papua, mulai dari bantuan pangan, pendidikan, hingga dukungan untuk kegiatan olahraga dan sosial.',
+            ],
+            [
+                'title' => 'Distribusi Makanan untuk Karyawan \'Menara 165\'',
+                'description' => 'Distribusi paket makanan kepada karyawan Menara 165 sebagai bentuk dukungan perusahaan di masa-masa sulit.',
+            ],
+            [
+                'title' => 'Distribusi Makanan untuk Papua',
+                'description' => 'Distribusi bantuan pangan dan kebutuhan pokok untuk masyarakat Papua di berbagai desa dan wilayah.',
+            ],
+        ],
+        'csr_activity_label' => 'Kegiatan CSR',
+    ],
+    'contact' => [
+        'page_title' => 'Hubungi Kami - PT Kristalin Ekalestari',
+        'hero' => [
+            'title_line1' => 'Hubungi',
+            'title_line2' => 'Kami',
+            'description' => 'Temukan informasi lebih lanjut tentang Kristalin Ekalestari',
+        ],
+        'form' => [
+            'labels' => [
+                'full_name' => 'Nama Lengkap',
+                'email' => 'Email',
+                'phone' => 'Telepon',
+                'subject' => 'Subjek',
+                'attachment' => 'Lampiran',
+                'inquiry' => 'Pertanyaan',
+                'required' => '*',
+                'captcha' => 'Saya bukan robot',
+            ],
+            'placeholders' => [
+                'name' => 'Masukkan Nama',
+                'email' => 'Masukkan Email',
+                'phone' => 'Masukkan Nomor Telepon (opsional)',
+                'inquiry' => 'Tulis pertanyaan Anda di sini',
+            ],
+            'subject_options' => [
+                'select' => 'Pilih Subjek',
+                'general' => 'Umum',
+                'partnership' => 'Kemitraan',
+                'csr' => 'CSR',
+                'career' => 'Karir',
+            ],
+            'file_upload' => [
+                'drag_text' => 'Klik atau seret file di sini (opsional)',
+                'file_types' => 'PDF, JPG, PNG, PPT (maks 10MB)',
+                'remove' => 'Hapus',
+                'upload_label' => 'Unggah file',
+            ],
+            'buttons' => [
+                'submit' => 'Kirim Pertanyaan',
+                'submitting' => 'Mengirim...',
+                'reset' => 'Reset',
+            ],
+            'validation' => [
+                'name_required' => 'Nama wajib diisi',
+                'email_required' => 'Email wajib diisi',
+                'email_valid' => 'Email yang valid diperlukan',
+                'subject_required' => 'Subjek wajib diisi',
+                'inquiry_required' => 'Pesan wajib diisi',
+                'file_type_error' => 'Jenis file tidak diizinkan.',
+                'file_size_error' => 'Ukuran file harus kurang dari 10MB.',
+            ],
+            'messages' => [
+                'success' => '✨ Pesan Anda telah berhasil dikirim! Kami akan menghubungi Anda dalam 24 jam.',
+                'error' => 'Gagal mengirim pesan.',
+            ],
+        ],
+        'contact_info' => [
+            'header' => 'HUBUNGI KAMI',
+            'title' => 'Jangan Ragu Untuk Menghubungi Kami',
+            'phone' => 'Telepon',
+            'email' => 'Email',
+            'address' => 'Alamat',
+        ],
+        'image_alt' => 'Menara 165',
     ],
 
     'news' => [
@@ -1092,10 +2111,10 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
                 'metrics' => ['rumah' => '1 Unit', 'lokasi' => 'Desa Nifasi'],
             ],
             7 => [
-                'title' => 'Kristalin Eka Lestari Meraih Rekor Produksi Emas dengan Teknologi Ekstraksi Revolusioner',
+                'title' => 'Kristalin Ekalestari Meraih Rekor Produksi Emas dengan Teknologi Ekstraksi Revolusioner',
                 'subtitle' => 'Terobosan praktik penambangan berkelanjutan menetapkan standar industri baru',
                 'excerpt' => 'Metode ekstraksi revolusioner meningkatkan hasil emas sebesar 40% sambil mengurangi dampak lingkungan melalui praktik penambangan berkelanjutan dan implementasi teknologi canggih.',
-                'content' => 'Keunggulan penambangan adalah salah satu pilar utama untuk memastikan pertumbuhan berkelanjutan dan tanggung jawab lingkungan di sektor pertambangan Indonesia. Kristalin Eka Lestari telah berhasil mengimplementasikan teknologi ekstraksi canggih yang tidak hanya meningkatkan efisiensi produksi emas tetapi juga mempertahankan standar lingkungan yang ketat. Terobosan terbaru kami dalam penambangan emas berkelanjutan telah menghasilkan peningkatan hasil ekstraksi sebesar 40% sambil mengurangi konsumsi air sebesar 35% dan meminimalkan jejak karbon melalui integrasi energi terbarukan.',
+                'content' => 'Keunggulan penambangan adalah salah satu pilar utama untuk memastikan pertumbuhan berkelanjutan dan tanggung jawab lingkungan di sektor pertambangan Indonesia. Kristalin Ekalestari telah berhasil mengimplementasikan teknologi ekstraksi canggih yang tidak hanya meningkatkan efisiensi produksi emas tetapi juga mempertahankan standar lingkungan yang ketat. Terobosan terbaru kami dalam penambangan emas berkelanjutan telah menghasilkan peningkatan hasil ekstraksi sebesar 40% sambil mengurangi konsumsi air sebesar 35% dan meminimalkan jejak karbon melalui integrasi energi terbarukan.',
                 'author' => 'Tim Operasi Pertambangan',
                 'type' => 'Terobosan Teknologi',
                 'metrics' => ['dampak' => 'Peningkatan Hasil 40%', 'durasi' => 'Pengembangan 18 Bulan'],
@@ -1180,5 +2199,9 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         'no_results_title' => 'Tidak Ada Hasil',
         'no_results_hint' => 'Coba gunakan kata kunci yang berbeda atau lebih spesifik',
         'try_again' => 'Coba Lagi',
+    ],
+
+    'footer' => [
+        'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
     ],
 ];

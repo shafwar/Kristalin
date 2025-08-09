@@ -15,8 +15,34 @@ return [
             'apply' => 'Apply Now',
         ],
         'overview' => [
+            'benefits' => [
+                'health_insurance' => [
+                    'title' => 'Health Insurance',
+                    'description' => 'Comprehensive health coverage for you and your family',
+                ],
+                'competitive_salary' => [
+                    'title' => 'Competitive Salary',
+                    'description' => 'Attractive compensation package with performance bonuses',
+                ],
+                'training_development' => [
+                    'title' => 'Training & Development',
+                    'description' => 'Continuous learning opportunities and career growth',
+                ],
+                'housing_allowance' => [
+                    'title' => 'Housing Allowance',
+                    'description' => 'Housing support for employees working in remote locations',
+                ],
+                'transportation' => [
+                    'title' => 'Transportation',
+                    'description' => 'Transportation facilities for work-related travel',
+                ],
+                'performance_bonus' => [
+                    'title' => 'Performance Bonus',
+                    'description' => 'Annual performance-based bonuses and incentives',
+                ],
+            ],
             'why_join' => [
-                'title' => 'Why Join Kristalin Eka Lestari?',
+                'title' => 'Why Join Kristalin Ekalestari?',
                 'subtitle' => 'Discover the benefits of being part of our growing team',
             ],
             'culture' => [
@@ -44,10 +70,102 @@ return [
         ],
         'positions' => [
             'title' => 'Open Positions',
-            'subtitle' => 'Explore current job opportunities at Kristalin Eka Lestari',
+            'subtitle' => 'Explore current job opportunities at Kristalin Ekalestari',
             'requirements' => 'Requirements',
             'apply' => 'Apply Now',
             'save' => 'Save Position',
+        ],
+        'job_positions' => [
+            'mining_engineer' => [
+                'title' => 'Mining Engineer',
+                'department' => 'Engineering',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '3-5 years',
+                'description' => 'Responsible for planning and supervising mining operations, ensuring safety and efficiency in gold extraction processes.',
+                'requirements' => [
+                    '1' => "Bachelor's degree in Mining Engineering",
+                    '2' => 'Experience in open-pit mining operations',
+                    '3' => 'Knowledge of mining software and equipment',
+                    '4' => 'Strong analytical and problem-solving skills',
+                    '5' => 'Safety certification preferred',
+                ],
+            ],
+            'geologist' => [
+                'title' => 'Geologist',
+                'department' => 'Exploration',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '2-4 years',
+                'description' => 'Conduct geological surveys and analysis to identify potential gold deposits and assess mining feasibility.',
+                'requirements' => [
+                    '1' => "Bachelor's degree in Geology or related field",
+                    '2' => 'Experience in mineral exploration',
+                    '3' => 'Proficiency in geological mapping software',
+                    '4' => 'Field work experience in remote locations',
+                    '5' => 'Knowledge of gold deposit geology',
+                ],
+            ],
+            'environmental_specialist' => [
+                'title' => 'Environmental Specialist',
+                'department' => 'Environmental',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '2-3 years',
+                'description' => 'Ensure compliance with environmental regulations and implement sustainable mining practices.',
+                'requirements' => [
+                    '1' => "Bachelor's degree in Environmental Science",
+                    '2' => 'Experience in environmental impact assessment',
+                    '3' => 'Knowledge of environmental regulations',
+                    '4' => 'Experience in mining industry preferred',
+                    '5' => 'Strong communication skills',
+                ],
+            ],
+            'safety_officer' => [
+                'title' => 'Safety Officer',
+                'department' => 'Health & Safety',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '3-5 years',
+                'description' => 'Develop and implement safety protocols to ensure workplace safety and compliance with regulations.',
+                'requirements' => [
+                    '1' => "Bachelor's degree in Occupational Safety or related field",
+                    '2' => 'Safety certification (K3, NEBOSH, or equivalent)',
+                    '3' => 'Experience in mining safety management',
+                    '4' => 'Knowledge of safety regulations and standards',
+                    '5' => 'Strong leadership and training skills',
+                ],
+            ],
+            'community_relations_officer' => [
+                'title' => 'Community Relations Officer',
+                'department' => 'CSR',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '2-4 years',
+                'description' => 'Build and maintain positive relationships with local communities and stakeholders.',
+                'requirements' => [
+                    '1' => "Bachelor's degree in Social Sciences or related field",
+                    '2' => 'Experience in community development',
+                    '3' => 'Strong interpersonal and communication skills',
+                    '4' => 'Knowledge of local culture and customs',
+                    '5' => 'Experience in stakeholder engagement',
+                ],
+            ],
+            'administrative_assistant' => [
+                'title' => 'Administrative Assistant',
+                'department' => 'Administration',
+                'location' => 'Nabire, Papua',
+                'type' => 'Full-time',
+                'experience' => '1-2 years',
+                'description' => 'Provide administrative support to various departments and ensure smooth office operations.',
+                'requirements' => [
+                    '1' => 'High school diploma or equivalent',
+                    '2' => 'Proficiency in Microsoft Office',
+                    '3' => 'Strong organizational skills',
+                    '4' => 'Good communication skills',
+                    '5' => 'Experience in office administration preferred',
+                ],
+            ],
         ],
         'apply' => [
             'title' => 'Apply for a Position',
@@ -83,12 +201,12 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. All rights reserved.',
+            'copyright' => '© 2025 PT Kristalin Ekalestari. All rights reserved.',
             'contact_info' => 'For questions about careers, contact us at hr@kristalin.com',
         ],
     ],
     'welcome' => [
-        'title' => 'Welcome to Kristalin Eka Lestari',
+        'title' => 'Welcome to Kristalin Ekalestari',
         'subtitle' => 'Excellence in Mining and Trading',
         'description' => 'Leading the industry with sustainable mining practices and reliable trading solutions for precious metals and natural resources.',
         'hero_button_cta' => 'Discover Our Services',
@@ -140,7 +258,7 @@ return [
             'find_out_more' => 'Find out more →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari. All rights reserved.',
+            'copyright' => '© 2025 PT Kristalin Ekalestari. All rights reserved.',
         ],
         'feedback' => [
             'button_text' => 'Send Feedback',
@@ -219,15 +337,15 @@ return [
 
 
     'about' => [
-        'title' => 'About Kristalin Eka Lestari',
+        'title' => 'About Kristalin Ekalestari',
         'description' => 'Learn more about our company, history, and commitment to excellence in the mining and trading industry.',
         'section_history' => 'Our History',
         'section_mission' => 'Our Mission',
         'section_values' => 'Our Values',
 
-        'page_title' => 'About Kristalin Eka Lestari',
+        'page_title' => 'About Kristalin Ekalestari',
         'main_heading' => 'Building Indonesia\'s Mining Future Since 1989',
-        'company_intro' => 'Established as PT Kristalin Eka Lestari in 1989, we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest shareholder actively operates in the mining industry, specifically in exploration and gold mining operational production sector located in Nabire, Papua.',
+        'company_intro' => 'Established as PT Kristalin Ekalestari in 1989, we remain a privately owned company headquartered in Jakarta. Our founder, chairman and largest shareholder actively operates in the mining industry, specifically in exploration and gold mining operational production sector located in Nabire, Papua.',
 
         'company_stats' => [
             'founded' => 'Founded',
@@ -248,8 +366,8 @@ return [
             'company_foundation' => [
                 'title' => 'Company Foundation',
                 'subtitle' => 'Our Beginning',
-                'content' => 'Established in 1989, PT Kristalin Eka Lestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
-                'content' => 'Established in 1989, PT Kristalin Eka Lestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
+                'content' => 'Established in 1989, PT Kristalin Ekalestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
+                'content' => 'Established in 1989, PT Kristalin Ekalestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
             ],
             'global_partnerships' => [
                 'title' => 'Global Partnerships',
@@ -293,8 +411,8 @@ return [
             ],
             'future_vision' => [
                 'title' => 'Future Vision',
-                'content' => 'PT Kristalin Eka Lestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
-                'content' => 'PT Kristalin Eka Lestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
+                'content' => 'PT Kristalin Ekalestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
+                'content' => 'PT Kristalin Ekalestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
             ],
         ],
 
@@ -417,8 +535,8 @@ return [
             'natural_resources' => [
                 'title' => 'Natural Resources',
                 'subtitle' => 'Rich Heritage',
-                'content' => 'PT Kristalin Eka Lestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
-                'content' => 'PT Kristalin Eka Lestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
+                'content' => 'PT Kristalin Ekalestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
+                'content' => 'PT Kristalin Ekalestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
             ],
             'strategic_partnerships' => [
                 'title' => 'Strategic Partnerships',
@@ -532,8 +650,8 @@ return [
             '2020-2025' => [
                 '0' => [
                     'title' => 'Record Gold Production Achievement',
-                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Eka Lestari\'s position as a leading gold mining company in Indonesia.',
-                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Eka Lestari\'s position as a leading gold mining company in Indonesia.',
+                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Ekalestari\'s position as a leading gold mining company in Indonesia.',
+                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Ekalestari\'s position as a leading gold mining company in Indonesia.',
                 ],
                 '1' => [
                     'title' => 'Expansion of Sustainable Gold Mining Operations',
@@ -607,8 +725,8 @@ return [
                 ],
                 '1' => [
                     'title' => 'Production Milestone Achievement',
-                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Eka Lestari as major player in Indonesian mining industry.',
-                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Eka Lestari as major player in Indonesian mining industry.',
+                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Ekalestari as major player in Indonesian mining industry.',
+                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Ekalestari as major player in Indonesian mining industry.',
                 ],
                 '2' => [
                     'title' => 'Local Partnership Development',
@@ -660,8 +778,8 @@ return [
                 ],
                 '3' => [
                     'title' => 'Company Establishment',
-                    'description' => 'PT Kristalin Eka Lestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
-                    'description' => 'PT Kristalin Eka Lestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
+                    'description' => 'PT Kristalin Ekalestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
+                    'description' => 'PT Kristalin Ekalestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
                 ],
             ],
         ],
@@ -774,7 +892,7 @@ return [
         'hero_title_1' => 'Our',
         'hero_title_2' => 'Portfolio',
         'hero_subtitle' => 'MINING THE FUTURE',
-        'hero_description' => 'PT Kristalin Eka Lestari is committed to sustainable gold mining, innovation, and empowering Indonesia\'s future.',
+        'hero_description' => 'PT Kristalin Ekalestari is committed to sustainable gold mining, innovation, and empowering Indonesia\'s future.',
         'explore_operations_btn' => 'Explore Operations',
         'values' => [
             'integrity' => [
@@ -788,8 +906,8 @@ return [
         ],
         'company_info' => [
             'company_name_label' => 'Company Name',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
-            'company_name_value' => 'PT Kristalin Eka Lestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
+            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => 'Business Field',
             'business_field_value' => 'Gold Mining & Mineral Processing',
             'established_label' => 'Established',
@@ -799,8 +917,8 @@ return [
             'business_license_label' => 'Business License',
             'business_license_value' => 'IUP Operation Production No. 561/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Eka Lestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
-        'company_description' => 'PT Kristalin Eka Lestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
+        'company_description' => 'PT Kristalin Ekalestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
+        'company_description' => 'PT Kristalin Ekalestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
         'company_profile' => [
             'header' => 'COMPANY PROFILE',
             'title_line1' => 'Professional Gold Mining',
@@ -1150,8 +1268,8 @@ return [
         'hero' => [
             'title_line1' => 'Contact',
             'title_line2' => 'Us',
-            'description' => 'Find out more information about Kristalin Eka Lestari',
-            'description' => 'Find out more information about Kristalin Eka Lestari',
+            'description' => 'Find out more information about Kristalin Ekalestari',
+            'description' => 'Find out more information about Kristalin Ekalestari',
         ],
         'form' => [
             'labels' => [
@@ -2001,12 +2119,12 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
                 'metrics' => ['houses' => '1 Unit', 'location' => 'Nifasi Village'],
             ],
             7 => [
-                'title' => 'Kristalin Eka Lestari Achieves Record Gold Production with Revolutionary Extraction Technology',
-                'title' => 'Kristalin Eka Lestari Achieves Record Gold Production with Revolutionary Extraction Technology',
+                'title' => 'Kristalin Ekalestari Achieves Record Gold Production with Revolutionary Extraction Technology',
+                'title' => 'Kristalin Ekalestari Achieves Record Gold Production with Revolutionary Extraction Technology',
                 'subtitle' => 'Breakthrough sustainable mining practices set new industry standards',
                 'excerpt' => 'Revolutionary extraction methods increase gold yield by 40% while reducing environmental impact through sustainable mining practices and cutting-edge technology implementation.',
-                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Eka Lestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
-                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Eka Lestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
+                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Ekalestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
+                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Ekalestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
                 'author' => 'Mining Operations Team',
                 'type' => 'Technology Breakthrough',
                 'metrics' => ['impact' => '40% Yield Increase', 'duration' => '18 Months Development'],

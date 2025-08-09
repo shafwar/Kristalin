@@ -1,12 +1,28 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Careers = () => {
     const { t } = useTranslation();
     const [isLoaded, setIsLoaded] = useState(false);
     const [activeTab, setActiveTab] = useState<'overview' | 'positions' | 'apply'>('overview');
+    const contentRef = useRef<HTMLDivElement | null>(null);
+
+    const goToTab = (tab: 'overview' | 'positions' | 'apply') => {
+        setActiveTab(tab);
+        // Scroll halus ke awal konten dengan offset untuk header sticky
+        requestAnimationFrame(() => {
+            const target = contentRef.current;
+            if (target) {
+                const headerOffset = 173; // kira-kira tinggi header
+                const rect = target.getBoundingClientRect();
+                const top = window.pageYOffset + rect.top - headerOffset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    };
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoaded(true), 100);
@@ -16,98 +32,98 @@ const Careers = () => {
     const jobPositions = [
         {
             id: 1,
-            title: 'Mining Engineer',
-            department: 'Engineering',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '3-5 years',
-            description: 'Responsible for planning and supervising mining operations, ensuring safety and efficiency in gold extraction processes.',
+            title: t('pages.careers.job_positions.mining_engineer.title'),
+            department: t('pages.careers.job_positions.mining_engineer.department'),
+            location: t('pages.careers.job_positions.mining_engineer.location'),
+            type: t('pages.careers.job_positions.mining_engineer.type'),
+            experience: t('pages.careers.job_positions.mining_engineer.experience'),
+            description: t('pages.careers.job_positions.mining_engineer.description'),
             requirements: [
-                "Bachelor's degree in Mining Engineering",
-                'Experience in open-pit mining operations',
-                'Knowledge of mining software and equipment',
-                'Strong analytical and problem-solving skills',
-                'Safety certification preferred',
+                t('pages.careers.job_positions.mining_engineer.requirements.1'),
+                t('pages.careers.job_positions.mining_engineer.requirements.2'),
+                t('pages.careers.job_positions.mining_engineer.requirements.3'),
+                t('pages.careers.job_positions.mining_engineer.requirements.4'),
+                t('pages.careers.job_positions.mining_engineer.requirements.5'),
             ],
         },
         {
             id: 2,
-            title: 'Geologist',
-            department: 'Exploration',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '2-4 years',
-            description: 'Conduct geological surveys and analysis to identify potential gold deposits and assess mining feasibility.',
+            title: t('pages.careers.job_positions.geologist.title'),
+            department: t('pages.careers.job_positions.geologist.department'),
+            location: t('pages.careers.job_positions.geologist.location'),
+            type: t('pages.careers.job_positions.geologist.type'),
+            experience: t('pages.careers.job_positions.geologist.experience'),
+            description: t('pages.careers.job_positions.geologist.description'),
             requirements: [
-                "Bachelor's degree in Geology or related field",
-                'Experience in mineral exploration',
-                'Proficiency in geological mapping software',
-                'Field work experience in remote locations',
-                'Knowledge of gold deposit geology',
+                t('pages.careers.job_positions.geologist.requirements.1'),
+                t('pages.careers.job_positions.geologist.requirements.2'),
+                t('pages.careers.job_positions.geologist.requirements.3'),
+                t('pages.careers.job_positions.geologist.requirements.4'),
+                t('pages.careers.job_positions.geologist.requirements.5'),
             ],
         },
         {
             id: 3,
-            title: 'Environmental Specialist',
-            department: 'Environmental',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '2-3 years',
-            description: 'Ensure compliance with environmental regulations and implement sustainable mining practices.',
+            title: t('pages.careers.job_positions.environmental_specialist.title'),
+            department: t('pages.careers.job_positions.environmental_specialist.department'),
+            location: t('pages.careers.job_positions.environmental_specialist.location'),
+            type: t('pages.careers.job_positions.environmental_specialist.type'),
+            experience: t('pages.careers.job_positions.environmental_specialist.experience'),
+            description: t('pages.careers.job_positions.environmental_specialist.description'),
             requirements: [
-                "Bachelor's degree in Environmental Science",
-                'Experience in environmental impact assessment',
-                'Knowledge of environmental regulations',
-                'Experience in mining industry preferred',
-                'Strong communication skills',
+                t('pages.careers.job_positions.environmental_specialist.requirements.1'),
+                t('pages.careers.job_positions.environmental_specialist.requirements.2'),
+                t('pages.careers.job_positions.environmental_specialist.requirements.3'),
+                t('pages.careers.job_positions.environmental_specialist.requirements.4'),
+                t('pages.careers.job_positions.environmental_specialist.requirements.5'),
             ],
         },
         {
             id: 4,
-            title: 'Safety Officer',
-            department: 'Health & Safety',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '3-5 years',
-            description: 'Develop and implement safety protocols to ensure workplace safety and compliance with regulations.',
+            title: t('pages.careers.job_positions.safety_officer.title'),
+            department: t('pages.careers.job_positions.safety_officer.department'),
+            location: t('pages.careers.job_positions.safety_officer.location'),
+            type: t('pages.careers.job_positions.safety_officer.type'),
+            experience: t('pages.careers.job_positions.safety_officer.experience'),
+            description: t('pages.careers.job_positions.safety_officer.description'),
             requirements: [
-                "Bachelor's degree in Occupational Safety or related field",
-                'Safety certification (K3, NEBOSH, or equivalent)',
-                'Experience in mining safety management',
-                'Knowledge of safety regulations and standards',
-                'Strong leadership and training skills',
+                t('pages.careers.job_positions.safety_officer.requirements.1'),
+                t('pages.careers.job_positions.safety_officer.requirements.2'),
+                t('pages.careers.job_positions.safety_officer.requirements.3'),
+                t('pages.careers.job_positions.safety_officer.requirements.4'),
+                t('pages.careers.job_positions.safety_officer.requirements.5'),
             ],
         },
         {
             id: 5,
-            title: 'Community Relations Officer',
-            department: 'CSR',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '2-4 years',
-            description: 'Build and maintain positive relationships with local communities and stakeholders.',
+            title: t('pages.careers.job_positions.community_relations_officer.title'),
+            department: t('pages.careers.job_positions.community_relations_officer.department'),
+            location: t('pages.careers.job_positions.community_relations_officer.location'),
+            type: t('pages.careers.job_positions.community_relations_officer.type'),
+            experience: t('pages.careers.job_positions.community_relations_officer.experience'),
+            description: t('pages.careers.job_positions.community_relations_officer.description'),
             requirements: [
-                "Bachelor's degree in Social Sciences or related field",
-                'Experience in community development',
-                'Strong interpersonal and communication skills',
-                'Knowledge of local culture and customs',
-                'Experience in stakeholder engagement',
+                t('pages.careers.job_positions.community_relations_officer.requirements.1'),
+                t('pages.careers.job_positions.community_relations_officer.requirements.2'),
+                t('pages.careers.job_positions.community_relations_officer.requirements.3'),
+                t('pages.careers.job_positions.community_relations_officer.requirements.4'),
+                t('pages.careers.job_positions.community_relations_officer.requirements.5'),
             ],
         },
         {
             id: 6,
-            title: 'Administrative Assistant',
-            department: 'Administration',
-            location: 'Nabire, Papua',
-            type: 'Full-time',
-            experience: '1-2 years',
-            description: 'Provide administrative support to various departments and ensure smooth office operations.',
+            title: t('pages.careers.job_positions.administrative_assistant.title'),
+            department: t('pages.careers.job_positions.administrative_assistant.department'),
+            location: t('pages.careers.job_positions.administrative_assistant.location'),
+            type: t('pages.careers.job_positions.administrative_assistant.type'),
+            experience: t('pages.careers.job_positions.administrative_assistant.experience'),
+            description: t('pages.careers.job_positions.administrative_assistant.description'),
             requirements: [
-                'High school diploma or equivalent',
-                'Proficiency in Microsoft Office',
-                'Strong organizational skills',
-                'Good communication skills',
-                'Experience in office administration preferred',
+                t('pages.careers.job_positions.administrative_assistant.requirements.1'),
+                t('pages.careers.job_positions.administrative_assistant.requirements.2'),
+                t('pages.careers.job_positions.administrative_assistant.requirements.3'),
+                t('pages.careers.job_positions.administrative_assistant.requirements.4'),
+                t('pages.careers.job_positions.administrative_assistant.requirements.5'),
             ],
         },
     ];
@@ -115,33 +131,33 @@ const Careers = () => {
     const benefits = [
         {
             icon: '🏥',
-            title: 'Health Insurance',
-            description: 'Comprehensive health coverage for you and your family',
+            title: t('pages.careers.overview.benefits.health_insurance.title'),
+            description: t('pages.careers.overview.benefits.health_insurance.description'),
         },
         {
             icon: '💰',
-            title: 'Competitive Salary',
-            description: 'Attractive compensation package with performance bonuses',
+            title: t('pages.careers.overview.benefits.competitive_salary.title'),
+            description: t('pages.careers.overview.benefits.competitive_salary.description'),
         },
         {
             icon: '📚',
-            title: 'Training & Development',
-            description: 'Continuous learning opportunities and career growth',
+            title: t('pages.careers.overview.benefits.training_development.title'),
+            description: t('pages.careers.overview.benefits.training_development.description'),
         },
         {
             icon: '🏠',
-            title: 'Housing Allowance',
-            description: 'Housing support for employees working in remote locations',
+            title: t('pages.careers.overview.benefits.housing_allowance.title'),
+            description: t('pages.careers.overview.benefits.housing_allowance.description'),
         },
         {
             icon: '🚌',
-            title: 'Transportation',
-            description: 'Transportation facilities for work-related travel',
+            title: t('pages.careers.overview.benefits.transportation.title'),
+            description: t('pages.careers.overview.benefits.transportation.description'),
         },
         {
             icon: '🎯',
-            title: 'Performance Bonus',
-            description: 'Annual performance-based bonuses and incentives',
+            title: t('pages.careers.overview.benefits.performance_bonus.title'),
+            description: t('pages.careers.overview.benefits.performance_bonus.description'),
         },
     ];
 
@@ -171,13 +187,13 @@ const Careers = () => {
                         <p className="mx-auto mb-12 max-w-3xl text-xl text-yellow-100 sm:text-2xl">{t('pages.careers.hero.subtitle')}</p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <button
-                                onClick={() => setActiveTab('positions')}
+                                onClick={() => goToTab('positions')}
                                 className="rounded-lg bg-white px-8 py-3 text-lg font-semibold text-yellow-600 transition-all duration-300 hover:bg-yellow-50 hover:shadow-lg"
                             >
                                 {t('pages.careers.hero.view_positions')}
                             </button>
                             <button
-                                onClick={() => setActiveTab('apply')}
+                                onClick={() => goToTab('apply')}
                                 className="rounded-lg border-2 border-white px-8 py-3 text-lg font-semibold text-white transition-all duration-300 hover:bg-white hover:text-yellow-600"
                             >
                                 {t('pages.careers.hero.apply_now')}
@@ -198,7 +214,7 @@ const Careers = () => {
                         ].map((tab) => (
                             <button
                                 key={tab.id}
-                                onClick={() => setActiveTab(tab.id as any)}
+                                onClick={() => goToTab(tab.id as any)}
                                 className={`rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ${
                                     activeTab === tab.id
                                         ? 'bg-yellow-500 text-white shadow-lg'
@@ -213,7 +229,7 @@ const Careers = () => {
             </section>
 
             {/* Content Sections */}
-            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div ref={contentRef} className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 {/* Overview Tab */}
                 {activeTab === 'overview' && (
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="space-y-16">
@@ -347,7 +363,7 @@ const Careers = () => {
                                         </div>
                                         <div className="flex flex-col gap-2 lg:ml-6">
                                             <button
-                                                onClick={() => setActiveTab('apply')}
+                                                onClick={() => goToTab('apply')}
                                                 className="rounded-lg bg-yellow-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-yellow-600 hover:shadow-lg"
                                             >
                                                 {t('pages.careers.positions.apply')}
@@ -503,12 +519,7 @@ const Careers = () => {
             </div>
 
             {/* Footer */}
-            <footer className="bg-gray-900 px-4 py-8 text-center text-white">
-                <div className="mx-auto max-w-7xl">
-                    <p className="text-sm">{t('pages.careers.footer.copyright')}</p>
-                    <p className="mt-2 text-xs text-gray-400">{t('pages.careers.footer.contact_info')}</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
