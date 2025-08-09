@@ -1,5 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 interface HeaderProps {
@@ -14,9 +14,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const aboutDropdownRef = useRef<HTMLDivElement>(null);
+    const searchRef = useRef<HTMLDivElement>(null);
 
     // Handle scroll effect for transparent/sticky behavior
     useEffect(() => {
@@ -40,6 +44,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
                 setAboutDropdownOpen(false);
             }
+            if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+                setSearchOpen(false);
+            }
             if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
                 const hamburgerButton = (event.target as Element).closest('[aria-label*="menu"]');
                 if (!hamburgerButton) {
@@ -47,7 +54,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 }
             }
         }
-        if (dropdownOpen || aboutDropdownOpen || mobileMenuOpen) {
+        if (dropdownOpen || aboutDropdownOpen || mobileMenuOpen || searchOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         } else {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -55,7 +62,25 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [dropdownOpen, aboutDropdownOpen, mobileMenuOpen]);
+    }, [dropdownOpen, aboutDropdownOpen, mobileMenuOpen, searchOpen]);
+
+    // Close search on Escape
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setSearchOpen(false);
+            if (e.key === 'Enter' && searchOpen) {
+                e.preventDefault();
+                if (searchQuery.trim() !== '') {
+                    router.get('/search', { q: searchQuery.trim() }, { preserveScroll: true });
+                    setSearchOpen(false);
+                }
+            }
+        };
+        if (searchOpen) {
+            window.addEventListener('keydown', onKey);
+        }
+        return () => window.removeEventListener('keydown', onKey);
+    }, [searchOpen, searchQuery]);
 
     // Close mobile menu when window resizes to desktop
     useEffect(() => {
@@ -353,16 +378,69 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         </div>
                     )}
                 </div>
-                {/* Search Icon */}
-                <button
-                    className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
-                    aria-label={t('common.search')}
-                >
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
-                        <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                </button>
+                {/* Search Icon + Dropdown */}
+                <div className="relative" ref={searchRef}>
+                    <button
+                        type="button"
+                        onClick={() => setSearchOpen((o) => !o)}
+                        className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
+                        aria-label={t('common.search')}
+                    >
+                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" />
+                        </svg>
+                    </button>
+
+                    {/* Dropdown search bar */}
+                    <div
+                        className={`absolute right-0 top-full mt-2 w-[320px] max-w-[80vw] transform transition-all duration-300 ${
+                            searchOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
+                        }`}
+                    >
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                if (searchQuery.trim() !== '') {
+                                    setIsSearching(true);
+                                    router.get('/search', { q: searchQuery.trim() }, { preserveScroll: true });
+                                    setTimeout(() => setIsSearching(false), 1000);
+                                    setSearchOpen(false);
+                                }
+                            }}
+                            className="relative group"
+                        >
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 blur-sm opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse" />
+                            <div className="relative flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-4 py-2 shadow-xl transition-all duration-300 hover:border-amber-300 focus-within:border-amber-400 focus-within:scale-[1.02]">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    className={`transition-all duration-300 ${
+                                        isSearching ? 'text-amber-500 animate-spin' : 'text-gray-400 group-focus-within:text-amber-500'
+                                    }`}
+                                >
+                                    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                                    <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" />
+                                </svg>
+                                <input
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder={`${t('common.search')}...`}
+                                    className="w-full border-none bg-white text-gray-800 outline-none placeholder:text-gray-400"
+                                />
+                                <button
+                                    type="submit"
+                                    className="relative overflow-hidden inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg"
+                                >
+                                    <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-white transition-transform duration-700 group-hover:translate-x-full" />
+                                    <span className="relative">{t('common.search')}</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             {/* Mobile Menu */}
@@ -404,6 +482,45 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     ZH
                                 </button>
                             </div>
+                        </div>
+
+                        {/* Mobile Search (moved above menu) */}
+                        <div className="pt-3">
+                            <form
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    if (searchQuery.trim() !== '') {
+                                        router.get('/search', { q: searchQuery.trim() }, { preserveScroll: true });
+                                        setMobileMenuOpen(false);
+                                    }
+                                }}
+                                className="relative group"
+                            >
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 blur-[6px] opacity-15 group-hover:opacity-25 transition-opacity duration-300" />
+                                <div className="relative flex items-center gap-2 rounded-xl border-2 border-gray-300 bg-white/90 px-3 py-2 shadow-md backdrop-blur-sm transition-all duration-300 hover:border-amber-300 focus-within:border-amber-400">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-400">
+                                        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                                        <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" />
+                                    </svg>
+                                    <input
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder={`${t('common.search')}...`}
+                                        className="min-w-0 flex-1 border-none bg-transparent text-gray-800 outline-none placeholder:text-gray-400 text-base"
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="relative inline-flex h-10 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500 px-3 min-[380px]:px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg shrink-0"
+                                    >
+                                        <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-full" />
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mr-0 min-[380px]:mr-2">
+                                            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                                            <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" />
+                                        </svg>
+                                        <span className="hidden min-[380px]:inline">{t('common.search')}</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                         {/* Mobile Navigation Items */}
@@ -449,25 +566,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             </div>
                         ))}
 
-                        {/* Mobile Search */}
-                        <div className="pt-4">
-                            <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-yellow-600 to-yellow-500 py-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-500 hover:to-yellow-400">
-                                <svg
-                                    width="18"
-                                    height="18"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <circle cx="11" cy="11" r="8" />
-                                    <path d="M21 21l-4.35-4.35" />
-                                </svg>
-                                {t('common.search')}
-                            </button>
-                        </div>
+                        {/* Mobile Search (bottom) removed */}
                     </div>
                 </div>
             </>

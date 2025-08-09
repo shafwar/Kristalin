@@ -93,6 +93,7 @@ return [
         'hero_button_cta' => '了解我们的服务',
         'hero_button_contact' => '立即联系我们',
 
+
         // Hero Content Sets
         'content_set_1' => [
             'title1' => '介绍',
@@ -105,12 +106,14 @@ return [
             'subtitle' => '自1989年以来，致力于在巴布亚可持续开采黄金。',
         ],
 
+
         // Buttons
         'buttons' => [
             'learn_more' => '了解更多',
             'send_feedback' => '发送反馈',
             'discover_more' => '了解更多 →',
         ],
+
 
         // Sections
         'csr' => [
@@ -148,12 +151,12 @@ return [
             'department_label' => '部门',
             'priority_label' => '优先级',
             'subject_label' => '主题',
-            'subject_placeholder' => '问题简要概述。。。',
+            'subject_placeholder' => '问题简要概述...',
             'description_label' => '描述',
             'date_label' => '事件日期',
             'files_label' => '支持文件',
             'submit_button' => '提交报告',
-            'track_input_placeholder' => '输入票据号码。。。',
+            'track_input_placeholder' => '输入票据号码...',
             'track_button' => '跟踪状态',
             'track_title' => '跟踪报告状态',
             'track_subtitle' => '输入您的票据号码以查看报告状态',
@@ -164,11 +167,11 @@ return [
             'portfolio_alt' => '我们的投资组合',
             'business_activities_alt' => '业务活动',
             'optional' => '（可选）',
-            'select_category' => '选择类别。。。',
-            'select_department' => '选择部门。。。',
-            'select_priority' => '选择优先级。。。',
+            'select_category' => '选择类别...',
+            'select_department' => '选择部门...',
+            'select_priority' => '选择优先级...',
             'anonymous_notice' => '匿名报告：您的身份受到完全保护。系统不会存储任何可以追溯到个人用户的数据。',
-            'description_placeholder' => '请详细描述问题，包括事件经过、影响以及如有建议的解决方案。。。',
+            'description_placeholder' => '请详细描述问题，包括事件经过、影响以及如有建议的解决方案...',
             'upload_text' => '点击上传文件',
             'upload_format' => 'JPG, PNG, PDF, DOC (最大 10MB)',
             'files_selected' => '个文件已选择',
@@ -213,6 +216,7 @@ return [
         ],
     ],
 
+
     'about' => [
         'title' => '关于 Kristalin Eka Lestari',
         'description' => '了解更多关于我们公司、历史和对采矿贸易行业卓越的承诺。',
@@ -231,16 +235,19 @@ return [
             'partnerships' => '合作伙伴',
         ],
 
+
         'company_stats_values' => [
             'location' => '雅加达',
             'operations' => '纳比雷, 巴布亚',
             'partnerships' => '中国和韩国',
         ],
 
+
         'sections' => [
             'company_foundation' => [
                 'title' => '公司成立',
                 'subtitle' => '我们的开始',
+                'content' => '成立于1989年，PT Kristalin Eka Lestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
                 'content' => '成立于1989年，PT Kristalin Eka Lestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
             ],
             'global_partnerships' => [
@@ -265,6 +272,7 @@ return [
             ],
         ],
 
+
         'additional_content' => [
             'our_operations' => [
                 'title' => '我们的运营',
@@ -285,8 +293,10 @@ return [
             'future_vision' => [
                 'title' => '未来愿景',
                 'content' => 'PT Kristalin Eka Lestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
+                'content' => 'PT Kristalin Eka Lestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
             ],
         ],
+
 
         'cta' => [
             'sustainable_growth_title' => '致力于可持续发展',
@@ -295,24 +305,29 @@ return [
             'contact_us_btn' => '联系我们',
         ],
 
+
         'alt_texts' => [
             'mining_operations' => '采矿运营',
         ],
     ],
 
+
     'vision_mission' => [
         'title' => '我们的愿景与使命',
         'description' => '指导我们对卓越、可持续发展和社区繁荣承诺的指导原则。',
 
+
         'page_title' => '我们的愿景与使命',
         'subtitle' => '愿景与使命',
         'main_heading' => '可持续卓越的指导原则',
+
 
         'vision' => [
             'label' => '我们的愿景',
             'title' => '引领印度尼西亚可持续采矿业的未来',
             'content' => '成为一个变革性实体，以无与伦比的优化和坚定的责任感来协调印度尼西亚丰富的自然资源，创造可持续的繁荣，丰富当地社区，强化我们国家的经济基础，并建立道德采矿实践的新范式，成为全球采矿业的灯塔。',
         ],
+
 
         'mission' => [
             'label' => '我们的使命',
@@ -351,6 +366,7 @@ return [
             ],
         ],
 
+
         'cta' => [
             'prosperity_title' => '致力于印度尼西亚的繁荣',
             'prosperity_desc' => '通过我们的愿景和使命，我们努力创造超越传统采矿运营的持久积极影响，建立负责任的资源管理和社区赋权的遗产。',
@@ -358,18 +374,22 @@ return [
             'learn_more_btn' => '了解更多',
         ],
 
+
         'alt_texts' => [
             'gold_bars' => '天平上的金条和金粉',
         ],
     ],
 
+
     'company_overview' => [
         'title' => '公司概况',
         'description' => '通过可持续实践和战略合作伙伴关系，在采矿创新方面开拓卓越。',
 
+
         'page_title' => '公司概况',
         'subtitle' => '公司概况',
         'main_heading' => '在采矿创新方面开拓卓越',
+
 
         'company_data' => [
             'founded' => '成立',
@@ -378,12 +398,14 @@ return [
             'partnerships' => '合作伙伴',
         ],
 
+
         'company_values' => [
             'founded_year' => '1989',
             'operations_location' => '纳比雷，巴布亚',
             'focus_area' => '黄金开采',
             'partnerships_countries' => '中国和韩国',
         ],
+
 
         'sections' => [
             'company_goals' => [
@@ -394,6 +416,7 @@ return [
             'natural_resources' => [
                 'title' => '自然资源',
                 'subtitle' => '丰富遗产',
+                'content' => 'PT Kristalin Eka Lestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
                 'content' => 'PT Kristalin Eka Lestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
             ],
             'strategic_partnerships' => [
@@ -408,24 +431,29 @@ return [
             ],
         ],
 
+
         'cta' => [
             'future_title' => '建设印度尼西亚的未来',
             'future_desc' => '通过负责任的采矿实践和国际合作，我们致力于可持续增长和社区发展。',
             'learn_more_btn' => '了解更多关于我们的使命',
         ],
 
+
         'alt_texts' => [
             'papua_forest' => '巴布亚森林',
         ],
     ],
 
+
     'milestones' => [
         'title' => '我们的里程碑',
         'description' => '回顾我们的成就和重要时刻，这些塑造了我们作为领先采矿公司的成长历程。',
 
+
         'page_title' => '我们的里程碑',
         'subtitle' => '公司里程碑',
         'main_description' => '这就是我们如何开始并踏上成为伟大企业的旅程。',
+
 
         'company_stats' => [
             'established' => '成立',
@@ -434,12 +462,14 @@ return [
             'growth' => '增长',
         ],
 
+
         'company_values' => [
             'established_year' => '1989',
             'milestones_count' => '35+ 年',
             'location_area' => '巴布亚',
             'growth_status' => '持续',
         ],
+
 
         'categories' => [
             'Company Foundation' => '公司成立',
@@ -469,6 +499,7 @@ return [
             'Safety Implementation' => '安全实施',
         ],
 
+
         'months' => [
             'January' => '一月',
             'February' => '二月',
@@ -484,19 +515,23 @@ return [
             'December' => '十二月',
         ],
 
+
         'navigation' => [
             'previous_year' => '上一个年度时期',
             'next_year' => '下一个年度时期',
         ],
 
+
         'alt_texts' => [
             'mining_history' => '采矿作业历史',
         ],
+
 
         'milestones_data' => [
             '2020-2025' => [
                 [
                     'title' => '创纪录黄金产量成就',
+                    'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Eka Lestari作为印度尼西亚领先黄金开采公司的地位。',
                     'description' => '在公司历史上实现最高年度黄金产量，超过10吨精炼黄金，加强了Kristalin Eka Lestari作为印度尼西亚领先黄金开采公司的地位。',
                 ],
                 [
@@ -572,6 +607,7 @@ return [
                 [
                     'title' => '生产里程碑成就',
                     'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Eka Lestari作为印度尼西亚采矿业主要参与者的地位。',
+                    'description' => '达到重要的黄金生产里程碑，确立PT Kristalin Eka Lestari作为印度尼西亚采矿业主要参与者的地位。',
                 ],
                 [
                     'title' => '本地合作伙伴关系发展',
@@ -624,10 +660,12 @@ return [
                 [
                     'title' => '公司成立',
                     'description' => 'PT Kristalin Eka Lestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
+                    'description' => 'PT Kristalin Eka Lestari在雅加达正式成立，作为一家专注于印度尼西亚自然资源勘探和开采的采矿公司。',
                 ],
             ],
         ],
     ],
+
 
     'contact' => [
         'title' => '联系我们',
@@ -750,6 +788,7 @@ return [
         'company_info' => [
             'company_name_label' => '公司名称',
             'company_name_value' => 'PT Kristalin Eka Lestari',
+            'company_name_value' => 'PT Kristalin Eka Lestari',
             'business_field_label' => '业务领域',
             'business_field_value' => '黄金开采与矿物加工',
             'established_label' => '成立时间',
@@ -759,6 +798,7 @@ return [
             'business_license_label' => '营业执照',
             'business_license_value' => 'IUP 运营生产许可证  第561号/2021/DESDM',
         ],
+        'company_description' => 'PT Kristalin Eka Lestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_description' => 'PT Kristalin Eka Lestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_profile' => [
             'header' => '公司简介',
@@ -1110,6 +1150,7 @@ return [
             'title_line1' => '联系',
             'title_line2' => '我们',
             'description' => '了解更多关于Kristalin Eka Lestari的信息',
+            'description' => '了解更多关于Kristalin Eka Lestari的信息',
         ],
         'form' => [
             'labels' => [
@@ -1170,6 +1211,7 @@ return [
         'image_alt' => 'Menara 165',
     ],
 
+
     'news' => [
         'page_title' => '新闻 - PT Kristalin Ekalestari',
         'hero' => [
@@ -1177,6 +1219,7 @@ return [
             'title_line2' => '更新',
             'description' => '可持续黄金开采和社区赋权的最新发展。',
             'search_placeholder' => '搜索采矿新闻...',
+            'search_button' => '搜索',
         ],
         'categories' => [
             'all' => '全部',
@@ -2020,5 +2063,30 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
                 'metrics' => ['standard' => 'ICMM认证', 'scope' => '所有运营'],
             ],
         ],
+        'search_news' => [
+            'title' => '搜索结果',
+            'subtitle' => '快速找到您需要的信息',
+            'input_placeholder' => '输入搜索关键词...',
+            'search_button' => '搜索',
+            'articles_found_for' => '找到的文章',
+            'prev_page_aria' => '上一页',
+            'next_page_aria' => '下一页',
+            'no_results_title' => '没有结果',
+            'no_results_hint' => '请尝试使用不同或更具体的关键词',
+            'no_results_desc' => '没有找到与搜索相符的文章',
+            'try_again' => '再试一次',
+            'view_all' => '返回所有新闻',
+        ],
+    ],
+    'search' => [
+        'title' => '搜索结果',
+        'subtitle' => '快速找到您需要的信息',
+        'input_placeholder' => '输入搜索关键词...',
+        'search_button' => '搜索',
+        'articles_found_for' => '找到的结果',
+        'no_results_title' => '没有结果',
+        'no_results_hint' => '请尝试使用不同或更具体的关键词',
+        'try_again' => '再试一次',
     ],
 ];
+
