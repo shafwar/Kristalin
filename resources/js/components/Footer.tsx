@@ -1,7 +1,4 @@
-interface FooterProps {
-    text?: string;
-    className?: string;
-}
+import React from "react";
 
 export default function Footer({ className = '' }) {
     return (

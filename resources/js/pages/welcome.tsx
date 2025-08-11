@@ -815,7 +815,7 @@ const Welcome = () => {
 
                                 {/* Logo */}
                                 <motion.img
-                                    src="/kristalinlogotransisi1.jpeg"
+                                    src="/kristalinlogotransisi1.png"
                                     alt="Kristalin Eka Lestari Logo"
                                     className="relative z-10 h-24 w-24 rounded-xl object-contain shadow-2xl sm:h-32 sm:w-32 md:h-36 md:w-36"
                                     style={{
