@@ -1,17 +1,9 @@
 import React from "react";
-import { useTranslation } from "@/hooks/useTranslation";
 
-interface FooterProps {
-    text?: string;
-    className?: string;
-}
-
-export default function Footer({ text, className = "" }: FooterProps) {
-    const { t } = useTranslation();
-    const translatedText = text ?? (t('pages.footer.copyright') as string);
+export default function Footer({ className = '' }) {
     return (
-        <footer className={`bg-gray-900 px-4 py-3 text-center text-xs text-white sm:px-8 sm:py-4 sm:text-sm ${className}`}>
-            <div className="animate-pulse">{translatedText}</div>
+        <footer className={`w-full bg-neutral-900 py-4 text-center text-white ${className}`} style={{ position: 'relative', zIndex: 100 }}>
+            <p>© 2025 PT Kristalin Eka Lestari.</p>
         </footer>
     );
 }
