@@ -606,7 +606,9 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="hover:shadow-3xl group fixed right-4 bottom-4 z-40 transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
+
+            className="floating-feedback-button hover:shadow-3xl group fixed right-4 bottom-4 z-[10000] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
+            style={{ transition: 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
         >
             <div className="flex items-center space-x-2">
                 <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1166,7 +1168,7 @@ const Welcome = () => {
 
     // Main Content
     return (
-        <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+        <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
             {/* Loading Screen */}
             <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
 
@@ -1183,7 +1185,7 @@ const Welcome = () => {
                 )}
             </AnimatePresence>
 
-            <div className="z-10 flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
+            <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
                 {/* Main Content with Elegant Fade In */}
                 <AnimatePresence>
                     {!showLoadingScreen && (
@@ -1973,6 +1975,13 @@ const Welcome = () => {
           /* Smooth blur transitions */
           .blur-transition {
             transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          /* Shift floating feedback button when mobile menu is open */
+          .floating-feedback-button { transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+          body.mobile-menu-open .floating-feedback-button { right: 21rem !important; }
+          @media (min-width: 640px) { /* match drawer sm:w-96 */
+            body.mobile-menu-open .floating-feedback-button { right: 25rem !important; }
           }
 
           /* Floating animation keyframes */

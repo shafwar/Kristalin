@@ -62,6 +62,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         const handleResize = () => {
             if (window.innerWidth >= 1024) {
                 setMobileMenuOpen(false);
+                // Ensure any page-level scroll lock is removed when switching to desktop
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.style.overflow = '';
             }
         };
         window.addEventListener('resize', handleResize);
@@ -76,14 +81,18 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             document.body.style.top = `-${scrollY}px`;
             document.body.style.width = '100%';
             document.body.style.overflow = 'hidden';
+            document.body.classList.add('mobile-menu-open');
 
             return () => {
                 document.body.style.position = '';
                 document.body.style.top = '';
                 document.body.style.width = '';
                 document.body.style.overflow = '';
+                document.body.classList.remove('mobile-menu-open');
                 window.scrollTo(0, scrollY);
             };
+        } else {
+            document.body.classList.remove('mobile-menu-open');
         }
     }, [mobileMenuOpen]);
 
@@ -272,7 +281,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             </nav>
 
             {/* Mobile Navigation Toggle */}
-            <div className="flex flex-1 justify-end lg:hidden">
+            <div className="flex flex-1 items-center justify-end gap-2 lg:hidden">
                 <button
                     className="p-2 text-white transition-all duration-300 ease-out hover:text-yellow-400"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -364,14 +373,32 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     </svg>
                 </button>
             </div>
-
-            {/* Mobile Menu */}
+                            {/* Indonesian flag to represent site origin */}
+                            <div className="ml-2 flex items-center" title="Indonesia">
+                    <svg
+                        role="img"
+                        aria-label="Flag of Indonesia"
+                        viewBox="0 0 3 2"
+                        className="h-4 w-6 rounded shadow sm:h-5 sm:w-8"
+                    >
+                        <rect width="3" height="1" y="0" fill="#CE1126" />
+                        <rect width="3" height="1" y="1" fill="#FFFFFF" />
+                    </svg>
+                </div>
+            {/* Mobile Menu - right drawer placement without style changes */}
             <>
-                {/* Mobile Menu Content */}
+                {/* Backdrop */}
+                <div
+                    className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
+                        mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+                {/* Drawer */}
                 <div
                     ref={mobileMenuRef}
-                    className={`fixed top-16 right-0 bottom-0 left-0 z-40 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-all duration-400 ease-out sm:top-18 lg:top-20 lg:hidden ${
-                        mobileMenuOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-full opacity-0'
+                    className={`fixed top-16 right-0 bottom-0 z-50 w-80 sm:w-96 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:top-18 lg:top-20 lg:hidden ${
+                        mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     style={{
                         backdropFilter: 'blur(12px)',
@@ -380,9 +407,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         WebkitOverflowScrolling: 'touch',
                     }}
                 >
-                    <div className="min-h-full space-y-4 px-4 py-6">
+                    {/* Drawer header logo */}
+                    <div className="flex items-center justify-center px-4 pt-6 pb-2">
+                        <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png" alt="Kristalin Logo" className="h-10 object-contain" />
+                    </div>
+                    <div className="min-h-full space-y-4 px-4 py-4">
                         {/* Mobile Language Switcher */}
-                        <div className="flex items-center justify-between border-b border-gray-600 pb-4">
+                        <div className="flex items-center justify-between border-b border-white pb-4">
                             <span className="text-sm font-semibold text-white">{t('common.language')}:</span>
                             <div className="flex gap-2">
                                 <button
@@ -408,7 +439,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
                         {/* Mobile Navigation Items */}
                         {navigationItems.map((item, index) => (
-                            <div key={index} className="border-b border-gray-600 pb-4 last:border-b-0">
+                            <div key={index} className="border-b border-white pb-4 last:border-b-0">
                                 {item.hasDropdown ? (
                                     <div>
                                         <button className="w-full py-2 text-left text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400">
