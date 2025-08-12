@@ -2,7 +2,6 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -598,13 +597,8 @@ const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
 const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
     const { t } = useTranslation();
     const [isHovered, setIsHovered] = useState(false);
-    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const buttonEl = (
+    return (
         <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -612,7 +606,7 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="hover:shadow-3xl group fixed right-4 bottom-4 z-[10000] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
+            className="hover:shadow-3xl group fixed right-4 bottom-4 z-40 transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
         >
             <div className="flex items-center space-x-2">
                 <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -641,9 +635,6 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 opacity-20"></div>
         </motion.button>
     );
-
-    if (!mounted) return null;
-    return createPortal(buttonEl, document.body);
 };
 
 // Main Welcome Component
