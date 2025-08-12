@@ -797,71 +797,60 @@ const Welcome = () => {
                                 className="relative mb-8"
                                 style={{ perspective: '1000px' }}
                             >
-                                {/* Subtle glow effect */}
+                                {/* Subtle glow effect - Clean and Minimal */}
                                 <motion.div
-                                    className="absolute inset-0 -z-10 rounded-2xl"
+                                    className="absolute inset-0 -z-10"
                                     style={{
-                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%)',
-                                        filter: 'blur(20px)',
+                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 60%)',
+                                        filter: 'blur(25px)',
                                     }}
-                                    initial={{ scale: 0.5, opacity: 0 }}
-                                    animate={{ scale: 1.2, opacity: 1 }}
+                                    initial={{ scale: 0.3, opacity: 0 }}
+                                    animate={{ scale: 1.1, opacity: 1 }}
                                     transition={{
-                                        duration: 1.5,
+                                        duration: 1.8,
                                         ease: [0.22, 1, 0.36, 1],
                                         delay: 0.6,
                                     }}
                                 />
 
-                                {/* Logo */}
+                                {/* Logo - Clean and Minimal */}
                                 <motion.img
                                     src="/kristalinlogotransisi1.png"
                                     alt="Kristalin Eka Lestari Logo"
-                                    className="relative z-10 h-24 w-24 rounded-xl object-contain shadow-2xl sm:h-32 sm:w-32 md:h-36 md:w-36"
-                                    style={{
-                                        filter: 'drop-shadow(0 8px 32px rgba(0, 0, 0, 0.12))',
-                                    }}
+                                    className="relative z-10 h-24 w-24 object-contain sm:h-32 sm:w-32 md:h-36 md:w-36"
                                     initial={{
                                         filter: 'blur(4px) brightness(0.8)',
                                         scale: 0.9,
+                                        opacity: 0.7,
                                     }}
                                     animate={{
                                         filter: 'blur(0px) brightness(1)',
                                         scale: 1,
+                                        opacity: 1,
                                     }}
                                     transition={{
-                                        duration: 1,
+                                        duration: 1.2,
                                         ease: [0.22, 1, 0.36, 1],
                                         delay: 0.8,
                                     }}
                                 />
 
-                                {/* Rotating ring indicator */}
+                                {/* Subtle pulse effect instead of rotating ring */}
                                 <motion.div
-                                    className="absolute inset-0 rounded-xl border-2 border-transparent"
-                                    style={{
-                                        background: 'linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent) border-box',
-                                        mask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-                                        maskComposite: 'exclude',
-                                    }}
-                                    initial={{ rotate: 0, opacity: 0 }}
+                                    className="absolute inset-0"
+                                    initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{
-                                        rotate: 360,
-                                        opacity: [0, 0.6, 0],
+                                        scale: [0.8, 1.1, 0.8],
+                                        opacity: [0, 0.3, 0],
                                     }}
                                     transition={{
-                                        rotate: {
-                                            duration: 3,
-                                            ease: 'linear',
-                                            repeat: Infinity,
-                                            delay: 1.2,
-                                        },
-                                        opacity: {
-                                            duration: 2,
-                                            ease: 'easeInOut',
-                                            repeat: Infinity,
-                                            delay: 1.2,
-                                        },
+                                        duration: 2.5,
+                                        ease: 'easeInOut',
+                                        repeat: Infinity,
+                                        delay: 1.5,
+                                    }}
+                                    style={{
+                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%)',
                                     }}
                                 />
                             </motion.div>
