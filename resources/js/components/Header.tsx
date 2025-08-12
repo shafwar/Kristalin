@@ -451,34 +451,22 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         </form>
                     </div>
                 </div>
-
-                {/* Indonesian flag to represent site origin */}
-                <div className="ml-2 flex items-center" title="Indonesia">
-                    <svg
-                        role="img"
-                        aria-label="Flag of Indonesia"
-                        viewBox="0 0 3 2"
-                        className="h-4 w-6 rounded shadow sm:h-5 sm:w-8"
-                    >
-                        <rect width="3" height="1" y="0" fill="#CE1126" />
-                        <rect width="3" height="1" y="1" fill="#FFFFFF" />
-                    </svg>
-                </div>
             </div>
 
             {/* Mobile Menu - Right Drawer */}
             <>
-            <div className="ml-2 flex items-center" title="Indonesia">
-                    <svg
-                        role="img"
-                        aria-label="Flag of Indonesia"
-                        viewBox="0 0 3 2"
-                        className="h-4 w-6 rounded shadow sm:h-5 sm:w-8"
-                    >
-                        <rect width="3" height="1" y="0" fill="#CE1126" />
-                        <rect width="3" height="1" y="1" fill="#FFFFFF" />
-                    </svg>
-                </div>
+                {/* Indonesian flag to represent site origin */}
+                <div className="ml-2 flex items-center" title="Indonesia">
+                        <svg
+                            role="img"
+                            aria-label="Flag of Indonesia"
+                            viewBox="0 0 3 2"
+                            className="h-4 w-6 rounded shadow sm:h-5 sm:w-8"
+                        >
+                            <rect width="3" height="1" y="0" fill="#CE1126" />
+                            <rect width="3" height="1" y="1" fill="#FFFFFF" />
+                        </svg>
+                    </div>
                 {/* Backdrop */}
                 <div
                     className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
