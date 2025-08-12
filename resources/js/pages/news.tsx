@@ -1,6 +1,6 @@
 import { router } from '@inertiajs/react';
 import { motion, Variants } from 'framer-motion';
-import { ArrowLeft, ArrowRight, BarChart3, Calendar, ChevronLeft, ChevronRight, Clock, Eye, Search, Sparkles, TrendingUp, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BarChart3, Calendar, ChevronLeft, ChevronRight, Clock, Eye, Search, Sparkles, TrendingUp, User, ExternalLink } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -9,12 +9,25 @@ import { useTranslation } from '../hooks/useTranslation';
 interface NewsItem {
     id: number;
     title: string;
+    // optional multi-language fields if present
+    title_id?: string;
+    title_en?: string;
+    title_zh?: string;
     subtitle?: string;
+    subtitle_id?: string;
+    subtitle_en?: string;
+    subtitle_zh?: string;
     date: string;
     category: string;
     imageUrl: string;
     excerpt: string;
+    excerpt_id?: string;
+    excerpt_en?: string;
+    excerpt_zh?: string;
     content?: string;
+    content_id?: string;
+    content_en?: string;
+    content_zh?: string;
     author?: string;
     views?: string;
     readTime?: string;
@@ -22,6 +35,13 @@ interface NewsItem {
     trending?: boolean;
     type?: string;
     metrics?: { [key: string]: string };
+}
+
+interface SearchResultItem {
+    title: string;
+    url: string;
+    snippet: string;
+    path: string;
 }
 
 // Updated newsData with additional articles from newData
@@ -749,12 +769,15 @@ const CounterAnimation = ({ target, suffix = '', duration = 2000, delay = 0 }: C
 };
 
 const KristalinNewsPage: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, locale } = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [searchQuery, setSearchQuery] = useState<string>('');
-    // Removed unused state to fix ESLint error
+    const [searchResults, setSearchResults] = useState<SearchResultItem[]>([]);
+    const [isSearching, setIsSearching] = useState<boolean>(false);
+    const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
     const [scrollY, setScrollY] = useState(0);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     // Parallax effect
     useEffect(() => {
@@ -795,12 +818,17 @@ const KristalinNewsPage: React.FC = () => {
     const urlParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const idParam = urlParams.get('id');
     const pageParam = urlParams.get('page');
+    const qParam = urlParams.get('q');
     const selectedNews = idParam ? translatedNewsData.find((n) => n.id === Number(idParam)) : null;
     
-    // Set current page dari URL parameter saat component mount
+    // Set current page dan search query dari URL parameter saat component mount
     useEffect(() => {
         if (pageParam && Number(pageParam) > 0) {
             setCurrentPage(Number(pageParam));
+        }
+        if (qParam) {
+            setSearchQuery(qParam);
+            setShowSearchResults(true);
         }
     }, []); // Hanya jalankan sekali saat mount
 
@@ -816,13 +844,104 @@ const KristalinNewsPage: React.FC = () => {
         { key: 'Technology', label: t('pages.news.categories.technology') },
     ];
 
+    // Convert news items to search result format
+    const convertNewsToSearchResults = (newsItems: NewsItem[]): SearchResultItem[] => {
+        return newsItems.map(news => ({
+            title: news.title,
+            url: `/news?id=${news.id}`,
+            snippet: news.excerpt,
+            path: `/news?id=${news.id}`
+        }));
+    };
+
+    // Enhanced search function with cross-language fields
+    const performSearch = (query: string): SearchResultItem[] => {
+        if (!query.trim()) return [];
+        const searchLower = query.toLowerCase();
+        
+        const matchedNews = newsData.filter((news) => {
+            const checks: (string | undefined)[] = [
+                // Original base fields
+                news.title,
+                news.subtitle,
+                news.excerpt,
+                news.content,
+                news.category,
+                news.author,
+                news.title_id, news.title_en, news.title_zh,
+                news.subtitle_id, news.subtitle_en, news.subtitle_zh,
+                news.excerpt_id, news.excerpt_en, news.excerpt_zh,
+                news.content_id, news.content_en, news.content_zh,
+            ];
+            
+            try {
+                // Cek translation Indonesian
+                const idTranslation = t(`pages.news.articles.${news.id}`, { locale: 'id' });
+                if (idTranslation && typeof idTranslation === 'object') {
+                    checks.push(
+                        idTranslation.title,
+                        idTranslation.subtitle,
+                        idTranslation.excerpt,
+                        idTranslation.content
+                    );
+                }
+                
+                // Cek translation English
+                const enTranslation = t(`pages.news.articles.${news.id}`, { locale: 'en' });
+                if (enTranslation && typeof enTranslation === 'object') {
+                    checks.push(
+                        enTranslation.title,
+                        enTranslation.subtitle,
+                        enTranslation.excerpt,
+                        enTranslation.content
+                    );
+                }
+                
+                // Cek translation Chinese
+                const zhTranslation = t(`pages.news.articles.${news.id}`, { locale: 'zh' });
+                if (zhTranslation && typeof zhTranslation === 'object') {
+                    checks.push(
+                        zhTranslation.title,
+                        zhTranslation.subtitle,
+                        zhTranslation.excerpt,
+                        zhTranslation.content
+                    );
+                }
+            } catch (error) {
+                // Ignore translation errors
+            }
+            
+            return checks.some((val) => val && val.toLowerCase().includes(searchLower));
+        });
+        
+        return convertNewsToSearchResults(matchedNews);
+    };
+
     // Filter news based on category and search
-    const filteredNews = translatedNewsData.filter((news) => {
-        const matchesCategory = selectedCategory === 'All' || news.category === selectedCategory;
-        const matchesSearch =
-            news.title.toLowerCase().includes(searchQuery.toLowerCase()) || news.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
-    });
+    const getFilteredNews = () => {
+        if (showSearchResults && searchQuery) {
+            return translatedNewsData.filter(news =>
+                searchResults.some(result => result.url.includes(`id=${news.id}`))
+            );
+        }
+        return translatedNewsData.filter((news) => {
+            const matchesCategory = selectedCategory === 'All' || news.category === selectedCategory;
+            return matchesCategory;
+        });
+    };
+
+    const filteredNews = getFilteredNews();
+    // Helper: pick field by active locale with graceful fallback
+    const getField = (item: any, base: string): string => {
+        const idVal = item[`${base}_id`];
+        const enVal = item[`${base}_en`];
+        const zhVal = item[`${base}_zh`];
+        if (locale === 'en') return enVal || idVal || zhVal || item[base] || '';
+        if (locale === 'zh') return zhVal || idVal || enVal || item[base] || '';
+        // default to Indonesian
+        return idVal || enVal || zhVal || item[base] || '';
+    };
+
 
     const totalPages = Math.ceil(filteredNews.length / newsPerPage);
     const startIndex = (currentPage - 1) * newsPerPage;
@@ -834,7 +953,7 @@ const KristalinNewsPage: React.FC = () => {
         const newsGridSection = document.querySelector('.news-grid-section');
         if (newsGridSection) {
             const rect = newsGridSection.getBoundingClientRect();
-            const offsetTop = window.pageYOffset + rect.top - 200; // 200px dari atas untuk space lebih besar
+            const offsetTop = window.pageYOffset + rect.top - 50; // 200px dari atas untuk space lebih besar
             
             window.scrollTo({
                 top: offsetTop,
@@ -847,9 +966,10 @@ const KristalinNewsPage: React.FC = () => {
         if (currentPage > 1) {
             const newPage = currentPage - 1;
             setCurrentPage(newPage);
-            // Update URL dengan page parameter
-            const pageQuery = newPage > 1 ? `?page=${newPage}` : '';
-            window.history.pushState({}, '', `/news${pageQuery}`);
+            const searchParam = showSearchResults && searchQuery ? `q=${encodeURIComponent(searchQuery)}&` : '';
+            const pageQuery = newPage > 1 ? `${searchParam}page=${newPage}` : searchParam.slice(0, -1);
+            const newUrl = pageQuery ? `/news?${pageQuery}` : '/news';
+            window.history.pushState({}, '', newUrl);
             // Auto scroll to news grid after state update
             setTimeout(() => {
                 scrollToNewsGrid();
@@ -861,8 +981,8 @@ const KristalinNewsPage: React.FC = () => {
         if (currentPage < totalPages) {
             const newPage = currentPage + 1;
             setCurrentPage(newPage);
-            // Update URL dengan page parameter
-            window.history.pushState({}, '', `/news?page=${newPage}`);
+            const searchParam = showSearchResults && searchQuery ? `q=${encodeURIComponent(searchQuery)}&` : '';
+            window.history.pushState({}, '', `/news?${searchParam}page=${newPage}`);
             // Auto scroll to news grid after state update
             setTimeout(() => {
                 scrollToNewsGrid();
@@ -915,10 +1035,30 @@ const KristalinNewsPage: React.FC = () => {
         return categoryMapping[category] || category;
     };
 
+    // Highlight search terms in text
+    const highlight = (text: string, keyword: string) => {
+        if (!keyword) return text;
+        const parts = text.split(new RegExp(`(${keyword.replace(/[-\\/\\^$*+?.()|[\\]{}]/g, '\\$&')})`, 'gi'));
+        return (
+            <>
+                {parts.map((part, i) => (
+                    <span
+                        key={i}
+                        className={part.toLowerCase() === keyword.toLowerCase()
+                            ? 'bg-gradient-to-r from-amber-200 to-yellow-200 text-amber-900 px-1 py-0.5 rounded-md font-medium'
+                            : undefined}
+                    >
+                        {part}
+                    </span>
+                ))}
+            </>
+        );
+    };
+
     // Reset currentPage to 1 when filter/search changes
     useEffect(() => {
         setCurrentPage(1);
-    }, [selectedCategory, searchQuery]);
+    }, [selectedCategory, showSearchResults]);
 
     // Ensure currentPage is not greater than totalPages after filtering
     useEffect(() => {
@@ -1017,10 +1157,10 @@ const KristalinNewsPage: React.FC = () => {
                                 <h2 className="mb-5 text-base leading-relaxed font-medium text-yellow-600 lg:text-lg">{selectedNews.subtitle}</h2>
                             )}
 
-                            {/* Content */}
+                                    {/* Content */}
                             <div className="prose prose-gray max-w-none">
                                 <div className="space-y-4 text-sm leading-relaxed text-gray-700 lg:text-base">
-                                    {selectedNews.content?.split('\n\n').map((paragraph, index) => (
+                                            {(getField(selectedNews, 'content') || selectedNews.content || '').split('\n\n').map((paragraph, index) => (
                                         <p key={index} className="mb-4">
                                             {paragraph}
                                         </p>
@@ -1151,23 +1291,69 @@ const KristalinNewsPage: React.FC = () => {
                             {t('pages.news.hero.description')}
                         </motion.p>
 
-                        {/* Enhanced Search Bar */}
+                        {/* Enhanced Search Bar with Search Results */}
                         <motion.div
                             className="mx-auto mb-8 max-w-2xl"
                             initial={{ opacity: 0, y: 30, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
                         >
-                            <div className="group relative">
-                                <Search className="absolute top-1/2 left-4 z-10 h-5 w-5 -translate-y-1/2 transform text-amber-400" />
-                                <input
-                                    type="text"
-                                    placeholder={t('pages.news.hero.search_placeholder')}
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full rounded-xl border border-amber-400/30 bg-black/30 py-4 pr-4 pl-12 text-white placeholder-gray-300 backdrop-blur-md transition-all duration-300 focus:border-transparent focus:ring-2 focus:ring-amber-400"
-                                />
-                            </div>
+                            <form
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    if (!searchQuery.trim()) return;
+                                    setIsSearching(true);
+                                    setShowSearchResults(true);
+                                    setTimeout(() => {
+                                        const results = performSearch(searchQuery);
+                                        setSearchResults(results);
+                                        setIsSearching(false);
+                                        const newUrl = searchQuery ? `/news?q=${encodeURIComponent(searchQuery)}` : '/news';
+                                        window.history.pushState({}, '', newUrl);
+                                        setTimeout(() => {
+                                            scrollToNewsGrid();
+                                        }, 200);
+                                    }, 800);
+                                }}
+                                className="group relative"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-2xl blur-sm opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                                <div className="relative flex w-full items-center gap-2 sm:gap-3 rounded-2xl border-2 border-amber-400/30 bg-black/30 backdrop-blur-md px-3 py-2 sm:px-6 sm:py-4 shadow-lg focus-within:ring-2 focus-within:ring-amber-400 transition-all duration-300">
+                                    <Search className={`h-6 w-6 transition-all duration-300 ${
+                                        isSearching ? 'text-amber-500 animate-spin' : 'text-amber-400'
+                                    }`} />
+                                    <input
+                                        ref={searchInputRef}
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder={t('pages.news.hero.search_placeholder')}
+                                        className="flex-1 border-none bg-transparent outline-none text-white text-base sm:text-lg placeholder-gray-300"
+                                    />
+                                    {searchQuery && (
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setSearchQuery('');
+                                                setSearchResults([]);
+                                                setShowSearchResults(false);
+                                                window.history.pushState({}, '', '/news');
+                                            }}
+                                            className="text-gray-300 hover:text-white transition-colors duration-200"
+                                        >
+                                            ×
+                                        </button>
+                                    )}
+                                    <button
+                                        type="submit"
+                                        className="group relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black px-3 py-2 sm:px-6 shadow-md transition-all duration-200 hover:from-amber-400 hover:to-yellow-500 hover:shadow-lg active:scale-95 text-sm sm:text-base max-[360px]:w-10 max-[360px]:h-10 max-[360px]:px-0"
+                                    >
+                                        <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                                        <Search className="h-5 w-5 inline min-[360px]:hidden" />
+                                        <span className="relative hidden min-[360px]:inline">{t('pages.news.hero.search_button')}</span>
+                                        
+                                    </button>
+                                </div>
+                            </form>
                         </motion.div>
 
                         {/* Enhanced Category Filters */}
@@ -1314,6 +1500,24 @@ const KristalinNewsPage: React.FC = () => {
                 className="news-grid-section bg-gradient-to-br from-white via-gray-50 to-white py-12"
             >
                 <div className="mx-auto max-w-7xl px-4">
+                    {/* Search Results Header */}
+                    {showSearchResults && searchQuery && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mb-8 text-center"
+                        >
+                            <h2 className="text-3xl font-bold text-gray-800 mb-4">{t('pages.news.search_news.title')}</h2>
+                            <div className="flex items-center justify-center gap-3 bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-200 shadow-sm">
+                                <Clock className="h-4 w-4 text-gray-500" />
+                                <span className="text-sm text-gray-600">
+                                    <span className="font-semibold text-amber-600">{filteredNews.length}</span> {t('pages.news.search_news.articles_found_for')}
+                                    <span className="font-medium text-gray-800 ml-1">"{searchQuery}"</span>
+                                </span>
+                            </div>
+                        </motion.div>
+                    )}
+
                     {/* Enhanced News Grid */}
                     <motion.div
                         variants={staggerContainer}
@@ -1330,7 +1534,10 @@ const KristalinNewsPage: React.FC = () => {
                                     scale: 1.02,
                                     boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
                                 }}
-                                onClick={() => router.visit(`/news?id=${news.id}&page=${currentPage}`)}
+                                onClick={() => {
+                                    const searchParam = showSearchResults && searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : '';
+                                    router.visit(`/news?id=${news.id}&page=${currentPage}${searchParam}`);
+                                }}
                                 className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl"
                             >
                                 {/* Gambar dengan badge kategori */}
@@ -1368,11 +1575,13 @@ const KristalinNewsPage: React.FC = () => {
                                     </div>
                                     {/* Judul & Subjudul */}
                                     <h3 className="mb-1 line-clamp-2 text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-amber-700">
-                                        {news.title}
+                                        {showSearchResults && searchQuery ? highlight(getField(news, 'title'), searchQuery) : getField(news, 'title')}
                                     </h3>
-                                    {news.subtitle && <h4 className="mb-2 line-clamp-1 text-sm text-amber-600">{news.subtitle}</h4>}
+                                    {getField(news, 'subtitle') && (
+                                        <h4 className="mb-2 line-clamp-1 text-sm text-amber-600">{showSearchResults && searchQuery ? highlight(getField(news, 'subtitle'), searchQuery) : getField(news, 'subtitle')}</h4>
+                                    )}
                                     {/* Excerpt */}
-                                    <p className="mb-4 line-clamp-3 flex-1 text-sm leading-relaxed text-gray-600">{news.excerpt}</p>
+                                    <p className="mb-4 line-clamp-3 flex-1 text-sm leading-relaxed text-gray-600">{showSearchResults && searchQuery ? highlight(getField(news, 'excerpt'), searchQuery) : getField(news, 'excerpt')}</p>
                                     {/* Info Penulis + Metrics */}
                                     <div className="mb-4 flex items-center justify-between text-xs text-gray-500">
                                         <div className="flex items-center gap-1">
@@ -1388,7 +1597,26 @@ const KristalinNewsPage: React.FC = () => {
                                 </div>
                             </motion.div>
                         ))}
-                        {currentNews.length === 0 && <div className="col-span-full py-12 text-center text-gray-500">{t('pages.news.list.no_results')}</div>}
+                        {currentNews.length === 0 && (
+                            <div className="col-span-full py-16 text-center">
+                                {showSearchResults ? (
+                                    <div>
+                                        <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-amber-100 to-yellow-100 rounded-full mb-6 shadow-lg">
+                                            <Search className="h-12 w-12 text-amber-500" />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-gray-800 mb-2">{t('pages.news.search_news.no_results_title')}</h3>  
+                                        <p className="text-gray-600 mb-6">{t('pages.news.search_news.no_results_desc')} "{searchQuery}"</p>
+                                        <button onClick={() => { setSearchQuery(''); setSearchResults([]); setShowSearchResults(false); window.history.pushState({}, '', '/news'); setTimeout(() => {
+                                            scrollToNewsGrid();
+                                        }, 100); }} className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-1 hover:scale-105 active:scale-95 transition-all duration-300">
+                                            {t('pages.news.search_news.view_all')}
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="text-gray-500">{t('pages.news.list.no_results')}</div>
+                                )}
+                            </div>
+                        )}
                     </motion.div>
                     {/* Navigation */}
                     <motion.div variants={fadeInUp} className="mb-12 flex items-center justify-center mt-12">
@@ -1429,8 +1657,3 @@ const KristalinNewsPage: React.FC = () => {
 };
 
 export default KristalinNewsPage;
-
-
-
-
-
