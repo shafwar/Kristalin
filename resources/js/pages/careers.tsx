@@ -162,8 +162,9 @@ const Careers = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen flex flex-col bg-white">
             <Header sticky={true} transparent={false} />
+            <main className="flex-1">
 
             {/* Hero Section - More refined and better spacing */}
             <section className="relative bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 pt-32 pb-24">
@@ -517,8 +518,7 @@ const Careers = () => {
                     </motion.div>
                 )}
             </div>
-
-            {/* Footer */}
+            </main>
             <Footer />
         </div>
     );

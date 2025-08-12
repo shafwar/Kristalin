@@ -529,10 +529,7 @@ export default function KristalinPortfolio() {
                 {t('pages.line_of_business.services.gold_mining.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed font-normal">
-                PT Kristalin Eka Lestari bergerak dalam bidang pertambangan emas yang berlokasi di 
-                Kalimantan Tengah - Indonesia. Wilayah ini merupakan sumber perdagangan terbesar 
-                untuk produk mineral emas seperti batangan emas, konsentrat emas, dan produk 
-                turunan lainnya.
+                {t('pages.line_of_business.services.gold_mining.description')}
               </p>
             </motion.div>
 
@@ -557,9 +554,7 @@ export default function KristalinPortfolio() {
                 {t('pages.line_of_business.services.environmental.title')}
               </h4>
               <p className="text-gray-600 leading-relaxed font-normal">
-                Terdiri dari 2 divisi utama, kami siap memberikan kebutuhan pengelolaan lingkungan 
-                Anda ke setiap area yang dapat dijangkau oleh tim kami melalui ASWP (Any Safe World 
-                Port). Mencakup reklamasi lahan, pengolahan limbah, dan audit lingkungan berkala.
+                {t('pages.line_of_business.services.environmental.description')}
               </p>
             </motion.div>
           </div>

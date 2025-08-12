@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer({ className = '' }) {
     return (
-        <footer className={`w-full bg-neutral-900 py-4 text-center text-white ${className}`} style={{ position: 'relative', zIndex: 100 }}>
+        <footer className={`w-full bg-neutral-900 py-4 text-center text-white ${className}`} style={{ position: 'relative', zIndex: 10 }}>
             <p>© 2025 PT Kristalin Eka Lestari.</p>
         </footer>
     );
