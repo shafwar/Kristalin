@@ -813,44 +813,104 @@ const Welcome = () => {
                                     }}
                                 />
 
-                                {/* Logo - Clean and Minimal */}
+                                {/* Logo - Smooth Fade In Animation */}
                                 <motion.img
                                     src="/kristalinlogotransisi1.png"
                                     alt="Kristalin Eka Lestari Logo"
                                     className="relative z-10 h-24 w-24 object-contain sm:h-32 sm:w-32 md:h-36 md:w-36"
+                                    style={{
+                                        filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
+                                    }}
                                     initial={{
-                                        filter: 'blur(4px) brightness(0.8)',
-                                        scale: 0.9,
-                                        opacity: 0.7,
+                                        scale: 0.6,
+                                        opacity: 0,
+                                        y: 20,
+                                        filter: 'blur(3px) brightness(0.8) drop-shadow(0 0 5px rgba(255, 215, 0, 0.1))',
                                     }}
                                     animate={{
-                                        filter: 'blur(0px) brightness(1)',
                                         scale: 1,
                                         opacity: 1,
+                                        y: 0,
+                                        filter: 'blur(0px) brightness(1.05) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
                                     }}
                                     transition={{
-                                        duration: 1.2,
-                                        ease: [0.22, 1, 0.36, 1],
-                                        delay: 0.8,
+                                        scale: {
+                                            duration: 2,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 0.8,
+                                        },
+                                        opacity: {
+                                            duration: 1.6,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 0.8,
+                                        },
+                                        y: {
+                                            duration: 1.8,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 0.8,
+                                        },
+                                        filter: {
+                                            duration: 2,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            delay: 0.8,
+                                        },
                                     }}
                                 />
 
-                                {/* Subtle pulse effect instead of rotating ring */}
+                                {/* Smooth Glow Effect */}
                                 <motion.div
                                     className="absolute inset-0"
-                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    initial={{ scale: 0.7, opacity: 0 }}
                                     animate={{
-                                        scale: [0.8, 1.1, 0.8],
-                                        opacity: [0, 0.3, 0],
+                                        scale: [0.7, 1.1, 0.9],
+                                        opacity: [0, 0.15, 0.06],
                                     }}
                                     transition={{
-                                        duration: 2.5,
-                                        ease: 'easeInOut',
-                                        repeat: Infinity,
-                                        delay: 1.5,
+                                        scale: {
+                                            duration: 4,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            repeat: Infinity,
+                                            delay: 2,
+                                        },
+                                        opacity: {
+                                            duration: 4,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            repeat: Infinity,
+                                            delay: 2,
+                                        },
                                     }}
                                     style={{
-                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%)',
+                                        background:
+                                            'radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, rgba(255, 165, 0, 0.06) 40%, transparent 70%)',
+                                        filter: 'blur(20px)',
+                                    }}
+                                />
+
+                                {/* Subtle White Glow */}
+                                <motion.div
+                                    className="absolute inset-0"
+                                    initial={{ scale: 0.5, opacity: 0 }}
+                                    animate={{
+                                        scale: [0.5, 1.0, 0.7],
+                                        opacity: [0, 0.1, 0.03],
+                                    }}
+                                    transition={{
+                                        scale: {
+                                            duration: 5,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            repeat: Infinity,
+                                            delay: 2.5,
+                                        },
+                                        opacity: {
+                                            duration: 5,
+                                            ease: [0.25, 0.46, 0.45, 0.94],
+                                            repeat: Infinity,
+                                            delay: 2.5,
+                                        },
+                                    }}
+                                    style={{
+                                        background: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 50%)',
+                                        filter: 'blur(15px)',
                                     }}
                                 />
                             </motion.div>
