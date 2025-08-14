@@ -14,7 +14,11 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col items-center gap-4">
                         <Link href={route('home')} className="flex flex-col items-center gap-2 font-medium">
-                            <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Eka Lestari Logo" className="h-9 w-9 object-contain mb-1 rounded-md" />
+                            <img
+                                src="/kristalinlogotransisi1.png"
+                                alt="Kristalin Eka Lestari Logo"
+                                className="mb-1 h-9 w-9 rounded-md object-contain"
+                            />
                             <span className="sr-only">{title}</span>
                         </Link>
 

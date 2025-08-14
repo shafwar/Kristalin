@@ -235,7 +235,7 @@ export default function SearchPage() {
             </button>
             
             {/* Numeric pagination (hidden on very small screens) */}
-            <div className="hidden max-[360px]:hidden sm:flex items-center gap-2 overflow-x-hidden whitespace-nowrap">
+            <div className="hidden max-[360px]:hidden sm:flex items-center gap-2 overflow-x-auto whitespace-nowrap">
               {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
                 let pageNum;
                 if (totalPages <= 7) {

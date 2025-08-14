@@ -64,6 +64,7 @@ Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
 
+// Search
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/careers', function () {
