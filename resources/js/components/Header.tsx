@@ -393,7 +393,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
                     {/* Dropdown search bar */}
                     <div
-                        className={`absolute right-0 top-full mt-2 w-[320px] max-w-[80vw] transform transition-all duration-300 ${
+                        className={`absolute top-full right-0 mt-2 w-[320px] max-w-[80vw] transform transition-all duration-300 ${
                             searchOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                         }`}
                     >
@@ -407,17 +407,17 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     setSearchOpen(false);
                                 }
                             }}
-                            className="relative group"
+                            className="group relative"
                         >
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 blur-sm opacity-20 group-hover:opacity-30 transition-opacity duration-300 animate-pulse" />
-                            <div className="relative flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-4 py-2 shadow-xl transition-all duration-300 hover:border-amber-300 focus-within:border-amber-400 focus-within:scale-[1.02]">
+                            <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-r from-amber-400 to-yellow-400 opacity-20 blur-sm transition-opacity duration-300 group-hover:opacity-30" />
+                            <div className="relative flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-4 py-2 shadow-xl transition-all duration-300 focus-within:scale-[1.02] focus-within:border-amber-400 hover:border-amber-300">
                                 <svg
                                     width="18"
                                     height="18"
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     className={`transition-all duration-300 ${
-                                        isSearching ? 'text-amber-500 animate-spin' : 'text-gray-400 group-focus-within:text-amber-500'
+                                        isSearching ? 'animate-spin text-amber-500' : 'text-gray-400 group-focus-within:text-amber-500'
                                     }`}
                                 >
                                     <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
@@ -431,7 +431,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 />
                                 <button
                                     type="submit"
-                                    className="relative overflow-hidden inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg"
+                                    className="relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg"
                                 >
                                     <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-white transition-transform duration-700 group-hover:translate-x-full" />
                                     <span className="relative">{t('common.search')}</span>
@@ -446,16 +446,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             <>
                 {/* Indonesian flag to represent site origin */}
                 <div className="ml-2 flex items-center" title="Indonesia">
-                        <svg
-                            role="img"
-                            aria-label="Flag of Indonesia"
-                            viewBox="0 0 3 2"
-                            className="h-4 w-6 rounded shadow sm:h-5 sm:w-8"
-                        >
-                            <rect width="3" height="1" y="0" fill="#CE1126" />
-                            <rect width="3" height="1" y="1" fill="#FFFFFF" />
-                        </svg>
-                    </div>
+                    <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow sm:h-5 sm:w-8">
+                        <rect width="3" height="1" y="0" fill="#CE1126" />
+                        <rect width="3" height="1" y="1" fill="#FFFFFF" />
+                    </svg>
+                </div>
                 {/* Backdrop */}
                 <div
                     className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
@@ -463,11 +458,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                 />
-                
+
                 {/* Drawer */}
                 <div
                     ref={mobileMenuRef}
-                    className={`fixed top-16 right-0 bottom-0 z-50 w-80 sm:w-96 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:top-18 lg:top-20 lg:hidden ${
+                    className={`fixed top-16 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:top-18 sm:w-96 lg:top-20 lg:hidden ${
                         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     style={{
@@ -479,9 +474,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 >
                     {/* Drawer header logo */}
                     <div className="flex items-center justify-center px-4 pt-6 pb-2">
-                        <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png" alt="Kristalin Logo" className="h-10 object-contain" />
+                        <img
+                            src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png"
+                            alt="Kristalin Logo"
+                            className="h-10 object-contain"
+                        />
                     </div>
-                    
+
                     <div className="min-h-full space-y-4 px-4 py-4">
                         {/* Mobile Language Switcher */}
                         <div className="flex items-center justify-between border-b border-gray-600 pb-4">
@@ -508,11 +507,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             </div>
                         </div>
 
-<<<<<<< HEAD
                         {/* Mobile Search */}
-=======
-                        {/* Mobile Search (moved above menu) */}
->>>>>>> shafi
                         <div className="pt-3">
                             <form
                                 onSubmit={(e) => {
@@ -522,10 +517,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         setMobileMenuOpen(false);
                                     }
                                 }}
-                                className="relative group"
+                                className="group relative"
                             >
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 blur-[6px] opacity-15 group-hover:opacity-25 transition-opacity duration-300" />
-                                <div className="relative flex items-center gap-2 rounded-xl border-2 border-gray-300 bg-white/90 px-3 py-2 shadow-md backdrop-blur-sm transition-all duration-300 hover:border-amber-300 focus-within:border-amber-400">
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 opacity-15 blur-[6px] transition-opacity duration-300 group-hover:opacity-25" />
+                                <div className="relative flex items-center gap-2 rounded-xl border-2 border-gray-300 bg-white/90 px-3 py-2 shadow-md backdrop-blur-sm transition-all duration-300 focus-within:border-amber-400 hover:border-amber-300">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-400">
                                         <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
                                         <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" />
@@ -534,11 +529,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         placeholder={`${t('common.search')}...`}
-                                        className="min-w-0 flex-1 border-none bg-transparent text-gray-800 outline-none placeholder:text-gray-400 text-base"
+                                        className="min-w-0 flex-1 border-none bg-transparent text-base text-gray-800 outline-none placeholder:text-gray-400"
                                     />
                                     <button
                                         type="submit"
-                                        className="relative inline-flex h-10 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500 px-3 min-[380px]:px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg shrink-0"
+                                        className="relative inline-flex h-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500 px-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 hover:shadow-lg min-[380px]:px-5"
                                     >
                                         <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-full" />
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="mr-0 min-[380px]:mr-2">
@@ -593,11 +588,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 )}
                             </div>
                         ))}
-<<<<<<< HEAD
-=======
-
-                        {/* Mobile Search (bottom) removed */}
->>>>>>> shafi
                     </div>
                 </div>
             </>
