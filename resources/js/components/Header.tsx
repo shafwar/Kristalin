@@ -160,17 +160,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Logo logic
     const getLogoSrc = () => {
-        if (!transparent) {
-            return 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
-        }
-
-        if (mobileMenuOpen) {
-            return 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
-        }
-
-        return scrollY < 50
-            ? 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png'
-            : 'https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png';
+        return '/kristalinlogotransisi1.png';
     };
 
     const getLogoFilter = () => {

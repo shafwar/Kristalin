@@ -1,9 +1,7 @@
-import React from "react";
-
 export default function Footer({ className = '' }) {
     return (
         <footer className={`w-full bg-neutral-900 py-4 text-center text-white ${className}`} style={{ position: 'relative', zIndex: 100 }}>
-            <p>© 2025 PT Kristalin Eka Lestari.</p>
+            <p>© 2025 PT Kristalin Ekalestari.</p>
         </footer>
     );
 }
