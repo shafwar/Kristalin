@@ -8,6 +8,7 @@ Laravel + Inertia + Vite deployment on Railway with Cloudflare proxy was failing
 2. **Environment Variables**: Missing `ASSET_URL` and proper `APP_URL` configuration
 3. **Blade Template**: Incorrect Vite directive usage
 4. **Laravel Configuration**: Missing custom asset URL handling for production
+5. **Nix Build Error**: Incorrect nixpacks.toml configuration causing build failures
 
 ## Fixes Implemented
 
@@ -53,10 +54,10 @@ if (config('app.env') === 'production') {
 - Included asset permission settings
 - Added storage link creation
 
-### 6. Created nixpacks.toml
-- Proper Railway build configuration
-- Node.js and PHP setup
-- Production environment variables
+### 6. Fixed Nix Build Configuration
+- Removed problematic `nixpacks.toml` file
+- Using Railway's auto-detection for PHP + Node.js
+- Created `railway.toml` for deployment configuration
 
 ### 7. Updated package.json
 - Removed problematic `postinstall` script
@@ -81,38 +82,67 @@ PHP_CLI_SERVER_WORKERS=4
 BCRYPT_ROUNDS=12
 
 # Logging
-LOG_CHANNEL=stderr
+LOG_CHANNEL=errorlog
 LOG_STACK=single
 LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=error
 
 # Database (Railway auto-injects)
 DB_CONNECTION=mysql
-DB_HOST=${MYSQLHOST}
-DB_PORT=${MYSQLPORT}
-DB_DATABASE=${MYSQLDATABASE}
-DB_USERNAME=${MYSQLUSER}
-DB_PASSWORD=${MYSQLPASSWORD}
+DB_HOST=${RAILWAY_PRIVATE_DOMAIN}
+DB_PORT=${RAILWAY_TCP_PROXY_PORT}
+DB_DATABASE=${MYSQL_DATABASE}
+DB_USERNAME=root
+DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 # Session & Cache
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
 SESSION_ENCRYPT=false
 SESSION_PATH=/
-SESSION_DOMAIN=null
+SESSION_DOMAIN=.kristalin.co.id
+SESSION_SECURE_COOKIE=true
 
 # Broadcasting & Filesystem
 BROADCAST_CONNECTION=log
 FILESYSTEM_DISK=local
 QUEUE_CONNECTION=sync
 CACHE_STORE=file
+CACHE_PREFIX=kristalin_cache
 
 # Vite Configuration
 VITE_APP_NAME=Kristalin
 VITE_BASE_URL=https://kristalin.co.id
+
+# Inertia Configuration
+INERTIA_SSR_ENABLED=false
+
+# Node Environment
+NODE_ENV=production
+
+# Railway Build Commands
+NIXPACKS_BUILD_COMMAND=composer install --no-dev --optimize-autoloader --no-scripts && npm ci && npm run build
+NIXPACKS_START_COMMAND=php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && chmod -R 755 public/build && php -S 0.0.0.0:${PORT} -t public
 ```
 
 ## Deployment Commands
+
+### Using Railway CLI
+```bash
+# Update environment variables first
+railway variables set DB_HOST=\${{RAILWAY_PRIVATE_DOMAIN}}
+railway variables set DB_USERNAME=root
+railway variables set VITE_BASE_URL=https://kristalin.co.id
+railway variables unset MIX_ASSET_URL
+
+# Deploy your code
+git add .
+git commit -m "Fix asset loading and Nix build configuration"
+git push origin main
+
+# Or deploy directly
+railway up
+```
 
 ### Manual Deployment
 ```bash
@@ -176,6 +206,7 @@ After deployment, verify:
 - **404 on assets**: Check if `ASSET_URL` is set correctly
 - **Build failures**: Ensure Node.js version compatibility
 - **Permission errors**: Verify file permissions on `public/build/`
+- **Nix build errors**: Use Railway's auto-detection instead of custom nixpacks.toml
 
 ## Expected Result
 
@@ -184,18 +215,21 @@ After implementing these fixes:
 - No 404 errors in browser console
 - Proper CSS styling and JavaScript functionality
 - Fast asset loading with proper caching
+- Successful Railway deployment without Nix build errors
 
 ## Files Modified
 - `vite.config.ts`
 - `resources/views/app.blade.php`
 - `app/Providers/AppServiceProvider.php`
 - `deploy.sh`
-- `nixpacks.toml`
+- `railway.toml` (new)
 - `package.json`
 - `railway-env-vars-corrected.txt`
+- Removed: `nixpacks.toml` (causing build errors)
 
 ## Next Steps
-1. Deploy to Railway with updated configuration
-2. Monitor asset loading in production
-3. Test all functionality with new asset paths
-4. Optimize Cloudflare settings if needed
+1. Update Railway environment variables using CLI
+2. Deploy to Railway with updated configuration
+3. Monitor asset loading in production
+4. Test all functionality with new asset paths
+5. Optimize Cloudflare settings if needed
