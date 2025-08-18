@@ -5,7 +5,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig(({ mode }) => ({
-  base: '/',
+  base: mode === 'production' ? '/build/' : '/',
   plugins: [
     laravel({
       input: ['resources/css/app.css', 'resources/js/app.tsx'],
@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => ({
     outDir: 'public/build',
     assetsDir: 'assets',
     sourcemap: mode === 'development',
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks: {

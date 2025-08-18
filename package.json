@@ -10,8 +10,7 @@
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
-        "types": "tsc --noEmit",
-        "postinstall": "npm run build"
+        "types": "tsc --noEmit"
     },
     "engines": {
         "node": "20.x",
