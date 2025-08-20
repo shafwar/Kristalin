@@ -13,6 +13,6 @@ return [
     */
 
     'manifest' => public_path('build/manifest.json'),
-    'build_path' => 'build',
+    'build_path' => '', // Remove build_path to prevent double /build/ paths
     'dev_server_url' => env('VITE_DEV_SERVER_URL', 'http://localhost:5173'),
 ];
