@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\Facades\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,11 +26,15 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        // Custom Vite asset URL handling for production
-        if (config('app.env') === 'production') {
-            Vite::useHotFile('build/hot')
-                ->useBuildDirectory('build')
-                ->withEntryPoints(['resources/css/app.css', 'resources/js/app.tsx']);
+        // Ensure proper asset URL configuration
+        if (config('app.env') === 'production' && env('ASSET_URL')) {
+            Config::set('app.asset_url', env('ASSET_URL'));
+        }
+
+        // Add error handling for asset loading
+        if (config('app.debug') === false) {
+            // Disable detailed error reporting in production
+            error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
         }
     }
 }
