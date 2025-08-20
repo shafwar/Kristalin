@@ -5,15 +5,10 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => ({
-    // Remove base configuration to prevent double /build/ paths
-    // base: mode === 'production' ? '/build/' : '/',
-
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
-            // Use default build directory
-            buildDirectory: 'build',
         }),
         react(),
         tailwindcss(),
@@ -30,10 +25,8 @@ export default defineConfig(({ mode }) => ({
         assetsDir: 'assets',
         sourcemap: mode === 'development',
         manifest: true,
-        // Improved asset optimization for production
         rollupOptions: {
             output: {
-                // Ensure assets are properly chunked and named
                 assetFileNames: (assetInfo) => {
                     if (!assetInfo.name) return 'assets/[name]-[hash].[ext]';
                     const info = assetInfo.name.split('.');
