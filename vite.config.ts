@@ -5,14 +5,14 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => ({
-    // Improved base URL configuration for production
-    base: mode === 'production' ? '/build/' : '/',
+    // Remove base configuration to prevent double /build/ paths
+    // base: mode === 'production' ? '/build/' : '/',
 
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
-            // Ensure proper asset handling in production
+            // Use default build directory
             buildDirectory: 'build',
         }),
         react(),
