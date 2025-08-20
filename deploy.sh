@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Railway Deployment Script for Laravel + Inertia + Vite
-# This script handles the build process and asset compilation
+# Laravel + Inertia + React + Vite Production Deployment Script
+# Optimized for Railway + Cloudflare
 
-echo "🚀 Starting Railway deployment..."
+set -e
+
+echo "🚀 Starting deployment process..."
 
 # Install PHP dependencies
 echo "📦 Installing PHP dependencies..."
@@ -26,18 +28,25 @@ php artisan route:cache
 php artisan view:clear
 php artisan view:cache
 
-# Run database migrations
-echo "🗄️ Running database migrations..."
-php artisan migrate --force
+# Optimize for production
+echo "⚡ Optimizing for production..."
+php artisan optimize
 
 # Set proper permissions
 echo "🔐 Setting proper permissions..."
 chmod -R 755 storage bootstrap/cache
-chmod -R 755 public/build
+chown -R www-data:www-data storage bootstrap/cache
 
-# Create storage link if it doesn't exist
-echo "🔗 Creating storage link..."
-php artisan storage:link
+# Verify asset build
+echo "✅ Verifying asset build..."
+if [ ! -f "public/build/manifest.json" ]; then
+    echo "❌ Error: manifest.json not found. Asset build failed."
+    exit 1
+fi
 
-echo "✅ Deployment completed successfully!"
-echo "🌐 Your app should now be accessible at: https://kristalin.co.id"
+echo "✅ Assets built successfully:"
+ls -la public/build/assets/ | head -5
+
+echo "🎉 Deployment completed successfully!"
+echo "📝 Make sure to set ASSET_URL in your environment variables:"
+echo "   ASSET_URL=https://your-app-name.railway.app/build"
