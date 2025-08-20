@@ -7,46 +7,55 @@ set -e
 
 echo "🚀 Starting deployment process..."
 
-# Install PHP dependencies
-echo "📦 Installing PHP dependencies..."
-composer install --no-dev --optimize-autoloader
-
-# Install Node.js dependencies
-echo "📦 Installing Node.js dependencies..."
+# Install dependencies
+echo "📦 Installing dependencies..."
 npm ci
 
 # Build assets for production
 echo "🔨 Building assets for production..."
 npm run build
 
-# Clear and cache Laravel configurations
-echo "🧹 Clearing and caching Laravel configurations..."
-php artisan config:clear
-php artisan config:cache
-php artisan route:clear
-php artisan route:cache
-php artisan view:clear
-php artisan view:cache
-
-# Optimize for production
-echo "⚡ Optimizing for production..."
-php artisan optimize
-
-# Set proper permissions
-echo "🔐 Setting proper permissions..."
-chmod -R 755 storage bootstrap/cache
-chown -R www-data:www-data storage bootstrap/cache
-
-# Verify asset build
-echo "✅ Verifying asset build..."
+# Verify build output
+echo "✅ Verifying build output..."
 if [ ! -f "public/build/manifest.json" ]; then
-    echo "❌ Error: manifest.json not found. Asset build failed."
+    echo "❌ ERROR: manifest.json not found in public/build/"
+    echo "📁 Contents of public/build/:"
+    ls -la public/build/ || echo "Directory does not exist"
     exit 1
 fi
 
-echo "✅ Assets built successfully:"
-ls -la public/build/assets/ | head -5
+echo "📄 Manifest file found:"
+head -5 public/build/manifest.json
 
-echo "🎉 Deployment completed successfully!"
-echo "📝 Make sure to set ASSET_URL in your environment variables:"
-echo "   ASSET_URL=https://your-app-name.railway.app/build"
+# Copy manifest to expected location if needed
+if [ ! -f "public/build/.vite/manifest.json" ]; then
+    echo "📋 Copying manifest to .vite directory..."
+    mkdir -p public/build/.vite
+    cp public/build/manifest.json public/build/.vite/manifest.json
+fi
+
+# Set proper permissions
+echo "🔐 Setting permissions..."
+chmod -R 755 public/build/
+chown -R www-data:www-data public/build/ 2>/dev/null || echo "⚠️  Could not set ownership (not running as root)"
+
+# Clear Laravel caches
+echo "🧹 Clearing Laravel caches..."
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+
+# Cache configurations for production
+echo "⚡ Caching configurations..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Run migrations
+echo "🗄️  Running migrations..."
+php artisan migrate --force
+
+echo "✅ Deployment completed successfully!"
+echo "🌐 Assets should be available at: /build/assets/"
+echo "📄 Manifest should be available at: /build/manifest.json"
