@@ -19,6 +19,7 @@ return [
         'careers' => 'Careers',
         'contact' => 'Contact',
         'modi' => 'Modi',
+        'board_of_directors' => 'Board of Directors',
         'gold_price' => 'Gold Price',
     ],
 

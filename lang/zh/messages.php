@@ -19,6 +19,7 @@ return [
         'careers' => '招聘',
         'contact' => '联系我们',
         'modi' => 'Modi',
+        'board_of_directors' => '董事会',
         'gold_price' => '黄金价格',
     ],
 

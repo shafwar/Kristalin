@@ -19,6 +19,7 @@ return [
         'careers' => 'Karir',
         'contact' => 'Kontak',
         'modi' => 'Modi',
+        'board_of_directors' => 'Dewan Direksi',
         'gold_price' => 'Harga Emas',
     ],
 
