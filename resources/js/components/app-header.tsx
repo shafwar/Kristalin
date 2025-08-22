@@ -59,7 +59,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             <SheetContent side="left" className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar">
                                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                                 <SheetHeader className="flex justify-start text-left">
-                                    <img src="/kristalinlogotransisi1.png" alt="Kristalin Eka Lestari Logo" className="h-6 w-6 object-contain" />
+                                    <img src="/kristalinlogotransisi1.png" alt="Kristalin Eka Lestari Logo" className="h-8 w-auto object-contain" />
                                 </SheetHeader>
                                 <div className="flex h-full flex-1 flex-col space-y-4 p-4">
                                     <div className="flex h-full flex-col justify-between text-sm">
