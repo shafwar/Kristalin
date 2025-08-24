@@ -19,7 +19,20 @@ return [
         'careers' => '招聘',
         'contact' => '联系我们',
         'modi' => 'Modi',
+        'board_of_directors' => '董事会',
         'gold_price' => '黄金价格',
+        'management' => '管理',
+    ],
+
+    // Board of Directors page
+    'board_of_directors' => [
+        'pause' => '暂停',
+        'play' => '播放',
+        'auto' => '自动',
+        'auto_change_text' => '每4秒切换',
+        'vision_title' => '我们的领导愿景',
+        'vision_text' => '"我们致力于引领Kristalin Eka Lestari在黄金开采领域实现可持续卓越。我们专注于创新、环境管理、社区发展，为所有利益相关者创造持久价值，同时保持最高的安全和运营效率标准。"',
+        'excellence_text' => '以卓越引领',
     ],
 
     // Common phrases

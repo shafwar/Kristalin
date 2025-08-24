@@ -19,7 +19,20 @@ return [
         'careers' => 'Karir',
         'contact' => 'Kontak',
         'modi' => 'Modi',
+        'board_of_directors' => 'Dewan Direksi',
         'gold_price' => 'Harga Emas',
+        'management' => 'Manajemen',
+    ],
+
+    // Board of Directors page
+    'board_of_directors' => [
+        'pause' => 'Jeda',
+        'play' => 'Putar',
+        'auto' => 'Otomatis',
+        'auto_change_text' => 'Berubah setiap 4 detik',
+        'vision_title' => 'Visi Kepemimpinan Kami',
+        'vision_text' => '"Kami berkomitmen untuk memimpin Kristalin Eka Lestari menuju keunggulan berkelanjutan dalam pertambangan emas. Fokus kami adalah pada inovasi, pengelolaan lingkungan, pengembangan komunitas, dan menciptakan nilai abadi bagi semua pemangku kepentingan sambil mempertahankan standar keselamatan dan efisiensi operasional tertinggi."',
+        'excellence_text' => 'Memimpin dengan Keunggulan',
     ],
 
     // Common phrases
