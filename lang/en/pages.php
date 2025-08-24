@@ -1351,7 +1351,7 @@ return [
             'title_line2' => 'Update',
             'description' => 'Latest developments in sustainable gold mining and community empowerment.',
             'search_placeholder' => 'Search mining news...',
-            'search_button' => 'Search',    
+            'search_button' => 'Search',
         ],
         'categories' => [
             'all' => 'All',

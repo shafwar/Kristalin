@@ -2218,8 +2218,8 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
     ],
 
     'footer' => [
-  
+
       'copyright' => '© 2025 PT Kristalin Ekalestari. 版权所有。',
-  
+
   ],
 ];
