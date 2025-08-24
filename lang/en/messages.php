@@ -21,6 +21,18 @@ return [
         'modi' => 'Modi',
         'board_of_directors' => 'Board of Directors',
         'gold_price' => 'Gold Price',
+        'management' => 'Management',
+    ],
+
+    // Board of Directors page
+    'board_of_directors' => [
+        'pause' => 'Pause',
+        'play' => 'Play',
+        'auto' => 'Auto',
+        'auto_change_text' => 'Changes every 4 seconds',
+        'vision_title' => 'Our Leadership Vision',
+        'vision_text' => '"We are committed to leading Kristalin Eka Lestari towards sustainable excellence in gold mining. Our focus is on innovation, environmental stewardship, community development, and creating lasting value for all stakeholders while maintaining the highest standards of safety and operational efficiency."',
+        'excellence_text' => 'Leading with Excellence',
     ],
 
     // Common phrases

@@ -2216,6 +2216,8 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
     ],
 
     'footer' => [
-        'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
-    ],
+  
+      'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
+  
+  ],
 ];

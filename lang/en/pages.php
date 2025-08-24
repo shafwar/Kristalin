@@ -1,8 +1,7 @@
 <?php
 
 return [
-    
-    'careers' => [
+'careers' => [
         'hero' => [
             'title' => 'We Are Hiring',
             'subtitle' => 'Join our team and be part of a sustainable gold mining future',
