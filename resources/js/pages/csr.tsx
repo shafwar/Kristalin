@@ -112,7 +112,10 @@ function VideoSection({ t }: { t: (key: string) => string }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (
-        <section className="relative bg-cover bg-fixed bg-center py-16 sm:py-20" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}>
+        <section
+            className="relative bg-cover bg-center py-16 sm:py-20"
+            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}
+        >
             <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <motion.div
                     className="mb-8 text-center sm:mb-12"
@@ -178,7 +181,13 @@ function VideoSection({ t }: { t: (key: string) => string }) {
 }
 
 // Testimonials Component - MOBILE OPTIMIZED
-function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: string; role: string; photo: string; quote: string}>; t: (key: string) => string }) {
+function TestimonialsCarousel({
+    testimonials,
+    t,
+}: {
+    testimonials: Array<{ name: string; role: string; photo: string; quote: string }>;
+    t: (key: string) => string;
+}) {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
     useEffect(() => {
@@ -205,7 +214,9 @@ function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: 
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.testimonials.title_line1')}</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                            {t('pages.csr.testimonials.title_line1')}
+                        </span>
                         <span className="text-black"> {t('pages.csr.testimonials.title_line2')}</span>
                     </motion.h2>
                     <motion.p
@@ -226,6 +237,8 @@ function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: 
                                 src={testimonials[currentTestimonial].photo}
                                 alt={testimonials[currentTestimonial].name}
                                 className="mr-3 h-12 w-12 rounded-full border-4 border-amber-200 object-cover sm:mr-4 sm:h-16 sm:w-16"
+                                loading="eager"
+                                decoding="async"
                             />
                             <div>
                                 <div className="text-sm font-semibold text-gray-800 sm:text-base">{testimonials[currentTestimonial].name}</div>
@@ -295,6 +308,8 @@ function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySect
                     <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl bg-gray-100 sm:h-64 sm:rounded-2xl md:h-72 lg:h-80">
                         <motion.img
                             key={sections[current].images[imgIdx]}
+                            loading="eager"
+                            decoding="async"
                             src={sections[current].images[imgIdx]}
                             alt={sections[current].title + ' ' + (imgIdx + 1)}
                             className="h-full w-full object-cover"
@@ -350,6 +365,13 @@ function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySect
 export default function CSRPageMobileFix() {
     const { t } = useTranslation();
     const [scrollY, setScrollY] = useState(0);
+
+    // Preload hero image for faster loading
+    useEffect(() => {
+        const heroImg = new Image();
+        heroImg.src = '/papua-children.png';
+        heroImg.loading = 'eager';
+    }, []);
     const commitmentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -554,9 +576,9 @@ export default function CSRPageMobileFix() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
-                    >
+                >
                     <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
-                    <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
+                        <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
                     </div>
                 </motion.div>
             </section>
@@ -632,7 +654,9 @@ export default function CSRPageMobileFix() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.programs.title_line1')}</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                            {t('pages.csr.programs.title_line1')}
+                        </span>
                         <span className="text-black"> {t('pages.csr.programs.title_line2')}</span>
                     </motion.h2>
                     <motion.p
@@ -666,5 +690,3 @@ export default function CSRPageMobileFix() {
         </div>
     );
 }
-
-
