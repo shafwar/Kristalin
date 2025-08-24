@@ -186,6 +186,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             hasDropdown: true,
             dropdownItems: [
                 { label: t('nav.about_kristalin'), href: '/about#about-kristalin' },
+                { label: t('nav.board_of_directors'), href: '/board-of-directors' },
                 { label: t('nav.vision_mission'), href: '/vision-mission' },
                 { label: t('nav.company_overview'), href: '/company-overview' },
                 { label: t('nav.milestones'), href: '/milestones' },
@@ -475,9 +476,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     {/* Drawer header logo */}
                     <div className="flex items-center justify-center px-4 pt-6 pb-2">
                         <img
-                            src="/kristalinlogotransisi1.png"
-                            alt="Kristalin Eka Lestari Logo"
-                            className="h-12 w-auto object-contain"
+                            src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png"
+                            alt="Kristalin Logo"
+                            className="h-10 object-contain"
                         />
                     </div>
 

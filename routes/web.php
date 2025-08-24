@@ -42,7 +42,9 @@ Route::get('/leadership-traits', function () {
     return Inertia::render('leadership-traits');
 })->name('leadership-traits');
 
-
+Route::get('/board-of-directors', function () {
+    return Inertia::render('board-of-directors');
+})->name('board-of-directors');
 
 Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
