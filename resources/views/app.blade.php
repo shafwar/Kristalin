@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        
+
         {{-- SEO Meta Tags for Kristalin Branding --}}
         <meta name="description" content="PT Kristalin Ekalestari - Leading sustainable gold mining company in Indonesia. Committed to excellence, environmental responsibility, and community development.">
         <meta name="keywords" content="Kristalin, PT Kristalin Ekalestari, gold mining, sustainable mining, Indonesia mining, CSR, community development">
