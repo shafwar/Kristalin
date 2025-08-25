@@ -5,15 +5,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 // Simple Optimized Image Component for thumbnails only
-const OptimizedThumbnail = ({
-    src,
-    alt,
-    className,
-}: {
-    src: string;
-    alt: string;
-    className: string;
-}) => {
+const OptimizedThumbnail = ({ src, alt, className }: { src: string; alt: string; className: string }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isInView, setIsInView] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
@@ -66,8 +58,6 @@ const OptimizedThumbnail = ({
         </div>
     );
 };
-
-
 
 const BoardOfDirectors = () => {
     const { t } = useTranslation();
@@ -242,9 +232,7 @@ const BoardOfDirectors = () => {
                         <h1 className="bg-gradient-to-r from-yellow-600 via-yellow-500 to-amber-600 bg-clip-text text-4xl font-bold text-transparent drop-shadow-sm sm:text-5xl lg:text-6xl">
                             {t('nav.board_of_directors')}
                         </h1>
-                        <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700 sm:text-xl">
-                            {t('board_of_directors.vision_text')}
-                        </p>
+                        <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700 sm:text-xl">{t('board_of_directors.vision_text')}</p>
                     </motion.div>
                 </div>
             </section>
@@ -326,7 +314,7 @@ const BoardOfDirectors = () => {
                             {/* Navigation Arrows */}
                             <motion.button
                                 onClick={goToPrev}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70 hover:scale-110"
+                                className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-black/70"
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 disabled={isTransitioning}
@@ -338,7 +326,7 @@ const BoardOfDirectors = () => {
 
                             <motion.button
                                 onClick={goToNext}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70 hover:scale-110"
+                                className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-black/70"
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 disabled={isTransitioning}
@@ -349,7 +337,7 @@ const BoardOfDirectors = () => {
                             </motion.button>
 
                             {/* Photo Counter */}
-                            <div className="absolute bottom-4 right-4 rounded-full bg-black/50 px-3 py-1 text-sm text-white backdrop-blur-sm">
+                            <div className="absolute right-4 bottom-4 rounded-full bg-black/50 px-3 py-1 text-sm text-white backdrop-blur-sm">
                                 {currentPhotoIndex + 1}/{directorPhotos.length}
                             </div>
                         </div>
