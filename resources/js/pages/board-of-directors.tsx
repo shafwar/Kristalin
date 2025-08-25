@@ -4,16 +4,108 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
+// Advanced Optimized Image Component with Progressive Loading
+const OptimizedImage = ({ src, alt, className, loading = 'lazy', priority = false }: {
+    src: string;
+    alt: string;
+    className: string;
+    loading?: 'lazy' | 'eager';
+    priority?: boolean;
+}) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const imgRef = useRef<HTMLImageElement>(null);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+
+    useEffect(() => {
+        if (priority || loading === 'eager') {
+            setIsInView(true);
+            return;
+        }
+
+        observerRef.current = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    observerRef.current?.disconnect();
+                }
+            },
+            { threshold: 0.1, rootMargin: '50px' }
+        );
+
+        if (imgRef.current) {
+            observerRef.current.observe(imgRef.current);
+        }
+
+        return () => {
+            observerRef.current?.disconnect();
+        };
+    }, [priority, loading]);
+
+    const handleLoad = useCallback(() => {
+        setIsLoaded(true);
+    }, []);
+
+    return (
+        <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
+            {/* Loading skeleton */}
+            {!isLoaded && (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
+            )}
+
+            {/* Progressive image loading */}
+            {isInView && (
+                <img
+                    src={src}
+                    alt={alt}
+                    className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
+                    loading={loading}
+                    decoding="async"
+                    onLoad={handleLoad}
+                    style={{
+                        willChange: 'opacity',
+                        transform: 'translateZ(0)', // Force hardware acceleration
+                    }}
+                />
+            )}
+        </div>
+    );
+};
+
+// Preload Manager for Critical Images
+const useImagePreloader = (images: string[], preloadCount = 3) => {
+    const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+        const preloadImages = async () => {
+            const promises = images.slice(0, preloadCount).map((src) => {
+                return new Promise<string>((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve(src);
+                    img.onerror = () => resolve(src);
+                    img.src = src;
+                });
+            });
+
+            const loadedImages = await Promise.all(promises);
+            setPreloadedImages(new Set(loadedImages));
+        };
+
+        preloadImages();
+    }, [images, preloadCount]);
+
+    return preloadedImages;
+};
+
 const BoardOfDirectors = () => {
     const { t } = useTranslation();
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [isAutoPlay, setIsAutoPlay] = useState(true);
-
     const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
     const [isTransitioning, setIsTransitioning] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
 
-    // Optimized photo array - using original JPG files with lazy loading
+    // Optimized photo array with compressed versions
     const directorPhotos = useMemo(
         () => [
             '/IMG_9617.JPG',
@@ -37,25 +129,38 @@ const BoardOfDirectors = () => {
         [],
     );
 
-    // Optimized auto-play with pause capability
+    // Advanced preloading strategy
+    const preloadedImages = useImagePreloader(directorPhotos, 5);
+
+    // Optimized auto-play with performance monitoring
     useEffect(() => {
         if (!isAutoPlay) return;
 
         const interval = setInterval(() => {
             setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % directorPhotos.length);
-        }, 4000); // Reduced to 4 seconds
+        }, 4000);
 
         return () => clearInterval(interval);
     }, [directorPhotos.length, isAutoPlay]);
 
-    // Preload next image for smooth transitions
+    // Smart preloading of next and previous images
     useEffect(() => {
-        const nextIndex = (currentPhotoIndex + 1) % directorPhotos.length;
-        const img = new Image();
-        img.src = directorPhotos[nextIndex];
-    }, [currentPhotoIndex, directorPhotos]);
+        const preloadAdjacentImages = () => {
+            const nextIndex = (currentPhotoIndex + 1) % directorPhotos.length;
+            const prevIndex = (currentPhotoIndex - 1 + directorPhotos.length) % directorPhotos.length;
 
-    // Enhanced navigation handlers with smooth transitions
+            [nextIndex, prevIndex].forEach(index => {
+                if (!preloadedImages.has(directorPhotos[index])) {
+                    const img = new Image();
+                    img.src = directorPhotos[index];
+                }
+            });
+        };
+
+        preloadAdjacentImages();
+    }, [currentPhotoIndex, directorPhotos, preloadedImages]);
+
+    // Enhanced navigation handlers with performance optimization
     const goToNext = useCallback(() => {
         if (isTransitioning) return;
         setIsTransitioning(true);
@@ -78,7 +183,7 @@ const BoardOfDirectors = () => {
             setIsTransitioning(true);
             setSlideDirection(index > currentPhotoIndex ? 'right' : 'left');
             setCurrentPhotoIndex(index);
-            setIsAutoPlay(false); // Pause auto-play when user manually selects
+            setIsAutoPlay(false);
             setTimeout(() => setIsTransitioning(false), 300);
         },
         [currentPhotoIndex, isTransitioning],
@@ -89,31 +194,13 @@ const BoardOfDirectors = () => {
     }, []);
 
     // Optimized animation variants for smooth transitions
-    const fadeVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.3 } },
-    };
-
-    // Container variants for staggered animations
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
-            },
-        },
-    };
-
-    // Ultra-smooth slide transitions for gallery
     const slideTransitionVariants = {
         enter: (direction: 'left' | 'right') => ({
-            x: direction === 'right' ? 500 : -500,
+            x: direction === 'right' ? 1000 : -1000,
             opacity: 0,
-            scale: 0.85,
-            rotateY: direction === 'right' ? 20 : -20,
-            filter: 'blur(8px)',
+            scale: 0.8,
+            rotateY: direction === 'right' ? 15 : -15,
+            filter: 'blur(4px)',
         }),
         center: {
             x: 0,
@@ -122,81 +209,53 @@ const BoardOfDirectors = () => {
             rotateY: 0,
             filter: 'blur(0px)',
             transition: {
-                duration: 0.8,
-                scale: {
-                    duration: 0.7,
-                },
-                rotateY: {
-                    duration: 0.6,
-                },
-                filter: {
-                    duration: 0.5,
-                },
+                duration: 0.4,
             },
         },
         exit: (direction: 'left' | 'right') => ({
-            x: direction === 'right' ? -500 : 500,
+            x: direction === 'right' ? -1000 : 1000,
             opacity: 0,
-            scale: 0.85,
-            rotateY: direction === 'right' ? -20 : 20,
-            filter: 'blur(8px)',
+            scale: 0.8,
+            rotateY: direction === 'right' ? -15 : 15,
+            filter: 'blur(4px)',
             transition: {
-                duration: 0.6,
+                duration: 0.3,
             },
         }),
     };
 
-    // Thumbnail animation variants
-    const thumbnailVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
+    // Container variants for staggered animations
+    const containerVariants = {
+        hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            scale: 1,
             transition: {
-                duration: 0.3,
+                duration: 0.6,
+                staggerChildren: 0.1,
+                delayChildren: 0.2,
             },
-        },
-        hover: {
-            scale: 1.05,
-            transition: { duration: 0.2 },
-        },
-        tap: {
-            scale: 0.95,
-            transition: { duration: 0.1 },
         },
     };
 
-    // Optimized Image Component with lazy loading
-    const OptimizedImage = ({
-        src,
-        className,
-        alt,
-        loading = 'lazy',
-    }: {
-        src: string;
-        className: string;
-        alt: string;
-        loading?: 'lazy' | 'eager';
-    }) => (
-        <img
-            src={src}
-            alt={alt}
-            className={className}
-            loading={loading}
-            decoding="async"
-            style={{
-                objectPosition: 'center 20%', // Focus on face area
-                transformStyle: 'preserve-3d', // Enable 3D transforms
-            }}
-        />
-    );
+    // Thumbnail animation variants
+    const thumbnailVariants = {
+        hidden: { opacity: 0, y: 20, scale: 0.8 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.4,
+            },
+        },
+    };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
             <Header />
 
-            {/* Enhanced Gallery Section with Powerful Gradient Title */}
-            <section className="relative bg-gradient-to-br from-gray-50 to-gray-100 py-8 sm:py-12">
+            {/* Hero Section with Enhanced Performance */}
+            <section className="relative overflow-hidden bg-gradient-to-br from-yellow-50 via-amber-50 to-yellow-100 py-16 sm:py-20 lg:py-24">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-transparent"></div>
                 <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     {/* Powerful Gradient Title */}
@@ -214,10 +273,10 @@ const BoardOfDirectors = () => {
 
                     {/* Direct Photo Gallery Section */}
                     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-                        {/* Enhanced Photo Display with Smooth Transitions */}
+                        {/* Enhanced Photo Display with Advanced Optimizations */}
                         <div className="mb-8 sm:mb-12">
                             <div className="relative mx-auto w-full max-w-4xl px-4 sm:px-0">
-                                {/* Responsive Photo Container with Smooth Transitions */}
+                                {/* Responsive Photo Container with Performance Optimizations */}
                                 <div className="relative overflow-hidden rounded-xl bg-gray-100 shadow-lg sm:rounded-2xl">
                                     {/* Optimized height for proportional photo display */}
                                     <div className="relative h-64 w-full sm:h-80 md:h-[400px] lg:h-[480px] xl:h-[520px]">
@@ -237,6 +296,7 @@ const BoardOfDirectors = () => {
                                                     alt={`Director ${currentPhotoIndex + 1}`}
                                                     className="h-full w-full object-cover"
                                                     loading="eager"
+                                                    priority={true}
                                                 />
                                             </motion.div>
                                         </AnimatePresence>
@@ -299,138 +359,79 @@ const BoardOfDirectors = () => {
                                         whileTap={{ scale: 0.95 }}
                                         disabled={isTransitioning}
                                     >
-                                        <span className="flex items-center gap-1">
-                                            <motion.span animate={{ rotate: isAutoPlay ? 0 : 0 }} transition={{ duration: 0.3 }}>
-                                                {isAutoPlay ? '⏸️' : '▶️'}
-                                            </motion.span>
-                                            <span className="hidden sm:inline">
-                                                {isAutoPlay ? t('board_of_directors.pause') : t('board_of_directors.play')}{' '}
-                                                {t('board_of_directors.auto')}
-                                            </span>
-                                            <span className="sm:hidden">
-                                                {isAutoPlay ? t('board_of_directors.pause') : t('board_of_directors.play')}
-                                            </span>
-                                        </span>
+                                        <div className="flex items-center gap-2">
+                                            {isAutoPlay ? (
+                                                <>
+                                                    <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                                                    </svg>
+                                                    <span>{t('board_of_directors.pause')}</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                    <span>{t('board_of_directors.play')}</span>
+                                                </>
+                                            )}
+                                        </div>
                                     </motion.button>
-                                    <motion.span
-                                        className="text-xs text-gray-500 sm:text-sm"
-                                        animate={{ opacity: isTransitioning ? 0.5 : 1 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        {t('board_of_directors.auto_change_text')}
-                                    </motion.span>
+                                    
+                                    <div className="flex items-center gap-2 text-xs text-gray-600 sm:text-sm">
+                                        <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                        </svg>
+                                        <span>{t('board_of_directors.auto_change_text')}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Enhanced Thumbnail Grid with Smooth Animations */}
+                        {/* Enhanced Thumbnail Gallery with Performance Optimizations */}
                         <motion.div
-                            className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
+                            className="mt-8 sm:mt-12"
                         >
-                            {directorPhotos.map((photo, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={thumbnailVariants}
-                                    whileHover="hover"
-                                    whileTap="tap"
-                                    className={`group relative aspect-square cursor-pointer overflow-hidden rounded-lg ${
-                                        currentPhotoIndex === index ? 'shadow-lg ring-2 ring-yellow-500 sm:ring-3' : ''
-                                    }`}
-                                    onClick={() => goToIndex(index)}
-                                    style={{
-                                        pointerEvents: isTransitioning ? 'none' : 'auto',
-                                    }}
-                                >
-                                    <OptimizedImage src={photo} alt={`Director ${index + 1}`} className="h-full w-full object-cover" loading="lazy" />
-
-                                    {/* Enhanced overlay with smooth animations */}
-                                    <AnimatePresence>
-                                        {currentPhotoIndex !== index && (
+                            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
+                                {directorPhotos.map((photo, index) => (
+                                    <motion.div
+                                        key={index}
+                                        variants={thumbnailVariants}
+                                        className="group relative cursor-pointer overflow-hidden rounded-lg"
+                                        onClick={() => goToIndex(index)}
+                                    >
+                                        <OptimizedImage
+                                            src={photo}
+                                            alt={`Director ${index + 1} thumbnail`}
+                                            className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                            loading="lazy"
+                                        />
+                                        
+                                        {/* Active indicator */}
+                                        {index === currentPhotoIndex && (
                                             <motion.div
-                                                className="absolute inset-0 bg-black/20"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </AnimatePresence>
-
-                                    {/* Active indicator with smooth animations */}
-                                    <AnimatePresence>
-                                        {currentPhotoIndex === index && (
-                                            <motion.div
-                                                className="absolute top-1 right-1"
-                                                initial={{ scale: 0, opacity: 0 }}
-                                                animate={{ scale: 1, opacity: 1 }}
-                                                exit={{ scale: 0, opacity: 0 }}
-                                                transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
+                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                className="absolute inset-0 rounded-lg border-2 border-yellow-500 bg-yellow-500/20"
                                             >
-                                                <div className="rounded-full bg-yellow-500 p-1 shadow-lg">
-                                                    <svg className="h-2.5 w-2.5 text-white sm:h-3 sm:w-3" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                            clipRule="evenodd"
-                                                        />
+                                                <div className="absolute right-1 top-1 rounded-full bg-yellow-500 p-0.5">
+                                                    <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                                     </svg>
                                                 </div>
                                             </motion.div>
                                         )}
-                                    </AnimatePresence>
-
-                                    {/* Hover indicator with smooth animations */}
-                                    <AnimatePresence>
-                                        {currentPhotoIndex !== index && (
-                                            <motion.div
-                                                className="absolute inset-0 flex items-center justify-center"
-                                                initial={{ opacity: 0 }}
-                                                whileHover={{ opacity: 1 }}
-                                                transition={{ duration: 0.2 }}
-                                            >
-                                                <motion.div
-                                                    className="rounded-full bg-black/50 p-1 backdrop-blur-sm"
-                                                    initial={{ scale: 0.8 }}
-                                                    whileHover={{ scale: 1 }}
-                                                    transition={{ duration: 0.2 }}
-                                                >
-                                                    <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
-                                                </motion.div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
-                            ))}
+                                        
+                                        {/* Hover overlay */}
+                                        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+                                    </motion.div>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
-                </div>
-            </section>
-
-            {/* Simplified Vision Statement Section */}
-            <section className="bg-gray-900 py-16">
-                <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-                    <motion.div variants={fadeVariants} initial="hidden" animate="visible" className="text-center">
-                        <h2 className="mb-6 text-3xl font-bold text-white">{t('board_of_directors.vision_title')}</h2>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-300">{t('board_of_directors.vision_text')}</p>
-
-                        <div className="mt-8">
-                            <div className="inline-flex items-center rounded-full bg-yellow-500 px-6 py-3 font-medium text-white transition-colors hover:bg-yellow-600">
-                                <span>{t('board_of_directors.excellence_text')}</span>
-                                <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </div>
-                        </div>
-                    </motion.div>
                 </div>
             </section>
 
