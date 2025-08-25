@@ -13,7 +13,7 @@ const BoardOfDirectors = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
 
-    // Optimized photo array - smaller selection for better performance
+    // Optimized photo array - using original JPG files with lazy loading
     const directorPhotos = useMemo(
         () => [
             '/IMG_9617.JPG',
@@ -94,11 +94,6 @@ const BoardOfDirectors = () => {
         visible: { opacity: 1, transition: { duration: 0.3 } },
     };
 
-    const slideVariants = {
-        hidden: { opacity: 0, x: 20 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-    };
-
     // Container variants for staggered animations
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -128,18 +123,14 @@ const BoardOfDirectors = () => {
             filter: 'blur(0px)',
             transition: {
                 duration: 0.8,
-                ease: 'easeInOut',
                 scale: {
                     duration: 0.7,
-                    ease: 'easeOut',
                 },
                 rotateY: {
                     duration: 0.6,
-                    ease: 'easeInOut',
                 },
                 filter: {
                     duration: 0.5,
-                    ease: 'easeInOut',
                 },
             },
         },
@@ -151,7 +142,6 @@ const BoardOfDirectors = () => {
             filter: 'blur(8px)',
             transition: {
                 duration: 0.6,
-                ease: 'easeInOut',
             },
         }),
     };
@@ -164,7 +154,6 @@ const BoardOfDirectors = () => {
             scale: 1,
             transition: {
                 duration: 0.3,
-                ease: [0.25, 0.46, 0.45, 0.94],
             },
         },
         hover: {
@@ -176,6 +165,31 @@ const BoardOfDirectors = () => {
             transition: { duration: 0.1 },
         },
     };
+
+    // Optimized Image Component with lazy loading
+    const OptimizedImage = ({
+        src,
+        className,
+        alt,
+        loading = 'lazy',
+    }: {
+        src: string;
+        className: string;
+        alt: string;
+        loading?: 'lazy' | 'eager';
+    }) => (
+        <img
+            src={src}
+            alt={alt}
+            className={className}
+            loading={loading}
+            decoding="async"
+            style={{
+                objectPosition: 'center 20%', // Focus on face area
+                transformStyle: 'preserve-3d', // Enable 3D transforms
+            }}
+        />
+    );
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -190,7 +204,7 @@ const BoardOfDirectors = () => {
                         className="mb-8 text-center sm:mb-12"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.8, ease: 'easeInOut' }}
                     >
                         <h1 className="bg-gradient-to-r from-yellow-600 via-yellow-500 to-amber-600 bg-clip-text text-4xl font-bold text-transparent drop-shadow-sm sm:text-5xl lg:text-6xl">
                             {t('nav.board_of_directors')}
@@ -208,23 +222,23 @@ const BoardOfDirectors = () => {
                                     {/* Optimized height for proportional photo display */}
                                     <div className="relative h-64 w-full sm:h-80 md:h-[400px] lg:h-[480px] xl:h-[520px]">
                                         <AnimatePresence mode="wait" custom={slideDirection}>
-                                            <motion.img
+                                            <motion.div
                                                 key={currentPhotoIndex}
                                                 ref={imageRef}
-                                                src={directorPhotos[currentPhotoIndex]}
-                                                alt={`Director ${currentPhotoIndex + 1}`}
-                                                className="absolute inset-0 h-full w-full object-cover"
-                                                loading="lazy"
-                                                style={{
-                                                    objectPosition: 'center 20%', // Focus on face area
-                                                    transformStyle: 'preserve-3d', // Enable 3D transforms
-                                                }}
                                                 custom={slideDirection}
                                                 variants={slideTransitionVariants}
                                                 initial="enter"
                                                 animate="center"
                                                 exit="exit"
-                                            />
+                                                className="absolute inset-0"
+                                            >
+                                                <OptimizedImage
+                                                    src={directorPhotos[currentPhotoIndex]}
+                                                    alt={`Director ${currentPhotoIndex + 1}`}
+                                                    className="h-full w-full object-cover"
+                                                    loading="eager"
+                                                />
+                                            </motion.div>
                                         </AnimatePresence>
 
                                         {/* Gradient overlay for better text readability */}
@@ -330,17 +344,7 @@ const BoardOfDirectors = () => {
                                         pointerEvents: isTransitioning ? 'none' : 'auto',
                                     }}
                                 >
-                                    <motion.img
-                                        src={photo}
-                                        alt={`Director ${index + 1}`}
-                                        className="h-full w-full object-cover"
-                                        loading="lazy"
-                                        style={{
-                                            objectPosition: 'center 20%', // Focus on face area
-                                        }}
-                                        whileHover={{ scale: 1.1 }}
-                                        transition={{ duration: 0.3 }}
-                                    />
+                                    <OptimizedImage src={photo} alt={`Director ${index + 1}`} className="h-full w-full object-cover" loading="lazy" />
 
                                     {/* Enhanced overlay with smooth animations */}
                                     <AnimatePresence>

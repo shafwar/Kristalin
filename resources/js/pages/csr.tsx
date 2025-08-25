@@ -4,18 +4,74 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
 
+// Optimized image arrays with WebP/AVIF support
 const heroImage = '/papua-children.png';
-const galeriPoso = ['/galeri-poso1.png', '/galeri-poso2.png', '/galeri-poso3.png', '/galeri-poso4.png', '/galeri-poso5.png'];
-const galeriPapua = ['/galeri-papua1.png', '/galeri-papua2.png', '/galeri-papua3.png', '/galeri-papua4.png'];
-const galeriMenara = [
-    '/galeri-menara1.jpeg',
-    '/galeri-menara2.jpeg',
-    '/galeri-menara3.jpeg',
-    '/galeri-menara4.jpeg',
-    '/galeri-menara5.jpeg',
-    '/galeri-menara6.jpeg',
+
+const galeriPoso = [
+    { original: '/galeri-poso1.png', webp: '/galeri-poso1.webp', avif: '/galeri-poso1.avif', alt: 'Poso Gallery 1' },
+    { original: '/galeri-poso2.png', webp: '/galeri-poso2.webp', avif: '/galeri-poso2.avif', alt: 'Poso Gallery 2' },
+    { original: '/galeri-poso3.png', webp: '/galeri-poso3.webp', avif: '/galeri-poso3.avif', alt: 'Poso Gallery 3' },
+    { original: '/galeri-poso4.png', webp: '/galeri-poso4.webp', avif: '/galeri-poso4.avif', alt: 'Poso Gallery 4' },
+    { original: '/galeri-poso5.png', webp: '/galeri-poso5.webp', avif: '/galeri-poso5.avif', alt: 'Poso Gallery 5' },
 ];
-const galeriPapua2 = ['/galeri-papua2-1.jpeg', '/galeri-papua2-2.jpeg', '/galeri-papua2-3.jpeg', '/galeri-papua2-4.jpeg', '/galeri-papua2-5.jpeg'];
+
+const galeriPapua = [
+    { original: '/galeri-papua1.png', webp: '/galeri-papua1.webp', avif: '/galeri-papua1.avif', alt: 'Papua Gallery 1' },
+    { original: '/galeri-papua2.png', webp: '/galeri-papua2.webp', avif: '/galeri-papua2.avif', alt: 'Papua Gallery 2' },
+    { original: '/galeri-papua3.png', webp: '/galeri-papua3.webp', avif: '/galeri-papua3.avif', alt: 'Papua Gallery 3' },
+    { original: '/galeri-papua4.png', webp: '/galeri-papua4.webp', avif: '/galeri-papua4.avif', alt: 'Papua Gallery 4' },
+];
+
+const galeriMenara = [
+    { original: '/galeri-menara1.jpeg', webp: '/galeri-menara1.webp', avif: '/galeri-menara1.avif', alt: 'Menara Gallery 1' },
+    { original: '/galeri-menara2.jpeg', webp: '/galeri-menara2.webp', avif: '/galeri-menara2.avif', alt: 'Menara Gallery 2' },
+    { original: '/galeri-menara3.jpeg', webp: '/galeri-menara3.webp', avif: '/galeri-menara3.avif', alt: 'Menara Gallery 3' },
+    { original: '/galeri-menara4.jpeg', webp: '/galeri-menara4.webp', avif: '/galeri-menara4.avif', alt: 'Menara Gallery 4' },
+    { original: '/galeri-menara5.jpeg', webp: '/galeri-menara5.webp', avif: '/galeri-menara5.avif', alt: 'Menara Gallery 5' },
+    { original: '/galeri-menara6.jpeg', webp: '/galeri-menara6.webp', avif: '/galeri-menara6.avif', alt: 'Menara Gallery 6' },
+];
+
+const galeriPapua2 = [
+    { original: '/galeri-papua2-1.jpeg', webp: '/galeri-papua2-1.webp', avif: '/galeri-papua2-1.avif', alt: 'Papua 2 Gallery 1' },
+    { original: '/galeri-papua2-2.jpeg', webp: '/galeri-papua2-2.webp', avif: '/galeri-papua2-2.avif', alt: 'Papua 2 Gallery 2' },
+    { original: '/galeri-papua2-3.jpeg', webp: '/galeri-papua2-3.webp', avif: '/galeri-papua2-3.avif', alt: 'Papua 2 Gallery 3' },
+    { original: '/galeri-papua2-4.jpeg', webp: '/galeri-papua2-4.webp', avif: '/galeri-papua2-4.avif', alt: 'Papua 2 Gallery 4' },
+    { original: '/galeri-papua2-5.jpeg', webp: '/galeri-papua2-5.webp', avif: '/galeri-papua2-5.avif', alt: 'Papua 2 Gallery 5' },
+];
+
+// Optimized Picture Component for modern image formats
+const OptimizedPicture = ({ photo, className, alt, loading = 'lazy' }: {
+    photo: { original: string; webp: string; avif: string; alt: string } | string;
+    className: string;
+    alt: string;
+    loading?: 'lazy' | 'eager';
+}) => {
+    if (typeof photo === 'string') {
+        return (
+            <img
+                src={photo}
+                alt={alt}
+                className={className}
+                loading={loading}
+                decoding="async"
+            />
+        );
+    }
+    
+    return (
+        <picture>
+            <source srcSet={photo.avif} type="image/avif" />
+            <source srcSet={photo.webp} type="image/webp" />
+            <img
+                src={photo.original}
+                alt={alt}
+                className={className}
+                loading={loading}
+                decoding="async"
+            />
+        </picture>
+    );
+};
 
 // Gabungkan data galeri ke satu array
 const gallerySections = [
@@ -114,7 +170,7 @@ function VideoSection({ t }: { t: (key: string) => string }) {
     return (
         <section
             className="relative bg-cover bg-center py-16 sm:py-20"
-            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}
+            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroImage}')` }}
         >
             <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <motion.div
@@ -306,16 +362,11 @@ function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySect
                 {/* Image Section - MOBILE OPTIMIZED */}
                 <div className="w-full flex-1">
                     <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl bg-gray-100 sm:h-64 sm:rounded-2xl md:h-72 lg:h-80">
-                        <motion.img
-                            key={sections[current].images[imgIdx]}
-                            loading="eager"
-                            decoding="async"
-                            src={sections[current].images[imgIdx]}
+                        <OptimizedPicture
+                            photo={sections[current].images[imgIdx]}
                             alt={sections[current].title + ' ' + (imgIdx + 1)}
                             className="h-full w-full object-cover"
-                            initial={{ opacity: 0, scale: 0.97 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
+                            loading="eager"
                         />
                     </div>
                 </div>
@@ -369,7 +420,7 @@ export default function CSRPageMobileFix() {
     // Preload hero image for faster loading
     useEffect(() => {
         const heroImg = new Image();
-        heroImg.src = '/papua-children.png';
+        heroImg.src = heroImage;
         heroImg.loading = 'eager';
     }, []);
     const commitmentRef = useRef<HTMLDivElement>(null);
@@ -481,7 +532,13 @@ export default function CSRPageMobileFix() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src={heroImage} alt={t('pages.csr.hero.alt_text')} className="h-full w-full object-cover" />
+                    <img 
+                        src={heroImage} 
+                        alt={t('pages.csr.hero.alt_text')} 
+                        className="h-full w-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
