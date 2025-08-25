@@ -5,7 +5,13 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 // Advanced Optimized Image Component with Progressive Loading
-const OptimizedImage = ({ src, alt, className, loading = 'lazy', priority = false }: {
+const OptimizedImage = ({
+    src,
+    alt,
+    className,
+    loading = 'lazy',
+    priority = false,
+}: {
     src: string;
     alt: string;
     className: string;
@@ -30,7 +36,7 @@ const OptimizedImage = ({ src, alt, className, loading = 'lazy', priority = fals
                     observerRef.current?.disconnect();
                 }
             },
-            { threshold: 0.1, rootMargin: '50px' }
+            { threshold: 0.1, rootMargin: '50px' },
         );
 
         if (imgRef.current) {
@@ -49,9 +55,7 @@ const OptimizedImage = ({ src, alt, className, loading = 'lazy', priority = fals
     return (
         <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
             {/* Loading skeleton */}
-            {!isLoaded && (
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse" />
-            )}
+            {!isLoaded && <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-gray-200 to-gray-300" />}
 
             {/* Progressive image loading */}
             {isInView && (
@@ -149,7 +153,7 @@ const BoardOfDirectors = () => {
             const nextIndex = (currentPhotoIndex + 1) % directorPhotos.length;
             const prevIndex = (currentPhotoIndex - 1 + directorPhotos.length) % directorPhotos.length;
 
-            [nextIndex, prevIndex].forEach(index => {
+            [nextIndex, prevIndex].forEach((index) => {
                 if (!preloadedImages.has(directorPhotos[index])) {
                     const img = new Image();
                     img.src = directorPhotos[index];
@@ -377,7 +381,7 @@ const BoardOfDirectors = () => {
                                             )}
                                         </div>
                                     </motion.button>
-                                    
+
                                     <div className="flex items-center gap-2 text-xs text-gray-600 sm:text-sm">
                                         <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
@@ -389,12 +393,7 @@ const BoardOfDirectors = () => {
                         </div>
 
                         {/* Enhanced Thumbnail Gallery with Performance Optimizations */}
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                            className="mt-8 sm:mt-12"
-                        >
+                        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="mt-8 sm:mt-12">
                             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
                                 {directorPhotos.map((photo, index) => (
                                     <motion.div
@@ -409,7 +408,7 @@ const BoardOfDirectors = () => {
                                             className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                             loading="lazy"
                                         />
-                                        
+
                                         {/* Active indicator */}
                                         {index === currentPhotoIndex && (
                                             <motion.div
@@ -417,14 +416,14 @@ const BoardOfDirectors = () => {
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 className="absolute inset-0 rounded-lg border-2 border-yellow-500 bg-yellow-500/20"
                                             >
-                                                <div className="absolute right-1 top-1 rounded-full bg-yellow-500 p-0.5">
+                                                <div className="absolute top-1 right-1 rounded-full bg-yellow-500 p-0.5">
                                                     <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                                     </svg>
                                                 </div>
                                             </motion.div>
                                         )}
-                                        
+
                                         {/* Hover overlay */}
                                         <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
                                     </motion.div>
