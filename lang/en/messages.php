@@ -31,7 +31,7 @@ return [
         'auto' => 'Auto',
         'auto_change_text' => 'Changes every 4 seconds',
         'vision_title' => 'Our Leadership Vision',
-        'vision_text' => '"We are committed to leading Kristalin Eka Lestari towards sustainable excellence in gold mining. Our focus is on innovation, environmental stewardship, community development, and creating lasting value for all stakeholders while maintaining the highest standards of safety and operational efficiency."',
+        'vision_text' => '"We are committed to leading Kristalin towards sustainable excellence in gold mining. Our focus is on innovation, environmental stewardship, community development, and creating lasting value for all stakeholders while maintaining the highest standards of safety and operational efficiency."',
         'excellence_text' => 'Leading with Excellence',
     ],
 
@@ -52,7 +52,7 @@ return [
 
     // Company information
     'company' => [
-        'name' => 'Kristalin Eka Lestari',
+        'name' => 'Kristalin',
         'tagline' => 'Excellence in Mining and Trading',
         'description' => 'Leading mining and trading company specializing in precious metals and natural resources.',
     ],

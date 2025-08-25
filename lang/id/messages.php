@@ -31,7 +31,7 @@ return [
         'auto' => 'Otomatis',
         'auto_change_text' => 'Berubah setiap 4 detik',
         'vision_title' => 'Visi Kepemimpinan Kami',
-        'vision_text' => '"Kami berkomitmen untuk memimpin Kristalin Eka Lestari menuju keunggulan berkelanjutan dalam pertambangan emas. Fokus kami adalah pada inovasi, pengelolaan lingkungan, pengembangan komunitas, dan menciptakan nilai abadi bagi semua pemangku kepentingan sambil mempertahankan standar keselamatan dan efisiensi operasional tertinggi."',
+        'vision_text' => '"Kami berkomitmen untuk memimpin Kristalin menuju keunggulan berkelanjutan dalam pertambangan emas. Fokus kami adalah pada inovasi, pengelolaan lingkungan, pengembangan komunitas, dan menciptakan nilai abadi bagi semua pemangku kepentingan sambil mempertahankan standar keselamatan dan efisiensi operasional tertinggi."',
         'excellence_text' => 'Memimpin dengan Keunggulan',
     ],
 
@@ -52,7 +52,7 @@ return [
 
     // Company information
     'company' => [
-        'name' => 'Kristalin Eka Lestari',
+        'name' => 'Kristalin',
         'tagline' => 'Keunggulan dalam Pertambangan dan Perdagangan',
         'description' => 'Perusahaan pertambangan dan perdagangan terkemuka yang mengkhususkan diri pada logam mulia dan sumber daya alam.',
     ],

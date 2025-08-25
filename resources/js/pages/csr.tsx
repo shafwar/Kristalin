@@ -40,35 +40,26 @@ const galeriPapua2 = [
 ];
 
 // Optimized Picture Component for modern image formats
-const OptimizedPicture = ({ photo, className, alt, loading = 'lazy' }: {
+const OptimizedPicture = ({
+    photo,
+    className,
+    alt,
+    loading = 'lazy',
+}: {
     photo: { original: string; webp: string; avif: string; alt: string } | string;
     className: string;
     alt: string;
     loading?: 'lazy' | 'eager';
 }) => {
     if (typeof photo === 'string') {
-        return (
-            <img
-                src={photo}
-                alt={alt}
-                className={className}
-                loading={loading}
-                decoding="async"
-            />
-        );
+        return <img src={photo} alt={alt} className={className} loading={loading} decoding="async" />;
     }
-    
+
     return (
         <picture>
             <source srcSet={photo.avif} type="image/avif" />
             <source srcSet={photo.webp} type="image/webp" />
-            <img
-                src={photo.original}
-                alt={alt}
-                className={className}
-                loading={loading}
-                decoding="async"
-            />
+            <img src={photo.original} alt={alt} className={className} loading={loading} decoding="async" />
         </picture>
     );
 };
@@ -118,7 +109,8 @@ const gallerySections = [
     },
     {
         title: '3.000 Groceries for Poso People',
-        description: 'PT Kristalin Ekalestari distributed 3,000 groceries to help Poso people in need, as a form of corporate social responsibility.',
+        description:
+            'PT Kristalin Ekalestari distributed 3,000 groceries to help Poso people in need, as a form of corporate social responsibility.',
         images: galeriPoso,
     },
     {
@@ -532,13 +524,7 @@ export default function CSRPageMobileFix() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img 
-                        src={heroImage} 
-                        alt={t('pages.csr.hero.alt_text')} 
-                        className="h-full w-full object-cover"
-                        loading="eager"
-                        decoding="async"
-                    />
+                    <img src={heroImage} alt={t('pages.csr.hero.alt_text')} className="h-full w-full object-cover" loading="eager" decoding="async" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 

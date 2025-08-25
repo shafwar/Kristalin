@@ -606,7 +606,6 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-
             className="floating-feedback-button hover:shadow-3xl group fixed right-4 bottom-4 z-[10000] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
             style={{ transition: 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
         >

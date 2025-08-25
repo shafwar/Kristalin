@@ -15,7 +15,7 @@ export default function AuthCardLayout({
         <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
             <div className="flex w-full max-w-md flex-col gap-6">
                 <Link href={route('home')} className="flex items-center gap-2 self-center font-medium">
-                    <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Eka Lestari Logo" className="h-9 w-9 object-contain" />
+                    <img src="/kristalinlogotransisi1.png" alt="Kristalin Eka Lestari Logo" className="h-9 w-9 object-contain" />
                 </Link>
 
                 <div className="flex flex-col gap-6">
