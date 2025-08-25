@@ -4,6 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        {{-- SEO Meta Tags for Kristalin Branding --}}
+        <meta name="description" content="PT Kristalin Ekalestari - Leading sustainable gold mining company in Indonesia. Committed to excellence, environmental responsibility, and community development.">
+        <meta name="keywords" content="Kristalin, PT Kristalin Ekalestari, gold mining, sustainable mining, Indonesia mining, CSR, community development">
+        <meta name="author" content="PT Kristalin Ekalestari">
+        <meta property="og:title" content="PT Kristalin Ekalestari - Sustainable Gold Mining">
+        <meta property="og:description" content="Leading sustainable gold mining company in Indonesia. Committed to excellence, environmental responsibility, and community development.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://kristalin.co.id">
+        <meta property="og:image" content="https://kristalin.co.id/kristalinlogotransisi1.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="PT Kristalin Ekalestari - Sustainable Gold Mining">
+        <meta name="twitter:description" content="Leading sustainable gold mining company in Indonesia.">
+        <meta name="twitter:image" content="https://kristalin.co.id/kristalinlogotransisi1.png">
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
