@@ -606,7 +606,6 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-
             className="floating-feedback-button hover:shadow-3xl group fixed right-4 bottom-4 z-[10000] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
             style={{ transition: 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
         >
@@ -1285,6 +1284,22 @@ const Welcome = () => {
                                                 >
                                                     {t('pages.welcome.buttons.send_feedback')}
                                                 </button>
+
+                                                {/* Instagram Link - Elegant and Integrated */}
+                                                <motion.a
+                                                    href="https://www.instagram.com/kristalin_ekalestari/"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-7 py-3.5 text-base font-semibold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                >
+                                                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                                    </svg>
+                                                    <span className="hidden sm:inline">{t('common.follow_us')}</span>
+                                                    <span className="sm:hidden">Instagram</span>
+                                                </motion.a>
                                             </div>
                                         </div>
 
@@ -1997,6 +2012,63 @@ const Welcome = () => {
           .animate-float {
             animation: float 3s ease-in-out infinite;
           }
+
+          /* Instagram Link Responsive Styles */
+          @media (max-width: 640px) {
+            .instagram-link {
+              padding: 0.75rem !important;
+              gap: 0.5rem !important;
+            }
+
+            .instagram-link .icon-container {
+              width: 2.5rem !important;
+              height: 2.5rem !important;
+            }
+
+            .instagram-link .icon-container svg {
+              width: 1.25rem !important;
+              height: 1.25rem !important;
+            }
+
+            .instagram-link .text-content span:first-child {
+              font-size: 0.75rem !important;
+            }
+
+            .instagram-link .text-content span:last-child {
+              font-size: 0.625rem !important;
+            }
+          }
+
+          @media (min-width: 641px) and (max-width: 1024px) {
+            .instagram-link {
+              padding: 1rem !important;
+              gap: 0.75rem !important;
+            }
+          }
+
+          /* Instagram Link Hover Effects */
+          .instagram-link {
+            position: relative;
+            overflow: hidden;
+          }
+
+          .instagram-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+          }
+
+          .instagram-link:hover::before {
+            left: 100%;
+          }
+
+          /* Instagram Icon Pulse Animation */
+
 
           /* Particle animation keyframes */
           @keyframes particle-float {
