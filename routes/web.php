@@ -42,7 +42,9 @@ Route::get('/leadership-traits', function () {
     return Inertia::render('leadership-traits');
 })->name('leadership-traits');
 
-
+Route::get('/board-of-directors', function () {
+    return Inertia::render('board-of-directors');
+})->name('board-of-directors');
 
 Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
@@ -66,10 +68,6 @@ Route::get('/contact', function () {
 
 // Search
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-
-Route::get('/careers', function () {
-    return Inertia::render('careers');
-})->name('careers');
 
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);

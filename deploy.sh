@@ -1,38 +1,53 @@
 #!/bin/bash
 
-# Railway Deployment Script for Kristalin
-echo "🚀 Starting Railway deployment..."
+# Laravel + Inertia + React + Vite Production Deployment Script
+# Optimized for Railway + Cloudflare
 
-# Install PHP dependencies
-echo "📦 Installing PHP dependencies..."
-composer install --optimize-autoloader --no-dev
+set -e
 
-# Install Node.js dependencies
-echo "📦 Installing Node.js dependencies..."
+# Force rebuild and ensure manifest is in correct location
+echo "🚀 Starting deployment process..."
+
+# Install dependencies
+echo "📦 Installing dependencies..."
 npm ci
 
-# Build frontend assets
-echo "🔨 Building frontend assets..."
+# Build assets for production
+echo "🔨 Building assets for production..."
 npm run build
 
-# Generate application key if not exists
-if [ -z "$APP_KEY" ]; then
-    echo "🔑 Generating application key..."
-    php artisan key:generate
+# Copy manifest to correct location
+echo "📋 Copying manifest to correct location..."
+cp public/build/.vite/manifest.json public/build/manifest.json
+
+# Verify build output
+echo "✅ Verifying build output..."
+if [ ! -f "public/build/manifest.json" ]; then
+    echo "❌ ERROR: manifest.json not found in public/build/"
+    echo "📁 Contents of public/build/:"
+    ls -la public/build/ || echo "Directory does not exist"
+    exit 1
 fi
 
-# Run database migrations
-echo "🗄️ Running database migrations..."
-php artisan migrate --force
-
-# Clear and cache configurations
-echo "⚡ Optimizing Laravel for production..."
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+echo "📄 Manifest file found:"
+head -5 public/build/manifest.json
 
 # Set proper permissions
-echo "🔒 Setting file permissions..."
-chmod -R 755 storage bootstrap/cache
+echo "🔐 Setting proper permissions..."
+chmod -R 755 public/build/
+chown -R www-data:www-data public/build/ 2>/dev/null || echo "⚠️  Could not set ownership (this is normal in some environments)"
 
-echo "✅ Deployment script completed!"
+# Clear Laravel caches
+echo "🧹 Clearing Laravel caches..."
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+
+# Run migrations
+echo "🗄️  Running database migrations..."
+php artisan migrate --force
+
+echo "✅ Deployment completed successfully!"
+echo "🌐 Your application should now be accessible at: https://kristalin.co.id"
+echo "📝 Remember to set ASSET_URL=https://kristalin.co.id/build in production"

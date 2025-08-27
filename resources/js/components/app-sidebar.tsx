@@ -17,12 +17,12 @@ const mainNavItems: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+                        href: 'https://kristalin.co.id',
         icon: Folder,
     },
     {
         title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
+                        href: 'https://kristalin.co.id/about',
         icon: BookOpen,
     },
 ];

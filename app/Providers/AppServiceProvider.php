@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,15 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        // Fix for MySQL 5.7+ compatibility
-        Schema::defaultStringLength(191);
+        // Ensure proper asset URL configuration
+        if (config('app.env') === 'production' && env('ASSET_URL')) {
+            Config::set('app.asset_url', env('ASSET_URL'));
+        }
+
+        // Add error handling for asset loading
+        if (config('app.debug') === false) {
+            // Disable detailed error reporting in production
+            error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+        }
     }
 }

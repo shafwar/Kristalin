@@ -24,12 +24,12 @@ const mainNavItems: NavItem[] = [
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+                        href: 'https://kristalin.co.id',
         icon: Folder,
     },
     {
         title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
+                        href: 'https://kristalin.co.id/about',
         icon: BookOpen,
     },
 ];
@@ -58,8 +58,14 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             </SheetTrigger>
                             <SheetContent side="left" className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar">
                                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                                <SheetHeader className="flex justify-start text-left">
-                                    <img src="/kristalinlogotransisi1.png" alt="Kristalin Eka Lestari Logo" className="h-6 w-6 object-contain" />
+                                <SheetHeader className="flex justify-start p-4 text-left">
+                                    <img
+                                        src="/kristalinlogotransisi1.png"
+                                        alt="Kristalin Eka Lestari Logo"
+                                        className="h-10 w-auto object-contain"
+                                        loading="eager"
+                                        decoding="async"
+                                    />
                                 </SheetHeader>
                                 <div className="flex h-full flex-1 flex-col space-y-4 p-4">
                                     <div className="flex h-full flex-col justify-between text-sm">
