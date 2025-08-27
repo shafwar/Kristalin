@@ -191,6 +191,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 { label: t('nav.milestones'), href: '/milestones' },
                 { label: t('nav.core_values'), href: '/core-values' },
                 { label: t('nav.leadership_traits'), href: '/leadership-traits' },
+                { label: t('nav.board_of_directors'), href: '/board-of-directors' },
                 { label: t('nav.news'), href: '/news' },
             ],
         },

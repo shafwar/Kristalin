@@ -11,6 +11,7 @@ return [
         'milestones' => 'Milestones',
         'core_values' => 'Our Core Values',
         'leadership_traits' => 'Leadership Traits',
+        'board_of_directors' => 'Board of Directors',
 
         'news' => 'News',
         'line_of_business' => 'Line of Business',

@@ -11,6 +11,7 @@ return [
         'milestones' => 'Pencapaian',
         'core_values' => 'Nilai-Nilai Inti Kami',
         'leadership_traits' => 'Sifat Kepemimpinan',
+        'board_of_directors' => 'Dewan Direksi',
 
         'news' => 'Berita',
         'line_of_business' => 'Bidang Usaha',

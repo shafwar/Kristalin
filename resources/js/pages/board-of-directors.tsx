@@ -405,7 +405,8 @@ const BoardOfDirectors = () => {
 
             {/* Enhanced shimmer animation styles */}
             <style jsx>{`
-                @keyframes shimmer {
+
+@keyframes shimmer {
                     0% {
                         transform: translateX(-100%);
                     }

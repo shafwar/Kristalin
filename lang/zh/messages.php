@@ -11,6 +11,7 @@ return [
         'milestones' => '里程碑',
         'core_values' => '我们的核心价值观',
         'leadership_traits' => '领导特质',
+        'board_of_directors' => '董事会',
 
         'news' => '新闻',
         'line_of_business' => '业务范围',
