@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => ({
         outDir: 'public/build',
         assetsDir: 'assets',
         sourcemap: mode === 'development',
+        manifest: true,
         rollupOptions: {
             output: {
                 manualChunks: {
