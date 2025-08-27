@@ -224,7 +224,7 @@ const BoardOfDirectors = () => {
                 </div>
 
                 <motion.div
-                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
+                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-32 text-center sm:py-40 lg:py-48"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, ease: 'easeOut' }}
@@ -240,7 +240,7 @@ const BoardOfDirectors = () => {
                             initial={{ opacity: 0, y: 30, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                            className="mb-10"
+                            className="mb-16"
                         >
                             <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-8 py-3 text-base font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm">
                                 <motion.svg
@@ -258,7 +258,7 @@ const BoardOfDirectors = () => {
 
                         {/* Main Title with Business Activity Style */}
                         <motion.h1
-                            className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
+                            className="mb-8 text-3xl leading-tight font-bold sm:mb-12 sm:text-4xl md:text-5xl lg:text-7xl"
                             initial={{ opacity: 0, y: 50, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
@@ -275,7 +275,7 @@ const BoardOfDirectors = () => {
 
                         {/* Description */}
                         <motion.p
-                            className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
+                            className="mx-auto mb-12 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-16 sm:text-lg md:text-xl lg:text-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
@@ -285,7 +285,7 @@ const BoardOfDirectors = () => {
 
                         {/* Explore Button */}
                         <motion.div
-                            className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+                            className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 mt-8"
                             initial={{ opacity: 0, y: 30, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
@@ -322,7 +322,7 @@ const BoardOfDirectors = () => {
 
                 {/* Scroll Indicator */}
                 <motion.div
-                    className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 transform sm:bottom-12 lg:bottom-16"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
