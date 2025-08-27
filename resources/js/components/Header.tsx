@@ -476,7 +476,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     {/* Drawer header logo */}
                     <div className="flex items-center justify-center px-4 pt-6 pb-2">
                         <img
-                            src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin-white.png"
+                            src="/kristalinlogotransisi1.png"
                             alt="Kristalin Logo"
                             className="h-10 object-contain"
                         />
