@@ -6,16 +6,8 @@ import Header from '../components/Header';
 
 // Director data with translation keys for positions
 const directorsData = [
-    { id: 1, name: 'Jilan Jia Auranya', positionKey: 'position_board_member', company: '', image: '/IMG_9617.JPG' },
-    { id: 2, name: 'Gelombang Setiawan', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_9771.JPG' },
-    { id: 3, name: 'Muhammad Junaidi', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_0171.JPG' },
+    { id: 17, name: 'Arif Budi Setiawan', positionKey: 'position_chairman', company: '', image: '' },
     { id: 4, name: 'Andito Prasetyowan', positionKey: 'position_president_director', company: 'PT Kristalin Ekalestari', image: '/IMG_9970.JPG' },
-    { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_komisaris', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
-    { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_0188.JPG' },
-    { id: 7, name: 'Reza Darmawan', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_0272.JPG' },
-    { id: 8, name: 'Winarty', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_0378.JPG' },
-    { id: 9, name: 'Danella Adira', positionKey: 'position_corporate_secretary', company: '', image: '/IMG_0457.JPG' },
-    { id: 10, name: 'Prasetyo Nugroho', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_4546.JPG' },
     {
         id: 11,
         name: 'Asri Dyah Wijayanti',
@@ -23,16 +15,36 @@ const directorsData = [
         company: 'PT Nusamineral Mining Services',
         image: '/IMG_4701.JPG',
     },
+    { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_komisaris', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
     { id: 12, name: 'Dony Rivai', positionKey: 'position_finance_director', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
-    { id: 13, name: 'Novriadji Wibowo', positionKey: 'position_board_member', company: '', image: '/IMG_4892.JPG' },
+    { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_0188.JPG' },
+    { id: 7, name: 'Reza Darmawan', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_0272.JPG' },
+    { id: 10, name: 'Prasetyo Nugroho', positionKey: 'position_managing_partner', company: 'PT Kisara Global Capital', image: '/IMG_4546.JPG' },
     { id: 14, name: 'Teguh Arief Herlambang', positionKey: 'position_group_head_compliance', company: '', image: '/IMG_4987.JPG' },
-    { id: 15, name: 'Adelaide Pipit', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_5110.JPG' },
     { id: 16, name: 'Cindy Djunaidi', positionKey: 'position_group_hr_director', company: '', image: '/IMG_5220.JPG' },
-    { id: 17, name: 'Arif Budi Setiawan', positionKey: 'position_board_member', company: '', image: '/IMG_5382.JPG' },
+    { id: 9, name: 'Danella Adira', positionKey: 'position_corporate_secretary', company: '', image: '/IMG_0457.JPG' },
+    { id: 2, name: 'Gelombang Setiawan', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_9771.JPG' },
+    { id: 8, name: 'Winarty', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_0378.JPG' },
+    { id: 3, name: 'Muhammad Junaidi', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_9871.JPG', objectFit: 'cover' },
+    { id: 15, name: 'Adelaide Pipit', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_5110.JPG' },
+    { id: 1, name: 'Jilan Jia Auranya', positionKey: 'position_board_member', company: '', image: '/IMG_9617.JPG' },
+    { id: 13, name: 'Novriadji Wibowo', positionKey: 'position_board_member', company: '', image: '/IMG_4892.JPG' },
 ];
 
 // Enhanced Optimized Image Component - Performance focused for scroll
-const OptimizedImage = ({ src, alt, className }: { src: string; alt: string; className: string }) => {
+const OptimizedImage = ({
+    src,
+    alt,
+    className,
+    rotation,
+    objectFit,
+}: {
+    src: string;
+    alt: string;
+    className: string;
+    rotation?: string;
+    objectFit?: string;
+}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isInView, setIsInView] = useState(false);
     const [hasError, setHasError] = useState(false);
@@ -68,6 +80,29 @@ const OptimizedImage = ({ src, alt, className }: { src: string; alt: string; cla
         setIsLoaded(true);
     }, []);
 
+    // Show mysterious icon when no image is provided
+    if (!src || src === '') {
+        return (
+            <div className={`relative overflow-hidden ${className}`}>
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+                    <div className="text-center">
+                        <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-slate-300 to-slate-400">
+                            <svg className="h-8 w-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1.5}
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                />
+                            </svg>
+                        </div>
+                        <span className="text-xs font-medium text-slate-500">Anonymous</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
             {/* Enhanced loading skeleton with shimmer effect */}
@@ -97,7 +132,11 @@ const OptimizedImage = ({ src, alt, className }: { src: string; alt: string; cla
                 <img
                     src={src}
                     alt={alt}
-                    className={`h-full w-full object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    className={`h-full w-full transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    style={{
+                        transform: rotation || 'none',
+                        objectFit: (objectFit as 'cover' | 'contain' | 'fill' | 'none' | 'scale-down') || 'cover',
+                    }}
                     loading="lazy"
                     decoding="async"
                     fetchPriority="high"
@@ -166,7 +205,13 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
             <div className="relative overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-200/40 transition-all duration-300 group-hover:shadow-lg group-hover:ring-slate-300/60">
                 {/* Director Photo - standard aspect ratio */}
                 <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage src={director.image} alt={director.name} className="h-full w-full" />
+                    <OptimizedImage
+                        src={director.image}
+                        alt={director.name}
+                        className="h-full w-full"
+                        rotation={(director as { rotation?: string }).rotation}
+                        objectFit={(director as { objectFit?: string }).objectFit}
+                    />
 
                     {/* Minimal overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -285,7 +330,7 @@ const BoardOfDirectors = () => {
 
                         {/* Explore Button */}
                         <motion.div
-                            className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 mt-8"
+                            className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
                             initial={{ opacity: 0, y: 30, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
@@ -467,4 +512,3 @@ const BoardOfDirectors = () => {
 };
 
 export default BoardOfDirectors;
-

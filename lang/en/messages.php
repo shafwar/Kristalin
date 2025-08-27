@@ -54,6 +54,7 @@ return [
         'stats_sustainability_desc' => 'Environmental stewardship focus',
         
         // Director positions
+        'position_chairman' => 'Chairman',
         'position_board_member' => 'Board Member',
         'position_shareholder' => 'Shareholder',
         'position_advisor_shareholder' => 'Advisor & Shareholder',

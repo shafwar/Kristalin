@@ -54,6 +54,7 @@ return [
         'stats_sustainability_desc' => 'Fokus pada pengelolaan lingkungan',
         
         // Director positions
+        'position_chairman' => 'Ketua Dewan',
         'position_board_member' => 'Anggota Dewan',
         'position_shareholder' => 'Pemegang Saham',
         'position_advisor_shareholder' => 'Penasihat & Pemegang Saham',

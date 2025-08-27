@@ -54,6 +54,7 @@ return [
         'stats_sustainability_desc' => '环境管理重点',
         
         // Director positions
+        'position_chairman' => '董事长',
         'position_board_member' => '董事会成员',
         'position_shareholder' => '股东',
         'position_advisor_shareholder' => '顾问兼股东',
