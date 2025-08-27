@@ -186,12 +186,12 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             hasDropdown: true,
             dropdownItems: [
                 { label: t('nav.about_kristalin'), href: '/about#about-kristalin' },
+                { label: t('nav.board_of_directors'), href: '/board-of-directors' },
                 { label: t('nav.vision_mission'), href: '/vision-mission' },
                 { label: t('nav.company_overview'), href: '/company-overview' },
                 { label: t('nav.milestones'), href: '/milestones' },
                 { label: t('nav.core_values'), href: '/core-values' },
                 { label: t('nav.leadership_traits'), href: '/leadership-traits' },
-                { label: t('nav.board_of_directors'), href: '/board-of-directors' },
                 { label: t('nav.news'), href: '/news' },
             ],
         },
