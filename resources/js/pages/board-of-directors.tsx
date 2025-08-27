@@ -356,10 +356,13 @@ const BoardOfDirectors = () => {
                                     key={index}
                                     className="group text-center"
                                     whileHover={{ y: -6, scale: 1.02 }}
-                                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 1.4 + index * 0.2, duration: 0.8 }}
+                                    transition={{ 
+                                        delay: 1.4 + index * 0.2, 
+                                        duration: 0.8,
+                                        ease: [0.25, 0.46, 0.45, 0.94]
+                                    }}
                                 >
                                     <div
                                         className="relative mx-auto mb-8 overflow-hidden rounded-2xl bg-gradient-to-br p-6 shadow-xl transition-all duration-500 group-hover:shadow-2xl"
