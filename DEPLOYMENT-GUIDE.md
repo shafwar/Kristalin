@@ -1,6 +1,7 @@
 # 🚀 KRISTALIN DEPLOYMENT GUIDE - PREVENT 404 ERRORS
 
 ## ⚠️ MASALAH YANG PERNAH TERJADI
+
 - **404 Errors:** Browser/Cloudflare cache menggunakan asset lama
 - **Black Screen:** Website tidak bisa dimuat karena JS/CSS tidak ditemukan
 - **Cache Issues:** Browser dan CDN tidak ter-update dengan assets baru
@@ -8,6 +9,7 @@
 ## ✅ SOLUSI PERMANEN YANG SUDAH DIIMPLEMENTASI
 
 ### 1. **Cache Control Headers (.htaccess)**
+
 ```apache
 # Force no cache for build assets with version control
 <FilesMatch "\.(js|css)$">
@@ -20,26 +22,29 @@
 ```
 
 ### 2. **Auto Build Script (package.json)**
+
 ```json
 {
-  "scripts": {
-    "pre-push": "npm run build && git add -f public/build/ && git commit -m '🔧 BUILD: Auto-update assets before push' || true"
-  }
+    "scripts": {
+        "pre-push": "npm run build && git add -f public/build/ && git commit -m '🔧 BUILD: Auto-update assets before push' || true"
+    }
 }
 ```
 
 ### 3. **Post Install Hook**
+
 ```json
 {
-  "scripts": {
-    "postinstall": "npm run build"
-  }
+    "scripts": {
+        "postinstall": "npm run build"
+    }
 }
 ```
 
 ## 📋 PROSEDUR DEPLOYMENT YANG AMAN
 
 ### **SEBELUM PUSH:**
+
 ```bash
 # 1. Build assets
 npm run build
@@ -53,6 +58,7 @@ git push origin main
 ```
 
 ### **JIKA ADA 404 ERRORS:**
+
 ```bash
 # 1. Force rebuild
 npm run build
@@ -64,6 +70,7 @@ git push origin main
 ```
 
 ### **UNTUK TESTING:**
+
 ```bash
 # 1. Clear browser cache
 # 2. Hard refresh: Ctrl+F5 (Windows) / Cmd+Shift+R (Mac)
@@ -73,6 +80,7 @@ git push origin main
 ## 🎯 BEST PRACTICES
 
 ### **✅ SELALU LAKUKAN:**
+
 1. **Build sebelum push** - `npm run build`
 2. **Test di local** sebelum push
 3. **Clear browser cache** untuk testing
@@ -80,6 +88,7 @@ git push origin main
 5. **Monitor deployment** status di Railway
 
 ### **❌ JANGAN LAKUKAN:**
+
 1. **Push tanpa build** - akan menyebabkan 404 errors
 2. **Ignore build errors** - fix dulu sebelum push
 3. **Skip testing** - selalu test di local dulu
@@ -88,6 +97,7 @@ git push origin main
 ## 🔧 TROUBLESHOOTING
 
 ### **Error: 404 Not Found**
+
 ```bash
 # Solusi:
 npm run build
@@ -97,6 +107,7 @@ git push origin main
 ```
 
 ### **Error: Black Screen**
+
 ```bash
 # Solusi:
 1. Clear browser cache
@@ -106,6 +117,7 @@ git push origin main
 ```
 
 ### **Error: Cache Issues**
+
 ```bash
 # Solusi:
 1. Incognito mode test
@@ -117,12 +129,14 @@ git push origin main
 ## 📱 MOBILE TESTING
 
 ### **Chrome DevTools:**
+
 1. **F12** → **Toggle device toolbar**
 2. **iPhone 12 Pro** simulation
 3. **Hard refresh** di mobile view
 4. **Check console** untuk errors
 
 ### **Real Device:**
+
 1. **Clear browser cache**
 2. **Hard refresh**
 3. **Test incognito mode**
@@ -131,6 +145,7 @@ git push origin main
 ## 🚨 EMERGENCY FIX
 
 ### **Jika Website Down Total:**
+
 ```bash
 # 1. Rebuild assets
 npm run build
@@ -147,6 +162,7 @@ git push origin main
 ## 📞 SUPPORT
 
 ### **Jika Masih Ada Masalah:**
+
 1. **Check Railway logs** untuk error details
 2. **Verify manifest.json** exists di `public/build/`
 3. **Check .htaccess** configuration
