@@ -479,7 +479,7 @@ export default function KristalinPortfolio() {
               transition={{ duration: 0.4 }}
               className="w-full max-w-md mx-auto text-center"
             >
-              <img src="https://kristalin.co.id/wp-content/uploads/2019/10/Logo-Kristalin.png" alt="Kristalin Logo" className="mx-auto mb-6 h-40 w-40 md:h-56 md:w-56 object-contain" />
+              <img src="/kristalinlogotransisi1.png" alt="Kristalin Logo" className="mx-auto mb-6 h-40 w-40 md:h-56 md:w-56 object-contain" />
             </motion.div>
           </motion.div>
         </div>
