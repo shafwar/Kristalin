@@ -23,3 +23,59 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Force cache refresh for build assets
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Force no cache for build assets with version control
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+        Header set Vary "Accept-Encoding"
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+    
+    # Force no cache for manifest.json
+    <Files "manifest.json">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+        Header set Vary "Accept-Encoding"
+    </Files>
+    
+    # Force no cache for all build directory files
+    <FilesMatch "build/.*\.(js|css|json)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+        Header set Vary "Accept-Encoding"
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+</IfModule>
+
+# Force cache refresh for build directory
+<Directory "build">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+    Header set Vary "Accept-Encoding"
+    Header set X-Content-Type-Options "nosniff"
+</Directory>
+
+# Additional security and cache control headers
+<IfModule mod_headers.c>
+    # Prevent caching of dynamic content
+    <FilesMatch "\.(php|html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+    </FilesMatch>
+    
+    # Force revalidation for all assets
+    <FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+        Header set Vary "Accept-Encoding"
+    </FilesMatch>
+</IfModule>
