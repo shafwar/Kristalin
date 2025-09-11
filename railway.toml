@@ -2,8 +2,8 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php artisan migrate --force && chmod -R 755 public/build && php -S 0.0.0.0:${PORT} -t public"
-healthcheckPath = "/"
+startCommand = "php artisan config:cache && php -S 0.0.0.0:${PORT} -t public"
+healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3

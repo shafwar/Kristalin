@@ -15,6 +15,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const [scrollY, setScrollY] = useState(0);
     const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [mobileDropdownOpenIndex, setMobileDropdownOpenIndex] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -455,7 +456,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Backdrop */}
                 <div
                     className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
-                        mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+                        mobileMenuOpen ? 'visible opacity-100 backdrop-blur-sm' : 'invisible opacity-0 backdrop-blur-0'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                 />
@@ -463,7 +464,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Drawer */}
                 <div
                     ref={mobileMenuRef}
-                    className={`fixed top-16 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:top-18 sm:w-96 lg:top-20 lg:hidden ${
+                    className={`fixed top-0 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:w-96 lg:hidden ${
                         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     style={{
@@ -473,9 +474,18 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         WebkitOverflowScrolling: 'touch',
                     }}
                 >
-                    {/* Drawer header logo */}
-                    <div className="flex items-center justify-center px-4 pt-6 pb-2">
-                        <img src="/kristalinlogotransisi1.png" alt="Kristalin Logo" className="h-10 object-contain" />
+                    {/* Drawer header with logo and close button */}
+                    <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-gray-600">
+                        <img src="/kristalinlogotransisi1.png" alt="Kristalin Logo" className="h-8 object-contain" />
+                        <button
+                            aria-label="Close menu"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="rounded p-2 text-white transition-colors hover:text-yellow-400"
+                        >
+                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
 
                     <div className="min-h-full space-y-4 px-4 py-4">
@@ -504,7 +514,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             </div>
                         </div>
 
-                        {/* Mobile Search */}
+                        {/* Mobile Search (jangan uppercase) */}
                         <div className="pt-3">
                             <form
                                 onSubmit={(e) => {
@@ -543,33 +553,53 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             </form>
                         </div>
 
-                        {/* Mobile Navigation Items */}
+                        {/* Mobile Navigation Items (uppercase) */}
                         {navigationItems.map((item, index) => (
                             <div key={index} className="border-b border-gray-600 pb-4 last:border-b-0">
                                 {item.hasDropdown ? (
                                     <div>
-                                        <button className="w-full py-2 text-left text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400">
-                                            {item.label}
+                                        <button
+                                            className="w-full py-2 text-left text-base font-semibold uppercase text-white transition-all duration-300 hover:text-yellow-400 flex items-center justify-between"
+                                            onClick={() =>
+                                                setMobileDropdownOpenIndex(
+                                                    mobileDropdownOpenIndex === index ? null : index,
+                                                )
+                                            }
+                                        >
+                                            <span>{item.label}</span>
+                        
+                                            <svg
+                                                className={`h-5 w-5 transform transition-transform duration-300 ${
+                                                    mobileDropdownOpenIndex === index ? 'rotate-180 text-yellow-300' : 'text-white'
+                                                }`}
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                aria-hidden="true"
+                                            >
+                                                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
+                                            </svg>
                                         </button>
-                                        <div className="mt-2 space-y-2 pl-4">
-                                            {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                                                <a
-                                                    key={dropdownIndex}
-                                                    href={dropdownItem.href}
-                                                    className="block py-1 text-sm text-gray-300 transition-all duration-300 hover:text-yellow-300"
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                >
-                                                    {dropdownItem.label}
-                                                </a>
-                                            ))}
-                                        </div>
+                                        {mobileDropdownOpenIndex === index && (
+                                            <div className="mt-2 space-y-2 pl-4">
+                                                {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
+                                                    <a
+                                                        key={dropdownIndex}
+                                                        href={dropdownItem.href}
+                                                        className="block py-1 text-sm uppercase text-gray-200 transition-all duration-300 hover:text-yellow-300"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                    >
+                                                        {dropdownItem.label}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 ) : item.external ? (
                                     <a
                                         href={item.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block py-2 text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400"
+                                        className="block py-2 text-base font-semibold uppercase text-white transition-all duration-300 hover:text-yellow-400"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         {item.label}
@@ -577,7 +607,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="block py-2 text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400"
+                                        className="block py-2 text-base font-semibold uppercase text-white transition-all duration-300 hover:text-yellow-400"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         {item.label}

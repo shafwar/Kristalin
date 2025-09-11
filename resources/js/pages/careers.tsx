@@ -388,93 +388,10 @@ const Careers = () => {
                             <p className="mx-auto max-w-3xl text-lg text-gray-600">{t('pages.careers.apply.subtitle')}</p>
                         </div>
 
-                        <div className="grid gap-8 lg:grid-cols-2">
-                            {/* Application Form */}
-                            <div className="rounded-xl bg-white p-8 shadow-lg">
-                                <h3 className="mb-6 text-2xl font-semibold text-gray-900">{t('pages.careers.apply.form.title')}</h3>
-
-                                <div className="space-y-6">
-                                    <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.careers.apply.form.position')} <span className="text-red-500">*</span>
-                                        </label>
-                                        <select className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500">
-                                            <option value="">{t('pages.careers.apply.form.select_position')}</option>
-                                            {jobPositions.map((position) => (
-                                                <option key={position.id} value={position.id}>
-                                                    {position.title} - {position.department}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-
-                                    <div className="grid gap-6 md:grid-cols-2">
-                                        <div>
-                                            <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                                {t('pages.careers.apply.form.first_name')} <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                                placeholder={t('pages.careers.apply.form.first_name_placeholder')}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                                {t('pages.careers.apply.form.last_name')} <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                                placeholder={t('pages.careers.apply.form.last_name_placeholder')}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.careers.apply.form.email')} <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="email"
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                            placeholder={t('pages.careers.apply.form.email_placeholder')}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.careers.apply.form.phone')}
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                            placeholder={t('pages.careers.apply.form.phone_placeholder')}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.careers.apply.form.message')}
-                                        </label>
-                                        <textarea
-                                            rows={4}
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                            placeholder={t('pages.careers.apply.form.message_placeholder')}
-                                        />
-                                    </div>
-
-                                    <button
-                                        onClick={() => window.open('https://forms.gle/Qzi2TpTjC5GhQMMV8', '_blank')}
-                                        className="w-full rounded-lg bg-yellow-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-yellow-600 hover:shadow-lg"
-                                    >
-                                        {t('pages.careers.apply.form.submit')}
-                                    </button>
-                                </div>
-                            </div>
+                        <div className="grid place-items-center">
 
                             {/* Google Form Integration */}
-                            <div className="rounded-xl bg-gradient-to-br from-yellow-50 to-amber-50 p-8">
+                            <div className="w-full max-w-2xl rounded-xl bg-gradient-to-br from-yellow-50 to-amber-50 p-8">
                                 <div className="mb-6 text-center">
                                     <div className="mb-4 text-4xl">📝</div>
                                     <h3 className="mb-2 text-2xl font-semibold text-gray-900">{t('pages.careers.apply.google_form.title')}</h3>

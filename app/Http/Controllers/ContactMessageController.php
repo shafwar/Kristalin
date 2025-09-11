@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMessageReceived;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ContactMessageController extends Controller
@@ -24,6 +26,15 @@ class ContactMessageController extends Controller
         }
 
         $contact = ContactMessage::create($validated);
+
+        $to = config('mail.to.address', env('MAIL_TO_ADDRESS'));
+        if (empty($to)) {
+            $to = config('mail.from.address');
+        }
+
+        if (!empty($to)) {
+            Mail::to($to)->queue(new ContactMessageReceived($contact));
+        }
 
         return response()->json([
             'success' => true,
