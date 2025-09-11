@@ -2,8 +2,8 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php artisan config:cache && php -S 0.0.0.0:${PORT} -t public"
-healthcheckPath = "/health"
+startCommand = "php -S 0.0.0.0:${PORT} -t public"
+healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
