@@ -14,6 +14,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+    const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isSearching, setIsSearching] = useState(false);
@@ -454,8 +455,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </div>
                 {/* Backdrop */}
                 <div
-                    className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
-                        mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+                    className={`fixed inset-0 z-40 bg-black/40 transition-all duration-300 lg:hidden ${
+                        mobileMenuOpen ? 'visible opacity-100 backdrop-blur-sm' : 'invisible opacity-0'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                 />
@@ -463,7 +464,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Drawer */}
                 <div
                     ref={mobileMenuRef}
-                    className={`fixed top-16 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-gradient-to-b from-[#444] via-[#666] to-[#888] shadow-2xl transition-transform duration-300 ease-out sm:top-18 sm:w-96 lg:top-20 lg:hidden ${
+                    className={`fixed top-0 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-white shadow-2xl transition-transform duration-300 ease-out sm:w-96 lg:hidden ${
                         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
                     style={{
@@ -473,30 +474,39 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         WebkitOverflowScrolling: 'touch',
                     }}
                 >
-                    {/* Drawer header logo */}
-                    <div className="flex items-center justify-center px-4 pt-6 pb-2">
+                    {/* Close button inside menu */}
+                    <div className="flex items-center justify-between px-4 pt-4 pb-2">
                         <img src="/kristalinlogotransisi1.png" alt="Kristalin Logo" className="h-10 object-contain" />
+                        <button
+                            className="p-2 text-gray-600 transition-all duration-300 ease-out hover:text-yellow-500"
+                            onClick={() => setMobileMenuOpen(false)}
+                            aria-label="Close menu"
+                        >
+                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
 
                     <div className="min-h-full space-y-4 px-4 py-4">
                         {/* Mobile Language Switcher */}
-                        <div className="flex items-center justify-between border-b border-gray-600 pb-4">
-                            <span className="text-sm font-semibold text-white">{t('common.language')}:</span>
+                        <div className="flex items-center justify-between pb-4">
+                            <span className="text-sm font-semibold text-gray-800 uppercase">{t('common.language')}:</span>
                             <div className="flex gap-2">
                                 <button
-                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'id' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'id' ? 'bg-yellow-500 text-white' : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'}`}
                                     onClick={() => switchLanguage('id')}
                                 >
                                     ID
                                 </button>
                                 <button
-                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'en' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'en' ? 'bg-yellow-500 text-white' : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'}`}
                                     onClick={() => switchLanguage('en')}
                                 >
                                     EN
                                 </button>
                                 <button
-                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'zh' ? 'bg-yellow-600 text-white' : 'hover:bg-opacity-10 text-white hover:bg-white'}`}
+                                    className={`rounded px-3 py-1 text-sm font-semibold transition-all duration-300 ${locale === 'zh' ? 'bg-yellow-500 text-white' : 'text-gray-600 hover:bg-amber-50 hover:text-amber-600'}`}
                                     onClick={() => switchLanguage('zh')}
                                 >
                                     ZH
@@ -545,21 +555,40 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
                         {/* Mobile Navigation Items */}
                         {navigationItems.map((item, index) => (
-                            <div key={index} className="border-b border-gray-600 pb-4 last:border-b-0">
+                            <div key={index} className="mb-2">
                                 {item.hasDropdown ? (
                                     <div>
-                                        <button className="w-full py-2 text-left text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400">
-                                            {item.label}
+                                        <button 
+                                            className="w-full py-3 px-4 text-left text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg flex items-center justify-between group"
+                                            onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
+                                        >
+                                            <div className="flex items-center">
+                                                <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                <span>{item.label}</span>
+                                            </div>
+                                            <svg 
+                                                className={`w-5 h-5 transition-transform duration-300 ${mobileAboutDropdownOpen ? 'rotate-180' : ''}`} 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                            </svg>
                                         </button>
-                                        <div className="mt-2 space-y-2 pl-4">
+                                        <div className={`mt-2 space-y-1 transition-all duration-300 overflow-hidden ${
+                                            mobileAboutDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                        }`}>
                                             {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
                                                 <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
-                                                    className="block py-1 text-sm text-gray-300 transition-all duration-300 hover:text-yellow-300"
+                                                    className="block py-2 px-4 ml-6 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
-                                                    {dropdownItem.label}
+                                                    <div className="flex items-center">
+                                                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                        <span>{dropdownItem.label}</span>
+                                                    </div>
                                                 </a>
                                             ))}
                                         </div>
@@ -569,18 +598,24 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         href={item.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block py-2 text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400"
+                                        className="block py-3 px-4 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
-                                        {item.label}
+                                        <div className="flex items-center">
+                                            <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <span>{item.label}</span>
+                                        </div>
                                     </a>
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="block py-2 text-base font-semibold text-white transition-all duration-300 hover:text-yellow-400"
+                                        className="block py-3 px-4 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
-                                        {item.label}
+                                        <div className="flex items-center">
+                                            <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <span>{item.label}</span>
+                                        </div>
                                     </Link>
                                 )}
                             </div>
