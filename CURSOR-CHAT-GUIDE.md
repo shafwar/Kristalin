@@ -699,3 +699,43 @@ translation
 
 **🎯 TUJUAN FILE INI:**
 **Memastikan Cursor Chat baru bisa langsung paham project tanpa trial and error, dan menghindari kerusakan website yang sudah stabil!**
+
+---
+
+## 🆕 UPDATE 2025: BUILD & DEPLOYMENT WORKFLOW (RAILWAY + GITIGNORE)
+
+### 1. Build Assets Tidak Perlu di-push ke Git
+- Pastikan folder `public/build` sudah ada di `.gitignore`.
+- Jangan pernah commit/push file hasil build (`public/build/assets/*`) ke repository.
+- File build tetap ada di lokal setelah `npm run build`, tapi tidak di-track oleh Git.
+
+### 2. Railway Harus Build Sendiri
+- Jangan andalkan file build dari repo.
+- Tambahkan **Custom Build Command** di Railway:
+  ```
+  composer install --ignore-platform-reqs && npm ci && npm run build
+  ```
+- Pastikan perintah di atas dijalankan di menu Build Command pada Railway dashboard.
+
+### 3. Troubleshooting Production
+- Jika file JS/CSS hasil build tidak ditemukan di production (404), cek:
+  - Apakah build command di Railway sudah benar?
+  - Apakah hasil build muncul di folder `public/build/assets/` di server?
+  - Cek log build di Railway untuk error.
+
+### 4. Best Practice
+- Source code saja yang di-push ke repo.
+- File build selalu dihasilkan ulang di server Railway saat deploy.
+- Repo lebih bersih, deployment lebih aman, minim konflik.
+
+### 5. Prosedur Aman
+- Setelah update kode, jalankan:
+  ```
+  npm run build
+  php artisan serve
+  ```
+  untuk testing lokal.
+- Commit dan push hanya source code.
+- Railway akan otomatis build saat deploy.
+
+---
