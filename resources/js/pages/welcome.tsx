@@ -1436,7 +1436,15 @@ const Welcome = () => {
                                                     hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
                                                 }`}
                                             >
-                                                {t('pages.welcome.news.title_short')}
+                                                <a
+                                                    href="/news"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                    }}
+                                                    className={`${hoveredCard === 2 ? 'text-white hover:text-yellow-200' : 'text-gray-800 hover:text-yellow-700'} underline-offset-4 hover:underline`}
+                                                >
+                                                    {t('pages.welcome.news.title_short')}
+                                                </a>
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 {/* Navigation Arrows */}
