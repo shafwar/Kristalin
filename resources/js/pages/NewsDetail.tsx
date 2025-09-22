@@ -520,7 +520,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         `;
     };
-
     // Function to get translated content for Jun-3 article
     const getJun3TranslatedContent = () => {
         return (
@@ -1154,7 +1153,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Aug-3 article
     const getAug3TranslatedContent = () => {
         return (
@@ -1767,7 +1765,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Aug-6 article
     const getAug6TranslatedContent = () => {
         return (
@@ -2195,7 +2192,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Aug-4 article
     const getAug4TranslatedContent = () => {
         return (
@@ -2654,7 +2650,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Aug-1 article
     const getAug1TranslatedContent = () => {
         return (
@@ -3156,7 +3151,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Jul-2 article
     const getJul2TranslatedContent = () => {
         return (
@@ -3597,7 +3591,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Jul-3 article
     const getJul3TranslatedContent = () => {
         return (
@@ -4111,7 +4104,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Mar-6 article
     const getMar6TranslatedContent = () => {
         return (
@@ -4688,7 +4680,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Mar-3 article
     const getMar3TranslatedContent = () => {
         return (
@@ -5185,7 +5176,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated HTML content for Torindo Sept-3 article
     const getTorindoSept3TranslatedContent = () => {
         return (
@@ -5781,7 +5771,6 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     };
-
     // Function to get translated content for Feb Sembako Distribution 2 article (feb-8)
     const getFebSembakoDistribution2TranslatedContent = () => {
         return (
@@ -6408,7 +6397,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
 
     if (loading) {
         return (
-            <div className="flex min-h-screen items-center justify-center bg-gray-50">
+            <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
                 <div className="text-center">
                     <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-amber-500"></div>
                     <p className="text-gray-600">{t('news_detail.loading')}</p>
@@ -6416,10 +6405,9 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
         );
     }
-
     if (!newsItem) {
         return (
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
                 <Header />
                 <div className="flex min-h-[60vh] items-center justify-center">
                     <div className="text-center">
@@ -6442,7 +6430,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
-            <Header />
+            <Header sticky={true} />
 
             {/* Enhanced Breadcrumb Navigation */}
             <div className="border-b border-gray-200/60 bg-white/80 shadow-sm backdrop-blur-sm">
@@ -6465,7 +6453,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
             </div>
 
             {/* Enhanced Article Header */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-white via-amber-50/20 to-yellow-50/30">
+            <div className="relative overflow-hidden bg-transparent">
                 <div
                     className="absolute inset-0 opacity-40"
                     style={{
@@ -6648,7 +6636,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
 
             {/* Enhanced Related Articles */}
             {category && category.newsItems.length > 1 && (
-                <div className="bg-gradient-to-br from-gray-50 via-white to-amber-50/20">
+                <div className="bg-transparent">
                     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
                             <div className="mb-8 text-center">

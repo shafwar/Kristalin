@@ -6,6 +6,7 @@ interface PageProps {
         messages: any;
         pages: any;
     };
+    [key: string]: any;
 }
 
 export function useTranslation() {
@@ -13,7 +14,8 @@ export function useTranslation() {
     const { locale, translations } = props;
 
     // Helper function to get translation
-    const t = (key: string, replace?: Record<string, string>) => {
+    type TranslationOptions = { returnObjects?: boolean; replace?: Record<string, string> };
+    const t = (key: string, options?: Record<string, string> | TranslationOptions) => {
         const keys = key.split('.');
         let value = translations.messages;
         
@@ -30,9 +32,12 @@ export function useTranslation() {
         let result = value || key;
         
         // Handle string replacements
-        if (replace && typeof result === 'string') {
-            Object.keys(replace).forEach(replaceKey => {
-                result = result.replace(new RegExp(`:${replaceKey}`, 'g'), replace[replaceKey]);
+        const replaceMap: Record<string, string> | undefined = options && 'returnObjects' in (options as TranslationOptions)
+            ? (options as TranslationOptions).replace
+            : (options as Record<string, string> | undefined);
+        if (replaceMap && typeof result === 'string') {
+            Object.keys(replaceMap).forEach(replaceKey => {
+                result = result.replace(new RegExp(`:${replaceKey}`, 'g'), replaceMap[replaceKey]);
             });
         }
         

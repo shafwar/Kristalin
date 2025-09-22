@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMessageController extends Controller
 {
@@ -24,6 +25,32 @@ class ContactMessageController extends Controller
         }
 
         $contact = ContactMessage::create($validated);
+
+        // Send email to company
+        $to = config('mail.to.address', 'info@kristalin.co.id');
+        $toName = config('mail.to.name', 'Kristalin Admin');
+        $from = config('mail.from.address', 'info@kristalin.co.id');
+        $fromName = config('mail.from.name', 'Kristalin');
+
+        Mail::send([], [], function ($message) use ($validated, $request, $to, $toName, $from, $fromName) {
+            $message->to($to, $toName)
+                ->from($from, $fromName)
+                ->subject('[Contact Form] ' . ($validated['subject'] ?? ''))
+                ->html(
+                    'Nama: ' . e($validated['name']) . '<br>' .
+                    'Email: ' . e($validated['email']) . '<br>' .
+                    'Subjek: ' . e($validated['subject']) . '<br><br>' .
+                    'Pesan:<br>' . nl2br(e($validated['message']))
+                );
+
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $message->attach($file->getRealPath(), [
+                    'as' => $file->getClientOriginalName(),
+                    'mime' => $file->getMimeType(),
+                ]);
+            }
+        });
 
         return response()->json([
             'success' => true,

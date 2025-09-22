@@ -7,6 +7,7 @@ return [
             'subtitle' => '加入我们的团队，成为可持续黄金开采未来的一部分',
             'view_positions' => '查看职位',
             'apply_now' => '立即申请',
+            'badge' => '加入我们团队',
         ],
         'tabs' => [
             'overview' => '概述',

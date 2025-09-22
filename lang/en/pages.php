@@ -8,6 +8,7 @@ return [
             'subtitle' => 'Join our team and be part of a sustainable gold mining future',
             'view_positions' => 'View Positions',
             'apply_now' => 'Apply Now',
+            'badge' => 'Join Our Team',
         ],
         'tabs' => [
             'overview' => 'Overview',

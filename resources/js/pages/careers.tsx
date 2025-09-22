@@ -162,46 +162,100 @@ const Careers = () => {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col bg-white">
-            <Header sticky={true} transparent={false} />
+        <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200">
+            <Header sticky={true} transparent={true} />
             <main className="flex-1">
 
-            {/* Hero Section - More refined and better spacing */}
-            <section className="relative bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 pt-32 pb-24">
-                {/* Subtle overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/5"></div>
-
-                {/* Decorative elements for visual interest */}
-                <div className="absolute top-0 left-0 h-full w-full overflow-hidden">
-                    <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-yellow-300/20 blur-3xl"></div>
-                    <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-amber-300/20 blur-3xl"></div>
+            {/* Hero Section - Premium Style (match board-of-directors) */}
+            <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 h-full w-full">
+                    <img src="/board-hero-bg.jpg" alt="Careers background" className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
-                <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, ease: 'easeOut' }}
+                >
+                    {/* Badge */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="text-center"
+                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 1, ease: 'easeOut' }}
+                        className="mb-8 sm:mb-12"
                     >
-                        <h1 className="mb-8 text-5xl font-bold text-white sm:text-6xl lg:text-7xl">{t('pages.careers.hero.title')}</h1>
-                        <p className="mx-auto mb-12 max-w-3xl text-xl text-yellow-100 sm:text-2xl">{t('pages.careers.hero.subtitle')}</p>
-                        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <button
-                                onClick={() => goToTab('positions')}
-                                className="rounded-lg bg-white px-8 py-3 text-lg font-semibold text-yellow-600 transition-all duration-300 hover:bg-yellow-50 hover:shadow-lg"
-                            >
-                                {t('pages.careers.hero.view_positions')}
-                            </button>
-                            <button
-                                onClick={() => goToTab('apply')}
-                                className="rounded-lg border-2 border-white px-8 py-3 text-lg font-semibold text-white transition-all duration-300 hover:bg-white hover:text-yellow-600"
-                            >
-                                {t('pages.careers.hero.apply_now')}
-                            </button>
-                        </div>
+                        <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-6 py-2.5 text-sm font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm sm:px-8 sm:py-3 sm:text-base">
+                            <svg className="mr-2 h-4 w-4 sm:mr-3 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            {t('pages.careers.hero.badge')}
+                        </span>
                     </motion.div>
-                </div>
+
+                    {/* Title */}
+                    <motion.h1
+                        className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
+                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+                    >
+                        <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent">
+                            {t('pages.careers.hero.title')}
+                        </span>
+                    </motion.h1>
+
+                    {/* Subtitle */}
+                    <motion.p
+                        className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
+                    >
+                        {t('pages.careers.hero.subtitle')}
+                    </motion.p>
+
+                    {/* Buttons */}
+                    <motion.div
+                        className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+                        initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                    >
+                        <button
+                            onClick={() => goToTab('positions')}
+                            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 sm:px-8 sm:py-4 sm:text-base lg:px-12 lg:py-5 lg:text-lg"
+                        >
+                            <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                                {t('pages.careers.hero.view_positions')}
+                                <svg className="h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                        </button>
+                        <button
+                            onClick={() => goToTab('apply')}
+                            className="rounded-full border-2 border-white px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-white hover:text-yellow-600 sm:px-8 sm:py-4 sm:text-base lg:px-12 lg:py-5 lg:text-lg"
+                        >
+                            {t('pages.careers.hero.apply_now')}
+                        </button>
+                    </motion.div>
+                </motion.div>
+
+                {/* Scroll Indicator */}
+                <motion.div
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.4, ease: 'easeOut' }}
+                >
+                    <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
+                        <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
+                    </div>
+                </motion.div>
             </section>
 
             {/* Navigation Tabs */}

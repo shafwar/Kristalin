@@ -7,6 +7,7 @@ return [
             'subtitle' => 'Bergabunglah dengan tim kami dan jadilah bagian dari masa depan pertambangan emas berkelanjutan',
             'view_positions' => 'Lihat Posisi',
             'apply_now' => 'Lamar Sekarang',
+            'badge' => 'Bergabung Bersama Kami',
         ],
         'tabs' => [
             'overview' => 'Ikhtisar',
