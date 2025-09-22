@@ -5,74 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-// Import data berita dari news.tsx
-const newsData = [
-    {
-        id: 38,
-        title: 'Program Pelatihan Komputer untuk Masyarakat Desa Nifasi',
-        subtitle: 'PT Kristalin Ekalestari mengadakan pelatihan komputer gratis untuk meningkatkan keterampilan digital masyarakat',
-        date: '20 Jul 2025',
-        category: 'Community Development',
-        imageUrl: '/WhatsApp Image 2025-07-20 at 10.39.03.jpeg',
-        excerpt: 'Program pelatihan komputer yang bertujuan untuk meningkatkan literasi digital dan keterampilan teknologi masyarakat Desa Nifasi.',
-        content: `PT Kristalin Ekalestari meluncurkan program pelatihan komputer gratis untuk masyarakat Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan literasi digital dan keterampilan teknologi masyarakat dalam menghadapi era digital.\n\n"Kami percaya bahwa penguasaan teknologi komputer adalah keterampilan penting yang harus dimiliki masyarakat di era digital ini," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup pengenalan komputer, penggunaan Microsoft Office, internet, dan aplikasi digital lainnya.\n\n"Kami menyediakan 20 unit komputer dan tenaga pengajar profesional untuk memastikan pelatihan berjalan efektif," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 50 peserta dari berbagai usia dan latar belakang pendidikan.\n\n"Kami berharap pelatihan ini dapat membuka peluang kerja baru dan meningkatkan produktivitas masyarakat," ujar Maria.\n\nSelain pelatihan, perusahaan juga memberikan sertifikat kompetensi kepada peserta yang berhasil menyelesaikan program.`,
-        author: 'Tim Teknologi PT Kristalin Ekalestari',
-        views: '1.4K',
-        readTime: '3 min',
-        trending: false,
-        type: 'Pelatihan Digital',
-        metrics: { peserta: '50 Orang', komputer: '20 Unit' },
-    },
-    {
-        id: 37,
-        title: 'Bantuan Alat Musik untuk Sanggar Seni Lokal',
-        subtitle: 'PT Kristalin Ekalestari mendukung pengembangan seni budaya melalui bantuan alat musik',
-        date: '20 Jul 2025',
-        category: 'CSR Initiative',
-        imageUrl: '/WhatsApp Image 2025-07-20 at 10.39.02 (2).jpeg',
-        excerpt: 'Program bantuan alat musik yang bertujuan untuk mendukung pengembangan seni budaya dan kreativitas masyarakat lokal.',
-        content: `PT Kristalin Ekalestari memberikan bantuan alat musik kepada sanggar seni lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk mendukung pengembangan seni budaya dan kreativitas masyarakat melalui peningkatan fasilitas kesenian.\n\n"Kami menghargai seni budaya sebagai bagian penting dari identitas masyarakat dan berkomitmen untuk mendukung pengembangannya," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nBantuan yang diberikan meliputi gitar, keyboard, drum set, dan alat musik tradisional Papua.\n\n"Kami bekerja sama dengan seniman lokal untuk memastikan alat musik yang diberikan sesuai dengan kebutuhan dan budaya setempat," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 5 sanggar seni yang tersebar di berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap bantuan ini dapat mendorong kreativitas anak-anak muda dan melestarikan seni budaya lokal," ujar Maria.\n\nSelain bantuan alat musik, perusahaan juga mendukung penyelenggaraan festival seni budaya tahunan.`,
-        author: 'Tim Budaya PT Kristalin Ekalestari',
-        views: '950',
-        readTime: '2 min',
-        trending: false,
-        type: 'Pengembangan Seni',
-        metrics: { sanggar: '5 Sanggar', alat: '20+ Alat Musik' },
-    },
-    {
-        id: 36,
-        title: 'Program Pelatihan Pertanian Organik',
-        subtitle: 'PT Kristalin Ekalestari mengadakan pelatihan pertanian organik untuk petani lokal',
-        date: '20 Jul 2025',
-        category: 'Environmental',
-        imageUrl: '/WhatsApp Image 2025-07-20 at 10.39.02 (1).jpeg',
-        excerpt: 'Program pelatihan pertanian organik yang bertujuan untuk meningkatkan kualitas hasil pertanian dan kesehatan lingkungan.',
-        content: `PT Kristalin Ekalestari mengadakan program pelatihan pertanian organik untuk petani lokal di Kabupaten Nabire, Papua Tengah.\n\nProgram ini bertujuan untuk meningkatkan kualitas hasil pertanian dan kesehatan lingkungan melalui praktik pertanian yang berkelanjutan.\n\n"Kami berkomitmen untuk mendukung pertanian yang ramah lingkungan dan berkelanjutan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nPelatihan mencakup teknik pertanian organik, pembuatan pupuk alami, pengendalian hama secara alami, dan pemasaran produk organik.\n\n"Kami mengundang ahli pertanian organik untuk memberikan pelatihan yang berkualitas kepada petani," tambah Andrian Lubis.\n\nProgram ini diikuti oleh 75 petani dari berbagai desa di sekitar area operasional perusahaan.\n\n"Kami berharap pelatihan ini dapat meningkatkan pendapatan petani dan menjaga kelestarian lingkungan," ujar Maria.\n\nSelain pelatihan, perusahaan juga memberikan bantuan bibit tanaman organik dan peralatan pertanian.`,
-        author: 'Tim Pertanian PT Kristalin Ekalestari',
-        views: '1.1K',
-        readTime: '3 min',
-        trending: false,
-        type: 'Pertanian Organik',
-        metrics: { petani: '75 Orang', durasi: '1 Bulan' },
-    },
-    {
-        id: 35,
-        title: 'Pembangunan Taman Bermain untuk Anak-anak',
-        subtitle: 'PT Kristalin Ekalestari membangun taman bermain modern untuk anak-anak Desa Nifasi',
-        date: '20 Jul 2025',
-        category: 'CSR Initiative',
-        imageUrl: '/WhatsApp Image 2025-07-20 at 10.39.02.jpeg',
-        excerpt: 'Proyek pembangunan taman bermain yang akan memberikan ruang bermain yang aman dan edukatif bagi anak-anak.',
-        content: `PT Kristalin Ekalestari memulai proyek pembangunan taman bermain modern untuk anak-anak di Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.\n\nTaman bermain ini akan dilengkapi dengan berbagai permainan edukatif yang aman dan sesuai dengan standar keamanan anak.\n\n"Kami berkomitmen untuk memberikan ruang bermain yang aman dan edukatif bagi anak-anak di sekitar area operasional perusahaan," ujar Maria Erari, Humas PT Kristalin Ekalestari.\n\nFasilitas yang akan dibangun meliputi ayunan, perosotan, jungkat-jungkit, dan area bermain pasir yang dilengkapi dengan pagar pengaman.\n\n"Kami bekerja sama dengan ahli desain taman bermain untuk memastikan fasilitas yang dibangun aman dan menarik bagi anak-anak," tambah Andrian Lubis.\n\nTaman bermain ini akan menjadi pusat aktivitas anak-anak dan tempat berkumpul keluarga di akhir pekan.\n\n"Kami berharap taman bermain ini dapat mendorong aktivitas fisik anak-anak dan meningkatkan kualitas hidup keluarga," ujar Maria.\n\nProyek ini diperkirakan akan selesai dalam waktu 3 bulan dan akan langsung dapat digunakan oleh masyarakat.`,
-        author: 'Tim Infrastruktur PT Kristalin Ekalestari',
-        views: '1.3K',
-        readTime: '3 min',
-        trending: false,
-        type: 'Infrastruktur Anak',
-        metrics: { luas: '500 m²', durasi: '3 Bulan' },
-    },
-];
-
 const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
     const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
@@ -642,28 +574,60 @@ const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
 const Welcome = () => {
     const { t } = useTranslation();
     const [showFeedbackForm, setShowFeedbackForm] = useState(false);
-    const [currentNews, setCurrentNews] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
+    const [currentNews, setCurrentNews] = useState(0);
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
-    // Ambil 4 berita terbaru berdasarkan 5 id terbesar lalu ambil yang teratas
-    const newsItems = React.useMemo(() => {
-        const sorted = [...newsData].sort((a, b) => b.id - a.id).slice(0, 5);
+    // 4 berita relevan dari news archive dengan Torindo sebagai highlight utama
+    // Menggunakan translation keys untuk konsistensi bahasa
+    const newsItems = [
+        {
+            id: 'sept-1',
+            date: '1 Sep 2025',
+            title: t('pages.welcome.news.items.sept-1.title'),
+            excerpt: t('pages.welcome.news.items.sept-1.excerpt'),
+            image: '/sept1.jpg',
+            url: '/news/sept-1',
+            priority: 'high',
+        },
+        {
+            id: 'jul-1',
+            date: '15 Jul 2025',
+            title: t('pages.welcome.news.items.jul-1.title'),
+            excerpt: t('pages.welcome.news.items.jul-1.excerpt'),
+            image: '/sembako.jpg',
+            url: '/news/jul-1',
+            priority: 'medium',
+        },
+        {
+            id: 'aug-2',
+            date: '19 Aug 2025',
+            title: t('pages.welcome.news.items.aug-2.title'),
+            excerpt: t('pages.welcome.news.items.aug-2.excerpt'),
+            image: '/agus2.jpg',
+            url: '/news/aug-2',
+            priority: 'medium',
+        },
+        {
+            id: 'feb-4',
+            date: '3 Feb 2025',
+            title: t('pages.welcome.news.items.feb-4.title'),
+            excerpt: t('pages.welcome.news.items.feb-4.excerpt'),
+            image: '/buruharian2.webp',
+            url: '/news/feb-4',
+            priority: 'medium',
+        },
+    ];
 
-        return sorted.slice(0, 4).map((n) => {
-            const titleKey = `pages.news.articles.${n.id}.title`;
-            const excerptKey = `pages.news.articles.${n.id}.excerpt`;
-            const tTitle = t(titleKey) as string;
-            const tExcerpt = t(excerptKey) as string;
-            return {
-                date: n.date,
-                title: tTitle === titleKey ? n.title : tTitle,
-                excerpt: tExcerpt === excerptKey ? n.excerpt : tExcerpt,
-            };
-        });
-    }, [t]);
+    // Auto-rotation untuk berita setiap 8 detik agar orang bisa membaca dengan nyaman
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentNews((prev) => (prev + 1) % newsItems.length);
+        }, 8000);
+        return () => clearInterval(interval);
+    }, [newsItems.length]);
 
     const contentSets = [
         {
@@ -724,13 +688,6 @@ const Welcome = () => {
             clearInterval(interval);
         };
     }, [contentSets.length]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentNews((prev) => (prev + 1) % newsItems.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [newsItems.length]);
 
     // Loading Screen Component - Clean & Professional
     const LoadingScreen = () => {
@@ -1431,26 +1388,44 @@ const Welcome = () => {
                                     </div>
                                 </Link>
 
-                                {/* News Card - 25% width, warna emas konsisten */}
+                                {/* News Card - 25% width, warna emas konsisten dengan link ke berita spesifik */}
                                 <Link
-                                    href="/news"
+                                    id="news-update"
+                                    data-news-section="true"
+                                    href={newsItems[currentNews].url}
                                     className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(2)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - Hidden by default, shown on hover */}
+                                    {/* Background Image - hanya muncul saat hover dengan transisi yang lebih smooth */}
                                     <div
-                                        className={`absolute top-0 right-0 bottom-0 left-0 transition-opacity duration-700 ${
-                                            hoveredCard === 2 ? 'opacity-100' : 'opacity-0'
+                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-800 ease-out ${
+                                            hoveredCard === 2 ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
                                         }`}
                                     >
-                                        <img
-                                            src={newsData[currentNews].imageUrl}
-                                            alt={newsData[currentNews].title}
-                                            className="h-full w-full object-cover"
-                                        />
-                                        {/* Dark overlay for text readability */}
-                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-black/70 transition-all duration-700" />
+                                        <AnimatePresence mode="wait">
+                                            <motion.img
+                                                key={currentNews}
+                                                src={newsItems[currentNews].image}
+                                                alt={newsItems[currentNews].title}
+                                                className="h-full w-full object-cover"
+                                                initial={{ opacity: 0, scale: 1.05, x: 20 }}
+                                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                exit={{ opacity: 0, scale: 0.95, x: -20 }}
+                                                transition={{
+                                                    duration: 1.2,
+                                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                                    opacity: { duration: 1.0 },
+                                                    scale: { duration: 1.2 },
+                                                    x: { duration: 1.0 },
+                                                }}
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                            />
+                                        </AnimatePresence>
+                                        {/* Dark overlay untuk readability text */}
+                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-all duration-700" />
                                     </div>
 
                                     {/* Top Section - Header */}
@@ -1463,109 +1438,181 @@ const Welcome = () => {
                                             >
                                                 {t('pages.welcome.news.title_short')}
                                             </div>
-                                            <div className="flex gap-2">
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        e.stopPropagation();
-                                                        setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
-                                                    }}
-                                                    className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
-                                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                                    }`}
-                                                >
-                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        e.stopPropagation();
-                                                        setCurrentNews((prev) => (prev + 1) % newsItems.length);
-                                                    }}
-                                                    className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-none bg-transparent transition-all duration-300 hover:scale-110 hover:bg-black/20 ${
-                                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                                    }`}
-                                                >
-                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                    </svg>
-                                                </button>
+                                            <div className="flex items-center gap-3">
+                                                {/* Navigation Arrows */}
+                                                {newsItems.length > 1 && (
+                                                    <div className="flex gap-1">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
+                                                            }}
+                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110 ${
+                                                                hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
+                                                            }`}
+                                                        >
+                                                            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={2}
+                                                                    d="M15 19l-7-7 7-7"
+                                                                />
+                                                            </svg>
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                setCurrentNews((prev) => (prev + 1) % newsItems.length);
+                                                            }}
+                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110 ${
+                                                                hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
+                                                            }`}
+                                                        >
+                                                            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                )}
+
+                                                {/* Priority Indicator untuk berita penting */}
+                                                {newsItems[currentNews].priority === 'high' && (
+                                                    <div
+                                                        className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 ${
+                                                            hoveredCard === 2 ? 'bg-white/20 text-white' : 'bg-red-100 text-red-700'
+                                                        }`}
+                                                    >
+                                                        <div className="h-1.5 w-1.5 rounded-full bg-current"></div>
+                                                        <span>{t('pages.welcome.news.highlight_badge')}</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Middle Section - Content dengan berita Kristalin */}
                                     <div className="relative z-10 flex flex-1 flex-col justify-center">
-                                        <div key={currentNews} className="mb-4 translate-y-0 transform transition-all duration-500">
-                                            {/* Date */}
-                                            <div
-                                                className={`mb-2 text-xs font-medium opacity-80 transition-colors duration-500 sm:text-sm ${
-                                                    hoveredCard === 2 ? 'text-gray-300' : 'text-gray-600'
-                                                }`}
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={currentNews}
+                                                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                                                transition={{
+                                                    duration: 0.8,
+                                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                                    opacity: { duration: 0.7 },
+                                                    y: { duration: 0.8 },
+                                                    scale: { duration: 0.7 },
+                                                }}
+                                                className="mb-4"
                                             >
-                                                {newsItems[currentNews].date}
-                                            </div>
+                                                {newsItems.length > 0 ? (
+                                                    <>
+                                                        {/* Date dengan icon */}
+                                                        <div className="mb-3 flex items-center gap-2">
+                                                            <div
+                                                                className={`h-1 w-1 rounded-full transition-colors duration-500 ${
+                                                                    hoveredCard === 2 ? 'bg-white' : 'bg-gray-500'
+                                                                }`}
+                                                            ></div>
+                                                            <div
+                                                                className={`text-xs font-medium transition-colors duration-500 ${
+                                                                    hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
+                                                                }`}
+                                                            >
+                                                                {newsItems[currentNews].date}
+                                                            </div>
+                                                        </div>
 
-                                            {/* Title dengan line clamp */}
+                                                        {/* Title dengan line clamp */}
+                                                        <div
+                                                            className={`mb-3 line-clamp-2 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
+                                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                            }`}
+                                                        >
+                                                            {newsItems[currentNews].title}
+                                                        </div>
+
+                                                        {/* Description dengan line clamp yang lebih jelas */}
+                                                        <div
+                                                            className={`line-clamp-3 text-xs leading-relaxed transition-colors duration-500 sm:text-sm ${
+                                                                hoveredCard === 2 ? 'text-gray-100' : 'text-gray-700'
+                                                            }`}
+                                                        >
+                                                            {newsItems[currentNews].excerpt}
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <div className="text-center">
+                                                        <div className="mb-2 text-4xl">📰</div>
+                                                        <p
+                                                            className={`text-sm font-medium transition-colors duration-500 ${
+                                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                            }`}
+                                                        >
+                                                            {t('pages.welcome.news.no_news_available')}
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </motion.div>
+                                        </AnimatePresence>
+                                    </div>
+
+                                    {/* Bottom Section - View button dan dots indicator */}
+                                    <div className="relative z-10">
+                                        {/* View button */}
+                                        <div
+                                            className={`mb-3 flex items-center justify-between transition-colors duration-500 ${
+                                                hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
+                                            }`}
+                                        >
                                             <div
-                                                className={`mb-2 line-clamp-3 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
+                                                className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
                                                     hoveredCard === 2 ? 'text-white' : 'text-gray-800'
                                                 }`}
                                             >
-                                                {newsItems[currentNews].title}
-                                            </div>
-
-                                            {/* Description dengan line clamp */}
-                                            <div
-                                                className={`line-clamp-2 text-xs leading-relaxed opacity-90 transition-colors duration-500 sm:text-sm ${
-                                                    hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
-                                                }`}
-                                            >
-                                                {newsItems[currentNews].excerpt}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Bottom Section - View button */}
-                                    <div
-                                        className={`relative z-10 border-t pt-4 transition-colors duration-500 ${
-                                            hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
-                                        }`}
-                                    >
-                                        <div
-                                            className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
-                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                            }`}
-                                        >
-                                            <span>{t('pages.welcome.news.view_button')}</span>
-                                            <div
-                                                className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
-                                            >
-                                                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                </svg>
+                                                <span>{t('pages.welcome.news.view_button')}</span>
+                                                <div
+                                                    className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                        />
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* Navigation dots - tanpa dot kotak */}
-                                    <div className="absolute right-4 bottom-4 z-10 flex gap-2 lg:right-6 lg:bottom-6">
-                                        {[...Array(4)].map((_, index) => (
-                                            <div
-                                                key={index}
-                                                className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                                                    index === currentNews
-                                                        ? hoveredCard === 2
-                                                            ? 'bg-white'
-                                                            : 'bg-gray-800'
-                                                        : hoveredCard === 2
-                                                          ? 'bg-white/30'
-                                                          : 'bg-gray-800/30'
-                                                }`}
-                                            />
-                                        ))}
+                                        {/* Dots indicator */}
+                                        <div className="flex justify-center gap-1.5">
+                                            {newsItems.map((_, index) => (
+                                                <button
+                                                    key={index}
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        setCurrentNews(index);
+                                                    }}
+                                                    className={`transition-all duration-300 ${
+                                                        index === currentNews
+                                                            ? `h-1.5 w-6 rounded-full ${hoveredCard === 2 ? 'bg-white' : 'bg-gray-800'}`
+                                                            : `h-1.5 w-1.5 rounded-full ${
+                                                                  hoveredCard === 2
+                                                                      ? 'bg-white/40 hover:bg-white/60'
+                                                                      : 'bg-gray-400 hover:bg-gray-600'
+                                                              }`
+                                                    }`}
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
                                 </Link>
                             </section>

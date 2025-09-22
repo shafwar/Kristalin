@@ -249,26 +249,6 @@ return [
             'title' => '公司更新',
             'title_short' => '新闻',
             'view_button' => '查看',
-            'highlight_badge' => '重点',
-            'no_news_available' => '暂无新闻',
-            'items' => [
-                'sept-1' => [
-                    'title' => 'Kristalin Ekalestari 集团收购 PT Torindo Jaya Persada 51% 股份',
-                    'excerpt' => '在印度尼西亚东部地区采矿行业重型设备业务的战略扩张。此次收购加强了我们在重型设备市场的地位，并增强了运营能力。',
-                ],
-                'jul-1' => [
-                    'title' => '中巴布亚社区食品分发',
-                    'excerpt' => 'PT Kristalin Ekalestari 向中巴布亚人民分发基本必需品，作为可持续企业社会责任计划的一部分，以改善社区福利。',
-                ],
-                'aug-2' => [
-                    'title' => '为 Lomon Monei 提供体面住房：企业社会责任计划的独立日礼物',
-                    'excerpt' => '作为庆祝印尼独立 80 周年的一部分，PT Kristalin Ekalestari 在尼法西村为 Lomon Monei 建造了宜居房屋。该计划通过社区赋权体现了独立精神。',
-                ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin 为尼法西村工人建造宜居房屋',
-                    'excerpt' => 'PT Kristalin Ekalestari 再次通过企业社会责任计划为尼法西村居民建造宜居房屋。这一发展体现了公司对周边社区的社会责任。',
-                ],
-            ],
         ],
         'contact' => [
             'category' => '联系我们',
@@ -1378,9 +1358,154 @@ return [
             'community_development' => '社区发展',
             'partnership' => '合作伙伴关系',
             'technology' => '技术',
-            'house_construction' => '房屋建设',
-            'food_distribution' => '食品分发',
-            'education_support' => '教育支持',
+            'pembangunan_rumah_nelayan' => '为Nifasi村渔民建造新房屋',
+            'pembangunan-rumah-nelayan' => '为Nifasi村渔民建造新房屋',
+            'pendanaan_pendidikan' => '教育资助',
+            'pendanaan-pendidikan' => '教育资助',
+            'csr_pembagian_sembako_juli' => '在Nifasi村分发506包基本食品的企业社会责任',
+            'csr-pembagian-sembako-juli' => '在Nifasi村分发506包基本食品的企业社会责任',
+            'csr_pembangunan_rumah_lomon_monei' => 'Lomon Monei居民房屋建造企业社会责任',
+            'kristalin_ekalestari_group_akuisisi_saham_50_persen_pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group收购PT Torindo Jaya Persada 50%股份',
+            'penyaluran-sembako-feb' => '二月基本食品分发',
+            'pembangunan-rumah-nifasi-feb' => 'Nifasi村房屋建造二月',
+            'pembangun rumah-nifasi-feb' => 'Nifasi村房屋建造二月',
+            'pembangunan-rumah-juni' => '六月房屋建造',
+            'pemberitah-bantuan-dana-hak-garap' => '土地使用权援助基金通知',
+            'csr-hut-ri-80-cidata-barat-papua' => '企业社会责任印尼独立日80周年Cidata Barat Papua',
+            'csr-penyaluran-bantuan-sembako-agustus' => '企业社会责任八月基本食品援助分发',
+            'pemberitahuan-bantuan-dana-hak-garap' => '土地使用权援助基金通知',
+            'csr-pembangunan-rumah-lomon-monei' => '企业社会责任Lomon Monei房屋建造',
+            'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group收购PT Torindo Jaya Persada 50%股份',
+        ],
+        'months' => [
+            'februari' => '二月',
+            'maret' => '三月',
+            'juni' => '六月',
+            'juli' => '七月',
+            'agustus' => '八月',
+            'september' => '九月',
+        ],
+        'articles' => [
+            'feb-3' => [
+                'title' => '二月基本食品分发计划',
+                'excerpt' => '二月份向社区分发基本食品包的企业社会责任计划。',
+            ],
+            'feb-4' => [
+                'title' => 'Nifasi村房屋建造二月',
+                'excerpt' => '二月份为Nifasi村居民建造新房屋。',
+            ],
+            'feb-7' => [
+                'title' => '二月社区发展倡议',
+                'excerpt' => '二月份社区发展计划的实施。',
+            ],
+            'feb-8' => [
+                'title' => '二月企业社会责任活动报告',
+                'excerpt' => '二月份开展的企业社会责任活动报告。',
+            ],
+            'feb-9' => [
+                'title' => '二月社会援助计划',
+                'excerpt' => '二月份为社区提供的社会援助计划。',
+            ],
+            'mar-1' => [
+                'title' => '海洋渔民Yustinus Monei从PT Kristalin Ekalestari获得新房屋',
+                'excerpt' => '来自Nifasi村的海洋渔民Yustinus Monei从PT Kristalin Ekalestari的企业社会责任计划中获得新房屋，作为公司对周边社区关怀的体现。',
+            ],
+            'mar-2' => [
+                'title' => 'Nifasi村渔民从Kristalin Ekalestari企业社会责任获得新房屋',
+                'excerpt' => 'PT Kristalin Ekalestari的企业社会责任计划为Nifasi村渔民提供新房屋，作为企业社会责任的一种形式。',
+            ],
+            'mar-3' => [
+                'title' => '渔民Yustinus Monei从PT Kristalin Ekalestari获得新房屋',
+                'excerpt' => '来自Nifasi村的渔民Yustinus Monei从PT Kristalin Ekalestari的企业社会责任计划中获得新房屋。',
+            ],
+            'mar-4' => [
+                'title' => 'Nifasi村渔民从Kristalin Ekalestari企业社会责任获得新房屋',
+                'excerpt' => 'PT Kristalin Ekalestari的企业社会责任计划为Nifasi村渔民提供新房屋。',
+            ],
+            'mar-5' => [
+                'title' => '渔民Yustinus Monei从PT Kristalin Ekalestari获得新房屋',
+                'excerpt' => '来自Nifasi村的渔民Yustinus Monei从PT Kristalin Ekalestari的企业社会责任计划中获得新房屋。',
+            ],
+            'mar-6' => [
+                'title' => 'Nifasi村渔民从Kristalin Ekalestari企业社会责任获得新房屋',
+                'excerpt' => 'PT Kristalin Ekalestari的企业社会责任计划为Nifasi村渔民提供新房屋。',
+            ],
+            'jun-1' => [
+                'title' => 'Nifasi村高中生教育基金保证至毕业',
+                'excerpt' => 'PT Kristalin Ekalestari为Nifasi村高中生提供教育基金保证，直至他们毕业。',
+            ],
+            'jun-2' => [
+                'title' => 'PT Kristalin Ekalestari保证Nifasi村高中教育基金',
+                'excerpt' => 'PT Kristalin Ekalestari保证Nifasi村高中生的教育基金。',
+            ],
+            'jun-3' => [
+                'title' => 'Nifasi村高中生教育基金保证至毕业',
+                'excerpt' => 'PT Kristalin Ekalestari为Nifasi村高中生提供教育基金保证，直至他们毕业。',
+            ],
+            'jun-4' => [
+                'title' => 'PT Kristalin Ekalestari保证Nifasi村高中教育基金',
+                'excerpt' => 'PT Kristalin Ekalestari保证Nifasi村高中生的教育基金。',
+            ],
+            'jul-1' => [
+                'title' => '数百名Nifasi村居民从PT Kristalin Ekalestari获得基本食品包援助',
+                'excerpt' => '数百名Nifasi村居民从PT Kristalin Ekalestari的企业社会责任计划中获得基本食品包援助，作为公司关怀的体现。',
+            ],
+            'jul-2' => [
+                'title' => 'Nifasi村居民从PT Kristalin Ekalestari获得基本食品包援助',
+                'excerpt' => 'Nifasi村居民从PT Kristalin Ekalestari的企业社会责任计划中获得基本食品包援助。',
+            ],
+            'jul-3' => [
+                'title' => '数百名Nifasi村居民从PT Kristalin Ekalestari获得基本食品包援助',
+                'excerpt' => '数百名Nifasi村居民从PT Kristalin Ekalestari的企业社会责任计划中获得基本食品包援助，作为公司关怀的体现。',
+            ],
+            'jul-4' => [
+                'title' => 'Nifasi村居民从PT Kristalin Ekalestari获得基本食品包援助',
+                'excerpt' => 'Nifasi村居民从PT Kristalin Ekalestari的企业社会责任计划中获得基本食品包援助。',
+            ],
+            'aug-1' => [
+                'title' => '印尼独立80周年礼物，Nifasi村日工从PT Kristalin Ekalestari获得房屋',
+                'excerpt' => '作为印尼独立80周年的礼物，PT Kristalin Ekalestari通过企业社会责任计划为Nifasi村日工提供房屋。',
+            ],
+            'aug-2' => [
+                'title' => '历史性时刻，Nifasi村日工从PT Kristalin Ekalestari获得房屋',
+                'excerpt' => '当PT Kristalin Ekalestari为Nifasi村日工提供房屋时，历史性时刻发生了。',
+            ],
+            'aug-3' => [
+                'title' => '印尼独立80周年庆祝：Nanimori村居民热情参与与PT Cidata Barat Papua的传统游戏',
+                'excerpt' => '在Kuri Wamesa区Nanimori村举行的印尼独立80周年庆祝活动，与PT Cidata Barat Papua一起组织了各种传统游戏，气氛热烈。',
+            ],
+            'aug-4' => [
+                'title' => '分享快乐，PT Kristalin Ekalestari为Nifasi村居民分发基本食品包',
+                'excerpt' => 'PT Kristalin Ekalestari通过企业社会责任计划为Nifasi村居民分发基本食品包来分享快乐。',
+            ],
+            'aug-5' => [
+                'title' => '一致的基本食品分发，PT Kristalin Ekalestari为Nifasi村居民分发506包',
+                'excerpt' => 'PT Kristalin Ekalestari通过为Nifasi村居民分发506包来展示基本食品分发的一致性。',
+            ],
+            'aug-6' => [
+                'title' => '可持续承诺，PT Kristalin Ekalestari为Nifasi村居民分发506包基本食品',
+                'excerpt' => 'PT Kristalin Ekalestari通过为Nifasi村居民分发506包基本食品来展示可持续承诺。',
+            ],
+            'aug-7' => [
+                'title' => '真正的关怀，PT Kristalin Ekalestari在基本食品分发中优先考虑老年人和礼拜场所',
+                'excerpt' => 'PT Kristalin Ekalestari通过在基本食品分发中优先考虑老年人和礼拜场所来展示真正的关怀。',
+            ],
+            'aug-8' => [
+                'title' => '可持续团结，PT Kristalin Ekalestari为Nifasi村老年人和寡妇分发基本食品',
+                'excerpt' => 'PT Kristalin Ekalestari通过为Nifasi村老年人和寡妇分发基本食品来展示可持续团结。',
+            ],
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari Group收购PT Torindo Jaya Persada 51%股份以扩展重型设备行业',
+                'excerpt' => 'Kristalin Ekalestari Group正式收购PT Torindo Jaya Persada 51%所有权股份，这是东印度尼西亚地区采矿部门重型设备业务的战略扩展。',
+            ],
+        ],
+        'archive' => [
+            'articles_count' => '篇文章跨',
+            'categories_count' => '个类别',
+            'articles_available' => '篇文章可用',
+            'articles' => '文章',
+            'category' => '类别',
+            'read_more' => '阅读更多',
         ],
         'stats' => [
             'title_line1' => '我们的',

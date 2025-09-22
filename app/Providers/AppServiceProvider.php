@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Schema;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Fix for MySQL 5.7+ compatibility
         Schema::defaultStringLength(191);
+
+        // Inertia asset versioning based on Vite manifest hash
+        $manifestPath = public_path('build/manifest.json');
+        if (file_exists($manifestPath)) {
+            $hash = substr(md5_file($manifestPath), 0, 12);
+            Inertia::version($hash);
+        }
     }
 }

@@ -249,26 +249,6 @@ return [
             'title' => '公司更新',
             'title_short' => '新闻',
             'view_button' => '查看',
-            'highlight_badge' => '重点',
-            'no_news_available' => '暂无新闻',
-            'items' => [
-                'sept-1' => [
-                    'title' => 'Kristalin Ekalestari 集团收购 PT Torindo Jaya Persada 51% 股份',
-                    'excerpt' => '在印度尼西亚东部地区采矿行业重型设备业务的战略扩张。此次收购加强了我们在重型设备市场的地位，并增强了运营能力。',
-                ],
-                'jul-1' => [
-                    'title' => '中巴布亚社区食品分发',
-                    'excerpt' => 'PT Kristalin Ekalestari 向中巴布亚人民分发基本必需品，作为可持续企业社会责任计划的一部分，以改善社区福利。',
-                ],
-                'aug-2' => [
-                    'title' => '为 Lomon Monei 提供体面住房：企业社会责任计划的独立日礼物',
-                    'excerpt' => '作为庆祝印尼独立 80 周年的一部分，PT Kristalin Ekalestari 在尼法西村为 Lomon Monei 建造了宜居房屋。该计划通过社区赋权体现了独立精神。',
-                ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin 为尼法西村工人建造宜居房屋',
-                    'excerpt' => 'PT Kristalin Ekalestari 再次通过企业社会责任计划为尼法西村居民建造宜居房屋。这一发展体现了公司对周边社区的社会责任。',
-                ],
-            ],
         ],
         'contact' => [
             'category' => '联系我们',
@@ -1368,6 +1348,21 @@ return [
             'description' => '可持续黄金开采和社区赋权的最新发展。',
             'search_placeholder' => '搜索采矿新闻...',
             'search_button' => '搜索',
+            'categories_all' => '全部',
+            'categories_csr' => 'CSR倡议',
+            'categories_community' => '社区发展',
+            'categories_housing' => '住房开发',
+            'categories_distribution' => '分配计划',
+            'categories_education' => '教育支持',
+        ],
+        'highlights' => [
+            'highlight' => '亮点',
+            'news' => '新闻',
+            'featured_description' => '来自我们运营的精选故事和重要公告',
+            'strategic_acquisition' => '战略收购',
+            'read_more' => '阅读更多',
+            'acquisition_description' => '通过PT Armada Bumi Investama战略性控股收购PT Torindo Jaya Persada 51%股份，借助现代中国技术和综合分销网络加强印尼东部重型设备采矿生态系统。',
+            'featured_title' => 'Kristalin Ekalestari集团收购PT Torindo Jaya Persada 51%股份拓展重型设备产业',
         ],
         'categories' => [
             'all' => '全部',
@@ -1378,9 +1373,28 @@ return [
             'community_development' => '社区发展',
             'partnership' => '合作伙伴关系',
             'technology' => '技术',
-            'house_construction' => '房屋建设',
-            'food_distribution' => '食品分发',
-            'education_support' => '教育支持',
+            'articles_available' => '篇文章可用',
+            'articles_label' => '文章',
+            'category_label' => '类别',
+            // Specific news categories
+            'kristalin_ekalestari_group_akuisisi_saham_50_persen_pt_torindo_jaya_persada' => [
+                'title' => 'Kristalin Ekalestari集团收购PT Torindo Jaya Persada 50%股份',
+            ],
+            'csr_penyaluran_bantuan_sembako_agustus' => [
+                'title' => 'CSR 2025年8月食品援助分发项目',
+            ],
+            'csr_pembangunan_rumah_lomon_monei' => [
+                'title' => 'CSR 为Lomon Monei建设房屋',
+            ],
+            'lomba_kemerdekaan_papua_barat' => [
+                'title' => '西巴布亚独立日竞赛',
+            ],
+            'pembangunan_rumah_nifasi_jun' => [
+                'title' => '尼法西村新房建设',
+            ],
+            'pembangunan_rumah_nelayan' => [
+                'title' => '为尼法西村渔民建设新房',
+            ],
         ],
         'stats' => [
             'title_line1' => '我们的',
@@ -1403,10 +1417,6 @@ return [
                 'description' => '今年的新闻和公告',
             ],
         ],
-        'highlights' => [
-            'title' => '焦点新闻',
-            'subtitle' => '来自我们运营的精选故事和重要公告',
-        ],
         'archive' => [
             'title' => '新闻档案',
             'description' => '来自我们运营的最新更新和公告',
@@ -1414,13 +1424,28 @@ return [
             'categories_count' => '个类别',
             'active_status' => '活跃',
         ],
+        'months' => [
+            'february' => '二月',
+            'march' => '三月',
+            'august' => '八月',
+            'september' => '九月',
+        ],
         'list' => [
             'no_results' => '未找到新闻。',
             'read_more' => '阅读更多',
-            'read_full_article' => '阅读完整文章',
+        ],
+
+            'complete_status' => '完整',
         ],
         'detail' => [
-            'back_to_list' => '返回列表',
+            'loading' => '正在加载文章...',
+            'not_found_title' => '文章未找到',
+            'not_found_desc' => '您要查找的文章不可用。',
+            'back_to_list' => '返回新闻',
+            'breadcrumb_home' => '首页',
+            'breadcrumb_news' => '新闻',
+            'author_label' => '作者',
+            'source_label' => '来源',
             'project_metrics' => '项目指标',
             'impact_statement' => '影响声明',
             'impact_description' => '这个CSR项目展示了PT Kristalin Ekalestari对周边社区产生积极影响的真正承诺，提高运营区域内家庭的生活质量和福祉。',
@@ -1433,222 +1458,187 @@ return [
             'read_time' => '分钟阅读',
         ],
         'articles' => [
-            // First news article translation - feb-3
-            'feb-3' => [
-                'title' => '尼法西村日工从 Kristalin Ekalestari CSR 获得房屋',
-                'excerpt' => '来自达尼部落的 Yundiles Wonda 从 PT Kristalin Ekalestari CSR 项目在纳比雷尼法西村获得宜居房屋。',
-                'full_content' => [
-                    'title' => '尼法西村日工从 Kristalin Ekalestari CSR 获得房屋',
-                    'date' => '2025年2月3日',
-                    'author' => 'JPNN.com 编辑部',
-                    'source' => 'JPNN.com',
-                    'sections' => [
-                        'opening' => [
-                            'title' => '尼法西村的幸福',
-                            'content' => '<strong>来自达尼部落的 Yundiles Wonda</strong> 和他的家人脸上洋溢着幸福。作为由尼法西习俗给予的耕地所有者，在从 PT Kristalin Ekalestari CSR 项目获得宜居房屋后，他现在感到无比幸福。'
-                        ],
-                        'recipient_story' => [
-                            'title' => '故事背后的人物',
-                            'name' => 'Yustinus Monei',
-                            'description' => '一名<strong>日工</strong>，每天在尼法西村努力满足生活需求。充满经济挑战的生活并没有让他气馁，直到最终通过改变命运的 CSR 项目带来了希望。'
-                        ],
-                        'program_details' => [
-                            'title' => '改变生活的项目',
-                            'quote' => '我们的到来，通过建设尼法西村，当然关注其人民的命运，帮助那些没有房子和不宜居住的人改善居住条件。',
-                            'quote_author' => 'Maria Erari，PT Kristalin Ekalestari 公关部',
-                            'dream_house' => [
-                                'title' => '梦想之家',
-                                'specs' => [
-                                    '57型 - 57平方米的舒适住宅',
-                                    '全建构 - 无露台的坚固建筑',
-                                    '2间卧室 - 舒适的私人空间',
-                                    '浴室 - 完整的卫生设施',
-                                    '宜居标准 - 为家庭提供安全舒适的环境'
-                                ]
-                            ],
-                            'path_to_dream' => [
-                                'title' => '通往梦想的道路',
-                                'details' => [
-                                    '工期：约1个月施工',
-                                    '交付：直接交付房屋钥匙',
-                                    '流程：遵循相同标准'
-                                ]
-                            ]
-                        ],
-                        'promise' => [
-                            'quote' => '预计约一个月时间，钥匙将直接移交，就像之前从我们这里获得房屋的居民一样。希望对接受者有用。',
-                            'quote_author' => 'Maria Erari，PT Kristalin Ekalestari 公关部'
-                        ],
-                        'commitment' => [
-                            'title' => '可持续承诺',
-                            'subtitle' => '共建希望',
-                            'content' => 'Yundiles Wonda 的故事并非第一个。<strong>PT Kristalin Ekalestari 高级经理兼财务部门 Andrian Lubis</strong> 解释说，他们已经建造了<strong>29栋房屋</strong>。"总共建造了27栋房屋。这是我们通过企业CSR对社区承诺的一部分，"Andrian说道。',
-                            'focus' => [
-                                'title' => '主要关注点',
-                                'items' => [
-                                    '无房家庭',
-                                    '不宜居住房屋的翻新',
-                                    '提高社区生活水平'
-                                ]
-                            ],
-                            'impact' => [
-                                'title' => '实际影响',
-                                'items' => [
-                                    '数十个家庭获得房屋',
-                                    '社区福祉提升',
-                                    '区域发展进步'
-                                ]
-                            ]
-                        ],
-                        'visible_impact' => [
-                            'title' => '可见影响',
-                            'stats' => [
-                                [
-                                    'number' => '29',
-                                    'label' => '建造房屋',
-                                    'description' => 'PT Kristalin 已建造的房屋总数'
-                                ],
-                                [
-                                    'icon' => '✓',
-                                    'label' => '生活质量',
-                                    'description' => '尼法西村社区生活更加繁荣'
-                                ],
-                                [
-                                    'icon' => '🏗️',
-                                    'label' => '区域发展',
-                                    'description' => '对中巴布亚进步的实际贡献'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+            // Sample articles for translation demonstration
+            'mar-1' => [
+                'title' => '渔民Yustinus Monei从 PT Kristalin Ekalestari获得新房',
+                'excerpt' => '渔民Yustinus Monei通过中巴布亚纳比雷县马基米区尼法西村的CSR项目从P T Kristalin Ekalestari获得新房钥匙。',
+                'content' => '幸福从 Yustinus Monei 和他的家人脸上焦发出来。作为一名每天努力满足生活需求的渔民，他现在在从 PT Kristalin Ekalestari 的 CSR 项目获得体面住房后体验到了非凡的快乐。'
             ],
-            // Kristalin Ekalestari Group Acquisition Article - sept-3
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari集团收购PT Torindo Jaya Persada 51%股份用于重型设备行业扩张',
+                'excerpt' => 'Kristalin Ekalestari集团通过PT Armada Bumi Investama收购PT Torindo Jaya Persada多数股份的战略举措，以加强印尼东部重型设备采矿生态系统。',
+                'content' => '为了加强在重型设备采矿行业的地位，Kristalin Ekalestari集团通过PT Armada Bumi Investama成功收购了PT Torindo Jaya Persada 51%的股份。'
+            ],
+            'aug-1' => [
+                'title' => '第80个独立日礼物，尼法西村日工从 PT Kristalin Ekalestari 获得房屋',
+                'excerpt' => 'PT Kristalin Ekalestari通过一致的CSR项目向Lomon Monei提供体面住房，作为第80个独立日礼物。',
+                'content' => '为了纪念第80个独立日，PT Kristalin Ekalestari为尼法西村的日工Lomon Monei提供了一份特殊的礼物——体面的住房。'
+            ],
+            'aug-1' => [
+                'title' => 'PT Kristalin Ekalestari向尼法西村日工赠送房屋作为第80个独立日礼物',
+                'excerpt' => 'PT Kristalin Ekalestari通过一致的CSR项目向Lomon Monei提供体面住房，作为第80个独立日礼物。',
+                'content' => '为了纪念第80个独立日，PT Kristalin Ekalestari为尼法西村的日工Lomon Monei提供了一份特殊的礼物——体面的住房。'
+            ],
+            'aug-2' => [
+                'title' => 'Lomon Monei的体面住房：来自PT Kristalin Ekalestari CSR项目的独立日礼物',
+                'excerpt' => '作为第80个独立日纪念活动的一部分，PT Kristalin Ekalestari通过可持续CSR项目为尼法西村的Lomon Monei建造体面住房。',
+                'content' => '第80个印尼独立日庆祝系列对纳比雷马基米区尼法西村的Lomon Monei及其家人来说成为了一个特殊时刻。'
+            ],
+            'feb-1' => [
+                'title' => '2025年初，Kristalin Ekalestari为中巴布亚纳比雷居民分发506个食品包',
+                'excerpt' => 'PT Kristalin Ekalestari在2025年初向纳比雷居民分发了506个食品包，以表达对中巴布亚社区的关怀。',
+                'content' => '进入2025年，PT Kristalin Ekalestari再次通过分发506个食品包展示了其对社区福利的承诺。'
+            ],
+            'feb-2' => [
+                'title' => 'PT Kristalin为尼法西村工人建造体面住房',
+                'excerpt' => 'PT Kristalin Ekalestari为尼法西村工人建造体面住房，作为可持续CSR项目的一部分。',
+                'content' => 'PT Kristalin Ekalestari的体面住房建设项目在尼法西村继续为工人建造房屋。'
+            ],
+        'articles' => [
+            // Sample articles for translation demonstration
+            'mar-1' => [
+                'title' => '渔民Yustinus Monei从 PT Kristalin Ekalestari获得新房',
+                'excerpt' => '渔民Yustinus Monei通过中巴布亚纳比雷县马基米区尼法西村的CSR项目从PT Kristalin Ekalestari获得新房钥匙。',
+                'content' => '幸福从 Yustinus Monei 和他的家人脸上焦发出来。作为一名每天努力满足生活需求的渔民，他现在在从 PT Kristalin Ekalestari 的 CSR 项目获得体面住房后体验到了非凡的快乐。'
+            ],
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari集团收购PT Torindo Jaya Persada 51%股份用于重型设备行业扩张',
+                'excerpt' => 'Kristalin Ekalestari集团通过PT Armada Bumi Investama收购PT Torindo Jaya Persada多数股份的战略举措，以加强印尼东部重型设备采矿生态系统。',
+                'content' => '为了加强在重型设备采矿行业的地位，Kristalin Ekalestari集团通过PT Armada Bumi Investama成功收购了PT Torindo Jaya Persada 51%的股份。'
+            ],
+            'aug-1' => [
+                'title' => '第80个独立日礼物，尼法西村日工从 PT Kristalin Ekalestari 获得房屋',
+                'excerpt' => 'PT Kristalin Ekalestari通过一致的CSR项目向Lomon Monei提供体面住房，作为第80个独立日礼物。',
+                'content' => '为了纪念第80个独立日，PT Kristalin Ekalestari为尼法西村的日工Lomon Monei提供了一份特殊的礼物——体面的住房。'
+            ],
+            'aug-2' => [
+                'title' => 'Lomon Monei的体面住房：来自PT Kristalin Ekalestari CSR项目的独立日礼物',
+                'excerpt' => '作为第80个独立日纪念活动的一部分，PT Kristalin Ekalestari通过可持续CSR项目为尼法西村的Lomon Monei建造体面住房。',
+                'content' => '第80个印尼独立日庆祝系列对纳比雷马基米区尼法西村的Lomon Monei及其家人来说成为了一个特殊时刻。'
+            ],
+            'aug-3' => [
+                'title' => '2025年8月为纳比雷社区提供食品援助',
+                'excerpt' => 'PT Kristalin Ekalestari继续向纳比雷社区提供月度食品援助分配项目，作为可持续CSR承诺的一部分。',
+                'content' => '继续可持续CSR承诺，PT Kristalin Ekalestari于2025年8月再次向纳比雷社区分发食品援助。'
+            ],
+            'feb-1' => [
+                'title' => '2025年初，Kristalin Ekalestari为中巴布亚纳比雷居民分发506个食品包',
+                'excerpt' => 'PT Kristalin Ekalestari在2025年初向纳比雷居民分发了506个食品包，以表达对中巴布亚社区的关怀。',
+                'content' => '进入2025年，PT Kristalin Ekalestari再次通过分发506个食品包展示了其对社区福利的承诺。'
+            ],
+            'feb-2' => [
+                'title' => 'PT Kristalin为尼法西村工人建造体面住房',
+                'excerpt' => 'PT Kristalin Ekalestari为尼法西村工人建造体面住房，作为可持续CSR项目的一部分。',
+                'content' => 'PT Kristalin Ekalestari的体面住房建设项目在尼法西村继续为工人建造房屋。'
+            ],
+            'jun-1' => [
+                'title' => '西巴布亚独立日竞赛项目',
+                'excerpt' => 'PT Kristalin Ekalestari举办独立日竞赛以纪念西巴布亚周年纪念日，设有各种竞赛类别。',
+                'content' => 'PT Kristalin Ekalestari自豪地举办独立日竞赛以纪念西巴布亚周年纪念日。'
+            ],
+            'jun-2' => [
+                'title' => '为尼法西村居民建设体面住房',
+                'excerpt' => '尼法西村体面住房建设项目继续改善居民福利。',
+                'content' => '尼法西村体面住房建设项目继续进行，体现了PT Kristalin Ekalestari致力于改善运营区域周围社区福利的承诺。'
+            ],
+        ],
+            'jun-4' => [
+                'title' => '为尼法西村居民开发合适住房',
+                'excerpt' => '尼法西村合适住房开发项目继续改善居民福利。',
+            ],
+            'jun-5' => [
+                'title' => '尼法西村新房开发进展',
+                'excerpt' => '新房开发进展报告，计划按计划进行，涉及当地子弟。',
+            ],
+            'jun-6' => [
+                'title' => '为尼法西居民交付下一阶段房屋单元',
+                'excerpt' => '为尼法西村受益居民交付下一阶段房屋单元。',
+            ],
+            
+            // July 2025 Articles
+            'jul-1' => [
+                'title' => 'PT Kristalin Ekalestari向巴布亚马基米区居民交付5000万卢比土地权援助',
+                'excerpt' => 'PT Kristalin Ekalestari向中巴布亚马基米区拉加里村居民交付5000万卢比土地权援助，作为公司对土地权所有者的承诺。',
+            ],
+            
+            // August 2025 Articles
+            'aug-1' => [
+                'title' => '第80个独立日礼物，尼法西村日工从PT Kristalin Ekalestari获得房屋',
+                'excerpt' => 'PT Kristalin Ekalestari通过一致的CSR项目向Lomon Monei提供合适住房，作为第80个独立日礼物。',
+                'content' => '<div class="space-y-8"><div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-6 border border-red-100"><h3 class="text-lg font-bold text-red-900 mb-3">有意义的独立日礼物</h3><p class="text-red-800 leading-relaxed text-base">庆祝印度尼西亚第80个独立日，PT Kristalin Ekalestari向尼法西村的日工Lomon Monei提供了非常有意义的礼物。这个合适的住房不仅仅是一个物理建筑，而是一个一直在为满足生活需求而奋斗的家庭的希望和福利的象征。</p></div></div>',
+            ],
+            'aug-2' => [
+                'title' => '历史性时刻：尼法西村日工从PT Kristalin Ekalestari获得合适房屋',
+                'excerpt' => 'Lomon Monei从PT Kristalin Ekalestari获得合适住房钥匙，体现了公司通过持续CSR项目对中巴布亚社区的关怀。',
+                'content' => '<div class="space-y-8"><div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100"><h3 class="text-lg font-bold text-blue-900 mb-3">尼法西村的历史性时刻</h3><p class="text-blue-800 leading-relaxed text-base">对于尼法西村的Lomon Monei家庭来说，从 PT Kristalin Ekalestari 接收合适住房钥匙是一个历史性的日子。作为一名为满足家庭需求而奋斗的日工，这一援助为更好、更繁荣的生活提供了新的希望。</p></div></div>',
+            ],
+            'aug-3' => [
+                'title' => '为尼法西村居民提供持续CSR项目',
+                'excerpt' => 'PT Kristalin Ekalestari CSR项目的延续，为有需要的尼法西村居民提供援助。',
+            ],
+            'aug-4' => [
+                'title' => '为中巴布亚社区分发506个食品包',
+                'excerpt' => 'PT Kristalin Ekalestari向中巴布亚各村庄社区分发506个食品包。',
+            ],
+            'aug-5' => [
+                'title' => '食品援助项目中老年寡妇的优先权',
+                'excerpt' => 'PT Kristalin Ekalestari食品援助项目特别优先考虑老年寡妇和贫困家庭。',
+            ],
+            'aug-6' => [
+                'title' => '月度常规CSR：为尼法西村居民提供506个食品包',
+                'excerpt' => 'PT Kristalin Ekalestari月度常规CSR项目成功向尼法西村居民及周边地区分发506个食品包。',
+            ],
+            'aug-7' => [
+                'title' => '真正关怀：PT Kristalin Ekalestari在食品包项目中优先考虑老年人和宗教场所',
+                'excerpt' => 'PT Kristalin Ekalestari通过在中巴布亚分发506个食品包时优先考虑老年人和宗教场所，展现特殊关怀，加强持续CSR承诺。',
+            ],
+            'aug-8' => [
+                'title' => '持续团结：PT Kristalin Ekalestari通过为老年寡妇提供506个食品包实现关怀',
+                'excerpt' => 'PT Kristalin Ekalestari通过向纳比雷的老年寡妇和宗教场所分发506个食品包继续CSR承诺，展现对中巴布亚社区福利的持续团结。',
+            ],
+            
+            // September 2025 Articles
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari集团收购PT Torindo Jaya Persada 51%股份用于重型设备行业扩张',
+                'excerpt' => 'Kristalin Ekalestari集团通过PT Armada Bumi Investama收购PT Torindo Jaya Persada多数股份的战略举措，以加强印尼东部重型设备采矿生态系统。',
+            ],
+            'sept-2' => [
+                'title' => '印尼东部采矿业重型设备扩张战略',
+                'excerpt' => 'PT Torindo Jaya Persada专注于使用现代中国技术扩展重型设备业务，支持印尼东部地区采矿业。',
+            ],
             'sept-3' => [
-                'title' => 'Kristalin Ekalestari 集团收购 PT Torindo Jaya Persada 51% 股份以扩展重型设备产业',
-                'excerpt' => '通过 PT Armada Bumi Investama 对 PT Torindo Jaya Persada 51% 股份进行战略性多数控股整合，借助现代中国技术和综合分销网络加强印尼东部黄金开采重型设备的综合商业生态系统。',
-                'full_content' => [
-                    'title' => 'Kristalin Ekalestari 集团收购 PT Torindo Jaya Persada 51% 股份以扩展重型设备产业',
-                    'date' => '2025年9月3日',
-                    'author' => 'Kristalin 编辑团队',
-                    'source' => 'Poskota.co.id',
-                    'badge' => '战略收购',
-                    'sections' => [
-                        'opening' => [
-                            'title' => '战略业务扩展步骤',
-                            'content' => '<strong>Kristalin Ekalestari 集团</strong>宣布通过其子公司 PT Armada Bumi Investama 成功战略收购<strong>PT Torindo Jaya Persada 51% 股权</strong>。这一步骤标志着重型设备产业在采矿部门扩张的新时代，特别是在富含矿物潜力的印尼东部地区。'
-                        ],
-                        'strategic_vision' => [
-                            'title' => '收购后战略愿景',
-                            'quote' => 'PT Torindo Jaya Persada 融入 Kristalin Ekalestari 集团将加强我们在黄金开采部门重型设备产业发展中的地位，特别是在拥有非凡潜力的印尼东部地区。',
-                            'quote_author' => 'PT Torindo Jaya Persada 总裁董事 Nia Kurniasih'
-                        ],
-                        'ownership_structure' => [
-                            'title' => '收购后所有权结构',
-                            'content' => '这次收购交易显著改变了 PT Torindo Jaya Persada 的所有权构成。总裁董事 Nia Kurniasih 确认，此前 100% 的所有权现在变为 49%，而代表 Kristalin Ekalestari 集团的 PT Armada Bumi Investama 以 51% 的所有权取得多数控制权。',
-                            'breakdown' => [
-                                [
-                                    'percentage' => '51%',
-                                    'entity' => 'PT Armada Bumi Investama',
-                                    'description' => '（战略控制）'
-                                ],
-                                [
-                                    'percentage' => '49%',
-                                    'entity' => 'Torindo 管理层',
-                                    'description' => '（运营连续性）'
-                                ]
-                            ]
-                        ],
-                        'market_expansion' => [
-                            'title' => '印尼东部市场扩张策略',
-                            'content' => '这次收购不仅仅是所有权变化，而是加强印尼东部地区市场渗透综合战略的一部分。Kristalin Ekalestari 集团看到了持续发展的采矿部门的巨大潜力，特别是在巴布亚及周边地区。',
-                            'focus_areas' => [
-                                '黄金开采设备分销网络',
-                                '技术服务和维护支持',
-                                '与当地采矿公司的战略合作伙伴关系',
-                                '劳动力培训和认证项目'
-                            ]
-                        ],
-                        'market_outlook' => [
-                            'title' => '市场前景和未来展望',
-                            'quote' => '煤炭开采市场条件正在经历波动，但其他部门如黄金开采的潜力仍然非常稳定和有前景。我们对在印尼东部地区扩展 Kristalin Ekalestari 集团之外各种工业部门的销售网络感到乐观。',
-                            'quote_author' => 'PT Torindo Jaya Persada 战略团队分析'
-                        ],
-                        'integration_benefits' => [
-                            'title' => '战略整合效益',
-                            'content' => 'PT Torindo Jaya Persada 融入 Kristalin Ekalestari 集团生态系统预计将创造有益于各方的积极协同效应。技术专长、分销网络和更广阔市场准入的结合将加强在印尼重型设备行业的竞争地位。',
-                            'benefits' => [
-                                [
-                                    'category' => '技术准入',
-                                    'items' => ['现代中国技术', '先进设备系统', '数字解决方案']
-                                ],
-                                [
-                                    'category' => '市场扩张',
-                                    'items' => ['印尼东部渗透', '新客户细分', '战略合作伙伴关系']
-                                ],
-                                [
-                                    'category' => '运营卓越',
-                                    'items' => ['服务质量改进', '培训和认证', '流程效率']
-                                ]
-                            ]
-                        ],
-                        'leadership_vision' => [
-                            'title' => '战略领导愿景',
-                            'quote' => '随着 PT Torindo Jaya Persada 作为 Kristalin Ekalestari 集团的一部分加入，我们正在巩固地位以发展印尼东部黄金开采部门的重型设备业务，并扩展跨行业部门的销售网络。',
-                            'quote_author' => 'Nia Kurniasih，PT Torindo Jaya Persada 总裁董事'
-                        ]
-                    ]
-                ]
+                'title' => '战略整合以加强采矿重型设备生态系统',
+                'excerpt' => 'Kristalin Ekalestari集团通过收购PT Torindo Jaya Persada多数股份的战略整合举措，形成综合商业生态系统，加强在印尼东部重型设备行业的主导地位。',
             ],
-            // Feb House Construction 2 Article - feb-5
-            'feb_house_construction_2' => [
-                'title' => '尼法西村新房屋建设进展',
-                'excerpt' => '作为 PT Kristalin Ekalestari CSR 计划的一部分，尼法西村居民新房屋建设的持续进展。',
-                'category_title' => '尼法西村新房屋建设',
-                'author' => '编辑团队',
-                'source' => '内部报告',
-                'date' => '2025年2月25日',
-                'content' => [
-                    'opening_story' => '尼法西村新房屋建设继续显示出显著进展。PT Kristalin Ekalestari 的这项 CSR 计划旨在为最需要的居民提供体面的住房。',
-                    'current_progress' => '当前建设进展',
-                    'progress_description' => '建设工作按计划进行，完成率为75%。基础和主体结构已完成，目前正在进行装修工作。',
-                    'construction_timeline' => '建设时间表',
-                    'timeline_description' => '建设过程遵循系统时间表：基础工作（第1-2周），主体结构（第3-4周），装修工作（第5-6周），最终检查（第7周）。',
-                    'local_employment' => '本地就业机会',
-                    'employment_description' => '这个建设项目为15名本地工人提供就业机会，包括来自尼法西村及周边地区的木工、泥瓦工和劳工。',
-                    'material_sourcing' => '材料采购',
-                    'sourcing_description' => '建筑材料尽可能在当地采购，支持本地企业并降低运输成本。使用优质材料以确保耐用性和安全性。',
-                    'quality_control' => '质量控制',
-                    'control_description' => '在整个建设过程中进行定期质量检查，确保所有工作符合安全标准和建筑规范。',
-                    'community_feedback' => '社区反馈',
-                    'feedback_description' => '社区对建设进展和质量表达了积极反馈。居民们期待着新房屋的完工。',
-                    'environmental_consideration' => '环境考虑',
-                    'environmental_description' => '建设活动在环境考虑下进行，包括适当的废物管理和对周围环境的最小干扰。'
-                ]
+            
+            // February 2025 Articles
+            'feb-3' => [
+                'title' => '尼法西村日工从Kristalin Ekalestari CSR获得房屋',
+                'excerpt' => '达尼部落的Yundiles Wonda在纳比雷尼法西村通过PT Kristalin Ekalestari CSR项目获得合适住房。',
             ],
-            // Feb House Construction 3 Article - feb-6
-            'feb_house_construction_3' => [
-                'title' => '向尼法西居民移交下一阶段住房单元',
-                'excerpt' => 'PT Kristalin Ekalestari 向尼法西村居民移交下一阶段住房单元，继续 CSR 计划承诺。',
-                'category_title' => '尼法西村新房屋建设',
-                'author' => '编辑团队',
-                'source' => '内部报告',
-                'date' => '2025年2月26日',
-                'content' => [
-                    'opening_story' => 'CSR 住房计划又达到了一个里程碑，PT Kristalin Ekalestari 正式向尼法西村居民移交下一阶段住房单元。',
-                    'handover_ceremony' => '移交仪式',
-                    'ceremony_description' => '移交仪式有公司代表、地方政府官员和社区领袖参加。仪式象征着公司对社区发展的承诺。',
-                    'beneficiary_profiles' => '受益人概况',
-                    'profiles_description' => '这个阶段使8个家庭受益，他们之前生活在不适当的住房条件下。每个家庭都收到一个完整的房屋，配备所有必要的设施。',
-                    'housing_specifications' => '住房规格',
-                    'specifications_description' => '每栋房屋按照57型规格建造：面积57平方米，2间卧室，1间浴室，客厅，厨房，以及完整的电气和水安装。',
-                    'community_celebration' => '社区庆祝',
-                    'celebration_description' => '移交仪式由整个社区庆祝，举行传统仪式并表达对公司改善他们生活条件的贡献的感谢。',
-                    'ongoing_support' => '持续支持',
-                    'support_description' => 'PT Kristalin Ekalestari 继续提供持续支持，包括维护援助和社区发展计划，以确保长期效益。',
-                    'future_commitment' => '未来承诺',
-                    'commitment_description' => '公司仍然致力于继续住房计划和其他 CSR 倡议，以改善尼法西村居民的福利。'
-                ]
+            'feb-4' => [
+                'title' => '尼法西村社区住房开发项目',
+                'excerpt' => '为没有适当住所的尼法西村社区继续进行合适住房开发项目。',
+            ],
+            'feb-5' => [
+                'title' => '为贫困家庭提供57型住房援助',
+                'excerpt' => '尼法西村贫困家庭通过持续CSR项目获得配备完整设施的57型住房援助。',
+            ],
+            'feb-6' => [
+                'title' => '对中巴布亚社区的持续支持',
+                'excerpt' => 'PT Kristalin Ekalestari通过住房开发和基础设施项目为中巴布亚社区提供持续支持。',
+            ],
+            'feb-7' => [
+                'title' => 'CSR项目的长期承诺',
+                'excerpt' => 'PT Kristalin Ekalestari在运行CSR项目以改善周边社区福利方面的长期承诺。',
+            ],
+            'feb-8' => [
+                'title' => '村民可持续住房项目',
+                'excerpt' => '专门设计用于帮助没有合适住房的村民的可持续住房项目。',
+            ],
+            'feb-9' => [
+                'title' => '村庄发展基础设施援助',
+                'excerpt' => '支持村庄发展和改善社区生活质量的综合基础设施援助。',
             ],
             38 => [
                 'title' => '尼法西村社区计算机培训项目',
@@ -2442,8 +2432,7 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
                 'type' => '认证',
                 'metrics' => ['standard' => 'ICMM认证', 'scope' => '所有运营'],
             ],
-        ],
-        'search_news' => [
+            'search_news' => [
             'title' => '搜索结果',
             'subtitle' => '快速找到您需要的信息',
             'input_placeholder' => '输入搜索关键词...',

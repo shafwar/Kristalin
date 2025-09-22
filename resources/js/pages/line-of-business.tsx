@@ -25,65 +25,6 @@ const scaleIn = {
     visible: { opacity: 1, scale: 1 },
 };
 
-const partners = [
-    {
-        name: 'Bank Mandiri',
-        logo: (
-            <svg className="h-12 w-16" viewBox="0 0 100 50" fill="none">
-                <rect x="10" y="15" width="80" height="20" rx="2" fill="#1e3a8a" />
-                <rect x="15" y="20" width="70" height="10" rx="1" fill="white" />
-                <text x="50" y="28" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#1e3a8a">
-                    MANDIRI
-                </text>
-            </svg>
-        ),
-    },
-    {
-        name: 'Pegadaian',
-        logo: (
-            <svg className="h-12 w-16" viewBox="0 0 100 50" fill="none">
-                <circle cx="50" cy="25" r="20" fill="#fbbf24" />
-                <text x="50" y="28" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#444">
-                    PG
-                </text>
-            </svg>
-        ),
-    },
-    {
-        name: 'ANTAM',
-        logo: (
-            <svg className="h-12 w-16" viewBox="0 0 100 50" fill="none">
-                <rect x="10" y="10" width="80" height="30" rx="4" fill="#dc2626" />
-                <text x="50" y="28" textAnchor="middle" fontSize="16" fontWeight="bold" fill="white">
-                    ANTAM
-                </text>
-            </svg>
-        ),
-    },
-    {
-        name: 'Kementerian ESDM',
-        logo: (
-            <svg className="h-12 w-16" viewBox="0 0 100 50" fill="none">
-                <rect x="15" y="10" width="70" height="30" rx="3" fill="#059669" />
-                <text x="50" y="28" textAnchor="middle" fontSize="16" fontWeight="bold" fill="white">
-                    ESDM
-                </text>
-            </svg>
-        ),
-    },
-    {
-        name: 'Universitas (Riset Geologi)',
-        logo: (
-            <svg className="h-12 w-16" viewBox="0 0 100 50" fill="none">
-                <rect x="10" y="15" width="80" height="20" rx="2" fill="#7c3aed" />
-                <circle cx="50" cy="25" r="8" fill="white" />
-                <text x="50" y="28" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#7c3aed">
-                    UNI
-                </text>
-            </svg>
-        ),
-    },
-];
 
 // CounterAnimation component for smooth animated counter
 const CounterAnimation = ({ target, duration = 1000 }: { target: number; duration?: number }) => {
@@ -694,49 +635,6 @@ export default function KristalinPortfolio() {
                             <h4 className="mb-4 text-xl font-semibold text-gray-800">{t('pages.line_of_business.how_we_work.steps.step4.title')}</h4>
                             <p className="leading-relaxed text-gray-600">{t('pages.line_of_business.how_we_work.steps.step4.description')}</p>
                         </motion.div>
-                    </div>
-                </div>
-            </motion.section>
-
-            {/* Enhanced Partners Collaboration Section */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className="bg-gray-50 py-20">
-                <div className="mx-auto max-w-6xl px-4">
-                    <motion.div variants={fadeInUp} transition={{ duration: 0.4, ease: 'easeInOut' }} className="mb-16 text-center">
-                        <h2 className="mb-4 text-sm font-semibold tracking-[0.25em] text-gray-700">
-                            {t('pages.line_of_business.collaboration.header')}
-                        </h2>
-                        <div className="mx-auto mb-12 h-0.5 w-20 bg-yellow-600"></div>
-                        <h3 className="text-4xl font-normal text-gray-800 md:text-5xl lg:text-6xl">
-                            {t('pages.line_of_business.collaboration.title')}
-                        </h3>
-                    </motion.div>
-
-                    <div className="grid grid-cols-2 items-center gap-8 md:grid-cols-5">
-                        {partners.map((partner, i) => (
-                            <motion.div
-                                key={partner.name}
-                                initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.05 * i, duration: 0.4, ease: 'easeInOut' }}
-                                whileHover={{
-                                    scale: 1.1,
-                                    rotateY: 10,
-                                    rotateX: 5,
-                                    boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
-                                }}
-                                className="group cursor-pointer rounded-xl bg-white p-6 text-center shadow-lg transition-all duration-300 hover:shadow-2xl"
-                            >
-                                <motion.div
-                                    whileHover={{ scale: 1.2 }}
-                                    transition={{ duration: 0.4 }}
-                                    className="mb-4 flex justify-center group-hover:brightness-110"
-                                >
-                                    {partner.logo}
-                                </motion.div>
-                                <div className="text-sm font-medium text-gray-700 transition-colors group-hover:text-yellow-600">{partner.name}</div>
-                            </motion.div>
-                        ))}
                     </div>
                 </div>
             </motion.section>

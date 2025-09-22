@@ -117,18 +117,18 @@ export default function CoreValuesPage() {
     <div className="flex flex-col bg-white relative overflow-x-hidden min-h-screen">
       <Header sticky={true} transparent={false} />
       <div className="flex-1 flex flex-col z-10 pt-16 sm:pt-20">
-        
+
         {/* Mobile Layout - Stack Vertically */}
         <div className="block lg:hidden">
-          
+
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
-            <img 
+            <img
               src="https://i.pinimg.com/736x/8d/ae/91/8dae91dbdf9ff82fdf1f16a4e5458dec.jpg"
               alt="Core Values"
               className="w-full h-full object-cover opacity-70"
             />
-            
+
             {/* Mobile Title */}
             <div className={`absolute bottom-6 left-4 right-4 transform transition-all duration-1000 ease-out ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -148,7 +148,7 @@ export default function CoreValuesPage() {
           {/* Mobile Content */}
           <div className="bg-white p-4 sm:p-6">
             <div className="max-w-2xl mx-auto">
-              
+
               {/* Header */}
               <div className={`mb-8 transform transition-all duration-1000 delay-300 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
@@ -174,16 +174,16 @@ export default function CoreValuesPage() {
                   <div
                     key={index}
                     className={`transform transition-all duration-1000 cursor-pointer group ${
-                      isLoaded 
-                        ? 'translate-y-0 opacity-100' 
+                      isLoaded
+                        ? 'translate-y-0 opacity-100'
                         : 'translate-y-8 opacity-0'
                     } ${
-                      activeValue === index 
-                        ? 'scale-[1.02] bg-yellow-50 shadow-lg rounded-xl p-4' 
+                      activeValue === index
+                        ? 'scale-[1.02] bg-yellow-50 shadow-lg rounded-xl p-4'
                         : 'hover:bg-gray-50 rounded-xl p-4'
                     }`}
-                    style={{ 
-                      transitionDelay: `${500 + (index * 150)}ms` 
+                    style={{
+                      transitionDelay: `${500 + (index * 150)}ms`
                     }}
                     onClick={() => setActiveValue(index)}
                   >
@@ -194,7 +194,7 @@ export default function CoreValuesPage() {
                       }`}>
                         {value.icon}
                       </div>
-                      
+
                       {/* Content */}
                       <div className="flex-1 space-y-2">
                         <div>
@@ -208,16 +208,16 @@ export default function CoreValuesPage() {
                           </h3>
                         </div>
                         <p className={`leading-relaxed transition-all duration-500 ${
-                          activeValue === index 
-                            ? 'text-gray-800 text-sm sm:text-base' 
+                          activeValue === index
+                            ? 'text-gray-800 text-sm sm:text-base'
                             : 'text-gray-600 text-xs sm:text-sm group-hover:text-gray-800'
                         }`}>
                           {value.description}
                         </p>
-                        
+
                         {/* Progress Bar */}
                         <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
-                          <div 
+                          <div
                             className={`h-full bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-1000 ${
                               activeValue === index ? 'w-full' : 'w-0'
                             }`}
@@ -259,7 +259,7 @@ export default function CoreValuesPage() {
         <div className="hidden lg:flex w-full relative" style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}>
           {/* Left Side - Image and Title */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
-            <img 
+            <img
               src="https://i.pinimg.com/736x/8d/ae/91/8dae91dbdf9ff82fdf1f16a4e5458dec.jpg"
               alt="Core Values"
               className="w-full h-full object-cover opacity-70"
@@ -278,12 +278,12 @@ export default function CoreValuesPage() {
               </p>
             </div>
           </div>
-          
+
           {/* Right Side - Core Values Content */}
           <div className="w-1/2 bg-white relative h-full flex-shrink-0">
             {/* Accent Line */}
             <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
-            
+
             {/* Content Container */}
             <div
               ref={rightPanelRef}
@@ -316,16 +316,16 @@ export default function CoreValuesPage() {
                     <div
                       key={index}
                       className={`transform transition-all duration-1000 cursor-pointer group ${
-                        isLoaded 
-                          ? 'translate-y-0 opacity-100' 
+                        isLoaded
+                          ? 'translate-y-0 opacity-100'
                           : 'translate-y-8 opacity-0'
                       } ${
-                        activeValue === index 
-                          ? 'scale-105 bg-yellow-50 shadow-lg rounded-2xl p-6 -mx-2' 
+                        activeValue === index
+                          ? 'scale-105 bg-yellow-50 shadow-lg rounded-2xl p-6 -mx-2'
                           : 'hover:bg-gray-50 rounded-2xl p-6 -mx-2'
                       }`}
-                      style={{ 
-                        transitionDelay: `${500 + (index * 150)}ms` 
+                      style={{
+                        transitionDelay: `${500 + (index * 150)}ms`
                       }}
                       onClick={() => setActiveValue(index)}
                     >
@@ -336,7 +336,7 @@ export default function CoreValuesPage() {
                         }`}>
                           {value.icon}
                         </div>
-                        
+
                         {/* Content */}
                         <div className="flex-1 space-y-3">
                           <div>
@@ -350,16 +350,16 @@ export default function CoreValuesPage() {
                             </h3>
                           </div>
                           <p className={`leading-relaxed transition-all duration-500 ${
-                            activeValue === index 
-                              ? 'text-gray-800 text-base' 
+                            activeValue === index
+                              ? 'text-gray-800 text-base'
                               : 'text-gray-600 text-sm group-hover:text-gray-800'
                           }`}>
                             {value.description}
                           </p>
-                          
+
                           {/* Progress Bar */}
                           <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
-                            <div 
+                            <div
                               className={`h-full bg-gradient-to-r from-yellow-400 to-yellow-600 transition-all duration-1000 ${
                                 activeValue === index ? 'w-full' : 'w-0'
                               }`}
@@ -399,7 +399,7 @@ export default function CoreValuesPage() {
         </div>
       </div>
       <Footer />
-      
+
       {/* Custom Styles */}
       <style dangerouslySetInnerHTML={{__html: `
         .overflow-y-auto::-webkit-scrollbar {

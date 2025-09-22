@@ -244,26 +244,6 @@ return [
             'title' => 'Pembaruan Perusahaan',
             'title_short' => 'Berita',
             'view_button' => 'Lihat',
-            'highlight_badge' => 'HIGHLIGHT',
-            'no_news_available' => 'Belum ada berita tersedia',
-            'items' => [
-                'sept-1' => [
-                    'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada',
-                    'excerpt' => 'Ekspansi strategis bisnis alat berat di sektor pertambangan di wilayah Indonesia Timur. Akuisisi ini memperkuat posisi kami di pasar alat berat dan meningkatkan kemampuan operasional.',
-                ],
-                'jul-1' => [
-                    'title' => 'Distribusi Sembako untuk Masyarakat Papua Tengah',
-                    'excerpt' => 'PT Kristalin Ekalestari melakukan distribusi sembako kepada masyarakat Papua Tengah sebagai bagian dari program CSR berkelanjutan untuk meningkatkan kesejahteraan masyarakat sekitar.',
-                ],
-                'aug-2' => [
-                    'title' => 'Rumah Layak untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
-                    'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi. Program ini mencerminkan semangat kemerdekaan melalui pemberdayaan masyarakat.',
-                ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin Bangun Rumah Layak Huni untuk Buruh di Desa Nifasi',
-                    'excerpt' => 'PT Kristalin Ekalestari kembali membangun rumah layak huni untuk warga Desa Nifasi melalui program CSR. Pembangunan ini merupakan bentuk tanggung jawab sosial perusahaan terhadap masyarakat sekitar.',
-                ],
-            ],
         ],
         'contact' => [
             'category' => 'HUBUNGI KAMI',
@@ -1370,9 +1350,154 @@ return [
             'community_development' => 'Pengembangan Masyarakat',
             'partnership' => 'Kemitraan',
             'technology' => 'Teknologi',
-            'house_construction' => 'Pembangunan Rumah',
-            'food_distribution' => 'Distribusi Makanan',
-            'education_support' => 'Dukungan Pendidikan',
+            'pembangunan_rumah_nelayan' => 'Pembangunan Rumah Baru untuk Nelayan di Desa Nifasi',
+            'pembangunan-rumah-nelayan' => 'Pembangunan Rumah Baru untuk Nelayan di Desa Nifasi',
+            'pendanaan_pendidikan' => 'Pendanaan Pendidikan',
+            'pendanaan-pendidikan' => 'Pendanaan Pendidikan',
+            'csr_pembagian_sembako_juli' => 'CSR Pembagian 506 Paket Sembako di Desa Nifasi',
+            'csr-pembagian-sembako-juli' => 'CSR Pembagian 506 Paket Sembako di Desa Nifasi',
+            'csr_pembangunan_rumah_lomon_monei' => 'CSR Pembangunan Rumah Warga Lomon Monei',
+            'kristalin_ekalestari_group_akuisisi_saham_50_persen_pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+            'penyaluran-sembako-feb' => 'Penyaluran Sembako Februari',
+            'pembangunan-rumah-nifasi-feb' => 'Pembangunan Rumah Nifasi Februari',
+            'pembangun rumah-nifasi-feb' => 'Pembangunan Rumah Nifasi Februari',
+            'pembangunan-rumah-juni' => 'Pembangunan Rumah Juni',
+            'pemberitah-bantuan-dana-hak-garap' => 'Pemberitahuan Bantuan Dana Hak Garap',
+            'csr-hut-ri-80-cidata-barat-papua' => 'CSR HUT RI 80 Cidata Barat Papua',
+            'csr-penyaluran-bantuan-sembako-agustus' => 'CSR Penyaluran Bantuan Sembako Agustus',
+            'pemberitahuan-bantuan-dana-hak-garap' => 'Pemberitahuan Bantuan Dana Hak Garap',
+            'csr-pembangunan-rumah-lomon-monei' => 'CSR Pembangunan Rumah Lomon Monei',
+            'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+        ],
+        'months' => [
+            'februari' => 'FEBRUARI',
+            'maret' => 'MARET',
+            'juni' => 'JUNI',
+            'juli' => 'JULI',
+            'agustus' => 'AGUSTUS',
+            'september' => 'SEPTEMBER',
+        ],
+        'articles' => [
+            'feb-3' => [
+                'title' => 'Program Penyaluran Sembako Februari',
+                'excerpt' => 'Program CSR penyaluran paket sembako kepada masyarakat di bulan Februari.',
+            ],
+            'feb-4' => [
+                'title' => 'Pembangunan Rumah Desa Nifasi Februari',
+                'excerpt' => 'Pembangunan rumah baru untuk warga Desa Nifasi di bulan Februari.',
+            ],
+            'feb-7' => [
+                'title' => 'Inisiatif Pengembangan Masyarakat Februari',
+                'excerpt' => 'Implementasi program pengembangan masyarakat di bulan Februari.',
+            ],
+            'feb-8' => [
+                'title' => 'Laporan Aktivitas CSR Februari',
+                'excerpt' => 'Laporan aktivitas CSR yang dilaksanakan di bulan Februari.',
+            ],
+            'feb-9' => [
+                'title' => 'Program Bantuan Sosial Februari',
+                'excerpt' => 'Program bantuan sosial untuk masyarakat di bulan Februari.',
+            ],
+            'mar-1' => [
+                'title' => 'Nelayan Laut Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan laut Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan terhadap masyarakat sekitar.',
+            ],
+            'mar-2' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi sebagai bentuk tanggung jawab sosial perusahaan.',
+            ],
+            'mar-3' => [
+                'title' => 'Nelayan Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'mar-4' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi.',
+            ],
+            'mar-5' => [
+                'title' => 'Nelayan Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'mar-6' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi.',
+            ],
+            'jun-1' => [
+                'title' => 'Dana Pendidikan Siswa SMA di Desa Nifasi Dijamin Hingga Lulus',
+                'excerpt' => 'PT Kristalin Ekalestari memberikan jaminan dana pendidikan untuk siswa SMA di Desa Nifasi hingga mereka lulus.',
+            ],
+            'jun-2' => [
+                'title' => 'Dana Pendidikan SMA Desa Nifasi Dijamin oleh PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari menjamin dana pendidikan untuk siswa SMA di Desa Nifasi.',
+            ],
+            'jun-3' => [
+                'title' => 'Dana Pendidikan Siswa SMA di Desa Nifasi Dijamin Hingga Lulus',
+                'excerpt' => 'PT Kristalin Ekalestari memberikan jaminan dana pendidikan untuk siswa SMA di Desa Nifasi hingga mereka lulus.',
+            ],
+            'jun-4' => [
+                'title' => 'Dana Pendidikan SMA Desa Nifasi Dijamin oleh PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari menjamin dana pendidikan untuk siswa SMA di Desa Nifasi.',
+            ],
+            'jul-1' => [
+                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Ratusan warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan.',
+            ],
+            'jul-2' => [
+                'title' => 'Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'jul-3' => [
+                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Ratusan warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan.',
+            ],
+            'jul-4' => [
+                'title' => 'Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'aug-1' => [
+                'title' => 'Hadiah HUT RI ke-80, Buruh Harian di Desa Nifasi Dapat Rumah dari PT Kristalin Ekalestari',
+                'excerpt' => 'Sebagai hadiah HUT RI ke-80, PT Kristalin Ekalestari memberikan rumah kepada buruh harian di Desa Nifasi melalui program CSR.',
+            ],
+            'aug-2' => [
+                'title' => 'Momen Bersejarah, Buruh Harian di Desa Nifasi Dapat Rumah dari PT Kristalin Ekalestari',
+                'excerpt' => 'Momen bersejarah terjadi ketika PT Kristalin Ekalestari memberikan rumah kepada buruh harian di Desa Nifasi.',
+            ],
+            'aug-3' => [
+                'title' => 'Perayaan HUT RI ke-80: Warga Desa Nanimori Antusias Ikut Permainan Tradisional Bersama PT Cidata Barat Papua',
+                'excerpt' => 'Perayaan HUT RI ke-80 di Desa Nanimori, Distrik Kuri Wamesa berlangsung meriah dengan berbagai permainan tradisional yang diselenggarakan bersama PT Cidata Barat Papua.',
+            ],
+            'aug-4' => [
+                'title' => 'Berbagi Kebahagiaan, PT Kristalin Ekalestari Bagikan Paket Sembako untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari berbagi kebahagiaan dengan membagikan paket sembako untuk warga Desa Nifasi melalui program CSR.',
+            ],
+            'aug-5' => [
+                'title' => 'Konsisten Penyaluran Sembako, PT Kristalin Ekalestari Bagikan 506 Paket untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan konsistensi dalam penyaluran sembako dengan membagikan 506 paket untuk warga Desa Nifasi.',
+            ],
+            'aug-6' => [
+                'title' => 'Komitmen Berkelanjutan, PT Kristalin Ekalestari Bagikan 506 Paket Sembako untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan komitmen berkelanjutan dengan membagikan 506 paket sembako untuk warga Desa Nifasi.',
+            ],
+            'aug-7' => [
+                'title' => 'Kepedulian Nyata, PT Kristalin Ekalestari Prioritaskan Lansia dan Tempat Ibadah dalam Penyaluran Sembako',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan kepedulian nyata dengan memprioritaskan lansia dan tempat ibadah dalam penyaluran sembako.',
+            ],
+            'aug-8' => [
+                'title' => 'Solidaritas Berkelanjutan, PT Kristalin Ekalestari Bagikan Sembako untuk Lansia dan Janda di Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan solidaritas berkelanjutan dengan membagikan sembako untuk lansia dan janda di Desa Nifasi.',
+            ],
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
+                'excerpt' => 'Kristalin Ekalestari Group resmi mengakuisisi 51% kepemilikan saham PT Torindo Jaya Persada dalam strategi ekspansi bisnis alat berat sektor pertambangan di wilayah Indonesia Timur.',
+            ],
+        ],
+        'archive' => [
+            'articles_count' => 'artikel di',
+            'categories_count' => 'kategori',
+            'articles_available' => 'artikel tersedia',
+            'articles' => 'Artikel',
+            'category' => 'Kategori',
+            'read_more' => 'Baca Selengkapnya',
         ],
 
         'stats' => [

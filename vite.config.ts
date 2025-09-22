@@ -7,7 +7,7 @@ import { defineConfig } from 'vite';
 export default defineConfig(({ mode }) => ({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            input: ['resources/css/app.css', 'resources/js/app.tsx', 'resources/js/pages/news.tsx'],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
         }),
@@ -28,13 +28,21 @@ export default defineConfig(({ mode }) => ({
         sourcemap: mode === 'development',
         rollupOptions: {
             output: {
-                manualChunks: {
-                    vendor: ['react', 'react-dom'],
-                    ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+                manualChunks: (id) => {
+                    // Vendor chunks
+                    if (id.includes('node_modules')) {
+                        if (id.includes('react') || id.includes('react-dom')) {
+                            return 'vendor';
+                        }
+                        if (id.includes('@radix-ui')) {
+                            return 'ui';
+                        }
+                    }
+                    return null;
                 },
             },
         },
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 2000,
     },
     optimizeDeps: {
         include: ['react', 'react-dom', '@inertiajs/react'],

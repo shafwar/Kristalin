@@ -243,53 +243,58 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
 const BoardOfDirectors = () => {
     const { t } = useTranslation();
     const directorsRef = useRef<HTMLDivElement>(null);
+    const [scrollY, setScrollY] = useState(0);
+
+    // Parallax effect
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-gray-200">
+        <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200">
             <Header sticky={true} transparent={true} />
 
             {/* Enhanced Premium Hero Section with Business Activity Style */}
-            <section className="relative min-h-screen overflow-hidden">
+            <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
                 {/* Background Image with Parallax Effect */}
                 <div
                     className="absolute inset-0 h-full w-full"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('/board-hero-bg.jpg')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundAttachment: 'fixed',
+                        transform: `translateY(${scrollY * 0.5}px)`,
                     }}
-                />
-
-                {/* Dynamic background overlays */}
-                <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,175,55,0.1)_0%,transparent_60%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_20%,rgba(212,175,55,0.05)_40%,transparent_60%)]" />
+                >
+                    <img src="/board-hero-bg.jpg" alt="Board of Directors background" className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
                 <motion.div
-                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-32 text-center sm:py-40 lg:py-48"
+                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, ease: 'easeOut' }}
                 >
                     <motion.div
                         className="transform transition-all duration-1000 ease-out"
+                        style={{
+                            transform: `translateY(${scrollY * 0.2}px)`,
+                            opacity: Math.max(0, 1 - scrollY / 600),
+                        }}
                         initial={{ opacity: 0, y: 80 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 1.2, ease: 'easeOut' }}
                     >
-                        {/* Leadership Excellence Badge */}
+                        {/* MOBILE RESPONSIVE LEADERSHIP EXCELLENCE BADGE */}
                         <motion.div
                             initial={{ opacity: 0, y: 30, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                            className="mb-16"
+                            transition={{ duration: 1, ease: 'easeOut' }}
+                            className="mb-8 sm:mb-12"
                         >
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-8 py-3 text-base font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm">
+                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-6 py-2.5 text-sm font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm sm:px-8 sm:py-3 sm:text-base">
                                 <motion.svg
-                                    className="mr-3 h-5 w-5"
+                                    className="mr-2 h-4 w-4 sm:mr-3 sm:h-5 sm:w-5"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     animate={{ rotate: [0, 360] }}
@@ -301,39 +306,39 @@ const BoardOfDirectors = () => {
                             </span>
                         </motion.div>
 
-                        {/* Main Title with Business Activity Style */}
+                        {/* MOBILE RESPONSIVE MAIN TITLE */}
                         <motion.h1
-                            className="mb-8 text-3xl leading-tight font-bold sm:mb-12 sm:text-4xl md:text-5xl lg:text-7xl"
+                            className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
                             initial={{ opacity: 0, y: 50, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
                         >
                             <motion.span
-                                className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
+                                className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
                             >
                                 {t('board_of_directors.hero_title')}
                             </motion.span>
                         </motion.h1>
 
-                        {/* Description */}
+                        {/* MOBILE RESPONSIVE DESCRIPTION */}
                         <motion.p
-                            className="mx-auto mb-12 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-16 sm:text-lg md:text-xl lg:text-2xl"
+                            className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                            transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
                         >
                             {t('board_of_directors.hero_subtitle')}
                         </motion.p>
 
-                        {/* Explore Button */}
+                        {/* MOBILE RESPONSIVE EXPLORE BUTTON */}
                         <motion.div
-                            className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+                            className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
                             initial={{ opacity: 0, y: 30, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
+                            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
                         >
                             <motion.button
                                 onClick={() => {
@@ -365,12 +370,12 @@ const BoardOfDirectors = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Scroll Indicator */}
+                {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
                 <motion.div
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 transform sm:bottom-12 lg:bottom-16"
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
+                    transition={{ duration: 0.6, delay: 1.4, ease: 'easeOut' }}
                 >
                     <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
                         <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>

@@ -244,26 +244,6 @@ return [
             'title' => 'Pembaruan Perusahaan',
             'title_short' => 'Berita',
             'view_button' => 'Lihat',
-            'highlight_badge' => 'HIGHLIGHT',
-            'no_news_available' => 'Belum ada berita tersedia',
-            'items' => [
-                'sept-1' => [
-                    'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada',
-                    'excerpt' => 'Ekspansi strategis bisnis alat berat di sektor pertambangan di wilayah Indonesia Timur. Akuisisi ini memperkuat posisi kami di pasar alat berat dan meningkatkan kemampuan operasional.',
-                ],
-                'jul-1' => [
-                    'title' => 'Distribusi Sembako untuk Masyarakat Papua Tengah',
-                    'excerpt' => 'PT Kristalin Ekalestari melakukan distribusi sembako kepada masyarakat Papua Tengah sebagai bagian dari program CSR berkelanjutan untuk meningkatkan kesejahteraan masyarakat sekitar.',
-                ],
-                'aug-2' => [
-                    'title' => 'Rumah Layak untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
-                    'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi. Program ini mencerminkan semangat kemerdekaan melalui pemberdayaan masyarakat.',
-                ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin Bangun Rumah Layak Huni untuk Buruh di Desa Nifasi',
-                    'excerpt' => 'PT Kristalin Ekalestari kembali membangun rumah layak huni untuk warga Desa Nifasi melalui program CSR. Pembangunan ini merupakan bentuk tanggung jawab sosial perusahaan terhadap masyarakat sekitar.',
-                ],
-            ],
         ],
         'contact' => [
             'category' => 'HUBUNGI KAMI',
@@ -1359,8 +1339,22 @@ return [
             'description' => 'Perkembangan terkini dalam pertambangan emas berkelanjutan dan pemberdayaan masyarakat.',
             'search_placeholder' => 'Cari berita pertambangan...',
             'search_button' => 'Cari',
+            'categories_all' => 'Semua',
+            'categories_csr' => 'Inisiatif CSR',
+            'categories_community' => 'Pengembangan Masyarakat',
+            'categories_housing' => 'Pembangunan Rumah',
+            'categories_distribution' => 'Distribusi Sembako',
+            'categories_education' => 'Dukungan Pendidikan',
         ],
-
+        'highlights' => [
+            'highlight' => 'Sorotan',
+            'news' => 'Berita',
+            'featured_description' => 'Cerita unggulan dan pengumuman penting dari operasi kami',
+            'strategic_acquisition' => 'AKUISISI STRATEGIS',
+            'read_more' => 'Baca Selengkapnya',
+            'acquisition_description' => 'Konsolidasi strategis mayoritas 51% saham PT Torindo Jaya Persada melalui PT Armada Bumi Investama, memperkuat ekosistem bisnis alat berat pertambangan emas di kawasan Indonesia Timur dengan teknologi China modern dan jaringan distribusi terintegrasi.',
+            'featured_title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
+        ],
         'categories' => [
             'all' => 'Semua',
             'mining_operations' => 'Operasi Pertambangan',
@@ -1370,11 +1364,29 @@ return [
             'community_development' => 'Pengembangan Masyarakat',
             'partnership' => 'Kemitraan',
             'technology' => 'Teknologi',
-            'house_construction' => 'Pembangunan Rumah',
-            'food_distribution' => 'Distribusi Makanan',
-            'education_support' => 'Dukungan Pendidikan',
+            'articles_available' => 'artikel tersedia',
+            'articles_label' => 'Artikel',
+            'category_label' => 'Kategori',
+            // Specific news categories
+            'kristalin_ekalestari_group_akuisisi_saham_50_persen_pt_torindo_jaya_persada' => [
+                'title' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+            ],
+            'csr_penyaluran_bantuan_sembako_agustus' => [
+                'title' => 'CSR Penyaluran Bantuan Sembako Bulan Agustus 2025',
+            ],
+            'csr_pembangunan_rumah_lomon_monei' => [
+                'title' => 'CSR Pembangunan Rumah untuk Lomon Monei',
+            ],
+            'lomba_kemerdekaan_papua_barat' => [
+                'title' => 'Lomba Kemerdekaan Papua Barat',
+            ],
+            'pembangunan_rumah_nifasi_jun' => [
+                'title' => 'Pembangunan Rumah Baru di Desa Nifasi',
+            ],
+            'pembangunan_rumah_nelayan' => [
+                'title' => 'Pembangunan Rumah Baru untuk Nelayan di Desa Nifasi',
+            ],
         ],
-
         'stats' => [
             'title_line1' => 'Statistik',
             'title_line2' => 'Berita Kami',
@@ -1396,26 +1408,35 @@ return [
                 'description' => 'Berita dan pengumuman tahun ini',
             ],
         ],
-        'highlights' => [
-            'title' => 'Highlight News',
-            'subtitle' => 'Cerita unggulan dan pengumuman penting dari operasi kami',
-        ],
         'archive' => [
             'title' => 'Arsip Berita',
-            'description' => 'Update terkini dan pengumuman dari operasi kami',
+            'description' => 'Update dan pengumuman terkini dari operasi kami',
             'articles_count' => 'artikel di',
             'categories_count' => 'kategori',
             'active_status' => 'Aktif',
         ],
-
+        'months' => [
+            'february' => 'FEBRUARI',
+            'march' => 'MARET',
+            'august' => 'AGUSTUS',
+            'september' => 'SEPTEMBER',
+        ],
         'list' => [
             'no_results' => 'Tidak ada berita ditemukan.',
             'read_more' => 'Baca Selengkapnya',
-            'read_full_article' => 'Baca Selengkapnya',
+            'complete_status' => 'Lengkap',
         ],
 
+
         'detail' => [
-            'back_to_list' => 'Kembali ke Daftar',
+            'loading' => 'Memuat artikel...',
+            'not_found_title' => 'Artikel Tidak Ditemukan',
+            'not_found_desc' => 'Artikel yang Anda cari tidak tersedia.',
+            'back_to_list' => 'Kembali ke Berita',
+            'breadcrumb_home' => 'Beranda',
+            'breadcrumb_news' => 'Berita',
+            'author_label' => 'Oleh',
+            'source_label' => 'Sumber',
             'project_metrics' => 'Metrik Proyek',
             'impact_statement' => 'Pernyataan Dampak',
             'impact_description' => 'Program CSR ini menunjukkan komitmen nyata PT Kristalin Ekalestari dalam memberikan dampak positif bagi masyarakat sekitar, meningkatkan kualitas hidup dan kesejahteraan keluarga di daerah operasi.',
@@ -1430,223 +1451,191 @@ return [
         ],
 
         'articles' => [
-            // First news article translation - feb-3
-            'feb-3' => [
-                'title' => 'Buruh Harian Lepas Desa Nifasi dapat Rumah dari CSR Kristalin Ekalestari',
-                'excerpt' => 'Yundiles Wonda dari Suku Dani menerima rumah layak huni dari program CSR PT Kristalin Ekalestari di Desa Nifasi, Nabire.',
-                'full_content' => [
-                    'title' => 'Buruh Harian Lepas Desa Nifasi dapat Rumah dari CSR Kristalin Ekalestari',
-                    'date' => '3 Februari 2025',
-                    'author' => 'Redaksi JPNN.com',
-                    'source' => 'JPNN.com',
-                    'sections' => [
-                        'opening' => [
-                            'title' => 'Kebahagiaan di Desa Nifasi',
-                            'content' => 'Kebahagiaan terpancar dari wajah <strong>Yundiles Wonda</strong> dari Suku Dani bersama keluarganya. Sebagai pemilik tanah garapan yang diberikan oleh adat Nifasi, ia kini merasakan kebahagiaan yang luar biasa setelah menerima rumah layak huni dari program CSR PT Kristalin Ekalestari.'
-                        ],
-                        'recipient_story' => [
-                            'title' => 'Sosok di Balik Kisah',
-                            'name' => 'Yustinus Monei',
-                            'description' => 'Seorang <strong>buruh harian lepas</strong> yang setiap hari berjuang memenuhi kebutuhan hidupnya di Desa Nifasi. Kehidupan yang penuh tantangan ekonomi tak menyurutkan semangatnya, hingga akhirnya harapan datang melalui program CSR yang mengubah nasibnya.'
-                        ],
-                        'program_details' => [
-                            'title' => 'Program yang Mengubah Hidup',
-                            'quote' => 'Kehadiran kami, dengan membangun Desa Nifasi tentu memperhatikan nasib masyarakatnya untuk mensejahterakan baik yang belum memiliki rumah dan tidak layak huni kami lakukan perbaiki.',
-                            'quote_author' => 'Maria Erari, Humas PT Kristalin Ekalestari',
-                            'dream_house' => [
-                                'title' => 'Rumah Impian',
-                                'specs' => [
-                                    'Type 57 - Hunian nyaman seluas 57 meter persegi',
-                                    'Konstruksi Penuh - Bangunan solid tanpa teras',
-                                    '2 Kamar Tidur - Ruang pribadi yang nyaman',
-                                    'Kamar Mandi - Fasilitas sanitasi lengkap',
-                                    'Standar Layak Huni - Aman dan nyaman untuk keluarga'
-                                ]
-                            ],
-                            'path_to_dream' => [
-                                'title' => 'Jalan Menuju Impian',
-                                'details' => [
-                                    'Durasi: Sekitar 1 bulan pengerjaan',
-                                    'Penyerahan: Kunci rumah langsung',
-                                    'Proses: Mengikuti standar yang sama'
-                                ]
-                            ]
-                        ],
-                        'promise' => [
-                            'quote' => 'Estimasi sekira satu bulanan dan akan diserahkan kunci langsung seperti sebelum-sebelum warga yang mendapatkan rumah dari kami. Semoga bermanfaat untuk yang menerima.',
-                            'quote_author' => 'Maria Erari, Humas PT Kristalin Ekalestari'
-                        ],
-                        'commitment' => [
-                            'title' => 'Komitmen yang Berkelanjutan',
-                            'subtitle' => 'Membangun Harapan Bersama',
-                            'content' => 'Kisah Yundiles Wonda bukanlah yang pertama. <strong>Andrian Lubis</strong>, Senior Manager & Finance Division PT Kristalin Ekalestari, menjelaskan bahwa pihaknya telah melakukan pembangunan rumah sebanyak <strong>29 rumah</strong>. "Total 27 rumah yang dibangun. Ini merupakan bagian komitmen kami kepada masyarakat lewat CSR perusahaan," ungkap Andrian.',
-                            'focus' => [
-                                'title' => 'Fokus Utama',
-                                'items' => [
-                                    'Keluarga tanpa tempat tinggal',
-                                    'Renovasi rumah tidak layak',
-                                    'Peningkatan taraf hidup masyarakat'
-                                ]
-                            ],
-                            'impact' => [
-                                'title' => 'Dampak Nyata',
-                                'items' => [
-                                    'Puluhan keluarga mendapat rumah',
-                                    'Kesejahteraan masyarakat meningkat',
-                                    'Pembangunan daerah semakin maju'
-                                ]
-                            ]
-                        ],
-                        'visible_impact' => [
-                            'title' => 'Dampak yang Terlihat',
-                            'stats' => [
-                                [
-                                    'number' => '29',
-                                    'label' => 'Rumah Dibangun',
-                                    'description' => 'Total rumah yang telah dibangun PT Kristalin'
-                                ],
-                                [
-                                    'icon' => '✓',
-                                    'label' => 'Kualitas Hidup',
-                                    'description' => 'Masyarakat Desa Nifasi hidup lebih sejahtera'
-                                ],
-                                [
-                                    'icon' => '🏗️',
-                                    'label' => 'Pembangunan Daerah',
-                                    'description' => 'Kontribusi nyata untuk kemajuan Papua Tengah'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+            // Sample articles for translation demonstration
+            'mar-1' => [
+                'title' => 'Nelayan Laut Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan laut Yustinus Monei menerima kunci rumah baru dari PT Kristalin Ekalestari melalui program CSR di Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.',
+                'content' => 'Kebahagiaan terpancar dari wajah Yustinus Monei beserta keluarganya. Sebagai nelayan laut yang setiap hari berjuang memenuhi kebutuhan hidup, ia kini merasakan kebahagiaan yang luar biasa setelah menerima rumah layak huni dari program CSR PT Kristalin Ekalestari.'
             ],
-            // Kristalin Ekalestari Group Acquisition Article - sept-3
-            'sept-3' => [
+            'sept-1' => [
                 'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
-                'excerpt' => 'Konsolidasi strategis mayoritas 51% saham PT Torindo Jaya Persada melalui PT Armada Bumi Investama, memperkuat ekosistem bisnis alat berat pertambangan emas di kawasan Indonesia Timur dengan teknologi China modern dan jaringan distribusi terintegrasi.',
-                'full_content' => [
-                    'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
-                    'date' => '3 September 2025',
-                    'author' => 'Tim Redaksi Kristalin',
-                    'source' => 'Poskota.co.id',
-                    'badge' => 'AKUISISI STRATEGIS',
-                    'sections' => [
-                        'opening' => [
-                            'title' => 'Langkah Strategis Ekspansi Bisnis',
-                            'content' => '<strong>Kristalin Ekalestari Group</strong> mengumumkan keberhasilan akuisisi strategis terhadap <strong>51% kepemilikan saham PT Torindo Jaya Persada</strong> melalui anak perusahaannya, PT Armada Bumi Investama. Langkah ini menandai era baru ekspansi industri alat berat di sektor pertambangan, khususnya di kawasan Indonesia Timur yang kaya akan potensi mineral.'
-                        ],
-                        'strategic_vision' => [
-                            'title' => 'Visi Strategis Pasca Akuisisi',
-                            'quote' => 'Bergabungnya PT Torindo Jaya Persada ke dalam Kristalin Ekalestari Group akan memperkuat posisi kami dalam mengembangkan industri alat berat di sektor pertambangan emas, terutama di kawasan Indonesia Timur yang memiliki potensi luar biasa.',
-                            'quote_author' => 'Presiden Direktur PT Torindo Jaya Persada, Nia Kurniasih'
-                        ],
-                        'ownership_structure' => [
-                            'title' => 'Struktur Kepemilikan Pasca Akuisisi',
-                            'content' => 'Transaksi akuisisi ini mengubah komposisi kepemilikan PT Torindo Jaya Persada secara signifikan. Presiden Direktur Nia Kurniasih mengonfirmasi bahwa kepemilikan saham yang sebelumnya 100% kini menjadi 49%, sementara PT Armada Bumi Investama sebagai representasi Kristalin Ekalestari Group mengambil alih mayoritas dengan 51% kepemilikan.',
-                            'breakdown' => [
-                                [
-                                    'percentage' => '51%',
-                                    'entity' => 'PT Armada Bumi Investama',
-                                    'description' => '(Kontroling Strategic)'
-                                ],
-                                [
-                                    'percentage' => '49%',
-                                    'entity' => 'Manajemen Torindo',
-                                    'description' => '(Kontinuitas Operasional)'
-                                ]
-                            ]
-                        ],
-                        'market_expansion' => [
-                            'title' => 'Strategi Ekspansi Pasar Indonesia Timur',
-                            'content' => 'Akuisisi ini bukan sekadar perubahan kepemilikan, namun bagian dari strategi komprehensif untuk memperkuat penetrasi pasar di wilayah Indonesia Timur. Kristalin Ekalestari Group melihat potensi besar dalam sektor pertambangan yang terus berkembang, khususnya di wilayah Papua dan sekitarnya.',
-                            'focus_areas' => [
-                                'Jaringan distribusi alat berat tambang emas',
-                                'Dukungan layanan teknis dan maintenance',
-                                'Kemitraan strategis dengan perusahaan tambang lokal',
-                                'Program pelatihan dan sertifikasi tenaga kerja'
-                            ]
-                        ],
-                        'market_outlook' => [
-                            'title' => 'Outlook Pasar dan Prospek Masa Depan',
-                            'quote' => 'Kondisi pasar tambang batu bara mengalami fluktuasi, namun potensi sektor lain seperti tambang emas masih sangat stabil dan menjanjikan. Kami optimis dapat memperluas jaringan penjualan pada berbagai segmen industri di luar Kristalin Ekalestari Group untuk wilayah Indonesia Timur.',
-                            'quote_author' => 'Analisis Tim Strategis PT Torindo Jaya Persada'
-                        ],
-                        'integration_benefits' => [
-                            'title' => 'Manfaat Integrasi Strategis',
-                            'content' => 'Integrasi PT Torindo Jaya Persada ke dalam ekosistem Kristalin Ekalestari Group diharapkan menciptakan sinergi positif yang menguntungkan semua pihak. Kombinasi keahlian teknis, jaringan distribusi, dan akses ke pasar yang lebih luas akan memperkuat posisi kompetitif di industri alat berat Indonesia.',
-                            'benefits' => [
-                                [
-                                    'category' => 'Akses Teknologi',
-                                    'items' => ['Teknologi China modern', 'Sistem peralatan canggih', 'Solusi digital']
-                                ],
-                                [
-                                    'category' => 'Ekspansi Pasar',
-                                    'items' => ['Penetrasi Indonesia Timur', 'Segmen pelanggan baru', 'Kemitraan strategis']
-                                ],
-                                [
-                                    'category' => 'Keunggulan Operasional',
-                                    'items' => ['Peningkatan kualitas layanan', 'Pelatihan & sertifikasi', 'Efisiensi proses']
-                                ]
-                            ]
-                        ],
-                        'leadership_vision' => [
-                            'title' => 'Visi Kepemimpinan Strategis',
-                            'quote' => 'Dengan bergabungnya PT Torindo Jaya Persada sebagai bagian Kristalin Ekalestari Group, kami memantapkan posisi untuk mengembangkan bisnis alat berat sektor pertambangan emas di Indonesia Timur dan memperluas jaringan penjualan lintas sektor industri.',
-                            'quote_author' => 'Nia Kurniasih, Presiden Direktur PT Torindo Jaya Persada'
-                        ]
-                    ]
-                ]
+                'excerpt' => 'Langkah strategis Kristalin Ekalestari Group melalui PT Armada Bumi Investama untuk mengakuisisi mayoritas saham PT Torindo Jaya Persada dalam rangka memperkuat ekosistem alat berat pertambangan di Indonesia Timur.',
+                'content' => 'Dalam langkah strategis untuk memperkuat posisi di industri alat berat pertambangan, Kristalin Ekalestari Group melalui PT Armada Bumi Investama berhasil mengakuisisi 51% saham PT Torindo Jaya Persada.'
             ],
-            // Feb House Construction 2 Article - feb-5
-            'feb_house_construction_2' => [
-                'title' => 'Progres Pembangunan Rumah Baru di Desa Nifasi',
-                'excerpt' => 'Kemajuan berkelanjutan dalam pembangunan rumah baru untuk warga Desa Nifasi sebagai bagian dari program CSR PT Kristalin Ekalestari.',
-                'category_title' => 'Pembangunan Rumah Baru di Desa Nifasi',
-                'author' => 'Tim Redaksi',
-                'source' => 'Laporan Internal',
-                'date' => '25 Februari 2025',
-                'content' => [
-                    'opening_story' => 'Pembangunan rumah baru di Desa Nifasi terus menunjukkan kemajuan yang signifikan. Program CSR PT Kristalin Ekalestari ini bertujuan untuk menyediakan perumahan yang layak bagi warga yang paling membutuhkan.',
-                    'current_progress' => 'Progres Pembangunan Saat Ini',
-                    'progress_description' => 'Pekerjaan konstruksi berjalan sesuai jadwal dengan tingkat penyelesaian 75%. Fondasi dan struktur utama telah selesai, dan saat ini sedang dilakukan pekerjaan finishing.',
-                    'construction_timeline' => 'Timeline Pembangunan',
-                    'timeline_description' => 'Proses pembangunan mengikuti timeline yang sistematis: pekerjaan fondasi (Minggu 1-2), struktur utama (Minggu 3-4), pekerjaan finishing (Minggu 5-6), dan inspeksi akhir (Minggu 7).',
-                    'local_employment' => 'Peluang Kerja Lokal',
-                    'employment_description' => 'Proyek pembangunan ini memberikan peluang kerja bagi 15 pekerja lokal, termasuk tukang kayu, tukang batu, dan buruh dari Desa Nifasi dan sekitarnya.',
-                    'material_sourcing' => 'Sumber Material',
-                    'sourcing_description' => 'Material konstruksi dipasok secara lokal jika memungkinkan, mendukung bisnis lokal dan mengurangi biaya transportasi. Material berkualitas digunakan untuk memastikan daya tahan dan keamanan.',
-                    'quality_control' => 'Kontrol Kualitas',
-                    'control_description' => 'Inspeksi kualitas rutin dilakukan sepanjang proses konstruksi untuk memastikan semua pekerjaan memenuhi standar keamanan dan kode bangunan.',
-                    'community_feedback' => 'Umpan Balik Masyarakat',
-                    'feedback_description' => 'Masyarakat telah memberikan umpan balik positif tentang kemajuan dan kualitas pembangunan. Warga menantikan penyelesaian rumah baru mereka.',
-                    'environmental_consideration' => 'Pertimbangan Lingkungan',
-                    'environmental_description' => 'Kegiatan konstruksi dilakukan dengan pertimbangan lingkungan, termasuk pengelolaan limbah yang tepat dan gangguan minimal terhadap lingkungan sekitar.'
-                ]
+            'aug-1' => [
+                'title' => 'Kado HUT RI ke-80, Buruh Harian Lepas Desa Nifasi dapat Rumah dari PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari memberikan kado spesial HUT RI ke-80 berupa rumah layak huni untuk Lomon Monei, buruh harian lepas di Desa Nifasi melalui program CSR berkelanjutan.',
+                'content' => 'Dalam rangka memperingati HUT RI ke-80, PT Kristalin Ekalestari memberikan kado istimewa berupa rumah layak huni kepada Lomon Monei, seorang buruh harian lepas di Desa Nifasi.'
             ],
-            // Feb House Construction 3 Article - feb-6
-            'feb_house_construction_3' => [
-                'title' => 'Penyerahan Unit Rumah Tahap Berikutnya untuk Warga Nifasi',
-                'excerpt' => 'PT Kristalin Ekalestari menyerahkan unit rumah tahap berikutnya kepada warga Desa Nifasi, melanjutkan komitmen program CSR.',
-                'category_title' => 'Pembangunan Rumah Baru di Desa Nifasi',
-                'author' => 'Tim Redaksi',
-                'source' => 'Laporan Internal',
-                'date' => '26 Februari 2025',
-                'content' => [
-                    'opening_story' => 'Pencapaian milestone lainnya dalam program CSR perumahan ketika PT Kristalin Ekalestari secara resmi menyerahkan unit rumah tahap berikutnya kepada warga Desa Nifasi.',
-                    'handover_ceremony' => 'Upacara Penyerahan',
-                    'ceremony_description' => 'Upacara penyerahan dihadiri oleh perwakilan perusahaan, pejabat pemerintah lokal, dan tokoh masyarakat. Upacara ini melambangkan komitmen perusahaan terhadap pembangunan masyarakat.',
-                    'beneficiary_profiles' => 'Profil Penerima Manfaat',
-                    'profiles_description' => 'Tahap ini menguntungkan 8 keluarga yang sebelumnya tinggal dalam kondisi perumahan yang tidak memadai. Setiap keluarga menerima rumah lengkap dengan semua fasilitas yang diperlukan.',
-                    'housing_specifications' => 'Spesifikasi Perumahan',
-                    'specifications_description' => 'Setiap rumah dibangun dengan spesifikasi Tipe 57: luas 57 meter persegi, 2 kamar tidur, 1 kamar mandi, ruang tamu, dapur, dan instalasi listrik serta air yang lengkap.',
-                    'community_celebration' => 'Perayaan Masyarakat',
-                    'celebration_description' => 'Penyerahan ini dirayakan oleh seluruh masyarakat dengan upacara tradisional dan ungkapan terima kasih atas kontribusi perusahaan dalam meningkatkan kondisi hidup mereka.',
-                    'ongoing_support' => 'Dukungan Berkelanjutan',
-                    'support_description' => 'PT Kristalin Ekalestari terus memberikan dukungan berkelanjutan termasuk bantuan pemeliharaan dan program pembangunan masyarakat untuk memastikan manfaat jangka panjang.',
-                    'future_commitment' => 'Komitmen Masa Depan',
-                    'commitment_description' => 'Perusahaan tetap berkomitmen untuk melanjutkan program perumahan dan inisiatif CSR lainnya untuk meningkatkan kesejahteraan warga Desa Nifasi.'
-                ]
+            'aug-2' => [
+                'title' => 'Rumah Layak untuk Lomon Monei: Kado Kemerdekaan dari Program CSR PT Kristalin Ekalestari',
+                'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi melalui program CSR berkelanjutan.',
+                'content' => 'Rangkaian perayaan kemerdekaan Indonesia yang ke-80 menjadi momen istimewa bagi Lomon Monei dan keluarganya di Desa Nifasi, Makimi, Nabire.'
             ],
+            'aug-3' => [
+                'title' => 'Bantuan Sembako Agustus 2025 untuk Masyarakat Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari melanjutkan program distribusi sembako bulanan kepada masyarakat Nabire sebagai bagian dari komitmen CSR berkelanjutan.',
+                'content' => 'Melanjutkan komitmen CSR berkelanjutan, PT Kristalin Ekalestari kembali menyalurkan bantuan sembako kepada masyarakat Nabire pada bulan Agustus 2025.'
+            ],
+            'feb-1' => [
+                'title' => 'Awal Tahun 2025, Kristalin Ekalestari Salurkan 506 Paket Sembako untuk Warga Nabire, Papua Tengah',
+                'excerpt' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada warga Nabire di awal tahun 2025 sebagai bentuk kepedulian terhadap masyarakat Papua Tengah.',
+                'content' => 'Memasuki tahun 2025, PT Kristalin Ekalestari memulai tahun dengan semangat kepedulian yang tinggi dengan menyalurkan 506 paket sembako kepada masyarakat Nabire, Papua Tengah.'
+            ],
+            'feb-2' => [
+                'title' => 'PT Kristalin Bangun Rumah Layak Huni untuk Buruh di Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari membangun rumah layak huni untuk buruh di Desa Nifasi sebagai bagian dari program CSR berkelanjutan.',
+                'content' => 'Program pembangunan rumah layak huni PT Kristalin Ekalestari terus berlanjut dengan fokus pada kesejahteraan para buruh di Desa Nifasi.'
+            ],
+            'jun-1' => [
+                'title' => 'Program Lomba Kemerdekaan Papua Barat',
+                'excerpt' => 'PT Kristalin Ekalestari menyelenggarakan lomba kemerdekaan untuk memperingati hari jadi Papua Barat dengan berbagai kategori perlombaan.',
+                'content' => 'PT Kristalin Ekalestari dengan bangga menyelenggarakan lomba kemerdekaan untuk memperingati hari jadi Papua Barat.'
+            ],
+            'jun-2' => [
+                'title' => 'Pembangunan Rumah Layak Huni untuk Warga Desa Nifasi',
+                'excerpt' => 'Program pembangunan rumah layak huni di Desa Nifasi dilanjutkan untuk meningkatkan kesejahteraan warga.',
+                'content' => 'Program pembangunan rumah layak huni di Desa Nifasi terus berlanjut sebagai wujud komitmen PT Kristalin Ekalestari dalam meningkatkan kesejahteraan masyarakat sekitar area operasi.'
+            ],
+        ],
+    // March 2025 Articles
+    'mar-1' => [
+        'title' => 'Nelayan Laut Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+        'excerpt' => 'Nelayan laut Yustinus Monei menerima kunci rumah baru dari PT Kristalin Ekalestari melalui program CSR di Desa Nifasi, Distrik Makimi, Kabupaten Nabire, Papua Tengah.',
+    ],
+    'mar-2' => [
+        'title' => 'PT Kristalin Ekalestari Serahkan Kunci Rumah kepada Nelayan Desa Nifasi',
+        'excerpt' => 'PT Kristalin Ekalestari menyerahkan kunci rumah kepada nelayan laut di Desa Nifasi sebagai bagian dari program CSR berkelanjutan untuk membantu warga yang belum memiliki rumah layak huni.',
+    ],
+    'mar-3' => [
+        'title' => 'Program Pembangunan Rumah untuk Nelayan Desa Nifasi',
+        'excerpt' => 'Program berkelanjutan PT Kristalin Ekalestari untuk memberikan rumah layak huni bagi nelayan di Desa Nifasi yang belum memiliki tempat tinggal yang memadai.',
+    ],
+    'mar-4' => [
+        'title' => 'Bantuan Rumah Tipe 57 untuk Keluarga Nelayan',
+        'excerpt' => 'Keluarga nelayan di Desa Nifasi menerima bantuan rumah tipe 57 dengan fasilitas lengkap melalui program CSR PT Kristalin Ekalestari.',
+    ],
+    'mar-5' => [
+        'title' => 'Dukungan Berkelanjutan untuk Masyarakat Pesisir',
+        'excerpt' => 'PT Kristalin Ekalestari memberikan dukungan berkelanjutan untuk masyarakat pesisir melalui program pembangunan rumah dan infrastruktur.',
+    ],
+    'mar-6' => [
+        'title' => 'Komitmen CSR untuk Kesejahteraan Nelayan',
+        'excerpt' => 'Komitmen jangka panjang PT Kristalin Ekalestari dalam meningkatkan kesejahteraan nelayan melalui berbagai program CSR yang berkelanjutan.',
+    ],
+            
+    // June 2025 Articles
+    'jun-1' => [
+        'title' => 'Program Lomba Kemerdekaan Papua Barat',
+        'excerpt' => 'PT Kristalin Ekalestari menyelenggarakan lomba kemerdekaan untuk memperingati hari jadi Papua Barat dengan berbagai kategori perlombaan.',
+    ],
+    'jun-2' => [
+        'title' => 'Partisipasi Masyarakat dalam Lomba 17 Agustus',
+        'excerpt' => 'Antusiasme tinggi masyarakat Desa Nifasi dalam mengikuti lomba kemerdekaan yang diselenggarakan oleh PT Kristalin Ekalestari.',
+    ],
+    'jun-3' => [
+        'title' => 'Perayaan Kemerdekaan Bersama Masyarakat Papua',
+        'excerpt' => 'Perayaan kemerdekaan yang meriah bersama masyarakat Papua dalam rangka mempererat tali silaturahmi dan persatuan.',
+    ],
+    'jun-4' => [
+        'title' => 'Pembangunan Rumah Layak Huni untuk Warga Desa Nifasi',
+        'excerpt' => 'Program pembangunan rumah layak huni di Desa Nifasi dilanjutkan untuk meningkatkan kesejahteraan warga.',
+    ],
+    'jun-5' => [
+        'title' => 'Progres Pembangunan Rumah Baru di Desa Nifasi',
+        'excerpt' => 'Laporan progres pembangunan rumah baru yang berjalan sesuai rencana dengan melibatkan putra daerah.',
+    ],
+    'jun-6' => [
+        'title' => 'Penyerahan Unit Rumah Tahap Berikutnya untuk Warga Nifasi',
+        'excerpt' => 'Penyerahan unit rumah tahap berikutnya bagi warga penerima manfaat di Desa Nifasi.',
+    ],
+            
+    // July 2025 Articles
+    'jul-1' => [
+        'title' => 'PT Kristalin Ekalestari Serahkan Bantuan Dana Hak Garap Rp 50 Juta kepada Warga Distrik Makimi Papua',
+        'excerpt' => 'PT Kristalin Ekalestari menyerahkan bantuan dana hak garap sebesar Rp 50 juta kepada warga Desa Lagari, Distrik Makimi, Papua Tengah, sebagai bentuk komitmen perusahaan terhadap pemilik hak garap.',
+    ],
+            
+    // August 2025 Articles
+    'aug-1' => [
+        'title' => 'Kado HUT RI ke-80, Buruh Harian Lepas Desa Nifasi Dapat Rumah dari PT Kristalin Ekalestari',
+        'excerpt' => 'PT Kristalin Ekalestari memberikan rumah layak huni kepada Lomon Monei sebagai kado kemerdekaan HUT RI ke-80 melalui program CSR yang konsisten.',
+        'content' => '<div class="space-y-8"><div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-6 border border-red-100"><h3 class="text-lg font-bold text-red-900 mb-3">Kado Kemerdekaan yang Bermakna</h3><p class="text-red-800 leading-relaxed text-base">Menyambut peringatan HUT RI ke-80, PT Kristalin Ekalestari memberikan hadiah yang sangat bermakna kepada Lomon Monei, seorang buruh harian lepas di Desa Nifasi. Rumah layak huni ini bukan sekadar bangunan fisik, melainkan simbol harapan dan kesejahteraan untuk keluarga yang selama ini berjuang memenuhi kebutuhan hidup.</p></div></div>',
+    ],
+    'aug-2' => [
+        'title' => 'Momen Bersejarah: Buruh Harian Lepas Desa Nifasi Terima Rumah Layak dari PT Kristalin Ekalestari',
+        'excerpt' => 'Lomon Monei menerima kunci rumah layak huni dari PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan terhadap masyarakat Papua Tengah melalui program CSR berkelanjutan.',
+        'content' => '<div class="space-y-8"><div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100"><h3 class="text-lg font-bold text-blue-900 mb-3">Momen Bersejarah di Desa Nifasi</h3><p class="text-blue-800 leading-relaxed text-base">Hari bersejarah bagi keluarga Lomon Monei di Desa Nifasi ketika menerima kunci rumah layak huni dari PT Kristalin Ekalestari. Sebagai buruh harian lepas yang berjuang memenuhi kebutuhan keluarga, bantuan ini memberikan harapan baru untuk kehidupan yang lebih baik dan sejahtera.</p></div></div>',
+    ],
+    'aug-3' => [
+        'title' => 'Program CSR Berkelanjutan untuk Warga Desa Nifasi',
+        'excerpt' => 'Kelanjutan program CSR PT Kristalin Ekalestari untuk memberikan bantuan kepada warga Desa Nifasi yang membutuhkan.',
+    ],
+    'aug-4' => [
+        'title' => 'Distribusi 506 Paket Sembako untuk Masyarakat Papua Tengah',
+        'excerpt' => 'PT Kristalin Ekalestari mendistribusikan 506 paket sembako kepada masyarakat di berbagai kampung di Papua Tengah.',
+    ],
+    'aug-5' => [
+        'title' => 'Prioritas Janda Lansia dalam Program Bantuan Sembako',
+        'excerpt' => 'Program bantuan sembako PT Kristalin Ekalestari memberikan prioritas khusus kepada janda lansia dan keluarga kurang mampu.',
+    ],
+    'aug-6' => [
+        'title' => 'CSR Rutin Bulanan: 506 Paket Sembako untuk Warga Desa Nifasi',
+        'excerpt' => 'Program CSR rutin bulanan PT Kristalin Ekalestari berhasil menyalurkan 506 paket sembako kepada warga Desa Nifasi dan sekitarnya.',
+    ],
+    'aug-7' => [
+        'title' => 'Kepedulian Nyata: PT Kristalin Ekalestari Prioritaskan Lansia dan Tempat Ibadah dalam Program Sembako',
+        'excerpt' => 'PT Kristalin Ekalestari menunjukkan kepedulian khusus dengan memprioritaskan lansia dan tempat ibadah dalam distribusi 506 paket sembako di Papua Tengah, memperkuat komitmen CSR berkelanjutan.',
+    ],
+    'aug-8' => [
+        'title' => 'Solidaritas Berkelanjutan: PT Kristalin Ekalestari Wujudkan Kepedulian Melalui 506 Paket Sembako untuk Janda Lansia',
+        'excerpt' => 'PT Kristalin Ekalestari melanjutkan komitmen CSR dengan menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di Nabire, menunjukkan solidaritas berkelanjutan untuk kesejahteraan masyarakat Papua Tengah.',
+    ],
+            
+    // September 2025 Articles
+    'sept-1' => [
+        'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
+        'excerpt' => 'Langkah strategis Kristalin Ekalestari Group melalui PT Armada Bumi Investama untuk mengakuisisi mayoritas saham PT Torindo Jaya Persada dalam rangka memperkuat ekosistem alat berat pertambangan di Indonesia Timur.',
+    ],
+    'sept-2' => [
+        'title' => 'Strategi Ekspansi Alat Berat di Sektor Pertambangan Indonesia Timur',
+        'excerpt' => 'PT Torindo Jaya Persada fokus pada ekspansi bisnis alat berat dengan teknologi China modern untuk mendukung sektor pertambangan di kawasan Indonesia Timur.',
+    ],
+    'sept-3' => [
+        'title' => 'Konsolidasi Strategis untuk Memperkuat Ekosistem Alat Berat Pertambangan',
+        'excerpt' => 'Langkah konsolidasi strategis Kristalin Ekalestari Group melalui akuisisi mayoritas PT Torindo Jaya Persada membentuk ekosistem bisnis terintegrasi untuk memperkuat posisi dominan dalam industri alat berat kawasan Indonesia Timur.',
+        'content' => '<div class="space-y-8"><div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-6 border border-purple-100"><h3 class="text-lg font-bold text-purple-900 mb-3">Konsolidasi Strategis Industri Alat Berat</h3><p class="text-purple-800 leading-relaxed text-base">Industri alat berat Indonesia memasuki era konsolidasi strategis dengan terealisasinya akuisisi mayoritas PT Torindo Jaya Persada oleh Kristalin Ekalestari Group. Langkah ini membentuk ekosistem bisnis terintegrasi yang memperkuat dominasi di kawasan Indonesia Timur.</p></div></div>',
+    ],
+            
+    // February 2025 Articles
+    'feb-3' => [
+        'title' => 'Buruh Harian Lepas Desa Nifasi dapat Rumah dari CSR Kristalin Ekalestari',
+        'excerpt' => 'Yundiles Wonda dari Suku Dani menerima rumah layak huni dari program CSR PT Kristalin Ekalestari di Desa Nifasi, Nabire.',
+    ],
+    'feb-4' => [
+        'title' => 'Program Pembangunan Rumah untuk Masyarakat Desa Nifasi',
+        'excerpt' => 'Kelanjutan program pembangunan rumah layak huni untuk masyarakat Desa Nifasi yang belum memiliki tempat tinggal yang memadai.',
+    ],
+    'feb-5' => [
+        'title' => 'Bantuan Rumah Tipe 57 untuk Keluarga Kurang Mampu',
+        'excerpt' => 'Keluarga kurang mampu di Desa Nifasi menerima bantuan rumah tipe 57 dengan fasilitas lengkap melalui program CSR berkelanjutan.',
+    ],
+    'feb-6' => [
+        'title' => 'Dukungan Berkelanjutan untuk Masyarakat Papua Tengah',
+        'excerpt' => 'PT Kristalin Ekalestari memberikan dukungan berkelanjutan untuk masyarakat Papua Tengah melalui program pembangunan rumah dan infrastruktur.',
+    ],
+    'feb-7' => [
+        'title' => 'Komitmen Jangka Panjang dalam Program CSR',
+        'excerpt' => 'Komitmen jangka panjang PT Kristalin Ekalestari dalam menjalankan program CSR untuk meningkatkan kesejahteraan masyarakat sekitar.',
+    ],
+    'feb-8' => [
+        'title' => 'Program Perumahan Berkelanjutan untuk Warga Desa',
+        'excerpt' => 'Program perumahan berkelanjutan yang dirancang khusus untuk membantu warga desa yang belum memiliki rumah layak huni.',
+    ],
+    'feb-9' => [
+        'title' => 'Bantuan Infrastruktur untuk Pengembangan Desa',
+        'excerpt' => 'Bantuan infrastruktur yang komprehensif untuk mendukung pengembangan desa dan meningkatkan kualitas hidup masyarakat.',
+    ],
             38 => [
                 'title' => 'Program Pelatihan Komputer untuk Masyarakat Desa Nifasi',
                 'subtitle' => 'PT Kristalin Ekalestari mengadakan pelatihan komputer gratis untuk meningkatkan keterampilan digital masyarakat',
@@ -2439,9 +2428,7 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
                 'type' => 'Sertifikasi',
                 'metrics' => ['standar' => 'Bersertifikat ICMM', 'ruang_lingkup' => 'Semua Operasi'],
             ],
-        ],
-
-        'search_news' => [
+            'search_news' => [
             'title' => 'Hasil Pencarian',
             'subtitle' => 'Temukan informasi yang Anda butuhkan dengan cepat',
             'input_placeholder' => 'Masukkan kata kunci pencarian...',
@@ -2455,7 +2442,6 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
             'view_all' => 'Kembali ke Semua Berita',
         ],
     ],
-
     'search' => [
         'title' => 'Hasil Pencarian',
         'subtitle' => 'Temukan informasi yang Anda butuhkan dengan cepat',
