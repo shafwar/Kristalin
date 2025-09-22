@@ -33,9 +33,13 @@
 
         <title inertia>{{ config('app.name', 'Kristalin Ekalestari') }}</title>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/favicon.ico?v={{ time() }}" sizes="any">
+        <link rel="icon" href="/favicon.svg?v={{ time() }}" type="image/svg+xml">
+        <link rel="icon" href="/favicon-16x16.png?v={{ time() }}" sizes="16x16" type="image/png">
+        <link rel="icon" href="/favicon-32x32.png?v={{ time() }}" sizes="32x32" type="image/png">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v={{ time() }}" sizes="180x180">
+        <meta name="msapplication-TileImage" content="/apple-touch-icon.png?v={{ time() }}">
+        <meta name="theme-color" content="#FFD700">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
