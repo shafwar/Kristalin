@@ -1141,7 +1141,7 @@ const Welcome = () => {
                 )}
             </AnimatePresence>
 
-            <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
+            <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-18 lg:pt-20">
                 {/* Main Content with Elegant Fade In */}
                 <AnimatePresence>
                     {!showLoadingScreen && (
