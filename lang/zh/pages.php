@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'notFound' => [
+        'title' => '未找到页面',
+        'subtitle' => '抱歉… 页面或链接不存在',
+        'backToHome' => '返回首页',
+        'goToSearch' => '站内搜索',
+    ],
     'careers' => [
         'hero' => [
             'title' => '我们正在招聘',

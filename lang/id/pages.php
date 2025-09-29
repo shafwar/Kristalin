@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'notFound' => [
+        'title' => 'Halaman tidak ditemukan',
+        'subtitle' => 'Ooops... Halaman atau URL tidak ditemukan',
+        'backToHome' => 'Kembali ke beranda',
+        'goToSearch' => 'Cari di situs',
+    ],
     'careers' => [
         'hero' => [
             'title' => 'Kami Sedang Menerima Lamaran',

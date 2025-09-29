@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'notFound' => [
+        'title' => 'Page not found',
+        'subtitle' => 'Ooops... Page or URL not found',
+        'backToHome' => 'Back to home',
+        'goToSearch' => 'Search the site',
+    ],
 
     'careers' => [
         'hero' => [

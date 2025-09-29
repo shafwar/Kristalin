@@ -92,3 +92,10 @@ Route::get('/health', [HealthController::class, 'check']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+// Fallback for unknown routes – return Inertia 404 page
+Route::fallback(function () {
+    return Inertia::render('not-found')
+        ->toResponse(request())
+        ->setStatusCode(404);
+});
