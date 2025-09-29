@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
         {{-- SEO Meta Tags --}}
-        <meta name="description" content="PT Kristalin Ekalestari - Trusted gold mining company since 1989. Leading gold mining operations in Indonesia with commitment to sustainable mining practices.">
+        <meta name="description" content="PT Kristalin Ekalestari. Trusted gold mining company since 1989. Leading gold mining operations in Indonesia with commitment to sustainable mining practices.">
         <meta name="keywords" content="Kristalin, gold mining, Indonesia, mining company, sustainable mining, Papua, gold production">
         <meta name="author" content="PT Kristalin Ekalestari">
         <meta name="robots" content="index, follow">

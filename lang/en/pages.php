@@ -218,7 +218,7 @@ return [
 
         // Hero Content Sets
         'content_set_1' => [
-            'title1' => 'Introducing',
+            'title1' => 'Welcome to',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => 'Trusted gold mining company since 1989',
         ],
