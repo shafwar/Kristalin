@@ -27,11 +27,14 @@ class ContactMessageController extends Controller
         $contact = ContactMessage::create($validated);
 
         // Send email to company
+        \Log::info('Starting email process...');
         try {
             $to = config('mail.to.address', 'info@kristalin.co.id');
             $toName = config('mail.to.name', 'Kristalin Admin');
             $from = config('mail.from.address', 'info@kristalin.co.id');
             $fromName = config('mail.from.name', 'Kristalin');
+            
+            \Log::info('Email config - To: ' . $to . ', From: ' . $from);
 
             Mail::send([], [], function ($message) use ($validated, $request, $to, $toName, $from, $fromName) {
                 $message->to($to, $toName)
@@ -56,6 +59,7 @@ class ContactMessageController extends Controller
             \Log::info('Email sent successfully to: ' . $to);
         } catch (\Exception $e) {
             \Log::error('Email failed: ' . $e->getMessage());
+            \Log::error('Email error details: ' . $e->getTraceAsString());
             // Continue execution even if email fails
         }
 
