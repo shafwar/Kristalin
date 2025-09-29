@@ -141,9 +141,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         const baseClasses = 'flex items-center h-16 sm:h-18 lg:h-20 w-full px-3 sm:px-4 md:px-6 lg:px-8 z-50';
 
         if (sticky && transparent) {
-            return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out`;
+            return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out supports-[position:sticky]:sticky`;
         } else if (sticky) {
-            return `${baseClasses} fixed top-0 left-0 right-0 bg-gradient-to-b from-[#444] via-[#888] to-[#e5e7eb] shadow-lg transition-all duration-500 ease-out`;
+            return `${baseClasses} fixed top-0 left-0 right-0 bg-gradient-to-b from-[#444] via-[#888] to-[#e5e7eb] shadow-lg transition-all duration-500 ease-out supports-[position:sticky]:sticky`;
         } else {
             return `${baseClasses} bg-gradient-to-b from-[#444] via-[#888] to-[#e5e7eb] shadow-lg relative`;
         }
