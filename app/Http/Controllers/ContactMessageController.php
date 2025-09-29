@@ -25,8 +25,13 @@ class ContactMessageController extends Controller
         }
 
         $contact = ContactMessage::create($validated);
+        
+        // Force output to Railway logs
+        error_log('Contact message saved to database with ID: ' . $contact->id);
+        \Log::info('Contact message saved to database with ID: ' . $contact->id);
 
         // Send email to company
+        error_log('Starting email process...');
         \Log::info('Starting email process...');
         try {
             $to = config('mail.to.address', 'info@kristalin.co.id');
@@ -34,6 +39,7 @@ class ContactMessageController extends Controller
             $from = config('mail.from.address', 'info@kristalin.co.id');
             $fromName = config('mail.from.name', 'Kristalin');
             
+            error_log('Email config - To: ' . $to . ', From: ' . $from);
             \Log::info('Email config - To: ' . $to . ', From: ' . $from);
 
             Mail::send([], [], function ($message) use ($validated, $request, $to, $toName, $from, $fromName) {
@@ -56,8 +62,11 @@ class ContactMessageController extends Controller
                 }
             });
             
+            error_log('Email sent successfully to: ' . $to);
             \Log::info('Email sent successfully to: ' . $to);
         } catch (\Exception $e) {
+            error_log('Email failed: ' . $e->getMessage());
+            error_log('Email error details: ' . $e->getTraceAsString());
             \Log::error('Email failed: ' . $e->getMessage());
             \Log::error('Email error details: ' . $e->getTraceAsString());
             // Continue execution even if email fails
