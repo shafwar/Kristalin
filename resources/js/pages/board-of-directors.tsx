@@ -265,7 +265,7 @@ const BoardOfDirectors = () => {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src="/board-hero-bg.jpg" alt="Board of Directors background" className="h-full w-full object-cover" />
+                    <img src="/directorshero.jpg" alt="Board of Directors background" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 

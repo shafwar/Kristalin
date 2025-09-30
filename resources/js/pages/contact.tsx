@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { Button } from '../components/ui/button';
@@ -28,6 +28,7 @@ const fadeInUp = {
 
 export default function ContactPage() {
     const { t } = useTranslation();
+    const [scrollY, setScrollY] = useState(0);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -43,6 +44,12 @@ export default function ContactPage() {
     const [dragActive, setDragActive] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
@@ -432,9 +439,15 @@ export default function ContactPage() {
                         </motion.form>
                     </div>
 
-                    {/* Image Section - Fixed width at right edge */}
+                    {/* Image Section - Fixed width at right edge with Parallax */}
                     <div className="relative z-10 h-64 w-full flex-shrink-0 overflow-hidden bg-black lg:h-auto lg:w-[500px] lg:min-w-[500px]">
-                        <img src="/menara165-sore.webp" alt={t('pages.contact.image_alt')} className="h-full w-full object-cover object-center" />
+                        <div
+                            className="absolute inset-0 h-full w-full"
+                            style={{ transform: `translateY(${scrollY * 0.5}px)`, willChange: 'transform' }}
+                        >
+                            <img src="/menara165-sore.webp" alt={t('pages.contact.image_alt')} className="h-full w-full object-cover object-center" />
+                            <div className="absolute inset-0 bg-black/20" />
+                        </div>
                     </div>
                 </div>
             </div>

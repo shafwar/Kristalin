@@ -9,6 +9,7 @@ const Careers = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [activeTab, setActiveTab] = useState<'overview' | 'positions' | 'apply'>('overview');
     const contentRef = useRef<HTMLDivElement | null>(null);
+    const [scrollY, setScrollY] = useState(0);
 
     const goToTab = (tab: 'overview' | 'positions' | 'apply') => {
         setActiveTab(tab);
@@ -27,6 +28,12 @@ const Careers = () => {
     useEffect(() => {
         const timer = setTimeout(() => setIsLoaded(true), 100);
         return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const jobPositions = [
@@ -168,14 +175,23 @@ const Careers = () => {
 
             {/* Hero Section - Premium Style (match board-of-directors) */}
             <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0 h-full w-full">
-                    <img src="/board-hero-bg.jpg" alt="Careers background" className="h-full w-full object-cover" />
+                {/* Background Image with Overlay + Parallax */}
+                <div
+                    className="absolute inset-0 h-full w-full"
+                    style={{
+                        transform: `translateY(${scrollY * 0.5}px)`,
+                    }}
+                >
+                    <img src="/kristalincareerhero.jpg" alt="Careers background" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
                 <motion.div
                     className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
+                    style={{
+                        transform: `translateY(${scrollY * 0.2}px)`,
+                        opacity: Math.max(0, 1 - scrollY / 600),
+                    }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, ease: 'easeOut' }}
