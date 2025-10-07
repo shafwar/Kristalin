@@ -196,8 +196,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 { label: t('nav.news'), href: '/news' },
             ],
         },
-        { label: t('nav.modi'), href: 'https://modi.esdm.go.id/portal/detailPerusahaan/14963?jp=1', external: true },
-        { label: t('nav.gold_price'), href: 'https://goldprice.org/', external: true },
+        { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
+        { label: t('nav.gold_price'), href: 'https://goldprice.org/gold-price-indonesia.html', external: true },
         { label: t('nav.line_of_business'), href: '/line-of-business' },
         { label: t('nav.business_activities'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
@@ -558,35 +558,37 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             <div key={index} className="mb-2">
                                 {item.hasDropdown ? (
                                     <div>
-                                        <button 
-                                            className="w-full py-3 px-4 text-left text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg flex items-center justify-between group"
+                                        <button
+                                            className="group flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
                                             onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
                                         >
                                             <div className="flex items-center">
-                                                <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                                 <span>{item.label}</span>
                                             </div>
-                                            <svg 
-                                                className={`w-5 h-5 transition-transform duration-300 ${mobileAboutDropdownOpen ? 'rotate-180' : ''}`} 
-                                                fill="none" 
-                                                stroke="currentColor" 
+                                            <svg
+                                                className={`h-5 w-5 transition-transform duration-300 ${mobileAboutDropdownOpen ? 'rotate-180' : ''}`}
+                                                fill="none"
+                                                stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                             >
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                             </svg>
                                         </button>
-                                        <div className={`mt-2 space-y-1 transition-all duration-300 overflow-hidden ${
-                                            mobileAboutDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                                        }`}>
+                                        <div
+                                            className={`mt-2 space-y-1 overflow-hidden transition-all duration-300 ${
+                                                mobileAboutDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                            }`}
+                                        >
                                             {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
                                                 <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
-                                                    className="block py-2 px-4 ml-6 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
+                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     <div className="flex items-center">
-                                                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                        <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                                         <span>{dropdownItem.label}</span>
                                                     </div>
                                                 </a>
@@ -598,22 +600,22 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         href={item.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block py-3 px-4 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center">
-                                            <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                             <span>{item.label}</span>
                                         </div>
                                     </a>
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="block py-3 px-4 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 rounded-lg group"
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center">
-                                            <div className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                             <span>{item.label}</span>
                                         </div>
                                     </Link>

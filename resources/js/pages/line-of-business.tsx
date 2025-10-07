@@ -25,7 +25,6 @@ const scaleIn = {
     visible: { opacity: 1, scale: 1 },
 };
 
-
 // CounterAnimation component for smooth animated counter
 const CounterAnimation = ({ target, duration = 1000 }: { target: number; duration?: number }) => {
     const [count, setCount] = useState(0);
@@ -674,7 +673,7 @@ export default function KristalinPortfolio() {
                                 {t('pages.line_of_business.gold_price.description')}
                             </p>
                             <a
-                                href="https://goldprice.org/"
+                                href="https://goldprice.org/gold-price-indonesia.html"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex w-full max-w-xs items-center justify-center space-x-2 rounded-lg bg-yellow-500 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-yellow-600"

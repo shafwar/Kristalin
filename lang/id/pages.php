@@ -266,27 +266,23 @@ return [
                     'title' => 'Rumah Layak untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
                     'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi. Program ini mencerminkan semangat kemerdekaan melalui pemberdayaan masyarakat.',
                 ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin Bangun Rumah Layak Huni untuk Buruh di Desa Nifasi',
-                    'excerpt' => 'PT Kristalin Ekalestari kembali membangun rumah layak huni untuk warga Desa Nifasi melalui program CSR. Pembangunan ini merupakan bentuk tanggung jawab sosial perusahaan terhadap masyarakat sekitar.',
-                ],
             ],
-        ],
-        'contact' => [
-            'category' => 'HUBUNGI KAMI',
-            'title' => 'Kontak Kami',
-        ],
-        'business_activities' => [
-            'title' => 'Aktivitas Bisnis',
-            'find_out_more' => 'Pelajari lebih lanjut →',
-        ],
-        'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
-            // Alternatif dari origin/faruq jika ingin digunakan
-            'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
-        ],
+    ],
+    'contact' => [
+        'category' => 'HUBUNGI KAMI',
+        'title' => 'Kontak Kami',
+    ],
+    'business_activities' => [
+        'title' => 'Aktivitas Bisnis',
+        'find_out_more' => 'Pelajari lebih lanjut →',
+    ],
+    'footer' => [
+        'copyright' => '© 2025 PT Kristalin Eka Lestari.',
+        // Alternatif dari origin/faruq jika ingin digunakan
+        'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
+    ],
 
-        'feedback' => [
+    'feedback' => [
             'button_text' => 'Kirim Masukan',
             'modal_title' => 'Sistem Masukan Internal',
             'modal_subtitle' => 'Saluran Aman untuk Masukan dan Keluhan Karyawan',
@@ -978,10 +974,10 @@ return [
             'title' => 'Mitra Terpercaya Kami',
         ],
         'gold_price' => [
-            'header' => 'HARGA EMAS GLOBAL',
+            'header' => 'HARGA EMAS INDONESIA',
             'title_line1' => 'Informasi Harga Emas',
-            'title_line2' => 'Harian / Mingguan',
-            'description' => 'Tetap update dengan tren harga emas global terbaru. Untuk harga emas, perak, dan logam mulia real-time, klik di bawah untuk melihat grafik harga emas resmi.',
+            'title_line2' => 'Indonesia',
+            'description' => 'Tetap update dengan tren harga emas Indonesia terbaru. Untuk harga emas, perak, dan logam mulia real-time dalam Rupiah Indonesia, klik di bawah untuk melihat grafik harga emas resmi Indonesia.',
             'button' => 'LIHAT SELENGKAPNYA',
             'alt_text' => 'Operasi Pertambangan Emas',
         ],
@@ -1267,30 +1263,86 @@ return [
         'gallery_sections' => [
             [
                 'title' => 'Kegiatan CSR 2025 - Update Terbaru',
-                'description' => 'Kegiatan tanggung jawab sosial perusahaan terbaru oleh PT Kristalin Ekalestari termasuk distribusi makanan, pengembangan infrastruktur, dan program pemberdayaan masyarakat.',
+                'description' => 'Kegiatan tanggung jawab sosial perusahaan terbaru oleh PT Kristalin Ekalestari termasuk penyaluran sembako, pembangunan infrastruktur, dan program pemberdayaan masyarakat.',
             ],
             [
                 'title' => 'Program Pengembangan Masyarakat 2025',
-                'description' => 'Program pengembangan masyarakat komprehensif termasuk pelatihan komputer, bantuan peralatan musik, pelatihan pertanian organik, dan pembangunan taman bermain anak-anak.',
+                'description' => 'Program pengembangan masyarakat yang komprehensif termasuk pelatihan komputer, bantuan peralatan musik, pelatihan pertanian organik, dan pembangunan taman bermain anak.',
             ],
             [
-                'title' => '3.000 Bahan Makanan untuk Masyarakat Poso',
-                'description' => 'PT Kristalin Ekalestari mendistribusikan 3.000 bahan makanan untuk membantu masyarakat Poso yang membutuhkan, sebagai bentuk tanggung jawab sosial perusahaan.',
+                'title' => 'Program Penyaluran Sembako - Februari 2025',
+                'description' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada warga Desa Nifasi sebagai bagian dari program CSR berkelanjutan, memprioritaskan janda lansia dan kesejahteraan masyarakat.',
             ],
             [
-                'title' => 'Kegiatan CSR untuk Papua',
-                'description' => 'Berbagai kegiatan sosial untuk masyarakat Papua, mulai dari bantuan pangan, pendidikan, hingga dukungan untuk kegiatan olahraga dan sosial.',
+                'title' => 'Program Pendanaan Pendidikan - Juni 2025',
+                'description' => 'PT Kristalin Ekalestari memberikan bantuan dana pendidikan senilai Rp18.240.000 untuk 8 pelajar SMAN 6 Nabire asal Desa Nifasi, memastikan pendidikan mereka hingga lulus.',
             ],
             [
-                'title' => 'Distribusi Makanan untuk Karyawan \'Menara 165\'',
-                'description' => 'Distribusi paket makanan kepada karyawan Menara 165 sebagai bentuk dukungan perusahaan di masa-masa sulit.',
+                'title' => 'Penyaluran Sembako Bulanan - Juli 2025',
+                'description' => 'Penyaluran bulanan yang konsisten sebanyak 506 paket sembako kepada 506 Kepala Keluarga di Desa Nifasi, dengan 50% diprioritaskan untuk janda lansia dan tempat ibadah.',
             ],
             [
-                'title' => 'Distribusi Makanan untuk Papua',
-                'description' => 'Distribusi bantuan pangan dan kebutuhan pokok untuk masyarakat Papua di berbagai desa dan wilayah.',
+                'title' => 'Bantuan Sembako Berkelanjutan - Agustus 2025',
+                'description' => 'PT Kristalin Ekalestari melanjutkan komitmen CSR dengan menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di Nabire, menunjukkan solidaritas berkelanjutan untuk kesejahteraan masyarakat.',
+            ],
+            [
+                'title' => 'Program Pembangunan Rumah - 2025',
+                'description' => 'PT Kristalin Ekalestari membangun rumah layak huni untuk buruh harian dan nelayan di Desa Nifasi, memberikan solusi perumahan berkelanjutan sebagai bagian dari program CSR yang komprehensif.',
+            ],
+            [
+                'title' => 'Program Penyaluran Sembako - Februari 2025',
+                'description' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada warga Desa Nifasi sebagai bagian dari program CSR berkelanjutan, memprioritaskan janda lansia dan kesejahteraan masyarakat.',
+            ],
+            [
+                'title' => 'Program Pendanaan Pendidikan - Juni 2025',
+                'description' => 'PT Kristalin Ekalestari memberikan pendanaan pendidikan senilai Rp18.240.000 untuk 8 pelajar SMAN 6 Nabire asal Desa Nifasi, memastikan pendidikan mereka hingga lulus.',
+            ],
+            [
+                'title' => 'Penyaluran Sembako Bulanan - Juli 2025',
+                'description' => 'Penyaluran konsisten 506 paket sembako kepada 506 keluarga di Desa Nifasi setiap bulan, dengan 50% diprioritaskan untuk janda lansia dan tempat ibadah.',
+            ],
+            [
+                'title' => 'Bantuan Sembako Berkelanjutan - Agustus 2025',
+                'description' => 'PT Kristalin Ekalestari melanjutkan komitmen CSR dengan menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di Nabire, menunjukkan solidaritas berkelanjutan untuk kesejahteraan masyarakat.',
             ],
         ],
         'csr_activity_label' => 'Kegiatan CSR',
+        'news' => [
+            'title_line1' => 'Berita CSR',
+            'title_line2' => '& Update',
+            'description' => 'Ikuti perkembangan terbaru kegiatan CSR dan program pengembangan masyarakat kami',
+            'feb_7' => [
+                'title' => 'PT Kristalin Ekalestari Salurkan 506 Paket Sembako untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari memulai tahun 2025 dengan program CSR berkelanjutan, menyalurkan 506 paket sembako kepada masyarakat Desa Nifasi dan sekitarnya.',
+            ],
+            'jun_1' => [
+                'title' => 'Dana Pendidikan Pelajar SMAN 6 Nabire Asal Desa Nifasi Dijamin Hingga Lulus',
+                'excerpt' => 'PT Kristalin Ekalestari menanggung fasilitas dana pendidikan bagi delapan pelajar SMAN 6 Nabire asal Desa Nifasi hingga menyelesaikan studi.',
+            ],
+            'jul_1' => [
+                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada 506 Kepala Keluarga di Desa Nifasi melalui program CSR yang konsisten setiap bulan.',
+            ],
+            'aug_4' => [
+                'title' => 'Berbagi Kebahagiaan: 506 Paket Sembako untuk Janda Lansia dan Tempat Ibadah di Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di wilayah Nabire sebagai wujud komitmen CSR berkelanjutan bulan Agustus 2025.',
+            ],
+            'mar_1' => [
+                'title' => 'Buruh Harian Lepas Desa Nifasi Dapat Rumah dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Yundiles Wonda dari Suku Dani menerima rumah layak huni dari program CSR PT Kristalin Ekalestari di Desa Nifasi, Nabire.',
+            ],
+            'aug_2' => [
+                'title' => 'Rumah Layak Huni untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
+                'excerpt' => 'Sebagai bagian dari perayaan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi.',
+            ],
+        ],
+        'read_more' => 'Baca Selengkapnya',
+        'read_full' => 'Baca Cerita Lengkap',
+        'categories' => [
+            'food_distribution' => 'Distribusi Makanan',
+            'education_support' => 'Dukungan Pendidikan',
+            'house_construction' => 'Pembangunan Rumah',
+        ],
     ],
     'contact' => [
         'page_title' => 'Hubungi Kami - PT Kristalin Ekalestari',

@@ -271,11 +271,9 @@ return [
                     'title' => '为 Lomon Monei 提供体面住房：企业社会责任计划的独立日礼物',
                     'excerpt' => '作为庆祝印尼独立 80 周年的一部分，PT Kristalin Ekalestari 在尼法西村为 Lomon Monei 建造了宜居房屋。该计划通过社区赋权体现了独立精神。',
                 ],
-                'feb-4' => [
-                    'title' => 'PT Kristalin 为尼法西村工人建造宜居房屋',
-                    'excerpt' => 'PT Kristalin Ekalestari 再次通过企业社会责任计划为尼法西村居民建造宜居房屋。这一发展体现了公司对周边社区的社会责任。',
-                ],
             ],
+            'read_more' => '阅读更多',
+            'read_full' => '阅读完整故事',
         ],
         'contact' => [
             'category' => '联系我们',
@@ -998,10 +996,10 @@ return [
             'title' => '我们值得信赖的合作伙伴',
         ],
         'gold_price' => [
-            'header' => '全球黄金价格',
-            'title_line1' => '每日/每周黄金价格',
+            'header' => '印度尼西亚黄金价格',
+            'title_line1' => '印度尼西亚黄金价格',
             'title_line2' => '信息',
-            'description' => '了解最新的全球黄金价格趋势。如需实时黄金、白银和贵金属价格，请点击下方查看官方黄金价格图表。',
+            'description' => '了解最新的印度尼西亚黄金价格趋势。如需印度尼西亚卢比的实时黄金、白银和贵金属价格，请点击下方查看官方印度尼西亚黄金价格图表。',
             'button' => '查看更多',
             'alt_text' => '黄金开采运营',
         ],
@@ -1281,23 +1279,79 @@ return [
                 'description' => '全面的社区发展项目，包括计算机培训、音乐设备援助、有机农业培训和儿童游乐场建设。',
             ],
             [
-                'title' => '为波索人民提供3000份生活用品',
-                'description' => 'PT Kristalin Ekalestari分发了3000份生活用品来帮助有需要的波索人民，作为企业社会责任的一种形式。',
+                'title' => '食物分发项目 - 2025年2月',
+                'description' => 'PT Kristalin Ekalestari向Nifasi村居民分发了506份食物包，作为可持续CSR项目的一部分，优先考虑老年寡妇和社区福利。',
             ],
             [
-                'title' => '巴布亚CSR活动',
-                'description' => '为巴布亚人民开展的各种社会活动，从食品援助、教育到对体育和社会活动的支持。',
+                'title' => '教育资助项目 - 2025年6月',
+                'description' => 'PT Kristalin Ekalestari为来自Nifasi村的8名SMAN 6 Nabire学生提供了价值18,240,000印尼盾的教育资助，确保他们完成学业。',
             ],
             [
-                'title' => '为"Menara 165"员工分发食物',
-                'description' => '向Menara 165员工分发食品包装，作为公司在困难时期的支持形式。',
+                'title' => '月度食物分发 - 2025年7月',
+                'description' => '持续向Nifasi村的506个家庭分发506份食物包，其中50%优先分配给老年寡妇和宗教场所。',
             ],
             [
-                'title' => '巴布亚食物分发',
-                'description' => '为巴布亚人民在各个村庄和地区分发食品援助和基本需求。',
+                'title' => '可持续食物援助 - 2025年8月',
+                'description' => 'PT Kristalin Ekalestari继续履行CSR承诺，向Nabire的老年寡妇和宗教场所分发506份食物包，展现对社区福利的可持续团结。',
+            ],
+            [
+                'title' => '房屋建设计划 - 2025年',
+                'description' => 'PT Kristalin Ekalestari为Nifasi村的日工和渔民建造体面房屋，提供可持续住房解决方案，作为综合CSR项目的一部分。',
+            ],
+            [
+                'title' => '食品分发计划 - 2025年2月',
+                'description' => 'PT Kristalin Ekalestari作为可持续CSR项目的一部分，向Nifasi村居民分发506份食物包，优先考虑老年寡妇和社区福利。',
+            ],
+            [
+                'title' => '教育资助计划 - 2025年6月',
+                'description' => 'PT Kristalin Ekalestari为来自Nifasi村的8名SMAN 6 Nabire学生提供价值18,240,000印尼盾的教育资助，确保他们完成学业。',
+            ],
+            [
+                'title' => '月度食品分发 - 2025年7月',
+                'description' => '每月持续向Nifasi村506个家庭分发506份食物包，其中50%优先分发给老年寡妇和宗教场所。',
+            ],
+            [
+                'title' => '可持续食品援助 - 2025年8月',
+                'description' => 'PT Kristalin Ekalestari继续履行CSR承诺，向Nabire的老年寡妇和宗教场所分发506份食物包，展现对社区福利的可持续团结。',
             ],
         ],
         'csr_activity_label' => 'CSR活动',
+        'news' => [
+            'title_line1' => 'CSR新闻',
+            'title_line2' => '& 更新',
+            'description' => '了解我们最新的CSR活动和社区发展项目',
+            'feb_7' => [
+                'title' => 'PT Kristalin Ekalestari向Nifasi村居民分发506份食物包',
+                'excerpt' => 'PT Kristalin Ekalestari以可持续的CSR项目开始2025年，向Nifasi村居民及周边社区分发506份食物包。',
+            ],
+            'jun_1' => [
+                'title' => 'Nifasi村SMAN 6 Nabire学生教育资助保证至毕业',
+                'excerpt' => 'PT Kristalin Ekalestari为来自Nifasi村的8名SMAN 6 Nabire学生提供教育资助，直至他们完成学业。',
+            ],
+            'jul_1' => [
+                'title' => '数百名Nifasi村居民接受PT Kristalin Ekalestari的食物包援助',
+                'excerpt' => 'PT Kristalin Ekalestari通过一致的月度CSR项目向Nifasi村的506个家庭分发506份食物包。',
+            ],
+            'aug_4' => [
+                'title' => '分享快乐：为Nabire的老年寡妇和宗教场所提供506份食物包',
+                'excerpt' => 'PT Kristalin Ekalestari向Nabire的老年寡妇和宗教场所分发506份食物包，作为2025年8月可持续CSR承诺的一部分。',
+            ],
+            'mar_1' => [
+                'title' => 'Nifasi村日工从Kristalin Ekalestari CSR获得房屋',
+                'excerpt' => '来自Dani部落的Yundiles Wonda在Nabire的Nifasi村从PT Kristalin Ekalestari CSR项目获得宜居房屋。',
+            ],
+            'aug_2' => [
+                'title' => '为Lomon Monei提供体面房屋：CSR项目的独立日礼物',
+                'excerpt' => '作为第80个独立日庆祝活动的一部分，PT Kristalin Ekalestari为Nifasi村的Lomon Monei建造宜居房屋。',
+            ],
+        ],
+        'read_more' => '阅读更多',
+        'read_full' => '阅读完整故事',
+        'categories' => [
+            'food_distribution' => '食品分发',
+            'education_support' => '教育支持',
+            'house_construction' => '房屋建设',
+        ],
     ],
     'contact' => [
         'page_title' => '联系我们 - PT Kristalin Ekalestari',

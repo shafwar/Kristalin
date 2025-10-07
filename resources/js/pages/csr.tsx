@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
@@ -5,114 +6,16 @@ import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
 
 const heroImage = '/papua-children.png';
-const galeriPoso = ['/galeri-poso1.png', '/galeri-poso2.png', '/galeri-poso3.png', '/galeri-poso4.png', '/galeri-poso5.png'];
-const galeriPapua = ['/galeri-papua1.png', '/galeri-papua2.png', '/galeri-papua3.png', '/galeri-papua4.png'];
-const galeriMenara = [
-    '/galeri-menara1.jpeg',
-    '/galeri-menara2.jpeg',
-    '/galeri-menara3.jpeg',
-    '/galeri-menara4.jpeg',
-    '/galeri-menara5.jpeg',
-    '/galeri-menara6.jpeg',
-];
-const galeriPapua2 = ['/galeri-papua2-1.jpeg', '/galeri-papua2-2.jpeg', '/galeri-papua2-3.jpeg', '/galeri-papua2-4.jpeg', '/galeri-papua2-5.jpeg'];
-
-// Gabungkan data galeri ke satu array
-const gallerySections = [
-    {
-        title: 'CSR Activities 2025 - Latest Updates',
-        description:
-            'Latest corporate social responsibility activities by PT Kristalin Ekalestari including food distribution, infrastructure development, and community empowerment programs.',
-        images: [
-            '/WhatsApp Image 2025-07-20 at 09.57.47 (2).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.47 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.47.jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.46 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.46.jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.45 (2).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.45 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.45.jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.44 (3).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.44 (2).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.44 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 09.57.44.jpeg',
-        ],
-    },
-    {
-        title: 'Community Development Programs 2025',
-        description:
-            "Comprehensive community development programs including computer training, music equipment assistance, organic farming training, and children's playground construction.",
-        images: [
-            '/WhatsApp Image 2025-07-20 at 10.39.03.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.02 (2).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.02 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.02.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.01 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.01.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.00 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.39.00.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.58 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.58.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.57.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.56.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.55 (1).jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.55.jpeg',
-            '/WhatsApp Image 2025-07-20 at 10.38.54.jpeg',
-        ],
-    },
-    {
-        title: '3.000 Groceries for Poso People',
-        description: 'PT Kristalin Ekalestari distributed 3,000 groceries to help Poso people in need, as a form of corporate social responsibility.',
-        images: galeriPoso,
-    },
-    {
-        title: 'CSR Activities for Papua',
-        description:
-            'Various social activities for the people of Papua, ranging from food aid, education, to support for sports and social activities.',
-        images: galeriPapua,
-    },
-    {
-        title: "Food Distribution for 'Menara 165' Employees",
-        description: 'Distribution of food packages to Menara 165 employees as a form of company support in difficult times.',
-        images: galeriMenara,
-    },
-    {
-        title: 'Food Distribution for Papua',
-        description: 'Distribution of food aid and basic needs for the Papuan people in various villages and regions.',
-        images: galeriPapua2,
-    },
-];
-
-// Testimonials data
-const testimonials = [
-    {
-        name: 'Maria Wamena',
-        role: 'Community Leader, Papua',
-        photo: '/prfl.png',
-        quote: 'The support from PT Kristalin Ekalestari has been incredible. Our community now has better access to basic necessities.',
-    },
-    {
-        name: 'Ahmad Saputra',
-        role: 'Village Head, Poso',
-        photo: '/prfl.png',
-        quote: "This CSR program has made a real difference in our people's lives. We are grateful for their continuous support.",
-    },
-    {
-        name: 'Sarah Numberi',
-        role: 'Teacher, Nabire',
-        photo: '/prfl.png',
-        quote: 'The educational support and supplies have helped our children learn better. Thank you for believing in our future.',
-    },
-];
-
-// Removed unused teamMembers to fix ESLint errors
 
 // Video Section Component - MOBILE OPTIMIZED
 function VideoSection({ t }: { t: (key: string) => string }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (
-        <section className="relative bg-cover bg-fixed bg-center py-16 sm:py-20" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}>
+        <section
+            className="relative bg-cover bg-fixed bg-center py-16 sm:py-20"
+            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}
+        >
             <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <motion.div
                     className="mb-8 text-center sm:mb-12"
@@ -177,8 +80,146 @@ function VideoSection({ t }: { t: (key: string) => string }) {
     );
 }
 
+// CSR News Section Component
+function CSRNewsSection({ t }: { t: (key: string) => string }) {
+    const csrNews = [
+        {
+            id: 'feb-7',
+            title: t('pages.csr.news.feb_7.title'),
+            excerpt: t('pages.csr.news.feb_7.excerpt'),
+            date: '4 Feb 2025',
+            image: '/506paket1.jpg',
+            category: t('pages.csr.categories.food_distribution'),
+        },
+        {
+            id: 'jun-1',
+            title: t('pages.csr.news.jun_1.title'),
+            excerpt: t('pages.csr.news.jun_1.excerpt'),
+            date: '26 Jun 2025',
+            image: '/pendanaan1.jpg',
+            category: t('pages.csr.categories.education_support'),
+        },
+        {
+            id: 'jul-1',
+            title: t('pages.csr.news.jul_1.title'),
+            excerpt: t('pages.csr.news.jul_1.excerpt'),
+            date: '8 Jul 2025',
+            image: '/pembagian3.jpg',
+            category: t('pages.csr.categories.food_distribution'),
+        },
+        {
+            id: 'aug-4',
+            title: t('pages.csr.news.aug_4.title'),
+            excerpt: t('pages.csr.news.aug_4.excerpt'),
+            date: '20 Aug 2025',
+            image: '/agus1.jpg',
+            category: t('pages.csr.categories.food_distribution'),
+        },
+        {
+            id: 'mar-1',
+            title: t('pages.csr.news.mar_1.title'),
+            excerpt: t('pages.csr.news.mar_1.excerpt'),
+            date: '19 Mar 2025',
+            image: '/buruharian1.jpg',
+            category: t('pages.csr.categories.house_construction'),
+        },
+        {
+            id: 'aug-2',
+            title: t('pages.csr.news.aug_2.title'),
+            excerpt: t('pages.csr.news.aug_2.excerpt'),
+            date: '19 Aug 2025',
+            image: '/agus2.jpg',
+            category: t('pages.csr.categories.house_construction'),
+        },
+    ];
+
+    return (
+        <section className="bg-gradient-to-r from-gray-50 to-slate-50 py-16 sm:py-20">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+                <motion.div
+                    className="mb-12 text-center"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                >
+                    <motion.h2
+                        className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl md:text-4xl lg:text-5xl"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                    >
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                            {t('pages.csr.news.title_line1')}
+                        </span>
+                        <span className="text-black"> {t('pages.csr.news.title_line2')}</span>
+                    </motion.h2>
+                    <motion.p
+                        className="mx-auto max-w-2xl text-sm text-gray-600 sm:text-base lg:text-lg"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+                    >
+                        {t('pages.csr.news.description')}
+                    </motion.p>
+                </motion.div>
+
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {csrNews.map((news, index) => (
+                        <motion.div
+                            key={news.id}
+                            className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.6, delay: 0.1 * index, ease: 'easeOut' }}
+                        >
+                            <Link href={`/news/${news.id}`} className="block">
+                                <div className="relative h-48 overflow-hidden">
+                                    <img
+                                        src={news.image}
+                                        alt={news.title}
+                                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    />
+                                    <div className="absolute top-3 left-3">
+                                        <span className="rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-white">{news.category}</span>
+                                    </div>
+                                </div>
+                                <div className="p-6">
+                                    <div className="mb-2 text-xs text-gray-500">{news.date}</div>
+                                    <h3 className="mb-3 line-clamp-2 text-lg font-bold text-gray-900 transition-colors group-hover:text-amber-600">
+                                        {news.title}
+                                    </h3>
+                                    <p className="mb-4 line-clamp-3 text-sm text-gray-600">{news.excerpt}</p>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-xs text-gray-500">{t('pages.csr.read_more')}</span>
+                                        <div className="flex items-center text-amber-600 transition-colors group-hover:text-amber-700">
+                                            <svg className="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                            <span className="text-sm font-medium">{t('pages.csr.read_full')}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
 // Testimonials Component - MOBILE OPTIMIZED
-function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: string; role: string; photo: string; quote: string}>; t: (key: string) => string }) {
+function TestimonialsCarousel({
+    testimonials,
+    t,
+}: {
+    testimonials: Array<{ name: string; role: string; photo: string; quote: string }>;
+    t: (key: string) => string;
+}) {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
     useEffect(() => {
@@ -186,7 +227,7 @@ function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: 
             setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [testimonials.length]);
 
     return (
         <section className="bg-gradient-to-r from-amber-50 to-yellow-50 py-16 sm:py-20">
@@ -205,7 +246,9 @@ function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: 
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.testimonials.title_line1')}</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                            {t('pages.csr.testimonials.title_line1')}
+                        </span>
                         <span className="text-black"> {t('pages.csr.testimonials.title_line2')}</span>
                     </motion.h2>
                     <motion.p
@@ -256,7 +299,13 @@ function TestimonialsCarousel({ testimonials, t }: { testimonials: Array<{name: 
 }
 
 // Enhanced Gallery Component - MOBILE OPTIMIZED
-function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySections; t: (key: string) => string }) {
+function GalleryShowcaseCarousel({
+    sections,
+    t,
+}: {
+    sections: Array<{ title: string; description: string; images: string[] }>;
+    t: (key: string) => string;
+}) {
     const [current, setCurrent] = useState(0);
     const [imgIdx, setImgIdx] = useState(0);
 
@@ -320,7 +369,7 @@ function GalleryShowcaseCarousel({ sections, t }: { sections: typeof gallerySect
                 </button>
 
                 <div className="flex gap-2 sm:gap-3">
-                    {sections.map((_, idx) => (
+                    {sections.map((_, idx: number) => (
                         <button
                             key={idx}
                             onClick={() => setCurrent(idx)}
@@ -368,60 +417,89 @@ export default function CSRPageMobileFix() {
             title: t('pages.csr.gallery_sections.0.title'),
             description: t('pages.csr.gallery_sections.0.description'),
             images: [
-                '/WhatsApp Image 2025-07-20 at 09.57.47 (2).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.47 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.47.jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.46 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.46.jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.45 (2).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.45 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.45.jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.44 (3).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.44 (2).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.44 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 09.57.44.jpeg',
+                '/pembangunan1.jpg',
+                '/506paket2.jpeg',
+                '/506paket3.jpg',
+                '/pendanaan1.jpg',
+                '/pembagian3.jpg',
+                '/pemberitahuan1.jpg',
+                '/agus1.jpg',
+                '/agus2.jpg',
+                '/agus3.jpg',
+                '/buruharian1.jpg',
+                '/506paket1.jpg',
+                '/pembangunan3.jpg',
             ],
         },
         {
             title: t('pages.csr.gallery_sections.1.title'),
             description: t('pages.csr.gallery_sections.1.description'),
             images: [
-                '/WhatsApp Image 2025-07-20 at 10.39.03.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.02 (2).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.02 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.02.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.01 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.01.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.00 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.39.00.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.58 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.58.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.57.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.56.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.55 (1).jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.55.jpeg',
-                '/WhatsApp Image 2025-07-20 at 10.38.54.jpeg',
+                '/pendanaan1.jpg',
+                '/506paket1.jpg',
+                '/pembagian3.jpg',
+                '/agus1.jpg',
+                '/buruharian1.jpg',
+                '/pembangunan1.jpg',
+                '/pembangunan3.jpg',
+                '/pembangunan5.jpg',
+                '/pembangunan6.jpg',
+                '/agus2.jpg',
+                '/agus3.jpg',
+                '/agus6.jpg',
             ],
         },
         {
             title: t('pages.csr.gallery_sections.2.title'),
             description: t('pages.csr.gallery_sections.2.description'),
-            images: galeriPoso,
+            images: ['/506paket1.jpg', '/506paket2.jpeg', '/506paket3.jpg'],
         },
         {
             title: t('pages.csr.gallery_sections.3.title'),
             description: t('pages.csr.gallery_sections.3.description'),
-            images: galeriPapua,
+            images: ['/pendanaan1.jpg'],
         },
         {
             title: t('pages.csr.gallery_sections.4.title'),
             description: t('pages.csr.gallery_sections.4.description'),
-            images: galeriMenara,
+            images: ['/pembagian3.jpg', '/pemberitahuan1.jpg'],
         },
         {
             title: t('pages.csr.gallery_sections.5.title'),
             description: t('pages.csr.gallery_sections.5.description'),
-            images: galeriPapua2,
+            images: ['/agus1.jpg', '/agus2.jpg', '/agus3.jpg', '/agus6.jpg', '/agus7.jpg', '/agus8.jpg'],
+        },
+        {
+            title: t('pages.csr.gallery_sections.6.title'),
+            description: t('pages.csr.gallery_sections.6.description'),
+            images: [
+                '/buruharian1.jpg',
+                '/pembangunan1.jpg',
+                '/pembangunan3.jpg',
+                '/pembangunan5.jpg',
+                '/pembangunan6.jpg',
+                '/pembangunandesanifasi2.jpg',
+            ],
+        },
+        {
+            title: t('pages.csr.gallery_sections.7.title'),
+            description: t('pages.csr.gallery_sections.7.description'),
+            images: ['/506paket1.jpg', '/506paket2.jpeg', '/506paket3.jpg'],
+        },
+        {
+            title: t('pages.csr.gallery_sections.8.title'),
+            description: t('pages.csr.gallery_sections.8.description'),
+            images: ['/pendanaan1.jpg'],
+        },
+        {
+            title: t('pages.csr.gallery_sections.9.title'),
+            description: t('pages.csr.gallery_sections.9.description'),
+            images: ['/pembagian3.jpg', '/pemberitahuan1.jpg'],
+        },
+        {
+            title: t('pages.csr.gallery_sections.10.title'),
+            description: t('pages.csr.gallery_sections.10.description'),
+            images: ['/agus1.jpg', '/agus2.jpg', '/agus3.jpg', '/agus6.jpg', '/agus7.jpg', '/agus8.jpg'],
         },
     ];
 
@@ -554,9 +632,9 @@ export default function CSRPageMobileFix() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
-                    >
+                >
                     <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
-                    <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
+                        <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
                     </div>
                 </motion.div>
             </section>
@@ -632,7 +710,9 @@ export default function CSRPageMobileFix() {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                     >
-                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">{t('pages.csr.programs.title_line1')}</span>
+                        <span className="bg-gradient-to-r from-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                            {t('pages.csr.programs.title_line1')}
+                        </span>
                         <span className="text-black"> {t('pages.csr.programs.title_line2')}</span>
                     </motion.h2>
                     <motion.p
@@ -659,6 +739,9 @@ export default function CSRPageMobileFix() {
             {/* Video Section - MOBILE OPTIMIZED */}
             <VideoSection t={t} />
 
+            {/* CSR News Section */}
+            <CSRNewsSection t={t} />
+
             {/* Testimonials - MOBILE OPTIMIZED */}
             <TestimonialsCarousel testimonials={translatedTestimonials} t={t} />
 
@@ -666,5 +749,3 @@ export default function CSRPageMobileFix() {
         </div>
     );
 }
-
-

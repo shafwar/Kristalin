@@ -999,10 +999,10 @@ return [
             'title' => 'Our Trusted Partners',
         ],
         'gold_price' => [
-            'header' => 'GLOBAL GOLD PRICE',
-            'title_line1' => 'Daily / Weekly Gold Price',
+            'header' => 'INDONESIA GOLD PRICE',
+            'title_line1' => 'Indonesia Gold Price',
             'title_line2' => 'Information',
-            'description' => 'Stay updated with the latest global gold price trends. For real-time gold, silver, and precious metal prices, click below to view the official gold price chart.',
+            'description' => 'Stay updated with the latest Indonesia gold price trends. For real-time gold, silver, and precious metal prices in Indonesian Rupiah, click below to view the official Indonesia gold price chart.',
             'button' => 'SHOW MORE',
             'alt_text' => 'Gold Mining Operations',
         ],
@@ -1286,23 +1286,79 @@ return [
                 'description' => 'Comprehensive community development programs including computer training, music equipment assistance, organic farming training, and children\'s playground construction.',
             ],
             [
-                'title' => '3.000 Groceries for Poso People',
-                'description' => 'PT Kristalin Ekalestari distributed 3,000 groceries to help Poso people in need, as a form of corporate social responsibility.',
+                'title' => 'Food Distribution Program - February 2025',
+                'description' => 'PT Kristalin Ekalestari distributed 506 food packages to Nifasi Village residents as part of sustainable CSR program, prioritizing elderly widows and community welfare.',
             ],
             [
-                'title' => 'CSR Activities for Papua',
-                'description' => 'Various social activities for the people of Papua, ranging from food aid, education, to support for sports and social activities.',
+                'title' => 'Education Funding Program - June 2025',
+                'description' => 'PT Kristalin Ekalestari provided education funding worth Rp18.240.000 for 8 SMAN 6 Nabire students from Nifasi Village, ensuring their education until graduation.',
             ],
             [
-                'title' => 'Food Distribution for \'Menara 165\' Employees',
-                'description' => 'Distribution of food packages to Menara 165 employees as a form of company support in difficult times.',
+                'title' => 'Monthly Food Distribution - July 2025',
+                'description' => 'Consistent monthly distribution of 506 food packages to 506 families in Nifasi Village, with 50% prioritized for elderly widows and places of worship.',
             ],
             [
-                'title' => 'Food Distribution for Papua',
-                'description' => 'Distribution of food aid and basic needs for the Papuan people in various villages and regions.',
+                'title' => 'Sustainable Food Aid - August 2025',
+                'description' => 'PT Kristalin Ekalestari continued commitment to CSR by distributing 506 food packages to elderly widows and places of worship in Nabire, showing sustainable solidarity for community welfare.',
             ],
+           [
+               'title' => 'House Construction Program - 2025',
+               'description' => 'PT Kristalin Ekalestari builds decent houses for daily workers and fishermen in Nifasi Village, providing sustainable housing solutions as part of comprehensive CSR program.',
+           ],
+           [
+               'title' => 'Food Distribution Program - February 2025',
+               'description' => 'PT Kristalin Ekalestari distributed 506 food packages to Nifasi Village residents as part of sustainable CSR program, prioritizing elderly widows and community welfare.',
+           ],
+           [
+               'title' => 'Education Funding Program - June 2025',
+               'description' => 'PT Kristalin Ekalestari provided education funding worth Rp18.240.000 for 8 SMAN 6 Nabire students from Nifasi Village, ensuring their education until graduation.',
+           ],
+           [
+               'title' => 'Monthly Food Distribution - July 2025',
+               'description' => 'Consistent monthly distribution of 506 food packages to 506 families in Nifasi Village, with 50% prioritized for elderly widows and places of worship.',
+           ],
+           [
+               'title' => 'Sustainable Food Aid - August 2025',
+               'description' => 'PT Kristalin Ekalestari continued commitment to CSR by distributing 506 food packages to elderly widows and places of worship in Nabire, showing sustainable solidarity for community welfare.',
+           ],
         ],
         'csr_activity_label' => 'CSR Activity',
+        'news' => [
+            'title_line1' => 'CSR News',
+            'title_line2' => '& Updates',
+            'description' => 'Stay updated with our latest CSR activities and community development programs',
+            'feb_7' => [
+                'title' => 'PT Kristalin Ekalestari Distributes 506 Food Packages to Nifasi Village Residents',
+                'excerpt' => 'PT Kristalin Ekalestari started 2025 with a sustainable CSR program, distributing 506 food packages to Nifasi Village residents and surrounding communities.',
+            ],
+            'jun_1' => [
+                'title' => 'Education Funding for SMAN 6 Nabire Students from Nifasi Village Guaranteed Until Graduation',
+                'excerpt' => 'PT Kristalin Ekalestari covers education funding for 8 SMAN 6 Nabire students from Nifasi Village until they complete their studies.',
+            ],
+            'jul_1' => [
+                'title' => 'Hundreds of Nifasi Village Residents Receive Food Package Assistance from PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari distributed 506 food packages to 506 families in Nifasi Village through a consistent monthly CSR program.',
+            ],
+            'aug_4' => [
+                'title' => 'Sharing Happiness: 506 Food Packages for Elderly Widows and Places of Worship in Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari distributed 506 food packages to elderly widows and places of worship in Nabire as part of sustainable CSR commitment in August 2025.',
+            ],
+            'mar_1' => [
+                'title' => 'Daily Worker from Nifasi Village Receives House from Kristalin Ekalestari CSR',
+                'excerpt' => 'Yundiles Wonda from the Dani Tribe receives a livable house from PT Kristalin Ekalestari CSR program in Nifasi Village, Nabire.',
+            ],
+           'aug_2' => [
+               'title' => 'Decent House for Lomon Monei: Independence Gift from CSR Program',
+               'excerpt' => 'As part of the 80th Independence Day celebration, PT Kristalin Ekalestari builds a livable house for Lomon Monei in Nifasi Village.',
+           ],
+       ],
+        'read_more' => 'Read More',
+        'read_full' => 'Read Full Story',
+        'categories' => [
+            'food_distribution' => 'Food Distribution',
+            'education_support' => 'Education Support',
+            'house_construction' => 'House Construction',
+        ],
     ],
     'contact' => [
         'page_title' => 'Contact Us - PT Kristalin Ekalestari',
