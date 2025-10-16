@@ -697,12 +697,20 @@ export default function CSRPageMobileFix() {
             {/* Main Content */}
             <main className="bg-white py-16 sm:py-20">
                 <motion.div
-                    className="mb-12 px-4 text-center sm:mb-16 sm:px-6"
+                    className="mb-12 flex flex-col items-center px-4 text-center sm:mb-16 sm:px-6"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                 >
+                    {/* Golden Gradient Line - Centered like Commitment Section */}
+                    <motion.div
+                        className="mb-4 h-1 w-12 rounded-full bg-amber-400 sm:mb-6 sm:w-16"
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        whileInView={{ opacity: 1, scaleX: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+                    />
                     <motion.h2
                         className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl md:text-4xl lg:text-5xl"
                         initial={{ opacity: 0, y: 20 }}

@@ -393,7 +393,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         </svg>
                     </button>
 
-                    {/* Dropdown search bar */}
+                    {/* Dropdown bar */}
                     <div
                         className={`absolute top-full right-0 mt-2 w-[320px] max-w-[80vw] transform transition-all duration-300 ${
                             searchOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
