@@ -15,6 +15,7 @@ const getTranslatedMonth = (monthId: string, t: any) => {
         'juli-2025': 'juli',
         'agustus-2025': 'agustus',
         'september-2025': 'september',
+        'oktober-2025': 'oktober',
     };
     return t(`news_archive.months.${monthMap[monthId]}`);
 };
@@ -119,6 +120,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'aug-8': 'aug_sembako_distribution_5',
         'sept-1': 'sept1_torindo_acquisition_heavy_equipment',
         'sept-3': 'torindo_sept3_acquisition_article',
+        'oct-1': 'oct_dubai_investment_blockchain',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -6644,6 +6646,362 @@ export const newsData: NewsMonth[] = [
             },
         ],
     },
+    {
+        month: 'OKTOBER',
+        monthId: 'oktober-2025',
+        categories: [
+            {
+                id: 'investasi-dubai-blockchain-emas',
+                title: 'Investasi Dubai - Teknologi Blockchain untuk Tambang Emas',
+                newsItems: [
+                    {
+                        id: 'oct-1',
+                        title: 'Kristalin Group Raih Komitmen Investasi USD 55 Juta dari Dubai untuk Proyek Tambang Emas Berbasis Blockchain',
+                        date: '20 Oct 2025',
+                        url: '/news/oct-1',
+                        excerpt:
+                            'Kristalin Group mengamankan komitmen investasi senilai USD 55 juta dari dua perusahaan Dubai dalam Trade Expo Indonesia 2025 untuk pengembangan tambang emas seluas 3.500 hektar di Nabire dengan teknologi blockchain dan prinsip Syariah.',
+                        fullContent: {
+                            title: 'Kristalin Group Raih Komitmen Investasi USD 55 Juta dari Dubai untuk Proyek Tambang Emas Berbasis Blockchain',
+                            date: '20 Oktober 2025',
+                            author: 'Tim Redaksi Kristalin',
+                            source: 'Liputan6.com',
+                            sourceUrl: 'https://www.liputan6.com/bisnis/read/6189920/kristalin-kantongi-investasi-usd-55-juta-dari-dubai-di-tei-2025',
+                            image: '/investmentkristalin.jpg',
+                            content: `
+                                <div class="space-y-8">
+                                    <!-- Opening Story -->
+                                    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100">
+                                        <h3 class="text-lg font-bold text-emerald-900 mb-3 flex items-center gap-2">
+                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3" />
+                                            </svg>
+                                            Terobosan Investasi Internasional di TEI 2025
+                                        </h3>
+                                        <p class="text-emerald-800 leading-relaxed text-base">
+                                            Dalam ajang bergengsi <strong>Trade Expo Indonesia (TEI) 2025</strong> yang berlangsung di ICE BSD City, Tangerang, <strong>Kristalin Group</strong> berhasil menarik perhatian investor internasional dengan mengamankan komitmen investasi senilai <strong>USD 55 juta</strong> atau setara <strong>Rp 912 miliar</strong> (kurs Rp 16.582 per USD). Pencapaian monumental ini menandai babak baru dalam pengembangan industri pertambangan emas Indonesia yang berkelanjutan dan berbasis teknologi.
+                                        </p>
+                                    </div>
+
+                                    <!-- Investment Details -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Rincian Komitmen Investasi</h3>
+                                        <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+                                            <p class="text-gray-800 leading-relaxed text-base mb-6">
+                                                Komitmen investasi strategis ini diwujudkan melalui penandatanganan dua <strong>Memorandum of Understanding (MoU)</strong> dengan perusahaan terkemuka asal Dubai, Uni Emirat Arab. Investasi ini secara khusus dialokasikan untuk pengembangan konsesi tambang emas seluas <strong>3.500 hektar</strong> yang berlokasi di Nabire, Papua Tengah.
+                                            </p>
+                                            <div class="grid md:grid-cols-2 gap-6">
+                                                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                                    <div class="flex items-center gap-3 mb-4">
+                                                        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                                                            <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                                            </svg>
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="text-lg font-bold text-gray-900">SMART IoT LLC</h4>
+                                                            <p class="text-sm text-gray-600">Dubai, UAE</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="space-y-3">
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-700 font-medium">Nilai Investasi:</span>
+                                                            <span class="text-2xl font-bold text-blue-600">$35M</span>
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-700 font-medium">Ekuivalen IDR:</span>
+                                                            <span class="text-lg font-semibold text-gray-900">Rp 580 Miliar</span>
+                                                        </div>
+                                                        <div class="pt-3 border-t border-gray-200">
+                                                            <p class="text-sm text-gray-600">Fokus: IoT Integration & Smart Mining Technology</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                                    <div class="flex items-center gap-3 mb-4">
+                                                        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                                                            <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="text-lg font-bold text-gray-900">Lobo Investment LLC</h4>
+                                                            <p class="text-sm text-gray-600">Dubai, UAE</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="space-y-3">
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-700 font-medium">Nilai Investasi:</span>
+                                                            <span class="text-2xl font-bold text-purple-600">$20M</span>
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-700 font-medium">Ekuivalen IDR:</span>
+                                                            <span class="text-lg font-semibold text-gray-900">Rp 332 Miliar</span>
+                                                        </div>
+                                                        <div class="pt-3 border-t border-gray-200">
+                                                            <p class="text-sm text-gray-600">Fokus: Strategic Investment & Capital Structuring</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Leadership Vision -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Visi Kepemimpinan dan Strategi Bisnis</h3>
+                                        <blockquote class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 rounded-r-xl shadow-sm">
+                                            <p class="text-gray-800 italic text-lg leading-relaxed mb-4">
+                                                "Kami tidak sekadar membangun proyek tambang, melainkan membangun fondasi kepercayaan dan ekosistem investasi berbasis teknologi yang menghubungkan Indonesia dengan Uni Emirat Arab. Ini adalah langkah strategis menuju masa depan pertambangan yang transparan dan berkelanjutan."
+                                            </p>
+                                            <cite class="text-sm text-gray-600 font-medium flex items-center gap-2">
+                                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                                Andito Prasetyowan, Presiden Direktur PT Kristalin Eka Lestari
+                                            </cite>
+                                        </blockquote>
+                                    </div>
+
+                                    <!-- Blockchain Technology Innovation -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Teknologi Blockchain & Kepatuhan Syariah</h3>
+                                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+                                            <p class="text-gray-800 leading-relaxed text-base mb-6">
+                                                Yang membedakan proyek ambisius ini dari investasi konvensional adalah penerapan <strong>teknologi blockchain</strong> yang sepenuhnya mematuhi <strong>prinsip Syariah</strong>. Kristalin Group akan mengimplementasikan sistem inovatif yang mengintegrasikan teknologi digital dengan kaidah keuangan Islam.
+                                            </p>
+                                            <div class="grid md:grid-cols-3 gap-6">
+                                                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-200 mx-auto mb-4">
+                                                        <svg class="h-7 w-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-base font-bold text-gray-900 mb-2 text-center">Tokenisasi Aset Riil (RWA)</h4>
+                                                    <p class="text-sm text-gray-600 text-center leading-relaxed">Kepemilikan emas secara digital melalui token blockchain yang dapat diperdagangkan secara transparan</p>
+                                                </div>
+
+                                                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 mx-auto mb-4">
+                                                        <svg class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-base font-bold text-gray-900 mb-2 text-center">Smart Contract</h4>
+                                                    <p class="text-sm text-gray-600 text-center leading-relaxed">Sistem pembagian hasil otomatis dan transparan yang menjamin keadilan bagi semua stakeholder</p>
+                                                </div>
+
+                                                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-200 mx-auto mb-4">
+                                                        <svg class="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-base font-bold text-gray-900 mb-2 text-center">Blockchain Tracking</h4>
+                                                    <p class="text-sm text-gray-600 text-center leading-relaxed">Pencatatan real-time untuk produksi, kepemilikan, hingga distribusi emas secara end-to-end</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <blockquote class="bg-gradient-to-r from-teal-50 to-cyan-50 border-l-4 border-teal-500 p-6 rounded-r-xl shadow-sm">
+                                            <p class="text-gray-800 italic text-lg leading-relaxed mb-4">
+                                                "Dubai merupakan pusat keuangan global yang ideal untuk investasi lintas negara berbasis blockchain dengan kepatuhan penuh terhadap prinsip Syariah. Model bisnis ini memastikan transparansi, keamanan, dan kepatuhan terhadap kaidah keuangan Islam."
+                                            </p>
+                                            <cite class="text-sm text-gray-600 font-medium flex items-center gap-2">
+                                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                                Ronald Rigen Tambunan, CEO Kristalin Digital Dubai
+                                            </cite>
+                                        </blockquote>
+                                    </div>
+
+                                    <!-- Project Development Phases -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Tahapan Pengembangan Proyek</h3>
+                                        <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200">
+                                            <p class="text-gray-800 leading-relaxed text-base mb-6">
+                                                Pengembangan tambang emas di Nabire, Papua Tengah, akan dilaksanakan secara bertahap dan terstruktur untuk memastikan keberlanjutan operasional dan dampak positif bagi masyarakat lokal.
+                                            </p>
+                                            <div class="space-y-4">
+                                                <div class="flex items-start gap-4 bg-white rounded-lg p-4 border border-gray-200">
+                                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 flex-shrink-0">
+                                                        <span class="text-lg font-bold text-amber-600">1</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-gray-900 mb-1">Fase Eksplorasi</h4>
+                                                        <p class="text-sm text-gray-600">Pemetaan dan analisis geologis untuk menentukan potensi cadangan emas di wilayah konsesi</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-start gap-4 bg-white rounded-lg p-4 border border-gray-200">
+                                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 flex-shrink-0">
+                                                        <span class="text-lg font-bold text-blue-600">2</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-gray-900 mb-1">Pembangunan Infrastruktur</h4>
+                                                        <p class="text-sm text-gray-600">Konstruksi fasilitas penambangan, pengolahan, dan infrastruktur pendukung operasional</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-start gap-4 bg-white rounded-lg p-4 border border-gray-200">
+                                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 flex-shrink-0">
+                                                        <span class="text-lg font-bold text-green-600">3</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-gray-900 mb-1">Fase Produksi</h4>
+                                                        <p class="text-sm text-gray-600">Operasional penambangan emas dengan standar internasional dan ramah lingkungan</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-start gap-4 bg-white rounded-lg p-4 border border-gray-200">
+                                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 flex-shrink-0">
+                                                        <span class="text-lg font-bold text-purple-600">4</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-gray-900 mb-1">Tokenisasi Aset</h4>
+                                                        <p class="text-sm text-gray-600">Implementasi sistem blockchain untuk digitalisasi kepemilikan emas dan transparansi transaksi</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-start gap-4 bg-white rounded-lg p-4 border border-gray-200">
+                                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 flex-shrink-0">
+                                                        <span class="text-lg font-bold text-indigo-600">5</span>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-base font-bold text-gray-900 mb-1">Ekspor & Distribusi</h4>
+                                                        <p class="text-sm text-gray-600">Pemasaran dan distribusi emas ke pasar global dengan sistem tracking blockchain</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Economic & Social Impact -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Dampak Ekonomi dan Sosial</h3>
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                                                <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                                    <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg>
+                                                    Pemberdayaan Masyarakat
+                                                </h4>
+                                                <ul class="space-y-3 text-gray-700">
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                                        <span class="text-sm">Penciptaan lapangan kerja untuk masyarakat lokal Papua Tengah</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                                        <span class="text-sm">Program pelatihan dan pengembangan keterampilan teknis</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                                        <span class="text-sm">Peningkatan kapasitas ekonomi masyarakat sekitar area operasional</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                                        <span class="text-sm">Pembangunan infrastruktur sosial dan fasilitas umum</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                                                <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                                    <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                                    </svg>
+                                                    Tata Kelola Berkelanjutan
+                                                </h4>
+                                                <ul class="space-y-3 text-gray-700">
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+                                                        <span class="text-sm">Transparansi operasional melalui teknologi blockchain</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+                                                        <span class="text-sm">Kepatuhan penuh terhadap standar lingkungan internasional</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+                                                        <span class="text-sm">Praktik pertambangan yang bertanggung jawab dan berkelanjutan</span>
+                                                    </li>
+                                                    <li class="flex items-center gap-2">
+                                                        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+                                                        <span class="text-sm">Menjadi contoh global tata kelola tambang yang transparan</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Strategic Significance -->
+                                    <div class="space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-amber-500 pb-2">Signifikansi Strategis untuk Indonesia</h3>
+                                        <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                                            <p class="text-gray-800 leading-relaxed text-base mb-6">
+                                                Investasi ini memiliki makna strategis yang mendalam bagi pengembangan sektor pertambangan Indonesia, khususnya dalam konteks transformasi digital dan integrasi dengan ekosistem keuangan global.
+                                            </p>
+                                            <div class="grid md:grid-cols-3 gap-4">
+                                                <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm text-center">
+                                                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 mx-auto mb-3">
+                                                        <svg class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-sm font-bold text-gray-900 mb-1">Daya Tarik Investasi</h4>
+                                                    <p class="text-xs text-gray-600">Meningkatkan kepercayaan investor internasional</p>
+                                                </div>
+
+                                                <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm text-center">
+                                                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 mx-auto mb-3">
+                                                        <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-sm font-bold text-gray-900 mb-1">Inovasi Teknologi</h4>
+                                                    <p class="text-xs text-gray-600">Pionir blockchain di sektor pertambangan</p>
+                                                </div>
+
+                                                <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm text-center">
+                                                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 mx-auto mb-3">
+                                                        <svg class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3m6 6V11a2 2 0 00-2-2h-1M4 11h5" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="text-sm font-bold text-gray-900 mb-1">Kemitraan Global</h4>
+                                                    <p class="text-xs text-gray-600">Hubungan Indonesia-UAE semakin kuat</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Future Vision & Commitment -->
+                                    <div class="rounded-2xl border border-gray-200 bg-gradient-to-r from-gray-50 to-slate-50 p-6">
+                                        <h3 class="mb-3 text-lg font-bold text-gray-900 flex items-center gap-2">
+                                            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                            </svg>
+                                            Komitmen Jangka Panjang dan Visi Masa Depan
+                                        </h3>
+                                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                                            Kesepakatan investasi USD 55 juta ini bukan sekadar transaksi finansial, melainkan komitmen jangka panjang untuk membangun ekosistem pertambangan emas yang berkelanjutan, transparan, dan memberikan dampak positif nyata bagi masyarakat Papua Tengah. Dengan mengintegrasikan teknologi blockchain dan prinsip Syariah, Kristalin Group bertekad menjadikan Indonesia sebagai contoh global dalam tata kelola tambang emas yang bertanggung jawab.
+                                        </p>
+                                        <p class="text-base leading-relaxed text-gray-800">
+                                            Proyek ini diharapkan menjadi katalisator bagi pengembangan ekonomi regional, pemberdayaan masyarakat lokal, dan penguatan posisi Indonesia dalam peta industri pertambangan emas dunia. Melalui kolaborasi strategis dengan investor Dubai dan penerapan teknologi terdepan, Kristalin Group siap membawa industri pertambangan Indonesia memasuki era digital yang lebih transparan, efisien, dan berkelanjutan.
+                                        </p>
+                                    </div>
+                                </div>
+                            `,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
 // Enhanced animations with professional timing
@@ -6777,7 +7135,10 @@ const KristalinNewsPage: React.FC = () => {
     // Category mapping for filtering - using translated values
     const categoryMapping: { [key: string]: string[] } = {
         [t('pages.news.categories.all')]: [],
-        [t('pages.news.categories.csr_initiative')]: ['kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada'],
+        [t('pages.news.categories.csr_initiative')]: [
+            'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada',
+            'investasi-dubai-blockchain-emas',
+        ],
         [t('pages.news.categories.community_development')]: ['csr-hut-ri-80-cidata-barat-papua', 'pemberitahuan-bantuan-dana-hak-garap'],
         [t('pages.news.categories.house_construction')]: [
             'pembangunan-rumah-nifasi-feb',

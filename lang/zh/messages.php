@@ -107,6 +107,7 @@ return [
             'juli' => '七月',
             'agustus' => '八月',
             'september' => '九月',
+            'oktober' => '十月',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => '向Nifasi村居民分发506包基本食品',
@@ -120,6 +121,7 @@ return [
             'csr-hut-ri-80-cidata-barat-papua' => '企业社会责任印尼独立日80周年Cidata Barat Papua与Kuri Wamesa居民',
             'csr-penyaluran-bantuan-sembako-agustus' => '企业社会责任八月基本食品援助分发',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group收购PT Torindo Jaya Persada 50%股份',
+            'investasi-dubai-blockchain-emas' => '迪拜投资 - 黄金矿业区块链技术',
         ],
         'ui_elements' => [
             'articles_available' => '篇文章可用',
@@ -2326,6 +2328,22 @@ return [
         'torindo_sept3_acquisition_article' => [
             'title' => '战略合作伙伴关系：Kristalin Ekalestari集团和PT Torindo Jaya Persada重型设备扩张',
             'excerpt' => 'Kristalin Ekalestari集团通过多数收购PT Torindo Jaya Persada的战略整合形成了综合业务生态系统，以加强在印尼东部地区重型设备行业的主导地位。',
+        ],
+
+        // 十月迪拜投资与区块链 - oct-1
+        'oct1_dubai_investment_blockchain' => [
+            'title' => 'Kristalin集团从迪拜获得5500万美元投资承诺用于基于区块链的黄金开采项目',
+            'excerpt' => 'Kristalin集团在2025年印尼贸易博览会上从两家迪拜公司获得5500万美元投资承诺，用于开发纳比雷3500公顷黄金矿山，采用区块链技术和伊斯兰教法原则。',
+            'category_title' => '迪拜投资 - 黄金矿业区块链技术',
+            'author' => 'Kristalin编辑团队',
+            'source' => 'Liputan6.com',
+            'date' => '2025年10月20日',
+        ],
+
+        // 十月迪拜投资与区块链
+        'oct_dubai_investment_blockchain' => [
+            'title' => 'Kristalin集团从迪拜获得5500万美元投资承诺用于基于区块链的黄金开采项目',
+            'excerpt' => 'Kristalin集团在2025年印尼贸易博览会上从两家迪拜公司获得5500万美元投资承诺，用于开发纳比雷3500公顷黄金矿山，采用区块链技术和伊斯兰教法原则。',
         ],
 
     ],

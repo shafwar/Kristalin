@@ -302,6 +302,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.feb_house_construction_1.date'),
                     content: getFebHouseConstruction1TranslatedContent(),
                 };
+            case 'oct-1':
+                return {
+                    title: t('news_detail.oct1_dubai_investment_blockchain.title'),
+                    excerpt: t('news_detail.oct1_dubai_investment_blockchain.excerpt'),
+                    categoryTitle: t('news_detail.oct1_dubai_investment_blockchain.category_title'),
+                    author: t('news_detail.oct1_dubai_investment_blockchain.author'),
+                    source: t('news_detail.oct1_dubai_investment_blockchain.source'),
+                    date: t('news_detail.oct1_dubai_investment_blockchain.date'),
+                    content: getOct1DubaiInvestmentTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -6375,6 +6385,12 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
         );
     };
 
+    const getOct1DubaiInvestmentTranslatedContent = () => {
+        // Since the content is already in Indonesian in the HTML, we return it as JSX
+        // The HTML content from news.tsx will be used as-is since it's already comprehensive
+        return null; // Content will use the dangerouslySetInnerHTML from fullContent
+    };
+
     useEffect(() => {
         // Find the news item by ID
         const findNewsItem = () => {
@@ -6701,7 +6717,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                             </svg>
                                                         </div>
-                                                    </div>
+                          
+                          </div>
                                                 </div>
                                             </Link>
                                         </motion.div>

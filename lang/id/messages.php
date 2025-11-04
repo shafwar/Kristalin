@@ -107,6 +107,7 @@ return [
             'juli' => 'JULI',
             'agustus' => 'AGUSTUS',
             'september' => 'SEPTEMBER',
+            'oktober' => 'OKTOBER',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => 'Penyaluran 506 Paket Sembako ke Warga Desa Nifasi',
@@ -120,6 +121,7 @@ return [
             'csr-hut-ri-80-cidata-barat-papua' => 'CSR HUT RI ke-80, PT Cidata Barat Papua bersama Warga Kuri Wamesa',
             'csr-penyaluran-bantuan-sembako-agustus' => 'CSR Penyaluran Bantuan Sembako Agustus',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+            'investasi-dubai-blockchain-emas' => 'Investasi Dubai - Teknologi Blockchain untuk Tambang Emas',
         ],
         'ui_elements' => [
             'articles_available' => 'artikel tersedia',
@@ -2327,6 +2329,22 @@ return [
         'torindo_sept3_acquisition_article' => [
             'title' => 'Kemitraan Strategis: Kristalin Ekalestari Group dan PT Torindo Jaya Persada Ekspansi Alat Berat',
             'excerpt' => 'Konsolidasi strategis Kristalin Ekalestari Group melalui akuisisi mayoritas PT Torindo Jaya Persada membentuk ekosistem bisnis terintegrasi untuk memperkuat posisi dominan di industri alat berat di wilayah Indonesia Timur.',
+        ],
+
+        // Oktober Investasi Dubai & Blockchain - oct-1
+        'oct1_dubai_investment_blockchain' => [
+            'title' => 'Kristalin Group Raih Komitmen Investasi USD 55 Juta dari Dubai untuk Proyek Tambang Emas Berbasis Blockchain',
+            'excerpt' => 'Kristalin Group mengamankan komitmen investasi senilai USD 55 juta dari dua perusahaan Dubai dalam Trade Expo Indonesia 2025 untuk pengembangan tambang emas seluas 3.500 hektar di Nabire dengan teknologi blockchain dan prinsip Syariah.',
+            'category_title' => 'Investasi Dubai - Teknologi Blockchain untuk Tambang Emas',
+            'author' => 'Tim Redaksi Kristalin',
+            'source' => 'Liputan6.com',
+            'date' => '20 Oktober 2025',
+        ],
+
+        // Oktober Investasi Dubai & Blockchain
+        'oct_dubai_investment_blockchain' => [
+            'title' => 'Kristalin Group Raih Komitmen Investasi USD 55 Juta dari Dubai untuk Proyek Tambang Emas Berbasis Blockchain',
+            'excerpt' => 'Kristalin Group mengamankan komitmen investasi senilai USD 55 juta dari dua perusahaan Dubai dalam Trade Expo Indonesia 2025 untuk pengembangan tambang emas seluas 3.500 hektar di Nabire dengan teknologi blockchain dan prinsip Syariah.',
         ],
 
     ],

@@ -226,7 +226,7 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
                             </h3>
                         </div>
 
-                        <div>
+                        <div>tamam 
                             <span className="inline-block rounded-full bg-gradient-to-r from-amber-100 to-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-800 ring-1 ring-amber-200/60">
                                 {t(`board_of_directors.${director.positionKey}`)}
                             </span>

@@ -107,6 +107,7 @@ return [
             'juli' => 'JULY',
             'agustus' => 'AUGUST',
             'september' => 'SEPTEMBER',
+            'oktober' => 'OCTOBER',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => 'Distribution of 506 Basic Food Packages to Nifasi Village Residents',
@@ -120,6 +121,7 @@ return [
             'csr-hut-ri-80-cidata-barat-papua' => '80th Indonesian Independence Day CSR, PT Cidata West Papua with Kuri Wamesa Residents',
             'csr-penyaluran-bantuan-sembako-agustus' => 'CSR August Basic Food Assistance Distribution',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group Acquires 50 Percent Shares of PT Torindo Jaya Persada',
+            'investasi-dubai-blockchain-emas' => 'Dubai Investment - Blockchain Technology for Gold Mining',
         ],
         'ui_elements' => [
             'articles_available' => 'articles available',
@@ -2314,6 +2316,22 @@ return [
         'torindo_sept3_acquisition_article' => [
             'title' => 'Strategic Partnership: Kristalin Ekalestari Group and PT Torindo Jaya Persada Heavy Equipment Expansion',
             'excerpt' => 'Kristalin Ekalestari Group\'s strategic consolidation through majority acquisition of PT Torindo Jaya Persada forms an integrated business ecosystem to strengthen dominant position in the heavy equipment industry in Eastern Indonesia region.',
+        ],
+
+        // October Dubai Investment & Blockchain - oct-1
+        'oct1_dubai_investment_blockchain' => [
+            'title' => 'Kristalin Group Secures USD 55 Million Investment Commitment from Dubai for Blockchain-Based Gold Mining Project',
+            'excerpt' => 'Kristalin Group secures USD 55 million investment commitment from two Dubai companies at Trade Expo Indonesia 2025 for the development of a 3,500-hectare gold mine in Nabire with blockchain technology and Sharia principles.',
+            'category_title' => 'Dubai Investment - Blockchain Technology for Gold Mining',
+            'author' => 'Kristalin Editorial Team',
+            'source' => 'Liputan6.com',
+            'date' => '20 October 2025',
+        ],
+
+        // October Dubai Investment & Blockchain
+        'oct_dubai_investment_blockchain' => [
+            'title' => 'Kristalin Group Secures USD 55 Million Investment Commitment from Dubai for Blockchain-Based Gold Mining Project',
+            'excerpt' => 'Kristalin Group secures USD 55 million investment commitment from two Dubai companies at Trade Expo Indonesia 2025 for the development of a 3,500-hectare gold mine in Nabire with blockchain technology and Sharia principles.',
         ],
 
     ],
