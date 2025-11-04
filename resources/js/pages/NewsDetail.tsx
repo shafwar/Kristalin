@@ -14,7 +14,7 @@ interface NewsDetailProps {
 }
 
 const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
-    const { t } = useTranslation();
+    const { t, locale } = useTranslation();
     const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
     const [category, setCategory] = useState<NewsCategory | null>(null);
     const [loading, setLoading] = useState(true);
@@ -6386,9 +6386,856 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
     };
 
     const getOct1DubaiInvestmentTranslatedContent = () => {
-        // Since the content is already in Indonesian in the HTML, we return it as JSX
-        // The HTML content from news.tsx will be used as-is since it's already comprehensive
-        return null; // Content will use the dangerouslySetInnerHTML from fullContent
+        const currentLang = locale.toLowerCase();
+
+        if (currentLang === 'en') {
+            return (
+                <div className="space-y-8">
+                    {/* Opening Story */}
+                    <div className="rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50 to-teal-50 p-6">
+                        <h3 className="mb-3 flex items-center gap-2 text-lg font-bold text-emerald-900">
+                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3"
+                                />
+                            </svg>
+                            International Investment Breakthrough at TEI 2025
+                        </h3>
+                        <p className="text-base leading-relaxed text-emerald-800">
+                            At the prestigious <strong>Trade Expo Indonesia (TEI) 2025</strong> event held at ICE BSD City, Tangerang,{' '}
+                            <strong>Kristalin Group</strong> successfully attracted the attention of international investors by securing an investment
+                            commitment worth <strong>USD 55 million</strong> or equivalent to <strong>Rp 912 billion</strong> (exchange rate Rp 16,582
+                            per USD). This monumental achievement marks a new chapter in the development of Indonesia's sustainable and
+                            technology-based gold mining industry.
+                        </p>
+                    </div>
+
+                    {/* Investment Details */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">Details of Investment Commitment</h3>
+                        <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                This strategic investment commitment is realized through the signing of two{' '}
+                                <strong>Memoranda of Understanding (MoU)</strong> with leading companies from Dubai, United Arab Emirates. This
+                                investment is specifically allocated for the development of a <strong>3,500-hectare</strong> gold mining concession
+                                located in Nabire, Central Papua.
+                            </p>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                                            <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-bold text-gray-900">SMART IoT LLC</h4>
+                                            <p className="text-sm text-gray-600">Dubai, UAE</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">Investment Value:</span>
+                                            <span className="text-2xl font-bold text-blue-600">$35M</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">IDR Equivalent:</span>
+                                            <span className="text-lg font-semibold text-gray-900">Rp 580 Billion</span>
+                                        </div>
+                                        <div className="border-t border-gray-200 pt-3">
+                                            <p className="text-sm text-gray-600">Focus: IoT Integration & Smart Mining Technology</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                                            <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-bold text-gray-900">Lobo Investment LLC</h4>
+                                            <p className="text-sm text-gray-600">Dubai, UAE</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">Investment Value:</span>
+                                            <span className="text-2xl font-bold text-purple-600">$20M</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">IDR Equivalent:</span>
+                                            <span className="text-lg font-semibold text-gray-900">Rp 332 Billion</span>
+                                        </div>
+                                        <div className="border-t border-gray-200 pt-3">
+                                            <p className="text-sm text-gray-600">Focus: Strategic Investment & Capital Structuring</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Leadership Vision */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">Leadership Vision and Business Strategy</h3>
+                        <blockquote className="rounded-r-xl border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 shadow-sm">
+                            <p className="mb-4 text-lg leading-relaxed text-gray-800 italic">
+                                "We are not just building a mining project, but building a foundation of trust and a technology-based investment
+                                ecosystem that connects Indonesia with the United Arab Emirates. This is a strategic step towards a transparent and
+                                sustainable mining future."
+                            </p>
+                            <cite className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                    />
+                                </svg>
+                                Andito Prasetyowan, President Director of PT Kristalin Eka Lestari
+                            </cite>
+                        </blockquote>
+                    </div>
+
+                    {/* Blockchain Technology Innovation */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">
+                            Blockchain Technology & Sharia Compliance
+                        </h3>
+                        <div className="rounded-xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                What distinguishes this ambitious project from conventional investments is the application of{' '}
+                                <strong>blockchain technology</strong> that fully complies with <strong>Sharia principles</strong>. Kristalin Group
+                                will implement an innovative system that integrates digital technology with Islamic financial rules.
+                            </p>
+                            <div className="grid gap-6 md:grid-cols-3">
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-200">
+                                        <svg className="h-7 w-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">Real World Asset Tokenization (RWA)</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">
+                                        Digital gold ownership through blockchain tokens that can be traded transparently
+                                    </p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200">
+                                        <svg className="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">Smart Contract</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">
+                                        Automatic and transparent profit-sharing system that guarantees fairness for all stakeholders
+                                    </p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-200">
+                                        <svg className="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">Blockchain Tracking</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">
+                                        Real-time recording for production, ownership, to end-to-end gold distribution
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <blockquote className="rounded-r-xl border-l-4 border-teal-500 bg-gradient-to-r from-teal-50 to-cyan-50 p-6 shadow-sm">
+                            <p className="mb-4 text-lg leading-relaxed text-gray-800 italic">
+                                "Dubai is the ideal global financial hub for cross-border blockchain-based investments with full compliance to Sharia
+                                principles. This business model ensures transparency, security, and adherence to Islamic financial rules."
+                            </p>
+                            <cite className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                    />
+                                </svg>
+                                Ronald Rigen Tambunan, CEO Kristalin Digital Dubai
+                            </cite>
+                        </blockquote>
+                    </div>
+
+                    {/* Project Development Phases */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">Project Development Phases</h3>
+                        <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                The development of the gold mine in Nabire, Central Papua, will be carried out in a phased and structured manner to
+                                ensure operational sustainability and positive impact on the local community.
+                            </p>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
+                                        <span className="text-lg font-bold text-amber-600">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">Exploration Phase</h4>
+                                        <p className="text-sm text-gray-600">
+                                            Mapping and geological analysis to determine potential gold reserves in the concession area
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                                        <span className="text-lg font-bold text-blue-600">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">Infrastructure Development</h4>
+                                        <p className="text-sm text-gray-600">
+                                            Construction of mining facilities, processing plants, and operational support infrastructure
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                                        <span className="text-lg font-bold text-green-600">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">Production Phase</h4>
+                                        <p className="text-sm text-gray-600">
+                                            Gold mining operations with international standards and environmentally friendly practices
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-100">
+                                        <span className="text-lg font-bold text-purple-600">4</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">Asset Tokenization</h4>
+                                        <p className="text-sm text-gray-600">
+                                            Implementation of blockchain system for digital gold ownership and transaction transparency
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100">
+                                        <span className="text-lg font-bold text-indigo-600">5</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">Export & Distribution</h4>
+                                        <p className="text-sm text-gray-600">
+                                            Marketing and distribution of gold to global markets with blockchain tracking system
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Economic & Social Impact */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">Economic and Social Impact</h3>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <div className="rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-6">
+                                <h4 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                                    <svg className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                        />
+                                    </svg>
+                                    Community Empowerment
+                                </h4>
+                                <ul className="space-y-3 text-gray-700">
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">Job creation for local communities in Central Papua</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">Training programs and technical skills development</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">Improving economic capacity of communities around operational areas</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">Development of social infrastructure and public facilities</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+                                <h4 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                        />
+                                    </svg>
+                                    Sustainable Governance
+                                </h4>
+                                <ul className="space-y-3 text-gray-700">
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">Operational transparency through blockchain technology</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">Full compliance with international environmental standards</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">Responsible and sustainable mining practices</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">Becoming a global example of transparent mining governance</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Strategic Significance */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">Strategic Significance for Indonesia</h3>
+                        <div className="rounded-xl border border-orange-200 bg-gradient-to-r from-orange-50 to-red-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                This investment has profound strategic significance for the development of Indonesia's mining sector, particularly in
+                                the context of digital transformation and integration with the global financial ecosystem.
+                            </p>
+                            <div className="grid gap-4 md:grid-cols-3">
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
+                                        <svg className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">Investment Attractiveness</h4>
+                                    <p className="text-xs text-gray-600">Increasing international investor confidence</p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                                        <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">Technology Innovation</h4>
+                                    <p className="text-xs text-gray-600">Pioneer of blockchain in the mining sector</p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-teal-100">
+                                        <svg className="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3m6 6V11a2 2 0 00-2-2h-1M4 11h5"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">Global Partnership</h4>
+                                    <p className="text-xs text-gray-600">Strengthening Indonesia-UAE relations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Future Vision & Commitment */}
+                    <div className="rounded-2xl border border-gray-200 bg-gradient-to-r from-gray-50 to-slate-50 p-6">
+                        <h3 className="mb-3 flex items-center gap-2 text-lg font-bold text-gray-900">
+                            <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                />
+                            </svg>
+                            Long-Term Commitment and Future Vision
+                        </h3>
+                        <p className="mb-4 text-base leading-relaxed text-gray-800">
+                            This USD 55 million investment agreement is not merely a financial transaction, but a long-term commitment to building a
+                            sustainable, transparent gold mining ecosystem that delivers real positive impact to the people of Central Papua. By
+                            integrating blockchain technology and Sharia principles, Kristalin Group is determined to make Indonesia a global example
+                            of responsible gold mining governance.
+                        </p>
+                        <p className="text-base leading-relaxed text-gray-800">
+                            This project is expected to be a catalyst for regional economic development, local community empowerment, and
+                            strengthening Indonesia's position on the world gold mining industry map. Through strategic collaboration with Dubai
+                            investors and implementation of cutting-edge technology, Kristalin Group is ready to lead Indonesia's mining industry into
+                            a more transparent, efficient, and sustainable digital era.
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+
+        if (currentLang === 'zh') {
+            return (
+                <div className="space-y-8">
+                    {/* Opening Story - Chinese */}
+                    <div className="rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50 to-teal-50 p-6">
+                        <h3 className="mb-3 flex items-center gap-2 text-lg font-bold text-emerald-900">
+                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3"
+                                />
+                            </svg>
+                            2025年印尼贸易博览会（TEI）国际投资突破
+                        </h3>
+                        <p className="text-base leading-relaxed text-emerald-800">
+                            在丹格朗ICE BSD城举行的2025年<strong>印尼贸易博览会（TEI）</strong>盛会上，<strong>Kristalin集团</strong>
+                            成功吸引了国际投资者的关注，获得了价值<strong>5500万美元</strong>或等值<strong>9120亿印尼盾</strong>
+                            （汇率1美元兑16582印尼盾）的投资承诺。这一里程碑式的成就标志着印度尼西亚可持续和技术驱动型黄金采矿业发展的新篇章。
+                        </p>
+                    </div>
+
+                    {/* Investment Details - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">投资承诺详情</h3>
+                        <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                这项战略投资承诺是通过与来自阿拉伯联合酋长国迪拜的领先公司签署两份<strong>谅解备忘录（MoU）</strong>
+                                实现的。这项投资专门用于开发位于中巴布亚纳比雷的<strong>3500公顷</strong>金矿特许权。
+                            </p>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                                            <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-bold text-gray-900">SMART IoT LLC</h4>
+                                            <p className="text-sm text-gray-600">迪拜，阿联酋</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">投资价值：</span>
+                                            <span className="text-2xl font-bold text-blue-600">$35M</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">印尼盾等值：</span>
+                                            <span className="text-lg font-semibold text-gray-900">5800亿印尼盾</span>
+                                        </div>
+                                        <div className="border-t border-gray-200 pt-3">
+                                            <p className="text-sm text-gray-600">专注：物联网集成和智能采矿技术</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                                            <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-bold text-gray-900">Lobo Investment LLC</h4>
+                                            <p className="text-sm text-gray-600">迪拜，阿联酋</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">投资价值：</span>
+                                            <span className="text-2xl font-bold text-purple-600">$20M</span>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium text-gray-700">印尼盾等值：</span>
+                                            <span className="text-lg font-semibold text-gray-900">3320亿印尼盾</span>
+                                        </div>
+                                        <div className="border-t border-gray-200 pt-3">
+                                            <p className="text-sm text-gray-600">专注：战略投资和资本结构</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Leadership Vision - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">领导愿景和商业战略</h3>
+                        <blockquote className="rounded-r-xl border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 shadow-sm">
+                            <p className="mb-4 text-lg leading-relaxed text-gray-800 italic">
+                                "我们不仅仅是在建设一个采矿项目，而是在建立信任基础和基于技术的投资生态系统，连接印度尼西亚和阿拉伯联合酋长国。这是迈向透明和可持续采矿未来的战略性一步。"
+                            </p>
+                            <cite className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                    />
+                                </svg>
+                                Andito Prasetyowan，PT Kristalin Eka Lestari总裁兼董事
+                            </cite>
+                        </blockquote>
+                    </div>
+
+                    {/* Blockchain Technology Innovation - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">区块链技术和伊斯兰教法合规</h3>
+                        <div className="rounded-xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                这个雄心勃勃的项目与传统投资的区别在于应用了完全符合<strong>伊斯兰教法原则</strong>的<strong>区块链技术</strong>
+                                。Kristalin集团将实施一个创新系统，将数字技术与伊斯兰金融规则相结合。
+                            </p>
+                            <div className="grid gap-6 md:grid-cols-3">
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-200">
+                                        <svg className="h-7 w-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">真实世界资产代币化（RWA）</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">通过可透明交易的区块链代币实现数字黄金所有权</p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200">
+                                        <svg className="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">智能合约</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">
+                                        自动化和透明的利润分配系统，确保所有利益相关者的公平性
+                                    </p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-200">
+                                        <svg className="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-2 text-center text-base font-bold text-gray-900">区块链追踪</h4>
+                                    <p className="text-center text-sm leading-relaxed text-gray-600">从生产、所有权到黄金分配的端到端实时记录</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <blockquote className="rounded-r-xl border-l-4 border-teal-500 bg-gradient-to-r from-teal-50 to-cyan-50 p-6 shadow-sm">
+                            <p className="mb-4 text-lg leading-relaxed text-gray-800 italic">
+                                "迪拜是理想的全球金融中心，可以进行完全符合伊斯兰教法原则的跨境区块链投资。这种商业模式确保了透明度、安全性和对伊斯兰金融规则的遵守。"
+                            </p>
+                            <cite className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                    />
+                                </svg>
+                                Ronald Rigen Tambunan，Kristalin Digital Dubai首席执行官
+                            </cite>
+                        </blockquote>
+                    </div>
+
+                    {/* Project Development Phases - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">项目开发阶段</h3>
+                        <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                中巴布亚纳比雷金矿的开发将分阶段、有组织地进行，以确保运营的可持续性和对当地社区的积极影响。
+                            </p>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
+                                        <span className="text-lg font-bold text-amber-600">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">勘探阶段</h4>
+                                        <p className="text-sm text-gray-600">绘制地图和地质分析，以确定特许权区域内潜在的黄金储量</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                                        <span className="text-lg font-bold text-blue-600">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">基础设施建设</h4>
+                                        <p className="text-sm text-gray-600">建设采矿设施、加工厂和运营支持基础设施</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                                        <span className="text-lg font-bold text-green-600">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">生产阶段</h4>
+                                        <p className="text-sm text-gray-600">按照国际标准和环保实践进行黄金开采作业</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-100">
+                                        <span className="text-lg font-bold text-purple-600">4</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">资产代币化</h4>
+                                        <p className="text-sm text-gray-600">实施区块链系统以实现数字黄金所有权和交易透明度</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4 rounded-lg border border-gray-200 bg-white p-4">
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100">
+                                        <span className="text-lg font-bold text-indigo-600">5</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 text-base font-bold text-gray-900">出口和分销</h4>
+                                        <p className="text-sm text-gray-600">通过区块链跟踪系统向全球市场营销和分销黄金</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Economic & Social Impact - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">经济和社会影响</h3>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <div className="rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-6">
+                                <h4 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                                    <svg className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                        />
+                                    </svg>
+                                    社区赋权
+                                </h4>
+                                <ul className="space-y-3 text-gray-700">
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">为中巴布亚当地社区创造就业机会</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">培训计划和技术技能发展</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">提高运营区域周边社区的经济能力</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                        <span className="text-sm">社会基础设施和公共设施的建设</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+                                <h4 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                        />
+                                    </svg>
+                                    可持续治理
+                                </h4>
+                                <ul className="space-y-3 text-gray-700">
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">通过区块链技术实现运营透明度</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">完全符合国际环境标准</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">负责任和可持续的采矿实践</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                        <span className="text-sm">成为透明采矿治理的全球典范</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Strategic Significance - Chinese */}
+                    <div className="space-y-6">
+                        <h3 className="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">对印度尼西亚的战略意义</h3>
+                        <div className="rounded-xl border border-orange-200 bg-gradient-to-r from-orange-50 to-red-50 p-6">
+                            <p className="mb-6 text-base leading-relaxed text-gray-800">
+                                这项投资对印度尼西亚采矿业的发展具有深远的战略意义，特别是在数字化转型和与全球金融生态系统融合的背景下。
+                            </p>
+                            <div className="grid gap-4 md:grid-cols-3">
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
+                                        <svg className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">投资吸引力</h4>
+                                    <p className="text-xs text-gray-600">增强国际投资者信心</p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                                        <svg className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">技术创新</h4>
+                                    <p className="text-xs text-gray-600">采矿业区块链先驱</p>
+                                </div>
+
+                                <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-teal-100">
+                                        <svg className="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M12 3v12m0 0l-3-3m3 3l3-3m6 6V11a2 2 0 00-2-2h-1M4 11h5"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h4 className="mb-1 text-sm font-bold text-gray-900">全球合作伙伴关系</h4>
+                                    <p className="text-xs text-gray-600">加强印尼-阿联酋关系</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Future Vision & Commitment - Chinese */}
+                    <div className="rounded-2xl border border-gray-200 bg-gradient-to-r from-gray-50 to-slate-50 p-6">
+                        <h3 className="mb-3 flex items-center gap-2 text-lg font-bold text-gray-900">
+                            <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                />
+                            </svg>
+                            长期承诺和未来愿景
+                        </h3>
+                        <p className="mb-4 text-base leading-relaxed text-gray-800">
+                            这项5500万美元的投资协议不仅仅是一项金融交易，而是对建设可持续、透明的黄金开采生态系统的长期承诺，为中巴布亚人民带来真正的积极影响。通过整合区块链技术和伊斯兰教法原则，Kristalin集团决心使印度尼西亚成为负责任黄金开采治理的全球典范。
+                        </p>
+                        <p className="text-base leading-relaxed text-gray-800">
+                            该项目预计将成为区域经济发展、当地社区赋权和加强印度尼西亚在世界黄金开采行业地位的催化剂。通过与迪拜投资者的战略合作和尖端技术的实施，Kristalin集团已准备好带领印度尼西亚采矿业进入更透明、高效和可持续的数字时代。
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+
+        // Default: Indonesian (original content)
+        return null; // Will use the HTML content from fullContent in news.tsx
     };
 
     useEffect(() => {
