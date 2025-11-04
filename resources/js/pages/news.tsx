@@ -76,7 +76,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
 
     const translationKey = articleKeyMap[articleId];
     if (translationKey) {
-        const newsKey = `news.${translationKey}.title`;
+        const newsKey = `news_detail.${translationKey}.title`;
         const translatedTitle = t(newsKey);
 
         // If translation exists and is not the same as the key, return it
@@ -121,12 +121,12 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'aug-8': 'aug_sembako_distribution_5',
         'sept-1': 'sept1_torindo_acquisition_heavy_equipment',
         'sept-3': 'torindo_sept3_acquisition_article',
-        'oct-1': 'oct_dubai_investment_blockchain',
+        'oct-1': 'oct1_dubai_investment_blockchain',
     };
 
     const translationKey = articleKeyMap[articleId];
     if (translationKey) {
-        const newsKey = `news.${translationKey}.excerpt`;
+        const newsKey = `news_detail.${translationKey}.excerpt`;
         const translatedExcerpt = t(newsKey);
 
         // If translation exists and is not the same as the key, return it
