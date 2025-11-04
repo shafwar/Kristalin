@@ -58,13 +58,12 @@ return [
         'position_shareholder' => 'Pemegang Saham',
         'position_advisor_shareholder' => 'Penasihat & Pemegang Saham',
         'position_president_director' => 'Direktur Utama',
-        'position_komisaris' => 'Komisaris',
-        'position_managing_partner' => 'Managing Partner',
+        'position_commissioner' => 'Komisaris',
+        'position_managing_partner' => 'Mitra Pengelola',
         'position_corporate_secretary' => 'Sekretaris Perusahaan',
-        'position_direktur_utama' => 'Direktur Utama',
         'position_finance_director' => 'Direktur Keuangan',
-        'position_group_head_compliance' => 'Group Head Compliance',
-        'position_group_hr_director' => 'Group HR Director',
+        'position_group_head_compliance' => 'Kepala Grup Kepatuhan',
+        'position_group_hr_director' => 'Direktur SDM Grup',
     ],
 
     // Common phrases

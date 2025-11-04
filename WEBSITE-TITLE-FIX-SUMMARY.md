@@ -3,11 +3,13 @@
 ## 🔍 **MASALAH YANG DITEMUKAN:**
 
 Di Google Search Results, website menampilkan:
+
 ```
 - Kristalin
 ```
 
 Seharusnya:
+
 ```
 Kristalin Ekalestari
 ```
@@ -17,6 +19,7 @@ Kristalin Ekalestari
 ## 📊 **ROOT CAUSE ANALYSIS:**
 
 ### **Masalah 1: Format Title dengan Hyphen**
+
 ```typescript
 // resources/js/app.tsx (OLD)
 title: (title) => `${title} - ${appName}`,
@@ -24,6 +27,7 @@ title: (title) => `${title} - ${appName}`,
 ```
 
 ### **Masalah 2: Homepage Tidak Ada Explicit Title**
+
 ```typescript
 // resources/js/pages/welcome.tsx (OLD)
 // ❌ Tidak ada <Head title="..." />
@@ -31,6 +35,7 @@ title: (title) => `${title} - ${appName}`,
 ```
 
 ### **Masalah 3: Environment Variable Hanya "Kristalin"**
+
 ```bash
 # Railway Environment Variables (OLD)
 APP_NAME=Kristalin  # ❌ Hanya "Kristalin"
@@ -44,16 +49,19 @@ VITE_APP_NAME=Kristalin  # ❌ Hanya "Kristalin"
 ### **1. Update Title Format (app.tsx & ssr.tsx)**
 
 **BEFORE:**
+
 ```typescript
 title: (title) => `${title} - ${appName}`,
 ```
 
 **AFTER:**
+
 ```typescript
 title: (title) => (title ? `${title} | ${appName}` : appName),
 ```
 
 **Hasil:**
+
 - Jika ada title: `"Page Title | Kristalin Ekalestari"`
 - Jika tidak ada title: `"Kristalin Ekalestari"`
 - Gunakan `|` (pipe) instead of `-` (hyphen) untuk separator yang lebih modern
@@ -61,6 +69,7 @@ title: (title) => (title ? `${title} | ${appName}` : appName),
 ### **2. Tambahkan Explicit Title di Homepage**
 
 **BEFORE:**
+
 ```typescript
 // resources/js/pages/welcome.tsx
 return (
@@ -68,6 +77,7 @@ return (
 ```
 
 **AFTER:**
+
 ```typescript
 // resources/js/pages/welcome.tsx
 import { Head, Link } from '@inertiajs/react';
@@ -82,15 +92,18 @@ return (
 ```
 
 **Hasil:**
+
 - Homepage sekarang punya title: `"Home | Kristalin Ekalestari"`
 
 ### **3. Update Environment Variable Documentation**
 
 **Updated Files:**
+
 - ✅ `env.example` → `APP_NAME="Kristalin Ekalestari"`
 - ✅ Documentation files updated
 
 **Railway Environment Variables (PERLU DIUPDATE):**
+
 ```bash
 # Update di Railway Dashboard:
 APP_NAME="Kristalin Ekalestari"
@@ -114,11 +127,13 @@ VITE_APP_NAME="Kristalin Ekalestari"
 ## 🚀 **DEPLOYMENT STEPS:**
 
 ### **Step 1: Build Assets**
+
 ```bash
 npm run build
 ```
 
 ### **Step 2: Commit Changes**
+
 ```bash
 git add .
 git commit -m "🔧 FIX: Update website title from '- Kristalin' to 'Kristalin Ekalestari'
@@ -130,21 +145,24 @@ git commit -m "🔧 FIX: Update website title from '- Kristalin' to 'Kristalin E
 ```
 
 ### **Step 3: Push to Production**
+
 ```bash
 git push origin main
 ```
 
 ### **Step 4: Update Railway Environment Variables**
+
 1. Go to Railway Dashboard
 2. Navigate to Variables
 3. Update:
-   ```bash
-   APP_NAME="Kristalin Ekalestari"
-   VITE_APP_NAME="Kristalin Ekalestari"
-   ```
+    ```bash
+    APP_NAME="Kristalin Ekalestari"
+    VITE_APP_NAME="Kristalin Ekalestari"
+    ```
 4. Redeploy if needed
 
 ### **Step 5: Wait for Google Re-index**
+
 - Google akan otomatis re-crawl dan update title
 - Bisa dipercepat dengan Google Search Console (Request Indexing)
 - Estimasi waktu: 1-7 hari
@@ -154,6 +172,7 @@ git push origin main
 ## 🎯 **EXPECTED RESULTS:**
 
 ### **Before:**
+
 ```
 Google Search Result:
 - Kristalin
@@ -161,6 +180,7 @@ https://kristalin.co.id
 ```
 
 ### **After:**
+
 ```
 Google Search Result:
 Home | Kristalin Ekalestari
@@ -178,6 +198,7 @@ https://kristalin.co.id/news
 ## 🔍 **VERIFICATION CHECKLIST:**
 
 ### **Local Testing:**
+
 - [ ] `npm run build` (success)
 - [ ] Open homepage in browser
 - [ ] Check browser tab title: "Home | Kristalin Ekalestari"
@@ -186,6 +207,7 @@ https://kristalin.co.id/news
 - [ ] Inspect HTML `<title>` tag in source
 
 ### **Production Testing:**
+
 - [ ] Deploy to Railway
 - [ ] Open https://kristalin.co.id
 - [ ] Check browser tab title
@@ -194,6 +216,7 @@ https://kristalin.co.id/news
 - [ ] Submit sitemap to Google Search Console
 
 ### **Google Search Testing:**
+
 - [ ] Wait 1-7 days for re-indexing
 - [ ] Search "site:kristalin.co.id" di Google
 - [ ] Verify title shows "Kristalin Ekalestari" (not "- Kristalin")
@@ -207,27 +230,31 @@ https://kristalin.co.id/news
 ### **Title Format Comparison:**
 
 **OLD FORMAT:**
+
 ```typescript
 // Separator: hyphen (-)
-"Page Title - Kristalin"
-"undefined - Kristalin" // Jika tidak ada title
-"- Kristalin" // Jika title kosong
+'Page Title - Kristalin';
+'undefined - Kristalin'; // Jika tidak ada title
+'- Kristalin'; // Jika title kosong
 ```
 
 **NEW FORMAT:**
+
 ```typescript
 // Separator: pipe (|)
-"Page Title | Kristalin Ekalestari"
-"Kristalin Ekalestari" // Jika tidak ada title (fallback)
+'Page Title | Kristalin Ekalestari';
+'Kristalin Ekalestari'; // Jika tidak ada title (fallback)
 ```
 
 ### **Why Pipe (|) Instead of Hyphen (-):**
+
 1. ✅ Modern standard (digunakan oleh Google, Microsoft, Apple)
 2. ✅ Lebih jelas visual separation
 3. ✅ Tidak menimbulkan ambiguity dengan hyphen di nama
 4. ✅ SEO best practice
 
 ### **Why Fallback to Company Name:**
+
 1. ✅ Tidak ada title kosong atau undefined
 2. ✅ Homepage selalu menampilkan company name
 3. ✅ Konsisten di semua halaman
@@ -238,18 +265,21 @@ https://kristalin.co.id/news
 ## 🎉 **BENEFITS:**
 
 ### **SEO Benefits:**
+
 - ✅ Proper company name di search results
 - ✅ No confusing hyphen before name
 - ✅ Consistent branding
 - ✅ Better click-through rate (CTR)
 
 ### **UX Benefits:**
+
 - ✅ Professional looking browser tabs
 - ✅ Clear page identification
 - ✅ Consistent branding
 - ✅ Better user recognition
 
 ### **Technical Benefits:**
+
 - ✅ Cleaner code structure
 - ✅ Proper fallback handling
 - ✅ SSR compatible
@@ -260,17 +290,21 @@ https://kristalin.co.id/news
 ## 🚨 **IMPORTANT NOTES:**
 
 ### **Railway Environment Variables:**
+
 **MUST UPDATE** di Railway Dashboard:
+
 ```bash
 APP_NAME="Kristalin Ekalestari"
 VITE_APP_NAME="Kristalin Ekalestari"
 ```
 
 **Jika tidak diupdate:**
+
 - Title akan tetap menggunakan fallback: "Kristalin Ekalestari" (dari code)
 - Tapi lebih baik update environment variable untuk consistency
 
 ### **Google Re-indexing:**
+
 - Google akan otomatis detect perubahan
 - Bisa dipercepat dengan Google Search Console
 - Submit updated sitemap.xml
@@ -281,6 +315,7 @@ VITE_APP_NAME="Kristalin Ekalestari"
 ## 📞 **VERIFICATION COMMANDS:**
 
 ### **Check Local Build:**
+
 ```bash
 npm run build
 php artisan serve
@@ -289,12 +324,14 @@ php artisan serve
 ```
 
 ### **Check Production:**
+
 ```bash
 curl -s https://kristalin.co.id | grep "<title>"
 # Should show: <title>Home | Kristalin Ekalestari</title>
 ```
 
 ### **Check Railway Deployment:**
+
 ```bash
 railway logs --tail 50
 # Verify build success
@@ -317,4 +354,3 @@ railway logs --tail 50
 **Last Updated:** $(date)
 **Version:** 1.0.0
 **Status:** ✅ READY FOR DEPLOYMENT
-

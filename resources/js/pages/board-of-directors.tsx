@@ -1,4 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
+import { Head } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
@@ -11,11 +12,11 @@ const directorsData = [
     {
         id: 11,
         name: 'Asri Dyah Wijayanti',
-        positionKey: 'position_direktur_utama',
+        positionKey: 'position_president_director',
         company: 'PT Nusamineral Mining Services',
         image: '/IMG_4701.JPG',
     },
-    { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_komisaris', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
+    { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_commissioner', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
     { id: 12, name: 'Dony Rivai', positionKey: 'position_finance_director', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
     { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0188.JPG' },
     { id: 7, name: 'Reza Rizky Darmawan', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0272.JPG' },
@@ -202,9 +203,9 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
             }}
             className="group"
         >
-            <div className="relative overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-200/40 transition-all duration-300 group-hover:shadow-lg group-hover:ring-slate-300/60">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-200/40 transition-all duration-300 group-hover:shadow-xl group-hover:ring-slate-300/60">
                 {/* Director Photo - standard aspect ratio */}
-                <div className="relative aspect-[4/5] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
                     <OptimizedImage
                         src={director.image}
                         alt={director.name}
@@ -214,25 +215,30 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
                     />
 
                     {/* Minimal overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
 
-                {/* Director Information - optimized spacing */}
-                <div className="relative p-6">
-                    <div className="space-y-3">
-                        <div>
-                            <h3 className="text-lg leading-tight font-bold text-slate-900 transition-colors duration-300 group-hover:text-slate-800">
-                                {director.name}
-                            </h3>
-                        </div>
+                {/* Director Information - compact and proportional spacing */}
+                <div className="relative flex flex-1 flex-col px-5 py-4">
+                    <div className="flex flex-1 flex-col">
+                        {/* Name - compact spacing */}
+                        <h3 className="mb-3 text-lg leading-tight font-bold text-slate-900 transition-colors duration-300 group-hover:text-amber-700">
+                            {director.name}
+                        </h3>
 
-                        <div>tamam 
-                            <span className="inline-block rounded-full bg-gradient-to-r from-amber-100 to-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-800 ring-1 ring-amber-200/60">
+                        {/* Position Badge - reduced spacing */}
+                        <div className="mb-3 flex items-start">
+                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-amber-100 to-yellow-50 px-3.5 py-1.5 text-xs font-semibold leading-none text-amber-900 ring-1 ring-amber-200/70 transition-all duration-300 group-hover:from-amber-200 group-hover:to-yellow-100 group-hover:shadow-sm group-hover:ring-amber-300">
                                 {t(`board_of_directors.${director.positionKey}`)}
                             </span>
                         </div>
 
-                        {director.company && <p className="text-sm leading-relaxed text-slate-600">{director.company}</p>}
+                        {/* Company - default to PT Kristalin Ekalestari if empty */}
+                        <div className="mt-auto">
+                            <p className="text-sm leading-relaxed text-slate-600 transition-colors duration-300 group-hover:text-slate-800">
+                                {director.company || 'PT Kristalin Ekalestari'}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,254 +259,256 @@ const BoardOfDirectors = () => {
     }, []);
 
     return (
-        <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200">
-            <Header sticky={true} transparent={true} />
+        <>
+            <Head title={t('board_of_directors.hero_title')} />
+            <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200">
+                <Header sticky={true} transparent={true} />
 
-            {/* Enhanced Premium Hero Section with Business Activity Style */}
-            <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-                {/* Background Image with Parallax Effect */}
-                <div
-                    className="absolute inset-0 h-full w-full"
-                    style={{
-                        transform: `translateY(${scrollY * 0.5}px)`,
-                    }}
-                >
-                    <img src="/directorshero.jpg" alt="Board of Directors background" className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
-                </div>
-
-                <motion.div
-                    className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                >
-                    <motion.div
-                        className="transform transition-all duration-1000 ease-out"
+                {/* Enhanced Premium Hero Section with Business Activity Style */}
+                <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+                    {/* Background Image with Parallax Effect */}
+                    <div
+                        className="absolute inset-0 h-full w-full"
                         style={{
-                            transform: `translateY(${scrollY * 0.2}px)`,
-                            opacity: Math.max(0, 1 - scrollY / 600),
+                            transform: `translateY(${scrollY * 0.5}px)`,
                         }}
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: 'easeOut' }}
                     >
-                        {/* MOBILE RESPONSIVE LEADERSHIP EXCELLENCE BADGE */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 1, ease: 'easeOut' }}
-                            className="mb-8 sm:mb-12"
-                        >
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-6 py-2.5 text-sm font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm sm:px-8 sm:py-3 sm:text-base">
-                                <motion.svg
-                                    className="mr-2 h-4 w-4 sm:mr-3 sm:h-5 sm:w-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                    animate={{ rotate: [0, 360] }}
-                                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                                >
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                </motion.svg>
-                                {t('board_of_directors.hero_badge')}
-                            </span>
-                        </motion.div>
-
-                        {/* MOBILE RESPONSIVE MAIN TITLE */}
-                        <motion.h1
-                            className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
-                            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
-                        >
-                            <motion.span
-                                className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-                            >
-                                {t('board_of_directors.hero_title')}
-                            </motion.span>
-                        </motion.h1>
-
-                        {/* MOBILE RESPONSIVE DESCRIPTION */}
-                        <motion.p
-                            className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
-                        >
-                            {t('board_of_directors.hero_subtitle')}
-                        </motion.p>
-
-                        {/* MOBILE RESPONSIVE EXPLORE BUTTON */}
-                        <motion.div
-                            className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
-                            initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
-                        >
-                            <motion.button
-                                onClick={() => {
-                                    if (directorsRef.current) {
-                                        directorsRef.current.scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                }}
-                                className="group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 sm:px-8 sm:py-4 sm:text-base lg:px-12 lg:py-5 lg:text-lg"
-                                whileHover={{
-                                    scale: 1.02,
-                                    boxShadow: '0 20px 40px rgba(251, 191, 36, 0.4)',
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-                                    {t('board_of_directors.section_title')}
-                                    <svg
-                                        className="h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                            </motion.button>
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
-
-                {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
-                <motion.div
-                    className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.4, ease: 'easeOut' }}
-                >
-                    <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
-                        <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
+                        <img src="/directorshero.jpg" alt="Board of Directors background" className="h-full w-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                     </div>
-                </motion.div>
-            </section>
 
-            {/* Premium Directors Section */}
-            <section ref={directorsRef} className="py-20 sm:py-24 lg:py-32">
-                <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-                    {/* Enhanced Section Header */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         transition={{ duration: 1, ease: 'easeOut' }}
-                        className="mb-20 text-center"
                     >
-                        <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">{t('board_of_directors.section_title')}</h2>
-                        <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-700">{t('board_of_directors.section_subtitle')}</p>
-                    </motion.div>
+                        <motion.div
+                            className="transform transition-all duration-1000 ease-out"
+                            style={{
+                                transform: `translateY(${scrollY * 0.2}px)`,
+                                opacity: Math.max(0, 1 - scrollY / 600),
+                            }}
+                            initial={{ opacity: 0, y: 80 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2, ease: 'easeOut' }}
+                        >
+                            {/* MOBILE RESPONSIVE LEADERSHIP EXCELLENCE BADGE */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ duration: 1, ease: 'easeOut' }}
+                                className="mb-8 sm:mb-12"
+                            >
+                                <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-6 py-2.5 text-sm font-semibold text-white shadow-2xl ring-2 ring-yellow-400/50 drop-shadow-lg backdrop-blur-sm sm:px-8 sm:py-3 sm:text-base">
+                                    <motion.svg
+                                        className="mr-2 h-4 w-4 sm:mr-3 sm:h-5 sm:w-5"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                        animate={{ rotate: [0, 360] }}
+                                        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                                    >
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </motion.svg>
+                                    {t('board_of_directors.hero_badge')}
+                                </span>
+                            </motion.div>
 
-                    {/* Premium Directors Grid */}
-                    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {directorsData.map((director, index) => (
-                            <DirectorCard key={director.id} director={director} index={index} />
-                        ))}
-                    </div>
-
-                    {/* Enhanced Statistics Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 60 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.2, duration: 1 }}
-                        className="mt-32"
-                    >
-                        <div className="mb-16 text-center">
-                            <h3 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">{t('board_of_directors.impact_title')}</h3>
-                            <p className="mx-auto max-w-2xl text-gray-700">{t('board_of_directors.impact_subtitle')}</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
-                            {[
-                                {
-                                    icon: (
-                                        <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                                        </svg>
-                                    ),
-                                    number: directorsData.length,
-                                    label: t('board_of_directors.stats_members'),
-                                    description: t('board_of_directors.stats_members_desc'),
-                                    color: 'amber',
-                                },
-                                {
-                                    icon: (
-                                        <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                        </svg>
-                                    ),
-                                    number: '150+',
-                                    label: t('board_of_directors.stats_experience'),
-                                    description: t('board_of_directors.stats_experience_desc'),
-                                    color: 'emerald',
-                                },
-                                {
-                                    icon: (
-                                        <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-                                        </svg>
-                                    ),
-                                    number: 'ESG',
-                                    label: t('board_of_directors.stats_sustainability'),
-                                    description: t('board_of_directors.stats_sustainability_desc'),
-                                    color: 'blue',
-                                },
-                            ].map((stat, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="group text-center"
-                                    whileHover={{ y: -6, scale: 1.02 }}
+                            {/* MOBILE RESPONSIVE MAIN TITLE */}
+                            <motion.h1
+                                className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
+                                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+                            >
+                                <motion.span
+                                    className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent"
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 1.4 + index * 0.2, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                    transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
                                 >
-                                    <div
-                                        className="relative mx-auto mb-8 overflow-hidden rounded-2xl bg-gradient-to-br p-6 shadow-xl transition-all duration-500 group-hover:shadow-2xl"
-                                        style={{
-                                            background:
-                                                stat.color === 'amber'
-                                                    ? 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)'
-                                                    : stat.color === 'emerald'
-                                                      ? 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)'
-                                                      : 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                                        }}
-                                    >
-                                        <div
-                                            className={`mx-auto flex h-20 w-20 items-center justify-center rounded-xl ${
-                                                stat.color === 'amber'
-                                                    ? 'bg-white/80 text-amber-700'
-                                                    : stat.color === 'emerald'
-                                                      ? 'bg-white/80 text-emerald-700'
-                                                      : 'bg-white/80 text-blue-700'
-                                            }`}
+                                    {t('board_of_directors.hero_title')}
+                                </motion.span>
+                            </motion.h1>
+
+                            {/* MOBILE RESPONSIVE DESCRIPTION */}
+                            <motion.p
+                                className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 1.0, ease: 'easeOut' }}
+                            >
+                                {t('board_of_directors.hero_subtitle')}
+                            </motion.p>
+
+                            {/* MOBILE RESPONSIVE EXPLORE BUTTON */}
+                            <motion.div
+                                className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+                                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                            >
+                                <motion.button
+                                    onClick={() => {
+                                        if (directorsRef.current) {
+                                            directorsRef.current.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 sm:px-8 sm:py-4 sm:text-base lg:px-12 lg:py-5 lg:text-lg"
+                                    whileHover={{
+                                        scale: 1.02,
+                                        boxShadow: '0 20px 40px rgba(251, 191, 36, 0.4)',
+                                    }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                                        {t('board_of_directors.section_title')}
+                                        <svg
+                                            className="h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
                                         >
-                                            {stat.icon}
-                                        </div>
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                </motion.button>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
 
-                                        {/* Subtle glow effect */}
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <div className="text-4xl font-bold text-slate-900">{stat.number}</div>
-                                        <div className="text-lg font-semibold text-slate-800">{stat.label}</div>
-                                        <div className="text-sm text-slate-600">{stat.description}</div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                    {/* MOBILE RESPONSIVE SCROLL INDICATOR */}
+                    <motion.div
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.4, ease: 'easeOut' }}
+                    >
+                        <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
+                            <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
                         </div>
                     </motion.div>
-                </div>
-            </section>
+                </section>
 
-            {/* Enhanced shimmer animation styles */}
-            <style>{`
+                {/* Premium Directors Section */}
+                <section ref={directorsRef} className="py-20 sm:py-24 lg:py-32">
+                    <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+                        {/* Enhanced Section Header */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, ease: 'easeOut' }}
+                            className="mb-20 text-center"
+                        >
+                            <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">{t('board_of_directors.section_title')}</h2>
+                            <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-700">{t('board_of_directors.section_subtitle')}</p>
+                        </motion.div>
+
+                        {/* Premium Directors Grid - Improved proportional layout */}
+                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {directorsData.map((director, index) => (
+                                <DirectorCard key={director.id} director={director} index={index} />
+                            ))}
+                        </div>
+
+                        {/* Enhanced Statistics Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 60 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2, duration: 1 }}
+                            className="mt-32"
+                        >
+                            <div className="mb-16 text-center">
+                                <h3 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">{t('board_of_directors.impact_title')}</h3>
+                                <p className="mx-auto max-w-2xl text-gray-700">{t('board_of_directors.impact_subtitle')}</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+                                {[
+                                    {
+                                        icon: (
+                                            <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                            </svg>
+                                        ),
+                                        number: directorsData.length,
+                                        label: t('board_of_directors.stats_members'),
+                                        description: t('board_of_directors.stats_members_desc'),
+                                        color: 'amber',
+                                    },
+                                    {
+                                        icon: (
+                                            <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                            </svg>
+                                        ),
+                                        number: '150+',
+                                        label: t('board_of_directors.stats_experience'),
+                                        description: t('board_of_directors.stats_experience_desc'),
+                                        color: 'emerald',
+                                    },
+                                    {
+                                        icon: (
+                                            <svg className="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                                            </svg>
+                                        ),
+                                        number: 'ESG',
+                                        label: t('board_of_directors.stats_sustainability'),
+                                        description: t('board_of_directors.stats_sustainability_desc'),
+                                        color: 'blue',
+                                    },
+                                ].map((stat, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="group text-center"
+                                        whileHover={{ y: -6, scale: 1.02 }}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 1.4 + index * 0.2, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                    >
+                                        <div
+                                            className="relative mx-auto mb-8 overflow-hidden rounded-2xl bg-gradient-to-br p-6 shadow-xl transition-all duration-500 group-hover:shadow-2xl"
+                                            style={{
+                                                background:
+                                                    stat.color === 'amber'
+                                                        ? 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)'
+                                                        : stat.color === 'emerald'
+                                                          ? 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)'
+                                                          : 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+                                            }}
+                                        >
+                                            <div
+                                                className={`mx-auto flex h-20 w-20 items-center justify-center rounded-xl ${
+                                                    stat.color === 'amber'
+                                                        ? 'bg-white/80 text-amber-700'
+                                                        : stat.color === 'emerald'
+                                                          ? 'bg-white/80 text-emerald-700'
+                                                          : 'bg-white/80 text-blue-700'
+                                                }`}
+                                            >
+                                                {stat.icon}
+                                            </div>
+
+                                            {/* Subtle glow effect */}
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <div className="text-4xl font-bold text-slate-900">{stat.number}</div>
+                                            <div className="text-lg font-semibold text-slate-800">{stat.label}</div>
+                                            <div className="text-sm text-slate-600">{stat.description}</div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* Enhanced shimmer animation styles */}
+                <style>{`
                 @keyframes shimmer {
                     0% {
                         transform: translateX(-100%);
@@ -511,8 +519,9 @@ const BoardOfDirectors = () => {
                 }
             `}</style>
 
-            <Footer />
-        </div>
+                <Footer />
+            </div>
+        </>
     );
 };
 
