@@ -1,5 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
@@ -1124,9 +1124,11 @@ const Welcome = () => {
 
     // Main Content
     return (
-        <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-            {/* Loading Screen */}
-            <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
+        <>
+            <Head title="Home" />
+            <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+                {/* Loading Screen */}
+                <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
 
             {/* Header - Hidden during loading */}
             <AnimatePresence>
@@ -2208,7 +2210,8 @@ const Welcome = () => {
         `,
                 }}
             />
-        </div>
+            </div>
+        </>
     );
 };
 
