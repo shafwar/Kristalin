@@ -71,6 +71,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'aug-8': 'aug_sembako_distribution_5',
         'sept-1': 'sept1_torindo_acquisition_heavy_equipment',
         'sept-3': 'torindo_sept3_acquisition_article',
+        'oct-1': 'oct1_dubai_investment_blockchain',
     };
 
     const translationKey = articleKeyMap[articleId];

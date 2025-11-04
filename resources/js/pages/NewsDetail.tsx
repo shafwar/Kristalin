@@ -6717,8 +6717,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                             </svg>
                                                         </div>
-                          
-                          </div>
+                                                    </div>
                                                 </div>
                                             </Link>
                                         </motion.div>
