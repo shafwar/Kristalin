@@ -646,42 +646,32 @@ const Welcome = () => {
                             {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
-                                <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
-                                    <AnimatePresence initial={false} mode="wait">
+                                <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
+                                    <AnimatePresence initial={false}>
                                         <motion.div
                                             key={currentSlide}
-                                            initial={{ opacity: 0, scale: 1.03, y: 8 }}
-                                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.97, y: -8 }}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
                                             transition={{
-                                                duration: 0.6,
-                                                ease: [0.25, 0.1, 0.25, 1],
-                                                opacity: { duration: 0.5, ease: 'easeInOut' },
-                                                scale: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
-                                                y: { duration: 0.5, ease: 'easeOut' },
+                                                duration: 0.8,
+                                                ease: 'easeInOut',
                                             }}
                                             className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
-                                            style={{ willChange: 'transform, opacity' }}
                                             onMouseEnter={() => setHoveredCard(0)}
                                             onMouseLeave={() => setHoveredCard(null)}
                                             onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                         >
-                                            {/* Background Image - Enhanced mobile transition with subtle scale */}
+                                            {/* Background Image - Perfect crossfade, no background visible */}
                                             <motion.div
-                                                initial={{ opacity: 0, scale: 1.05 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                exit={{ opacity: 0, scale: 1.02 }}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.7,
-                                                    ease: [0.22, 0.61, 0.36, 1],
-                                                    opacity: { duration: 0.6, ease: 'easeInOut' },
-                                                    scale: { duration: 0.7, ease: [0.22, 0.61, 0.36, 1] },
+                                                    duration: 0.8,
+                                                    ease: 'easeInOut',
                                                 }}
                                                 className="absolute inset-0 h-full w-full"
-                                                style={{ 
-                                                    transform: 'translateZ(0)',
-                                                    willChange: 'transform, opacity'
-                                                }}
                                             >
                                                 <img
                                                     src={carouselSlides[currentSlide].image}
@@ -689,11 +679,9 @@ const Welcome = () => {
                                                     className="h-full w-full object-cover"
                                                     style={{
                                                         objectPosition: 'center center',
-                                                        transform: 'translateZ(0) scale3d(1, 1, 1)',
+                                                        transform: 'translateZ(0)',
                                                         backfaceVisibility: 'hidden',
                                                         WebkitBackfaceVisibility: 'hidden',
-                                                        perspective: 1000,
-                                                        WebkitPerspective: 1000,
                                                     }}
                                                     onError={(e) => {
                                                         e.currentTarget.style.display = 'none';
@@ -702,59 +690,31 @@ const Welcome = () => {
                                                 />
                                             </motion.div>
 
-                                            {/* Dark overlay - Animated for smoother transition feel */}
+                                            {/* Dark overlay - Static untuk konsistensi */}
+                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+                                            {/* Text Content - Smooth fade only */}
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.5,
+                                                    duration: 0.6,
+                                                    delay: 0.2,
                                                     ease: 'easeInOut',
                                                 }}
-                                                className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                                            />
-
-                                            {/* Text Content - Enhanced entry animation */}
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 12 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -12 }}
-                                                transition={{
-                                                    duration: 0.5,
-                                                    delay: 0.15,
-                                                    ease: [0.22, 0.61, 0.36, 1],
-                                                }}
                                                 className="relative z-10"
-                                                style={{ willChange: 'transform, opacity' }}
                                             >
-                                                <motion.div
-                                                    initial={{ opacity: 0, x: -8 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    exit={{ opacity: 0, x: 8 }}
-                                                    transition={{
-                                                        duration: 0.4,
-                                                        delay: 0.2,
-                                                        ease: 'easeOut',
-                                                    }}
-                                                    className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm"
-                                                >
+                                                <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
                                                     {carouselSlides[currentSlide].category}
-                                                </motion.div>
-                                                <motion.h3
-                                                    initial={{ opacity: 0, x: -12 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    exit={{ opacity: 0, x: 12 }}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                        delay: 0.25,
-                                                        ease: [0.22, 0.61, 0.36, 1],
-                                                    }}
+                                                </div>
+                                                <h3
                                                     className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
                                                         hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
                                                     }`}
                                                 >
                                                     {carouselSlides[currentSlide].title}
-                                                </motion.h3>
+                                                </h3>
                                             </motion.div>
                                         </motion.div>
                                     </AnimatePresence>
