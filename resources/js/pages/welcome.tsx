@@ -435,58 +435,53 @@ const Welcome = () => {
                                             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                                         }`}
                                     >
-                                        {/* Konten Kristalin - Enhanced Premium Letter Animation */}
+                                        {/* Hero Text - Mobile Anti-Flicker Optimized */}
                                         <div className="relative">
                                             <AnimatePresence mode="wait">
                                                 <motion.div
                                                     key={currentContent}
-                                                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                    exit={{ opacity: 0, scale: 1.02, y: -10 }}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
                                                     transition={{
-                                                        duration: 0.7,
-                                                        ease: [0.25, 0.1, 0.25, 1],
-                                                        opacity: { duration: 0.6, ease: 'easeInOut' },
-                                                        scale: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
-                                                        y: { duration: 0.6, ease: 'easeOut' },
+                                                        duration: 0.8,
+                                                        ease: 'easeInOut',
                                                     }}
-                                                    style={{ willChange: 'transform, opacity' }}
+                                                    style={{
+                                                        transform: 'translate3d(0, 0, 0)',
+                                                        willChange: 'opacity',
+                                                        backfaceVisibility: 'hidden',
+                                                        WebkitBackfaceVisibility: 'hidden',
+                                                    }}
                                                 >
                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                        {/* Title 1 - Premium Letter Animation with Mobile Optimization */}
+                                                        {/* Title 1 - Smooth letter cascade (mobile optimized) */}
                                                     <div className="inline-block text-gray-800">
                                                         {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
                                                             <motion.span
                                                                     key={`${currentContent}-${index}`}
                                                                 initial={{
                                                                     opacity: 0,
-                                                                        y: 10,
-                                                                        scale: 0.95,
-                                                                        filter: 'blur(1.5px)',
+                                                                        y: 8,
                                                                 }}
                                                                 animate={{
                                                                     opacity: 1,
                                                                     y: 0,
-                                                                    scale: 1,
-                                                                    filter: 'blur(0px)',
                                                                 }}
                                                                     exit={{
                                                                         opacity: 0,
-                                                                        scale: 1.05,
-                                                                        filter: 'blur(1px)',
                                                                 }}
                                                                 transition={{
-                                                                        duration: 0.8,
-                                                                        ease: [0.22, 0.61, 0.36, 1],
-                                                                        delay: index * 0.04,
-                                                                        opacity: { duration: 0.6, ease: 'easeInOut' },
-                                                                        scale: { duration: 0.8, ease: [0.22, 0.61, 0.36, 1] },
-                                                                        filter: { duration: 0.7, ease: 'easeOut' },
+                                                                        duration: 0.9,
+                                                                        ease: 'easeOut',
+                                                                        delay: index * 0.03,
                                                                 }}
                                                                 className="inline-block"
                                                                 style={{ 
-                                                                    willChange: 'transform, opacity, filter',
-                                                                    transform: 'translateZ(0)',
+                                                                    transform: 'translate3d(0, 0, 0)',
+                                                                    willChange: 'opacity',
+                                                                    backfaceVisibility: 'hidden',
+                                                                    WebkitBackfaceVisibility: 'hidden',
                                                                 }}
                                                             >
                                                                 {letter === ' ' ? '\u00A0' : letter}
@@ -494,18 +489,15 @@ const Welcome = () => {
                                                         ))}
                                                     </div>
                                                     <br />
-                                                        {/* Title 2 - Enhanced with Scale and Gradient Animation */}
+                                                        {/* Title 2 - Gold gradient (simplified) */}
                                                         <motion.div
-                                                            initial={{ opacity: 0, y: 12, scale: 0.96 }}
-                                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                            exit={{ opacity: 0, y: -12, scale: 1.04 }}
+                                                            initial={{ opacity: 0, y: 8 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            exit={{ opacity: 0 }}
                                                             transition={{
-                                                                duration: 0.9,
-                                                                ease: [0.25, 0.1, 0.25, 1],
-                                                                delay: 0.25,
-                                                                opacity: { duration: 0.7, ease: 'easeInOut' },
-                                                                scale: { duration: 0.9, ease: [0.22, 0.61, 0.36, 1] },
-                                                                y: { duration: 0.8, ease: 'easeOut' },
+                                                                duration: 1.0,
+                                                                ease: 'easeInOut',
+                                                                delay: 0.3,
                                                             }}
                                                             className="inline-block"
                                                         style={{
@@ -513,8 +505,8 @@ const Welcome = () => {
                                                             WebkitBackgroundClip: 'text',
                                                             WebkitTextFillColor: 'transparent',
                                                             backgroundClip: 'text',
-                                                            willChange: 'transform, opacity',
-                                                            transform: 'translateZ(0)',
+                                                            transform: 'translate3d(0, 0, 0)',
+                                                            willChange: 'opacity',
                                                             backfaceVisibility: 'hidden',
                                                             WebkitBackfaceVisibility: 'hidden',
                                                         }}
@@ -526,26 +518,25 @@ const Welcome = () => {
                                             </AnimatePresence>
                                         </div>
 
-                                        {/* Subtitle - Enhanced Premium Transition */}
+                                        {/* Subtitle - Mobile optimized smooth fade */}
                                         <div className="relative">
                                             <AnimatePresence mode="wait">
                                                 <motion.p
                                                 key={`subtitle-${currentContent}`}
-                                                    initial={{ opacity: 0, y: 12, x: -8 }}
-                                                    animate={{ opacity: 1, y: 0, x: 0 }}
-                                                    exit={{ opacity: 0, y: -8, x: 8 }}
+                                                    initial={{ opacity: 0, y: 8 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0 }}
                                                     transition={{
-                                                        duration: 0.8,
-                                                        ease: [0.22, 0.61, 0.36, 1],
-                                                        delay: 0.4,
-                                                        opacity: { duration: 0.7, ease: 'easeInOut' },
-                                                        y: { duration: 0.8, ease: 'easeOut' },
-                                                        x: { duration: 0.7, ease: 'easeOut' },
+                                                        duration: 0.9,
+                                                        ease: 'easeInOut',
+                                                        delay: 0.5,
                                                     }}
                                                     className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
                                                     style={{ 
-                                                        willChange: 'transform, opacity',
-                                                        transform: 'translateZ(0)',
+                                                        transform: 'translate3d(0, 0, 0)',
+                                                        willChange: 'opacity',
+                                                        backfaceVisibility: 'hidden',
+                                                        WebkitBackfaceVisibility: 'hidden',
                                                     }}
                                             >
                                                 {contentSets[currentContent].subtitle}
@@ -645,7 +636,7 @@ const Welcome = () => {
 
                             {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
-                                {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
+                                {/* Carousel Card - Mobile Anti-Flicker Optimized */}
                                 <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
                                     <AnimatePresence initial={false}>
                                         <motion.div
@@ -654,24 +645,34 @@ const Welcome = () => {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{
-                                                duration: 0.8,
-                                                ease: 'easeInOut',
+                                                duration: 1.0,
+                                                ease: 'linear',
                                             }}
                                             className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
+                                            style={{
+                                                transform: 'translate3d(0, 0, 0)',
+                                                willChange: 'opacity',
+                                                backfaceVisibility: 'hidden',
+                                                WebkitBackfaceVisibility: 'hidden',
+                                            }}
                                             onMouseEnter={() => setHoveredCard(0)}
                                             onMouseLeave={() => setHoveredCard(null)}
                                             onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                         >
-                                            {/* Background Image - Perfect crossfade, no background visible */}
+                                            {/* Image - Pure opacity crossfade for smoothness */}
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.8,
-                                                    ease: 'easeInOut',
+                                                    duration: 1.0,
+                                                    ease: 'linear',
                                                 }}
                                                 className="absolute inset-0 h-full w-full"
+                                                style={{
+                                                    transform: 'translate3d(0, 0, 0)',
+                                                    willChange: 'opacity',
+                                                }}
                                             >
                                                 <img
                                                     src={carouselSlides[currentSlide].image}
@@ -679,9 +680,10 @@ const Welcome = () => {
                                                     className="h-full w-full object-cover"
                                                     style={{
                                                         objectPosition: 'center center',
-                                                        transform: 'translateZ(0)',
+                                                        transform: 'translate3d(0, 0, 0)',
                                                         backfaceVisibility: 'hidden',
                                                         WebkitBackfaceVisibility: 'hidden',
+                                                        imageRendering: '-webkit-optimize-contrast',
                                                     }}
                                                     onError={(e) => {
                                                         e.currentTarget.style.display = 'none';
@@ -690,20 +692,24 @@ const Welcome = () => {
                                                 />
                                             </motion.div>
 
-                                            {/* Dark overlay - Static untuk konsistensi */}
+                                            {/* Overlay - Static (no animation) for stability */}
                                             <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
-                                            {/* Text Content - Smooth fade only */}
+                                            {/* Text - Simple fade after image settled */}
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.6,
-                                                    delay: 0.2,
+                                                    duration: 0.8,
+                                                    delay: 0.3,
                                                     ease: 'easeInOut',
                                                 }}
                                                 className="relative z-10"
+                                                style={{
+                                                    transform: 'translate3d(0, 0, 0)',
+                                                    willChange: 'opacity',
+                                                }}
                                             >
                                                 <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
                                                     {carouselSlides[currentSlide].category}
