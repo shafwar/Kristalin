@@ -228,7 +228,7 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
 
                         {/* Position Badge - reduced spacing */}
                         <div className="mb-3 flex items-start">
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-amber-100 to-yellow-50 px-3.5 py-1.5 text-xs font-semibold leading-none text-amber-900 ring-1 ring-amber-200/70 transition-all duration-300 group-hover:from-amber-200 group-hover:to-yellow-100 group-hover:shadow-sm group-hover:ring-amber-300">
+                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-amber-100 to-yellow-50 px-3.5 py-1.5 text-xs leading-none font-semibold text-amber-900 ring-1 ring-amber-200/70 transition-all duration-300 group-hover:from-amber-200 group-hover:to-yellow-100 group-hover:shadow-sm group-hover:ring-amber-300">
                                 {t(`board_of_directors.${director.positionKey}`)}
                             </span>
                         </div>

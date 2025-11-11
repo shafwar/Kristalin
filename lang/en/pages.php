@@ -252,6 +252,10 @@ return [
             'category' => 'BUSINESS LINE',
             'title' => 'Our Portfolio',
         ],
+        'board' => [
+            'category' => 'BOARD OF DIRECTORS',
+            'title' => 'Board of Directors',
+        ],
         'news' => [
             'category' => 'LATEST NEWS',
             'title' => 'Company Updates',
@@ -680,137 +684,64 @@ return [
         'milestones_data' => [
             '2020-2025' => [
                 '0' => [
-                    'title' => 'Record Gold Production Achievement',
-                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Ekalestari\'s position as a leading gold mining company in Indonesia.',
-                    'description' => 'Achieved the highest annual gold production in company history, surpassing 10 tons of refined gold and strengthening Kristalin Ekalestari\'s position as a leading gold mining company in Indonesia.',
+                    'title' => 'Full Production Operations',
+                    'description' => 'PT Kristalin Eka Lestari entered full production phase, focusing on operational efficiency and sustainable development.',
                 ],
                 '1' => [
-                    'title' => 'Expansion of Sustainable Gold Mining Operations',
-                    'description' => 'Completed the expansion of sustainable gold mining operations in Nabire, Papua, increasing production capacity while maintaining strict environmental and community standards.',
+                    'title' => 'MODI & MOMI Registration',
+                    'description' => 'PT Kristalin Eka Lestari officially registered in MODI & MOMI systems for four IUPs: 108 and 112.',
                 ],
                 '2' => [
-                    'title' => 'Strategic Partnership Expansion',
-                    'description' => 'Signed comprehensive collaboration agreement with leading Chinese mining technology firm, bringing world-class processing capabilities to our Papua operations.',
-                ],
-                '3' => [
-                    'title' => 'Environmental Certification Achievement',
-                    'description' => 'Received ISO 14001 Environmental Management certification, reinforcing our commitment to sustainable mining practices and environmental stewardship in Papua.',
-                ],
-                '4' => [
-                    'title' => 'Production Capacity Expansion',
-                    'description' => 'Completed major infrastructure expansion project, doubling our gold processing capacity while maintaining strict environmental and safety standards.',
-                ],
-                '5' => [
-                    'title' => 'Digital Transformation Initiative',
-                    'description' => 'Launched comprehensive digital transformation program, implementing IoT sensors and real-time monitoring systems across all mining operations.',
+                    'title' => 'Production IUP 108 & 112 Obtained',
+                    'description' => 'PT Kristalin Eka Lestari obtained Production IUP permits 108 and 112, marking the transition from exploration to production phase.',
                 ],
             ],
             '2015-2019' => [
                 '0' => [
-                    'title' => 'Community Development Program Launch',
-                    'description' => 'Established comprehensive community development program in Nabire, focusing on education, healthcare, and local economic empowerment initiatives.',
+                    'title' => 'Exploration Activities and Trial Production',
+                    'description' => 'PT Kristalin Eka Lestari conducted exploration activities based on IUP permit and gradually initiated trial production in several mining areas.',
                 ],
                 '1' => [
-                    'title' => 'Korean Technology Partnership',
-                    'description' => 'Formed strategic alliance with Korean mining equipment manufacturer, bringing advanced automation technology to our gold extraction processes.',
+                    'title' => 'CSR: Basic Necessities Distribution',
+                    'description' => 'Distribution of basic necessities packages and social assistance.',
                 ],
                 '2' => [
-                    'title' => 'Safety Excellence Recognition',
-                    'description' => 'Achieved zero-accident milestone for 1000+ consecutive working days, establishing new industry safety standards in Indonesian mining sector.',
+                    'title' => 'CSR: Housing Construction',
+                    'description' => 'Housing construction and public facility development.',
                 ],
                 '3' => [
-                    'title' => 'Sustainable Mining Certification',
-                    'description' => 'Became first mining company in Papua to receive sustainable mining certification, setting new environmental benchmarks for the region.',
+                    'title' => 'CSR: Health and Education Programs',
+                    'description' => 'Community health and education programs.',
                 ],
                 '4' => [
-                    'title' => 'Chinese Investment Collaboration',
-                    'description' => 'Secured major investment from Chinese partners, enabling significant expansion of mining operations and advanced equipment acquisition.',
+                    'title' => 'CSR: Water Irrigation Improvement',
+                    'description' => 'Water irrigation improvement in SP I & SP II areas, Kampung Legari, Papua.',
                 ],
             ],
             '2010-2014' => [
                 '0' => [
-                    'title' => 'Advanced Processing Facility',
-                    'description' => 'Commissioned state-of-the-art gold processing facility, incorporating international best practices and environmental protection technologies.',
+                    'title' => 'External Investment Partnership',
+                    'description' => 'External investors joined and contributed to PT Kristalin Eka Lestari\'s business development.',
                 ],
                 '1' => [
-                    'title' => 'Regional Expansion Initiative',
-                    'description' => 'Extended operations to new mining concessions in Papua, diversifying extraction sites and increasing overall production capacity.',
+                    'title' => 'IUP Exploration Permit Obtained',
+                    'description' => 'PT Kristalin Eka Lestari obtained IUP Exploration permit, establishing legal foundation for exploration activities.',
                 ],
                 '2' => [
-                    'title' => 'International Quality Standards',
-                    'description' => 'Achieved ISO 9001 quality management certification, demonstrating commitment to international operational excellence standards.',
-                ],
-                '3' => [
-                    'title' => 'Workforce Development Program',
-                    'description' => 'Launched comprehensive training program for local workforce, creating skilled employment opportunities for Papua communities.',
-                ],
-                '4' => [
-                    'title' => 'Modern Equipment Acquisition',
-                    'description' => 'Invested in modern mining equipment and machinery, significantly improving operational efficiency and safety standards.',
+                    'title' => 'Community Contributions Through Humas',
+                    'description' => 'PT Kristalin Eka Lestari actively contributed to Papua communities through partnerships with Public Relations team.',
                 ],
             ],
             '2005-2009' => [
                 '0' => [
-                    'title' => 'Environmental Management System',
-                    'description' => 'Implemented comprehensive environmental management system, establishing rehabilitation and conservation programs for mining areas.',
-                ],
-                '1' => [
-                    'title' => 'Production Milestone Achievement',
-                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Ekalestari as major player in Indonesian mining industry.',
-                    'description' => 'Reached significant gold production milestone, establishing PT Kristalin Ekalestari as major player in Indonesian mining industry.',
-                ],
-                '2' => [
-                    'title' => 'Local Partnership Development',
-                    'description' => 'Strengthened partnerships with local Papua communities, creating mutual benefit programs and sustainable development initiatives.',
-                ],
-                '3' => [
-                    'title' => 'Operational Excellence Program',
-                    'description' => 'Launched operational excellence program focusing on efficiency, safety, and environmental responsibility across all mining operations.',
-                ],
-                '4' => [
-                    'title' => 'Infrastructure Development Project',
-                    'description' => 'Completed major infrastructure development project, improving access roads and establishing essential facilities for mining operations.',
-                ],
-            ],
-            '2000-2004' => [
-                '0' => [
-                    'title' => 'Mining Concession Expansion',
-                    'description' => 'Secured additional mining concessions in Papua region, expanding operational footprint and increasing mineral resource portfolio.',
-                ],
-                '1' => [
-                    'title' => 'Technology Modernization',
-                    'description' => 'Initiated comprehensive technology modernization program, upgrading extraction and processing equipment for improved efficiency.',
-                ],
-                '2' => [
-                    'title' => 'Safety Protocol Implementation',
-                    'description' => 'Established comprehensive safety protocols and training programs, prioritizing worker safety and operational risk management.',
-                ],
-                '3' => [
-                    'title' => 'First Gold Production',
-                    'description' => 'Achieved first commercial gold production from Nabire operations, marking significant milestone in company development.',
-                ],
-                '4' => [
-                    'title' => 'Exploration Success',
-                    'description' => 'Completed successful exploration phase, confirming significant gold reserves in Papua region and validating business development strategy.',
+                    'title' => 'Mining Concession Obtained',
+                    'description' => 'PT Kristalin Eka Lestari obtained mining concession as the initial step for mineral resource exploration activities.',
                 ],
             ],
             '1989-1999' => [
                 '0' => [
-                    'title' => 'Mining License Acquisition',
-                    'description' => 'Successfully obtained comprehensive mining licenses for Papua operations, laying foundation for large-scale gold mining activities.',
-                ],
-                '1' => [
-                    'title' => 'Initial Exploration Phase',
-                    'description' => 'Commenced extensive geological exploration in Papua region, conducting detailed surveys and feasibility studies for gold mining potential.',
-                ],
-                '2' => [
-                    'title' => 'Papua Region Entry',
-                    'description' => 'Established operations base in Nabire, Papua, beginning comprehensive assessment of regional mineral resources and mining opportunities.',
-                ],
-                '3' => [
                     'title' => 'Company Establishment',
-                    'description' => 'PT Kristalin Ekalestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
-                    'description' => 'PT Kristalin Ekalestari was officially established in Jakarta as a mining company focused on exploration and extraction of natural resources in Indonesia.',
+                    'description' => 'PT Kristalin Eka Lestari officially established and commenced business operations in the mining sector.',
                 ],
             ],
         ],

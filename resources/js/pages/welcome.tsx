@@ -5,579 +5,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
-    const { t } = useTranslation();
-    const [activeTab, setActiveTab] = useState<'report' | 'track'>('report');
-    const [category, setCategory] = useState('');
-    const [department, setDepartment] = useState('');
-    const [priority, setPriority] = useState('');
-    const [subject, setSubject] = useState('');
-    const [description, setDescription] = useState('');
-    const [incidentDate, setIncidentDate] = useState('');
-    const [files, setFiles] = useState<File[]>([]);
-    const [ticketNumber, setTicketNumber] = useState('');
-    const [showTicket, setShowTicket] = useState(false);
-    const [trackInput, setTrackInput] = useState('');
-    const [trackResult, setTrackResult] = useState<null | {
-        error?: string;
-        subject?: string;
-        status?: string;
-        ticket_number?: string;
-        category?: string;
-        priority?: string;
-        incident_date?: string;
-    }>(null);
-    const [fileNames, setFileNames] = useState('');
-    const fileInputRef = useRef<HTMLInputElement>(null);
-    const ticketRef = useRef<HTMLDivElement>(null);
-
-    const statusText: Record<string, string> = {
-        submitted: t('pages.welcome.feedback.status.submitted'),
-        review: t('pages.welcome.feedback.status.review'),
-        progress: t('pages.welcome.feedback.status.progress'),
-        resolved: t('pages.welcome.feedback.status.resolved'),
-    };
-    const priorityText: Record<string, string> = {
-        low: t('pages.welcome.feedback.priority.low'),
-        medium: t('pages.welcome.feedback.priority.medium'),
-        high: t('pages.welcome.feedback.priority.high'),
-        urgent: t('pages.welcome.feedback.priority.urgent'),
-    };
-
-    useEffect(() => {
-        // Lock body scroll (juga di mobile)
-        document.body.classList.add('overflow-hidden');
-        // Untuk iOS Safari, bisa juga set touch-action: none pada backdrop, sudah ada di kode kamu
-        return () => {
-            document.body.classList.remove('overflow-hidden');
-        };
-    }, []);
-
-    function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('category', category);
-        formData.append('department', department);
-        formData.append('priority', priority);
-        formData.append('subject', subject);
-        formData.append('description', description);
-        formData.append('incident_date', incidentDate);
-        if (files[0]) formData.append('file', files[0]);
-
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-
-        fetch('/feedback', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken || '',
-            },
-        })
-            .then(async (res) => {
-                const data = await res.json();
-                if (res.ok && data.ticket_number) {
-                    setTicketNumber(data.ticket_number);
-                    setShowTicket(true);
-                    setCategory('');
-                    setDepartment('');
-                    setPriority('');
-                    setSubject('');
-                    setDescription('');
-                    setIncidentDate('');
-                    setFiles([]);
-                    setFileNames('');
-                    setTimeout(() => {
-                        if (ticketRef.current) ticketRef.current.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                } else {
-                    alert(data.error || 'Failed to submit feedback.');
-                }
-            })
-            .catch(() => alert('Failed to submit feedback.'));
-    }
-
-    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const fileList = e.target.files ? Array.from(e.target.files) : [];
-        setFiles(fileList);
-        setFileNames(fileList.map((f) => f.name).join(', '));
-    }
-
-    function handleTrack() {
-        if (!trackInput.trim()) {
-            setTrackResult({ error: 'Please enter a ticket number.' });
-            return;
-        }
-        fetch(`/feedback/${trackInput.trim()}`)
-            .then(async (res) => {
-                const data = await res.json();
-                if (res.ok && data.ticket_number) {
-                    setTrackResult(data);
-                } else {
-                    setTrackResult({ error: data.error || 'Ticket number not found.' });
-                }
-            })
-            .catch(() => setTrackResult({ error: 'Failed to fetch ticket.' }));
-    }
-
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" onClick={onClose}>
-            <div
-                className="animate-containerFade max-h-[80vh] w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-            >
-                {/* Header dengan close button yang lebih terlihat */}
-                <div className="relative rounded-t-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 p-6">
-                    <button
-                        onClick={onClose}
-                        aria-label="Close"
-                        className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30"
-                    >
-                        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <div className="pr-12">
-                        <h1 className="text-2xl font-bold text-white drop-shadow md:text-3xl">{t('pages.welcome.feedback.modal_title')}</h1>
-                        <p className="mt-2 text-yellow-100">{t('pages.welcome.feedback.modal_subtitle')}</p>
-                    </div>
-                </div>
-
-                {/* Tab Navigation */}
-                <div className="border-b border-gray-200 bg-gray-50 px-6">
-                    <nav className="flex justify-center space-x-8">
-                        <button
-                            onClick={() => {
-                                setActiveTab('report');
-                                setShowTicket(false);
-                            }}
-                            className={`px-6 py-4 text-sm font-semibold transition-all duration-200 focus:outline-none ${
-                                activeTab === 'report' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
-                            }`}
-                        >
-                            {t('pages.welcome.feedback.report_tab')}
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('track')}
-                            className={`px-6 py-4 text-sm font-semibold transition-all duration-200 focus:outline-none ${
-                                activeTab === 'track' ? 'border-b-3 border-yellow-500 text-yellow-600' : 'text-gray-500 hover:text-yellow-700'
-                            }`}
-                        >
-                            {t('pages.welcome.feedback.track_tab')}
-                        </button>
-                    </nav>
-                </div>
-
-                {/* Content Area */}
-                <div className="max-h-[60vh] overflow-y-auto p-6">
-                    {activeTab === 'report' && (
-                        <div className="space-y-6">
-                            {/* Anonymous Notice */}
-                            <div className="rounded-lg border-l-4 border-blue-400 bg-blue-50 p-4 text-sm text-blue-800">
-                                <div className="flex items-start">
-                                    <svg className="mt-0.5 mr-3 h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                                        />
-                                    </svg>
-                                    <div>{t('pages.welcome.feedback.anonymous_notice')}</div>
-                                </div>
-                            </div>
-
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* 2-Column Grid untuk Category & Department */}
-                                <div className="grid gap-6 md:grid-cols-2">
-                                    <div>
-                                        <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.welcome.feedback.category_label')} <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            id="category"
-                                            required
-                                            value={category}
-                                            onChange={(e) => setCategory(e.target.value)}
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                        >
-                                            <option value="">{t('pages.welcome.feedback.select_category')}</option>
-                                            <option value="workplace">{t('pages.welcome.feedback.categories.workplace')}</option>
-                                            <option value="safety">{t('pages.welcome.feedback.categories.safety')}</option>
-                                            <option value="harassment">{t('pages.welcome.feedback.categories.harassment')}</option>
-                                            <option value="policy">{t('pages.welcome.feedback.categories.policy')}</option>
-                                            <option value="management">{t('pages.welcome.feedback.categories.management')}</option>
-                                            <option value="facilities">{t('pages.welcome.feedback.categories.facilities')}</option>
-                                            <option value="ethics">{t('pages.welcome.feedback.categories.ethics')}</option>
-                                            <option value="suggestion">{t('pages.welcome.feedback.categories.suggestion')}</option>
-                                            <option value="other">{t('pages.welcome.feedback.categories.other')}</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="department" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.welcome.feedback.department_label')} {t('pages.welcome.feedback.optional')}
-                                        </label>
-                                        <select
-                                            id="department"
-                                            value={department}
-                                            onChange={(e) => setDepartment(e.target.value)}
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                        >
-                                            <option value="">{t('pages.welcome.feedback.select_department')}</option>
-                                            <option value="hr">{t('pages.welcome.feedback.departments.hr')}</option>
-                                            <option value="finance">{t('pages.welcome.feedback.departments.finance')}</option>
-                                            <option value="it">{t('pages.welcome.feedback.departments.it')}</option>
-                                            <option value="marketing">{t('pages.welcome.feedback.departments.marketing')}</option>
-                                            <option value="operations">{t('pages.welcome.feedback.departments.operations')}</option>
-                                            <option value="management">{t('pages.welcome.feedback.departments.management')}</option>
-                                            <option value="general">{t('pages.welcome.feedback.departments.general')}</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {/* Priority Level - Responsive Grid */}
-                                <div>
-                                    <label className="mb-3 block text-sm font-semibold text-gray-700">
-                                        {t('pages.welcome.feedback.priority_label')} <span className="text-red-500">*</span>
-                                    </label>
-                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                                        {['low', 'medium', 'high', 'urgent'].map((level) => (
-                                            <label
-                                                key={level}
-                                                className={`cursor-pointer rounded-lg border-2 px-4 py-3 text-center text-sm font-medium transition-all duration-200 select-none ${
-                                                    priority === level
-                                                        ? level === 'low'
-                                                            ? 'border-green-500 bg-green-50 text-green-700'
-                                                            : level === 'medium'
-                                                              ? 'border-yellow-400 bg-yellow-50 text-yellow-700'
-                                                              : level === 'high'
-                                                                ? 'border-orange-500 bg-orange-50 text-orange-700'
-                                                                : 'border-red-500 bg-red-50 text-red-700'
-                                                        : 'border-gray-200 text-gray-500 hover:border-yellow-400'
-                                                }`}
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    id={level}
-                                                    name="priority"
-                                                    value={level}
-                                                    checked={priority === level}
-                                                    onChange={(e) => setPriority(e.target.value)}
-                                                    className="hidden"
-                                                />
-                                                {t(`pages.welcome.feedback.priority_display.${level}`)}
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Report Title */}
-                                <div>
-                                    <label htmlFor="subject" className="mb-2 block text-sm font-semibold text-gray-700">
-                                        {t('pages.welcome.feedback.subject_label')} <span className="text-red-500">*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        required
-                                        value={subject}
-                                        onChange={(e) => setSubject(e.target.value)}
-                                        placeholder={t('pages.welcome.feedback.subject_placeholder')}
-                                        className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                    />
-                                </div>
-
-                                {/* Description */}
-                                <div>
-                                    <label htmlFor="description" className="mb-2 block text-sm font-semibold text-gray-700">
-                                        {t('pages.welcome.feedback.description_label')} <span className="text-red-500">*</span>
-                                    </label>
-                                    <textarea
-                                        id="description"
-                                        required
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        placeholder={t('pages.welcome.feedback.description_placeholder')}
-                                        className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                        rows={4}
-                                    />
-                                </div>
-
-                                {/* 2-Column Grid untuk Date & File Upload */}
-                                <div className="grid gap-6 md:grid-cols-2">
-                                    <div>
-                                        <label htmlFor="incident-date" className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.welcome.feedback.date_label')} {t('pages.welcome.feedback.optional')}
-                                        </label>
-                                        <input
-                                            type="date"
-                                            id="incident-date"
-                                            value={incidentDate}
-                                            onChange={(e) => setIncidentDate(e.target.value)}
-                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
-                                            {t('pages.welcome.feedback.files_label')} {t('pages.welcome.feedback.optional')}
-                                        </label>
-                                        <div
-                                            className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 px-4 py-8 transition-colors duration-300 hover:border-yellow-400 hover:bg-yellow-50"
-                                            onClick={() => fileInputRef.current?.click()}
-                                        >
-                                            <input
-                                                type="file"
-                                                ref={fileInputRef}
-                                                multiple
-                                                accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
-                                                className="hidden"
-                                                onChange={handleFileChange}
-                                            />
-                                            <div className="text-center text-xs text-gray-500">
-                                                {files.length === 0 ? (
-                                                    <>
-                                                        <svg
-                                                            className="mx-auto mb-2 h-8 w-8 text-gray-400"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                                                            />
-                                                        </svg>
-                                                        {t('pages.welcome.feedback.upload_text')}
-                                                        <br />
-                                                        <span className="text-xs">{t('pages.welcome.feedback.upload_format')}</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <svg
-                                                            className="mx-auto mb-2 h-8 w-8 text-green-500"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                            />
-                                                        </svg>
-                                                        {files.length} {t('pages.welcome.feedback.files_selected')}
-                                                        <br />
-                                                        <span className="text-xs">{fileNames}</span>
-                                                    </>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-amber-600 hover:shadow-xl"
-                                >
-                                    🚀 {t('pages.welcome.feedback.submit_button')}
-                                </button>
-                            </form>
-
-                            {/* Success Ticket Display */}
-                            {showTicket && (
-                                <div
-                                    ref={ticketRef}
-                                    className="animate-premiumFadeIn mt-6 rounded-xl bg-gradient-to-r from-green-400 to-teal-400 p-6 text-center text-white"
-                                >
-                                    <div className="mb-2 text-4xl">✅</div>
-                                    <h3 className="mb-2 text-lg font-bold">Report Successfully Submitted!</h3>
-                                    <p className="text-sm opacity-90">Your Ticket Number:</p>
-                                    <div className="my-3 rounded-lg bg-white/20 px-4 py-2 text-xl font-bold tracking-widest break-all backdrop-blur-sm">
-                                        {ticketNumber}
-                                    </div>
-                                    <p className="text-xs opacity-80">Save this number to track your report status</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Track Status Tab */}
-                    {activeTab === 'track' && (
-                        <div className="space-y-6">
-                            <div className="text-center">
-                                <h2 className="mb-2 text-xl font-bold text-gray-800">{t('pages.welcome.feedback.track_title')}</h2>
-                                <p className="text-gray-600">{t('pages.welcome.feedback.track_subtitle')}</p>
-                            </div>
-
-                            <div className="rounded-lg bg-gray-50 p-6">
-                                <div className="flex flex-col gap-4 sm:flex-row">
-                                    <input
-                                        type="text"
-                                        value={trackInput}
-                                        onChange={(e) => setTrackInput(e.target.value)}
-                                        placeholder={t('pages.welcome.feedback.track_example')}
-                                        className="flex-1 rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500"
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') handleTrack();
-                                        }}
-                                    />
-                                    <button
-                                        type="button"
-                                        className="rounded-lg bg-yellow-500 px-6 py-3 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-yellow-600 hover:shadow-lg sm:w-auto"
-                                        onClick={handleTrack}
-                                    >
-                                        🔍 {t('pages.welcome.feedback.track_report_button')}
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Track Results */}
-                            {trackResult && (
-                                <div className="animate-premiumFadeIn rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
-                                    {trackResult.error ? (
-                                        <div className="text-center">
-                                            <div className="mb-4 text-4xl">❌</div>
-                                            <p className="mb-2 text-lg font-semibold text-red-600">{trackResult.error}</p>
-                                            <p className="text-sm text-gray-500">
-                                                {t('pages.welcome.feedback.track_error_format')}
-                                                <br />
-                                                {t('pages.welcome.feedback.track_error_message')}
-                                            </p>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                                                <h3 className="flex-1 text-lg font-bold text-black">{trackResult.subject}</h3>
-                                                <span
-                                                    className={`w-fit rounded-full px-3 py-1 text-xs font-bold ${
-                                                        trackResult.status === 'submitted'
-                                                            ? 'bg-blue-100 text-blue-700'
-                                                            : trackResult.status === 'review'
-                                                              ? 'bg-orange-100 text-orange-700'
-                                                              : trackResult.status === 'progress'
-                                                                ? 'bg-purple-100 text-purple-700'
-                                                                : 'bg-green-100 text-green-700'
-                                                    }`}
-                                                >
-                                                    {trackResult.status ? statusText[trackResult.status] : 'Unknown'}
-                                                </span>
-                                            </div>
-
-                                            <div className="mb-4 grid gap-4 sm:grid-cols-2">
-                                                <div className="rounded-lg bg-gray-50 p-4">
-                                                    <div className="text-sm font-medium text-gray-700">Ticket Number</div>
-                                                    <div className="font-mono text-sm break-all text-gray-900">{trackResult.ticket_number}</div>
-                                                </div>
-                                                <div className="rounded-lg bg-gray-50 p-4">
-                                                    <div className="text-sm font-medium text-gray-700">Category</div>
-                                                    <div className="text-sm text-gray-900">{trackResult.category}</div>
-                                                </div>
-                                                <div className="rounded-lg bg-gray-50 p-4">
-                                                    <div className="text-sm font-medium text-gray-700">Priority</div>
-                                                    <div className="text-sm text-gray-900">
-                                                        {trackResult.priority ? priorityText[trackResult.priority] : 'Unknown'}
-                                                    </div>
-                                                </div>
-                                                <div className="rounded-lg bg-gray-50 p-4">
-                                                    <div className="text-sm font-medium text-gray-700">Report Date</div>
-                                                    <div className="text-sm text-gray-900">{trackResult.incident_date}</div>
-                                                </div>
-                                            </div>
-
-                                            <div className="rounded-lg bg-blue-50 p-4">
-                                                <div className="flex items-start">
-                                                    <svg
-                                                        className="mt-0.5 mr-3 h-5 w-5 text-blue-500"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                        />
-                                                    </svg>
-                                                    <div>
-                                                        <div className="text-sm font-medium text-blue-800">Latest Update</div>
-                                                        <div className="text-sm text-blue-700">
-                                                            The relevant team is handling your report. Estimated resolution time: 3-5 business days.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// Floating Feedback Button Component
-const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => {
-    const { t } = useTranslation();
-    const [isHovered, setIsHovered] = useState(false);
-
-    return (
-        <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 2, duration: 0.5 }}
-            onClick={onClick}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="floating-feedback-button hover:shadow-3xl group fixed right-4 bottom-4 z-[10000] transform rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 p-3 text-white shadow-2xl transition-all duration-300 hover:scale-110 sm:right-6 sm:bottom-6 sm:p-4"
-            style={{ transition: 'right 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
-        >
-            <div className="flex items-center space-x-2">
-                <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m0 0v10a2 2 0 002 2h6a2 2 0 002-2V8M9 12h6"
-                    />
-                </svg>
-                <AnimatePresence>
-                    {isHovered && (
-                        <motion.span
-                            initial={{ opacity: 0, width: 0 }}
-                            animate={{ opacity: 1, width: 'auto' }}
-                            exit={{ opacity: 0, width: 0 }}
-                            className="hidden overflow-hidden text-xs font-medium whitespace-nowrap sm:inline sm:text-sm"
-                        >
-                            {t('pages.welcome.feedback.button_text')}
-                        </motion.span>
-                    )}
-                </AnimatePresence>
-            </div>
-
-            {/* Pulse Effect */}
-            <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 opacity-20"></div>
-        </motion.button>
-    );
-};
+/**
+ * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
+ * 
+ * Components backed up to: resources/js/components/InternalFeedbackModal.BACKUP.tsx
+ * To re-enable: Import from backup file
+ * 
+ * Removed components:
+ * - InternalFeedbackModal (line 8-526)
+ * - FloatingFeedbackButton (line 528-571)
+ */
 
 // Main Welcome Component
 const Welcome = () => {
     const { t } = useTranslation();
-    const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+    // const [showFeedbackForm, setShowFeedbackForm] = useState(false); // DISABLED - Feedback system
     const [isLoaded, setIsLoaded] = useState(false);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
     const [currentNews, setCurrentNews] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
     // 4 berita relevan dari news archive dengan Torindo sebagai highlight utama
@@ -621,6 +68,32 @@ const Welcome = () => {
         },
     ];
 
+    // Carousel slides untuk Portfolio & Board of Directors
+    const carouselSlides = [
+        {
+            id: 0,
+            image: 'https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg',
+            category: t('pages.welcome.portfolio.category'),
+            title: t('pages.welcome.portfolio.title'),
+            link: '/line-of-business',
+        },
+        {
+            id: 1,
+            image: '/directorshero.jpg',
+            category: t('pages.welcome.board.category'),
+            title: t('pages.welcome.board.title'),
+            link: '/board-of-directors',
+        },
+    ];
+
+    // Auto-rotation untuk carousel setiap 6 detik - balanced timing
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+        }, 6000);
+        return () => clearInterval(interval);
+    }, [carouselSlides.length]);
+
     // Auto-rotation untuk berita setiap 8 detik agar orang bisa membaca dengan nyaman
     useEffect(() => {
         const interval = setInterval(() => {
@@ -657,7 +130,7 @@ const Welcome = () => {
                 setShowLoadingScreen(false);
                 // Mark session as started
                 sessionStorage.setItem('kristalin_session', 'true');
-            }, 3500); // 3.5 seconds loading duration to match LoadingScreen
+            }, 4000); // 4 seconds loading duration to match LoadingScreen
 
             return () => clearTimeout(loadingTimer);
         } else {
@@ -690,14 +163,25 @@ const Welcome = () => {
     }, [contentSets.length]);
 
     // Loading Screen Component - Clean & Professional
+    /**
+     * Ultra Professional Splash Screen Component - Kristalin Eka Lestari
+     * 
+     * Features:
+     * - 4-second duration animation (like Cidata)
+     * - Logo with unique 3D rotate and scale effects
+     * - Ultra strong typography with wide letter-spacing
+     * - Professional tagline and subtitle
+     * - Rotating loading indicator
+     * - Smooth exit animation
+     */
     const LoadingScreen = () => {
         const [isComplete, setIsComplete] = useState(false);
 
         useEffect(() => {
-            // Simulate loading completion after 3.5 seconds
+            // 4 seconds duration for ultra professional delivery
             const timer = setTimeout(() => {
                 setIsComplete(true);
-            }, 3500);
+            }, 4000);
 
             return () => clearTimeout(timer);
         }, []);
@@ -706,416 +190,199 @@ const Welcome = () => {
             <AnimatePresence>
                 {!isComplete && (
                     <motion.div
-                        initial={{ opacity: 1 }}
-                        exit={{
-                            opacity: 0,
-                            scale: 1.05,
-                            filter: 'blur(10px)',
-                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{
-                            duration: 0.8,
-                            ease: [0.22, 1, 0.36, 1],
+                            duration: 1.0, 
+                            ease: [0.16, 1, 0.3, 1],
+                            delay: 0.2
                         }}
                         className="fixed inset-0 z-50 flex items-center justify-center bg-white"
-                        style={{
-                            background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%)',
-                        }}
                     >
-                        {/* Subtle background pattern */}
-                        <div className="absolute inset-0 opacity-[0.02]">
-                            <div
-                                className="absolute inset-0"
-                                style={{
-                                    backgroundImage: `radial-gradient(circle at 25% 25%, #FFD700 1px, transparent 1px),
-                                                    radial-gradient(circle at 75% 75%, #FFD700 1px, transparent 1px)`,
-                                    backgroundSize: '50px 50px',
-                                    backgroundPosition: '0 0, 25px 25px',
-                                }}
-                            />
-                        </div>
-
-                        <div className="relative mx-auto flex max-w-md flex-col items-center justify-center px-6">
-                            {/* Logo Container */}
+                        {/* Simple centered content - Ultra Smooth */}
                             <motion.div
-                                initial={{
-                                    scale: 0.3,
-                                    opacity: 0,
-                                    rotateY: -15,
-                                }}
-                                animate={{
-                                    scale: 1,
-                                    opacity: 1,
-                                    rotateY: 0,
-                                }}
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -30 }}
                                 transition={{
-                                    duration: 1.2,
-                                    ease: [0.22, 1, 0.36, 1],
-                                    delay: 0.2,
+                                opacity: { duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
+                                y: { duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
                                 }}
-                                className="relative mb-8"
-                                style={{ perspective: '1000px' }}
+                            className="text-center"
                             >
-                                {/* Subtle glow effect - Clean and Minimal */}
+                            {/* Premium Logo - Ultra Smooth Fade Only */}
                                 <motion.div
-                                    className="absolute inset-0 -z-10"
-                                    style={{
-                                        background: 'radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 60%)',
-                                        filter: 'blur(25px)',
-                                    }}
-                                    initial={{ scale: 0.3, opacity: 0 }}
-                                    animate={{ scale: 1.1, opacity: 1 }}
+                                initial={{ opacity: 0, y: 25 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
                                     transition={{
-                                        duration: 1.8,
-                                        ease: [0.22, 1, 0.36, 1],
+                                    opacity: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
+                                    y: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
                                         delay: 0.6,
                                     }}
-                                />
-
-                                {/* Logo - Smooth Fade In Animation */}
-                                <motion.img
-                                    src="/kristalinlogotransisi1.png"
-                                    alt="Kristalin Eka Lestari Logo"
-                                    className="relative z-10 h-24 w-24 object-contain sm:h-32 sm:w-32 md:h-36 md:w-36"
-                                    style={{
-                                        filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
-                                    }}
-                                    initial={{
-                                        scale: 0.6,
-                                        opacity: 0,
-                                        y: 20,
-                                        filter: 'blur(3px) brightness(0.8) drop-shadow(0 0 5px rgba(255, 215, 0, 0.1))',
-                                    }}
-                                    animate={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        y: 0,
-                                        filter: 'blur(0px) brightness(1.05) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
-                                    }}
-                                    transition={{
-                                        scale: {
-                                            duration: 2,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 0.8,
-                                        },
-                                        opacity: {
-                                            duration: 1.6,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 0.8,
-                                        },
-                                        y: {
-                                            duration: 1.8,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 0.8,
-                                        },
-                                        filter: {
-                                            duration: 2,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 0.8,
-                                        },
-                                    }}
-                                />
-
-                                {/* Smooth Glow Effect */}
-                                <motion.div
-                                    className="absolute inset-0"
-                                    initial={{ scale: 0.7, opacity: 0 }}
-                                    animate={{
-                                        scale: [0.7, 1.1, 0.9],
-                                        opacity: [0, 0.15, 0.06],
-                                    }}
-                                    transition={{
-                                        scale: {
-                                            duration: 4,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            repeat: Infinity,
-                                            delay: 2,
-                                        },
-                                        opacity: {
-                                            duration: 4,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            repeat: Infinity,
-                                            delay: 2,
-                                        },
-                                    }}
-                                    style={{
-                                        background:
-                                            'radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, rgba(255, 165, 0, 0.06) 40%, transparent 70%)',
-                                        filter: 'blur(20px)',
-                                    }}
-                                />
-
-                                {/* Subtle White Glow */}
-                                <motion.div
-                                    className="absolute inset-0"
-                                    initial={{ scale: 0.5, opacity: 0 }}
-                                    animate={{
-                                        scale: [0.5, 1.0, 0.7],
-                                        opacity: [0, 0.1, 0.03],
-                                    }}
-                                    transition={{
-                                        scale: {
-                                            duration: 5,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            repeat: Infinity,
-                                            delay: 2.5,
-                                        },
-                                        opacity: {
-                                            duration: 5,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            repeat: Infinity,
-                                            delay: 2.5,
-                                        },
-                                    }}
-                                    style={{
-                                        background: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 50%)',
-                                        filter: 'blur(15px)',
-                                    }}
-                                />
-                            </motion.div>
-
-                            {/* Welcome Text - Ultra Elegant */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{
-                                    duration: 1,
-                                    ease: [0.25, 0.46, 0.45, 0.94],
-                                    delay: 1.2,
-                                }}
-                                className="mb-8 text-center"
+                                className="mb-10"
                             >
-                                <motion.div className="relative inline-block">
-                                    {/* Subtle underline accent */}
-                                    <motion.div
-                                        className="absolute -bottom-1 left-1/2 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-                                        initial={{ width: 0, x: '-50%' }}
-                                        animate={{ width: '120%' }}
-                                        transition={{
-                                            duration: 1.8,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 2,
-                                        }}
-                                    />
-
-                                    <motion.h3
-                                        className="text-sm font-normal tracking-[0.3em] text-gray-500 sm:text-base md:text-lg"
-                                        initial={{
-                                            opacity: 0,
-                                            y: 15,
-                                            letterSpacing: '0.1em',
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            y: 0,
-                                            letterSpacing: '0.3em',
-                                        }}
-                                        transition={{
-                                            duration: 1.5,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 1.4,
-                                        }}
-                                    >
-                                        WELCOME TO
-                                    </motion.h3>
-                                </motion.div>
+                                <motion.img
+                                    animate={{
+                                        y: [0, -5, 0],
+                                    }}
+                                    transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                        ease: [0.45, 0, 0.55, 1],
+                                            delay: 2.5,
+                                    }}
+                                    src="/kristalinlogotransisi1.png"
+                                    alt="Kristalin Logo"
+                                    className="mx-auto h-24 w-auto sm:h-28"
+                                    style={{
+                                        filter: 'drop-shadow(0 8px 24px rgba(255, 215, 0, 0.15))',
+                                    }}
+                                    loading="eager"
+                                    decoding="async"
+                                />
                             </motion.div>
 
-                            {/* Company Name - Clean & Professional */}
+                            {/* Company Name - Ultra Smooth Fade */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
                                 transition={{
-                                    duration: 1.2,
-                                    ease: [0.25, 0.46, 0.45, 0.94],
-                                    delay: 1.8,
+                                    opacity: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
+                                    y: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
+                                    delay: 1.0,
                                 }}
-                                className="mb-6 space-y-3 text-center"
+                                className="mb-10 space-y-2"
                             >
-                                {/* KRISTALIN - Clean Elegance */}
-                                <motion.h1
-                                    className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
+                                {/* Welcome To - Small & Elegant */}
+                                <motion.p
+                                    className="text-sm font-light tracking-[0.12em] text-neutral-400 uppercase sm:text-base"
                                     style={{
-                                        color: '#1F2937',
-                                        fontWeight: '300',
-                                        letterSpacing: '-0.02em',
-                                    }}
-                                    initial={{
-                                        opacity: 0,
-                                        scale: 0.95,
-                                        filter: 'blur(4px)',
-                                    }}
-                                    animate={{
-                                        opacity: 1,
-                                        scale: 1,
-                                        filter: 'blur(0px)',
-                                    }}
-                                    transition={{
-                                        duration: 1.4,
-                                        ease: [0.25, 0.46, 0.45, 0.94],
-                                        delay: 2,
+                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+                                        letterSpacing: '0.12em',
+                                        fontWeight: 300,
+                                        }}
+                                    >
+                                        WELCOME TO
+                                </motion.p>
+
+                                {/* KRISTALIN - Strong & Bold */}
+                                <motion.h1
+                                    className="text-3xl font-semibold tracking-[0.06em] text-neutral-900 uppercase sm:text-4xl"
+                                    style={{
+                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+                                        letterSpacing: '0.06em',
+                                        fontWeight: 600,
                                     }}
                                 >
                                     KRISTALIN
                                 </motion.h1>
 
-                                {/* EKA LESTARI - Golden Accent */}
-                                <motion.div className="relative">
-                                    {/* Minimal golden glow */}
-                                    <motion.div
-                                        className="absolute inset-0 -z-10 opacity-20 blur-3xl"
-                                        style={{
-                                            background: 'radial-gradient(ellipse 100% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 70%)',
-                                        }}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 0.2, scale: 1 }}
-                                        transition={{
-                                            duration: 2,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 2.4,
-                                        }}
-                                    />
-
+                                {/* EKA LESTARI - Golden & Elegant (NO LINE in between) */}
                                     <motion.h2
-                                        className="relative text-xl font-normal tracking-wide sm:text-2xl md:text-3xl lg:text-4xl"
+                                    className="text-3xl font-semibold tracking-[0.06em] uppercase sm:text-4xl"
                                         style={{
+                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+                                        letterSpacing: '0.06em',
+                                        fontWeight: 600,
                                             background: 'linear-gradient(135deg, #B8860B 0%, #FFD700 50%, #DAA520 100%)',
                                             WebkitBackgroundClip: 'text',
                                             WebkitTextFillColor: 'transparent',
                                             backgroundClip: 'text',
-                                            fontWeight: '400',
-                                        }}
-                                        initial={{
-                                            opacity: 0,
-                                            scale: 0.95,
-                                            filter: 'blur(4px)',
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            scale: 1,
-                                            filter: 'blur(0px)',
-                                        }}
-                                        transition={{
-                                            duration: 1.4,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            delay: 2.3,
                                         }}
                                     >
                                         EKA LESTARI
                                     </motion.h2>
                                 </motion.div>
 
-                                {/* Tagline - Refined */}
-                                <motion.p
-                                    className="mt-8 text-sm font-normal tracking-wide text-gray-600 sm:text-base md:text-lg"
-                                    style={{
-                                        fontWeight: '400',
-                                        lineHeight: '1.6',
-                                    }}
-                                    initial={{
-                                        opacity: 0,
-                                        y: 10,
-                                    }}
-                                    animate={{
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    transition={{
-                                        duration: 1,
-                                        ease: [0.25, 0.46, 0.45, 0.94],
-                                        delay: 2.6,
-                                    }}
-                                >
-                                    Trusted Gold Mining Company{' '}
-                                    <motion.span
-                                        className="font-medium"
-                                        style={{
-                                            color: '#B8860B',
-                                        }}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{
-                                            duration: 0.8,
-                                            delay: 2.8,
-                                        }}
-                                    >
-                                        Since 1989
-                                    </motion.span>
-                                </motion.p>
-                            </motion.div>
-
-                            {/* Loading Progress */}
+                            {/* Tagline & Subtitle - Ultra Smooth */}
                             <motion.div
-                                initial={{ opacity: 0, width: 0 }}
-                                animate={{ opacity: 1, width: 'auto' }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 2.2,
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                    transition={{
+                                    opacity: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
+                                    y: { duration: 1.7, ease: [0.16, 1, 0.3, 1] },
+                                    delay: 1.6,
                                 }}
-                                className="mt-8 w-48"
+                                className="space-y-3"
                             >
-                                <div className="h-0.5 overflow-hidden rounded-full bg-gray-200">
-                                    <motion.div
-                                        className="h-full rounded-full"
-                                        style={{
-                                            background: 'linear-gradient(90deg, #FFD700 0%, #FFA500 100%)',
-                                        }}
-                                        initial={{ width: '0%' }}
-                                        animate={{ width: '100%' }}
-                                        transition={{
-                                            duration: 1.2,
-                                            ease: [0.22, 1, 0.36, 1],
-                                            delay: 2.4,
-                                        }}
-                                    />
-                                </div>
-
-                                {/* Loading text */}
+                                {/* Tagline */}
                                 <motion.p
-                                    className="mt-3 text-center text-xs font-medium text-gray-500"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: [0, 1, 0] }}
-                                    transition={{
-                                        duration: 2,
-                                        ease: 'easeInOut',
-                                        repeat: Infinity,
-                                        delay: 2.6,
+                                    className="text-base font-medium tracking-wide text-neutral-600 sm:text-lg"
+                                        style={{
+                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+                                        fontWeight: 500,
                                     }}
                                 >
-                                    Loading...
+                                    Gold Mining Excellence
+                                </motion.p>
+
+                                {/* Elegant Divider */}
+                            <motion.div
+                                    initial={{ scaleX: 0, opacity: 0 }}
+                                    animate={{ scaleX: 1, opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                transition={{
+                                        scaleX: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
+                                        opacity: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                                        delay: 1.8,
+                                    }}
+                                    className="mx-auto h-px w-12 bg-gradient-to-r from-transparent via-neutral-300 to-transparent"
+                                />
+
+                                {/* Subtitle */}
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{
+                                        opacity: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
+                                        y: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
+                                        delay: 2.1,
+                                    }}
+                                    className="text-sm font-normal tracking-wide text-neutral-500 sm:text-base"
+                                    style={{
+                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+                                        fontWeight: 400,
+                                    }}
+                                >
+                                    Since 1989
                                 </motion.p>
                             </motion.div>
 
-                            {/* Subtle accent elements */}
+                            {/* Elegant Loading Indicator - Ultra Smooth */}
                             <motion.div
-                                className="absolute top-1/4 left-1/4 h-1 w-1 rounded-full bg-yellow-400/40"
-                                initial={{ scale: 0, opacity: 0 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                transition={{
+                                    opacity: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
+                                    y: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
+                                    delay: 2.6,
+                                }}
+                                className="mt-10 flex justify-center gap-1.5"
+                            >
+                                {[0, 1, 2].map((i) => (
+                            <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0 }}
                                 animate={{
-                                    scale: [0, 1, 0],
-                                    opacity: [0, 0.6, 0],
+                                            opacity: [0.3, 1, 0.3],
+                                            scale: [1, 1.2, 1],
                                 }}
                                 transition={{
-                                    duration: 2,
-                                    ease: 'easeInOut',
-                                    repeat: Infinity,
-                                    delay: 2,
-                                }}
-                            />
-
-                            <motion.div
-                                className="absolute right-1/4 bottom-1/4 h-1 w-1 rounded-full bg-yellow-400/40"
-                                initial={{ scale: 0, opacity: 0 }}
-                                animate={{
-                                    scale: [0, 1, 0],
-                                    opacity: [0, 0.6, 0],
-                                }}
-                                transition={{
-                                    duration: 2,
-                                    ease: 'easeInOut',
-                                    repeat: Infinity,
-                                    delay: 2.5,
-                                }}
-                            />
-                        </div>
+                                            opacity: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
+                                            scale: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
+                                            delay: 2.8 + i * 0.2,
+                                        }}
+                                        className="h-1.5 w-1.5 rounded-full bg-yellow-500"
+                                    />
+                                ))}
+                            </motion.div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -1153,11 +420,11 @@ const Welcome = () => {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
                         >
-                            {/* Feedback Form Modal */}
-                            {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
+                            {/* DISABLED - Feedback Form Modal */}
+                            {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
 
-                            {/* Floating Feedback Button */}
-                            <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
+                            {/* DISABLED - Floating Feedback Button */}
+                            {/* <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} /> */}
 
                             {/* Hero Section - top half of viewport on desktop */}
                             <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
@@ -1168,31 +435,43 @@ const Welcome = () => {
                                             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                                         }`}
                                     >
-                                        {/* Konten Kristalin dengan animasi letter by letter hanya untuk "Introducing" */}
+                                        {/* Konten Kristalin - Ultra Smooth Letter Animation */}
                                         <div className="relative">
-                                            <div key={currentContent} className="animate-containerFade">
+                                            <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={currentContent}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 0.8,
+                                                        ease: [0.16, 1, 0.3, 1],
+                                                    }}
+                                                >
                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                    {/* Introducing - Letter by Letter Animation */}
+                                                        {/* Title 1 - Ultra Smooth Letter by Letter */}
                                                     <div className="inline-block text-gray-800">
                                                         {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
                                                             <motion.span
-                                                                key={index}
+                                                                    key={`${currentContent}-${index}`}
                                                                 initial={{
                                                                     opacity: 0,
-                                                                    y: 20,
-                                                                    scale: 0.8,
-                                                                    filter: 'blur(4px)',
+                                                                        y: 15,
+                                                                        filter: 'blur(2px)',
                                                                 }}
                                                                 animate={{
                                                                     opacity: 1,
                                                                     y: 0,
-                                                                    scale: 1,
                                                                     filter: 'blur(0px)',
                                                                 }}
+                                                                    exit={{
+                                                                        opacity: 0,
+                                                                        filter: 'blur(2px)',
+                                                                }}
                                                                 transition={{
-                                                                    duration: 0.8,
-                                                                    ease: [0.22, 1, 0.36, 1],
-                                                                    delay: 0.5 + index * 0.12, // Staggered delay per letter (lebih lama)
+                                                                        duration: 1.2,
+                                                                        ease: [0.16, 1, 0.3, 1],
+                                                                        delay: index * 0.05,
                                                                 }}
                                                                 className="inline-block"
                                                             >
@@ -1201,9 +480,17 @@ const Welcome = () => {
                                                         ))}
                                                     </div>
                                                     <br />
-                                                    {/* Kristalin Ekalestari - Tetap seperti sebelumnya */}
-                                                    <div
-                                                        className="animate-staggeredFadeScale inline-block delay-200"
+                                                        {/* Title 2 - Ultra Smooth Word by Word */}
+                                                        <motion.div
+                                                            initial={{ opacity: 0, y: 15 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            exit={{ opacity: 0 }}
+                                                            transition={{
+                                                                duration: 1.4,
+                                                                ease: [0.16, 1, 0.3, 1],
+                                                                delay: 0.3,
+                                                            }}
+                                                            className="inline-block"
                                                         style={{
                                                             background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
                                                             WebkitBackgroundClip: 'text',
@@ -1212,19 +499,30 @@ const Welcome = () => {
                                                         }}
                                                     >
                                                         {contentSets[currentContent].title2}
-                                                    </div>
+                                                        </motion.div>
                                                 </h1>
-                                            </div>
+                                                </motion.div>
+                                            </AnimatePresence>
                                         </div>
 
-                                        {/* Subtitle dengan warna abu-abu terang */}
+                                        {/* Subtitle - Ultra Smooth */}
                                         <div className="relative">
-                                            <p
+                                            <AnimatePresence mode="wait">
+                                                <motion.p
                                                 key={`subtitle-${currentContent}`}
-                                                className="animate-staggeredFadeScale mb-6 text-center text-sm text-gray-600 delay-400 sm:text-center sm:text-base lg:text-left lg:text-lg"
+                                                    initial={{ opacity: 0, y: 15 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 1.3,
+                                                        ease: [0.16, 1, 0.3, 1],
+                                                        delay: 0.5,
+                                                    }}
+                                                    className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
                                             >
                                                 {contentSets[currentContent].subtitle}
-                                            </p>
+                                                </motion.p>
+                                            </AnimatePresence>
                                         </div>
 
                                         {/* Buttons - responsive alignment */}
@@ -1239,9 +537,9 @@ const Welcome = () => {
 
                                                 <button
                                                     className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
-                                                    onClick={() => setShowFeedbackForm(true)}
+                                                    onClick={() => (window.location.href = '/milestones')}
                                                 >
-                                                    {t('pages.welcome.buttons.send_feedback')}
+                                                    See Milestones
                                                 </button>
 
                                                 {/* Instagram Link - Elegant and Integrated */}
@@ -1313,40 +611,92 @@ const Welcome = () => {
 
                             {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
-                                {/* Portfolio Card - 50% width, gambar asli tanpa overlay warna */}
-                                <div
-                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden p-6 text-white sm:p-8 lg:w-1/2 lg:p-8"
+                                {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
+                                <div className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden bg-black lg:w-1/2">
+                                    <AnimatePresence initial={false}>
+                                        <motion.div
+                                            key={currentSlide}
+                                            initial={{ opacity: 0, scale: 1.05 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{
+                                                duration: 1.2,
+                                                opacity: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] },
+                                                scale: { duration: 1.2, ease: [0.22, 0.61, 0.36, 1] },
+                                            }}
+                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(0)}
                                     onMouseLeave={() => setHoveredCard(null)}
-                                    onClick={() => (window.location.href = '/line-of-business')}
-                                >
-                                    {/* Background Image tanpa filter warna */}
-                                    <img
-                                        src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-                                        alt={t('pages.welcome.portfolio_alt')}
-                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                            hoveredCard === 0 ? 'scale-105' : 'scale-100'
-                                        }`}
+                                            onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
+                                        >
+                                            {/* Background Image */}
+                                            <motion.img
+                                                src={carouselSlides[currentSlide].image}
+                                                alt={carouselSlides[currentSlide].title}
+                                                initial={{ opacity: 0, scale: 1.1 }}
+                                                animate={{ opacity: 1, scale: hoveredCard === 0 ? 1.05 : 1 }}
+                                                exit={{ opacity: 0, scale: 1.05 }}
+                                                transition={{
+                                                    opacity: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] },
+                                                    scale: { duration: 1.2, ease: [0.22, 0.61, 0.36, 1] },
+                                                }}
+                                                className="absolute top-0 left-0 h-full w-full object-cover"
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                         }}
                                     />
 
                                     {/* Dark overlay untuk readability text */}
-                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                                            <motion.div
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+                                                className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10"
+                                            />
 
-                                    <div className="relative z-10">
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -20 }}
+                                                transition={{
+                                                    duration: 0.8,
+                                                    delay: 0.2,
+                                                    ease: [0.22, 0.61, 0.36, 1],
+                                                }}
+                                                className="relative z-10"
+                                            >
                                         <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                            {t('pages.welcome.portfolio.category')}
+                                                    {carouselSlides[currentSlide].category}
                                         </div>
                                         <h3
                                             className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
                                                 hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
-                                            {t('pages.welcome.portfolio.title')}
+                                                    {carouselSlides[currentSlide].title}
                                         </h3>
-                                        <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                                            </motion.div>
+                                        </motion.div>
+                                    </AnimatePresence>
+
+                                    {/* Indicator Dots */}
+                                    <div className="absolute bottom-6 left-6 z-20 flex gap-2 sm:bottom-8 sm:left-8 lg:bottom-8 lg:left-8">
+                                        {carouselSlides.map((slide, idx) => (
+                                            <button
+                                                key={slide.id}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setCurrentSlide(idx);
+                                                }}
+                                                className={`transition-all duration-300 rounded-full ${
+                                                    idx === currentSlide
+                                                        ? 'w-8 h-2.5 bg-yellow-400'
+                                                        : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+                                                }`}
+                                                aria-label={`Go to slide ${idx + 1}`}
+                                            />
+                                        ))}
                                     </div>
                                 </div>
 

@@ -246,6 +246,10 @@ return [
             'category' => 'BIDANG USAHA',
             'title' => 'Portofolio Kami',
         ],
+        'board' => [
+            'category' => 'DEWAN DIREKSI',
+            'title' => 'Dewan Direksi',
+        ],
         'news' => [
             'category' => 'BERITA TERBARU',
             'title' => 'Pembaruan Perusahaan',
@@ -659,135 +663,65 @@ return [
 
         'milestones_data' => [
             '2020-2025' => [
-                [
-                    'title' => 'Pencapaian Produksi Emas Tertinggi',
-                    'description' => 'Mencapai produksi emas tahunan tertinggi dalam sejarah perusahaan, melampaui 10 ton emas murni dan memperkuat posisi Kristalin Ekalestari sebagai perusahaan pertambangan emas terkemuka di Indonesia.',
+                '0' => [
+                    'title' => 'Produksi Penuh Dimulai',
+                    'description' => 'PT Kristalin Eka Lestari memasuki tahap produksi penuh, dengan fokus pada efisiensi operasional dan pengembangan berkelanjutan.',
                 ],
-                [
-                    'title' => 'Ekspansi Operasi Penambangan Emas Berkelanjutan',
-                    'description' => 'Menyelesaikan ekspansi operasi penambangan emas berkelanjutan di Nabire, Papua, meningkatkan kapasitas produksi sambil mempertahankan standar lingkungan dan masyarakat yang ketat.',
+                '1' => [
+                    'title' => 'Pendaftaran MODI & MOMI',
+                    'description' => 'PT Kristalin Eka Lestari resmi terdaftar dalam sistem MODI & MOMI untuk empat IUP: 108 dan 112.',
                 ],
-                [
-                    'title' => 'Ekspansi Kemitraan Strategis',
-                    'description' => 'Menandatangani perjanjian kerjasama komprehensif dengan perusahaan teknologi pertambangan China terkemuka, membawa kemampuan pengolahan kelas dunia ke operasi Papua kami.',
-                ],
-                [
-                    'title' => 'Pencapaian Sertifikasi Lingkungan',
-                    'description' => 'Meraih sertifikasi ISO 14001 Manajemen Lingkungan, memperkuat komitmen kami terhadap praktik pertambangan berkelanjutan dan pengelolaan lingkungan di Papua.',
-                ],
-                [
-                    'title' => 'Ekspansi Kapasitas Produksi',
-                    'description' => 'Menyelesaikan proyek ekspansi infrastruktur besar, menggandakan kapasitas pengolahan emas sambil mempertahankan standar lingkungan dan keselamatan yang ketat.',
-                ],
-                [
-                    'title' => 'Inisiatif Transformasi Digital',
-                    'description' => 'Meluncurkan program transformasi digital komprehensif, mengimplementasikan sensor IoT dan sistem monitoring real-time di seluruh operasi pertambangan.',
+                '2' => [
+                    'title' => 'IUP Produksi 108 & 112 Diperoleh',
+                    'description' => 'PT Kristalin Eka Lestari memperoleh izin IUP Produksi 108 dan 112, menandai peralihan dari tahap eksplorasi menuju tahap produksi.',
                 ],
             ],
             '2015-2019' => [
-                [
-                    'title' => 'Peluncuran Program Pengembangan Masyarakat',
-                    'description' => 'Mendirikan program pengembangan masyarakat komprehensif di Nabire, berfokus pada pendidikan, kesehatan, dan inisiatif pemberdayaan ekonomi lokal.',
+                '0' => [
+                    'title' => 'Kegiatan Eksplorasi dan Uji Coba Produksi',
+                    'description' => 'PT Kristalin Eka Lestari melakukan kegiatan eksplorasi berdasarkan izin IUP dan secara bertahap memulai uji coba produksi di beberapa wilayah tambang.',
                 ],
-                [
-                    'title' => 'Kemitraan Teknologi Korea',
-                    'description' => 'Membentuk aliansi strategis dengan produsen peralatan pertambangan Korea, membawa teknologi otomatisasi canggih ke proses ekstraksi emas kami.',
+                '1' => [
+                    'title' => 'CSR: Pembagian Sembako',
+                    'description' => 'Pembagian sembako dan bantuan sosial.',
                 ],
-                [
-                    'title' => 'Pengakuan Keunggulan Keselamatan',
-                    'description' => 'Mencapai tonggak zero-accident selama 1000+ hari kerja berturut-turut, menetapkan standar keselamatan industri baru di sektor pertambangan Indonesia.',
+                '2' => [
+                    'title' => 'CSR: Pembangunan Rumah',
+                    'description' => 'Pembangunan rumah dan fasilitas umum.',
                 ],
-                [
-                    'title' => 'Sertifikasi Pertambangan Berkelanjutan',
-                    'description' => 'Menjadi perusahaan pertambangan pertama di Papua yang meraih sertifikasi pertambangan berkelanjutan, menetapkan benchmark lingkungan baru untuk wilayah ini.',
+                '3' => [
+                    'title' => 'CSR: Program Kesehatan dan Pendidikan',
+                    'description' => 'Program kesehatan dan pendidikan masyarakat.',
                 ],
-                [
-                    'title' => 'Kolaborasi Investasi China',
-                    'description' => 'Mengamankan investasi besar dari mitra China, memungkinkan ekspansi signifikan operasi pertambangan dan akuisisi peralatan canggih.',
+                '4' => [
+                    'title' => 'CSR: Perbaikan Irigasi Air',
+                    'description' => 'Perbaikan irigasi air di wilayah SP I & SP II, Kampung Legari, Papua.',
                 ],
             ],
             '2010-2014' => [
-                [
-                    'title' => 'Fasilitas Pengolahan Canggih',
-                    'description' => 'Mengoperasikan fasilitas pengolahan emas canggih, menggabungkan praktik terbaik internasional dan teknologi perlindungan lingkungan.',
+                '0' => [
+                    'title' => 'Kemitraan Investasi Eksternal',
+                    'description' => 'Investor eksternal bergabung dan berkontribusi dalam pengembangan bisnis PT Kristalin Eka Lestari.',
                 ],
-                [
-                    'title' => 'Inisiatif Ekspansi Regional',
-                    'description' => 'Memperluas operasi ke konsesi pertambangan baru di Papua, mendiversifikasi lokasi ekstraksi dan meningkatkan kapasitas produksi keseluruhan.',
+                '1' => [
+                    'title' => 'Izin IUP Eksplorasi Diperoleh',
+                    'description' => 'PT Kristalin Eka Lestari memperoleh izin IUP Eksplorasi, yang menjadi dasar hukum untuk melakukan kegiatan eksplorasi lebih lanjut.',
                 ],
-                [
-                    'title' => 'Standar Kualitas Internasional',
-                    'description' => 'Meraih sertifikasi manajemen kualitas ISO 9001, mendemonstrasikan komitmen terhadap standar keunggulan operasional internasional.',
-                ],
-                [
-                    'title' => 'Program Pengembangan Tenaga Kerja',
-                    'description' => 'Meluncurkan program pelatihan komprehensif untuk tenaga kerja lokal, menciptakan peluang kerja terampil untuk komunitas Papua.',
-                ],
-                [
-                    'title' => 'Akuisisi Peralatan Modern',
-                    'description' => 'Berinvestasi dalam peralatan dan mesin pertambangan modern, secara signifikan meningkatkan efisiensi operasional dan standar keselamatan.',
+                '2' => [
+                    'title' => 'Kontribusi Masyarakat Melalui Humas',
+                    'description' => 'PT Kristalin Eka Lestari aktif berkontribusi bagi masyarakat Papua melalui kerja sama dengan berbagai pihak, terutama melalui peran Humas perusahaan.',
                 ],
             ],
             '2005-2009' => [
-                [
-                    'title' => 'Sistem Manajemen Lingkungan',
-                    'description' => 'Mengimplementasikan sistem manajemen lingkungan komprehensif, menetapkan program rehabilitasi dan konservasi untuk area pertambangan.',
-                ],
-                [
-                    'title' => 'Pencapaian Tonggak Produksi',
-                    'description' => 'Mencapai tonggak produksi emas yang signifikan, menetapkan PT Kristalin Ekalestari sebagai pemain utama dalam industri pertambangan Indonesia.',
-                ],
-                [
-                    'title' => 'Pengembangan Kemitraan Lokal',
-                    'description' => 'Memperkuat kemitraan dengan komunitas lokal Papua, menciptakan program keuntungan bersama dan inisiatif pembangunan berkelanjutan.',
-                ],
-                [
-                    'title' => 'Program Keunggulan Operasional',
-                    'description' => 'Meluncurkan program keunggulan operasional yang berfokus pada efisiensi, keselamatan, dan tanggung jawab lingkungan di seluruh operasi pertambangan.',
-                ],
-                [
-                    'title' => 'Proyek Pengembangan Infrastruktur',
-                    'description' => 'Menyelesaikan proyek pengembangan infrastruktur besar, meningkatkan jalan akses dan membangun fasilitas penting untuk operasi pertambangan.',
-                ],
-            ],
-            '2000-2004' => [
-                [
-                    'title' => 'Ekspansi Konsesi Pertambangan',
-                    'description' => 'Mengamankan konsesi pertambangan tambahan di wilayah Papua, memperluas jejak operasional dan meningkatkan portofolio sumber daya mineral.',
-                ],
-                [
-                    'title' => 'Modernisasi Teknologi',
-                    'description' => 'Memulai program modernisasi teknologi komprehensif, meningkatkan peralatan ekstraksi dan pengolahan untuk efisiensi yang lebih baik.',
-                ],
-                [
-                    'title' => 'Implementasi Protokol Keselamatan',
-                    'description' => 'Menetapkan protokol keselamatan komprehensif dan program pelatihan, memprioritaskan keselamatan pekerja dan manajemen risiko operasional.',
-                ],
-                [
-                    'title' => 'Produksi Emas Pertama',
-                    'description' => 'Mencapai produksi emas komersial pertama dari operasi Nabire, menandai tonggak penting dalam pengembangan perusahaan.',
-                ],
-                [
-                    'title' => 'Kesuksesan Eksplorasi',
-                    'description' => 'Menyelesaikan fase eksplorasi yang sukses, mengkonfirmasi cadangan emas signifikan di wilayah Papua dan memvalidasi strategi pengembangan bisnis.',
+                '0' => [
+                    'title' => 'Kuasa Tambang Diperoleh',
+                    'description' => 'PT Kristalin Eka Lestari memperoleh kuasa tambang sebagai langkah awal kegiatan eksplorasi sumber daya mineral.',
                 ],
             ],
             '1989-1999' => [
-                [
-                    'title' => 'Akuisisi Izin Pertambangan',
-                    'description' => 'Berhasil memperoleh izin pertambangan komprehensif untuk operasi Papua, meletakkan fondasi untuk kegiatan pertambangan emas skala besar.',
-                ],
-                [
-                    'title' => 'Fase Eksplorasi Awal',
-                    'description' => 'Memulai eksplorasi geologis ekstensif di wilayah Papua, melakukan survei detail dan studi kelayakan untuk potensi pertambangan emas.',
-                ],
-                [
-                    'title' => 'Masuk Wilayah Papua',
-                    'description' => 'Mendirikan basis operasi di Nabire, Papua, memulai penilaian komprehensif sumber daya mineral regional dan peluang pertambangan.',
-                ],
-                [
+                '0' => [
                     'title' => 'Pendirian Perusahaan',
-                    'description' => 'PT Kristalin Ekalestari resmi didirikan di Jakarta sebagai perusahaan pertambangan yang berfokus pada eksplorasi dan ekstraksi sumber daya alam di Indonesia.',
+                    'description' => 'PT Kristalin Eka Lestari resmi berdiri dan memulai kegiatan usaha di bidang pertambangan.',
                 ],
             ],
         ],
