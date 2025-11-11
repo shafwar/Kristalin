@@ -568,26 +568,30 @@ const Welcome = () => {
                                 {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                 <Link
                                     href="/csr"
-                                    className="relative flex h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:h-[450px] sm:p-8 lg:h-full lg:w-1/2 lg:p-12"
+                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12"
                                     onMouseEnter={() => setHoveredCard(4)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - Optimized for mobile */}
+                                    {/* Background Image - Mobile optimized with proper aspect */}
                                     <img
                                         src="/papua-children.png"
                                         alt="CSR - Papua Children"
-                                        className={`absolute top-0 left-0 h-full w-full object-cover object-center transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                             hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                         }`}
-                                        style={{ transform: 'translateZ(0)' }}
+                                        style={{
+                                            objectPosition: 'center center',
+                                            transform: 'translateZ(0)',
+                                            backfaceVisibility: 'hidden',
+                                        }}
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                         }}
-                                        loading="lazy"
+                                        loading="eager"
                                     />
 
-                                    {/* Dark overlay - Static */}
-                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                                    {/* Dark overlay - Static, stronger gradient */}
+                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                                     <div className="relative z-10">
                                         <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
@@ -614,7 +618,7 @@ const Welcome = () => {
                             {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
-                                <div className="relative flex h-[350px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:h-[400px] lg:h-auto lg:w-1/2 lg:flex-1">
+                                <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
                                     <AnimatePresence initial={false}>
                                         <motion.div
                                             key={currentSlide}
@@ -622,7 +626,7 @@ const Welcome = () => {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{
-                                                duration: 0.5,
+                                                duration: 0.4,
                                                 ease: 'easeInOut',
                                             }}
                                             className="absolute inset-0 flex flex-col justify-end p-6 text-white will-change-auto sm:p-8 lg:p-8"
@@ -630,27 +634,36 @@ const Welcome = () => {
                                             onMouseLeave={() => setHoveredCard(null)}
                                             onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                         >
-                                            {/* Background Image - Optimized for mobile */}
-                                            <motion.img
-                                                src={carouselSlides[currentSlide].image}
-                                                alt={carouselSlides[currentSlide].title}
+                                            {/* Background Image - Mobile optimized with proper aspect */}
+                                            <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.5,
+                                                    duration: 0.4,
                                                     ease: 'easeInOut',
                                                 }}
-                                                className="absolute top-0 left-0 h-full w-full object-cover object-center will-change-auto"
+                                                className="absolute inset-0 h-full w-full"
                                                 style={{ transform: 'translateZ(0)' }}
-                                                onError={(e) => {
-                                                    e.currentTarget.style.display = 'none';
-                                                }}
-                                                loading="lazy"
-                                            />
+                                            >
+                                                <img
+                                                    src={carouselSlides[currentSlide].image}
+                                                    alt={carouselSlides[currentSlide].title}
+                                                    className="h-full w-full object-cover"
+                                                    style={{
+                                                        objectPosition: 'center center',
+                                                        transform: 'translateZ(0)',
+                                                        backfaceVisibility: 'hidden',
+                                                    }}
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                    loading="eager"
+                                                />
+                                            </motion.div>
 
-                                            {/* Dark overlay - Static, no animation */}
-                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                                            {/* Dark overlay - Static, stronger gradient for better text readability */}
+                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                                             {/* Text Content - Simplified animation */}
                                             <motion.div
@@ -701,26 +714,30 @@ const Welcome = () => {
                                 {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                                 <Link
                                     href="/business-activity"
-                                    className="relative flex h-[350px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:h-[400px] sm:p-8 lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
+                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(1)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - Optimized for mobile */}
+                                    {/* Background Image - Mobile optimized with proper aspect */}
                                     <img
                                         src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
                                         alt={t('pages.welcome.business_activities_alt')}
-                                        className={`absolute top-0 left-0 h-full w-full object-cover object-center transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                             hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
                                         }`}
-                                        style={{ transform: 'translateZ(0)' }}
+                                        style={{
+                                            objectPosition: 'center center',
+                                            transform: 'translateZ(0)',
+                                            backfaceVisibility: 'hidden',
+                                        }}
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                         }}
-                                        loading="lazy"
+                                        loading="eager"
                                     />
 
-                                    {/* Dark overlay - Static */}
-                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                                    {/* Dark overlay - Static, stronger gradient */}
+                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                                     <div className="relative z-10">
                                         <h3
@@ -745,38 +762,47 @@ const Welcome = () => {
                                     id="news-update"
                                     data-news-section="true"
                                     href={newsItems[currentNews].url}
-                                    className="relative flex h-[350px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:h-[400px] sm:p-8 lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
+                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-between overflow-hidden bg-yellow-400 p-6 no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(2)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - Optimized for mobile */}
+                                    {/* Background Image - Mobile optimized with proper aspect */}
                                     <div
-                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-500 ease-out lg:duration-800 ${
+                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-400 ease-out lg:duration-600 ${
                                             hoveredCard === 2 ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
                                         }`}
                                     >
                                         <AnimatePresence mode="wait">
-                                            <motion.img
+                                            <motion.div
                                                 key={currentNews}
-                                                src={newsItems[currentNews].image}
-                                                alt={newsItems[currentNews].title}
-                                                className="h-full w-full object-cover object-center will-change-auto"
-                                                style={{ transform: 'translateZ(0)' }}
+                                                className="h-full w-full"
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.5,
+                                                    duration: 0.4,
                                                     ease: 'easeInOut',
                                                 }}
-                                                onError={(e) => {
-                                                    e.currentTarget.style.display = 'none';
-                                                }}
-                                                loading="lazy"
-                                            />
+                                                style={{ transform: 'translateZ(0)' }}
+                                            >
+                                                <img
+                                                    src={newsItems[currentNews].image}
+                                                    alt={newsItems[currentNews].title}
+                                                    className="h-full w-full object-cover"
+                                                    style={{
+                                                        objectPosition: 'center center',
+                                                        transform: 'translateZ(0)',
+                                                        backfaceVisibility: 'hidden',
+                                                    }}
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                    loading="eager"
+                                                />
+                                            </motion.div>
                                         </AnimatePresence>
-                                        {/* Dark overlay - Static */}
-                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                                        {/* Dark overlay - Static, stronger gradient */}
+                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                                     </div>
 
                                     {/* Top Section - Header */}
