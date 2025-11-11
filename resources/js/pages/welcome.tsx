@@ -435,60 +435,77 @@ const Welcome = () => {
                                             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                                         }`}
                                     >
-                                        {/* Konten Kristalin - Ultra Smooth Letter Animation */}
+                                        {/* Konten Kristalin - Enhanced Premium Letter Animation */}
                                         <div className="relative">
                                             <AnimatePresence mode="wait">
                                                 <motion.div
                                                     key={currentContent}
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
+                                                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                                    exit={{ opacity: 0, scale: 1.02, y: -10 }}
                                                     transition={{
-                                                        duration: 0.8,
-                                                        ease: [0.16, 1, 0.3, 1],
+                                                        duration: 0.7,
+                                                        ease: [0.25, 0.1, 0.25, 1],
+                                                        opacity: { duration: 0.6, ease: 'easeInOut' },
+                                                        scale: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
+                                                        y: { duration: 0.6, ease: 'easeOut' },
                                                     }}
+                                                    style={{ willChange: 'transform, opacity' }}
                                                 >
                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                        {/* Title 1 - Ultra Smooth Letter by Letter */}
+                                                        {/* Title 1 - Premium Letter Animation with Mobile Optimization */}
                                                     <div className="inline-block text-gray-800">
                                                         {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
                                                             <motion.span
                                                                     key={`${currentContent}-${index}`}
                                                                 initial={{
                                                                     opacity: 0,
-                                                                        y: 15,
-                                                                        filter: 'blur(2px)',
+                                                                        y: 10,
+                                                                        scale: 0.95,
+                                                                        filter: 'blur(1.5px)',
                                                                 }}
                                                                 animate={{
                                                                     opacity: 1,
                                                                     y: 0,
+                                                                    scale: 1,
                                                                     filter: 'blur(0px)',
                                                                 }}
                                                                     exit={{
                                                                         opacity: 0,
-                                                                        filter: 'blur(2px)',
+                                                                        scale: 1.05,
+                                                                        filter: 'blur(1px)',
                                                                 }}
                                                                 transition={{
-                                                                        duration: 1.2,
-                                                                        ease: [0.16, 1, 0.3, 1],
-                                                                        delay: index * 0.05,
+                                                                        duration: 0.8,
+                                                                        ease: [0.22, 0.61, 0.36, 1],
+                                                                        delay: index * 0.04,
+                                                                        opacity: { duration: 0.6, ease: 'easeInOut' },
+                                                                        scale: { duration: 0.8, ease: [0.22, 0.61, 0.36, 1] },
+                                                                        filter: { duration: 0.7, ease: 'easeOut' },
                                                                 }}
                                                                 className="inline-block"
+                                                                style={{ 
+                                                                    willChange: 'transform, opacity, filter',
+                                                                    transform: 'translateZ(0)',
+                                                                }}
                                                             >
                                                                 {letter === ' ' ? '\u00A0' : letter}
                                                             </motion.span>
                                                         ))}
                                                     </div>
                                                     <br />
-                                                        {/* Title 2 - Ultra Smooth Word by Word */}
+                                                        {/* Title 2 - Enhanced with Scale and Gradient Animation */}
                                                         <motion.div
-                                                            initial={{ opacity: 0, y: 15 }}
-                                                            animate={{ opacity: 1, y: 0 }}
-                                                            exit={{ opacity: 0 }}
+                                                            initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                            exit={{ opacity: 0, y: -12, scale: 1.04 }}
                                                             transition={{
-                                                                duration: 1.4,
-                                                                ease: [0.16, 1, 0.3, 1],
-                                                                delay: 0.3,
+                                                                duration: 0.9,
+                                                                ease: [0.25, 0.1, 0.25, 1],
+                                                                delay: 0.25,
+                                                                opacity: { duration: 0.7, ease: 'easeInOut' },
+                                                                scale: { duration: 0.9, ease: [0.22, 0.61, 0.36, 1] },
+                                                                y: { duration: 0.8, ease: 'easeOut' },
                                                             }}
                                                             className="inline-block"
                                                         style={{
@@ -496,6 +513,10 @@ const Welcome = () => {
                                                             WebkitBackgroundClip: 'text',
                                                             WebkitTextFillColor: 'transparent',
                                                             backgroundClip: 'text',
+                                                            willChange: 'transform, opacity',
+                                                            transform: 'translateZ(0)',
+                                                            backfaceVisibility: 'hidden',
+                                                            WebkitBackfaceVisibility: 'hidden',
                                                         }}
                                                     >
                                                         {contentSets[currentContent].title2}
@@ -505,20 +526,27 @@ const Welcome = () => {
                                             </AnimatePresence>
                                         </div>
 
-                                        {/* Subtitle - Ultra Smooth */}
+                                        {/* Subtitle - Enhanced Premium Transition */}
                                         <div className="relative">
                                             <AnimatePresence mode="wait">
                                                 <motion.p
                                                 key={`subtitle-${currentContent}`}
-                                                    initial={{ opacity: 0, y: 15 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0 }}
+                                                    initial={{ opacity: 0, y: 12, x: -8 }}
+                                                    animate={{ opacity: 1, y: 0, x: 0 }}
+                                                    exit={{ opacity: 0, y: -8, x: 8 }}
                                                     transition={{
-                                                        duration: 1.3,
-                                                        ease: [0.16, 1, 0.3, 1],
-                                                        delay: 0.5,
+                                                        duration: 0.8,
+                                                        ease: [0.22, 0.61, 0.36, 1],
+                                                        delay: 0.4,
+                                                        opacity: { duration: 0.7, ease: 'easeInOut' },
+                                                        y: { duration: 0.8, ease: 'easeOut' },
+                                                        x: { duration: 0.7, ease: 'easeOut' },
                                                     }}
                                                     className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
+                                                    style={{ 
+                                                        willChange: 'transform, opacity',
+                                                        transform: 'translateZ(0)',
+                                                    }}
                                             >
                                                 {contentSets[currentContent].subtitle}
                                                 </motion.p>
@@ -619,32 +647,41 @@ const Welcome = () => {
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
                                 <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
-                                    <AnimatePresence initial={false}>
+                                    <AnimatePresence initial={false} mode="wait">
                                         <motion.div
                                             key={currentSlide}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
+                                            initial={{ opacity: 0, scale: 1.03, y: 8 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.97, y: -8 }}
                                             transition={{
-                                                duration: 0.4,
-                                                ease: 'easeInOut',
+                                                duration: 0.6,
+                                                ease: [0.25, 0.1, 0.25, 1],
+                                                opacity: { duration: 0.5, ease: 'easeInOut' },
+                                                scale: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+                                                y: { duration: 0.5, ease: 'easeOut' },
                                             }}
-                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white will-change-auto sm:p-8 lg:p-8"
+                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
+                                            style={{ willChange: 'transform, opacity' }}
                                             onMouseEnter={() => setHoveredCard(0)}
                                             onMouseLeave={() => setHoveredCard(null)}
                                             onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                         >
-                                            {/* Background Image - Mobile optimized with proper aspect */}
+                                            {/* Background Image - Enhanced mobile transition with subtle scale */}
                                             <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
+                                                initial={{ opacity: 0, scale: 1.05 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 1.02 }}
                                                 transition={{
-                                                    duration: 0.4,
-                                                    ease: 'easeInOut',
+                                                    duration: 0.7,
+                                                    ease: [0.22, 0.61, 0.36, 1],
+                                                    opacity: { duration: 0.6, ease: 'easeInOut' },
+                                                    scale: { duration: 0.7, ease: [0.22, 0.61, 0.36, 1] },
                                                 }}
                                                 className="absolute inset-0 h-full w-full"
-                                                style={{ transform: 'translateZ(0)' }}
+                                                style={{ 
+                                                    transform: 'translateZ(0)',
+                                                    willChange: 'transform, opacity'
+                                                }}
                                             >
                                                 <img
                                                     src={carouselSlides[currentSlide].image}
@@ -652,8 +689,11 @@ const Welcome = () => {
                                                     className="h-full w-full object-cover"
                                                     style={{
                                                         objectPosition: 'center center',
-                                                        transform: 'translateZ(0)',
+                                                        transform: 'translateZ(0) scale3d(1, 1, 1)',
                                                         backfaceVisibility: 'hidden',
+                                                        WebkitBackfaceVisibility: 'hidden',
+                                                        perspective: 1000,
+                                                        WebkitPerspective: 1000,
                                                     }}
                                                     onError={(e) => {
                                                         e.currentTarget.style.display = 'none';
@@ -662,31 +702,59 @@ const Welcome = () => {
                                                 />
                                             </motion.div>
 
-                                            {/* Dark overlay - Static, stronger gradient for better text readability */}
-                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                                            {/* Text Content - Simplified animation */}
+                                            {/* Dark overlay - Animated for smoother transition feel */}
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.4,
-                                                    delay: 0.1,
+                                                    duration: 0.5,
                                                     ease: 'easeInOut',
                                                 }}
+                                                className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent"
+                                            />
+
+                                            {/* Text Content - Enhanced entry animation */}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 12 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -12 }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                    delay: 0.15,
+                                                    ease: [0.22, 0.61, 0.36, 1],
+                                                }}
                                                 className="relative z-10"
+                                                style={{ willChange: 'transform, opacity' }}
                                             >
-                                                <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                <motion.div
+                                                    initial={{ opacity: 0, x: -8 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    exit={{ opacity: 0, x: 8 }}
+                                                    transition={{
+                                                        duration: 0.4,
+                                                        delay: 0.2,
+                                                        ease: 'easeOut',
+                                                    }}
+                                                    className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm"
+                                                >
                                                     {carouselSlides[currentSlide].category}
-                                                </div>
-                                                <h3
-                                                    className={`mb-4 text-xl font-bold transition-transform duration-200 sm:text-2xl lg:text-3xl ${
+                                                </motion.div>
+                                                <motion.h3
+                                                    initial={{ opacity: 0, x: -12 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    exit={{ opacity: 0, x: 12 }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                        delay: 0.25,
+                                                        ease: [0.22, 0.61, 0.36, 1],
+                                                    }}
+                                                    className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
                                                         hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
                                                     }`}
                                                 >
                                                     {carouselSlides[currentSlide].title}
-                                                </h3>
+                                                </motion.h3>
                                             </motion.div>
                                         </motion.div>
                                     </AnimatePresence>
