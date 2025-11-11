@@ -568,23 +568,25 @@ const Welcome = () => {
                                 {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                 <Link
                                     href="/csr"
-                                    className="relative flex h-full min-h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:p-8 lg:min-h-0 lg:w-1/2 lg:p-12"
+                                    className="relative flex h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gray-100 p-6 text-white no-underline sm:h-[450px] sm:p-8 lg:h-full lg:w-1/2 lg:p-12"
                                     onMouseEnter={() => setHoveredCard(4)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - papua-children.png */}
+                                    {/* Background Image - Optimized for mobile */}
                                     <img
                                         src="/papua-children.png"
                                         alt="CSR - Papua Children"
-                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                            hoveredCard === 4 ? 'scale-105' : 'scale-100'
+                                        className={`absolute top-0 left-0 h-full w-full object-cover object-center transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                            hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                         }`}
+                                        style={{ transform: 'translateZ(0)' }}
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                         }}
+                                        loading="lazy"
                                     />
 
-                                    {/* Dark overlay untuk readability text */}
+                                    {/* Dark overlay - Static */}
                                     <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
                                     <div className="relative z-10">
@@ -592,14 +594,14 @@ const Welcome = () => {
                                             {t('pages.welcome.csr.category')}
                                         </div>
                                         <h3
-                                            className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-300 sm:text-3xl lg:text-4xl ${
-                                                hoveredCard === 4 ? 'translate-x-2' : 'translate-x-0'
+                                            className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-200 sm:text-3xl lg:text-4xl ${
+                                                hoveredCard === 4 ? 'lg:translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
                                             {t('pages.welcome.csr.title')}
                                         </h3>
                                         <span
-                                            className={`text-base font-medium underline transition-colors duration-300 ${
+                                            className={`text-base font-medium underline transition-colors duration-200 ${
                                                 hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
                                             }`}
                                         >
@@ -612,70 +614,66 @@ const Welcome = () => {
                             {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                             <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                 {/* Carousel Card - 50% width, Portfolio & Board of Directors Auto-Slide */}
-                                <div className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden bg-black lg:w-1/2">
+                                <div className="relative flex h-[350px] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:h-[400px] lg:h-auto lg:w-1/2 lg:flex-1">
                                     <AnimatePresence initial={false}>
                                         <motion.div
                                             key={currentSlide}
-                                            initial={{ opacity: 0, scale: 1.05 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
                                             transition={{
-                                                duration: 1.2,
-                                                opacity: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] },
-                                                scale: { duration: 1.2, ease: [0.22, 0.61, 0.36, 1] },
+                                                duration: 0.5,
+                                                ease: 'easeInOut',
                                             }}
-                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
-                                    onMouseEnter={() => setHoveredCard(0)}
-                                    onMouseLeave={() => setHoveredCard(null)}
+                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white will-change-auto sm:p-8 lg:p-8"
+                                            onMouseEnter={() => setHoveredCard(0)}
+                                            onMouseLeave={() => setHoveredCard(null)}
                                             onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                         >
-                                            {/* Background Image */}
+                                            {/* Background Image - Optimized for mobile */}
                                             <motion.img
                                                 src={carouselSlides[currentSlide].image}
                                                 alt={carouselSlides[currentSlide].title}
-                                                initial={{ opacity: 0, scale: 1.1 }}
-                                                animate={{ opacity: 1, scale: hoveredCard === 0 ? 1.05 : 1 }}
-                                                exit={{ opacity: 0, scale: 1.05 }}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
                                                 transition={{
-                                                    opacity: { duration: 1.0, ease: [0.25, 0.1, 0.25, 1] },
-                                                    scale: { duration: 1.2, ease: [0.22, 0.61, 0.36, 1] },
+                                                    duration: 0.5,
+                                                    ease: 'easeInOut',
                                                 }}
-                                                className="absolute top-0 left-0 h-full w-full object-cover"
-                                        onError={(e) => {
-                                            e.currentTarget.style.display = 'none';
-                                        }}
-                                    />
+                                                className="absolute top-0 left-0 h-full w-full object-cover object-center will-change-auto"
+                                                style={{ transform: 'translateZ(0)' }}
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                                loading="lazy"
+                                            />
 
-                                    {/* Dark overlay untuk readability text */}
+                                            {/* Dark overlay - Static, no animation */}
+                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                                            {/* Text Content - Simplified animation */}
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
-                                                transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
-                                                className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10"
-                                            />
-
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -20 }}
                                                 transition={{
-                                                    duration: 0.8,
-                                                    delay: 0.2,
-                                                    ease: [0.22, 0.61, 0.36, 1],
+                                                    duration: 0.4,
+                                                    delay: 0.1,
+                                                    ease: 'easeInOut',
                                                 }}
                                                 className="relative z-10"
                                             >
-                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
                                                     {carouselSlides[currentSlide].category}
-                                        </div>
-                                        <h3
-                                            className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
-                                                hoveredCard === 0 ? 'translate-x-2' : 'translate-x-0'
-                                            }`}
-                                        >
+                                                </div>
+                                                <h3
+                                                    className={`mb-4 text-xl font-bold transition-transform duration-200 sm:text-2xl lg:text-3xl ${
+                                                        hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
+                                                    }`}
+                                                >
                                                     {carouselSlides[currentSlide].title}
-                                        </h3>
+                                                </h3>
                                             </motion.div>
                                         </motion.div>
                                     </AnimatePresence>
@@ -689,7 +687,7 @@ const Welcome = () => {
                                                     e.stopPropagation();
                                                     setCurrentSlide(idx);
                                                 }}
-                                                className={`transition-all duration-300 rounded-full ${
+                                                className={`transition-all duration-200 rounded-full ${
                                                     idx === currentSlide
                                                         ? 'w-8 h-2.5 bg-yellow-400'
                                                         : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
@@ -703,35 +701,37 @@ const Welcome = () => {
                                 {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                                 <Link
                                     href="/business-activity"
-                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex h-[350px] w-full cursor-pointer flex-col justify-end overflow-hidden p-6 text-white no-underline sm:h-[400px] sm:p-8 lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(1)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image tanpa filter warna */}
+                                    {/* Background Image - Optimized for mobile */}
                                     <img
                                         src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
                                         alt={t('pages.welcome.business_activities_alt')}
-                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
-                                            hoveredCard === 1 ? 'scale-105' : 'scale-100'
+                                        className={`absolute top-0 left-0 h-full w-full object-cover object-center transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                            hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
                                         }`}
+                                        style={{ transform: 'translateZ(0)' }}
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
                                         }}
+                                        loading="lazy"
                                     />
 
-                                    {/* Dark overlay untuk readability text */}
+                                    {/* Dark overlay - Static */}
                                     <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
                                     <div className="relative z-10">
                                         <h3
-                                            className={`mb-4 text-lg leading-tight font-bold transition-transform duration-300 sm:text-xl lg:text-2xl ${
-                                                hoveredCard === 1 ? 'translate-x-2' : 'translate-x-0'
+                                            className={`mb-4 text-lg leading-tight font-bold transition-transform duration-200 sm:text-xl lg:text-2xl ${
+                                                hoveredCard === 1 ? 'lg:translate-x-2' : 'translate-x-0'
                                             }`}
                                         >
                                             {t('pages.welcome.business_activities.title')}
                                         </h3>
                                         <span
-                                            className={`text-sm font-medium underline transition-colors duration-300 ${
+                                            className={`text-sm font-medium underline transition-colors duration-200 ${
                                                 hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
                                             }`}
                                         >
@@ -745,13 +745,13 @@ const Welcome = () => {
                                     id="news-update"
                                     data-news-section="true"
                                     href={newsItems[currentNews].url}
-                                    className="relative flex min-h-[300px] w-full flex-1 cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:p-8 lg:w-1/4 lg:p-8"
+                                    className="relative flex h-[350px] w-full cursor-pointer flex-col justify-between bg-yellow-400 p-6 no-underline sm:h-[400px] sm:p-8 lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                     onMouseEnter={() => setHoveredCard(2)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                 >
-                                    {/* Background Image - hanya muncul saat hover dengan transisi yang lebih smooth */}
+                                    {/* Background Image - Optimized for mobile */}
                                     <div
-                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-800 ease-out ${
+                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-500 ease-out lg:duration-800 ${
                                             hoveredCard === 2 ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
                                         }`}
                                     >
@@ -760,32 +760,31 @@ const Welcome = () => {
                                                 key={currentNews}
                                                 src={newsItems[currentNews].image}
                                                 alt={newsItems[currentNews].title}
-                                                className="h-full w-full object-cover"
-                                                initial={{ opacity: 0, scale: 1.05, x: 20 }}
-                                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                                exit={{ opacity: 0, scale: 0.95, x: -20 }}
+                                                className="h-full w-full object-cover object-center will-change-auto"
+                                                style={{ transform: 'translateZ(0)' }}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 1.2,
-                                                    ease: [0.25, 0.46, 0.45, 0.94],
-                                                    opacity: { duration: 1.0 },
-                                                    scale: { duration: 1.2 },
-                                                    x: { duration: 1.0 },
+                                                    duration: 0.5,
+                                                    ease: 'easeInOut',
                                                 }}
                                                 onError={(e) => {
                                                     e.currentTarget.style.display = 'none';
                                                 }}
+                                                loading="lazy"
                                             />
                                         </AnimatePresence>
-                                        {/* Dark overlay untuk readability text */}
-                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-all duration-700" />
+                                        {/* Dark overlay - Static */}
+                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
                                     </div>
 
                                     {/* Top Section - Header */}
                                     <div className="relative z-10 mb-4">
                                         <div className="flex items-center justify-between">
                                             <div
-                                                className={`text-xl font-bold transition-all duration-500 sm:text-2xl lg:text-3xl ${
-                                                    hoveredCard === 2 ? 'scale-110 text-white' : 'scale-100 text-gray-800'
+                                                className={`text-xl font-bold transition-all duration-300 sm:text-2xl lg:text-3xl ${
+                                                    hoveredCard === 2 ? 'lg:scale-110 text-white' : 'scale-100 text-gray-800'
                                                 }`}
                                             >
                                                 <a
@@ -808,7 +807,7 @@ const Welcome = () => {
                                                                 e.stopPropagation();
                                                                 setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
                                                             }}
-                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110 ${
+                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
                                                                 hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
                                                             }`}
                                                         >
@@ -827,7 +826,7 @@ const Welcome = () => {
                                                                 e.stopPropagation();
                                                                 setCurrentNews((prev) => (prev + 1) % newsItems.length);
                                                             }}
-                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110 ${
+                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
                                                                 hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
                                                             }`}
                                                         >
@@ -858,15 +857,12 @@ const Welcome = () => {
                                         <AnimatePresence mode="wait">
                                             <motion.div
                                                 key={currentNews}
-                                                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
                                                 transition={{
-                                                    duration: 0.8,
-                                                    ease: [0.25, 0.46, 0.45, 0.94],
-                                                    opacity: { duration: 0.7 },
-                                                    y: { duration: 0.8 },
-                                                    scale: { duration: 0.7 },
+                                                    duration: 0.4,
+                                                    ease: 'easeInOut',
                                                 }}
                                                 className="mb-4"
                                             >
@@ -875,12 +871,12 @@ const Welcome = () => {
                                                         {/* Date dengan icon */}
                                                         <div className="mb-3 flex items-center gap-2">
                                                             <div
-                                                                className={`h-1 w-1 rounded-full transition-colors duration-500 ${
+                                                                className={`h-1 w-1 rounded-full transition-colors duration-300 ${
                                                                     hoveredCard === 2 ? 'bg-white' : 'bg-gray-500'
                                                                 }`}
                                                             ></div>
                                                             <div
-                                                                className={`text-xs font-medium transition-colors duration-500 ${
+                                                                className={`text-xs font-medium transition-colors duration-300 ${
                                                                     hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
                                                                 }`}
                                                             >
@@ -890,7 +886,7 @@ const Welcome = () => {
 
                                                         {/* Title dengan line clamp */}
                                                         <div
-                                                            className={`mb-3 line-clamp-2 text-sm leading-tight font-bold transition-colors duration-500 sm:text-base lg:text-lg ${
+                                                            className={`mb-3 line-clamp-2 text-sm leading-tight font-bold transition-colors duration-300 sm:text-base lg:text-lg ${
                                                                 hoveredCard === 2 ? 'text-white' : 'text-gray-800'
                                                             }`}
                                                         >
@@ -899,7 +895,7 @@ const Welcome = () => {
 
                                                         {/* Description dengan line clamp yang lebih jelas */}
                                                         <div
-                                                            className={`line-clamp-3 text-xs leading-relaxed transition-colors duration-500 sm:text-sm ${
+                                                            className={`line-clamp-3 text-xs leading-relaxed transition-colors duration-300 sm:text-sm ${
                                                                 hoveredCard === 2 ? 'text-gray-100' : 'text-gray-700'
                                                             }`}
                                                         >
@@ -910,7 +906,7 @@ const Welcome = () => {
                                                     <div className="text-center">
                                                         <div className="mb-2 text-4xl">📰</div>
                                                         <p
-                                                            className={`text-sm font-medium transition-colors duration-500 ${
+                                                            className={`text-sm font-medium transition-colors duration-300 ${
                                                                 hoveredCard === 2 ? 'text-white' : 'text-gray-800'
                                                             }`}
                                                         >
@@ -926,7 +922,7 @@ const Welcome = () => {
                                     <div className="relative z-10">
                                         {/* View button */}
                                         <div
-                                            className={`mb-3 flex items-center justify-between transition-colors duration-500 ${
+                                            className={`mb-3 flex items-center justify-between transition-colors duration-300 ${
                                                 hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
                                             }`}
                                         >
