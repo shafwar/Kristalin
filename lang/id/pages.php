@@ -272,10 +272,6 @@ return [
                 ],
             ],
     ],
-    'contact' => [
-        'category' => 'HUBUNGI KAMI',
-        'title' => 'Kontak Kami',
-    ],
     'business_activities' => [
         'title' => 'Aktivitas Bisnis',
         'find_out_more' => 'Pelajari lebih lanjut →',
@@ -728,18 +724,6 @@ return [
     ],
 
 
-    'contact' => [
-        'title' => 'Hubungi Kami',
-        'description' => 'Hubungi tim kami untuk pertanyaan tentang layanan dan peluang bisnis kami.',
-        'form_name' => 'Nama Lengkap',
-        'form_email' => 'Alamat Email',
-        'form_message' => 'Pesan',
-        'form_submit' => 'Kirim Pesan',
-        'address_title' => 'Alamat Kami',
-        'phone_title' => 'Telepon',
-        'email_title' => 'Email',
-    ],
-
     'core_values' => [
         'page_title' => 'Nilai-Nilai Inti Kami',
         'hero_title_1' => 'Nilai-Nilai',
@@ -995,10 +979,6 @@ return [
         'sustainable_excellence' => [
             'title' => 'Keunggulan Pertambangan Berkelanjutan',
             'description' => 'Pendekatan terdiversifikasi kami di bidang emas, perak, dan logam lainnya memastikan pemanfaatan sumber daya yang komprehensif sambil mempertahankan standar lingkungan dan keselamatan tertinggi di seluruh operasi di cekungan Sungai Musairo yang kaya mineral.',
-        ],
-        'achievements' => [
-            'title' => 'Pencapaian Kami',
-            'subtitle' => 'Rekam jejak terbukti dalam keunggulan operasi pertambangan berkelanjutan dan pengembangan masyarakat.',
         ],
         'location' => [
             'header' => 'LOKASI KAMI',

@@ -1,16 +1,16 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 /**
  * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
- * 
+ *
  * Components backed up to: resources/js/components/InternalFeedbackModal.BACKUP.tsx
  * To re-enable: Import from backup file
- * 
+ *
  * Removed components:
  * - InternalFeedbackModal (line 8-526)
  * - FloatingFeedbackButton (line 528-571)
@@ -165,7 +165,7 @@ const Welcome = () => {
     // Loading Screen Component - Clean & Professional
     /**
      * Ultra Professional Splash Screen Component - Kristalin Eka Lestari
-     * 
+     *
      * Features:
      * - 4-second duration animation (like Cidata)
      * - Logo with unique 3D rotate and scale effects
@@ -194,33 +194,33 @@ const Welcome = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{
-                            duration: 1.0, 
+                            duration: 1.0,
                             ease: [0.16, 1, 0.3, 1],
-                            delay: 0.2
+                            delay: 0.2,
                         }}
                         className="fixed inset-0 z-50 flex items-center justify-center bg-white"
                     >
                         {/* Simple centered content - Ultra Smooth */}
-                            <motion.div
+                        <motion.div
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -30 }}
-                                transition={{
+                            transition={{
                                 opacity: { duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
                                 y: { duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
-                                }}
+                            }}
                             className="text-center"
-                            >
+                        >
                             {/* Premium Logo - Ultra Smooth Fade Only */}
-                                <motion.div
+                            <motion.div
                                 initial={{ opacity: 0, y: 25 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
-                                    transition={{
+                                transition={{
                                     opacity: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
                                     y: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
-                                        delay: 0.6,
-                                    }}
+                                    delay: 0.6,
+                                }}
                                 className="mb-10"
                             >
                                 <motion.img
@@ -228,10 +228,10 @@ const Welcome = () => {
                                         y: [0, -5, 0],
                                     }}
                                     transition={{
-                                            duration: 4,
-                                            repeat: Infinity,
+                                        duration: 4,
+                                        repeat: Infinity,
                                         ease: [0.45, 0, 0.55, 1],
-                                            delay: 2.5,
+                                        delay: 2.5,
                                     }}
                                     src="/kristalinlogotransisi1.png"
                                     alt="Kristalin Logo"
@@ -263,9 +263,9 @@ const Welcome = () => {
                                         fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
                                         letterSpacing: '0.12em',
                                         fontWeight: 300,
-                                        }}
-                                    >
-                                        WELCOME TO
+                                    }}
+                                >
+                                    WELCOME TO
                                 </motion.p>
 
                                 {/* KRISTALIN - Strong & Bold */}
@@ -281,28 +281,28 @@ const Welcome = () => {
                                 </motion.h1>
 
                                 {/* EKA LESTARI - Golden & Elegant (NO LINE in between) */}
-                                    <motion.h2
+                                <motion.h2
                                     className="text-3xl font-semibold tracking-[0.06em] uppercase sm:text-4xl"
-                                        style={{
+                                    style={{
                                         fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
                                         letterSpacing: '0.06em',
                                         fontWeight: 600,
-                                            background: 'linear-gradient(135deg, #B8860B 0%, #FFD700 50%, #DAA520 100%)',
-                                            WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
-                                            backgroundClip: 'text',
-                                        }}
-                                    >
-                                        EKA LESTARI
-                                    </motion.h2>
-                                </motion.div>
+                                        background: 'linear-gradient(135deg, #B8860B 0%, #FFD700 50%, #DAA520 100%)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        backgroundClip: 'text',
+                                    }}
+                                >
+                                    EKA LESTARI
+                                </motion.h2>
+                            </motion.div>
 
                             {/* Tagline & Subtitle - Ultra Smooth */}
                             <motion.div
                                 initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
-                                    transition={{
+                                transition={{
                                     opacity: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
                                     y: { duration: 1.7, ease: [0.16, 1, 0.3, 1] },
                                     delay: 1.6,
@@ -312,7 +312,7 @@ const Welcome = () => {
                                 {/* Tagline */}
                                 <motion.p
                                     className="text-base font-medium tracking-wide text-neutral-600 sm:text-lg"
-                                        style={{
+                                    style={{
                                         fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
                                         fontWeight: 500,
                                     }}
@@ -321,11 +321,11 @@ const Welcome = () => {
                                 </motion.p>
 
                                 {/* Elegant Divider */}
-                            <motion.div
+                                <motion.div
                                     initial={{ scaleX: 0, opacity: 0 }}
                                     animate={{ scaleX: 1, opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                transition={{
+                                    transition={{
                                         scaleX: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
                                         opacity: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
                                         delay: 1.8,
@@ -366,14 +366,14 @@ const Welcome = () => {
                                 className="mt-10 flex justify-center gap-1.5"
                             >
                                 {[0, 1, 2].map((i) => (
-                            <motion.div
+                                    <motion.div
                                         key={i}
                                         initial={{ opacity: 0 }}
-                                animate={{
+                                        animate={{
                                             opacity: [0.3, 1, 0.3],
                                             scale: [1, 1.2, 1],
-                                }}
-                                transition={{
+                                        }}
+                                        transition={{
                                             opacity: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
                                             scale: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
                                             delay: 2.8 + i * 0.2,
@@ -397,270 +397,250 @@ const Welcome = () => {
                 {/* Loading Screen */}
                 <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
 
-            {/* Header - Hidden during loading */}
-            <AnimatePresence>
-                {!showLoadingScreen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-                    >
-                        <Header sticky={true} transparent={false} />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
-                {/* Main Content with Elegant Fade In */}
+                {/* Header - Hidden during loading */}
                 <AnimatePresence>
                     {!showLoadingScreen && (
                         <motion.div
-                            className="flex flex-1 flex-col"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
                         >
-                            {/* DISABLED - Feedback Form Modal */}
-                            {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
+                            <Header sticky={true} transparent={false} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
-                            {/* DISABLED - Floating Feedback Button */}
-                            {/* <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} /> */}
+                <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
+                    {/* Main Content with Elegant Fade In */}
+                    <AnimatePresence>
+                        {!showLoadingScreen && (
+                            <motion.div
+                                className="flex flex-1 flex-col"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
+                            >
+                                {/* DISABLED - Feedback Form Modal */}
+                                {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
 
-                            {/* Hero Section - top half of viewport on desktop */}
-                            <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
-                                {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
-                                <div className="relative flex h-full w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
-                                    <div
-                                        className={`relative z-10 transition-all duration-1000 ${
-                                            isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-                                        }`}
-                                    >
-                                        {/* Hero Text - Mobile Anti-Flicker Optimized */}
-                                        <div className="relative">
-                                            <AnimatePresence mode="wait">
-                                                <motion.div
-                                                    key={currentContent}
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{
-                                                        duration: 0.8,
-                                                        ease: 'easeInOut',
-                                                    }}
-                                                    style={{
-                                                        transform: 'translate3d(0, 0, 0)',
-                                                        willChange: 'opacity',
-                                                        backfaceVisibility: 'hidden',
-                                                        WebkitBackfaceVisibility: 'hidden',
-                                                    }}
-                                                >
-                                                <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                        {/* Title 1 - Smooth letter cascade (mobile optimized) */}
-                                                    <div className="inline-block text-gray-800">
-                                                        {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
-                                                            <motion.span
-                                                                    key={`${currentContent}-${index}`}
-                                                                initial={{
-                                                                    opacity: 0,
-                                                                        y: 8,
-                                                                }}
-                                                                animate={{
-                                                                    opacity: 1,
-                                                                    y: 0,
-                                                                }}
-                                                                    exit={{
-                                                                        opacity: 0,
-                                                                }}
-                                                                transition={{
-                                                                        duration: 0.9,
-                                                                        ease: 'easeOut',
-                                                                        delay: index * 0.03,
-                                                                }}
-                                                                className="inline-block"
-                                                                style={{ 
-                                                                    transform: 'translate3d(0, 0, 0)',
-                                                                    willChange: 'opacity',
-                                                                    backfaceVisibility: 'hidden',
-                                                                    WebkitBackfaceVisibility: 'hidden',
-                                                                }}
-                                                            >
-                                                                {letter === ' ' ? '\u00A0' : letter}
-                                                            </motion.span>
-                                                        ))}
-                                                    </div>
-                                                    <br />
-                                                        {/* Title 2 - Gold gradient (simplified) */}
-                                                        <motion.div
-                                                            initial={{ opacity: 0, y: 8 }}
-                                                            animate={{ opacity: 1, y: 0 }}
-                                                            exit={{ opacity: 0 }}
-                                                            transition={{
-                                                                duration: 1.0,
-                                                                ease: 'easeInOut',
-                                                                delay: 0.3,
-                                                            }}
-                                                            className="inline-block"
+                                {/* DISABLED - Floating Feedback Button */}
+                                {/* <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} /> */}
+
+                                {/* Hero Section - top half of viewport on desktop */}
+                                <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
+                                    {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
+                                    <div className="relative flex h-full w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
+                                        <div
+                                            className={`relative z-10 transition-all duration-1000 ${
+                                                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+                                            }`}
+                                        >
+                                            {/* Hero Text - Mobile Anti-Flicker Optimized */}
+                                            <div className="relative">
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={currentContent}
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{
+                                                            duration: 0.8,
+                                                            ease: 'easeInOut',
+                                                        }}
                                                         style={{
-                                                            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-                                                            WebkitBackgroundClip: 'text',
-                                                            WebkitTextFillColor: 'transparent',
-                                                            backgroundClip: 'text',
                                                             transform: 'translate3d(0, 0, 0)',
                                                             willChange: 'opacity',
                                                             backfaceVisibility: 'hidden',
                                                             WebkitBackfaceVisibility: 'hidden',
                                                         }}
                                                     >
-                                                        {contentSets[currentContent].title2}
-                                                        </motion.div>
-                                                </h1>
-                                                </motion.div>
-                                            </AnimatePresence>
-                                        </div>
-
-                                        {/* Subtitle - Mobile optimized smooth fade */}
-                                        <div className="relative">
-                                            <AnimatePresence mode="wait">
-                                                <motion.p
-                                                key={`subtitle-${currentContent}`}
-                                                    initial={{ opacity: 0, y: 8 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{
-                                                        duration: 0.9,
-                                                        ease: 'easeInOut',
-                                                        delay: 0.5,
-                                                    }}
-                                                    className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
-                                                    style={{ 
-                                                        transform: 'translate3d(0, 0, 0)',
-                                                        willChange: 'opacity',
-                                                        backfaceVisibility: 'hidden',
-                                                        WebkitBackfaceVisibility: 'hidden',
-                                                    }}
-                                            >
-                                                {contentSets[currentContent].subtitle}
-                                                </motion.p>
-                                            </AnimatePresence>
-                                        </div>
-
-                                        {/* Buttons - responsive alignment */}
-                                        <div className="mt-6 w-full">
-                                            <div className="button-container flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4 md:flex-row md:justify-center md:gap-4 lg:flex-row lg:justify-start lg:gap-4">
-                                                <button
-                                                    className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
-                                                    onClick={() => (window.location.href = '/about#about-kristalin')}
-                                                >
-                                                    {t('pages.welcome.buttons.learn_more')}
-                                                </button>
-
-                                                <button
-                                                    className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
-                                                    onClick={() => (window.location.href = '/milestones')}
-                                                >
-                                                    See Milestones
-                                                </button>
-
-                                                {/* Instagram Link - Elegant and Integrated */}
-                                                <motion.a
-                                                    href="https://www.instagram.com/kristalin_ekalestari/"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-7 py-3.5 text-base font-semibold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
-                                                    whileHover={{ scale: 1.02 }}
-                                                    whileTap={{ scale: 0.98 }}
-                                                >
-                                                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                                    </svg>
-                                                    <span className="hidden sm:inline">{t('common.follow_us')}</span>
-                                                    <span className="sm:hidden">Instagram</span>
-                                                </motion.a>
+                                                        <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
+                                                            {/* Title 1 - Smooth letter cascade (mobile optimized) */}
+                                                            <div className="inline-block text-gray-800">
+                                                                {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
+                                                                    <motion.span
+                                                                        key={`${currentContent}-${index}`}
+                                                                        initial={{
+                                                                            opacity: 0,
+                                                                            y: 8,
+                                                                        }}
+                                                                        animate={{
+                                                                            opacity: 1,
+                                                                            y: 0,
+                                                                        }}
+                                                                        exit={{
+                                                                            opacity: 0,
+                                                                        }}
+                                                                        transition={{
+                                                                            duration: 0.9,
+                                                                            ease: 'easeOut',
+                                                                            delay: index * 0.03,
+                                                                        }}
+                                                                        className="inline-block"
+                                                                        style={{
+                                                                            transform: 'translate3d(0, 0, 0)',
+                                                                            willChange: 'opacity',
+                                                                            backfaceVisibility: 'hidden',
+                                                                            WebkitBackfaceVisibility: 'hidden',
+                                                                        }}
+                                                                    >
+                                                                        {letter === ' ' ? '\u00A0' : letter}
+                                                                    </motion.span>
+                                                                ))}
+                                                            </div>
+                                                            <br />
+                                                            {/* Title 2 - Gold gradient (simplified) */}
+                                                            <motion.div
+                                                                initial={{ opacity: 0, y: 8 }}
+                                                                animate={{ opacity: 1, y: 0 }}
+                                                                exit={{ opacity: 0 }}
+                                                                transition={{
+                                                                    duration: 1.0,
+                                                                    ease: 'easeInOut',
+                                                                    delay: 0.3,
+                                                                }}
+                                                                className="inline-block"
+                                                                style={{
+                                                                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                                    WebkitBackgroundClip: 'text',
+                                                                    WebkitTextFillColor: 'transparent',
+                                                                    backgroundClip: 'text',
+                                                                    transform: 'translate3d(0, 0, 0)',
+                                                                    willChange: 'opacity',
+                                                                    backfaceVisibility: 'hidden',
+                                                                    WebkitBackfaceVisibility: 'hidden',
+                                                                }}
+                                                            >
+                                                                {contentSets[currentContent].title2}
+                                                            </motion.div>
+                                                        </h1>
+                                                    </motion.div>
+                                                </AnimatePresence>
                                             </div>
+
+                                            {/* Subtitle - Mobile optimized smooth fade */}
+                                            <div className="relative">
+                                                <AnimatePresence mode="wait">
+                                                    <motion.p
+                                                        key={`subtitle-${currentContent}`}
+                                                        initial={{ opacity: 0, y: 8 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{
+                                                            duration: 0.9,
+                                                            ease: 'easeInOut',
+                                                            delay: 0.5,
+                                                        }}
+                                                        className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
+                                                        style={{
+                                                            transform: 'translate3d(0, 0, 0)',
+                                                            willChange: 'opacity',
+                                                            backfaceVisibility: 'hidden',
+                                                            WebkitBackfaceVisibility: 'hidden',
+                                                        }}
+                                                    >
+                                                        {contentSets[currentContent].subtitle}
+                                                    </motion.p>
+                                                </AnimatePresence>
+                                            </div>
+
+                                            {/* Buttons - responsive alignment */}
+                                            <div className="mt-6 w-full">
+                                                <div className="button-container flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4 md:flex-row md:justify-center md:gap-4 lg:flex-row lg:justify-start lg:gap-4">
+                                                    <button
+                                                        className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        onClick={() => (window.location.href = '/about#about-kristalin')}
+                                                    >
+                                                        {t('pages.welcome.buttons.learn_more')}
+                                                    </button>
+
+                                                    <button
+                                                        className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        onClick={() => (window.location.href = '/milestones')}
+                                                    >
+                                                        See Milestones
+                                                    </button>
+
+                                                    {/* Instagram Link - Elegant and Integrated */}
+                                                    <motion.a
+                                                        href="https://www.instagram.com/kristalin_ekalestari/"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-7 py-3.5 text-base font-semibold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        whileHover={{ scale: 1.02 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                    >
+                                                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                                        </svg>
+                                                        <span className="hidden sm:inline">{t('common.follow_us')}</span>
+                                                        <span className="sm:hidden">Instagram</span>
+                                                    </motion.a>
+                                                </div>
+                                            </div>
+
+                                            {/* Konten tanpa elemen dekoratif */}
+                                            <div className="relative"></div>
                                         </div>
-
-                                        {/* Konten tanpa elemen dekoratif */}
-                                        <div className="relative"></div>
                                     </div>
-                                </div>
 
-                                {/* Right Section - CSR Card dengan gambar papua-children.png */}
-                                <Link
-                                    href="/csr"
-                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12"
-                                    onMouseEnter={() => setHoveredCard(4)}
-                                    onMouseLeave={() => setHoveredCard(null)}
-                                >
-                                    {/* Background Image - Mobile optimized with proper aspect */}
-                                    <img
-                                        src="/papua-children.png"
-                                        alt="CSR - Papua Children"
-                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
-                                            hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
-                                        }`}
-                                        style={{
-                                            objectPosition: 'center center',
-                                            transform: 'translateZ(0)',
-                                            backfaceVisibility: 'hidden',
-                                        }}
-                                        onError={(e) => {
-                                            e.currentTarget.style.display = 'none';
-                                        }}
-                                        loading="eager"
-                                    />
-
-                                    {/* Dark overlay - Static, stronger gradient */}
-                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                                    <div className="relative z-10">
-                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                            {t('pages.welcome.csr.category')}
-                                        </div>
-                                        <h3
-                                            className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-200 sm:text-3xl lg:text-4xl ${
-                                                hoveredCard === 4 ? 'lg:translate-x-2' : 'translate-x-0'
+                                    {/* Right Section - CSR Card dengan gambar papua-children.png */}
+                                    <Link
+                                        href="/csr"
+                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12"
+                                        onMouseEnter={() => setHoveredCard(4)}
+                                        onMouseLeave={() => setHoveredCard(null)}
+                                    >
+                                        {/* Background Image - Mobile optimized with proper aspect */}
+                                        <img
+                                            src="/papua-children.png"
+                                            alt="CSR - Papua Children"
+                                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                                hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                             }`}
-                                        >
-                                            {t('pages.welcome.csr.title')}
-                                        </h3>
-                                        <span
-                                            className={`text-base font-medium underline transition-colors duration-200 ${
-                                                hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
-                                            }`}
-                                        >
-                                            {t('pages.welcome.buttons.discover_more')}
-                                        </span>
-                                    </div>
-                                </Link>
-                            </section>
-
-                            {/* Bottom Grid - fills remaining height and touches footer on desktop */}
-                            <section className="flex flex-1 flex-col bg-white lg:flex-row">
-                                {/* Carousel Card - Mobile Anti-Flicker Optimized */}
-                                <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
-                                    <AnimatePresence initial={false}>
-                                        <motion.div
-                                            key={currentSlide}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{
-                                                duration: 1.0,
-                                                ease: 'linear',
-                                            }}
-                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
                                             style={{
-                                                transform: 'translate3d(0, 0, 0)',
-                                                willChange: 'opacity',
+                                                objectPosition: 'center center',
+                                                transform: 'translateZ(0)',
                                                 backfaceVisibility: 'hidden',
-                                                WebkitBackfaceVisibility: 'hidden',
                                             }}
-                                            onMouseEnter={() => setHoveredCard(0)}
-                                            onMouseLeave={() => setHoveredCard(null)}
-                                            onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
-                                        >
-                                            {/* Image - Pure opacity crossfade for smoothness */}
+                                            onError={(e) => {
+                                                e.currentTarget.style.display = 'none';
+                                            }}
+                                            loading="eager"
+                                        />
+
+                                        {/* Dark overlay - Static, stronger gradient */}
+                                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                                        <div className="relative z-10">
+                                            <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                {t('pages.welcome.csr.category')}
+                                            </div>
+                                            <h3
+                                                className={`mb-4 text-2xl leading-tight font-bold transition-transform duration-200 sm:text-3xl lg:text-4xl ${
+                                                    hoveredCard === 4 ? 'lg:translate-x-2' : 'translate-x-0'
+                                                }`}
+                                            >
+                                                {t('pages.welcome.csr.title')}
+                                            </h3>
+                                            <span
+                                                className={`text-base font-medium underline transition-colors duration-200 ${
+                                                    hoveredCard === 4 ? 'text-yellow-400' : 'text-white'
+                                                }`}
+                                            >
+                                                {t('pages.welcome.buttons.discover_more')}
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </section>
+
+                                {/* Bottom Grid - fills remaining height and touches footer on desktop */}
+                                <section className="flex flex-1 flex-col bg-white lg:flex-row">
+                                    {/* Carousel Card - Mobile Anti-Flicker Optimized */}
+                                    <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
+                                        <AnimatePresence initial={false}>
                                             <motion.div
+                                                key={currentSlide}
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
@@ -668,383 +648,410 @@ const Welcome = () => {
                                                     duration: 1.0,
                                                     ease: 'linear',
                                                 }}
-                                                className="absolute inset-0 h-full w-full"
+                                                className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
                                                 style={{
                                                     transform: 'translate3d(0, 0, 0)',
                                                     willChange: 'opacity',
+                                                    backfaceVisibility: 'hidden',
+                                                    WebkitBackfaceVisibility: 'hidden',
                                                 }}
+                                                onMouseEnter={() => setHoveredCard(0)}
+                                                onMouseLeave={() => setHoveredCard(null)}
+                                                onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                             >
-                                                <img
-                                                    src={carouselSlides[currentSlide].image}
-                                                    alt={carouselSlides[currentSlide].title}
-                                                    className="h-full w-full object-cover"
+                                                {/* Image - Pure opacity crossfade for smoothness */}
+                                                <motion.div
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 1.0,
+                                                        ease: 'linear',
+                                                    }}
+                                                    className="absolute inset-0 h-full w-full"
                                                     style={{
-                                                        objectPosition: 'center center',
                                                         transform: 'translate3d(0, 0, 0)',
-                                                        backfaceVisibility: 'hidden',
-                                                        WebkitBackfaceVisibility: 'hidden',
-                                                        imageRendering: '-webkit-optimize-contrast',
+                                                        willChange: 'opacity',
                                                     }}
-                                                    onError={(e) => {
-                                                        e.currentTarget.style.display = 'none';
-                                                    }}
-                                                    loading="eager"
-                                                />
-                                            </motion.div>
-
-                                            {/* Overlay - Static (no animation) for stability */}
-                                            <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-
-                                            {/* Text - Simple fade after image settled */}
-                                            <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{
-                                                    duration: 0.8,
-                                                    delay: 0.3,
-                                                    ease: 'easeInOut',
-                                                }}
-                                                className="relative z-10"
-                                                style={{
-                                                    transform: 'translate3d(0, 0, 0)',
-                                                    willChange: 'opacity',
-                                                }}
-                                            >
-                                                <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                                    {carouselSlides[currentSlide].category}
-                                                </div>
-                                                <h3
-                                                    className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
-                                                        hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
-                                                    }`}
                                                 >
-                                                    {carouselSlides[currentSlide].title}
-                                                </h3>
-                                            </motion.div>
-                                        </motion.div>
-                                    </AnimatePresence>
+                                                    <img
+                                                        src={carouselSlides[currentSlide].image}
+                                                        alt={carouselSlides[currentSlide].title}
+                                                        className="h-full w-full object-cover"
+                                                        style={{
+                                                            objectPosition: 'center center',
+                                                            transform: 'translate3d(0, 0, 0)',
+                                                            backfaceVisibility: 'hidden',
+                                                            WebkitBackfaceVisibility: 'hidden',
+                                                            imageRendering: '-webkit-optimize-contrast',
+                                                        }}
+                                                        onError={(e) => {
+                                                            e.currentTarget.style.display = 'none';
+                                                        }}
+                                                        loading="eager"
+                                                    />
+                                                </motion.div>
 
-                                    {/* Indicator Dots */}
-                                    <div className="absolute bottom-6 left-6 z-20 flex gap-2 sm:bottom-8 sm:left-8 lg:bottom-8 lg:left-8">
-                                        {carouselSlides.map((slide, idx) => (
-                                            <button
-                                                key={slide.id}
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    setCurrentSlide(idx);
-                                                }}
-                                                className={`transition-all duration-200 rounded-full ${
-                                                    idx === currentSlide
-                                                        ? 'w-8 h-2.5 bg-yellow-400'
-                                                        : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
-                                                }`}
-                                                aria-label={`Go to slide ${idx + 1}`}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
+                                                {/* Overlay - Static (no animation) for stability */}
+                                                <div className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                                {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
-                                <Link
-                                    href="/business-activity"
-                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
-                                    onMouseEnter={() => setHoveredCard(1)}
-                                    onMouseLeave={() => setHoveredCard(null)}
-                                >
-                                    {/* Background Image - Mobile optimized with proper aspect */}
-                                    <img
-                                        src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-                                        alt={t('pages.welcome.business_activities_alt')}
-                                        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
-                                            hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
-                                        }`}
-                                        style={{
-                                            objectPosition: 'center center',
-                                            transform: 'translateZ(0)',
-                                            backfaceVisibility: 'hidden',
-                                        }}
-                                        onError={(e) => {
-                                            e.currentTarget.style.display = 'none';
-                                        }}
-                                        loading="eager"
-                                    />
-
-                                    {/* Dark overlay - Static, stronger gradient */}
-                                    <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                                    <div className="relative z-10">
-                                        <h3
-                                            className={`mb-4 text-lg leading-tight font-bold transition-transform duration-200 sm:text-xl lg:text-2xl ${
-                                                hoveredCard === 1 ? 'lg:translate-x-2' : 'translate-x-0'
-                                            }`}
-                                        >
-                                            {t('pages.welcome.business_activities.title')}
-                                        </h3>
-                                        <span
-                                            className={`text-sm font-medium underline transition-colors duration-200 ${
-                                                hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
-                                            }`}
-                                        >
-                                            {t('pages.welcome.business_activities.find_out_more')}
-                                        </span>
-                                    </div>
-                                </Link>
-
-                                {/* News Card - 25% width, warna emas konsisten dengan link ke berita spesifik */}
-                                <Link
-                                    id="news-update"
-                                    data-news-section="true"
-                                    href={newsItems[currentNews].url}
-                                    className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-between overflow-hidden bg-yellow-400 p-6 no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
-                                    onMouseEnter={() => setHoveredCard(2)}
-                                    onMouseLeave={() => setHoveredCard(null)}
-                                >
-                                    {/* Background Image - Mobile optimized with proper aspect */}
-                                    <div
-                                        className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-400 ease-out lg:duration-600 ${
-                                            hoveredCard === 2 ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
-                                        }`}
-                                    >
-                                        <AnimatePresence mode="wait">
-                                            <motion.div
-                                                key={currentNews}
-                                                className="h-full w-full"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{
-                                                    duration: 0.4,
-                                                    ease: 'easeInOut',
-                                                }}
-                                                style={{ transform: 'translateZ(0)' }}
-                                            >
-                                                <img
-                                                    src={newsItems[currentNews].image}
-                                                    alt={newsItems[currentNews].title}
-                                                    className="h-full w-full object-cover"
+                                                {/* Text - Simple fade after image settled */}
+                                                <motion.div
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 0.8,
+                                                        delay: 0.3,
+                                                        ease: 'easeInOut',
+                                                    }}
+                                                    className="relative z-10"
                                                     style={{
-                                                        objectPosition: 'center center',
-                                                        transform: 'translateZ(0)',
-                                                        backfaceVisibility: 'hidden',
+                                                        transform: 'translate3d(0, 0, 0)',
+                                                        willChange: 'opacity',
                                                     }}
-                                                    onError={(e) => {
-                                                        e.currentTarget.style.display = 'none';
-                                                    }}
-                                                    loading="eager"
-                                                />
-                                            </motion.div>
-                                        </AnimatePresence>
-                                        {/* Dark overlay - Static, stronger gradient */}
-                                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                                    </div>
-
-                                    {/* Top Section - Header */}
-                                    <div className="relative z-10 mb-4">
-                                        <div className="flex items-center justify-between">
-                                            <div
-                                                className={`text-xl font-bold transition-all duration-300 sm:text-2xl lg:text-3xl ${
-                                                    hoveredCard === 2 ? 'lg:scale-110 text-white' : 'scale-100 text-gray-800'
-                                                }`}
-                                            >
-                                                <a
-                                                    href="/news"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                    }}
-                                                    className={`${hoveredCard === 2 ? 'text-white hover:text-yellow-200' : 'text-gray-800 hover:text-yellow-700'} underline-offset-4 hover:underline`}
                                                 >
-                                                    {t('pages.welcome.news.title_short')}
-                                                </a>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                {/* Navigation Arrows */}
-                                                {newsItems.length > 1 && (
-                                                    <div className="flex gap-1">
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                e.stopPropagation();
-                                                                setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
-                                                            }}
-                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
-                                                                hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
-                                                            }`}
-                                                        >
-                                                            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M15 19l-7-7 7-7"
-                                                                />
-                                                            </svg>
-                                                        </button>
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                e.stopPropagation();
-                                                                setCurrentNews((prev) => (prev + 1) % newsItems.length);
-                                                            }}
-                                                            className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
-                                                                hoveredCard === 2 ? 'text-white hover:bg-white/20' : 'text-gray-700 hover:bg-gray-200'
-                                                            }`}
-                                                        >
-                                                            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                            </svg>
-                                                        </button>
+                                                    <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                        {carouselSlides[currentSlide].category}
                                                     </div>
-                                                )}
-
-                                                {/* Priority Indicator untuk berita penting */}
-                                                {newsItems[currentNews].priority === 'high' && (
-                                                    <div
-                                                        className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 ${
-                                                            hoveredCard === 2 ? 'bg-white/20 text-white' : 'bg-red-100 text-red-700'
+                                                    <h3
+                                                        className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
+                                                            hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
                                                         }`}
                                                     >
-                                                        <div className="h-1.5 w-1.5 rounded-full bg-current"></div>
-                                                        <span>{t('pages.welcome.news.highlight_badge')}</span>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Middle Section - Content dengan berita Kristalin */}
-                                    <div className="relative z-10 flex flex-1 flex-col justify-center">
-                                        <AnimatePresence mode="wait">
-                                            <motion.div
-                                                key={currentNews}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{
-                                                    duration: 0.4,
-                                                    ease: 'easeInOut',
-                                                }}
-                                                className="mb-4"
-                                            >
-                                                {newsItems.length > 0 ? (
-                                                    <>
-                                                        {/* Date dengan icon */}
-                                                        <div className="mb-3 flex items-center gap-2">
-                                                            <div
-                                                                className={`h-1 w-1 rounded-full transition-colors duration-300 ${
-                                                                    hoveredCard === 2 ? 'bg-white' : 'bg-gray-500'
-                                                                }`}
-                                                            ></div>
-                                                            <div
-                                                                className={`text-xs font-medium transition-colors duration-300 ${
-                                                                    hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
-                                                                }`}
-                                                            >
-                                                                {newsItems[currentNews].date}
-                                                            </div>
-                                                        </div>
-
-                                                        {/* Title dengan line clamp */}
-                                                        <div
-                                                            className={`mb-3 line-clamp-2 text-sm leading-tight font-bold transition-colors duration-300 sm:text-base lg:text-lg ${
-                                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                                            }`}
-                                                        >
-                                                            {newsItems[currentNews].title}
-                                                        </div>
-
-                                                        {/* Description dengan line clamp yang lebih jelas */}
-                                                        <div
-                                                            className={`line-clamp-3 text-xs leading-relaxed transition-colors duration-300 sm:text-sm ${
-                                                                hoveredCard === 2 ? 'text-gray-100' : 'text-gray-700'
-                                                            }`}
-                                                        >
-                                                            {newsItems[currentNews].excerpt}
-                                                        </div>
-                                                    </>
-                                                ) : (
-                                                    <div className="text-center">
-                                                        <div className="mb-2 text-4xl">📰</div>
-                                                        <p
-                                                            className={`text-sm font-medium transition-colors duration-300 ${
-                                                                hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                                            }`}
-                                                        >
-                                                            {t('pages.welcome.news.no_news_available')}
-                                                        </p>
-                                                    </div>
-                                                )}
+                                                        {carouselSlides[currentSlide].title}
+                                                    </h3>
+                                                </motion.div>
                                             </motion.div>
                                         </AnimatePresence>
-                                    </div>
 
-                                    {/* Bottom Section - View button dan dots indicator */}
-                                    <div className="relative z-10">
-                                        {/* View button */}
-                                        <div
-                                            className={`mb-3 flex items-center justify-between transition-colors duration-300 ${
-                                                hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
-                                            }`}
-                                        >
-                                            <div
-                                                className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
-                                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
-                                                }`}
-                                            >
-                                                <span>{t('pages.welcome.news.view_button')}</span>
-                                                <div
-                                                    className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
-                                                >
-                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Dots indicator */}
-                                        <div className="flex justify-center gap-1.5">
-                                            {newsItems.map((_, index) => (
+                                        {/* Indicator Dots */}
+                                        <div className="absolute bottom-6 left-6 z-20 flex gap-2 sm:bottom-8 sm:left-8 lg:bottom-8 lg:left-8">
+                                            {carouselSlides.map((slide, idx) => (
                                                 <button
-                                                    key={index}
+                                                    key={slide.id}
                                                     onClick={(e) => {
-                                                        e.preventDefault();
                                                         e.stopPropagation();
-                                                        setCurrentNews(index);
+                                                        setCurrentSlide(idx);
                                                     }}
-                                                    className={`transition-all duration-300 ${
-                                                        index === currentNews
-                                                            ? `h-1.5 w-6 rounded-full ${hoveredCard === 2 ? 'bg-white' : 'bg-gray-800'}`
-                                                            : `h-1.5 w-1.5 rounded-full ${
-                                                                  hoveredCard === 2
-                                                                      ? 'bg-white/40 hover:bg-white/60'
-                                                                      : 'bg-gray-400 hover:bg-gray-600'
-                                                              }`
+                                                    className={`rounded-full transition-all duration-200 ${
+                                                        idx === currentSlide ? 'h-2.5 w-8 bg-yellow-400' : 'h-2.5 w-2.5 bg-white/50 hover:bg-white/80'
                                                     }`}
+                                                    aria-label={`Go to slide ${idx + 1}`}
                                                 />
                                             ))}
                                         </div>
                                     </div>
-                                </Link>
-                            </section>
 
-                            {/* Footer moved outside animated block */}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+                                    {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
+                                    <Link
+                                        href="/business-activity"
+                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
+                                        onMouseEnter={() => setHoveredCard(1)}
+                                        onMouseLeave={() => setHoveredCard(null)}
+                                    >
+                                        {/* Background Image - Mobile optimized with proper aspect */}
+                                        <img
+                                            src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
+                                            alt={t('pages.welcome.business_activities_alt')}
+                                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                                hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
+                                            }`}
+                                            style={{
+                                                objectPosition: 'center center',
+                                                transform: 'translateZ(0)',
+                                                backfaceVisibility: 'hidden',
+                                            }}
+                                            onError={(e) => {
+                                                e.currentTarget.style.display = 'none';
+                                            }}
+                                            loading="eager"
+                                        />
 
-            {!showLoadingScreen && <Footer />}
+                                        {/* Dark overlay - Static, stronger gradient */}
+                                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-            {/* Premium Staggered Animation Styles */}
-            <style
-                dangerouslySetInnerHTML={{
-                    __html: `
+                                        <div className="relative z-10">
+                                            <h3
+                                                className={`mb-4 text-lg leading-tight font-bold transition-transform duration-200 sm:text-xl lg:text-2xl ${
+                                                    hoveredCard === 1 ? 'lg:translate-x-2' : 'translate-x-0'
+                                                }`}
+                                            >
+                                                {t('pages.welcome.business_activities.title')}
+                                            </h3>
+                                            <span
+                                                className={`text-sm font-medium underline transition-colors duration-200 ${
+                                                    hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
+                                                }`}
+                                            >
+                                                {t('pages.welcome.business_activities.find_out_more')}
+                                            </span>
+                                        </div>
+                                    </Link>
+
+                                    {/* News Card - 25% width, warna emas konsisten dengan link ke berita spesifik */}
+                                    <Link
+                                        id="news-update"
+                                        data-news-section="true"
+                                        href={newsItems[currentNews].url}
+                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-between overflow-hidden bg-yellow-400 p-6 no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
+                                        onMouseEnter={() => setHoveredCard(2)}
+                                        onMouseLeave={() => setHoveredCard(null)}
+                                    >
+                                        {/* Background Image - Mobile optimized with proper aspect */}
+                                        <div
+                                            className={`absolute top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-400 ease-out lg:duration-600 ${
+                                                hoveredCard === 2 ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
+                                            }`}
+                                        >
+                                            <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={currentNews}
+                                                    className="h-full w-full"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 0.4,
+                                                        ease: 'easeInOut',
+                                                    }}
+                                                    style={{ transform: 'translateZ(0)' }}
+                                                >
+                                                    <img
+                                                        src={newsItems[currentNews].image}
+                                                        alt={newsItems[currentNews].title}
+                                                        className="h-full w-full object-cover"
+                                                        style={{
+                                                            objectPosition: 'center center',
+                                                            transform: 'translateZ(0)',
+                                                            backfaceVisibility: 'hidden',
+                                                        }}
+                                                        onError={(e) => {
+                                                            e.currentTarget.style.display = 'none';
+                                                        }}
+                                                        loading="eager"
+                                                    />
+                                                </motion.div>
+                                            </AnimatePresence>
+                                            {/* Dark overlay - Static, stronger gradient */}
+                                            <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                        </div>
+
+                                        {/* Top Section - Header */}
+                                        <div className="relative z-10 mb-4">
+                                            <div className="flex items-center justify-between">
+                                                <div
+                                                    className={`text-xl font-bold transition-all duration-300 sm:text-2xl lg:text-3xl ${
+                                                        hoveredCard === 2 ? 'text-white lg:scale-110' : 'scale-100 text-gray-800'
+                                                    }`}
+                                                >
+                                                    <a
+                                                        href="/news"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                        }}
+                                                        className={`${hoveredCard === 2 ? 'text-white hover:text-yellow-200' : 'text-gray-800 hover:text-yellow-700'} underline-offset-4 hover:underline`}
+                                                    >
+                                                        {t('pages.welcome.news.title_short')}
+                                                    </a>
+                                                </div>
+                                                <div className="flex items-center gap-3">
+                                                    {/* Navigation Arrows */}
+                                                    {newsItems.length > 1 && (
+                                                        <div className="flex gap-1">
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    e.stopPropagation();
+                                                                    setCurrentNews((prev) => (prev - 1 + newsItems.length) % newsItems.length);
+                                                                }}
+                                                                className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
+                                                                    hoveredCard === 2
+                                                                        ? 'text-white hover:bg-white/20'
+                                                                        : 'text-gray-700 hover:bg-gray-200'
+                                                                }`}
+                                                            >
+                                                                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M15 19l-7-7 7-7"
+                                                                    />
+                                                                </svg>
+                                                            </button>
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    e.stopPropagation();
+                                                                    setCurrentNews((prev) => (prev + 1) % newsItems.length);
+                                                                }}
+                                                                className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-full transition-all duration-200 lg:hover:scale-110 ${
+                                                                    hoveredCard === 2
+                                                                        ? 'text-white hover:bg-white/20'
+                                                                        : 'text-gray-700 hover:bg-gray-200'
+                                                                }`}
+                                                            >
+                                                                <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M9 5l7 7-7 7"
+                                                                    />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Priority Indicator untuk berita penting */}
+                                                    {newsItems[currentNews].priority === 'high' && (
+                                                        <div
+                                                            className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 ${
+                                                                hoveredCard === 2 ? 'bg-white/20 text-white' : 'bg-red-100 text-red-700'
+                                                            }`}
+                                                        >
+                                                            <div className="h-1.5 w-1.5 rounded-full bg-current"></div>
+                                                            <span>{t('pages.welcome.news.highlight_badge')}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Middle Section - Content dengan berita Kristalin */}
+                                        <div className="relative z-10 flex flex-1 flex-col justify-center">
+                                            <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={currentNews}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{
+                                                        duration: 0.4,
+                                                        ease: 'easeInOut',
+                                                    }}
+                                                    className="mb-4"
+                                                >
+                                                    {newsItems.length > 0 ? (
+                                                        <>
+                                                            {/* Date dengan icon */}
+                                                            <div className="mb-3 flex items-center gap-2">
+                                                                <div
+                                                                    className={`h-1 w-1 rounded-full transition-colors duration-300 ${
+                                                                        hoveredCard === 2 ? 'bg-white' : 'bg-gray-500'
+                                                                    }`}
+                                                                ></div>
+                                                                <div
+                                                                    className={`text-xs font-medium transition-colors duration-300 ${
+                                                                        hoveredCard === 2 ? 'text-gray-200' : 'text-gray-600'
+                                                                    }`}
+                                                                >
+                                                                    {newsItems[currentNews].date}
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Title dengan line clamp */}
+                                                            <div
+                                                                className={`mb-3 line-clamp-2 text-sm leading-tight font-bold transition-colors duration-300 sm:text-base lg:text-lg ${
+                                                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                                }`}
+                                                            >
+                                                                {newsItems[currentNews].title}
+                                                            </div>
+
+                                                            {/* Description dengan line clamp yang lebih jelas */}
+                                                            <div
+                                                                className={`line-clamp-3 text-xs leading-relaxed transition-colors duration-300 sm:text-sm ${
+                                                                    hoveredCard === 2 ? 'text-gray-100' : 'text-gray-700'
+                                                                }`}
+                                                            >
+                                                                {newsItems[currentNews].excerpt}
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        <div className="text-center">
+                                                            <div className="mb-2 text-4xl">📰</div>
+                                                            <p
+                                                                className={`text-sm font-medium transition-colors duration-300 ${
+                                                                    hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                                }`}
+                                                            >
+                                                                {t('pages.welcome.news.no_news_available')}
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                </motion.div>
+                                            </AnimatePresence>
+                                        </div>
+
+                                        {/* Bottom Section - View button dan dots indicator */}
+                                        <div className="relative z-10">
+                                            {/* View button */}
+                                            <div
+                                                className={`mb-3 flex items-center justify-between transition-colors duration-300 ${
+                                                    hoveredCard === 2 ? 'border-white/20' : 'border-black/10'
+                                                }`}
+                                            >
+                                                <div
+                                                    className={`flex items-center text-sm font-semibold transition-all duration-300 sm:text-base ${
+                                                        hoveredCard === 2 ? 'text-white' : 'text-gray-800'
+                                                    }`}
+                                                >
+                                                    <span>{t('pages.welcome.news.view_button')}</span>
+                                                    <div
+                                                        className={`ml-2 transition-transform duration-300 ${hoveredCard === 2 ? 'translate-x-1' : 'translate-x-0'}`}
+                                                    >
+                                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Dots indicator */}
+                                            <div className="flex justify-center gap-1.5">
+                                                {newsItems.map((_, index) => (
+                                                    <button
+                                                        key={index}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            setCurrentNews(index);
+                                                        }}
+                                                        className={`transition-all duration-300 ${
+                                                            index === currentNews
+                                                                ? `h-1.5 w-6 rounded-full ${hoveredCard === 2 ? 'bg-white' : 'bg-gray-800'}`
+                                                                : `h-1.5 w-1.5 rounded-full ${
+                                                                      hoveredCard === 2
+                                                                          ? 'bg-white/40 hover:bg-white/60'
+                                                                          : 'bg-gray-400 hover:bg-gray-600'
+                                                                  }`
+                                                        }`}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </section>
+
+                                {/* Footer moved outside animated block */}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                {!showLoadingScreen && <Footer />}
+
+                {/* Premium Staggered Animation Styles */}
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: `
           @keyframes containerFade {
             0% {
               opacity: 0;
@@ -1614,8 +1621,8 @@ const Welcome = () => {
             animation: loading-pulse 2s ease-in-out infinite;
           }
         `,
-                }}
-            />
+                    }}
+                />
             </div>
         </>
     );

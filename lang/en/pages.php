@@ -282,10 +282,6 @@ return [
                 ],
             ],
         ],
-        'contact' => [
-            'category' => 'GET IN TOUCH',
-            'title' => 'Contact Us',
-        ],
         'business_activities' => [
             'title' => 'Business Activities',
             'find_out_more' => 'Find out more →',
@@ -402,7 +398,6 @@ return [
                 'title' => 'Company Foundation',
                 'subtitle' => 'Our Beginning',
                 'content' => 'Established in 1989, PT Kristalin Ekalestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
-                'content' => 'Established in 1989, PT Kristalin Ekalestari remains a privately owned company headquartered in Jakarta. Founded with a vision to excel in Indonesia\'s mining industry, particularly in exploration and gold mining operations.',
             ],
             'global_partnerships' => [
                 'title' => 'Global Partnerships',
@@ -446,7 +441,6 @@ return [
             ],
             'future_vision' => [
                 'title' => 'Future Vision',
-                'content' => 'PT Kristalin Ekalestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
                 'content' => 'PT Kristalin Ekalestari continues to explore new opportunities for growth and expansion. We remain committed to innovation, sustainability, and creating lasting value for stakeholders while maintaining our leadership position.',
             ],
         ],
@@ -570,7 +564,6 @@ return [
             'natural_resources' => [
                 'title' => 'Natural Resources',
                 'subtitle' => 'Rich Heritage',
-                'content' => 'PT Kristalin Ekalestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
                 'content' => 'PT Kristalin Ekalestari focuses on the exploration and exploitation of Indonesia\'s abundant natural resources, particularly specializing in gold mining operations in the resource-rich region of Nabire, Papua.',
             ],
             'strategic_partnerships' => [
@@ -748,18 +741,6 @@ return [
     ],
 
 
-    'contact' => [
-        'title' => 'Contact Us',
-        'description' => 'Get in touch with our team for inquiries about our services and business opportunities.',
-        'form_name' => 'Full Name',
-        'form_email' => 'Email Address',
-        'form_message' => 'Message',
-        'form_submit' => 'Send Message',
-        'address_title' => 'Our Address',
-        'phone_title' => 'Phone',
-        'email_title' => 'Email',
-    ],
-
     'core_values' => [
         'page_title' => 'Our Core Values',
         'hero_title_1' => 'Our Core',
@@ -869,7 +850,6 @@ return [
         'company_info' => [
             'company_name_label' => 'Company Name',
             'company_name_value' => 'PT Kristalin Ekalestari',
-            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => 'Business Field',
             'business_field_value' => 'Gold Mining & Mineral Processing',
             'established_label' => 'Established',
@@ -879,7 +859,6 @@ return [
             'business_license_label' => 'Business License',
             'business_license_value' => 'IUP Operation Production No. 561/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Ekalestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
         'company_description' => 'PT Kristalin Ekalestari is committed to sustainable mining, innovation, and strategic partnerships for a better future in Indonesia. We operate with the highest standards of integrity and environmental responsibility.',
         'company_profile' => [
             'header' => 'COMPANY PROFILE',
@@ -1296,7 +1275,6 @@ return [
         'hero' => [
             'title_line1' => 'Contact',
             'title_line2' => 'Us',
-            'description' => 'Find out more information about Kristalin Ekalestari',
             'description' => 'Find out more information about Kristalin Ekalestari',
         ],
         'form' => [
@@ -2390,10 +2368,8 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
             ],
             7 => [
                 'title' => 'Kristalin Ekalestari Achieves Record Gold Production with Revolutionary Extraction Technology',
-                'title' => 'Kristalin Ekalestari Achieves Record Gold Production with Revolutionary Extraction Technology',
                 'subtitle' => 'Breakthrough sustainable mining practices set new industry standards',
                 'excerpt' => 'Revolutionary extraction methods increase gold yield by 40% while reducing environmental impact through sustainable mining practices and cutting-edge technology implementation.',
-                'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Ekalestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
                 'content' => 'Mining excellence is one of the main pillars to ensure sustainable growth and environmental responsibility in Indonesia\'s mining sector. Kristalin Ekalestari has successfully implemented cutting-edge extraction technology that not only increases gold production efficiency but also maintains strict environmental standards. Our latest breakthrough in sustainable gold mining has resulted in a 40% increase in extraction yield while reducing water consumption by 35% and minimizing carbon footprint through renewable energy integration.',
                 'author' => 'Mining Operations Team',
                 'type' => 'Technology Breakthrough',

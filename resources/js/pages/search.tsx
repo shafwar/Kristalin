@@ -37,25 +37,11 @@ export default function SearchPage() {
     const [isSearching, setIsSearching] = useState<boolean>(false);
     const [hoveredResult, setHoveredResult] = useState<number | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
-    const [resultsLoaded, setResultsLoaded] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        setQuery(q || '');
-        // Reset dan animasi ulang results ketika query berubah
-        if (q !== '') {
-            setResultsLoaded(false);
-            setTimeout(() => setResultsLoaded(true), 200);
-        }
-    }, [q, results]);
 
     useEffect(() => {
         inputRef.current?.focus();
         setTimeout(() => setIsLoaded(true), 100);
-        // Set results loaded untuk initial load
-        if (results.length > 0) {
-            setTimeout(() => setResultsLoaded(true), 800);
-        }
     }, []);
 
     const onSubmit = (e: React.FormEvent) => {

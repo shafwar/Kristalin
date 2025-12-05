@@ -399,7 +399,6 @@ return [
                 'title' => '公司成立',
                 'subtitle' => '我们的开始',
                 'content' => '成立于1989年，PT Kristalin Ekalestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
-                'content' => '成立于1989年，PT Kristalin Ekalestari仍然是一家总部位于雅加达的私人公司。公司成立时的愿景是在印度尼西亚采矿业中脱颖而出，特别是在勘探和黄金开采运营方面。',
             ],
             'global_partnerships' => [
                 'title' => '全球合作伙伴关系',
@@ -443,7 +442,6 @@ return [
             ],
             'future_vision' => [
                 'title' => '未来愿景',
-                'content' => 'PT Kristalin Ekalestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
                 'content' => 'PT Kristalin Ekalestari继续探索增长和扩张的新机会。我们仍然致力于创新、可持续发展，并为利益相关者创造持久价值，同时保持我们的领导地位。',
             ],
         ],
@@ -567,7 +565,6 @@ return [
             'natural_resources' => [
                 'title' => '自然资源',
                 'subtitle' => '丰富遗产',
-                'content' => 'PT Kristalin Ekalestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
                 'content' => 'PT Kristalin Ekalestari专注于勘探和开发印度尼西亚丰富的自然资源，特别专门从事在资源丰富的巴布亚纳比雷地区的黄金开采业务。',
             ],
             'strategic_partnerships' => [
@@ -866,7 +863,6 @@ return [
         'company_info' => [
             'company_name_label' => '公司名称',
             'company_name_value' => 'PT Kristalin Ekalestari',
-            'company_name_value' => 'PT Kristalin Ekalestari',
             'business_field_label' => '业务领域',
             'business_field_value' => '黄金开采与矿物加工',
             'established_label' => '成立时间',
@@ -876,7 +872,6 @@ return [
             'business_license_label' => '营业执照',
             'business_license_value' => 'IUP 运营生产许可证  第561号/2021/DESDM',
         ],
-        'company_description' => 'PT Kristalin Ekalestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_description' => 'PT Kristalin Ekalestari 致力于可持续采矿、创新和战略合作伙伴关系，为印尼创造更美好的未来。我们以最高的诚信和环境责任标准运营。',
         'company_profile' => [
             'header' => '公司简介',
@@ -1289,7 +1284,6 @@ return [
         'hero' => [
             'title_line1' => '联系',
             'title_line2' => '我们',
-            'description' => '了解更多关于Kristalin Ekalestari的信息',
             'description' => '了解更多关于Kristalin Ekalestari的信息',
         ],
         'form' => [

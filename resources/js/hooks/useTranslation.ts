@@ -18,29 +18,30 @@ export function useTranslation() {
     const t = (key: string, options?: Record<string, string> | TranslationOptions) => {
         const keys = key.split('.');
         let value = translations.messages;
-        
+
         // Check if it's a page translation
         if (keys[0] === 'pages') {
             value = translations.pages;
             keys.shift(); // Remove 'pages' from the key array
         }
-        
+
         for (const k of keys) {
             value = value?.[k];
         }
-        
+
         let result = value || key;
-        
+
         // Handle string replacements
-        const replaceMap: Record<string, string> | undefined = options && 'returnObjects' in (options as TranslationOptions)
-            ? (options as TranslationOptions).replace
-            : (options as Record<string, string> | undefined);
+        const replaceMap: Record<string, string> | undefined =
+            options && 'returnObjects' in (options as TranslationOptions)
+                ? (options as TranslationOptions).replace
+                : (options as Record<string, string> | undefined);
         if (replaceMap && typeof result === 'string') {
-            Object.keys(replaceMap).forEach(replaceKey => {
+            Object.keys(replaceMap).forEach((replaceKey) => {
                 result = result.replace(new RegExp(`:${replaceKey}`, 'g'), replaceMap[replaceKey]);
             });
         }
-        
+
         return result;
     };
 
@@ -52,10 +53,14 @@ export function useTranslation() {
     // Get current language display code
     const getCurrentLanguageCode = () => {
         switch (locale) {
-            case 'id': return 'ID';
-            case 'en': return 'EN';
-            case 'zh': return 'ZH';
-            default: return 'EN';
+            case 'id':
+                return 'ID';
+            case 'en':
+                return 'EN';
+            case 'zh':
+                return 'ZH';
+            default:
+                return 'EN';
         }
     };
 

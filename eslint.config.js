@@ -38,6 +38,13 @@ export default [
         },
     },
     {
+        // Project-wide overrides for TypeScript rules
+        rules: {
+            // Allow explicit `any` where it is intentionally used
+            '@typescript-eslint/no-explicit-any': 'off',
+        },
+    },
+    {
         ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js'],
     },
     prettier, // Turn off all rules that might conflict with Prettier

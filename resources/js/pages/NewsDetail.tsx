@@ -318,6 +318,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
     };
 
     // Function to get translated HTML content for Torindo article
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getTorindoTranslatedContent = () => {
         return `
             <div class="space-y-8">

@@ -26,18 +26,18 @@ const getTranslatedCategoryTitle = (categoryId: string, t: any) => {
 };
 
 // Helper function to get translated category for hero section
-const getTranslatedHeroCategory = (categoryKey: string, t: any) => {
-    return t(`pages.news.categories.${categoryKey}`);
-};
+// const getTranslatedHeroCategory = (categoryKey: string, t: ReturnType<typeof useTranslation>['t']) => {
+//     return t(`pages.news.categories.${categoryKey}`);
+// };
 
 // Helper function to get all translated categories for hero section
-const getTranslatedHeroCategories = (t: any) => {
-    return [
-        { key: 'house_construction', label: t('pages.news.categories.house_construction') },
-        { key: 'food_distribution', label: t('pages.news.categories.food_distribution') },
-        { key: 'education_support', label: t('pages.news.categories.education_support') },
-    ];
-};
+// const getTranslatedHeroCategories = (t: ReturnType<typeof useTranslation>['t']) => {
+//     return [
+//         { key: 'house_construction', label: t('pages.news.categories.house_construction') },
+//         { key: 'food_distribution', label: t('pages.news.categories.food_distribution') },
+//         { key: 'education_support', label: t('pages.news.categories.education_support') },
+//     ];
+// };
 
 // Helper function to get translated article title
 const getTranslatedArticleTitle = (articleId: string, t: any) => {

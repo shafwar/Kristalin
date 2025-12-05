@@ -1,19 +1,21 @@
 /**
  * BACKUP FILE - Internal Feedback System Components
- * 
+ *
  * File ini berisi:
  * - InternalFeedbackModal component
  * - FloatingFeedbackButton component
- * 
+ *
  * Untuk menggunakan kembali:
  * 1. Copy component yang dibutuhkan
  * 2. Import di welcome.tsx atau page lain
  * 3. Add state: const [showFeedbackForm, setShowFeedbackForm] = useState(false);
  * 4. Add modal: {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />}
  * 5. Add button: <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} />
- * 
+ *
  * Last backup: 2025-11-11
  */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useTranslation } from '@/hooks/useTranslation';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -208,11 +210,7 @@ export const InternalFeedbackModal = ({ onClose }: { onClose: () => void }) => {
                     )}
 
                     {/* Track Status Tab */}
-                    {activeTab === 'track' && (
-                        <div className="space-y-6">
-                            {/* ... track content ... */}
-                        </div>
-                    )}
+                    {activeTab === 'track' && <div className="space-y-6">{/* ... track content ... */}</div>}
                 </div>
             </div>
         </div>
@@ -261,4 +259,3 @@ export const FloatingFeedbackButton = ({ onClick }: { onClick: () => void }) => 
         </motion.button>
     );
 };
-
