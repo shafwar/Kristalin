@@ -194,6 +194,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 { label: t('nav.core_values'), href: '/core-values' },
                 { label: t('nav.leadership_traits'), href: '/leadership-traits' },
                 { label: t('nav.news'), href: '/news' },
+                { label: t('nav.careers'), href: '/careers' },
             ],
         },
         { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
@@ -201,7 +202,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         { label: t('nav.line_of_business'), href: '/line-of-business' },
         { label: t('nav.business_activities'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
-        { label: t('nav.careers'), href: '/careers' },
         { label: t('nav.contact'), href: '/contact' },
     ];
 

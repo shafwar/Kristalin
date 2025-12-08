@@ -802,11 +802,7 @@ export default function BusinessActivityPage() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img
-                        src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
-                        alt={t('pages.business_activity.hero.alt_text')}
-                        className="h-full w-full object-cover"
-                    />
+                    <img src="/businessactivity.jpg" alt={t('pages.business_activity.hero.alt_text')} className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 

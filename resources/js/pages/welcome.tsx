@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { SplashScreen } from '../components/SplashScreen';
 
 /**
  * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
@@ -26,6 +27,7 @@ const Welcome = () => {
     const [currentNews, setCurrentNews] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     // 4 berita relevan dari news archive dengan Torindo sebagai highlight utama
     // Menggunakan translation keys untuk konsistensi bahasa
@@ -71,26 +73,26 @@ const Welcome = () => {
     // Carousel slides untuk Portfolio & Board of Directors
     const carouselSlides = [
         {
-            id: 0,
-            image: 'https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg',
-            category: t('pages.welcome.portfolio.category'),
-            title: t('pages.welcome.portfolio.title'),
-            link: '/line-of-business',
-        },
-        {
             id: 1,
             image: '/directorshero.jpg',
             category: t('pages.welcome.board.category'),
             title: t('pages.welcome.board.title'),
             link: '/board-of-directors',
         },
+        {
+            id: 0,
+            image: '/portofolio.jpg',
+            category: t('pages.welcome.portfolio.category'),
+            title: t('pages.welcome.portfolio.title'),
+            link: '/line-of-business',
+        },
     ];
 
-    // Auto-rotation untuk carousel setiap 6 detik - balanced timing
+    // Auto-rotation untuk carousel (lebih lambat & stabil)
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
-        }, 6000);
+        }, 14000); // 14 detik untuk transisi lebih tenang
         return () => clearInterval(interval);
     }, [carouselSlides.length]);
 
@@ -121,22 +123,28 @@ const Welcome = () => {
 
     // Loading screen effect - show on first visit or page reload
     useEffect(() => {
-        // Check if this is a page reload (sessionStorage is cleared on reload)
         const isReload = !sessionStorage.getItem('kristalin_session');
-
         if (isReload) {
-            // This is a reload, show loading screen
-            const loadingTimer = setTimeout(() => {
-                setShowLoadingScreen(false);
-                // Mark session as started
-                sessionStorage.setItem('kristalin_session', 'true');
-            }, 4000); // 4 seconds loading duration to match LoadingScreen
-
-            return () => clearTimeout(loadingTimer);
-        } else {
-            // This is navigation within the same session, skip loading screen
-            setShowLoadingScreen(false);
+            // SplashScreen will handle duration; session flag set on onDone
+            return;
         }
+        setShowLoadingScreen(false);
+    }, []);
+
+    // Detect mobile viewport once on mount and on resize (used to simplify animations on mobile)
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     // Content rotation - Slower rotation for better UX
@@ -149,12 +157,12 @@ const Welcome = () => {
         // Start with "Introducing" and give it more time
         const initialDelay = setTimeout(() => {
             setCurrentContent(0); // Start with "Introducing"
-        }, 1000); // Wait 1 second after loading
+        }, 1200); // Wait a bit longer after loading for stability
 
-        // Then rotate content every 10 seconds (longer duration)
+        // Rotate content with a longer, more stable cadence
         const interval = setInterval(() => {
             setCurrentContent((prev) => (prev + 1) % contentSets.length);
-        }, 10000); // 10 seconds - longer and more comfortable
+        }, 14000); // 14 seconds for smoother, longer reads
 
         return () => {
             clearTimeout(initialDelay);
@@ -162,240 +170,24 @@ const Welcome = () => {
         };
     }, [contentSets.length]);
 
-    // Loading Screen Component - Clean & Professional
-    /**
-     * Ultra Professional Splash Screen Component - Kristalin Eka Lestari
-     *
-     * Features:
-     * - 4-second duration animation (like Cidata)
-     * - Logo with unique 3D rotate and scale effects
-     * - Ultra strong typography with wide letter-spacing
-     * - Professional tagline and subtitle
-     * - Rotating loading indicator
-     * - Smooth exit animation
-     */
-    const LoadingScreen = () => {
-        const [isComplete, setIsComplete] = useState(false);
-
-        useEffect(() => {
-            // 4 seconds duration for ultra professional delivery
-            const timer = setTimeout(() => {
-                setIsComplete(true);
-            }, 4000);
-
-            return () => clearTimeout(timer);
-        }, []);
-
-        return (
-            <AnimatePresence>
-                {!isComplete && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                            duration: 1.0,
-                            ease: [0.16, 1, 0.3, 1],
-                            delay: 0.2,
-                        }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-white"
-                    >
-                        {/* Simple centered content - Ultra Smooth */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -30 }}
-                            transition={{
-                                opacity: { duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
-                                y: { duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 },
-                            }}
-                            className="text-center"
-                        >
-                            {/* Premium Logo - Ultra Smooth Fade Only */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 25 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{
-                                    opacity: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
-                                    y: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
-                                    delay: 0.6,
-                                }}
-                                className="mb-10"
-                            >
-                                <motion.img
-                                    animate={{
-                                        y: [0, -5, 0],
-                                    }}
-                                    transition={{
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        ease: [0.45, 0, 0.55, 1],
-                                        delay: 2.5,
-                                    }}
-                                    src="/kristalinlogotransisi1.png"
-                                    alt="Kristalin Logo"
-                                    className="mx-auto h-24 w-auto sm:h-28"
-                                    style={{
-                                        filter: 'drop-shadow(0 8px 24px rgba(255, 215, 0, 0.15))',
-                                    }}
-                                    loading="eager"
-                                    decoding="async"
-                                />
-                            </motion.div>
-
-                            {/* Company Name - Ultra Smooth Fade */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{
-                                    opacity: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
-                                    y: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
-                                    delay: 1.0,
-                                }}
-                                className="mb-10 space-y-2"
-                            >
-                                {/* Welcome To - Small & Elegant */}
-                                <motion.p
-                                    className="text-sm font-light tracking-[0.12em] text-neutral-400 uppercase sm:text-base"
-                                    style={{
-                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
-                                        letterSpacing: '0.12em',
-                                        fontWeight: 300,
-                                    }}
-                                >
-                                    WELCOME TO
-                                </motion.p>
-
-                                {/* KRISTALIN - Strong & Bold */}
-                                <motion.h1
-                                    className="text-3xl font-semibold tracking-[0.06em] text-neutral-900 uppercase sm:text-4xl"
-                                    style={{
-                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
-                                        letterSpacing: '0.06em',
-                                        fontWeight: 600,
-                                    }}
-                                >
-                                    KRISTALIN
-                                </motion.h1>
-
-                                {/* EKA LESTARI - Golden & Elegant (NO LINE in between) */}
-                                <motion.h2
-                                    className="text-3xl font-semibold tracking-[0.06em] uppercase sm:text-4xl"
-                                    style={{
-                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
-                                        letterSpacing: '0.06em',
-                                        fontWeight: 600,
-                                        background: 'linear-gradient(135deg, #B8860B 0%, #FFD700 50%, #DAA520 100%)',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                        backgroundClip: 'text',
-                                    }}
-                                >
-                                    EKA LESTARI
-                                </motion.h2>
-                            </motion.div>
-
-                            {/* Tagline & Subtitle - Ultra Smooth */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{
-                                    opacity: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
-                                    y: { duration: 1.7, ease: [0.16, 1, 0.3, 1] },
-                                    delay: 1.6,
-                                }}
-                                className="space-y-3"
-                            >
-                                {/* Tagline */}
-                                <motion.p
-                                    className="text-base font-medium tracking-wide text-neutral-600 sm:text-lg"
-                                    style={{
-                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
-                                        fontWeight: 500,
-                                    }}
-                                >
-                                    Gold Mining Excellence
-                                </motion.p>
-
-                                {/* Elegant Divider */}
-                                <motion.div
-                                    initial={{ scaleX: 0, opacity: 0 }}
-                                    animate={{ scaleX: 1, opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{
-                                        scaleX: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
-                                        opacity: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
-                                        delay: 1.8,
-                                    }}
-                                    className="mx-auto h-px w-12 bg-gradient-to-r from-transparent via-neutral-300 to-transparent"
-                                />
-
-                                {/* Subtitle */}
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{
-                                        opacity: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
-                                        y: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
-                                        delay: 2.1,
-                                    }}
-                                    className="text-sm font-normal tracking-wide text-neutral-500 sm:text-base"
-                                    style={{
-                                        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
-                                        fontWeight: 400,
-                                    }}
-                                >
-                                    Since 1989
-                                </motion.p>
-                            </motion.div>
-
-                            {/* Elegant Loading Indicator - Ultra Smooth */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{
-                                    opacity: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
-                                    y: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
-                                    delay: 2.6,
-                                }}
-                                className="mt-10 flex justify-center gap-1.5"
-                            >
-                                {[0, 1, 2].map((i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0 }}
-                                        animate={{
-                                            opacity: [0.3, 1, 0.3],
-                                            scale: [1, 1.2, 1],
-                                        }}
-                                        transition={{
-                                            opacity: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
-                                            scale: { duration: 1.8, ease: [0.45, 0, 0.55, 1], repeat: Infinity },
-                                            delay: 2.8 + i * 0.2,
-                                        }}
-                                        className="h-1.5 w-1.5 rounded-full bg-yellow-500"
-                                    />
-                                ))}
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        );
-    };
-
     // Main Content
     return (
         <>
             <Head title="Home" />
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-                {/* Loading Screen */}
-                <AnimatePresence>{showLoadingScreen && <LoadingScreen />}</AnimatePresence>
+                {/* Splash Screen */}
+                {showLoadingScreen && (
+                    <SplashScreen
+                        minDurationMs={4200}
+                        fadeDurationMs={900}
+                        title="Kristalin Ekalestari"
+                        subtitle="Gold Mining Excellence"
+                        onDone={() => {
+                            sessionStorage.setItem('kristalin_session', 'true');
+                            setShowLoadingScreen(false);
+                        }}
+                    />
+                )}
 
                 {/* Header - Hidden during loading */}
                 <AnimatePresence>
@@ -435,113 +227,140 @@ const Welcome = () => {
                                                 isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                                             }`}
                                         >
-                                            {/* Hero Text - Mobile Anti-Flicker Optimized */}
+                                            {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
                                             <div className="relative">
-                                                <AnimatePresence mode="wait">
-                                                    <motion.div
-                                                        key={currentContent}
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{
-                                                            duration: 0.8,
-                                                            ease: 'easeInOut',
-                                                        }}
-                                                        style={{
-                                                            transform: 'translate3d(0, 0, 0)',
-                                                            willChange: 'opacity',
-                                                            backfaceVisibility: 'hidden',
-                                                            WebkitBackfaceVisibility: 'hidden',
-                                                        }}
-                                                    >
+                                                {isMobile ? (
+                                                    <>
                                                         <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                            {/* Title 1 - Smooth letter cascade (mobile optimized) */}
-                                                            <div className="inline-block text-gray-800">
-                                                                {contentSets[currentContent].title1.split('').map((letter: string, index: number) => (
-                                                                    <motion.span
-                                                                        key={`${currentContent}-${index}`}
-                                                                        initial={{
-                                                                            opacity: 0,
-                                                                            y: 8,
-                                                                        }}
-                                                                        animate={{
-                                                                            opacity: 1,
-                                                                            y: 0,
-                                                                        }}
-                                                                        exit={{
-                                                                            opacity: 0,
-                                                                        }}
-                                                                        transition={{
-                                                                            duration: 0.9,
-                                                                            ease: 'easeOut',
-                                                                            delay: index * 0.03,
-                                                                        }}
-                                                                        className="inline-block"
-                                                                        style={{
-                                                                            transform: 'translate3d(0, 0, 0)',
-                                                                            willChange: 'opacity',
-                                                                            backfaceVisibility: 'hidden',
-                                                                            WebkitBackfaceVisibility: 'hidden',
-                                                                        }}
-                                                                    >
-                                                                        {letter === ' ' ? '\u00A0' : letter}
-                                                                    </motion.span>
-                                                                ))}
-                                                            </div>
+                                                            <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                             <br />
-                                                            {/* Title 2 - Gold gradient (simplified) */}
-                                                            <motion.div
-                                                                initial={{ opacity: 0, y: 8 }}
-                                                                animate={{ opacity: 1, y: 0 }}
-                                                                exit={{ opacity: 0 }}
-                                                                transition={{
-                                                                    duration: 1.0,
-                                                                    ease: 'easeInOut',
-                                                                    delay: 0.3,
-                                                                }}
+                                                            <span
                                                                 className="inline-block"
                                                                 style={{
                                                                     background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
                                                                     WebkitBackgroundClip: 'text',
                                                                     WebkitTextFillColor: 'transparent',
                                                                     backgroundClip: 'text',
+                                                                }}
+                                                            >
+                                                                {contentSets[currentContent].title2}
+                                                            </span>
+                                                        </h1>
+                                                        <p className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg">
+                                                            {contentSets[currentContent].subtitle}
+                                                        </p>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <AnimatePresence mode="wait">
+                                                            <motion.div
+                                                                key={currentContent}
+                                                                initial={{ opacity: 0 }}
+                                                                animate={{ opacity: 1 }}
+                                                                exit={{ opacity: 0 }}
+                                                                transition={{
+                                                                    duration: 1.05,
+                                                                    ease: [0.16, 1, 0.3, 1],
+                                                                }}
+                                                                style={{
                                                                     transform: 'translate3d(0, 0, 0)',
                                                                     willChange: 'opacity',
                                                                     backfaceVisibility: 'hidden',
                                                                     WebkitBackfaceVisibility: 'hidden',
                                                                 }}
                                                             >
-                                                                {contentSets[currentContent].title2}
+                                                                <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
+                                                                    {/* Title 1 - Smooth letter cascade */}
+                                                                    <div className="inline-block text-gray-800">
+                                                                        {contentSets[currentContent].title1
+                                                                            .split('')
+                                                                            .map((letter: string, index: number) => (
+                                                                                <motion.span
+                                                                                    key={`${currentContent}-${index}`}
+                                                                                    initial={{
+                                                                                        opacity: 0,
+                                                                                        y: 8,
+                                                                                    }}
+                                                                                    animate={{
+                                                                                        opacity: 1,
+                                                                                        y: 0,
+                                                                                    }}
+                                                                                    exit={{
+                                                                                        opacity: 0,
+                                                                                    }}
+                                                                                    transition={{
+                                                                                        duration: 1.05,
+                                                                                        ease: [0.16, 1, 0.3, 1],
+                                                                                        delay: index * 0.035,
+                                                                                    }}
+                                                                                    className="inline-block"
+                                                                                    style={{
+                                                                                        transform: 'translate3d(0, 0, 0)',
+                                                                                        willChange: 'opacity',
+                                                                                        backfaceVisibility: 'hidden',
+                                                                                        WebkitBackfaceVisibility: 'hidden',
+                                                                                    }}
+                                                                                >
+                                                                                    {letter === ' ' ? '\u00A0' : letter}
+                                                                                </motion.span>
+                                                                            ))}
+                                                                    </div>
+                                                                    <br />
+                                                                    {/* Title 2 - Gold gradient */}
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, y: 10 }}
+                                                                        animate={{ opacity: 1, y: 0 }}
+                                                                        exit={{ opacity: 0 }}
+                                                                        transition={{
+                                                                            duration: 1.2,
+                                                                            ease: [0.16, 1, 0.3, 1],
+                                                                            delay: 0.45,
+                                                                        }}
+                                                                        className="inline-block"
+                                                                        style={{
+                                                                            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                                            WebkitBackgroundClip: 'text',
+                                                                            WebkitTextFillColor: 'transparent',
+                                                                            backgroundClip: 'text',
+                                                                            transform: 'translate3d(0, 0, 0)',
+                                                                            willChange: 'opacity',
+                                                                            backfaceVisibility: 'hidden',
+                                                                            WebkitBackfaceVisibility: 'hidden',
+                                                                        }}
+                                                                    >
+                                                                        {contentSets[currentContent].title2}
+                                                                    </motion.div>
+                                                                </h1>
                                                             </motion.div>
-                                                        </h1>
-                                                    </motion.div>
-                                                </AnimatePresence>
-                                            </div>
+                                                        </AnimatePresence>
 
-                                            {/* Subtitle - Mobile optimized smooth fade */}
-                                            <div className="relative">
-                                                <AnimatePresence mode="wait">
-                                                    <motion.p
-                                                        key={`subtitle-${currentContent}`}
-                                                        initial={{ opacity: 0, y: 8 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{
-                                                            duration: 0.9,
-                                                            ease: 'easeInOut',
-                                                            delay: 0.5,
-                                                        }}
-                                                        className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
-                                                        style={{
-                                                            transform: 'translate3d(0, 0, 0)',
-                                                            willChange: 'opacity',
-                                                            backfaceVisibility: 'hidden',
-                                                            WebkitBackfaceVisibility: 'hidden',
-                                                        }}
-                                                    >
-                                                        {contentSets[currentContent].subtitle}
-                                                    </motion.p>
-                                                </AnimatePresence>
+                                                        {/* Subtitle - smooth fade on desktop */}
+                                                        <div className="relative">
+                                                            <AnimatePresence mode="wait">
+                                                                <motion.p
+                                                                    key={`subtitle-${currentContent}`}
+                                                                    initial={{ opacity: 0, y: 8 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    exit={{ opacity: 0 }}
+                                                                    transition={{
+                                                                        duration: 1.05,
+                                                                        ease: [0.16, 1, 0.3, 1],
+                                                                        delay: 0.65,
+                                                                    }}
+                                                                    className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
+                                                                    style={{
+                                                                        transform: 'translate3d(0, 0, 0)',
+                                                                        willChange: 'opacity',
+                                                                        backfaceVisibility: 'hidden',
+                                                                        WebkitBackfaceVisibility: 'hidden',
+                                                                    }}
+                                                                >
+                                                                    {contentSets[currentContent].subtitle}
+                                                                </motion.p>
+                                                            </AnimatePresence>
+                                                        </div>
+                                                    </>
+                                                )}
                                             </div>
 
                                             {/* Buttons - responsive alignment */}
@@ -593,8 +412,8 @@ const Welcome = () => {
                                     >
                                         {/* Background Image - Mobile optimized with proper aspect */}
                                         <img
-                                            src="/papua-children.png"
-                                            alt="CSR - Papua Children"
+                                            src="/businessactivity.jpg"
+                                            alt="Business Activity"
                                             className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                             }`}
@@ -638,42 +457,13 @@ const Welcome = () => {
                                 <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                     {/* Carousel Card - Mobile Anti-Flicker Optimized */}
                                     <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
-                                        <AnimatePresence initial={false}>
-                                            <motion.div
-                                                key={currentSlide}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{
-                                                    duration: 1.0,
-                                                    ease: 'linear',
-                                                }}
+                                        {isMobile ? (
+                                            // Mobile: no framer-motion to avoid flicker, still updates with currentSlide
+                                            <div
                                                 className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
-                                                style={{
-                                                    transform: 'translate3d(0, 0, 0)',
-                                                    willChange: 'opacity',
-                                                    backfaceVisibility: 'hidden',
-                                                    WebkitBackfaceVisibility: 'hidden',
-                                                }}
-                                                onMouseEnter={() => setHoveredCard(0)}
-                                                onMouseLeave={() => setHoveredCard(null)}
                                                 onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                             >
-                                                {/* Image - Pure opacity crossfade for smoothness */}
-                                                <motion.div
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{
-                                                        duration: 1.0,
-                                                        ease: 'linear',
-                                                    }}
-                                                    className="absolute inset-0 h-full w-full"
-                                                    style={{
-                                                        transform: 'translate3d(0, 0, 0)',
-                                                        willChange: 'opacity',
-                                                    }}
-                                                >
+                                                <div className="absolute inset-0 h-full w-full">
                                                     <img
                                                         src={carouselSlides[currentSlide].image}
                                                         alt={carouselSlides[currentSlide].title}
@@ -683,47 +473,113 @@ const Welcome = () => {
                                                             transform: 'translate3d(0, 0, 0)',
                                                             backfaceVisibility: 'hidden',
                                                             WebkitBackfaceVisibility: 'hidden',
-                                                            imageRendering: '-webkit-optimize-contrast',
                                                         }}
                                                         onError={(e) => {
                                                             e.currentTarget.style.display = 'none';
                                                         }}
                                                         loading="eager"
                                                     />
-                                                </motion.div>
+                                                </div>
 
-                                                {/* Overlay - Static (no animation) for stability */}
                                                 <div className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                                                {/* Text - Simple fade after image settled */}
+                                                <div className="relative z-10">
+                                                    <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                        {carouselSlides[currentSlide].category}
+                                                    </div>
+                                                    <h3 className="mb-4 text-xl font-bold sm:text-2xl lg:text-3xl">
+                                                        {carouselSlides[currentSlide].title}
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <AnimatePresence initial={false}>
                                                 <motion.div
+                                                    key={currentSlide}
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                     transition={{
-                                                        duration: 0.8,
-                                                        delay: 0.3,
-                                                        ease: 'easeInOut',
+                                                        duration: 1.05,
+                                                        ease: [0.16, 1, 0.3, 1],
                                                     }}
-                                                    className="relative z-10"
+                                                    className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
                                                     style={{
                                                         transform: 'translate3d(0, 0, 0)',
                                                         willChange: 'opacity',
+                                                        backfaceVisibility: 'hidden',
+                                                        WebkitBackfaceVisibility: 'hidden',
                                                     }}
+                                                    onMouseEnter={() => setHoveredCard(0)}
+                                                    onMouseLeave={() => setHoveredCard(null)}
+                                                    onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                                 >
-                                                    <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                                        {carouselSlides[currentSlide].category}
-                                                    </div>
-                                                    <h3
-                                                        className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
-                                                            hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
-                                                        }`}
+                                                    {/* Image - Pure opacity crossfade for smoothness */}
+                                                    <motion.div
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{
+                                                            duration: 1.05,
+                                                            ease: [0.16, 1, 0.3, 1],
+                                                        }}
+                                                        className="absolute inset-0 h-full w-full"
+                                                        style={{
+                                                            transform: 'translate3d(0, 0, 0)',
+                                                            willChange: 'opacity',
+                                                        }}
                                                     >
-                                                        {carouselSlides[currentSlide].title}
-                                                    </h3>
+                                                        <img
+                                                            src={carouselSlides[currentSlide].image}
+                                                            alt={carouselSlides[currentSlide].title}
+                                                            className="h-full w-full object-cover"
+                                                            style={{
+                                                                objectPosition: 'center center',
+                                                                transform: 'translate3d(0, 0, 0)',
+                                                                backfaceVisibility: 'hidden',
+                                                                WebkitBackfaceVisibility: 'hidden',
+                                                                imageRendering: '-webkit-optimize-contrast',
+                                                            }}
+                                                            onError={(e) => {
+                                                                e.currentTarget.style.display = 'none';
+                                                            }}
+                                                            loading="eager"
+                                                        />
+                                                    </motion.div>
+
+                                                    {/* Overlay - Static (no animation) for stability */}
+                                                    <div className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                                                    {/* Text - Simple fade after image settled */}
+                                                    <motion.div
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{
+                                                            duration: 1.0,
+                                                            delay: 0.35,
+                                                            ease: [0.16, 1, 0.3, 1],
+                                                        }}
+                                                        className="relative z-10"
+                                                        style={{
+                                                            transform: 'translate3d(0, 0, 0)',
+                                                            willChange: 'opacity',
+                                                        }}
+                                                    >
+                                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                            {carouselSlides[currentSlide].category}
+                                                        </div>
+                                                        <h3
+                                                            className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
+                                                                hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
+                                                            }`}
+                                                        >
+                                                            {carouselSlides[currentSlide].title}
+                                                        </h3>
+                                                    </motion.div>
                                                 </motion.div>
-                                            </motion.div>
-                                        </AnimatePresence>
+                                            </AnimatePresence>
+                                        )}
 
                                         {/* Indicator Dots */}
                                         <div className="absolute bottom-6 left-6 z-20 flex gap-2 sm:bottom-8 sm:left-8 lg:bottom-8 lg:left-8">
@@ -752,7 +608,7 @@ const Welcome = () => {
                                     >
                                         {/* Background Image - Mobile optimized with proper aspect */}
                                         <img
-                                            src="https://i0.wp.com/startuptipsdaily.com/wp-content/uploads/2017/06/mining-business-ideas-and-opportunity.jpg?fit=3072%2C2048&ssl=1"
+                                            src="/businessactivity.jpg"
                                             alt={t('pages.welcome.business_activities_alt')}
                                             className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
@@ -812,8 +668,8 @@ const Welcome = () => {
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                     transition={{
-                                                        duration: 0.4,
-                                                        ease: 'easeInOut',
+                                                        duration: 0.9,
+                                                        ease: [0.16, 1, 0.3, 1],
                                                     }}
                                                     style={{ transform: 'translateZ(0)' }}
                                                 >

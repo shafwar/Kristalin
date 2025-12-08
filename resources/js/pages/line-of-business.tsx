@@ -99,11 +99,7 @@ export default function KristalinPortfolio() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img
-                        src="https://web-assets.bcg.com/56/d2/d0e00f1a4355852a4bb364c4e513/valuecreationinmining-heroimage.jpg"
-                        alt={t('pages.line_of_business.alt_texts.mining_future')}
-                        className="h-full w-full object-cover"
-                    />
+                    <img src="/portofolio.jpg" alt={t('pages.line_of_business.alt_texts.mining_future')} className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
