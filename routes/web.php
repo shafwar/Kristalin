@@ -96,14 +96,15 @@ Route::get('/health', [HealthController::class, 'check']);
 Route::get('/images/{path}', function ($path) {
     // If using R2, redirect to R2 URL
     if (config('filesystems.default') === 's3') {
-        $url = Storage::disk('s3')->url($path);
+        $objectPath = r2_object_path($path);
+        $url = Storage::disk('s3')->url($objectPath);
         // If AWS_URL is not set, construct R2 public URL
         if (empty(config('filesystems.disks.s3.url'))) {
             $endpoint = config('filesystems.disks.s3.endpoint');
             $bucket = config('filesystems.disks.s3.bucket');
             if (preg_match('/https:\/\/([a-f0-9]+)\.r2\.cloudflarestorage\.com/', $endpoint, $matches)) {
                 $accountId = $matches[1];
-                $url = "https://{$accountId}.r2.cloudflarestorage.com/{$bucket}/{$path}";
+                $url = "https://{$accountId}.r2.cloudflarestorage.com/{$bucket}/{$objectPath}";
             }
         }
         return redirect($url, 301);
