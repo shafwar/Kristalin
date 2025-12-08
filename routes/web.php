@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use App\Http\Controllers\FeedbackReportController;
 use App\Http\Controllers\ContactMessageController;
@@ -89,6 +90,27 @@ Route::get('/api/translations', [LanguageController::class, 'getTranslations'])-
 
 // Health check endpoint for Railway
 Route::get('/health', [HealthController::class, 'check']);
+
+// R2 Image Proxy - Serve images from R2 if using cloud storage
+// This allows React components to use /images/ path which will redirect to R2
+Route::get('/images/{path}', function ($path) {
+    // If using R2, redirect to R2 URL
+    if (config('filesystems.default') === 's3') {
+        $url = Storage::disk('s3')->url($path);
+        // If AWS_URL is not set, construct R2 public URL
+        if (empty(config('filesystems.disks.s3.url'))) {
+            $endpoint = config('filesystems.disks.s3.endpoint');
+            $bucket = config('filesystems.disks.s3.bucket');
+            if (preg_match('/https:\/\/([a-f0-9]+)\.r2\.cloudflarestorage\.com/', $endpoint, $matches)) {
+                $accountId = $matches[1];
+                $url = "https://{$accountId}.r2.cloudflarestorage.com/{$bucket}/{$path}";
+            }
+        }
+        return redirect($url, 301);
+    }
+    // Fallback to local file
+    return response()->file(public_path($path));
+})->where('path', '.*');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

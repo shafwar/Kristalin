@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // Enhanced animations with professional timing
 const fadeInUp: Variants = {
@@ -509,7 +510,7 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
 
                                     <div className="flex w-full justify-center">
                                         <img
-                                            src="/gold1.jpg"
+                                            src={imageUrl('gold1.jpg')}
                                             alt="Gold Operation"
                                             className="mb-4 aspect-[4/3] w-full max-w-xs rounded-xl bg-white object-cover sm:mb-6"
                                         />
@@ -565,7 +566,7 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
 
                                     <div className="flex w-full justify-center">
                                         <img
-                                            src="/silver.jpg"
+                                            src={imageUrl('silver.jpg')}
                                             alt="Silver Operation"
                                             className="mb-4 aspect-[4/3] w-full max-w-xs rounded-xl bg-white object-cover sm:mb-6"
                                         />
@@ -720,7 +721,7 @@ function AlluvialGoldMiningSection({ t }: { t: (key: string) => string }) {
                     >
                         {/* Main Image */}
                         <div className="relative overflow-hidden rounded-xl shadow-lg">
-                            <img src="/tracktor.png" alt="Gold mining operations" className="h-64 w-full object-cover" />
+                            <img src={imageUrl('tracktor.png')} alt="Gold mining operations" className="h-64 w-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                             <div className="absolute right-4 bottom-4 left-4 text-white">
                                 <p className="text-sm font-medium">{t('pages.business_activity.modern_operations.title')}</p>
@@ -802,7 +803,11 @@ export default function BusinessActivityPage() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src="/businessactivity.jpg" alt={t('pages.business_activity.hero.alt_text')} className="h-full w-full object-cover" />
+                    <img
+                        src={imageUrl('businessactivity.jpg')}
+                        alt={t('pages.business_activity.hero.alt_text')}
+                        className="h-full w-full object-cover"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
@@ -1285,7 +1290,7 @@ export default function BusinessActivityPage() {
                             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-amber-400/20 to-yellow-400/20 opacity-75 blur-xl transition duration-1000 group-hover:opacity-100"></div>
                             <div className="relative overflow-hidden rounded-2xl bg-white p-2 shadow-2xl">
                                 <img
-                                    src="/comdevelop.jpg"
+                                    src={imageUrl('comdevelop.jpg')}
                                     alt="Community Development"
                                     className="h-80 w-full rounded-xl object-cover transition-transform duration-700 group-hover:scale-105"
                                 />

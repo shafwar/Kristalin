@@ -7,6 +7,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 const contact = {
     phone: '(021) 22978900',
@@ -383,7 +384,9 @@ export default function ContactPage() {
                                             </div>
                                         ) : (
                                             <div className="text-center">
-                                                <div className="text-sm font-medium text-gray-600">{t('pages.contact.form.file_upload.drag_text')}</div>
+                                                <div className="text-sm font-medium text-gray-600">
+                                                    {t('pages.contact.form.file_upload.drag_text')}
+                                                </div>
                                                 <div className="mt-1 text-xs text-gray-500">{t('pages.contact.form.file_upload.file_types')}</div>
                                             </div>
                                         )}
@@ -425,7 +428,11 @@ export default function ContactPage() {
                                     className="h-12 w-full rounded-md bg-yellow-400 px-10 text-base font-bold text-black shadow transition-all duration-200 hover:bg-yellow-500 md:w-auto"
                                     disabled={loading}
                                 >
-                                    {loading ? <span className="animate-pulse">{t('pages.contact.form.buttons.submitting')}</span> : t('pages.contact.form.buttons.submit')}
+                                    {loading ? (
+                                        <span className="animate-pulse">{t('pages.contact.form.buttons.submitting')}</span>
+                                    ) : (
+                                        t('pages.contact.form.buttons.submit')
+                                    )}
                                 </Button>
                                 <Button
                                     type="button"
@@ -445,7 +452,11 @@ export default function ContactPage() {
                             className="absolute inset-0 h-full w-full"
                             style={{ transform: `translateY(${scrollY * 0.5}px)`, willChange: 'transform' }}
                         >
-                            <img src="/menara165-sore.webp" alt={t('pages.contact.image_alt')} className="h-full w-full object-cover object-center" />
+                            <img
+                                src={imageUrl('menara165-sore.webp')}
+                                alt={t('pages.contact.image_alt')}
+                                className="h-full w-full object-cover object-center"
+                            />
                             <div className="absolute inset-0 bg-black/20" />
                         </div>
                     </div>

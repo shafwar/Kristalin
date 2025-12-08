@@ -1,4 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
+import { imageUrl } from '@/lib/assets';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -27,7 +28,7 @@ const Welcome = () => {
     const [currentNews, setCurrentNews] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false));
 
     // 4 berita relevan dari news archive dengan Torindo sebagai highlight utama
     // Menggunakan translation keys untuk konsistensi bahasa
@@ -37,7 +38,7 @@ const Welcome = () => {
             date: '1 Sep 2025',
             title: t('pages.welcome.news.items.sept-1.title'),
             excerpt: t('pages.welcome.news.items.sept-1.excerpt'),
-            image: '/sept1.jpg',
+            image: imageUrl('sept1.jpg'),
             url: '/news/sept-1',
             priority: 'high',
         },
@@ -46,7 +47,7 @@ const Welcome = () => {
             date: '15 Jul 2025',
             title: t('pages.welcome.news.items.jul-1.title'),
             excerpt: t('pages.welcome.news.items.jul-1.excerpt'),
-            image: '/sembako.jpg',
+            image: imageUrl('sembako.jpg'),
             url: '/news/jul-1',
             priority: 'medium',
         },
@@ -55,7 +56,7 @@ const Welcome = () => {
             date: '19 Aug 2025',
             title: t('pages.welcome.news.items.aug-2.title'),
             excerpt: t('pages.welcome.news.items.aug-2.excerpt'),
-            image: '/agus2.jpg',
+            image: imageUrl('agus2.jpg'),
             url: '/news/aug-2',
             priority: 'medium',
         },
@@ -64,7 +65,7 @@ const Welcome = () => {
             date: '3 Feb 2025',
             title: t('pages.welcome.news.items.feb-4.title'),
             excerpt: t('pages.welcome.news.items.feb-4.excerpt'),
-            image: '/buruharian2.webp',
+            image: imageUrl('buruharian2.webp'),
             url: '/news/feb-4',
             priority: 'medium',
         },
@@ -74,14 +75,14 @@ const Welcome = () => {
     const carouselSlides = [
         {
             id: 1,
-            image: '/directorshero.jpg',
+            image: imageUrl('directorshero.jpg'),
             category: t('pages.welcome.board.category'),
             title: t('pages.welcome.board.title'),
             link: '/board-of-directors',
         },
         {
             id: 0,
-            image: '/portofolio.jpg',
+            image: imageUrl('portofolio.jpg'),
             category: t('pages.welcome.portfolio.category'),
             title: t('pages.welcome.portfolio.title'),
             link: '/line-of-business',
@@ -139,9 +140,7 @@ const Welcome = () => {
             setIsMobile(window.innerWidth <= 768);
         };
 
-        handleResize();
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -412,8 +411,8 @@ const Welcome = () => {
                                     >
                                         {/* Background Image - Mobile optimized with proper aspect */}
                                         <img
-                                            src="/businessactivity.jpg"
-                                            alt="Business Activity"
+                                            src={imageUrl('papua-children.png')}
+                                            alt="CSR Impact in Papua"
                                             className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                             }`}
@@ -425,7 +424,8 @@ const Welcome = () => {
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';
                                             }}
-                                            loading="eager"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
 
                                         {/* Dark overlay - Static, stronger gradient */}
@@ -477,7 +477,8 @@ const Welcome = () => {
                                                         onError={(e) => {
                                                             e.currentTarget.style.display = 'none';
                                                         }}
-                                                        loading="eager"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                     />
                                                 </div>
 
@@ -543,7 +544,8 @@ const Welcome = () => {
                                                             onError={(e) => {
                                                                 e.currentTarget.style.display = 'none';
                                                             }}
-                                                            loading="eager"
+                                                            loading="lazy"
+                                                            decoding="async"
                                                         />
                                                     </motion.div>
 
@@ -608,7 +610,7 @@ const Welcome = () => {
                                     >
                                         {/* Background Image - Mobile optimized with proper aspect */}
                                         <img
-                                            src="/businessactivity.jpg"
+                                            src={imageUrl('businessactivity.jpg')}
                                             alt={t('pages.welcome.business_activities_alt')}
                                             className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'

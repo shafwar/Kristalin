@@ -1,4 +1,5 @@
 import { useTranslation } from '@/hooks/useTranslation';
+import { imageUrl } from '@/lib/assets';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
@@ -175,7 +176,7 @@ const Careers = () => {
                             transform: `translateY(${scrollY * 0.5}px)`,
                         }}
                     >
-                        <img src="/kristalincareerhero.jpg" alt="Careers background" className="h-full w-full object-cover" />
+                        <img src={imageUrl('kristalincareerhero.jpg')} alt="Careers background" className="h-full w-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                     </div>
 
@@ -356,7 +357,7 @@ const Careers = () => {
                                         </ul>
                                     </div>
                                     <div className="relative">
-                                        <img src="/papua-children.png" alt="Company Culture" className="rounded-lg shadow-lg" />
+                                        <img src={imageUrl('papua-children.png')} alt="Company Culture" className="rounded-lg shadow-lg" />
                                     </div>
                                 </div>
                             </section>

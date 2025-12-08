@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // Helper function to get translated month name
 const getTranslatedMonth = (monthId: string, t: any) => {
@@ -173,7 +174,20 @@ export interface NewsMonth {
     categories: NewsCategory[];
 }
 
-export const newsData: NewsMonth[] = [
+const normalizeNewsImages = (data: NewsMonth[]): NewsMonth[] =>
+    data.map((month) => ({
+        ...month,
+        categories: month.categories.map((category) => ({
+            ...category,
+            newsItems: category.newsItems.map((item) => ({
+                ...item,
+                ...((item as { image?: string }).image ? { image: imageUrl((item as { image: string }).image) } : {}),
+                fullContent: { ...item.fullContent, image: imageUrl(item.fullContent.image) },
+            })),
+        })),
+    }));
+
+export const newsData: NewsMonth[] = normalizeNewsImages([
     {
         month: 'FEBRUARI',
         monthId: 'februari-2025',
@@ -7003,7 +7017,7 @@ export const newsData: NewsMonth[] = [
             },
         ],
     },
-];
+]);
 
 // Enhanced animations with professional timing
 const fadeInUp: Variants = {
@@ -7578,7 +7592,11 @@ const KristalinNewsPage: React.FC = () => {
 
                                     {/* Background Image with Enhanced Overlay */}
                                     <div className="absolute inset-0 opacity-5 transition-opacity duration-500 group-hover:opacity-10">
-                                        <img src="/sept3.webp" alt="Kristalin Ekalestari Group Acquisition" className="h-full w-full object-cover" />
+                                        <img
+                                            src={imageUrl('sept3.webp')}
+                                            alt="Kristalin Ekalestari Group Acquisition"
+                                            className="h-full w-full object-cover"
+                                        />
                                     </div>
 
                                     {/* Enhanced Gradient Overlay */}

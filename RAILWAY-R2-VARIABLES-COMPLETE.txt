@@ -1,0 +1,133 @@
+# Railway R2 Variables - Complete List untuk Service Kristalin
+# Copy semua variables ini ke Railway Dashboard → Service Kristalin → Variables
+
+# ============================================
+# CORE APPLICATION VARIABLES
+# ============================================
+APP_NAME=Kristalin Ekalestari
+APP_ENV=production
+APP_KEY=base64:8SI0lqu7TRlqxfh4wqaKH4CTbma9qgjZSZ0q5KHTZUk=
+APP_DEBUG=false
+APP_URL=https://kristalin-production-xxxx.up.railway.app
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
+APP_MAINTENANCE_DRIVER=file
+PHP_CLI_SERVER_WORKERS=4
+BCRYPT_ROUNDS=12
+
+# ============================================
+# LOGGING - Railway uses stderr
+# ============================================
+LOG_CHANNEL=stderr
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=error
+
+# ============================================
+# DATABASE - Railway auto-injects these
+# ============================================
+DB_CONNECTION=mysql
+DB_HOST=${MYSQLHOST}
+DB_PORT=${MYSQLPORT}
+DB_DATABASE=${MYSQLDATABASE}
+DB_USERNAME=${MYSQLUSER}
+DB_PASSWORD=${MYSQLPASSWORD}
+
+# ============================================
+# SESSION & CACHE
+# ============================================
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+CACHE_STORE=database
+
+# ============================================
+# BROADCASTING & FILESYSTEM
+# ============================================
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=s3
+QUEUE_CONNECTION=database
+
+# ============================================
+# REDIS (optional - set to null if not used)
+# ============================================
+MEMCACHED_HOST=127.0.0.1
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# ============================================
+# MAIL CONFIGURATION
+# ============================================
+MAIL_MAILER=smtp
+MAIL_HOST=mail.kristalin.co.id
+MAIL_PORT=587
+MAIL_ENCRYPTION=tls
+MAIL_USERNAME=info@kristalin.co.id
+MAIL_PASSWORD=wPWgs]AiN5Yk
+MAIL_FROM_ADDRESS=info@kristalin.co.id
+MAIL_FROM_NAME=Kristalin
+MAIL_TO_ADDRESS=info@kristalin.co.id
+MAIL_TO_NAME=Kristalin Admin
+MAIL_EHLO_DOMAIN=kristalin.co.id
+
+# ============================================
+# CLOUDFLARE R2 CONFIGURATION
+# ============================================
+# PENTING: Semua variables ini HARUS di-set untuk R2 bekerja
+
+# Filesystem disk - HARUS s3 untuk menggunakan R2
+FILESYSTEM_DISK=s3
+
+# R2 Access Credentials
+AWS_ACCESS_KEY_ID=ef66a19f154154dad000e5864bafdb39
+AWS_SECRET_ACCESS_KEY=e6ca0056260fbd4f18da25ee41c5049092bbf036d28a421d90fa8bd48a38e9ba
+
+# R2 Configuration
+AWS_DEFAULT_REGION=auto
+AWS_BUCKET=kristalin-assets
+
+# R2 Endpoint - S3 Compatible API
+AWS_ENDPOINT=https://70979f28fc2842bcc874dd54589cfe05.r2.cloudflarestorage.com
+
+# Path Style Endpoint - HARUS true untuk R2
+AWS_USE_PATH_STYLE_ENDPOINT=true
+
+# R2 Public URL - PENTING untuk akses public files
+# Opsi 1: Jika menggunakan Custom Domain (Recommended)
+AWS_URL=https://cdn.kristalin.co.id
+
+# Opsi 2: Jika menggunakan R2 Public URL (Temporary)
+# AWS_URL=https://70979f28fc2842bcc874dd54589cfe05.r2.cloudflarestorage.com/kristalin-assets
+
+# ============================================
+# VITE & FRONTEND
+# ============================================
+VITE_APP_NAME=Kristalin Ekalestari
+INERTIA_SSR_ENABLED=false
+
+# ============================================
+# CATATAN PENTING
+# ============================================
+# 1. Set semua variables di Railway Dashboard → Service Kristalin → Variables
+# 2. Pastikan FILESYSTEM_DISK=s3 (bukan local)
+# 3. AWS_URL harus di-set sesuai dengan public access yang Anda pilih:
+#    - Custom Domain: https://cdn.kristalin.co.id
+#    - Public URL: https://70979f28fc2842bcc874dd54589cfe05.r2.cloudflarestorage.com/kristalin-assets
+# 4. Enable public access di R2 bucket sebelum deploy
+# 5. Test koneksi setelah set variables: railway run php artisan r2:test
+# 6. Migrate files ke R2: railway run php artisan r2:migrate
+
+# ============================================
+# VERIFIKASI SETUP
+# ============================================
+# Setelah semua variables di-set, verifikasi dengan:
+# railway variables | grep -E "(AWS_|FILESYSTEM)"
+# railway run php artisan r2:test
+# railway run php artisan config:show | grep filesystems
+
+

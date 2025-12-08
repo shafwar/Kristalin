@@ -1,6 +1,7 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { Link, router } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
+import { imageUrl } from '../lib/assets';
 
 interface HeaderProps {
     sticky?: boolean;
@@ -170,7 +171,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Logo logic
     const getLogoSrc = () => {
-        return '/kristalinlogotransisi1.png';
+        return imageUrl('kristalinlogotransisi1.png');
     };
 
     const getLogoFilter = () => {
@@ -476,7 +477,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 >
                     {/* Close button inside menu */}
                     <div className="flex items-center justify-between px-4 pt-4 pb-2">
-                        <img src="/kristalinlogotransisi1.png" alt="Kristalin Logo" className="h-10 object-contain" />
+                        <img src={imageUrl('kristalinlogotransisi1.png')} alt="Kristalin Logo" className="h-10 object-contain" />
                         <button
                             className="p-2 text-gray-600 transition-all duration-300 ease-out hover:text-yellow-500"
                             onClick={() => setMobileMenuOpen(false)}

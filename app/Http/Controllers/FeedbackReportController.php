@@ -26,7 +26,7 @@ class FeedbackReportController extends Controller
         $validated['status'] = 'submitted';
 
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('feedback_files', 'public');
+            $path = $request->file('file')->store('feedback_files', 's3');
             $validated['file'] = $path;
         }
 

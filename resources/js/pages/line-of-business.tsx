@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
@@ -99,7 +100,11 @@ export default function KristalinPortfolio() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src="/portofolio.jpg" alt={t('pages.line_of_business.alt_texts.mining_future')} className="h-full w-full object-cover" />
+                    <img
+                        src={imageUrl('portofolio.jpg')}
+                        alt={t('pages.line_of_business.alt_texts.mining_future')}
+                        className="h-full w-full object-cover"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
@@ -434,7 +439,7 @@ export default function KristalinPortfolio() {
                     >
                         <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} className="mx-auto w-full max-w-md text-center">
                             <img
-                                src="/kristalinlogotransisi1.png"
+                                src={imageUrl('kristalinlogotransisi1.png')}
                                 alt="Kristalin Logo"
                                 className="mx-auto mb-6 h-40 w-40 object-contain md:h-56 md:w-56"
                             />
@@ -653,7 +658,7 @@ export default function KristalinPortfolio() {
                         {/* Left Image */}
                         <motion.div variants={slideInLeft} transition={{ delay: 0.2, duration: 0.4, ease: 'easeInOut' }} whileHover={{ scale: 1.05 }}>
                             <img
-                                src="/gold-bars.jpg"
+                                src={imageUrl('gold-bars.jpg')}
                                 alt={t('pages.line_of_business.gold_price.alt_text')}
                                 className="h-96 w-full rounded-2xl object-cover shadow-lg"
                             />

@@ -4,8 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
-const heroImage = '/papua-children.png';
+const heroImage = imageUrl('papua-children.png');
+const toImage = (path: string) => imageUrl(path);
+const toImages = (paths: string[]) => paths.map(toImage);
 
 // Video Section Component - MOBILE OPTIMIZED
 function VideoSection({ t }: { t: (key: string) => string }) {
@@ -14,7 +17,7 @@ function VideoSection({ t }: { t: (key: string) => string }) {
     return (
         <section
             className="relative bg-cover bg-fixed bg-center py-16 sm:py-20"
-            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/papua-children.png')` }}
+            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroImage}')` }}
         >
             <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <motion.div
@@ -131,7 +134,7 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             image: '/agus2.jpg',
             category: t('pages.csr.categories.house_construction'),
         },
-    ];
+    ].map((item) => ({ ...item, image: imageUrl(item.image) }));
 
     return (
         <section className="bg-gradient-to-r from-gray-50 to-slate-50 py-16 sm:py-20">
@@ -501,7 +504,7 @@ export default function CSRPageMobileFix() {
             description: t('pages.csr.gallery_sections.10.description'),
             images: ['/agus1.jpg', '/agus2.jpg', '/agus3.jpg', '/agus6.jpg', '/agus7.jpg', '/agus8.jpg'],
         },
-    ];
+    ].map((section) => ({ ...section, images: toImages(section.images) }));
 
     // Get translated testimonials
     const translatedTestimonials = [
@@ -523,7 +526,7 @@ export default function CSRPageMobileFix() {
             photo: '/prfl.png',
             quote: t('pages.csr.testimonials.data.2.quote'),
         },
-    ];
+    ].map((testimonial) => ({ ...testimonial, photo: toImage(testimonial.photo) }));
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">

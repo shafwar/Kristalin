@@ -2,6 +2,7 @@ import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { imageUrl } from '@/lib/assets';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
@@ -35,7 +36,11 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href="/dashboard" prefetch>
-                                <img src="/kristalinlogotransisi1.png" alt="Kristalin Eka Lestari Logo" className="h-10 w-auto object-contain" />
+                                <img
+                                    src={imageUrl('kristalinlogotransisi1.png')}
+                                    alt="Kristalin Eka Lestari Logo"
+                                    className="h-10 w-auto object-contain"
+                                />
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

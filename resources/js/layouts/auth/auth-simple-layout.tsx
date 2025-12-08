@@ -1,3 +1,4 @@
+import { imageUrl } from '@/lib/assets';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
 
@@ -15,7 +16,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                     <div className="flex flex-col items-center gap-4">
                         <Link href={route('home')} className="flex flex-col items-center gap-2 font-medium">
                             <img
-                                src="/kristalinlogotransisi1.png"
+                                src={imageUrl('kristalinlogotransisi1.png')}
                                 alt="Kristalin Eka Lestari Logo"
                                 className="mb-1 h-9 w-9 rounded-md object-contain"
                             />

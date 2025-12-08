@@ -20,7 +20,7 @@ class ContactMessageController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('contact_files', 'public');
+            $path = $request->file('file')->store('contact_files', 's3');
             $validated['file'] = $path;
         }
 
