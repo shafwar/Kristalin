@@ -236,7 +236,7 @@ return [
             'learn_more' => 'Pelajari Lebih Lanjut',
             'send_feedback' => 'Kirim Masukan',
             'discover_more' => 'Pelajari lebih lanjut →',
-            'see_milestones' => 'Lihat Tonggak',
+            'see_milestones' => 'Lihat Perjalanan',
         ],
 
         'csr' => [
