@@ -376,7 +376,7 @@ const Welcome = () => {
                                                         className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
                                                         onClick={() => (window.location.href = '/milestones')}
                                                     >
-                                                        See Milestones
+                                                        {t('pages.welcome.buttons.see_milestones')}
                                                     </button>
 
                                                     {/* Instagram Link - Elegant and Integrated */}
