@@ -239,6 +239,7 @@ return [
             'learn_more' => '了解更多',
             'send_feedback' => '发送反馈',
             'discover_more' => '了解更多 →',
+            'see_milestones' => '查看里程碑',
         ],
 
 

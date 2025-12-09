@@ -240,6 +240,7 @@ return [
             'learn_more' => 'Learn More',
             'send_feedback' => 'Send Feedback',
             'discover_more' => 'Learn more →',
+            'see_milestones' => 'See Milestones',
         ],
 
 
