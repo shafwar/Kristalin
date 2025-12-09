@@ -229,22 +229,20 @@ const Welcome = () => {
                                             {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
                                             <div className="relative">
                                                 {isMobile ? (
-                                                    <AnimatePresence mode="wait">
+                                                    <AnimatePresence mode="wait" initial={false}>
                                                         <motion.div
-                                                            key={currentContent}
-                                                            initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                            exit={{ opacity: 0, y: -12, scale: 0.985 }}
+                                                            key={`mobile-hero-${currentContent}`}
+                                                            initial={{ opacity: 0, y: 6 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            exit={{ opacity: 0, y: 0 }}
                                                             transition={{
-                                                                duration: 0.55,
-                                                                ease: [0.22, 0.61, 0.36, 1],
+                                                                duration: 0.45,
+                                                                ease: [0.25, 0.46, 0.45, 0.94],
                                                             }}
                                                             className="text-center"
                                                         >
                                                             <h1 className="mb-4 text-2xl leading-tight font-bold sm:text-3xl">
-                                                                <div className="inline-block text-gray-800">
-                                                                    {contentSets[currentContent].title1}
-                                                                </div>
+                                                                <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                                 <br />
                                                                 <span
                                                                     className="inline-block"
