@@ -702,7 +702,7 @@ export default function KristalinPortfolio() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative bg-cover bg-fixed bg-center py-20"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-linebusiness.png')`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('hero-linebusiness.png')}')`,
                 }}
             >
                 <div className="mx-auto max-w-6xl px-4">

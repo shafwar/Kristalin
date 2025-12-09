@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // SVG Icon Components
 const IconBuilding = () => (
@@ -147,7 +148,7 @@ export default function AboutPage() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
-              src="https://agincourtresources.com/wp-content/uploads/2020/11/Peran-Pertambangan-Emas-Terhadap-Ekonomi-1.jpg"
+              src={imageUrl('about.jpg')}
               alt={t('pages.about.alt_texts.mining_operations')}
               className="w-full h-full object-cover opacity-70"
             />
@@ -317,7 +318,7 @@ export default function AboutPage() {
           {/* Left Side - Image and Title with animations */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
-              src="https://agincourtresources.com/wp-content/uploads/2020/11/Peran-Pertambangan-Emas-Terhadap-Ekonomi-1.jpg"
+              src={imageUrl('about.jpg')}
               alt={t('pages.about.alt_texts.mining_operations')}
               className="w-full h-full object-cover opacity-70"
             />

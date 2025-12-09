@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // SVG Icon Components
 const IconTarget = () => (
@@ -96,7 +97,7 @@ export default function CompanyOverview() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
-              src="https://m-mtoday.com/wp-content/uploads/sites/12/2023/10/benefits-of-gold-mining-image.jpeg"
+              src={imageUrl('companyoverview.jpg')}
               alt={t('pages.company_overview.alt_texts.papua_forest')}
               className="w-full h-full object-cover opacity-70"
             />
@@ -233,7 +234,7 @@ export default function CompanyOverview() {
           {/* Left Side - Your Image and Title, with animation */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
-              src="https://m-mtoday.com/wp-content/uploads/sites/12/2023/10/benefits-of-gold-mining-image.jpeg"
+              src={imageUrl('companyoverview.jpg')}
               alt={t('pages.company_overview.alt_texts.papua_forest')}
               className="w-full h-full object-cover opacity-70"
             />

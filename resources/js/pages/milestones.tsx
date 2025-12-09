@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // Types
 interface Milestone {
@@ -186,7 +187,7 @@ export default function MilestonesPage() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
-              src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
+              src={imageUrl('milestone.jpg')}
               alt={t('pages.milestones.alt_texts.mining_history')}
               className="w-full h-full object-cover opacity-70"
             />
@@ -304,7 +305,7 @@ export default function MilestonesPage() {
           {/* Left Side - Image and Title with animations */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
-              src="https://i.pinimg.com/736x/db/f1/e4/dbf1e4748bc5aa40b231dcc9f3519ac0.jpg"
+              src={imageUrl('milestone.jpg')}
               alt={t('pages.milestones.alt_texts.mining_history')}
               className="w-full h-full object-cover opacity-70"
             />

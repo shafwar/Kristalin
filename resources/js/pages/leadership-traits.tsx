@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // SVG Icon Components
 const IconCompetent = () => (
@@ -110,7 +111,7 @@ export default function LeadershipTraitsPage() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
-              src="https://substackcdn.com/image/fetch/$s_!RnDN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9949df21-4f48-4eae-86ed-97b002558a97_1312x928.webp"
+              src={imageUrl('leadership.jpg')}
               alt={t('pages.leadership_traits.alt_texts.leadership_meeting')}
               className="w-full h-full object-cover opacity-70"
             />
@@ -244,7 +245,7 @@ export default function LeadershipTraitsPage() {
           {/* Left Side - Image and Title */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
-              src="https://substackcdn.com/image/fetch/$s_!RnDN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9949df21-4f48-4eae-86ed-97b002558a97_1312x928.webp"
+              src={imageUrl('leadership.jpg')}
               alt={t('pages.leadership_traits.alt_texts.leadership_meeting')}
               className="w-full h-full object-cover opacity-70"
             />

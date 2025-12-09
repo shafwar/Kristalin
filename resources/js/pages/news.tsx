@@ -7301,7 +7301,7 @@ const KristalinNewsPage: React.FC = () => {
                     }}
                 >
                     <img
-                        src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&h=1080&fit=crop"
+                        src={imageUrl('news.jpg')}
                         alt="Mining operations and news background"
                         className="h-full w-full object-cover"
                     />

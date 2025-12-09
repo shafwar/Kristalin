@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // SVG Icon Components
 const IconEye = () => (
@@ -130,7 +131,7 @@ export default function VisionMissionPage() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img 
-              src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
+              src={imageUrl('visionmission.jpg')}
               alt={t('pages.vision_mission.alt_texts.gold_bars')}
               className="w-full h-full object-cover opacity-80"
             />
@@ -312,7 +313,7 @@ export default function VisionMissionPage() {
           {/* Left Side - Image and Title with animations */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img 
-              src="https://robinsonsjewelers.com/cdn/shop/articles/How_many_grams_in_an_ounce_of_gold.jpg?v=1728561631&width=1200"
+              src={imageUrl('visionmission.jpg')}
               alt={t('pages.vision_mission.alt_texts.gold_bars')}
               className="w-full h-full object-cover opacity-80"
             />

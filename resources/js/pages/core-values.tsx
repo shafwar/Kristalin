@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // SVG Icon Components
 const IconIntegrity = () => (
@@ -124,7 +125,7 @@ export default function CoreValuesPage() {
           {/* Mobile Hero Section */}
           <div className="relative h-[60vh] min-h-[400px] bg-black overflow-hidden">
             <img
-              src="https://i.pinimg.com/736x/8d/ae/91/8dae91dbdf9ff82fdf1f16a4e5458dec.jpg"
+              src={imageUrl('corevalues.jpg')}
               alt="Core Values"
               className="w-full h-full object-cover opacity-70"
             />
@@ -260,7 +261,7 @@ export default function CoreValuesPage() {
           {/* Left Side - Image and Title */}
           <div className="w-1/2 relative bg-black h-full flex-shrink-0 overflow-hidden">
             <img
-              src="https://i.pinimg.com/736x/8d/ae/91/8dae91dbdf9ff82fdf1f16a4e5458dec.jpg"
+              src={imageUrl('corevalues.jpg')}
               alt="Core Values"
               className="w-full h-full object-cover opacity-70"
             />
