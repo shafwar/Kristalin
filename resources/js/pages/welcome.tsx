@@ -259,9 +259,7 @@ const Welcome = () => {
                                                                         {c.title2}
                                                                     </span>
                                                                 </h1>
-                                                                <p className="mb-6 text-sm text-gray-600 sm:text-base">
-                                                                    {c.subtitle}
-                                                                </p>
+                                                                <p className="mb-6 text-sm text-gray-600 sm:text-base">{c.subtitle}</p>
                                                             </motion.div>
                                                         ))}
                                                     </div>
