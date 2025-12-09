@@ -282,8 +282,8 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
     ];
 
     const images = [
-        { src: '/gold1.jpg', alt: t('pages.business_activity.mining_sectors.images.gold_alt') },
-        { src: '/silver.jpg', alt: t('pages.business_activity.mining_sectors.images.silver_alt') },
+        { src: imageUrl('gold1.jpg'), alt: t('pages.business_activity.mining_sectors.images.gold_alt') },
+        { src: imageUrl('silver.jpg'), alt: t('pages.business_activity.mining_sectors.images.silver_alt') },
     ];
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -925,7 +925,7 @@ export default function BusinessActivityPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative bg-cover bg-fixed bg-center py-20"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/nabire.jpg')`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('nabire.jpg')}')`,
                 }}
             >
                 <div className="mx-auto max-w-7xl px-4">
@@ -1465,7 +1465,7 @@ export default function BusinessActivityPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative bg-cover bg-fixed bg-center py-20"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-linebusiness.png')`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('hero-linebusiness.png')}')`,
                 }}
             >
                 <div className="mx-auto max-w-6xl px-4">
