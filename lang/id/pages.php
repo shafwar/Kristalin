@@ -954,11 +954,6 @@ return [
             'learn_more_silver' => 'Pelajari lebih lanjut tentang operasi perak',
             'learn_more_other_metals' => 'Pelajari lebih lanjut tentang eksplorasi lainnya',
         ],
-        'location' => [
-            'header' => 'LOKASI KAMI',
-            'title' => 'Lokasi Pertambangan Strategis',
-            'description_part1' => 'PT Kristalin Ekalestari melakukan eksplorasi emas di sepanjang Sungai Musairo, di Distrik Makimi, Nabire, Papua. Lokasi eksplorasi mencakup area sepanjang 60 km menuju kota Nabire di sebelah timur. Lokasi kami dapat dijangkau dengan transportasi darat selama 1,5 hingga 2 jam, hingga mencapai Desa Legari/SP-1, kemudian menggunakan kendaraan 4x4 khusus sepanjang Sungai Musairo selama 10 km yang memakan waktu sekitar 0,5 jam.',
-        ],
         'why_choose_us' => [
             'header' => 'MENGAPA MEMILIH KAMI',
             'title' => 'Pengalaman Bekerja dengan Industri Global',

@@ -151,6 +151,7 @@ export interface NewsItem {
     date: string;
     url: string;
     excerpt: string;
+    image?: string;
     fullContent: {
         title: string;
         date: string;
