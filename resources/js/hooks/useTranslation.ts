@@ -12,6 +12,7 @@ interface PageProps {
 export function useTranslation() {
     const { props } = usePage<PageProps>();
     const { locale, translations } = props;
+    const pageTranslations = translations.pages ?? translations.messages ?? {};
 
     // Helper function to get translation
     type TranslationOptions = { returnObjects?: boolean; replace?: Record<string, string> };
@@ -19,9 +20,9 @@ export function useTranslation() {
         const keys = key.split('.');
         let value = translations.messages;
 
-        // Check if it's a page translation
+        // Check if it's a page translation; fall back to messages if pages not provided
         if (keys[0] === 'pages') {
-            value = translations.pages;
+            value = pageTranslations;
             keys.shift(); // Remove 'pages' from the key array
         }
 
