@@ -229,38 +229,42 @@ const Welcome = () => {
                                             {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
                                             <div className="relative">
                                                 {isMobile ? (
-                                                    <AnimatePresence mode="wait" initial={false}>
-                                                        <motion.div
-                                                            key={`mobile-hero-${currentContent}`}
-                                                            initial={{ opacity: 0, y: 6 }}
-                                                            animate={{ opacity: 1, y: 0 }}
-                                                            exit={{ opacity: 0, y: 0 }}
-                                                            transition={{
-                                                                duration: 0.45,
-                                                                ease: [0.25, 0.46, 0.45, 0.94],
-                                                            }}
-                                                            className="text-center"
-                                                        >
-                                                            <h1 className="mb-4 text-2xl leading-tight font-bold sm:text-3xl">
-                                                                <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
-                                                                <br />
-                                                                <span
-                                                                    className="inline-block"
-                                                                    style={{
-                                                                        background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-                                                                        WebkitBackgroundClip: 'text',
-                                                                        WebkitTextFillColor: 'transparent',
-                                                                        backgroundClip: 'text',
-                                                                    }}
-                                                                >
-                                                                    {contentSets[currentContent].title2}
-                                                                </span>
-                                                            </h1>
-                                                            <p className="mb-6 text-sm text-gray-600 sm:text-base">
-                                                                {contentSets[currentContent].subtitle}
-                                                            </p>
-                                                        </motion.div>
-                                                    </AnimatePresence>
+                                                    <div className="relative">
+                                                        {contentSets.map((c, idx) => (
+                                                            <motion.div
+                                                                key={`mobile-hero-${idx}`}
+                                                                className="absolute inset-0 text-center"
+                                                                style={{ position: idx === 0 ? 'relative' : 'absolute' }}
+                                                                initial={false}
+                                                                animate={{
+                                                                    opacity: currentContent === idx ? 1 : 0,
+                                                                }}
+                                                                transition={{
+                                                                    duration: 0.4,
+                                                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                                                }}
+                                                            >
+                                                                <h1 className="mb-4 text-2xl leading-tight font-bold sm:text-3xl">
+                                                                    <div className="inline-block text-gray-800">{c.title1}</div>
+                                                                    <br />
+                                                                    <span
+                                                                        className="inline-block"
+                                                                        style={{
+                                                                            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                                            WebkitBackgroundClip: 'text',
+                                                                            WebkitTextFillColor: 'transparent',
+                                                                            backgroundClip: 'text',
+                                                                        }}
+                                                                    >
+                                                                        {c.title2}
+                                                                    </span>
+                                                                </h1>
+                                                                <p className="mb-6 text-sm text-gray-600 sm:text-base">
+                                                                    {c.subtitle}
+                                                                </p>
+                                                            </motion.div>
+                                                        ))}
+                                                    </div>
                                                 ) : (
                                                     <>
                                                         <AnimatePresence mode="wait">
