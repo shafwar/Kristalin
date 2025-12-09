@@ -229,40 +229,26 @@ const Welcome = () => {
                                             {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
                                             <div className="relative">
                                                 {isMobile ? (
-                                                    <div className="relative">
-                                                        {contentSets.map((c, idx) => (
-                                                            <motion.div
-                                                                key={`mobile-hero-${idx}`}
-                                                                className="absolute inset-0 text-center"
-                                                                style={{ position: idx === 0 ? 'relative' : 'absolute' }}
-                                                                initial={false}
-                                                                animate={{
-                                                                    opacity: currentContent === idx ? 1 : 0,
-                                                                }}
-                                                                transition={{
-                                                                    duration: 0.4,
-                                                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                                    <>
+                                                        <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
+                                                            <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
+                                                            <br />
+                                                            <span
+                                                                className="inline-block"
+                                                                style={{
+                                                                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                                                                    WebkitBackgroundClip: 'text',
+                                                                    WebkitTextFillColor: 'transparent',
+                                                                    backgroundClip: 'text',
                                                                 }}
                                                             >
-                                                                <h1 className="mb-4 text-2xl leading-tight font-bold sm:text-3xl">
-                                                                    <div className="inline-block text-gray-800">{c.title1}</div>
-                                                                    <br />
-                                                                    <span
-                                                                        className="inline-block"
-                                                                        style={{
-                                                                            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-                                                                            WebkitBackgroundClip: 'text',
-                                                                            WebkitTextFillColor: 'transparent',
-                                                                            backgroundClip: 'text',
-                                                                        }}
-                                                                    >
-                                                                        {c.title2}
-                                                                    </span>
-                                                                </h1>
-                                                                <p className="mb-6 text-sm text-gray-600 sm:text-base">{c.subtitle}</p>
-                                                            </motion.div>
-                                                        ))}
-                                                    </div>
+                                                                {contentSets[currentContent].title2}
+                                                            </span>
+                                                        </h1>
+                                                        <p className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg">
+                                                            {contentSets[currentContent].subtitle}
+                                                        </p>
+                                                    </>
                                                 ) : (
                                                     <>
                                                         <AnimatePresence mode="wait">
