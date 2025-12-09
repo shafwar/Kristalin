@@ -7300,11 +7300,7 @@ const KristalinNewsPage: React.FC = () => {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img
-                        src={imageUrl('news.jpg')}
-                        alt="Mining operations and news background"
-                        className="h-full w-full object-cover"
-                    />
+                    <img src={imageUrl('news.jpg')} alt="Mining operations and news background" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 
