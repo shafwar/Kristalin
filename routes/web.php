@@ -124,8 +124,33 @@ Route::get('/images/{path}', function ($path) {
             }
         }
         
-        // If not found in R2, fallback to first normalized path (let R2 return 404 if file doesn't exist)
-        $objectPath = r2_object_path($path);
+        // If not found in R2, fallback to most likely path (kristalin-assets/public/ first, then clean path)
+        // This ensures December images and other assets in kristalin-assets/public/ are found
+        $fallbackPaths = [
+            r2_object_path("kristalin-assets/public/{$cleanPath}"), // Most likely for December images
+            r2_object_path($cleanPath), // Standard path
+        ];
+        
+        foreach ($fallbackPaths as $objectPath) {
+            try {
+                $url = Storage::disk('s3')->url($objectPath);
+                if (empty(config('filesystems.disks.s3.url'))) {
+                    $endpoint = config('filesystems.disks.s3.endpoint');
+                    $bucket = config('filesystems.disks.s3.bucket');
+                    if (preg_match('/https:\/\/([a-f0-9]+)\.r2\.cloudflarestorage\.com/', $endpoint, $matches)) {
+                        $accountId = $matches[1];
+                        $url = "https://{$accountId}.r2.cloudflarestorage.com/{$bucket}/{$objectPath}";
+                    }
+                }
+                return redirect($url, 301);
+            } catch (\Exception $e) {
+                // Try next fallback path
+                continue;
+            }
+        }
+        
+        // Last resort: use first fallback path
+        $objectPath = r2_object_path("kristalin-assets/public/{$cleanPath}");
         $url = Storage::disk('s3')->url($objectPath);
         if (empty(config('filesystems.disks.s3.url'))) {
             $endpoint = config('filesystems.disks.s3.endpoint');
