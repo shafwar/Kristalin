@@ -105,7 +105,7 @@ Route::get('/images/{path}', function ($path) {
         // Remove leading "public/" from path for R2 lookup
         $cleanPath = preg_replace('#^public/#', '', $path);
         $possibleR2Paths[] = r2_object_path($cleanPath);
-        $possibleR2Paths[] = r2_object_path("kristalin-assets/public/{$cleanPath}");
+        $possibleR2Paths[] = r2_object_path("kristalin-assets/public/{$cleanPath}"); // IMPORTANT: This is where December images are stored
         
         // Try each possible path in R2
         foreach ($possibleR2Paths as $objectPath) {
