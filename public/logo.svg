@@ -1,0 +1,15 @@
+<svg width="508" height="440" viewBox="0 0 508 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0" y1="0" x2="508" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6B6139"/>
+      <stop offset="0.5" stop-color="#FFD700"/>
+      <stop offset="1" stop-color="#BFA43A"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M40 370 L254 40 L468 370" stroke="url(#gold-gradient)" stroke-width="20" fill="none"/>
+    <path d="M120 370 L254 190 L388 370" stroke="url(#gold-gradient)" stroke-width="16" fill="none"/>
+    <path d="M200 370 L254 290 L308 370" stroke="url(#gold-gradient)" stroke-width="12" fill="none"/>
+  </g>
+  <text x="254" y="425" text-anchor="middle" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="bold" fill="#444">KRISTALIN EKA LESTARI</text>
+</svg>

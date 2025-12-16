@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
+import { imageUrl } from '../lib/assets';
 
 // Import news data from the main news page
 import { NewsCategory, newsData, NewsItem } from './news';
@@ -311,6 +312,36 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     source: t('news_detail.oct1_dubai_investment_blockchain.source'),
                     date: t('news_detail.oct1_dubai_investment_blockchain.date'),
                     content: getOct1DubaiInvestmentTranslatedContent(),
+                };
+            case 'dec-1':
+                return {
+                    title: t('news_detail.dec_abs_rice_mill_1.title'),
+                    excerpt: t('news_detail.dec_abs_rice_mill_1.excerpt'),
+                    categoryTitle: t('news_archive.categories.food_security'),
+                    author: t('news_detail.dec_abs_rice_mill_1.author'),
+                    source: t('news_detail.dec_abs_rice_mill_1.source'),
+                    date: t('news_detail.dec_abs_rice_mill_1.date'),
+                    content: getDecRiceMill1TranslatedContent(),
+                };
+            case 'dec-2':
+                return {
+                    title: t('news_detail.dec_abs_rice_mill_2.title'),
+                    excerpt: t('news_detail.dec_abs_rice_mill_2.excerpt'),
+                    categoryTitle: t('news_archive.categories.food_security'),
+                    author: t('news_detail.dec_abs_rice_mill_2.author'),
+                    source: t('news_detail.dec_abs_rice_mill_2.source'),
+                    date: t('news_detail.dec_abs_rice_mill_2.date'),
+                    content: getDecRiceMill2TranslatedContent(),
+                };
+            case 'dec-3':
+                return {
+                    title: t('news_detail.dec_abs_rice_mill_3.title'),
+                    excerpt: t('news_detail.dec_abs_rice_mill_3.excerpt'),
+                    categoryTitle: t('news_archive.categories.food_security'),
+                    author: t('news_detail.dec_abs_rice_mill_3.author'),
+                    source: t('news_detail.dec_abs_rice_mill_3.source'),
+                    date: t('news_detail.dec_abs_rice_mill_3.date'),
+                    content: getDecRiceMill3TranslatedContent(),
                 };
             default:
                 return null;
@@ -7239,6 +7270,281 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
         return null; // Will use the HTML content from fullContent in news.tsx
     };
 
+    // December - Rice Mill Article 1
+    const getDecRiceMill1TranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <!-- Opening Story -->
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+                    <h3 class="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        ${t('news_detail.dec_abs_rice_mill_1.opening_title')}
+                    </h3>
+                    <p class="text-green-800 leading-relaxed text-base">
+                        ${t('news_detail.dec_abs_rice_mill_1.opening_content')}
+                    </p>
+                </div>
+
+                <!-- Production Capacity -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_1.production_title')}</h3>
+                    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_1.production_content')}
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_1.current_capacity')}</h4>
+                                <ul class="list-disc space-y-2 pl-5 text-gray-700">
+                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_1.current_capacity_items', { returnObjects: true })) 
+                                        ? t('news_detail.dec_abs_rice_mill_1.current_capacity_items', { returnObjects: true })
+                                        : ['30 hectares of existing rice fields', 'Semi-machining technology', 'Daily production: up to 10 tons']
+                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_1.expansion_plan')}</h4>
+                                <ul class="list-disc space-y-2 pl-5 text-gray-700">
+                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_1.expansion_plan_items', { returnObjects: true }))
+                                        ? t('news_detail.dec_abs_rice_mill_1.expansion_plan_items', { returnObjects: true })
+                                        : ['Target: 130 hectares by 2026', 'Enhanced food security', 'Improved farmer welfare']
+                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location and Quality -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_1.location_title')}</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_1.location_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Technology and Process -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_1.technology_title')}</h3>
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_1.technology_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Collaboration -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_1.collaboration_title')}</h3>
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_1.collaboration_content')}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    // December - Rice Mill Article 2
+    const getDecRiceMill2TranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+                    <h3 class="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        ${t('news_detail.dec_abs_rice_mill_2.opening_title')}
+                    </h3>
+                    <p class="text-green-800 leading-relaxed text-base">
+                        ${t('news_detail.dec_abs_rice_mill_2.opening_content')}
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_2.facility_title')}</h3>
+                    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_2.facility_content')}
+                        </p>
+                        <div class="mt-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                            <blockquote class="border-l-4 border-amber-500 pl-4 text-lg italic text-gray-700">
+                                ${t('news_detail.dec_abs_rice_mill_2.facility_quote')}
+                            </blockquote>
+                            <cite class="mt-2 block text-sm text-gray-600">${t('news_detail.dec_abs_rice_mill_2.facility_quote_author')}</cite>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_2.expansion_title')}</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_2.expansion_content')}
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_2.current_status')}</h4>
+                                <ul class="list-disc space-y-2 pl-5 text-gray-700">
+                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_2.current_status_items', { returnObjects: true }))
+                                        ? t('news_detail.dec_abs_rice_mill_2.current_status_items', { returnObjects: true })
+                                        : ['30 hectares operational', 'Daily production: 10 tons', 'Semi-machining technology']
+                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                                <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_2.target_2026')}</h4>
+                                <ul class="list-disc space-y-2 pl-5 text-gray-700">
+                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_2.target_2026_items', { returnObjects: true }))
+                                        ? t('news_detail.dec_abs_rice_mill_2.target_2026_items', { returnObjects: true })
+                                        : ['130 hectares total', 'Enhanced food security', 'Increased farmer participation']
+                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_2.participation_title')}</h3>
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_2.participation_content')}
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_2.partnership_title')}</h3>
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_2.partnership_content')}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    // December - Rice Mill Article 3
+    const getDecRiceMill3TranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <!-- Opening Story -->
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+                    <h3 class="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                        ${t('news_detail.dec_abs_rice_mill_3.opening_title')}
+                    </h3>
+                    <p class="text-green-800 leading-relaxed text-base">
+                        ${t('news_detail.dec_abs_rice_mill_3.opening_content')}
+                    </p>
+                </div>
+
+                <!-- Impact on Farmers -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_3.prosperity_title')}</h3>
+                    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_3.prosperity_content')}
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-6 mt-6">
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm text-center">
+                                <div class="text-3xl font-bold text-amber-600 mb-2">10 ${t('news_detail.dec_abs_rice_mill_3.daily_production')}</div>
+                                <div class="text-sm text-gray-600">Ton</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">30 Ha</div>
+                                <div class="text-sm text-gray-600">${t('news_detail.dec_abs_rice_mill_3.current_fields')}</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm text-center">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">130 Ha</div>
+                                <div class="text-sm text-gray-600">${t('news_detail.dec_abs_rice_mill_3.expansion_target')}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agricultural Development -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_3.development_title')}</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_3.development_content')}
+                        </p>
+                        <div class="mt-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                            <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_3.why_boyolali')}</h4>
+                            <ul class="list-disc space-y-2 pl-5 text-gray-700">
+                                ${(Array.isArray(t('news_detail.dec_abs_rice_mill_3.why_boyolali_items', { returnObjects: true }))
+                                    ? t('news_detail.dec_abs_rice_mill_3.why_boyolali_items', { returnObjects: true })
+                                    : ['Known as a premium rice barn region', 'High-quality rice production', 'Strategic location for agricultural development', 'Strong farmer community and cooperatives']
+                                ).map((item: string) => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Welfare -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_3.welfare_title')}</h3>
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_3.welfare_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Market Access -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_3.market_title')}</h3>
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.dec_abs_rice_mill_3.market_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Gallery Section - Metro News Images -->
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.dec_abs_rice_mill_3.gallery_title')}</h3>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <div class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl">
+                            <div class="relative h-64 overflow-hidden bg-gray-100">
+                                <img
+                                    src="/images/metronews_desember.jpeg"
+                                    alt="Rice Milling Facility in Boyolali - Metro TV News"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-xs font-medium text-gray-600">Foto: Metro TV News</p>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl">
+                            <div class="relative h-64 overflow-hidden bg-gray-100">
+                                <img
+                                    src="/images/metronews_desember2.jpeg"
+                                    alt="Rice Milling Facility Operations - Metro TV News"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-xs font-medium text-gray-600">Foto: Metro TV News</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
     useEffect(() => {
         // Find the news item by ID
         const findNewsItem = () => {
@@ -7469,15 +7775,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         {/* Enhanced Article Content */}
                         <div className="px-6 py-8 sm:px-8 sm:py-10">
                             {getTranslatedContent(id)?.content ? (
-                                <div className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none">
-                                    {getTranslatedContent(id)?.content}
-                                </div>
-                            ) : (
+                                <div
+                                    className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none"
+                                    dangerouslySetInnerHTML={{ __html: getTranslatedContent(id)?.content || '' }}
+                                />
+                            ) : newsItem.fullContent?.content ? (
                                 <div
                                     className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none"
                                     dangerouslySetInnerHTML={{ __html: newsItem.fullContent.content }}
                                 />
-                            )}
+                            ) : null}
                         </div>
                     </motion.div>
                 ) : (

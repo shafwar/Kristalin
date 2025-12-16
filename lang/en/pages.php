@@ -265,6 +265,10 @@ return [
             'highlight_badge' => 'HIGHLIGHT',
             'no_news_available' => 'No news available yet',
             'items' => [
+                'dec-3' => [
+                    'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
+                    'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
+                ],
                 'sept-1' => [
                     'title' => 'Kristalin Ekalestari Group Acquires 51% Shares of PT Torindo Jaya Persada',
                     'excerpt' => 'Strategic expansion of heavy equipment business in the mining sector in Eastern Indonesia region. This acquisition strengthens our position in the heavy equipment market and enhances operational capabilities.',

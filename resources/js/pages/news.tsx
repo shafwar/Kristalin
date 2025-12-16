@@ -17,8 +17,17 @@ const getTranslatedMonth = (monthId: string, t: any) => {
         'agustus-2025': 'agustus',
         'september-2025': 'september',
         'oktober-2025': 'oktober',
+        'desember-2025': 'desember',
     };
-    return t(`news_archive.months.${monthMap[monthId]}`);
+    const monthKey = monthMap[monthId];
+    if (!monthKey) {
+        // Fallback to original month name if translation key not found
+        return monthId || 'Unknown';
+    }
+    const translationKey = `news_archive.months.${monthKey}`;
+    const translated = t(translationKey);
+    // If translation returns the key itself, fallback to monthKey
+    return translated !== translationKey ? translated : monthKey.toUpperCase();
 };
 
 // Helper function to get translated category title
@@ -73,6 +82,9 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'sept-1': 'sept1_torindo_acquisition_heavy_equipment',
         'sept-3': 'torindo_sept3_acquisition_article',
         'oct-1': 'oct1_dubai_investment_blockchain',
+        'dec-1': 'dec_abs_rice_mill_1',
+        'dec-2': 'dec_abs_rice_mill_2',
+        'dec-3': 'dec_abs_rice_mill_3',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -123,6 +135,9 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'sept-1': 'sept1_torindo_acquisition_heavy_equipment',
         'sept-3': 'torindo_sept3_acquisition_article',
         'oct-1': 'oct1_dubai_investment_blockchain',
+        'dec-1': 'dec_abs_rice_mill_1',
+        'dec-2': 'dec_abs_rice_mill_2',
+        'dec-3': 'dec_abs_rice_mill_3',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -7012,6 +7027,69 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                                     </div>
                                 </div>
                             `,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        month: 'DECEMBER',
+        monthId: 'desember-2025',
+        categories: [
+            {
+                id: 'food_security',
+                title: 'Food Security and Agricultural Development',
+                newsItems: [
+                    {
+                        id: 'dec-1',
+                        title: 'PT ABS Targets 130 Hectares of Rice Fields in Boyolali to Secure Food Stability',
+                        date: '10 Dec 2025',
+                        url: '/news/dec-1',
+                        image: '/pt-abadi-bersama-sentosa-meresmikan-penggilingan-padi-di-boy-4ubf.jpg',
+                        excerpt: 'PT Abadi Bersama Sentosa (ABS) and PT Anugerah Bakti Sahabat inaugurated a rice milling facility in Boyolali to support food security and create jobs. With semi-machining technology, daily production capacity reaches 10 tons. ABS currently owns 30 hectares of rice fields and aims to expand to 130 hectares by 2026.',
+                        fullContent: {
+                            title: 'PT ABS Targets 130 Hectares of Rice Fields in Boyolali to Secure Food Stability',
+                            date: '10 December 2025',
+                            author: 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+                            source: 'JPNN.com',
+                            sourceUrl: 'https://m.jpnn.com/news/pt-abs-targetkan-130-hektare-sawah-di-boyolali-untuk-jaga-ketahanan-pangan',
+                            image: '/pt-abadi-bersama-sentosa-meresmikan-penggilingan-padi-di-boy-4ubf.jpg',
+                            content: '', // Will use translation content from NewsDetail.tsx
+                        },
+                    },
+                    {
+                        id: 'dec-2',
+                        title: 'Rice Milling Facility in Boyolali Officially Opens, Creating New Employment Opportunities',
+                        date: '10 Dec 2025',
+                        url: '/news/dec-2',
+                        image: '/buka-lapangan-pekerjaan-penggilingan-padi-di-boyolali-resmi-beroperasi-xdt.webp',
+                        excerpt: 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, inaugurated by PT Abadi Bersama Sentosa and PT Anugerah Bakti Sahabat. This initiative aims to stabilize rice prices and enhance farmer welfare, with a daily production capacity of up to 10 tons using semi-machining technology.',
+                        fullContent: {
+                            title: 'Rice Milling Facility in Boyolali Officially Opens, Creating New Employment Opportunities',
+                            date: '10 December 2025',
+                            author: 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+                            source: 'SindoNews - Daerah',
+                            sourceUrl: 'https://daerah.sindonews.com/read/1654117/174/buka-lapangan-pekerjaan-penggilingan-padi-di-boyolali-resmi-beroperasi-1765365164',
+                            image: '/buka-lapangan-pekerjaan-penggilingan-padi-di-boyolali-resmi-beroperasi-xdt.webp',
+                            content: '', // Will use translation content from NewsDetail.tsx
+                        },
+                    },
+                    {
+                        id: 'dec-3',
+                        title: 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
+                        date: '10 Dec 2025',
+                        url: '/news/dec-3',
+                        image: '/metronews_desember.jpeg',
+                        excerpt: 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access. Inaugurated by PT Abadi Bersama Sentosa and PT Anugerah Bakti Sahabat, part of the Kristalin Ekalestari Group, this initiative underscores a commitment to national food security and rural job creation.',
+                        fullContent: {
+                            title: 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
+                            date: '10 December 2025',
+                            author: 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+                            source: 'Metro TV News',
+                            sourceUrl: 'https://www.metrotvnews.com/read/b1oCO271-dari-sawah-ke-pasar-penggilingan-padi-di-boyolali-bantu-sejahterakan-petani',
+                            image: '/metronews_desember.jpeg',
+                            content: '', // Will use translation content from NewsDetail.tsx
                         },
                     },
                 ],

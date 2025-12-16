@@ -107,6 +107,7 @@ return [
             'agustus' => 'AUGUST',
             'september' => 'SEPTEMBER',
             'oktober' => 'OCTOBER',
+            'desember' => 'DECEMBER',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => 'Distribution of 506 Basic Food Packages to Nifasi Village Residents',
@@ -121,6 +122,7 @@ return [
             'csr-penyaluran-bantuan-sembako-agustus' => 'CSR August Basic Food Assistance Distribution',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group Acquires 50 Percent Shares of PT Torindo Jaya Persada',
             'investasi-dubai-blockchain-emas' => 'Dubai Investment - Blockchain Technology for Gold Mining',
+            'food_security' => 'Food Security and Agricultural Development',
         ],
         'ui_elements' => [
             'articles_available' => 'articles available',
@@ -2331,6 +2333,86 @@ return [
         'oct_dubai_investment_blockchain' => [
             'title' => 'Kristalin Group Secures USD 55 Million Investment Commitment from Dubai for Blockchain-Based Gold Mining Project',
             'excerpt' => 'Kristalin Group secures USD 55 million investment commitment from two Dubai companies at Trade Expo Indonesia 2025 for the development of a 3,500-hectare gold mine in Nabire with blockchain technology and Sharia principles.',
+        ],
+
+        // December Rice Mill Articles - Food Security Initiative
+        'dec_abs_rice_mill_1' => [
+            'title' => 'PT ABS Targets 130 Hectares of Rice Fields in Boyolali to Secure Food Stability',
+            'excerpt' => 'PT Abadi Bersama Sentosa (ABS) and PT Anugerah Bakti Sahabat inaugurated a rice milling facility in Boyolali to support food security and create jobs. With semi-machining technology, daily production capacity reaches 10 tons. ABS currently owns 30 hectares of rice fields and aims to expand to 130 hectares by 2026.',
+            'category_title' => 'Food Security and Agricultural Development',
+            'author' => 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+            'source' => 'JPNN.com',
+            'date' => '10 December 2025',
+            
+            // Content sections
+            'opening_title' => 'Rice Milling Facility Inauguration in Boyolali',
+            'opening_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong> and <strong>PT Anugerah Bakti Sahabat</strong> officially inaugurated a rice milling facility in <strong>Cepokosawit Village, Sawit District, Boyolali, Central Java</strong>. This inauguration aims to support food security and increase employment opportunities. The company, which operates in agriculture and rice production and is part of the <strong>Kristalin Ekalestari Group</strong>, is committed to improving farmers\' welfare and maintaining food security to ensure the stability of quality rice prices.',
+            'production_title' => 'Production Capacity and Technology',
+            'production_content' => '<strong>Andit Prasetyowan</strong>, Director of PT Kristalin Ekalestari, explained that with the inauguration of the rice mill, they are optimistic about producing up to <strong>10 tons per day</strong>. "Actually, we use semi-machining. Where the process of drying rice is shortcut, engineered with heating. So we oven it. One day, the production capacity can reach up to 10 tons," Andito told reporters on Wednesday (10/12).',
+            'current_capacity' => 'Current Capacity',
+            'current_capacity_items' => ['30 hectares of existing rice fields', 'Semi-machining technology', 'Daily production: up to 10 tons'],
+            'expansion_plan' => 'Expansion Plan',
+            'expansion_plan_items' => ['Target: 130 hectares by 2026', 'Enhanced food security', 'Improved farmer welfare'],
+            'location_title' => 'Strategic Location: Boyolali as Rice Barn',
+            'location_content' => 'Andito believes that the <strong>Boyolali area, Central Java</strong>, is the chosen location for the rice farming business because Boyolali is known as a good rice barn, ensuring the quality of the produced rice. "We have our own land. The target is 130 hectares. The existing one is approximately 25 to 30 hectares. Besides that, we also hope for participation from surrounding rice fields in the Boyolali area, which is indeed a rice barn, from farmers who are members of farmer groups or cooperatives," Andito explained.',
+            'technology_title' => 'Semi-Machining Technology',
+            'technology_content' => 'According to Andito, the rice mill process uses a <strong>semi-machining method</strong>, where the rice drying process is shortcut, engineered with heating, and then oven-baked. This innovative approach significantly reduces processing time while maintaining rice quality.',
+            'collaboration_title' => 'Partnership and Collaboration',
+            'collaboration_content' => 'From a business perspective, the company prioritizes job creation to improve farmers\' welfare and create quality rice, collaborating with the <strong>TNI Army (AD) Kodim 0724 Boyolali</strong>. "So, the history is that during the time of KSAD General (Ret.) Mulyono, who happened to be from this area, he contributed. Oh yes, that\'s why the army apparatus, here at the Kodim level, is listed there," he said.',
+        ],
+
+        'dec_abs_rice_mill_2' => [
+            'title' => 'Rice Milling Facility in Boyolali Officially Opens, Creating New Employment Opportunities',
+            'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, inaugurated by PT Abadi Bersama Sentosa and PT Anugerah Bakti Sahabat. This initiative aims to stabilize rice prices and enhance farmer welfare, with a daily production capacity of up to 10 tons using semi-machining technology.',
+            'category_title' => 'Food Security and Agricultural Development',
+            'author' => 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+            'source' => 'SindoNews - Daerah',
+            'date' => '10 December 2025',
+            
+            // Content sections
+            'opening_title' => 'New Employment Opportunities in Boyolali',
+            'opening_content' => 'The rice milling facility in <strong>Cepokosawit Village, Boyolali</strong>, officially commenced operations, inaugurated by <strong>PT Abadi Bersama Sentosa</strong> and <strong>PT Anugerah Bakti Sahabat</strong>. This initiative aims to stabilize rice prices and enhance farmer welfare, with a daily production capacity of up to <strong>10 tons</strong> using semi-machining technology.',
+            'facility_title' => 'Facility Operations and Impact',
+            'facility_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong> and <strong>PT Anugerah Bakti Sahabat</strong> officially inaugurated a rice milling facility in <strong>Cepokosawit Village, Sawit District, Boyolali, Central Java</strong>. This inauguration aims to support food security and increase employment opportunities. The company, which operates in agriculture and rice production and is part of the <strong>Kristalin Ekalestari Group</strong>, is committed to improving farmers\' welfare and maintaining food security to ensure the stability of quality rice prices.',
+            'facility_quote' => '"Actually, we use semi-machining. Where the process of drying rice is shortcut, engineered with heating. So we oven it. One day, the production capacity can reach up to 10 tons."',
+            'facility_quote_author' => '- Andit Prasetyowan, Director of PT Kristalin Ekalestari',
+            'expansion_title' => 'Land Expansion Strategy',
+            'expansion_content' => 'Currently, <strong>PT ABS owns 30 hectares</strong> of existing rice fields and plans to expand the land to <strong>130 hectares by 2026</strong> to maintain food security and improve the welfare of farmers. Andito believes that the Boyolali area, Central Java, is the chosen location for the rice farming business because Boyolali is known as a good rice barn, ensuring the quality of the produced rice.',
+            'current_status' => 'Current Status',
+            'current_status_items' => ['30 hectares operational', 'Daily production: 10 tons', 'Semi-machining technology'],
+            'target_2026' => '2026 Target',
+            'target_2026_items' => ['130 hectares total', 'Enhanced food security', 'Increased farmer participation'],
+            'participation_title' => 'Farmer Participation and Collaboration',
+            'participation_content' => '"We have our own land. The target is 130 hectares. The existing one is approximately 25 to 30 hectares. Besides that, we also hope for participation from surrounding rice fields in the Boyolali area, which is indeed a rice barn, from farmers who are members of farmer groups or cooperatives," Andito explained.',
+            'partnership_title' => 'Strategic Partnership with TNI',
+            'partnership_content' => 'From a business perspective, the company prioritizes job creation to improve farmers\' welfare and create quality rice, collaborating with the <strong>TNI Army (AD) Kodim 0724 Boyolali</strong>. "So, the history is that during the time of KSAD General (Ret.) Mulyono, who happened to be from this area, he contributed. Oh yes, that\'s why the army apparatus, here at the Kodim level, is listed there," he said.',
+        ],
+
+        'dec_abs_rice_mill_3' => [
+            'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
+            'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access. Inaugurated by PT Abadi Bersama Sentosa and PT Anugerah Bakti Sahabat, part of the Kristalin Ekalestari Group, this initiative underscores a commitment to national food security and rural job creation.',
+            'category_title' => 'Food Security and Agricultural Development',
+            'author' => 'Andit Prasetyowan - Director, PT Kristalin Ekalestari',
+            'source' => 'Metro TV News',
+            'date' => '10 December 2025',
+            
+            // Content sections
+            'opening_title' => 'A New Chapter for Local Farmers',
+            'opening_content' => 'The inauguration of the rice milling facility in <strong>Cepokosawit Village, Boyolali</strong>, marks a new chapter for local farmers. This facility, a collaboration between <strong>PT Abadi Bersama Sentosa</strong> and <strong>PT Anugerah Bakti Sahabat</strong>, both part of the <strong>Kristalin Ekalestari Group</strong>, aims to enhance the value of farmers\' harvests and provide more stable market access.',
+            'prosperity_title' => 'Enhancing Farmer Prosperity',
+            'prosperity_content' => '<strong>Andit Prasetyowan</strong>, Director of PT Kristalin Ekalestari, highlighted the facility\'s role in supporting national food security and creating employment opportunities in rural areas. The semi-machining technology employed allows for a daily production capacity of up to <strong>10 tons</strong>, significantly boosting efficiency.',
+            'daily_production' => 'Daily Production Capacity',
+            'current_fields' => 'Current Rice Fields',
+            'expansion_target' => '2026 Expansion Target',
+            'development_title' => 'Commitment to Agricultural Development',
+            'development_content' => '<strong>PT ABS</strong> currently manages <strong>30 hectares</strong> of rice fields and plans to expand to <strong>130 hectares by 2026</strong>, further solidifying its commitment to agricultural development in Boyolali, a region known for its high-quality rice production.',
+            'why_boyolali' => 'Why Boyolali?',
+            'why_boyolali_items' => ['Known as a premium rice barn region', 'High-quality rice production', 'Strategic location for agricultural development', 'Strong farmer community and cooperatives'],
+            'welfare_title' => 'Community Welfare and Economic Growth',
+            'welfare_content' => 'This initiative also involves collaboration with the <strong>TNI Army (AD) Kodim 0724 Boyolali</strong>, reflecting a broader commitment to community welfare and economic growth. The partnership ensures that the benefits of this agricultural development reach the local community effectively.',
+            'market_title' => 'From Field to Market',
+            'market_content' => 'The facility provides a direct pathway from field to market, ensuring that farmers receive fair value for their harvests while maintaining quality standards. This integrated approach strengthens the entire agricultural value chain in Boyolali.',
+            'gallery_title' => 'Facility Gallery',
         ],
 
     ],

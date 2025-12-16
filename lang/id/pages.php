@@ -259,6 +259,10 @@ return [
             'highlight_badge' => 'HIGHLIGHT',
             'no_news_available' => 'Belum ada berita tersedia',
             'items' => [
+                'dec-3' => [
+                    'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
+                    'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
+                ],
                 'sept-1' => [
                     'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada',
                     'excerpt' => 'Ekspansi strategis bisnis alat berat di sektor pertambangan di wilayah Indonesia Timur. Akuisisi ini memperkuat posisi kami di pasar alat berat dan meningkatkan kemampuan operasional.',

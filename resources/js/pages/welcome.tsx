@@ -30,9 +30,18 @@ const Welcome = () => {
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
     const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false));
 
-    // 4 berita relevan dari news archive dengan Torindo sebagai highlight utama
+    // 5 berita relevan dari news archive dengan December Rice Mill sebagai highlight utama
     // Menggunakan translation keys untuk konsistensi bahasa
     const newsItems = [
+        {
+            id: 'dec-3',
+            date: '10 Dec 2025',
+            title: t('pages.welcome.news.items.dec-3.title'),
+            excerpt: t('pages.welcome.news.items.dec-3.excerpt'),
+            image: imageUrl('metronews_desember.jpeg'),
+            url: '/news/dec-3',
+            priority: 'high',
+        },
         {
             id: 'sept-1',
             date: '1 Sep 2025',

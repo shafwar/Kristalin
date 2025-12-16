@@ -96,9 +96,37 @@ Route::get('/health', [HealthController::class, 'check']);
 Route::get('/images/{path}', function ($path) {
     // If using R2, redirect to R2 URL
     if (config('filesystems.default') === 's3') {
+        // Try multiple possible R2 paths
+        $possibleR2Paths = [
+            r2_object_path($path), // Standard path after normalization
+            r2_object_path("kristalin-assets/public/{$path}"), // Path in kristalin-assets/public folder
+        ];
+        
+        // Remove leading "public/" from path for R2 lookup
+        $cleanPath = preg_replace('#^public/#', '', $path);
+        $possibleR2Paths[] = r2_object_path($cleanPath);
+        $possibleR2Paths[] = r2_object_path("kristalin-assets/public/{$cleanPath}");
+        
+        // Try each possible path in R2
+        foreach ($possibleR2Paths as $objectPath) {
+            if (Storage::disk('s3')->exists($objectPath)) {
+                $url = Storage::disk('s3')->url($objectPath);
+                // If AWS_URL is not set, construct R2 public URL
+                if (empty(config('filesystems.disks.s3.url'))) {
+                    $endpoint = config('filesystems.disks.s3.endpoint');
+                    $bucket = config('filesystems.disks.s3.bucket');
+                    if (preg_match('/https:\/\/([a-f0-9]+)\.r2\.cloudflarestorage\.com/', $endpoint, $matches)) {
+                        $accountId = $matches[1];
+                        $url = "https://{$accountId}.r2.cloudflarestorage.com/{$bucket}/{$objectPath}";
+                    }
+                }
+                return redirect($url, 301);
+            }
+        }
+        
+        // If not found in R2, fallback to first normalized path (let R2 return 404 if file doesn't exist)
         $objectPath = r2_object_path($path);
         $url = Storage::disk('s3')->url($objectPath);
-        // If AWS_URL is not set, construct R2 public URL
         if (empty(config('filesystems.disks.s3.url'))) {
             $endpoint = config('filesystems.disks.s3.endpoint');
             $bucket = config('filesystems.disks.s3.bucket');
@@ -110,7 +138,31 @@ Route::get('/images/{path}', function ($path) {
         return redirect($url, 301);
     }
     // Fallback to local file
-    return response()->file(public_path($path));
+    // Remove leading "public/" if present to avoid double public path
+    $cleanPath = preg_replace('#^public/#', '', $path);
+    
+    // Try multiple possible locations for assets
+    $possiblePaths = [
+        $cleanPath, // Direct path: pt-abadi-bersama-sentosa-meresmikan-penggilingan-padi-di-boy-4ubf.jpg
+        "kristalin-assets/public/{$cleanPath}", // Common asset location: kristalin-assets/public/pt-abadi-bersama-sentosa-meresmikan-penggilingan-padi-di-boy-4ubf.jpg
+        $path, // Original path with public prefix
+        "kristalin-assets/public/{$path}", // Original path in assets folder
+    ];
+    
+    $filePath = null;
+    foreach ($possiblePaths as $tryPath) {
+        $fullPath = public_path($tryPath);
+        if (file_exists($fullPath)) {
+            $filePath = $fullPath;
+            break;
+        }
+    }
+    
+    if (!$filePath || !file_exists($filePath)) {
+        abort(404, 'Image not found: ' . $path);
+    }
+    
+    return response()->file($filePath);
 })->where('path', '.*');
 
 require __DIR__.'/settings.php';

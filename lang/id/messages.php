@@ -107,6 +107,7 @@ return [
             'agustus' => 'AGUSTUS',
             'september' => 'SEPTEMBER',
             'oktober' => 'OKTOBER',
+            'desember' => 'DESEMBER',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => 'Penyaluran 506 Paket Sembako ke Warga Desa Nifasi',
@@ -121,6 +122,7 @@ return [
             'csr-penyaluran-bantuan-sembako-agustus' => 'CSR Penyaluran Bantuan Sembako Agustus',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
             'investasi-dubai-blockchain-emas' => 'Investasi Dubai - Teknologi Blockchain untuk Tambang Emas',
+            'food_security' => 'Keamanan Pangan dan Pengembangan Pertanian',
         ],
         'ui_elements' => [
             'articles_available' => 'artikel tersedia',
@@ -2344,6 +2346,86 @@ return [
         'oct_dubai_investment_blockchain' => [
             'title' => 'Kristalin Group Raih Komitmen Investasi USD 55 Juta dari Dubai untuk Proyek Tambang Emas Berbasis Blockchain',
             'excerpt' => 'Kristalin Group mengamankan komitmen investasi senilai USD 55 juta dari dua perusahaan Dubai dalam Trade Expo Indonesia 2025 untuk pengembangan tambang emas seluas 3.500 hektar di Nabire dengan teknologi blockchain dan prinsip Syariah.',
+        ],
+
+        // Desember Artikel Penggilingan Padi - Inisiatif Ketahanan Pangan
+        'dec_abs_rice_mill_1' => [
+            'title' => 'PT ABS Targetkan 130 Hektar Sawah di Boyolali untuk Jaga Ketahanan Pangan',
+            'excerpt' => 'PT Abadi Bersama Sentosa (ABS) dan PT Anugerah Bakti Sahabat meresmikan pabrik penggilingan padi di Boyolali untuk mendukung ketahanan pangan dan menciptakan lapangan kerja. Dengan teknologi semi-mekanis, kapasitas produksi harian mencapai 10 ton. ABS saat ini menguasai 30 hektar sawah dan menargetkan ekspansi hingga 130 hektar pada 2026.',
+            'category_title' => 'Keamanan Pangan dan Pengembangan Pertanian',
+            'author' => 'Andit Prasetyowan - Direktur, PT Kristalin Ekalestari',
+            'source' => 'JPNN.com',
+            'date' => '10 Desember 2025',
+            
+            // Content sections
+            'opening_title' => 'Peresmian Pabrik Penggilingan Padi di Boyolali',
+            'opening_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong> dan <strong>PT Anugerah Bakti Sahabat</strong> secara resmi meresmikan pabrik penggilingan padi di <strong>Desa Cepokosawit, Kecamatan Sawit, Boyolali, Jawa Tengah</strong>. Peresmian ini bertujuan untuk mendukung ketahanan pangan dan meningkatkan peluang kerja. Perusahaan yang bergerak di bidang pertanian dan produksi beras serta merupakan bagian dari <strong>Kristalin Ekalestari Group</strong> ini berkomitmen untuk meningkatkan kesejahteraan petani dan menjaga ketahanan pangan guna memastikan stabilitas harga beras berkualitas.',
+            'production_title' => 'Kapasitas Produksi dan Teknologi',
+            'production_content' => '<strong>Andit Prasetyowan</strong>, Direktur PT Kristalin Ekalestari, menjelaskan bahwa dengan peresmian pabrik penggilingan padi ini, mereka optimis dapat memproduksi hingga <strong>10 ton per hari</strong>. "Sebenarnya, kami menggunakan semi-mekanis. Di mana proses pengeringan padi dipersingkat, direkayasa dengan pemanasan. Jadi kami oven. Satu hari, kapasitas produksi bisa mencapai 10 ton," kata Andito kepada wartawan pada Rabu (10/12).',
+            'current_capacity' => 'Kapasitas Saat Ini',
+            'current_capacity_items' => ['30 hektar sawah yang ada', 'Teknologi semi-mekanis', 'Produksi harian: hingga 10 ton'],
+            'expansion_plan' => 'Rencana Ekspansi',
+            'expansion_plan_items' => ['Target: 130 hektar pada 2026', 'Ketahanan pangan yang ditingkatkan', 'Kesejahteraan petani yang lebih baik'],
+            'location_title' => 'Lokasi Strategis: Boyolali sebagai Lumbung Padi',
+            'location_content' => 'Andito meyakini bahwa <strong>wilayah Boyolali, Jawa Tengah</strong>, adalah lokasi yang dipilih untuk bisnis pertanian padi karena Boyolali dikenal sebagai lumbung padi yang baik, memastikan kualitas beras yang dihasilkan. "Kami memiliki lahan sendiri. Targetnya adalah 130 hektar. Yang ada saat ini sekitar 25 hingga 30 hektar. Selain itu, kami juga berharap partisipasi dari sawah-sawah di sekitar wilayah Boyolali, yang memang merupakan lumbung padi, dari petani yang merupakan anggota kelompok tani atau koperasi," jelas Andito.',
+            'technology_title' => 'Teknologi Semi-Mekanis',
+            'technology_content' => 'Menurut Andito, proses penggilingan padi menggunakan <strong>metode semi-mekanis</strong>, di mana proses pengeringan padi dipersingkat, direkayasa dengan pemanasan, kemudian di-oven. Pendekatan inovatif ini secara signifikan mengurangi waktu pemrosesan sambil mempertahankan kualitas beras.',
+            'collaboration_title' => 'Kemitraan dan Kolaborasi',
+            'collaboration_content' => 'Dari perspektif bisnis, perusahaan memprioritaskan penciptaan lapangan kerja untuk meningkatkan kesejahteraan petani dan menciptakan beras berkualitas, berkolaborasi dengan <strong>TNI AD Kodim 0724 Boyolali</strong>. "Jadi, sejarahnya adalah pada masa KSAD Jenderal (Purn.) Mulyono, yang kebetulan berasal dari daerah ini, dia berkontribusi. Oh ya, itulah mengapa aparat TNI, di sini di tingkat Kodim, tercantum di sana," katanya.',
+        ],
+
+        'dec_abs_rice_mill_2' => [
+            'title' => 'Pabrik Penggilingan Padi di Boyolali Resmi Beroperasi, Buka Lapangan Pekerjaan Baru',
+            'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, diresmikan oleh PT Abadi Bersama Sentosa dan PT Anugerah Bakti Sahabat. Inisiatif ini bertujuan untuk menstabilkan harga beras dan meningkatkan kesejahteraan petani, dengan kapasitas produksi harian hingga 10 ton menggunakan teknologi semi-mekanis.',
+            'category_title' => 'Keamanan Pangan dan Pengembangan Pertanian',
+            'author' => 'Andit Prasetyowan - Direktur, PT Kristalin Ekalestari',
+            'source' => 'SindoNews - Daerah',
+            'date' => '10 Desember 2025',
+            
+            // Content sections - using same structure as EN for now
+            'opening_title' => 'Peluang Kerja Baru di Boyolali',
+            'opening_content' => 'Pabrik penggilingan padi di <strong>Desa Cepokosawit, Boyolali</strong>, resmi memulai operasinya, diresmikan oleh <strong>PT Abadi Bersama Sentosa</strong> dan <strong>PT Anugerah Bakti Sahabat</strong>. Inisiatif ini bertujuan untuk menstabilkan harga beras dan meningkatkan kesejahteraan petani, dengan kapasitas produksi harian hingga <strong>10 ton</strong> menggunakan teknologi semi-mekanis.',
+            'facility_title' => 'Operasi Fasilitas dan Dampaknya',
+            'facility_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong> dan <strong>PT Anugerah Bakti Sahabat</strong> secara resmi meresmikan pabrik penggilingan padi di <strong>Desa Cepokosawit, Kecamatan Sawit, Boyolali, Jawa Tengah</strong>. Peresmian ini bertujuan untuk mendukung ketahanan pangan dan meningkatkan peluang kerja. Perusahaan yang bergerak di bidang pertanian dan produksi beras serta merupakan bagian dari <strong>Kristalin Ekalestari Group</strong> ini berkomitmen untuk meningkatkan kesejahteraan petani dan menjaga ketahanan pangan.',
+            'facility_quote' => '"Sebenarnya, kami menggunakan semi-mekanis. Di mana proses pengeringan padi dipersingkat, direkayasa dengan pemanasan. Jadi kami oven. Satu hari, kapasitas produksi bisa mencapai 10 ton."',
+            'facility_quote_author' => '- Andit Prasetyowan, Direktur PT Kristalin Ekalestari',
+            'expansion_title' => 'Strategi Ekspansi Lahan',
+            'expansion_content' => 'Saat ini, <strong>PT ABS memiliki 30 hektar</strong> sawah yang ada dan berencana memperluas lahan menjadi <strong>130 hektar pada 2026</strong> untuk menjaga ketahanan pangan dan meningkatkan kesejahteraan petani. Andito meyakini bahwa wilayah Boyolali, Jawa Tengah, adalah lokasi yang dipilih untuk bisnis pertanian padi karena Boyolali dikenal sebagai lumbung padi yang baik.',
+            'current_status' => 'Status Saat Ini',
+            'current_status_items' => ['30 hektar operasional', 'Produksi harian: 10 ton', 'Teknologi semi-mekanis'],
+            'target_2026' => 'Target 2026',
+            'target_2026_items' => ['130 hektar total', 'Ketahanan pangan yang ditingkatkan', 'Partisipasi petani yang meningkat'],
+            'participation_title' => 'Partisipasi dan Kolaborasi Petani',
+            'participation_content' => '"Kami memiliki lahan sendiri. Targetnya adalah 130 hektar. Yang ada saat ini sekitar 25 hingga 30 hektar. Selain itu, kami juga berharap partisipasi dari sawah-sawah di sekitar wilayah Boyolali, yang memang merupakan lumbung padi, dari petani yang merupakan anggota kelompok tani atau koperasi," jelas Andito.',
+            'partnership_title' => 'Kemitraan Strategis dengan TNI',
+            'partnership_content' => 'Dari perspektif bisnis, perusahaan memprioritaskan penciptaan lapangan kerja untuk meningkatkan kesejahteraan petani dan menciptakan beras berkualitas, berkolaborasi dengan <strong>TNI AD Kodim 0724 Boyolali</strong>. "Jadi, sejarahnya adalah pada masa KSAD Jenderal (Purn.) Mulyono, yang kebetulan berasal dari daerah ini, dia berkontribusi. Oh ya, itulah mengapa aparat TNI, di sini di tingkat Kodim, tercantum di sana," katanya.',
+        ],
+
+        'dec_abs_rice_mill_3' => [
+            'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
+            'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar. Diresmikan oleh PT Abadi Bersama Sentosa dan PT Anugerah Bakti Sahabat, bagian dari Kristalin Ekalestari Group, inisiatif ini menekankan komitmen terhadap ketahanan pangan nasional dan penciptaan lapangan kerja pedesaan.',
+            'category_title' => 'Keamanan Pangan dan Pengembangan Pertanian',
+            'author' => 'Andit Prasetyowan - Direktur, PT Kristalin Ekalestari',
+            'source' => 'Metro TV News',
+            'date' => '10 Desember 2025',
+            
+            // Content sections
+            'opening_title' => 'Bab Baru bagi Petani Lokal',
+            'opening_content' => 'Peresmian pabrik penggilingan padi di <strong>Desa Cepokosawit, Boyolali</strong>, menandai bab baru bagi petani lokal. Fasilitas ini, hasil kolaborasi antara <strong>PT Abadi Bersama Sentosa</strong> dan <strong>PT Anugerah Bakti Sahabat</strong>, keduanya bagian dari <strong>Kristalin Ekalestari Group</strong>, bertujuan untuk meningkatkan nilai panen petani dan menyediakan akses pasar yang lebih stabil.',
+            'prosperity_title' => 'Meningkatkan Kesejahteraan Petani',
+            'prosperity_content' => '<strong>Andit Prasetyowan</strong>, Direktur PT Kristalin Ekalestari, menekankan peran fasilitas ini dalam mendukung ketahanan pangan nasional dan menciptakan peluang kerja di pedesaan. Teknologi semi-mekanis yang digunakan memungkinkan kapasitas produksi harian hingga <strong>10 ton</strong>, secara signifikan meningkatkan efisiensi.',
+            'daily_production' => 'Kapasitas Produksi Harian',
+            'current_fields' => 'Sawah Saat Ini',
+            'expansion_target' => 'Target Ekspansi 2026',
+            'development_title' => 'Komitmen terhadap Pengembangan Pertanian',
+            'development_content' => '<strong>PT ABS</strong> saat ini mengelola <strong>30 hektar</strong> sawah dan berencana memperluas menjadi <strong>130 hektar pada 2026</strong>, semakin memperkuat komitmennya terhadap pengembangan pertanian di Boyolali, wilayah yang dikenal dengan produksi beras berkualitas tinggi.',
+            'why_boyolali' => 'Mengapa Boyolali?',
+            'why_boyolali_items' => ['Dikenal sebagai wilayah lumbung padi premium', 'Produksi beras berkualitas tinggi', 'Lokasi strategis untuk pengembangan pertanian', 'Komunitas petani dan koperasi yang kuat'],
+            'welfare_title' => 'Kesejahteraan Masyarakat dan Pertumbuhan Ekonomi',
+            'welfare_content' => 'Inisiatif ini juga melibatkan kolaborasi dengan <strong>TNI AD Kodim 0724 Boyolali</strong>, mencerminkan komitmen yang lebih luas terhadap kesejahteraan masyarakat dan pertumbuhan ekonomi. Kemitraan ini memastikan bahwa manfaat dari pengembangan pertanian ini sampai ke masyarakat lokal secara efektif.',
+            'market_title' => 'Dari Sawah ke Pasar',
+            'market_content' => 'Fasilitas ini menyediakan jalur langsung dari sawah ke pasar, memastikan petani menerima nilai yang adil untuk panen mereka sambil mempertahankan standar kualitas. Pendekatan terintegrasi ini memperkuat seluruh rantai nilai pertanian di Boyolali.',
+            'gallery_title' => 'Galeri Fasilitas',
         ],
 
     ],

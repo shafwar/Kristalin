@@ -264,6 +264,10 @@ return [
             'highlight_badge' => '重点',
             'no_news_available' => '暂无新闻',
             'items' => [
+                'dec-3' => [
+                    'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
+                    'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
+                ],
                 'sept-1' => [
                     'title' => 'Kristalin Ekalestari 集团收购 PT Torindo Jaya Persada 51% 股份',
                     'excerpt' => '在印度尼西亚东部地区采矿行业重型设备业务的战略扩张。此次收购加强了我们在重型设备市场的地位，并增强了运营能力。',

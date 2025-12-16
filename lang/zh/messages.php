@@ -107,6 +107,7 @@ return [
             'agustus' => '八月',
             'september' => '九月',
             'oktober' => '十月',
+            'desember' => '十二月',
         ],
         'categories' => [
             'penyaluran-sembako-feb' => '向Nifasi村居民分发506包基本食品',
@@ -121,6 +122,7 @@ return [
             'csr-penyaluran-bantuan-sembako-agustus' => '企业社会责任八月基本食品援助分发',
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada' => 'Kristalin Ekalestari Group收购PT Torindo Jaya Persada 50%股份',
             'investasi-dubai-blockchain-emas' => '迪拜投资 - 黄金矿业区块链技术',
+            'food_security' => '粮食安全和农业发展',
         ],
         'ui_elements' => [
             'articles_available' => '篇文章可用',
@@ -2343,6 +2345,86 @@ return [
         'oct_dubai_investment_blockchain' => [
             'title' => 'Kristalin集团从迪拜获得5500万美元投资承诺用于基于区块链的黄金开采项目',
             'excerpt' => 'Kristalin集团在2025年印尼贸易博览会上从两家迪拜公司获得5500万美元投资承诺，用于开发纳比雷3500公顷黄金矿山，采用区块链技术和伊斯兰教法原则。',
+        ],
+
+        // 十二月碾米厂文章 - 粮食安全倡议
+        'dec_abs_rice_mill_1' => [
+            'title' => 'PT ABS目标在Boyolali实现130公顷稻田以确保粮食稳定',
+            'excerpt' => 'PT Abadi Bersama Sentosa (ABS)和PT Anugerah Bakti Sahabat在Boyolali正式启用碾米厂，以支持粮食安全并创造就业机会。采用半机械化技术，日产能达到10吨。ABS目前拥有30公顷稻田，目标到2026年扩展到130公顷。',
+            'category_title' => '粮食安全和农业发展',
+            'author' => 'Andit Prasetyowan - 董事，PT Kristalin Ekalestari',
+            'source' => 'JPNN.com',
+            'date' => '2025年12月10日',
+            
+            // Content sections
+            'opening_title' => 'Boyolali碾米厂正式启用',
+            'opening_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong>和<strong>PT Anugerah Bakti Sahabat</strong>在中爪哇<strong>Boyolali县Sawit区Cepokosawit村</strong>正式启用碾米厂。此次启用旨在支持粮食安全并增加就业机会。该公司从事农业和稻米生产，是<strong>Kristalin Ekalestari集团</strong>的一部分，致力于改善农民福利并维护粮食安全，以确保优质大米价格的稳定。',
+            'production_title' => '产能和技术',
+            'production_content' => '<strong>Andit Prasetyowan</strong>，PT Kristalin Ekalestari董事，解释说随着碾米厂的启用，他们乐观地认为每天可生产高达<strong>10吨</strong>。"实际上，我们使用半机械化。稻米干燥过程被缩短，通过加热工程化。所以我们烘烤它。一天，产能可达10吨，"Andito在周三（10/12）告诉记者。',
+            'current_capacity' => '当前产能',
+            'current_capacity_items' => ['现有30公顷稻田', '半机械化技术', '日产量：高达10吨'],
+            'expansion_plan' => '扩展计划',
+            'expansion_plan_items' => ['目标：2026年130公顷', '增强粮食安全', '改善农民福利'],
+            'location_title' => '战略位置：Boyolali作为粮仓',
+            'location_content' => 'Andito认为<strong>中爪哇Boyolali地区</strong>是稻米农业业务的选择地点，因为Boyolali被称为良好的粮仓，确保生产的大米质量。"我们有自己的土地。目标是130公顷。现有的大约是25到30公顷。除此之外，我们也希望Boyolali地区周围稻田的参与，这确实是一个粮仓，来自农民团体或合作社的成员，"Andito解释说。',
+            'technology_title' => '半机械化技术',
+            'technology_content' => '根据Andito的说法，碾米过程使用<strong>半机械化方法</strong>，其中稻米干燥过程被缩短，通过加热工程化，然后烘烤。这种创新方法显著减少了处理时间，同时保持大米质量。',
+            'collaboration_title' => '伙伴关系和合作',
+            'collaboration_content' => '从商业角度来看，公司优先考虑创造就业机会以改善农民福利并创造优质大米，与<strong>印尼陆军（AD）Kodim 0724 Boyolali</strong>合作。"所以，历史是在KSAD将军（退役）Mulyono的时代，他恰好来自这个地区，他做出了贡献。哦是的，这就是为什么军队机构，在这里的Kodim级别，被列在那里，"他说。',
+        ],
+
+        'dec_abs_rice_mill_2' => [
+            'title' => 'Boyolali碾米厂正式开业，创造新的就业机会',
+            'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，由PT Abadi Bersama Sentosa和PT Anugerah Bakti Sahabat启用。该倡议旨在稳定大米价格并增强农民福利，使用半机械化技术日产能高达10吨。',
+            'category_title' => '粮食安全和农业发展',
+            'author' => 'Andit Prasetyowan - 董事，PT Kristalin Ekalestari',
+            'source' => 'SindoNews - 地区',
+            'date' => '2025年12月10日',
+            
+            // Content sections
+            'opening_title' => 'Boyolali的新就业机会',
+            'opening_content' => '<strong>Boyolali Cepokosawit村</strong>的碾米厂正式投入运营，由<strong>PT Abadi Bersama Sentosa</strong>和<strong>PT Anugerah Bakti Sahabat</strong>启用。该倡议旨在稳定大米价格并增强农民福利，使用半机械化技术日产能高达<strong>10吨</strong>。',
+            'facility_title' => '设施运营和影响',
+            'facility_content' => '<strong>PT Abadi Bersama Sentosa (ABS)</strong>和<strong>PT Anugerah Bakti Sahabat</strong>在中爪哇<strong>Boyolali县Sawit区Cepokosawit村</strong>正式启用碾米厂。此次启用旨在支持粮食安全并增加就业机会。该公司从事农业和稻米生产，是<strong>Kristalin Ekalestari集团</strong>的一部分，致力于改善农民福利并维护粮食安全。',
+            'facility_quote' => '"实际上，我们使用半机械化。稻米干燥过程被缩短，通过加热工程化。所以我们烘烤它。一天，产能可达10吨。"',
+            'facility_quote_author' => '- Andit Prasetyowan，PT Kristalin Ekalestari董事',
+            'expansion_title' => '土地扩展策略',
+            'expansion_content' => '目前，<strong>PT ABS拥有30公顷</strong>现有稻田，计划到<strong>2026年扩展到130公顷</strong>，以维护粮食安全并改善农民福利。Andito认为中爪哇Boyolali地区是稻米农业业务的选择地点，因为Boyolali被称为良好的粮仓。',
+            'current_status' => '当前状态',
+            'current_status_items' => ['30公顷运营中', '日产量：10吨', '半机械化技术'],
+            'target_2026' => '2026年目标',
+            'target_2026_items' => ['总共130公顷', '增强粮食安全', '增加农民参与'],
+            'participation_title' => '农民参与和合作',
+            'participation_content' => '"我们有自己的土地。目标是130公顷。现有的大约是25到30公顷。除此之外，我们也希望Boyolali地区周围稻田的参与，这确实是一个粮仓，来自农民团体或合作社的成员，"Andito解释说。',
+            'partnership_title' => '与印尼陆军的战略伙伴关系',
+            'partnership_content' => '从商业角度来看，公司优先考虑创造就业机会以改善农民福利并创造优质大米，与<strong>印尼陆军（AD）Kodim 0724 Boyolali</strong>合作。"所以，历史是在KSAD将军（退役）Mulyono的时代，他恰好来自这个地区，他做出了贡献。哦是的，这就是为什么军队机构，在这里的Kodim级别，被列在那里，"他说。',
+        ],
+
+        'dec_abs_rice_mill_3' => [
+            'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
+            'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。由PT Abadi Bersama Sentosa和PT Anugerah Bakti Sahabat启用，这是Kristalin Ekalestari集团的一部分，该倡议强调了对国家粮食安全和农村就业创造的承诺。',
+            'category_title' => '粮食安全和农业发展',
+            'author' => 'Andit Prasetyowan - 董事，PT Kristalin Ekalestari',
+            'source' => 'Metro TV新闻',
+            'date' => '2025年12月10日',
+            
+            // Content sections
+            'opening_title' => '当地农民的新篇章',
+            'opening_content' => '<strong>Boyolali Cepokosawit村</strong>碾米厂的启用标志着当地农民的新篇章。该设施是<strong>PT Abadi Bersama Sentosa</strong>和<strong>PT Anugerah Bakti Sahabat</strong>之间的合作，两者都是<strong>Kristalin Ekalestari集团</strong>的一部分，旨在提高农民收获的价值并提供更稳定的市场准入。',
+            'prosperity_title' => '增强农民繁荣',
+            'prosperity_content' => '<strong>Andit Prasetyowan</strong>，PT Kristalin Ekalestari董事，强调了该设施在支持国家粮食安全和在农村地区创造就业机会方面的作用。采用的半机械化技术允许日产能高达<strong>10吨</strong>，显著提高了效率。',
+            'daily_production' => '日产能',
+            'current_fields' => '当前稻田',
+            'expansion_target' => '2026年扩展目标',
+            'development_title' => '对农业发展的承诺',
+            'development_content' => '<strong>PT ABS</strong>目前管理<strong>30公顷</strong>稻田，计划到<strong>2026年扩展到130公顷</strong>，进一步巩固其对Boyolali农业发展的承诺，该地区以高质量大米生产而闻名。',
+            'why_boyolali' => '为什么选择Boyolali？',
+            'why_boyolali_items' => ['被称为优质粮仓地区', '高质量大米生产', '农业发展的战略位置', '强大的农民社区和合作社'],
+            'welfare_title' => '社区福利和经济增长',
+            'welfare_content' => '该倡议还涉及与<strong>印尼陆军（AD）Kodim 0724 Boyolali</strong>的合作，反映了对社区福利和经济增长的更广泛承诺。这种伙伴关系确保这种农业发展的好处能够有效到达当地社区。',
+            'market_title' => '从田间到市场',
+            'market_content' => '该设施提供了从田间到市场的直接途径，确保农民在保持质量标准的同时获得收获的公平价值。这种综合方法加强了Boyolali的整个农业价值链。',
+            'gallery_title' => '设施画廊',
         ],
 
     ],
