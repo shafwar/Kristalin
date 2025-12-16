@@ -107,6 +107,11 @@ Route::get('/images/{path}', function ($path) {
         $possibleR2Paths[] = r2_object_path($cleanPath);
         $possibleR2Paths[] = r2_object_path("kristalin-assets/public/{$cleanPath}"); // IMPORTANT: This is where December images are stored
         
+        // Also try direct paths without r2_object_path (in case file was uploaded with full path)
+        // This handles cases where r2_object_path strips prefixes but file exists with full path
+        $possibleR2Paths[] = "kristalin-assets/public/{$cleanPath}"; // Direct path without normalization
+        $possibleR2Paths[] = $cleanPath; // Direct clean path
+        
         // Try each possible path in R2
         foreach ($possibleR2Paths as $objectPath) {
             if (Storage::disk('s3')->exists($objectPath)) {
