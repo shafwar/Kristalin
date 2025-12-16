@@ -185,7 +185,7 @@ export default function MilestonesPage() {
                     {/* Mobile Hero Section */}
                     <div className="relative h-[60vh] min-h-[400px] overflow-hidden bg-black">
                         <img
-                            src={imageUrl('milestone.jpg')}
+                            src={imageUrl('milestone(new).jpg')}
                             alt={t('pages.milestones.alt_texts.mining_history')}
                             className="h-full w-full object-cover opacity-70"
                         />
@@ -333,7 +333,7 @@ export default function MilestonesPage() {
                     {/* Left Side - Image and Title with animations */}
                     <div className="relative h-full w-1/2 flex-shrink-0 overflow-hidden bg-black">
                         <img
-                            src={imageUrl('milestone.jpg')}
+                            src={imageUrl('milestone(new).jpg')}
                             alt={t('pages.milestones.alt_texts.mining_history')}
                             className="h-full w-full object-cover opacity-70"
                         />
