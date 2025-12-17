@@ -28,7 +28,7 @@ const directorsData = [
     { id: 2, name: 'Gelombang Setiawan', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_9771.JPG' },
     { id: 8, name: 'Winarty', positionKey: 'position_shareholder', company: 'PT Kristalin Ekalestari', image: '/IMG_0378.JPG' },
     { id: 3, name: 'Muhammad Junaidi', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_9871.JPG', objectFit: 'cover' },
-    { id: 15, name: 'Adelaide Pipit', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_5110.JPG' },
+    { id: 15, name: 'Jeanie Adeleide Pipit', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_5110.JPG' },
     { id: 1, name: 'Jilan Jia Auranya', positionKey: 'position_board_member', company: '', image: '/IMG_9617.JPG' },
     { id: 13, name: 'Novriadji Wibowo', positionKey: 'position_board_member', company: '', image: '/IMG_4892.JPG' },
 ];
