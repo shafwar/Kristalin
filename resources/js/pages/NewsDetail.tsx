@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
-import { imageUrl } from '../lib/assets';
 
 // Import news data from the main news page
 import { NewsCategory, newsData, NewsItem } from './news';
@@ -7298,10 +7297,12 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
                                 <h4 class="text-lg font-bold text-gray-900 mb-3">${t('news_detail.dec_abs_rice_mill_1.current_capacity')}</h4>
                                 <ul class="list-disc space-y-2 pl-5 text-gray-700">
-                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_1.current_capacity_items', { returnObjects: true })) 
+                                    ${(Array.isArray(t('news_detail.dec_abs_rice_mill_1.current_capacity_items', { returnObjects: true }))
                                         ? t('news_detail.dec_abs_rice_mill_1.current_capacity_items', { returnObjects: true })
                                         : ['30 hectares of existing rice fields', 'Semi-machining technology', 'Daily production: up to 10 tons']
-                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                    )
+                                        .map((item: string) => `<li>${item}</li>`)
+                                        .join('')}
                                 </ul>
                             </div>
                             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
@@ -7310,7 +7311,9 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                     ${(Array.isArray(t('news_detail.dec_abs_rice_mill_1.expansion_plan_items', { returnObjects: true }))
                                         ? t('news_detail.dec_abs_rice_mill_1.expansion_plan_items', { returnObjects: true })
                                         : ['Target: 130 hectares by 2026', 'Enhanced food security', 'Improved farmer welfare']
-                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                    )
+                                        .map((item: string) => `<li>${item}</li>`)
+                                        .join('')}
                                 </ul>
                             </div>
                         </div>
@@ -7392,7 +7395,9 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                     ${(Array.isArray(t('news_detail.dec_abs_rice_mill_2.current_status_items', { returnObjects: true }))
                                         ? t('news_detail.dec_abs_rice_mill_2.current_status_items', { returnObjects: true })
                                         : ['30 hectares operational', 'Daily production: 10 tons', 'Semi-machining technology']
-                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                    )
+                                        .map((item: string) => `<li>${item}</li>`)
+                                        .join('')}
                                 </ul>
                             </div>
                             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
@@ -7401,7 +7406,9 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                     ${(Array.isArray(t('news_detail.dec_abs_rice_mill_2.target_2026_items', { returnObjects: true }))
                                         ? t('news_detail.dec_abs_rice_mill_2.target_2026_items', { returnObjects: true })
                                         : ['130 hectares total', 'Enhanced food security', 'Increased farmer participation']
-                                    ).map((item: string) => `<li>${item}</li>`).join('')}
+                                    )
+                                        .map((item: string) => `<li>${item}</li>`)
+                                        .join('')}
                                 </ul>
                             </div>
                         </div>
@@ -7480,8 +7487,15 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                             <ul class="list-disc space-y-2 pl-5 text-gray-700">
                                 ${(Array.isArray(t('news_detail.dec_abs_rice_mill_3.why_boyolali_items', { returnObjects: true }))
                                     ? t('news_detail.dec_abs_rice_mill_3.why_boyolali_items', { returnObjects: true })
-                                    : ['Known as a premium rice barn region', 'High-quality rice production', 'Strategic location for agricultural development', 'Strong farmer community and cooperatives']
-                                ).map((item: string) => `<li>${item}</li>`).join('')}
+                                    : [
+                                          'Known as a premium rice barn region',
+                                          'High-quality rice production',
+                                          'Strategic location for agricultural development',
+                                          'Strong farmer community and cooperatives',
+                                      ]
+                                )
+                                    .map((item: string) => `<li>${item}</li>`)
+                                    .join('')}
                             </ul>
                         </div>
                     </div>
