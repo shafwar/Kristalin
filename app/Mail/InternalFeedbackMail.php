@@ -32,8 +32,10 @@ class InternalFeedbackMail extends Mailable
 
     public function envelope(): Envelope
     {
-        $fromAddress = config('mail.internal_feedback.from.address', config('mail.from.address'));
-        $fromName = config('mail.internal_feedback.from.name', config('mail.from.name'));
+        $fromAddress = config('mail.internal_feedback.from.address')
+            ?: config('mail.from.address')
+            ?: 'onboarding@resend.dev';
+        $fromName = config('mail.internal_feedback.from.name') ?: config('mail.from.name') ?: 'Internal Feedback';
 
         return new Envelope(
             from: new \Illuminate\Mail\Mailables\Address($fromAddress, $fromName),

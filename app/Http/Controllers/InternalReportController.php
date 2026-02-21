@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreInternalReportRequest;
 use App\Mail\InternalFeedbackMail;
 use App\Models\InternalReport;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
@@ -33,50 +34,66 @@ class InternalReportController extends Controller
      */
     public function store(StoreInternalReportRequest $request)
     {
-        $data = $request->validated();
-        $description = !empty($data['description']) ? strip_tags($data['description']) : '';
-
-        $to = config('mail.internal_feedback.to');
-        if (empty($to)) {
-            \Log::warning('Internal Feedback: INTERNAL_FEEDBACK_TO_EMAIL not set. Email not sent.');
-            return redirect()->route('internal-feedback')->with('success', false)->with('error', 'Service not configured. Please try again later.');
-        }
-
-        $categoryLabel = self::CATEGORY_LABELS[$data['category']] ?? $data['category'];
-        $file = $request->hasFile('attachment') && $request->file('attachment')->isValid()
-            ? $request->file('attachment')
-            : null;
-
-        $mailable = new InternalFeedbackMail(
-            categoryLabel: $categoryLabel,
-            description: $description,
-            isAnonymous: $data['is_anonymous'] ?? false,
-            name: $data['is_anonymous'] ? null : ($data['name'] ?? null),
-            email: $data['is_anonymous'] ? null : ($data['email'] ?? null),
-            phone: $data['is_anonymous'] ? null : ($data['phone'] ?? null),
-            attachment: $file,
-        );
-
         try {
+            $data = $request->validated();
+            $description = !empty($data['description']) ? strip_tags($data['description']) : '';
+
+            $to = config('mail.internal_feedback.to');
+            if (empty($to)) {
+                Log::warning('Internal Feedback: INTERNAL_FEEDBACK_TO_EMAIL not set.');
+                return redirect()->route('internal-feedback')
+                    ->with('success', false)
+                    ->with('error', 'Service not configured. Please try again later.');
+            }
+
+            $fromAddress = config('mail.internal_feedback.from.address');
+            if (empty($fromAddress)) {
+                $fromAddress = 'onboarding@resend.dev';
+                Log::info('Internal Feedback: Using fallback from address (RESEND_FROM_ADDRESS not set).');
+            }
+
+            $categoryLabel = self::CATEGORY_LABELS[$data['category']] ?? $data['category'];
+            $file = $request->hasFile('attachment') && $request->file('attachment')->isValid()
+                ? $request->file('attachment')
+                : null;
+
+            $mailable = new InternalFeedbackMail(
+                categoryLabel: $categoryLabel,
+                description: $description,
+                isAnonymous: (bool) ($data['is_anonymous'] ?? false),
+                name: $data['is_anonymous'] ? null : ($data['name'] ?? null),
+                email: $data['is_anonymous'] ? null : ($data['email'] ?? null),
+                phone: $data['is_anonymous'] ? null : ($data['phone'] ?? null),
+                attachment: $file,
+            );
+
             Mail::mailer('resend')->to($to)->send($mailable);
+
+            // Optional: save to DB for audit (jangan gagalkan response jika migrasi belum jalan)
+            try {
+                InternalReport::create([
+                    'name' => $data['is_anonymous'] ? null : ($data['name'] ?? null),
+                    'email' => $data['is_anonymous'] ? null : ($data['email'] ?? null),
+                    'phone' => $data['is_anonymous'] ? null : ($data['phone'] ?? null),
+                    'category' => $data['category'],
+                    'description' => $description,
+                    'attachment_path' => null,
+                    'attachment_original_name' => $file ? $file->getClientOriginalName() : null,
+                    'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
+                    'status' => 'submitted',
+                ]);
+            } catch (\Throwable $e) {
+                Log::warning('Internal Feedback: DB save skipped. ' . $e->getMessage());
+            }
+
+            return redirect()->route('internal-feedback')->with('success', true);
         } catch (\Throwable $e) {
-            \Log::error('Internal Feedback email failed: ' . $e->getMessage());
-            return redirect()->route('internal-feedback')->with('success', false)->with('error', 'Unable to send. Please try again later.');
+            Log::error('Internal Feedback failed: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->route('internal-feedback')
+                ->with('success', false)
+                ->with('error', 'Unable to send your message. Please try again or contact us directly.');
         }
-
-        // Optional: save to DB for audit (no attachment stored)
-        InternalReport::create([
-            'name' => $data['is_anonymous'] ? null : ($data['name'] ?? null),
-            'email' => $data['is_anonymous'] ? null : ($data['email'] ?? null),
-            'phone' => $data['is_anonymous'] ? null : ($data['phone'] ?? null),
-            'category' => $data['category'],
-            'description' => $description,
-            'attachment_path' => null,
-            'attachment_original_name' => $file ? $file->getClientOriginalName() : null,
-            'is_anonymous' => $data['is_anonymous'] ?? false,
-            'status' => 'submitted',
-        ]);
-
-        return redirect()->route('internal-feedback')->with('success', true);
     }
 }
