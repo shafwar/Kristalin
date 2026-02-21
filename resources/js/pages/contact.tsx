@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -444,6 +445,27 @@ export default function ContactPage() {
                                 </Button>
                             </div>
                         </motion.form>
+
+                        {/* Internal Feedback – visible option below main form */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="mt-6 rounded-xl border border-amber-200 bg-amber-50/80 px-4 py-4 text-center"
+                        >
+                            <p className="mb-2 text-base font-medium text-gray-700">
+                                {t('pages.internal_feedback.contact_page_intro')}
+                            </p>
+                            <Link
+                                href="/internal-feedback"
+                                className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-5 py-2.5 text-base font-semibold text-gray-900 shadow-sm transition-colors hover:bg-amber-600"
+                            >
+                                {t('pages.internal_feedback.page_title')}
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </motion.div>
                     </div>
 
                     {/* Image Section - Fixed width at right edge with Parallax */}

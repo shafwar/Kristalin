@@ -1,0 +1,8 @@
+# Tambahkan variable berikut di Railway → Project kristalin → Service Kristalin → Variables
+
+RESEND_API_KEY=re_EbYaW83e_6pKjKEXD8uxtuXqazt26GQhK
+RESEND_FROM_ADDRESS=feedback@kristalin.co.id
+RESEND_FROM_NAME=Internal Feedback
+INTERNAL_FEEDBACK_TO_EMAIL=kristalin2025@gmail.com
+
+# Jangan ubah MAIL_MAILER / MAIL_HOST / MAIL_FROM_* (untuk Contact / cPanel).

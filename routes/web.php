@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\FeedbackReportController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\InternalReportController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SearchController;
 
@@ -83,6 +84,10 @@ Route::get('/careers', function () {
 Route::post('/feedback', [FeedbackReportController::class, 'store']);
 Route::get('/feedback/{ticket_number}', [FeedbackReportController::class, 'showByTicket']);
 Route::post('/contact-message', [ContactMessageController::class, 'store']);
+
+// Internal Feedback (Whistle Blower) – email via Resend only; no admin panel
+Route::get('/internal-feedback', [InternalReportController::class, 'showForm'])->name('internal-feedback');
+Route::post('/internal-feedback', [InternalReportController::class, 'store'])->name('internal-feedback.store');
 
 // Language switching routes
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');

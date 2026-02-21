@@ -363,6 +363,48 @@ return [
         ],
     ],
 
+    'internal_feedback' => [
+        'page_title' => 'Masukan Internal',
+        'contact_page_intro' => 'Untuk masukan internal atau komunikasi bisnis, gunakan',
+        'hero' => [
+            'title' => 'Masukan Internal',
+            'subtitle' => 'Sampaikan masukan Anda kepada kami secara profesional dan terjamin kerahasiaannya.',
+            'description' => 'Kami menghargai komunikasi yang terbuka. Gunakan formulir ini untuk mengirim masukan, saran, atau pertanyaan terkait proses bisnis dan hal-hal di lingkungan kerja.',
+        ],
+        'form' => [
+            'full_name' => 'Nama Lengkap',
+            'email' => 'Email',
+            'phone' => 'Telepon',
+            'category' => 'Kategori',
+            'description' => 'Pesan / Deskripsi',
+            'attachment' => 'Lampiran',
+            'optional' => '(Opsional)',
+            'required' => '(Wajib)',
+            'confirm_accurate' => 'Saya menegaskan bahwa informasi yang diberikan akurat dan disampaikan dengan itikad baik.',
+            'submit_anonymously' => 'Kirim tanpa mencantumkan data kontak saya',
+            'submit' => 'Kirim',
+            'submitting' => 'Mengirim...',
+            'reset' => 'Reset',
+            'placeholders' => [
+                'name' => 'Nama Anda',
+                'email' => 'email@anda.com',
+                'phone' => 'Nomor telepon',
+                'description' => 'Silakan sampaikan masukan, saran, atau pertanyaan Anda secara rinci. Kami akan meninjau dan merespons sesuai kebutuhan.',
+            ],
+            'categories' => [
+                'general' => 'Pertanyaan Umum',
+                'process_improvement' => 'Peningkatan Proses',
+                'workplace' => 'Lingkungan Kerja',
+                'policy' => 'Kebijakan & Kepatuhan',
+                'suggestion' => 'Saran & Masukan',
+                'other' => 'Lainnya',
+            ],
+            'select_category' => 'Pilih kategori...',
+            'success_message' => 'Terima kasih. Pesan Anda telah diterima dan akan ditinjau oleh tim kami.',
+            'error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
+        ],
+    ],
+
     'about' => [
         'title' => 'Tentang Kristalin Ekalestari',
         'description' => 'Pelajari lebih lanjut tentang perusahaan kami, sejarah, dan komitmen terhadap keunggulan dalam industri pertambangan dan perdagangan.',

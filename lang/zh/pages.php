@@ -372,6 +372,47 @@ return [
         ],
     ],
 
+    'internal_feedback' => [
+        'page_title' => '内部反馈',
+        'contact_page_intro' => '如需内部反馈或业务沟通，请使用',
+        'hero' => [
+            'title' => '内部反馈',
+            'subtitle' => '以专业、保密的方式向我们提交您的意见。',
+            'description' => '我们重视开放沟通。请使用此表单提交与业务流程和工作场所相关的反馈、建议或咨询。',
+        ],
+        'form' => [
+            'full_name' => '姓名',
+            'email' => '邮箱',
+            'phone' => '电话',
+            'category' => '类别',
+            'description' => '内容 / 描述',
+            'attachment' => '附件',
+            'optional' => '（可选）',
+            'required' => '（必填）',
+            'confirm_accurate' => '我确认所提供的信息准确且出于善意提交。',
+            'submit_anonymously' => '不披露我的联系方式提交',
+            'submit' => '提交',
+            'submitting' => '提交中...',
+            'reset' => '重置',
+            'placeholders' => [
+                'name' => '您的姓名',
+                'email' => 'your@email.com',
+                'phone' => '电话号码',
+                'description' => '请详细说明您的反馈、建议或咨询。我们将审阅并酌情回复。',
+            ],
+            'categories' => [
+                'general' => '一般咨询',
+                'process_improvement' => '流程改进',
+                'workplace' => '工作环境',
+                'policy' => '政策与合规',
+                'suggestion' => '建议与反馈',
+                'other' => '其他',
+            ],
+            'select_category' => '选择类别...',
+            'success_message' => '感谢您。您的消息已收到，我们将尽快审阅。',
+            'error_message' => '出现错误，请重试。',
+        ],
+    ],
 
     'about' => [
         'title' => '关于 Kristalin Ekalestari',

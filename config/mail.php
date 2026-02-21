@@ -113,4 +113,19 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Internal Feedback (Whistle Blower) – Resend
+    |--------------------------------------------------------------------------
+    | Hanya dipakai untuk form Internal Feedback; dikirim via Mail::mailer('resend').
+    | Contact form tetap pakai default mailer (smtp) + MAIL_* (cPanel). Tidak saling ganggu.
+    */
+    'internal_feedback' => [
+        'from' => [
+            'address' => env('RESEND_FROM_ADDRESS', env('MAIL_FROM_ADDRESS')),
+            'name' => env('RESEND_FROM_NAME', env('MAIL_FROM_NAME', 'Internal Feedback')),
+        ],
+        'to' => env('INTERNAL_FEEDBACK_TO_EMAIL'), // Recipient for all Internal Feedback submissions
+    ],
+
 ];

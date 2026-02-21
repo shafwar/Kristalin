@@ -371,6 +371,47 @@ return [
         ],
     ],
 
+    'internal_feedback' => [
+        'page_title' => 'Internal Feedback',
+        'contact_page_intro' => 'For internal feedback or business communication, use',
+        'hero' => [
+            'title' => 'Internal Feedback',
+            'subtitle' => 'Share your input with us in a professional and confidential manner.',
+            'description' => 'We value open communication. Use this form to send feedback, suggestions, or inquiries related to business processes and workplace matters.',
+        ],
+        'form' => [
+            'full_name' => 'Full Name',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'category' => 'Category',
+            'description' => 'Message / Description',
+            'attachment' => 'Attachment',
+            'optional' => '(Optional)',
+            'required' => '(Required)',
+            'confirm_accurate' => 'I confirm that the information provided is accurate and submitted in good faith.',
+            'submit_anonymously' => 'Submit without disclosing my contact details',
+            'submit' => 'Submit',
+            'submitting' => 'Sending...',
+            'reset' => 'Reset',
+            'placeholders' => [
+                'name' => 'Your name',
+                'email' => 'your@email.com',
+                'phone' => 'Phone number',
+                'description' => 'Please share your feedback, suggestion, or inquiry in detail. We will review and respond as appropriate.',
+            ],
+            'categories' => [
+                'general' => 'General Inquiry',
+                'process_improvement' => 'Process Improvement',
+                'workplace' => 'Workplace & Environment',
+                'policy' => 'Policy & Compliance',
+                'suggestion' => 'Suggestion & Feedback',
+                'other' => 'Other',
+            ],
+            'select_category' => 'Select category...',
+            'success_message' => 'Thank you. Your message has been received and will be reviewed by our team.',
+            'error_message' => 'Something went wrong. Please try again.',
+        ],
+    ],
 
     'about' => [
         'title' => 'About Kristalin Ekalestari',
