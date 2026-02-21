@@ -1,12 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Head, router, usePage } from '@inertiajs/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { Button } from '../components/ui/button';
 import { Checkbox } from '../components/ui/checkbox';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
+import { CheckCircle2 } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -102,7 +103,7 @@ export default function InternalFeedbackPage() {
         });
     };
 
-    const handleReset = () => {
+    const resetForm = () => {
         setFormData({
             name: '',
             email: '',
@@ -119,8 +120,15 @@ export default function InternalFeedbackPage() {
         if (fileInputRef.current) fileInputRef.current.value = '';
     };
 
+    const handleReset = () => resetForm();
+
     const success = props.flash?.success === true;
     const errorMessage = props.flash?.error;
+
+    // Reset form otomatis setelah kirim berhasil
+    useEffect(() => {
+        if (success) resetForm();
+    }, [success]);
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
@@ -154,9 +162,17 @@ export default function InternalFeedbackPage() {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
-                                className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-800"
+                                className="mb-6 flex items-start gap-3 rounded-xl border-2 border-green-300 bg-green-50 px-5 py-4 shadow-sm ring-2 ring-green-200/60"
                             >
-                                {t('pages.internal_feedback.form.success_message')}
+                                <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-green-600" aria-hidden />
+                                <div>
+                                    <p className="font-semibold text-green-800">
+                                        {t('pages.internal_feedback.form.success_title')}
+                                    </p>
+                                    <p className="mt-0.5 text-green-800/90">
+                                        {t('pages.internal_feedback.form.success_message')}
+                                    </p>
+                                </div>
                             </motion.div>
                         )}
                         {errorMessage && (

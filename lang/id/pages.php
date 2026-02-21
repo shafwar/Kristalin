@@ -400,6 +400,7 @@ return [
                 'other' => 'Lainnya',
             ],
             'select_category' => 'Pilih kategori...',
+            'success_title' => 'Pesan terkirim dengan sukses',
             'success_message' => 'Terima kasih. Pesan Anda telah diterima dan akan ditinjau oleh tim kami.',
             'error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
         ],

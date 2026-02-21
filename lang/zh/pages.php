@@ -409,6 +409,7 @@ return [
                 'other' => '其他',
             ],
             'select_category' => '选择类别...',
+            'success_title' => '消息已成功发送',
             'success_message' => '感谢您。您的消息已收到，我们将尽快审阅。',
             'error_message' => '出现错误，请重试。',
         ],

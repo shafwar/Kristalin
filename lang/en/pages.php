@@ -408,6 +408,7 @@ return [
                 'other' => 'Other',
             ],
             'select_category' => 'Select category...',
+            'success_title' => 'Message sent successfully',
             'success_message' => 'Thank you. Your message has been received and will be reviewed by our team.',
             'error_message' => 'Something went wrong. Please try again.',
         ],
