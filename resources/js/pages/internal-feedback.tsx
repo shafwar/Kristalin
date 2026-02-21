@@ -7,7 +7,6 @@ import { Button } from '../components/ui/button';
 import { Checkbox } from '../components/ui/checkbox';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { CheckCircle2 } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,6 +38,27 @@ export default function InternalFeedbackPage() {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            category: '',
+            description: '',
+            is_anonymous: false,
+            confirm_accurate: false,
+        });
+        setAttachment(null);
+        setFileName('');
+        setFileError('');
+        setErrors({});
+        if (fileInputRef.current) fileInputRef.current.value = '';
+    };
+
+    useEffect(() => {
+        if (props.flash?.success === true) resetForm();
+    }, [props.flash?.success]);
 
     const validate = () => {
         const newErrors: Record<string, string> = {};
@@ -103,32 +123,10 @@ export default function InternalFeedbackPage() {
         });
     };
 
-    const resetForm = () => {
-        setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            category: '',
-            description: '',
-            is_anonymous: false,
-            confirm_accurate: false,
-        });
-        setAttachment(null);
-        setFileName('');
-        setFileError('');
-        setErrors({});
-        if (fileInputRef.current) fileInputRef.current.value = '';
-    };
-
     const handleReset = () => resetForm();
 
     const success = props.flash?.success === true;
     const errorMessage = props.flash?.error;
-
-    // Reset form otomatis setelah kirim berhasil
-    useEffect(() => {
-        if (success) resetForm();
-    }, [success]);
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
@@ -162,17 +160,9 @@ export default function InternalFeedbackPage() {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
-                                className="mb-6 flex items-start gap-3 rounded-xl border-2 border-green-300 bg-green-50 px-5 py-4 shadow-sm ring-2 ring-green-200/60"
+                                className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-800"
                             >
-                                <CheckCircle2 className="mt-0.5 size-6 shrink-0 text-green-600" aria-hidden />
-                                <div>
-                                    <p className="font-semibold text-green-800">
-                                        {t('pages.internal_feedback.form.success_title')}
-                                    </p>
-                                    <p className="mt-0.5 text-green-800/90">
-                                        {t('pages.internal_feedback.form.success_message')}
-                                    </p>
-                                </div>
+                                {t('pages.internal_feedback.form.success_message')}
                             </motion.div>
                         )}
                         {errorMessage && (
@@ -274,7 +264,7 @@ export default function InternalFeedbackPage() {
                                     }}
                                 >
                                     <option value="">{t('pages.internal_feedback.form.select_category')}</option>
-                                    {(['general', 'process_improvement', 'workplace', 'policy', 'suggestion', 'other'] as const).map(
+                                    {(['general', 'process_improvement', 'workplace', 'safety', 'harassment', 'policy', 'management', 'facilities', 'ethics', 'suggestion', 'other'] as const).map(
                                         (key) => (
                                             <option key={key} value={key}>
                                                 {t(`pages.internal_feedback.form.categories.${key}`)}

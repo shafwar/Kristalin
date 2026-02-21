@@ -15,7 +15,12 @@ class InternalReportController extends Controller
         'general' => 'General Inquiry',
         'process_improvement' => 'Process Improvement',
         'workplace' => 'Workplace & Environment',
+        'safety' => 'Safety & Health',
+        'harassment' => 'Harassment / Discrimination',
         'policy' => 'Policy & Compliance',
+        'management' => 'Management Issues',
+        'facilities' => 'Facilities',
+        'ethics' => 'Work Ethics & Integrity',
         'suggestion' => 'Suggestion & Feedback',
         'other' => 'Other',
     ];
@@ -65,6 +70,7 @@ class InternalReportController extends Controller
                 email: $data['is_anonymous'] ? null : ($data['email'] ?? null),
                 phone: $data['is_anonymous'] ? null : ($data['phone'] ?? null),
                 attachment: $file,
+                attachmentOriginalName: $file ? $file->getClientOriginalName() : null,
             );
 
             Mail::mailer('resend')->to($to)->send($mailable);

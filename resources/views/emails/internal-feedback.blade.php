@@ -33,7 +33,9 @@
     <div class="content">{{ $description }}</div>
 
     @if($hasAttachment ?? false)
-        <p style="margin-top: 20px; font-size: 0.875rem; color: #6b7280;">An attachment is included with this email.</p>
+        <p style="margin-top: 20px; font-size: 0.875rem; color: #6b7280;">
+            An attachment is included with this email@if(!empty($attachmentDisplayName)): <strong>{{ $attachmentDisplayName }}</strong>@endif.
+        </p>
     @endif
 </body>
 </html>

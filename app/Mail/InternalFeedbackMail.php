@@ -21,14 +21,19 @@ class InternalFeedbackMail extends Mailable
         public readonly ?string $email = null,
         public readonly ?string $phone = null,
         public readonly ?UploadedFile $attachment = null,
+        public readonly ?string $attachmentOriginalName = null,
     ) {
         $this->submittedAt = now()->format('Y-m-d H:i:s');
         $this->hasAttachment = $attachment !== null && $attachment->isValid();
+        $this->attachmentDisplayName = $attachmentOriginalName ?? ($attachment && $attachment->isValid() ? $attachment->getClientOriginalName() : null);
     }
 
     public ?string $submittedAt = null;
 
     public bool $hasAttachment = false;
+
+    /** Original filename for display in email body so recipient can verify attachment was received. */
+    public ?string $attachmentDisplayName = null;
 
     public function envelope(): Envelope
     {
@@ -55,9 +60,12 @@ class InternalFeedbackMail extends Mailable
         $attachments = [];
 
         if ($this->attachment && $this->attachment->isValid()) {
-            $attachments[] = \Illuminate\Mail\Mailables\Attachment::fromPath($this->attachment->getRealPath())
-                ->as($this->attachment->getClientOriginalName())
-                ->withMime($this->attachment->getMimeType());
+            $path = $this->attachment->getRealPath();
+            if ($path && is_readable($path)) {
+                $attachments[] = \Illuminate\Mail\Mailables\Attachment::fromPath($path)
+                    ->as($this->attachment->getClientOriginalName())
+                    ->withMime($this->attachment->getMimeType());
+            }
         }
 
         return $attachments;

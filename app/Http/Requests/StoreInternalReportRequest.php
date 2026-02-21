@@ -19,7 +19,7 @@ class StoreInternalReportRequest extends FormRequest
             'name' => ['nullable', 'string', 'max:255'],
             'email' => [$anonymous ? 'nullable' : 'required', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
-            'category' => ['required', 'string', 'in:general,process_improvement,workplace,policy,suggestion,other'],
+            'category' => ['required', 'string', 'in:general,process_improvement,workplace,safety,harassment,policy,management,facilities,ethics,suggestion,other'],
             'description' => ['required', 'string', 'min:10', 'max:10000'],
             'attachment' => ['nullable', 'file', 'max:10240', 'mimes:pdf,jpg,jpeg,png,doc,docx'],
             'is_anonymous' => ['nullable', 'boolean'],
@@ -37,6 +37,9 @@ class StoreInternalReportRequest extends FormRequest
             'description.required' => __('Please provide a description.'),
             'description.min' => __('Description must be at least 10 characters.'),
             'confirm_accurate.accepted' => __('Please confirm that the information provided is accurate.'),
+            'attachment.file' => __('The attachment must be a file.'),
+            'attachment.mimes' => __('Attachment must be PDF, JPG, PNG, DOC or DOCX.'),
+            'attachment.max' => __('Attachment must not exceed 10 MB.'),
         ];
     }
 
