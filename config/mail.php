@@ -122,7 +122,9 @@ return [
     */
     'internal_feedback' => [
         'from' => [
-            'address' => env('RESEND_FROM_ADDRESS', env('MAIL_FROM_ADDRESS')),
+            // Default to Resend test address so send works without domain verification.
+            // Set RESEND_FROM_ADDRESS only after verifying your domain in Resend.
+            'address' => env('RESEND_FROM_ADDRESS', 'onboarding@resend.dev'),
             'name' => env('RESEND_FROM_NAME', env('MAIL_FROM_NAME', 'Internal Feedback')),
         ],
         'to' => env('INTERNAL_FEEDBACK_TO_EMAIL'), // Recipient for all Internal Feedback submissions

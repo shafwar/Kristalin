@@ -25,7 +25,8 @@ return [
     ],
 
     'resend' => [
-        'key' => env('RESEND_KEY'),
+        // RESEND_API_KEY is read by resend/api_key; this fallback supports RESEND_KEY
+        'key' => env('RESEND_API_KEY', env('RESEND_KEY')),
     ],
 
     'slack' => [

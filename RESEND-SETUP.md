@@ -88,8 +88,8 @@ Jika form menampilkan **"Unable to send your message. Please try again or contac
    - Cari baris **"Internal Feedback send failed"**; di bawahnya akan ada `exception` dan `message` (mis. API key invalid, domain not verified, dll.).
 
 3. **Penyebab umum**
-   - **RESEND_API_KEY kosong atau salah** → Set/copy ulang API key di Railway, lalu redeploy.
-   - **Domain "From" belum di-verify** → Jika pakai `feedback@kristalin.co.id`, domain `kristalin.co.id` harus di-verify di Resend (Domains → Add Domain → tambah record DNS). Sementara bisa pakai `onboarding@resend.dev` (hapus atau kosongkan `RESEND_FROM_ADDRESS`).
+   - **RESEND_API_KEY / RESEND_KEY kosong atau salah** → Set/copy ulang API key di Railway (bisa pakai `RESEND_API_KEY` atau `RESEND_KEY`), lalu redeploy.
+   - **Domain "From" belum di-verify** → Aplikasi sekarang default pakai `onboarding@resend.dev` jika `RESEND_FROM_ADDRESS` tidak diset. Jika kirim tetap gagal, **hapus env RESEND_FROM_ADDRESS** di Railway (atau kosongkan) supaya dipakai `onboarding@resend.dev`; setelah domain Anda di-verify di Resend, baru isi lagi `RESEND_FROM_ADDRESS`.
    - **INTERNAL_FEEDBACK_TO_EMAIL kosong** → Form akan redirect dengan "Service not configured".
 
 Setelah perbaikan env, redeploy atau restart service agar config terbaca ulang.

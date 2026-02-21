@@ -70,7 +70,6 @@ class InternalReportController extends Controller
                 email: $data['is_anonymous'] ? null : ($data['email'] ?? null),
                 phone: $data['is_anonymous'] ? null : ($data['phone'] ?? null),
                 attachment: $file,
-                attachmentOriginalName: $file ? $file->getClientOriginalName() : null,
             );
 
             Mail::mailer('resend')->to($to)->send($mailable);
