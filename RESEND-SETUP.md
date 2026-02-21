@@ -44,7 +44,7 @@ Kalau belum punya domain siap, Anda bisa pakai domain testing Resend (`onboardin
 Di `.env` (atau env production):
 
 ```env
-# API key (wajib)
+# API key (wajib). Bisa pakai RESEND_API_KEY atau RESEND_KEY (keduanya didukung).
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxx
 
 # Pengirim email (From). Pakai domain yang sudah di-verify di Resend.

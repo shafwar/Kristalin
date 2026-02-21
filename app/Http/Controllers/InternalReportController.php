@@ -51,14 +51,6 @@ class InternalReportController extends Controller
                     ->with('error', 'Service not configured. Please try again later.');
             }
 
-            $resendKey = config('resend.api_key') ?: config('services.resend.key');
-            if (empty($resendKey) || ! is_string($resendKey)) {
-                Log::warning('Internal Feedback: RESEND_API_KEY (or RESEND_KEY) not set.');
-                return redirect()->route('internal-feedback')
-                    ->with('success', false)
-                    ->with('error', 'Service not configured. Please try again later.');
-            }
-
             $fromAddress = config('mail.internal_feedback.from.address');
             if (empty($fromAddress)) {
                 $fromAddress = 'onboarding@resend.dev';
