@@ -7,7 +7,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Http\UploadedFile;
 
 class InternalFeedbackMail extends Mailable
 {
@@ -20,10 +19,13 @@ class InternalFeedbackMail extends Mailable
         public readonly ?string $name = null,
         public readonly ?string $email = null,
         public readonly ?string $phone = null,
-        public readonly ?UploadedFile $attachment = null,
+        /** In-memory file content so attachment is 100% included when sending (no path/filesystem). */
+        public readonly ?string $attachmentContent = null,
+        public readonly ?string $attachmentName = null,
+        public readonly ?string $attachmentMime = null,
     ) {
         $this->submittedAt = now()->format('Y-m-d H:i:s');
-        $this->hasAttachment = $attachment !== null && $attachment->isValid();
+        $this->hasAttachment = $attachmentContent !== null && $attachmentContent !== '' && $attachmentName !== null;
     }
 
     public ?string $submittedAt = null;
@@ -52,14 +54,16 @@ class InternalFeedbackMail extends Mailable
 
     public function attachments(): array
     {
-        $attachments = [];
-
-        if ($this->attachment && $this->attachment->isValid()) {
-            $attachments[] = \Illuminate\Mail\Mailables\Attachment::fromPath($this->attachment->getRealPath())
-                ->as($this->attachment->getClientOriginalName())
-                ->withMime($this->attachment->getMimeType());
+        if ($this->attachmentContent === null || $this->attachmentContent === '' || $this->attachmentName === null) {
+            return [];
         }
 
-        return $attachments;
+        $name = $this->attachmentName;
+        $mime = $this->attachmentMime ?: 'application/octet-stream';
+        $content = $this->attachmentContent;
+
+        return [
+            \Illuminate\Mail\Mailables\Attachment::fromData(fn () => $content, $name)->withMime($mime),
+        ];
     }
 }

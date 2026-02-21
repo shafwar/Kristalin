@@ -62,6 +62,30 @@ class InternalReportController extends Controller
                 ? $request->file('attachment')
                 : null;
 
+            $attachmentContent = null;
+            $attachmentName = null;
+            $attachmentMime = null;
+            $tempPath = null;
+
+            if ($file) {
+                $path = $file->getRealPath();
+                if ($path && is_readable($path)) {
+                    $attachmentContent = file_get_contents($path);
+                }
+                if ($attachmentContent === false || $attachmentContent === null) {
+                    $stored = $file->store('temp', ['disk' => 'local']);
+                    if ($stored) {
+                        $tempPath = storage_path('app/' . $stored);
+                        $attachmentContent = @file_get_contents($tempPath) ?: null;
+                    }
+                }
+                if ($attachmentContent !== null && $attachmentContent !== false) {
+                    $attachmentName = $file->getClientOriginalName();
+                    $attachmentMime = $file->getMimeType() ?: 'application/octet-stream';
+                    Log::info('Internal Feedback: sending with attachment (in-memory).', ['filename' => $attachmentName]);
+                }
+            }
+
             $mailable = new InternalFeedbackMail(
                 categoryLabel: $categoryLabel,
                 description: $description,
@@ -69,10 +93,16 @@ class InternalReportController extends Controller
                 name: $data['is_anonymous'] ? null : ($data['name'] ?? null),
                 email: $data['is_anonymous'] ? null : ($data['email'] ?? null),
                 phone: $data['is_anonymous'] ? null : ($data['phone'] ?? null),
-                attachment: $file,
+                attachmentContent: $attachmentContent,
+                attachmentName: $attachmentName,
+                attachmentMime: $attachmentMime,
             );
 
             Mail::mailer('resend')->to($to)->send($mailable);
+
+            if ($tempPath && file_exists($tempPath)) {
+                @unlink($tempPath);
+            }
 
             // Optional: save to DB for audit (jangan gagalkan response jika migrasi belum jalan)
             try {
@@ -83,7 +113,7 @@ class InternalReportController extends Controller
                     'category' => $data['category'],
                     'description' => $description,
                     'attachment_path' => null,
-                    'attachment_original_name' => $file ? $file->getClientOriginalName() : null,
+                    'attachment_original_name' => $attachmentName,
                     'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
                     'status' => 'submitted',
                 ]);
