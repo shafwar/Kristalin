@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar, ExternalLink, Home, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { useTranslation } from '../hooks/useTranslation';
+import { useTranslation, type UseTranslationReturn } from '../hooks/useTranslation';
 
 // Import news data from the main news page
 import { NewsCategory, newsData, NewsItem } from './news';
@@ -14,7 +14,7 @@ interface NewsDetailProps {
 }
 
 const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
-    const { t, locale } = useTranslation();
+    const { t, locale }: UseTranslationReturn = useTranslation();
     const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
     const [category, setCategory] = useState<NewsCategory | null>(null);
     const [loading, setLoading] = useState(true);

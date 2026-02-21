@@ -9,13 +9,23 @@ interface PageProps {
     [key: string]: any;
 }
 
-export function useTranslation() {
+type TranslationOptions = { returnObjects?: boolean; replace?: Record<string, string> };
+
+export interface UseTranslationReturn {
+    t: (key: string, options?: Record<string, string> | TranslationOptions) => any;
+    locale: string;
+    switchLanguage: (newLocale: string) => void;
+    getCurrentLanguageCode: () => string;
+    getAvailableLanguages: () => { code: string; label: string; name: any }[];
+    translations: any;
+}
+
+export function useTranslation(): UseTranslationReturn {
     const { props } = usePage<PageProps>();
     const { locale, translations } = props;
     const pageTranslations = translations.pages ?? translations.messages ?? {};
 
     // Helper function to get translation
-    type TranslationOptions = { returnObjects?: boolean; replace?: Record<string, string> };
     const t = (key: string, options?: Record<string, string> | TranslationOptions) => {
         const keys = key.split('.');
         let value = translations.messages;

@@ -72,13 +72,37 @@ Jika email tidak masuk, cek folder spam dan log Laravel (`storage/logs/laravel.l
 
 ---
 
-## 4. Ringkasan
+## 4. Troubleshooting: "Unable to send your message"
+
+Jika form menampilkan **"Unable to send your message. Please try again or contact us directly."**:
+
+1. **Cek env di production (Railway)**  
+   Pastikan sudah diset:
+   - `RESEND_API_KEY` = API key dari Resend (dimulai `re_...`)
+   - `INTERNAL_FEEDBACK_TO_EMAIL` = email penerima (wajib)
+   - `RESEND_FROM_ADDRESS` = alamat pengirim (jika pakai domain sendiri, harus domain yang sudah di-verify di Resend)
+   - `RESEND_FROM_NAME` = nama pengirim (opsional)
+
+2. **Cek log di Railway**  
+   - Project → Service → **Deployments** → deployment terbaru → **View Logs**.
+   - Cari baris **"Internal Feedback send failed"**; di bawahnya akan ada `exception` dan `message` (mis. API key invalid, domain not verified, dll.).
+
+3. **Penyebab umum**
+   - **RESEND_API_KEY kosong atau salah** → Set/copy ulang API key di Railway, lalu redeploy.
+   - **Domain "From" belum di-verify** → Jika pakai `feedback@kristalin.co.id`, domain `kristalin.co.id` harus di-verify di Resend (Domains → Add Domain → tambah record DNS). Sementara bisa pakai `onboarding@resend.dev` (hapus atau kosongkan `RESEND_FROM_ADDRESS`).
+   - **INTERNAL_FEEDBACK_TO_EMAIL kosong** → Form akan redirect dengan "Service not configured".
+
+Setelah perbaikan env, redeploy atau restart service agar config terbaca ulang.
+
+---
+
+## 5. Ringkasan
 
 | Yang di-setting | Di mana | Kapan |
 |-----------------|--------|--------|
 | Akun Resend | resend.com | Sekali |
 | API key | Resend → API Keys | Sekali, lalu isi `RESEND_API_KEY` |
 | Domain (From) | Resend → Domains + DNS | Sekali, lalu isi `RESEND_FROM_ADDRESS` |
-| Email penerima | `.env` | `INTERNAL_FEEDBACK_TO_EMAIL` |
+| Email penerima | `.env` / Railway env | `INTERNAL_FEEDBACK_TO_EMAIL` |
 
 **Contact form** tetap memakai setting email yang sekarang (cPanel); tidak pakai Resend dan tidak berubah.
