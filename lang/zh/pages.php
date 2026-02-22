@@ -416,6 +416,7 @@ return [
             'select_category' => '选择类别...',
             'success_message' => '您的消息已成功发送。我们会尽快审阅，如有需要将回复您。',
             'error_message' => '出现错误，请重试。',
+            'file_not_received' => '未收到文件。可能超过服务器限制（最大 10 MB）。请尝试更小的文件或联系支持。',
         ],
     ],
 

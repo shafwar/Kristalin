@@ -22,7 +22,8 @@ const ALLOWED_TYPES = [
 
 export default function InternalFeedbackPage() {
     const { t } = useTranslation();
-    const { props } = usePage<{ flash?: { success?: boolean; error?: string } }>();
+    const { props } = usePage<{ flash?: { success?: boolean; error?: string }; errors?: Record<string, string> }>();
+    const serverErrors = props.errors ?? {};
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -114,7 +115,10 @@ export default function InternalFeedbackPage() {
         form.append('description', formData.description);
         form.append('is_anonymous', formData.is_anonymous ? '1' : '0');
         form.append('confirm_accurate', formData.confirm_accurate ? '1' : '0');
-        if (attachment) form.append('attachment', attachment);
+        if (attachment) {
+            form.append('attachment', attachment);
+            form.append('has_attachment', '1');
+        }
 
         router.post('/internal-feedback', form, {
             forceFormData: true,
@@ -321,6 +325,9 @@ export default function InternalFeedbackPage() {
                                     )}
                                 </div>
                                 {fileError && <p className="mt-1 text-sm text-amber-700">{fileError}</p>}
+                                {serverErrors.attachment && (
+                                    <p className="mt-1 text-sm text-amber-700">{serverErrors.attachment}</p>
+                                )}
                             </div>
 
                             <div className="space-y-4 border-t border-gray-200 pt-6">

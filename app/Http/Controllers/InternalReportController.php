@@ -45,6 +45,22 @@ class InternalReportController extends Controller
         set_time_limit(120);
 
         try {
+            $hasAttachmentFlag = $request->boolean('has_attachment');
+            $hasFile = $request->hasFile('attachment') && $request->file('attachment')->isValid();
+
+            if ($hasFile) {
+                $f = $request->file('attachment');
+                Log::info('Internal Feedback: attachment received.', [
+                    'filename' => $f->getClientOriginalName(),
+                    'size' => $f->getSize(),
+                ]);
+            } elseif ($hasAttachmentFlag) {
+                Log::warning('Internal Feedback: client sent has_attachment but no file received. Check upload_max_filesize/post_max_size.');
+                return redirect()->route('internal-feedback')
+                    ->with('success', false)
+                    ->with('error', __('pages.internal_feedback.form.file_not_received'));
+            }
+
             $data = $request->validated();
             $description = !empty($data['description']) ? strip_tags($data['description']) : '';
 

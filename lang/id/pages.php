@@ -407,6 +407,7 @@ return [
             'select_category' => 'Pilih kategori...',
             'success_message' => 'Pesan Anda telah berhasil dikirim. Tim kami akan meninjau dan menghubungi Anda jika diperlukan.',
             'error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
+            'file_not_received' => 'File tidak diterima. Mungkin melebihi batas server (maks. 10 MB). Coba file lebih kecil atau hubungi dukungan.',
         ],
     ],
 

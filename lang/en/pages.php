@@ -415,6 +415,7 @@ return [
             'select_category' => 'Select category...',
             'success_message' => 'Your message has been sent successfully. Our team will review it and get back to you if needed.',
             'error_message' => 'Something went wrong. Please try again.',
+            'file_not_received' => 'File was not received. It may exceed the server limit (max 10 MB). Try a smaller file or contact support.',
         ],
     ],
 
