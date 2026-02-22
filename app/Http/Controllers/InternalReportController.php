@@ -102,7 +102,10 @@ class InternalReportController extends Controller
                         Str::uuid() . '_' . $file->getClientOriginalName(),
                         'private'
                     );
-                    $attachmentDownloadUrl = $disk->temporaryUrl($path, now()->addDays(7));
+                    $safeFilename = str_replace('"', '\\"', $file->getClientOriginalName());
+                    $attachmentDownloadUrl = $disk->temporaryUrl($path, now()->addDays(7), [
+                        'ResponseContentDisposition' => 'attachment; filename="' . $safeFilename . '"',
+                    ]);
                     Log::info('Internal Feedback: attachment stored to S3/R2, email will contain download link.', ['filename' => $attachmentName]);
                 } catch (\Throwable $e) {
                     Log::warning('Internal Feedback: S3/R2 store failed, falling back to in-memory attachment.', ['message' => $e->getMessage()]);
