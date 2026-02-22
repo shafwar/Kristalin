@@ -21,7 +21,12 @@ class StoreInternalReportRequest extends FormRequest
             'phone' => ['nullable', 'string', 'max:50'],
             'category' => ['required', 'string', 'in:general,process_improvement,workplace,safety,harassment,policy,management,facilities,ethics,suggestion,other'],
             'description' => ['required', 'string', 'min:10', 'max:10000'],
-            'attachment' => ['nullable', 'file', 'max:10240', 'mimes:pdf,jpg,jpeg,png,doc,docx'],
+            'attachment' => [
+                'nullable',
+                'file',
+                'max:10240',
+                'mimetypes:image/jpeg,image/pjpeg,image/png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            ],
             'is_anonymous' => ['nullable', 'boolean'],
             'confirm_accurate' => ['required', 'accepted'],
         ];
@@ -39,6 +44,7 @@ class StoreInternalReportRequest extends FormRequest
             'confirm_accurate.accepted' => __('Please confirm that the information provided is accurate.'),
             'attachment.file' => __('The attachment must be a file.'),
             'attachment.mimes' => __('Attachment must be PDF, JPG, PNG, DOC or DOCX.'),
+            'attachment.mimetypes' => __('Attachment must be PDF, JPG, PNG, DOC or DOCX.'),
             'attachment.max' => __('Attachment must not exceed 10 MB.'),
         ];
     }
