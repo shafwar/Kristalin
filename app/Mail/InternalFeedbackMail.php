@@ -19,18 +19,23 @@ class InternalFeedbackMail extends Mailable
         public readonly ?string $name = null,
         public readonly ?string $email = null,
         public readonly ?string $phone = null,
-        /** In-memory file content so attachment is 100% included when sending (no path/filesystem). */
         public readonly ?string $attachmentContent = null,
         public readonly ?string $attachmentName = null,
         public readonly ?string $attachmentMime = null,
+        /** When set, email contains download link (file stored in S3/R2); no inline attachment. */
+        public readonly ?string $attachmentDownloadUrl = null,
     ) {
         $this->submittedAt = now()->format('Y-m-d H:i:s');
-        $this->hasAttachment = $attachmentContent !== null && $attachmentContent !== '' && $attachmentName !== null;
+        $this->hasAttachment = $attachmentDownloadUrl !== null
+            || ($attachmentContent !== null && $attachmentContent !== '' && $attachmentName !== null);
+        $this->hasAttachmentLink = $attachmentDownloadUrl !== null;
     }
 
     public ?string $submittedAt = null;
 
     public bool $hasAttachment = false;
+
+    public bool $hasAttachmentLink = false;
 
     public function envelope(): Envelope
     {
@@ -54,6 +59,9 @@ class InternalFeedbackMail extends Mailable
 
     public function attachments(): array
     {
+        if ($this->attachmentDownloadUrl !== null) {
+            return [];
+        }
         if ($this->attachmentContent === null || $this->attachmentContent === '' || $this->attachmentName === null) {
             return [];
         }

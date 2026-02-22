@@ -7,6 +7,8 @@ use App\Mail\InternalFeedbackMail;
 use App\Models\InternalReport;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class InternalReportController extends Controller
@@ -34,11 +36,14 @@ class InternalReportController extends Controller
     }
 
     /**
-     * Store a new internal report and send email via Resend (no R2, no admin).
-     * Attachment is sent as email attachment; Contact form remains on cPanel.
+     * Store a new internal report and send email via Resend.
+     * Attachment: upload to S3/R2 first, then email contains download link (reliable for large files).
+     * If S3 is not available, fallback to in-memory attachment.
      */
     public function store(StoreInternalReportRequest $request)
     {
+        set_time_limit(120);
+
         try {
             $data = $request->validated();
             $description = !empty($data['description']) ? strip_tags($data['description']) : '';
@@ -65,24 +70,44 @@ class InternalReportController extends Controller
             $attachmentContent = null;
             $attachmentName = null;
             $attachmentMime = null;
+            $attachmentDownloadUrl = null;
             $tempPath = null;
 
             if ($file) {
-                $path = $file->getRealPath();
-                if ($path && is_readable($path)) {
-                    $attachmentContent = file_get_contents($path);
+                $attachmentName = $file->getClientOriginalName();
+                $attachmentMime = $file->getMimeType() ?: 'application/octet-stream';
+
+                // Prefer S3/R2: store file and send download link in email (no size/timeout issues)
+                try {
+                    $disk = Storage::disk('s3');
+                    $path = $disk->putFileAs(
+                        'internal-feedback/' . now()->format('Y-m-d'),
+                        $file,
+                        Str::uuid() . '_' . $file->getClientOriginalName(),
+                        'private'
+                    );
+                    $attachmentDownloadUrl = $disk->temporaryUrl($path, now()->addDays(7));
+                    Log::info('Internal Feedback: attachment stored to S3/R2, email will contain download link.', ['filename' => $attachmentName]);
+                } catch (\Throwable $e) {
+                    Log::warning('Internal Feedback: S3/R2 store failed, falling back to in-memory attachment.', ['message' => $e->getMessage()]);
                 }
-                if ($attachmentContent === false || $attachmentContent === null) {
-                    $stored = $file->store('temp', ['disk' => 'local']);
-                    if ($stored) {
-                        $tempPath = storage_path('app/' . $stored);
-                        $attachmentContent = @file_get_contents($tempPath) ?: null;
+
+                // Fallback: in-memory attachment when S3 not used or failed
+                if ($attachmentDownloadUrl === null) {
+                    $path = $file->getRealPath();
+                    if ($path && is_readable($path)) {
+                        $attachmentContent = file_get_contents($path);
                     }
-                }
-                if ($attachmentContent !== null && $attachmentContent !== false) {
-                    $attachmentName = $file->getClientOriginalName();
-                    $attachmentMime = $file->getMimeType() ?: 'application/octet-stream';
-                    Log::info('Internal Feedback: sending with attachment (in-memory).', ['filename' => $attachmentName]);
+                    if ($attachmentContent === false || $attachmentContent === null) {
+                        $stored = $file->store('temp', ['disk' => 'local']);
+                        if ($stored) {
+                            $tempPath = Storage::disk('local')->path($stored);
+                            $attachmentContent = @file_get_contents($tempPath) ?: null;
+                        }
+                    }
+                    if ($attachmentContent !== null && $attachmentContent !== false) {
+                        Log::info('Internal Feedback: sending with in-memory attachment.', ['filename' => $attachmentName]);
+                    }
                 }
             }
 
@@ -96,6 +121,7 @@ class InternalReportController extends Controller
                 attachmentContent: $attachmentContent,
                 attachmentName: $attachmentName,
                 attachmentMime: $attachmentMime,
+                attachmentDownloadUrl: $attachmentDownloadUrl,
             );
 
             Mail::mailer('resend')->to($to)->send($mailable);
