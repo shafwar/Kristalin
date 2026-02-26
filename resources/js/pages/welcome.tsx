@@ -180,8 +180,10 @@ const Welcome = () => {
 
     // Main Content
     return (
-        <>
-            <Head title="Home" />
+            <>
+            <Head title="Home">
+                <meta name="description" content={t('pages.welcome.description')} />
+            </Head>
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
                 {/* Splash Screen */}
                 {showLoadingScreen && (
