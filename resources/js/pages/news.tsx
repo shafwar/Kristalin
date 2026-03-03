@@ -2098,7 +2098,7 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'AKURAT.CO',
                             sourceUrl:
                                 'https://www.akurat.co/daerah/833630/ketua-dewan-adat-7-wilayah-sub-suku-meyah-terima-mobil-operasional-untuk-kegiatan-masyarakat',
-                            image: 'february news 01.jpg',
+                            image: 'february-news-01.jpg',
                             content: '',
                         },
                     },
@@ -2121,7 +2121,7 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             author: 'Tim Redaksi',
                             source: 'Info Tangerang',
                             sourceUrl: 'https://infotangerang.co.id/harga-emas-melambung-kisara-capital-ekspansi-besar-besaran-di-ekosistem-hilir/',
-                            image: 'News february 2 .jpg',
+                            image: 'News-february-2.jpg',
                             content: '',
                         },
                     },

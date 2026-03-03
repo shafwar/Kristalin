@@ -2,55 +2,50 @@
 
 Gambar berita Februari 2026 harus ada di R2 agar tampil di production (kristalin.co.id).
 
-## 1. february news 01.jpg (artikel feb26-1)
+## 1. february-news-01.jpg (artikel feb26-1)
 
-## Pola URL (konsisten dengan gambar lain)
+Nama file tanpa spasi agar URL CDN tidak terpotong (ext .jpg tetap utuh).
 
-- **Di code:** `image: 'february news 01.jpg'` (sama seperti `'metronews_desember.jpeg'`, `'sept1.jpg'`, dll.)
-- **imageUrl()** menghasilkan: `{VITE_ASSET_BASE_URL}/public/february%20news%2001.jpg`  
-  (bila `VITE_ASSET_BASE_URL` kosong: `/images/public/february%20news%2001.jpg` → proxy Laravel ke R2)
-- **Key di R2:** `public/february news 01.jpg` (sama seperti aset lain di `public/`)
+- **Di code:** `image: 'february-news-01.jpg'`
+- **URL CDN:** `{VITE_ASSET_BASE_URL}/public/february-news-01.jpg`
+- **Key di R2:** `public/february-news-01.jpg`
 
-## Cara push ke R2
-
-Lakukan di lingkungan yang sudah pakai R2 (`FILESYSTEM_DISK=s3`), misalnya **Railway** atau lokal dengan `.env` R2.
-
-### Opsi 1: Push satu file (disarankan)
+### Push ke R2
 
 ```bash
-php artisan r2:push-file "kristalin-assets/public/february news 01.jpg"
+php artisan r2:push-file "kristalin-assets/public/february-news-01.jpg"
 ```
 
-File lokal: `public/kristalin-assets/public/february news 01.jpg`  
-Upload ke R2 dengan key: `public/february news 01.jpg`
+File lokal: `public/kristalin-assets/public/february-news-01.jpg`
 
-### Opsi 2: Migrate semua file (termasuk yang baru)
+### Atau migrate semua
 
 ```bash
 php artisan r2:migrate
 ```
 
-File yang sudah ada di R2 akan di-skip; hanya file baru (termasuk `february news 01.jpg`) yang di-upload.
+---
 
-## Setelah push
+## 2. News-february-2.jpg (artikel feb26-2 – Kisara Capital)
 
-- Production (kristalin.co.id) akan mengambil gambar lewat:
-  - **AWS_URL / CDN:** `https://cdn.kristalin.co.id/public/february%20news%2001.jpg`
-  - atau **Proxy:** `https://kristalin.co.id/images/public/february%20news%2001.jpg` → redirect ke R2
+Nama file tanpa spasi agar URL CDN tidak terpotong.
 
-Tidak perlu ubah code; path di frontend sudah memakai pola yang sama dengan gambar berita lainnya.
+- **Di code:** `image: 'News-february-2.jpg'`
+- **URL CDN:** `{VITE_ASSET_BASE_URL}/public/News-february-2.jpg`
+- **Key di R2:** `public/News-february-2.jpg`
+
+### Push ke R2
+
+```bash
+php artisan r2:push-file "kristalin-assets/public/News-february-2.jpg"
+```
+
+File lokal: `public/kristalin-assets/public/News-february-2.jpg`
 
 ---
 
-## 2. News february 2 .jpg (artikel feb26-2 – Kisara Capital)
+## Setelah push
 
-- **Di code:** `image: 'News february 2 .jpg'`
-- **Key di R2:** `public/News february 2 .jpg`
-
-### Push satu file
-
-```bash
-php artisan r2:push-file "kristalin-assets/public/News february 2 .jpg"
-```
-
-File lokal: `public/kristalin-assets/public/News february 2 .jpg`
+Production akan memuat gambar lewat CDN, misalnya:
+- `https://cdn.kristalin.co.id/public/february-news-01.jpg`
+- `https://cdn.kristalin.co.id/public/News-february-2.jpg`
