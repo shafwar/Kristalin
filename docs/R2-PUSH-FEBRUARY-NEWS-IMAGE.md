@@ -8,7 +8,7 @@ Ikuti juga **IMAGE-IMPLEMENTATION-GUIDE.md** (path dengan leading slash, verifik
 Nama file tanpa spasi agar URL CDN tidak terpotong (ext .jpg tetap utuh).
 
 - **Di code:** `image: '/february-news-01.jpg'` (pakai leading slash sesuai panduan)
-- **URL CDN:** `{VITE_ASSET_BASE_URL}/public/february-news-01.jpg`
+- **URL CDN:** `https://cdn.kristalin.co.id/public/february-news-01.jpg` (selalu CDN)
 - **Key di R2:** `public/february-news-01.jpg`
 
 ### Push ke R2
@@ -32,7 +32,7 @@ php artisan r2:migrate
 Nama file tanpa spasi agar URL CDN tidak terpotong.
 
 - **Di code:** `image: '/News-february-2.jpg'` (pakai leading slash sesuai panduan)
-- **URL CDN:** `{VITE_ASSET_BASE_URL}/public/News-february-2.jpg`
+- **URL CDN:** `https://cdn.kristalin.co.id/public/News-february-2.jpg` (selalu CDN)
 - **Key di R2:** `public/News-february-2.jpg`
 
 ### Push ke R2
