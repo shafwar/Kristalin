@@ -11,23 +11,20 @@ image: '/metronews_desember.jpeg';
 image: '/agus2.jpg';
 ```
 
-### 1b. Render gambar di NewsDetail (wajib pakai imageUrl agar src selalu CDN)
+### 1b. Render gambar di NewsDetail (wajib pakai getArticleImageUrl agar src selalu CDN)
 
-Agar `src` selalu `https://cdn.kristalin.co.id/public/...` (bukan `kristalin.co.id/images/public/...`), saat render `<img>` untuk artikel wajib pakai `imageUrl()`:
+Agar `src` **selalu** `https://cdn.kristalin.co.id/public/...` (bukan `kristalin.co.id/images/public/...`), pakai **getArticleImageUrl()** dari `lib/assets`:
 
 ```typescript
-// ✅ BENAR: src dari imageUrl() agar selalu CDN
-<img
-  src={
-    newsItem.fullContent.image.startsWith('http')
-      ? newsItem.fullContent.image
-      : imageUrl(newsItem.fullContent.image)
-  }
-  onError={...}  // fallback ke /images/... jika CDN gagal
-/>
+import { getArticleImageUrl } from '../lib/assets';
+
+// ✅ BENAR: src selalu dinormalisasi ke CDN (bahkan jika value lama adalah URL /images/public/...)
+<img src={getArticleImageUrl(newsItem.fullContent.image)} onError={...} />
 ```
 
-Tanpa ini, bila env/build salah atau fallback sempat dipakai, user bisa melihat URL `kristalin.co.id/images/public/...` dan gambar tidak muncul.
+- **getArticleImageUrl(value)** mengembalikan URL CDN untuk path (`/file.jpg`) atau URL salah (`.../images/public/file.jpg`), sehingga initial src tidak pernah `kristalin.co.id/images/public/...`.
+- Jika CDN gagal (404), onError fallback ke proxy `/images/filename.jpg` (tanpa `public/` di path).
+- **Agar gambar benar-benar muncul:** file harus ada di R2 dengan key `public/filename.jpg` (jalankan `./scripts/push-images-to-r2.sh` atau `php artisan r2:push-file ...`).
 
 ### 2. Upload ke R2
 

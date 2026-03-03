@@ -36,3 +36,27 @@ export function imageUrl(path: string): string {
             : CDN_BASE;
     return `${useBase}/${encodedPath}`;
 }
+
+/**
+ * Untuk gambar artikel (NewsDetail): selalu kembalikan URL CDN.
+ * Jika value adalah path (/file.jpg) atau URL salah (kristalin.co.id/images/public/...),
+ * normalisasi ke https://cdn.kristalin.co.id/public/filename.
+ */
+export function getArticleImageUrl(value: string): string {
+    if (!value || typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    if (trimmed.startsWith(CDN_BASE + '/')) return trimmed;
+    if (trimmed.startsWith('http') && trimmed.includes('/images/public/')) {
+        try {
+            const u = new URL(trimmed);
+            const pathPart = u.pathname.replace(/^\//, '').replace(/^images\/public\//, '');
+            const filename = pathPart.replace(/^public\//, '');
+            return imageUrl('/' + filename);
+        } catch {
+            return imageUrl(trimmed);
+        }
+    }
+    if (trimmed.startsWith('http')) return trimmed;
+    return imageUrl(trimmed);
+}
