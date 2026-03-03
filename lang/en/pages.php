@@ -265,6 +265,10 @@ return [
             'highlight_badge' => 'HIGHLIGHT',
             'no_news_available' => 'No news available yet',
             'items' => [
+                'feb26-1' => [
+                    'title' => 'Head of Customary Council of 7 Meyah Sub-Tribe Regions Receives Operational Vehicle for Community Activities',
+                    'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) handed over one Toyota Hilux to Musa Mandacan, Head of the Customary Council of 7 Meyah Sub-Tribe Regions, as an operational vehicle to support community activities.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1313,6 +1317,10 @@ return [
                'title' => 'Decent House for Lomon Monei: Independence Gift from CSR Program',
                'excerpt' => 'As part of the 80th Independence Day celebration, PT Kristalin Ekalestari builds a livable house for Lomon Monei in Nifasi Village.',
            ],
+            'feb26_1' => [
+                'title' => 'Head of Customary Council of 7 Meyah Sub-Tribe Regions Receives Operational Vehicle for Community Activities',
+                'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) handed over one Toyota Hilux to Musa Mandacan, Head of the Customary Council of 7 Meyah Sub-Tribe Regions, as an operational vehicle to support community activities.',
+            ],
        ],
         'read_more' => 'Read More',
         'read_full' => 'Read Full Story',
@@ -1320,6 +1328,7 @@ return [
             'food_distribution' => 'Food Distribution',
             'education_support' => 'Education Support',
             'house_construction' => 'House Construction',
+            'community_support' => 'Community Activities Support',
         ],
     ],
     'contact' => [

@@ -259,6 +259,10 @@ return [
             'highlight_badge' => 'HIGHLIGHT',
             'no_news_available' => 'Belum ada berita tersedia',
             'items' => [
+                'feb26-1' => [
+                    'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
+                    'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1297,6 +1301,10 @@ return [
                 'title' => 'Rumah Layak Huni untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
                 'excerpt' => 'Sebagai bagian dari perayaan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi.',
             ],
+            'feb26_1' => [
+                'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
+                'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
+            ],
         ],
         'read_more' => 'Baca Selengkapnya',
         'read_full' => 'Baca Cerita Lengkap',
@@ -1304,6 +1312,7 @@ return [
             'food_distribution' => 'Distribusi Makanan',
             'education_support' => 'Dukungan Pendidikan',
             'house_construction' => 'Pembangunan Rumah',
+            'community_support' => 'Dukungan Kegiatan Masyarakat',
         ],
     ],
     'contact' => [

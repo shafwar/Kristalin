@@ -87,6 +87,14 @@ function VideoSection({ t }: { t: (key: string) => string }) {
 function CSRNewsSection({ t }: { t: (key: string) => string }) {
     const csrNews = [
         {
+            id: 'feb26-1',
+            title: t('pages.csr.news.feb26_1.title'),
+            excerpt: t('pages.csr.news.feb26_1.excerpt'),
+            date: '10 Feb 2026',
+            image: 'kristalin-assets/public/february news 01.jpg',
+            category: t('pages.csr.categories.community_support'),
+        },
+        {
             id: 'feb-7',
             title: t('pages.csr.news.feb_7.title'),
             excerpt: t('pages.csr.news.feb_7.excerpt'),

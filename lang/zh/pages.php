@@ -264,6 +264,10 @@ return [
             'highlight_badge' => '重点',
             'no_news_available' => '暂无新闻',
             'items' => [
+                'feb26-1' => [
+                    'title' => '7个Meyah亚部落地区传统委员会主席获社区活动用车',
+                    'excerpt' => 'PT Cidata Citra Papua（Kristalin Ekalestari集团）向7个Meyah亚部落地区传统委员会主席Musa Mandacan移交一辆丰田Hilux，作为支持社区活动的运营车辆。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1322,6 +1326,10 @@ return [
                 'title' => '为Lomon Monei提供体面房屋：CSR项目的独立日礼物',
                 'excerpt' => '作为第80个独立日庆祝活动的一部分，PT Kristalin Ekalestari为Nifasi村的Lomon Monei建造宜居房屋。',
             ],
+            'feb26_1' => [
+                'title' => '7个Meyah亚部落地区传统委员会主席获社区活动用车',
+                'excerpt' => 'PT Cidata Citra Papua（Kristalin Ekalestari集团）向7个Meyah亚部落地区传统委员会主席Musa Mandacan移交一辆丰田Hilux，作为支持社区活动的运营车辆。',
+            ],
         ],
         'read_more' => '阅读更多',
         'read_full' => '阅读完整故事',
@@ -1329,6 +1337,7 @@ return [
             'food_distribution' => '食品分发',
             'education_support' => '教育支持',
             'house_construction' => '房屋建设',
+            'community_support' => '社区活动支持',
         ],
     ],
     'contact' => [

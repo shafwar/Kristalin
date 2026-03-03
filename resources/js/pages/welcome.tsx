@@ -30,9 +30,18 @@ const Welcome = () => {
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
     const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false));
 
-    // 5 berita relevan dari news archive dengan December Rice Mill sebagai highlight utama
+    // 6 berita relevan dari news archive (termasuk Feb 2026 – mobil operasional Dewan Adat Meyah)
     // Menggunakan translation keys untuk konsistensi bahasa
     const newsItems = [
+        {
+            id: 'feb26-1',
+            date: '10 Feb 2026',
+            title: t('pages.welcome.news.items.feb26-1.title'),
+            excerpt: t('pages.welcome.news.items.feb26-1.excerpt'),
+            image: imageUrl('kristalin-assets/public/february news 01.jpg'),
+            url: '/news/feb26-1',
+            priority: 'high',
+        },
         {
             id: 'dec-3',
             date: '10 Dec 2025',

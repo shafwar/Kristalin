@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { motion, Variants } from 'framer-motion';
 import { Calendar, ChevronDown, Search } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
@@ -29,6 +29,13 @@ const getTranslatedMonth = (monthId: string, t: any) => {
     const translated = t(translationKey);
     // If translation returns the key itself, fallback to monthKey
     return translated !== translationKey ? translated : monthKey.toUpperCase();
+};
+
+// Helper to extract year from monthId (e.g. 'februari-2026' -> '2026')
+const getYearFromMonthId = (monthId: string): string => {
+    const parts = monthId.split('-');
+    const last = parts[parts.length - 1];
+    return /^\d{4}$/.test(last) ? last : new Date().getFullYear().toString();
 };
 
 // Helper function to get translated category title
@@ -7266,7 +7273,11 @@ const KristalinNewsPage: React.FC = () => {
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada',
             'investasi-dubai-blockchain-emas',
         ],
-        [t('pages.news.categories.community_development')]: ['csr-hut-ri-80-cidata-barat-papua', 'pemberitahuan-bantuan-dana-hak-garap'],
+        [t('pages.news.categories.community_development')]: [
+            'csr-hut-ri-80-cidata-barat-papua',
+            'pemberitahuan-bantuan-dana-hak-garap',
+            'mobil-operasional-dewan-adat-meyah',
+        ],
         [t('pages.news.categories.house_construction')]: [
             'pembangunan-rumah-nifasi-feb',
             'pembangunan-rumah-nelayan',
@@ -7301,6 +7312,18 @@ const KristalinNewsPage: React.FC = () => {
     };
 
     const filteredNewsData = getFilteredNewsData();
+
+    // Group months by year (descending: 2026 first, then 2025) for timeline with year labels
+    const newsDataByYear = (() => {
+        const byYear: { [year: string]: typeof filteredNewsData } = {};
+        filteredNewsData.forEach((monthData) => {
+            const year = getYearFromMonthId(monthData.monthId);
+            if (!byYear[year]) byYear[year] = [];
+            byYear[year].push(monthData);
+        });
+        const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+        return years.map((year) => ({ year, months: byYear[year] }));
+    })();
 
     // Handle category selection with smooth scroll
     const handleCategorySelect = (category: string) => {
@@ -7866,71 +7889,95 @@ const KristalinNewsPage: React.FC = () => {
                         {/* Elegant Timeline Line - Proportional */}
                         <div className="absolute top-0 bottom-0 left-6 w-0.5 rounded-full bg-gradient-to-b from-amber-400 via-amber-500 to-transparent shadow-lg sm:left-12 sm:w-1"></div>
 
-                        {/* Timeline Content - Optimized and Proportional */}
+                        {/* Timeline Content - Grouped by year (2026 first, then 2025) with year dot + label */}
                         <motion.div
                             className="space-y-6 sm:space-y-8 lg:space-y-12"
-                            key={selectedCategory} // This will trigger re-render when category changes
+                            key={selectedCategory}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                         >
-                            {filteredNewsData.map((monthData, monthIndex) => {
-                                const totalNews = monthData.categories.reduce((total, category) => total + category.newsItems.length, 0);
-                                const totalCategories = monthData.categories.length;
-
-                                return (
+                            {newsDataByYear.map((yearGroup, yearIndex) => (
+                                <Fragment key={yearGroup.year}>
+                                    {/* Year label row: dot + "2026" / "2025" */}
                                     <motion.div
-                                        key={monthData.monthId}
-                                        initial={{ opacity: 0, y: 40 }}
+                                        initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.8, delay: monthIndex * 0.15 }}
+                                        transition={{ duration: 0.6, delay: yearIndex * 0.1 }}
                                         className="relative"
                                     >
-                                        {/* Optimized Timeline Marker */}
-                                        <div className="absolute top-6 left-0 z-20 sm:top-8">
-                                            <motion.div
-                                                initial={{ scale: 0, rotate: -180 }}
-                                                whileInView={{ scale: 1, rotate: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.8, delay: monthIndex * 0.1 + 0.3 }}
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                                className="group cursor-pointer"
-                                            >
-                                                <div className="relative">
-                                                    <div className="h-6 w-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 shadow-lg ring-2 ring-white ring-offset-2 ring-offset-slate-50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-amber-200 sm:h-8 sm:w-8 sm:ring-4 sm:ring-offset-4"></div>
-                                                    <motion.div
-                                                        className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-600"
-                                                        animate={{
-                                                            scale: [1, 1.2, 1],
-                                                            opacity: [0.3, 0, 0.3],
-                                                        }}
-                                                        transition={{
-                                                            duration: 2.5,
-                                                            repeat: Infinity,
-                                                            ease: 'easeInOut',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </motion.div>
+                                        <div className="absolute top-5 left-0 z-20 sm:top-6">
+                                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-xs font-bold text-white shadow-lg ring-2 ring-white ring-offset-2 ring-offset-slate-50 sm:h-9 sm:w-9 sm:text-sm">
+                                                {yearGroup.year}
+                                            </div>
                                         </div>
-
-                                        {/* Optimized Month Section */}
                                         <div className="ml-16 sm:ml-24">
-                                            {/* Proportional Month Header */}
+                                            <h3 className="text-lg font-bold tracking-tight text-slate-800 sm:text-xl">
+                                                {yearGroup.year}
+                                            </h3>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Months in this year */}
+                                    {yearGroup.months.map((monthData, monthIndex) => {
+                                        const totalNews = monthData.categories.reduce((total, category) => total + category.newsItems.length, 0);
+                                        const totalCategories = monthData.categories.length;
+                                        const globalMonthIndex = newsDataByYear.slice(0, yearIndex).reduce((acc, g) => acc + g.months.length, 0) + monthIndex;
+
+                                        return (
                                             <motion.div
-                                                initial={{ opacity: 0, x: -30 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
+                                                key={monthData.monthId}
+                                                initial={{ opacity: 0, y: 40 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
                                                 viewport={{ once: true }}
-                                                transition={{ duration: 0.6, delay: 0.4 }}
-                                                className="mb-4 sm:mb-6"
+                                                transition={{ duration: 0.8, delay: globalMonthIndex * 0.15 }}
+                                                className="relative"
                                             >
-                                                <div className="rounded-xl border border-slate-200/50 bg-white/90 p-3 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-4">
-                                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                                                        <div className="min-w-0 flex-1">
-                                                            <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-                                                                {getTranslatedMonth(monthData.monthId, t)}
-                                                            </h3>
+                                                {/* Optimized Timeline Marker */}
+                                                <div className="absolute top-6 left-0 z-20 sm:top-8">
+                                                    <motion.div
+                                                        initial={{ scale: 0, rotate: -180 }}
+                                                        whileInView={{ scale: 1, rotate: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.8, delay: globalMonthIndex * 0.1 + 0.3 }}
+                                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                                        className="group cursor-pointer"
+                                                    >
+                                                        <div className="relative">
+                                                            <div className="h-6 w-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 shadow-lg ring-2 ring-white ring-offset-2 ring-offset-slate-50 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-amber-200 sm:h-8 sm:w-8 sm:ring-4 sm:ring-offset-4"></div>
+                                                            <motion.div
+                                                                className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-600"
+                                                                animate={{
+                                                                    scale: [1, 1.2, 1],
+                                                                    opacity: [0.3, 0, 0.3],
+                                                                }}
+                                                                transition={{
+                                                                    duration: 2.5,
+                                                                    repeat: Infinity,
+                                                                    ease: 'easeInOut',
+                                                                }}
+                                                            />
+                                                        </div>
+                                                    </motion.div>
+                                                </div>
+
+                                                {/* Optimized Month Section */}
+                                                <div className="ml-16 sm:ml-24">
+                                                    {/* Proportional Month Header */}
+                                                    <motion.div
+                                                        initial={{ opacity: 0, x: -30 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.6, delay: 0.4 }}
+                                                        className="mb-4 sm:mb-6"
+                                                    >
+                                                        <div className="rounded-xl border border-slate-200/50 bg-white/90 p-3 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-4">
+                                                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                                                <div className="min-w-0 flex-1">
+                                                                    <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                                                                        {getTranslatedMonth(monthData.monthId, t)}
+                                                                    </h3>
                                                             <p className="text-sm font-medium text-slate-600 sm:text-base">
                                                                 {totalNews} {t('pages.news.archive.articles_count')} {totalCategories}{' '}
                                                                 {t('pages.news.archive.categories_count')}
@@ -8154,7 +8201,10 @@ const KristalinNewsPage: React.FC = () => {
                                         </div>
                                     </motion.div>
                                 );
-                            })}
+                                    }
+                                    )}
+                                </Fragment>
+                            ))}
                         </motion.div>
                     </div>
                 </div>
