@@ -2096,7 +2096,7 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'AKURAT.CO',
                             sourceUrl:
                                 'https://www.akurat.co/daerah/833630/ketua-dewan-adat-7-wilayah-sub-suku-meyah-terima-mobil-operasional-untuk-kegiatan-masyarakat',
-                            image: 'kristalin-assets/public/february news 01.jpg',
+                            image: 'february news 01.jpg',
                             content: '',
                         },
                     },

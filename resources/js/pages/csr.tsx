@@ -91,7 +91,7 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             title: t('pages.csr.news.feb26_1.title'),
             excerpt: t('pages.csr.news.feb26_1.excerpt'),
             date: '10 Feb 2026',
-            image: 'kristalin-assets/public/february news 01.jpg',
+            image: 'february news 01.jpg',
             category: t('pages.csr.categories.community_support'),
         },
         {

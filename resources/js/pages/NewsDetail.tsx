@@ -92,7 +92,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.jun1_education_funding.date'),
                     content: getJun1TranslatedContent(),
                 };
-            case 'jun-2': 
+            case 'jun-2':
                 return {
                     title: t('news_detail.jun2_csr_education_funding.title'),
                     excerpt: t('news_detail.jun2_csr_education_funding.excerpt'),

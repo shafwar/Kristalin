@@ -38,7 +38,7 @@ const Welcome = () => {
             date: '10 Feb 2026',
             title: t('pages.welcome.news.items.feb26-1.title'),
             excerpt: t('pages.welcome.news.items.feb26-1.excerpt'),
-            image: imageUrl('kristalin-assets/public/february news 01.jpg'),
+            image: imageUrl('february news 01.jpg'),
             url: '/news/feb26-1',
             priority: 'high',
         },
