@@ -11,6 +11,24 @@ image: '/metronews_desember.jpeg';
 image: '/agus2.jpg';
 ```
 
+### 1b. Render gambar di NewsDetail (wajib pakai imageUrl agar src selalu CDN)
+
+Agar `src` selalu `https://cdn.kristalin.co.id/public/...` (bukan `kristalin.co.id/images/public/...`), saat render `<img>` untuk artikel wajib pakai `imageUrl()`:
+
+```typescript
+// ✅ BENAR: src dari imageUrl() agar selalu CDN
+<img
+  src={
+    newsItem.fullContent.image.startsWith('http')
+      ? newsItem.fullContent.image
+      : imageUrl(newsItem.fullContent.image)
+  }
+  onError={...}  // fallback ke /images/... jika CDN gagal
+/>
+```
+
+Tanpa ini, bila env/build salah atau fallback sempat dipakai, user bisa melihat URL `kristalin.co.id/images/public/...` dan gambar tidak muncul.
+
 ### 2. Upload ke R2
 
 File harus di-upload ke R2 dengan **DUA path**:
@@ -122,9 +140,10 @@ curl -I "https://cdn.kristalin.co.id/public/filename.jpg"
 
 **Yang menyebabkan gambar tidak muncul:**
 
-- ❌ VITE_ASSET_BASE_URL diubah ke `/images`
+- ❌ VITE_ASSET_BASE_URL diubah ke `/images` atau pakai `.../images`
 - ❌ File tidak di-upload ke R2 dengan path `public/`
 - ❌ Path di code salah (pakai prefix)
+- ❌ Di NewsDetail: render `<img src={fullContent.image}>` tanpa `imageUrl()` → bisa dapat URL salah (mis. `kristalin.co.id/images/public/...`). Harus: `src={imageUrl(fullContent.image)}` atau cek `startsWith('http')` lalu imageUrl(path).
 
 ---
 

@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import { useTranslation, type UseTranslationReturn } from '../hooks/useTranslation';
 
 // Import news data from the main news page
+import { imageUrl } from '../lib/assets';
 import { NewsCategory, newsData, NewsItem } from './news';
 
 interface NewsDetailProps {
@@ -7920,11 +7921,15 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/50"
                     >
-                        {/* Enhanced Article Image - fallback to /images proxy if CDN fails (per IMAGE-IMPLEMENTATION-GUIDE) */}
+                        {/* Enhanced Article Image - selalu CDN (imageUrl); fallback ke /images proxy jika CDN gagal (IMAGE-IMPLEMENTATION-GUIDE) */}
                         {newsItem.fullContent.image && (
                             <div className="group relative overflow-hidden bg-gray-100">
                                 <img
-                                    src={newsItem.fullContent.image}
+                                    src={
+                                        newsItem.fullContent.image.startsWith('http')
+                                            ? newsItem.fullContent.image
+                                            : imageUrl(newsItem.fullContent.image)
+                                    }
                                     alt={getTranslatedContent(id)?.title || newsItem.fullContent.title}
                                     className="h-64 w-full object-contain object-center transition-transform duration-500 group-hover:scale-105 sm:h-80"
                                     onError={(e) => {
