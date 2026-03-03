@@ -11,6 +11,7 @@ import { imageUrl } from '../lib/assets';
 const getTranslatedMonth = (monthId: string, t: any) => {
     const monthMap: { [key: string]: string } = {
         'februari-2025': 'februari',
+        'februari-2026': 'februari',
         'maret-2025': 'maret',
         'juni-2025': 'juni',
         'juli-2025': 'juli',
@@ -85,6 +86,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'dec-1': 'dec_abs_rice_mill_1',
         'dec-2': 'dec_abs_rice_mill_2',
         'dec-3': 'dec_abs_rice_mill_3',
+        'feb26-1': 'feb26_meyah_vehicle',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -138,6 +140,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'dec-1': 'dec_abs_rice_mill_1',
         'dec-2': 'dec_abs_rice_mill_2',
         'dec-3': 'dec_abs_rice_mill_3',
+        'feb26-1': 'feb26_meyah_vehicle',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2058,6 +2061,36 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                                     </div>
                                 </div>
                             `,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        month: 'FEBRUARI',
+        monthId: 'februari-2026',
+        categories: [
+            {
+                id: 'mobil-operasional-dewan-adat-meyah',
+                title: 'Mobil Operasional untuk Kegiatan Masyarakat',
+                newsItems: [
+                    {
+                        id: 'feb26-1',
+                        title: 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
+                        date: '10 Feb 2026',
+                        url: '/news/feb26-1',
+                        excerpt:
+                            'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
+                        fullContent: {
+                            title: 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
+                            date: '10 Februari 2026',
+                            author: 'Tim Redaksi',
+                            source: 'AKURAT.CO',
+                            sourceUrl:
+                                'https://www.akurat.co/daerah/833630/ketua-dewan-adat-7-wilayah-sub-suku-meyah-terima-mobil-operasional-untuk-kegiatan-masyarakat',
+                            image: 'kristalin-assets/public/february news 01.jpg',
+                            content: '',
                         },
                     },
                 ],

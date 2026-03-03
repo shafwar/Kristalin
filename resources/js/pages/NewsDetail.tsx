@@ -92,7 +92,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.jun1_education_funding.date'),
                     content: getJun1TranslatedContent(),
                 };
-            case 'jun-2':
+            case 'jun-2': 
                 return {
                     title: t('news_detail.jun2_csr_education_funding.title'),
                     excerpt: t('news_detail.jun2_csr_education_funding.excerpt'),
@@ -341,6 +341,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     source: t('news_detail.dec_abs_rice_mill_3.source'),
                     date: t('news_detail.dec_abs_rice_mill_3.date'),
                     content: getDecRiceMill3TranslatedContent(),
+                };
+            case 'feb26-1':
+                return {
+                    title: t('news_detail.feb26_meyah_vehicle.title'),
+                    excerpt: t('news_detail.feb26_meyah_vehicle.excerpt'),
+                    categoryTitle: t('news_archive.categories.mobil-operasional-dewan-adat-meyah'),
+                    author: t('news_detail.feb26_meyah_vehicle.author'),
+                    source: t('news_detail.feb26_meyah_vehicle.source'),
+                    date: t('news_detail.feb26_meyah_vehicle.date'),
+                    content: getFeb26MeyahVehicleTranslatedContent(),
                 };
             default:
                 return null;
@@ -7553,6 +7563,83 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                 <p class="text-xs font-medium text-gray-600">Foto: Metro TV News</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    // February 2026 - Meyah Customary Council operational vehicle
+    const getFeb26MeyahVehicleTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        </svg>
+                        ${t('news_detail.feb26_meyah_vehicle.opening_title')}
+                    </h3>
+                    <p class="text-blue-800 leading-relaxed text-base">
+                        ${t('news_detail.feb26_meyah_vehicle.opening_content')}
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.handover_title')}</h3>
+                    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-6 border border-amber-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_meyah_vehicle.handover_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.commitment_title')}</h3>
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.feb26_meyah_vehicle.commitment_content')}
+                        </p>
+                        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                            <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_meyah_vehicle.quote_teguh')}"</blockquote>
+                            <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.feb26_meyah_vehicle.quote_citation')}</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.role_title')}</h3>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_meyah_vehicle.role_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.previous_aid_title')}</h3>
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_meyah_vehicle.previous_aid_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.future_title')}</h3>
+                    <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_meyah_vehicle.future_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_meyah_vehicle.iup_title')}</h3>
+                    <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_meyah_vehicle.iup_content')}
+                        </p>
                     </div>
                 </div>
             </div>
