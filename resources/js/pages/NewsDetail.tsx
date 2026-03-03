@@ -7921,7 +7921,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/50"
                     >
-                        {/* Gambar artikel: selalu src CDN (getArticleImageUrl); fallback ke proxy /images/ jika CDN gagal */}
+                        {/* Gambar artikel: CDN → proxy /images/ → static /kristalin-assets/public/ (konsistensi tampil) */}
                         {newsItem.fullContent.image && (
                             <div className="group relative overflow-hidden bg-gray-100">
                                 <img
@@ -7929,14 +7929,21 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                                     alt={getTranslatedContent(id)?.title || newsItem.fullContent.title}
                                     className="h-64 w-full object-contain object-center transition-transform duration-500 group-hover:scale-105 sm:h-80"
                                     onError={(e) => {
-                                        const target = e.currentTarget;
-                                        if ((target as HTMLImageElement).dataset.fallbackTried) return;
+                                        const target = e.currentTarget as HTMLImageElement;
+                                        const tried = parseInt(target.dataset.fallbackTried || '0', 10);
                                         try {
                                             const u = new URL(target.src);
                                             let pathPart = u.pathname.replace(/^\//, '');
                                             if (pathPart.startsWith('public/')) pathPart = pathPart.slice(7);
-                                            (target as HTMLImageElement).dataset.fallbackTried = '1';
-                                            target.src = `${window.location.origin}/images/${pathPart}`;
+                                            if (pathPart.startsWith('images/')) pathPart = pathPart.slice(7);
+                                            const filename = pathPart.replace(/^kristalin-assets\/public\//, '');
+                                            if (tried === 0) {
+                                                target.dataset.fallbackTried = '1';
+                                                target.src = `${window.location.origin}/images/${filename}`;
+                                            } else if (tried === 1) {
+                                                target.dataset.fallbackTried = '2';
+                                                target.src = `${window.location.origin}/kristalin-assets/public/${filename}`;
+                                            }
                                         } catch {
                                             // ignore
                                         }

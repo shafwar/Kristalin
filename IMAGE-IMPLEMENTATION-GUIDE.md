@@ -23,8 +23,8 @@ import { getArticleImageUrl } from '../lib/assets';
 ```
 
 - **getArticleImageUrl(value)** mengembalikan URL CDN untuk path (`/file.jpg`) atau URL salah (`.../images/public/file.jpg`), sehingga initial src tidak pernah `kristalin.co.id/images/public/...`.
-- Jika CDN gagal (404), onError fallback ke proxy `/images/filename.jpg` (tanpa `public/` di path).
-- **Agar gambar benar-benar muncul:** file harus ada di R2 dengan key `public/filename.jpg` (jalankan `./scripts/push-images-to-r2.sh` atau `php artisan r2:push-file ...`).
+- **Urutan fallback (agar gambar konsisten muncul):** 1) CDN → 2) proxy `/images/filename` → 3) file statis `/kristalin-assets/public/filename`. Jadi bila R2/proxy gagal, gambar tetap bisa dari `public/kristalin-assets/public/` (pastikan file ada di repo dan ikut deploy).
+- **Agar gambar dari CDN:** push ke R2 (`./scripts/push-images-to-r2.sh`). Agar fallback statis jalan: simpan file di `public/kristalin-assets/public/filename.jpg` dan commit.
 
 ### 2. Upload ke R2
 
