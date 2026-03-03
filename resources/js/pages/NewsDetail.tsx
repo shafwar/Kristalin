@@ -7920,13 +7920,25 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/50"
                     >
-                        {/* Enhanced Article Image */}
+                        {/* Enhanced Article Image - fallback to /images proxy if CDN fails (per IMAGE-IMPLEMENTATION-GUIDE) */}
                         {newsItem.fullContent.image && (
                             <div className="group relative overflow-hidden bg-gray-100">
                                 <img
                                     src={newsItem.fullContent.image}
                                     alt={getTranslatedContent(id)?.title || newsItem.fullContent.title}
                                     className="h-64 w-full object-contain object-center transition-transform duration-500 group-hover:scale-105 sm:h-80"
+                                    onError={(e) => {
+                                        const target = e.currentTarget;
+                                        if ((target as HTMLImageElement).dataset.fallbackTried) return;
+                                        try {
+                                            const u = new URL(target.src);
+                                            const pathPart = u.pathname.replace(/^\//, '');
+                                            (target as HTMLImageElement).dataset.fallbackTried = '1';
+                                            target.src = `${window.location.origin}/images/${pathPart}`;
+                                        } catch {
+                                            // ignore
+                                        }
+                                    }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                                 <div className="absolute right-3 bottom-3 left-3">

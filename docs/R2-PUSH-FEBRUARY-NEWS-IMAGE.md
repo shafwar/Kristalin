@@ -1,12 +1,13 @@
 # Push gambar berita Februari ke R2
 
-Gambar berita Februari 2026 harus ada di R2 agar tampil di production (kristalin.co.id).
+Gambar berita Februari 2026 harus ada di R2 agar tampil di production (kristalin.co.id).  
+Ikuti juga **IMAGE-IMPLEMENTATION-GUIDE.md** (path dengan leading slash, verifikasi URL).
 
 ## 1. february-news-01.jpg (artikel feb26-1)
 
 Nama file tanpa spasi agar URL CDN tidak terpotong (ext .jpg tetap utuh).
 
-- **Di code:** `image: 'february-news-01.jpg'`
+- **Di code:** `image: '/february-news-01.jpg'` (pakai leading slash sesuai panduan)
 - **URL CDN:** `{VITE_ASSET_BASE_URL}/public/february-news-01.jpg`
 - **Key di R2:** `public/february-news-01.jpg`
 
@@ -30,7 +31,7 @@ php artisan r2:migrate
 
 Nama file tanpa spasi agar URL CDN tidak terpotong.
 
-- **Di code:** `image: 'News-february-2.jpg'`
+- **Di code:** `image: '/News-february-2.jpg'` (pakai leading slash sesuai panduan)
 - **URL CDN:** `{VITE_ASSET_BASE_URL}/public/News-february-2.jpg`
 - **Key di R2:** `public/News-february-2.jpg`
 

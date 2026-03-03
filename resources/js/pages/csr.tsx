@@ -91,7 +91,7 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             title: t('pages.csr.news.feb26_1.title'),
             excerpt: t('pages.csr.news.feb26_1.excerpt'),
             date: '10 Feb 2026',
-            image: 'february-news-01.jpg',
+            image: '/february-news-01.jpg',
             category: t('pages.csr.categories.community_support'),
         },
         {
@@ -99,7 +99,7 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             title: t('pages.csr.news.feb26_2.title'),
             excerpt: t('pages.csr.news.feb26_2.excerpt'),
             date: '4 Feb 2026',
-            image: 'News-february-2.jpg',
+            image: '/News-february-2.jpg',
             category: t('pages.csr.categories.community_support'),
         },
         {
