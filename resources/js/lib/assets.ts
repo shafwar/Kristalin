@@ -1,8 +1,12 @@
 const rawBase = import.meta.env.VITE_ASSET_BASE_URL as string | undefined;
 const rawPrefix = import.meta.env.VITE_ASSET_PREFIX as string | undefined;
 
-// Normalize base path (allows full URL or /images proxy)
-const assetBase = (rawBase && rawBase.trim() !== '' ? rawBase : '/images').replace(/\/+$/, '');
+// Normalize base: CDN must be cdn.kristalin.co.id/public/... (NOT cdn/.../images/public/...)
+// Working images use https://cdn.kristalin.co.id/public/506paket1.jpg - so base must NOT end with /images
+let assetBase = (rawBase && rawBase.trim() !== '' ? rawBase : '/images').replace(/\/+$/, '');
+if (assetBase.includes('cdn.kristalin.co.id') && assetBase.endsWith('/images')) {
+    assetBase = assetBase.replace(/\/images$/i, '');
+}
 // Normalize object prefix (default to "public")
 const assetPrefix = (rawPrefix && rawPrefix.trim() !== '' ? rawPrefix : 'public').replace(/^\/+|\/+$/g, '');
 

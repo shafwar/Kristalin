@@ -46,12 +46,15 @@ FILESYSTEM_DISK=s3
 
 ## ❌ YANG TIDAK BOLEH (DON'T)
 
-### ❌ JANGAN ubah VITE_ASSET_BASE_URL
+### ❌ JANGAN ubah VITE_ASSET_BASE_URL (dan jangan pakai /images di CDN)
 
 ```
 ❌ VITE_ASSET_BASE_URL=/images  # Ini akan break semua gambar!
-✅ VITE_ASSET_BASE_URL=https://cdn.kristalin.co.id  # Tetap ini!
+❌ VITE_ASSET_BASE_URL=https://cdn.kristalin.co.id/images  # URL jadi cdn/images/public/... → gambar tidak muncul!
+✅ VITE_ASSET_BASE_URL=https://cdn.kristalin.co.id  # Pola yang benar: cdn/public/namafile (sama seperti 506paket1.jpg)
 ```
+
+Kode di `assets.ts` akan otomatis membuang `/images` dari base CDN agar URL selalu `https://cdn.kristalin.co.id/public/namafile`.
 
 ### ❌ JANGAN pakai path dengan prefix di code
 
