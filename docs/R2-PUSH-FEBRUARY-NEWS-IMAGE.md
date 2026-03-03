@@ -1,6 +1,8 @@
-# Push gambar Februari (february news 01.jpg) ke R2
+# Push gambar berita Februari ke R2
 
-Gambar berita Februari 2026 (`february news 01.jpg`) harus ada di R2 agar tampil di production (kristalin.co.id).
+Gambar berita Februari 2026 harus ada di R2 agar tampil di production (kristalin.co.id).
+
+## 1. february news 01.jpg (artikel feb26-1)
 
 ## Pola URL (konsisten dengan gambar lain)
 
@@ -37,3 +39,18 @@ File yang sudah ada di R2 akan di-skip; hanya file baru (termasuk `february news
   - atau **Proxy:** `https://kristalin.co.id/images/public/february%20news%2001.jpg` → redirect ke R2
 
 Tidak perlu ubah code; path di frontend sudah memakai pola yang sama dengan gambar berita lainnya.
+
+---
+
+## 2. News february 2 .jpg (artikel feb26-2 – Kisara Capital)
+
+- **Di code:** `image: 'News february 2 .jpg'`
+- **Key di R2:** `public/News february 2 .jpg`
+
+### Push satu file
+
+```bash
+php artisan r2:push-file "kristalin-assets/public/News february 2 .jpg"
+```
+
+File lokal: `public/kristalin-assets/public/News february 2 .jpg`

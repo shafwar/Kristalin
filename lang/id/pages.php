@@ -263,6 +263,10 @@ return [
                     'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
                     'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
                 ],
+                'feb26-2' => [
+                    'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
+                    'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1304,6 +1308,10 @@ return [
             'feb26_1' => [
                 'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
                 'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
+            ],
+            'feb26_2' => [
+                'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
+                'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

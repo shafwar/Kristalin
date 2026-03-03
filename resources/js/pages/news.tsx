@@ -94,6 +94,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'dec-2': 'dec_abs_rice_mill_2',
         'dec-3': 'dec_abs_rice_mill_3',
         'feb26-1': 'feb26_meyah_vehicle',
+        'feb26-2': 'feb26_kisara_gold',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -148,6 +149,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'dec-2': 'dec_abs_rice_mill_2',
         'dec-3': 'dec_abs_rice_mill_3',
         'feb26-1': 'feb26_meyah_vehicle',
+        'feb26-2': 'feb26_kisara_gold',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2097,6 +2099,29 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             sourceUrl:
                                 'https://www.akurat.co/daerah/833630/ketua-dewan-adat-7-wilayah-sub-suku-meyah-terima-mobil-operasional-untuk-kegiatan-masyarakat',
                             image: 'february news 01.jpg',
+                            content: '',
+                        },
+                    },
+                ],
+            },
+            {
+                id: 'ekspansi-kisara-capital-emas',
+                title: 'Ekspansi Kisara Capital di Ekosistem Emas',
+                newsItems: [
+                    {
+                        id: 'feb26-2',
+                        title: 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
+                        date: '4 Feb 2026',
+                        url: '/news/feb26-2',
+                        excerpt:
+                            'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
+                        fullContent: {
+                            title: 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
+                            date: '4 Februari 2026',
+                            author: 'Tim Redaksi',
+                            source: 'Info Tangerang',
+                            sourceUrl: 'https://infotangerang.co.id/harga-emas-melambung-kisara-capital-ekspansi-besar-besaran-di-ekosistem-hilir/',
+                            image: 'News february 2 .jpg',
                             content: '',
                         },
                     },
@@ -7272,6 +7297,7 @@ const KristalinNewsPage: React.FC = () => {
         [t('pages.news.categories.csr_initiative')]: [
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada',
             'investasi-dubai-blockchain-emas',
+            'ekspansi-kisara-capital-emas',
         ],
         [t('pages.news.categories.community_development')]: [
             'csr-hut-ri-80-cidata-barat-papua',

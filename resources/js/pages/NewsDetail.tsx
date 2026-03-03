@@ -352,6 +352,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.feb26_meyah_vehicle.date'),
                     content: getFeb26MeyahVehicleTranslatedContent(),
                 };
+            case 'feb26-2':
+                return {
+                    title: t('news_detail.feb26_kisara_gold.title'),
+                    excerpt: t('news_detail.feb26_kisara_gold.excerpt'),
+                    categoryTitle: t('news_archive.categories.ekspansi-kisara-capital-emas'),
+                    author: t('news_detail.feb26_kisara_gold.author'),
+                    source: t('news_detail.feb26_kisara_gold.source'),
+                    date: t('news_detail.feb26_kisara_gold.date'),
+                    content: getFeb26KisaraGoldTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7640,6 +7650,84 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         <p class="text-base leading-relaxed text-gray-800">
                             ${t('news_detail.feb26_meyah_vehicle.iup_content')}
                         </p>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    // February 2026 - Kisara Capital gold ecosystem expansion (paraphrased from Info Tangerang)
+    const getFeb26KisaraGoldTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-6 border border-amber-100">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3 flex items-center gap-2">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                        ${t('news_detail.feb26_kisara_gold.opening_title')}
+                    </h3>
+                    <p class="text-amber-800 leading-relaxed text-base">
+                        ${t('news_detail.feb26_kisara_gold.opening_content')}
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.ceo_title')}</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_kisara_gold.ceo_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.focus_title')}</h3>
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_kisara_gold.focus_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.strategy_title')}</h3>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_kisara_gold.strategy_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.business_lines_title')}</h3>
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-200">
+                        <p class="text-base leading-relaxed text-gray-800 mb-4">
+                            ${t('news_detail.feb26_kisara_gold.business_lines_intro')}
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-800">
+                            <li>${t('news_detail.feb26_kisara_gold.line_refinery')}</li>
+                            <li>${t('news_detail.feb26_kisara_gold.line_minting')}</li>
+                            <li>${t('news_detail.feb26_kisara_gold.line_brand')}</li>
+                            <li>${t('news_detail.feb26_kisara_gold.line_retail')}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.optimism_title')}</h3>
+                    <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-200">
+                        <p class="text-base leading-relaxed text-gray-800">
+                            ${t('news_detail.feb26_kisara_gold.optimism_content')}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kisara_gold.quote_title')}</h3>
+                    <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                        <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_kisara_gold.quote')}"</blockquote>
+                        <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.feb26_kisara_gold.quote_citation')}</cite>
                     </div>
                 </div>
             </div>

@@ -268,6 +268,10 @@ return [
                     'title' => '7个Meyah亚部落地区传统委员会主席获社区活动用车',
                     'excerpt' => 'PT Cidata Citra Papua（Kristalin Ekalestari集团）向7个Meyah亚部落地区传统委员会主席Musa Mandacan移交一辆丰田Hilux，作为支持社区活动的运营车辆。',
                 ],
+                'feb26-2' => [
+                    'title' => '金价上涨，Kisara Capital加强下游生态系统扩张',
+                    'excerpt' => 'Kisara Capital表示承诺在2026年将黄金产业生态系统从上游扩展至下游，金价上涨趋势为行业参与者带来积极信号。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1329,6 +1333,10 @@ return [
             'feb26_1' => [
                 'title' => '7个Meyah亚部落地区传统委员会主席获社区活动用车',
                 'excerpt' => 'PT Cidata Citra Papua（Kristalin Ekalestari集团）向7个Meyah亚部落地区传统委员会主席Musa Mandacan移交一辆丰田Hilux，作为支持社区活动的运营车辆。',
+            ],
+            'feb26_2' => [
+                'title' => '金价上涨，Kisara Capital加强下游生态系统扩张',
+                'excerpt' => 'Kisara Capital表示承诺在2026年将黄金产业生态系统从上游扩展至下游，金价上涨趋势为行业参与者带来积极信号。',
             ],
         ],
         'read_more' => '阅读更多',

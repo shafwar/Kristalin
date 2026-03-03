@@ -269,6 +269,10 @@ return [
                     'title' => 'Head of Customary Council of 7 Meyah Sub-Tribe Regions Receives Operational Vehicle for Community Activities',
                     'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) handed over one Toyota Hilux to Musa Mandacan, Head of the Customary Council of 7 Meyah Sub-Tribe Regions, as an operational vehicle to support community activities.',
                 ],
+                'feb26-2' => [
+                    'title' => 'Gold Prices Rise, Kisara Capital Strengthens Downstream Ecosystem Expansion',
+                    'excerpt' => 'Kisara Capital has stated its commitment to expanding the gold industry ecosystem from upstream to downstream in 2026, amid a rising gold price trend that signals positive momentum for industry players.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1320,6 +1324,10 @@ return [
             'feb26_1' => [
                 'title' => 'Head of Customary Council of 7 Meyah Sub-Tribe Regions Receives Operational Vehicle for Community Activities',
                 'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) handed over one Toyota Hilux to Musa Mandacan, Head of the Customary Council of 7 Meyah Sub-Tribe Regions, as an operational vehicle to support community activities.',
+            ],
+            'feb26_2' => [
+                'title' => 'Gold Prices Rise, Kisara Capital Strengthens Downstream Ecosystem Expansion',
+                'excerpt' => 'Kisara Capital has stated its commitment to expanding the gold industry ecosystem from upstream to downstream in 2026, amid a rising gold price trend that signals positive momentum for industry players.',
             ],
        ],
         'read_more' => 'Read More',
