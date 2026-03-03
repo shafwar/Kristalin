@@ -267,6 +267,10 @@ return [
                     'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
                     'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
                 ],
+                'feb26-3' => [
+                    'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
+                    'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1312,6 +1316,10 @@ return [
             'feb26_2' => [
                 'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
                 'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
+            ],
+            'feb26_3' => [
+                'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

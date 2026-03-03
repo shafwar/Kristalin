@@ -273,6 +273,10 @@ return [
                     'title' => 'Gold Prices Rise, Kisara Capital Strengthens Downstream Ecosystem Expansion',
                     'excerpt' => 'Kisara Capital has stated its commitment to expanding the gold industry ecosystem from upstream to downstream in 2026, amid a rising gold price trend that signals positive momentum for industry players.',
                 ],
+                'feb26-3' => [
+                    'title' => 'PT Kristalin Ekalestari Regrets Attack and Burning of Kamtibmas Post in Nabire',
+                    'excerpt' => 'PT Kristalin Ekalestari regrets the attack and burning at the Kamtibmas post in Nabire (21/2/2026). Incident location is outside the company\'s operational area.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1328,6 +1332,10 @@ return [
             'feb26_2' => [
                 'title' => 'Gold Prices Rise, Kisara Capital Strengthens Downstream Ecosystem Expansion',
                 'excerpt' => 'Kisara Capital has stated its commitment to expanding the gold industry ecosystem from upstream to downstream in 2026, amid a rising gold price trend that signals positive momentum for industry players.',
+            ],
+            'feb26_3' => [
+                'title' => 'PT Kristalin Ekalestari Regrets Attack and Burning of Kamtibmas Post in Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari regrets the attack and burning at the Kamtibmas post in Nabire (21/2/2026). Incident location is outside the company\'s operational area.',
             ],
        ],
         'read_more' => 'Read More',

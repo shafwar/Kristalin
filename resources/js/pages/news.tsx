@@ -95,6 +95,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'dec-3': 'dec_abs_rice_mill_3',
         'feb26-1': 'feb26_meyah_vehicle',
         'feb26-2': 'feb26_kisara_gold',
+        'feb26-3': 'feb26_kamtibmas',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -150,6 +151,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'dec-3': 'dec_abs_rice_mill_3',
         'feb26-1': 'feb26_meyah_vehicle',
         'feb26-2': 'feb26_kisara_gold',
+        'feb26-3': 'feb26_kamtibmas',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2122,6 +2124,29 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'Info Tangerang',
                             sourceUrl: 'https://infotangerang.co.id/harga-emas-melambung-kisara-capital-ekspansi-besar-besaran-di-ekosistem-hilir/',
                             image: '/News-february-2.jpg',
+                            content: '',
+                        },
+                    },
+                ],
+            },
+            {
+                id: 'insiden-pos-kamtibmas-nabire',
+                title: 'Insiden Pos Kamtibmas Nabire',
+                newsItems: [
+                    {
+                        id: 'feb26-3',
+                        title: 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
+                        date: '22 Feb 2026',
+                        url: '/news/feb26-3',
+                        excerpt:
+                            'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran di Pos Kamtibmas, Bendungan Kali Musairo SP1 Lagari, Kabupaten Nabire, Papua Tengah pada Sabtu (21/2/2026). Perusahaan menegaskan lokasi kejadian di luar wilayah area perusahaan.',
+                        fullContent: {
+                            title: 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
+                            date: '22 Februari 2026',
+                            author: 'Vachri Rinaldy Lutfipambudi',
+                            source: 'Kompas.com',
+                            sourceUrl: 'https://regional.kompas.com/read/2026/02/22/125353178/pt-kristalin-ekalestari-sayangkan-penyerangan-dan-pembakaran-pos-kamtibmas',
+                            image: '/news-3-february.jpg',
                             content: '',
                         },
                     },
@@ -7303,6 +7328,7 @@ const KristalinNewsPage: React.FC = () => {
             'csr-hut-ri-80-cidata-barat-papua',
             'pemberitahuan-bantuan-dana-hak-garap',
             'mobil-operasional-dewan-adat-meyah',
+            'insiden-pos-kamtibmas-nabire',
         ],
         [t('pages.news.categories.house_construction')]: [
             'pembangunan-rumah-nifasi-feb',

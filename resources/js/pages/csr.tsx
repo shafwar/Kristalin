@@ -103,6 +103,14 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             category: t('pages.csr.categories.community_support'),
         },
         {
+            id: 'feb26-3',
+            title: t('pages.csr.news.feb26_3.title'),
+            excerpt: t('pages.csr.news.feb26_3.excerpt'),
+            date: '22 Feb 2026',
+            image: '/news-3-february.jpg',
+            category: t('pages.csr.categories.community_support'),
+        },
+        {
             id: 'feb-7',
             title: t('pages.csr.news.feb_7.title'),
             excerpt: t('pages.csr.news.feb_7.excerpt'),

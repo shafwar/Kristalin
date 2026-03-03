@@ -272,6 +272,10 @@ return [
                     'title' => '金价上涨，Kisara Capital加强下游生态系统扩张',
                     'excerpt' => 'Kisara Capital表示承诺在2026年将黄金产业生态系统从上游扩展至下游，金价上涨趋势为行业参与者带来积极信号。',
                 ],
+                'feb26-3' => [
+                    'title' => 'PT Kristalin Ekalestari对纳比雷治安岗亭遭袭与焚烧表示遗憾',
+                    'excerpt' => 'PT Kristalin Ekalestari对2026年2月21日纳比雷治安岗亭袭击与焚烧表示遗憾。事发地点位于公司区域之外。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1337,6 +1341,10 @@ return [
             'feb26_2' => [
                 'title' => '金价上涨，Kisara Capital加强下游生态系统扩张',
                 'excerpt' => 'Kisara Capital表示承诺在2026年将黄金产业生态系统从上游扩展至下游，金价上涨趋势为行业参与者带来积极信号。',
+            ],
+            'feb26_3' => [
+                'title' => 'PT Kristalin Ekalestari对纳比雷治安岗亭遭袭与焚烧表示遗憾',
+                'excerpt' => 'PT Kristalin Ekalestari对2026年2月21日纳比雷治安岗亭袭击与焚烧表示遗憾。事发地点位于公司区域之外。',
             ],
         ],
         'read_more' => '阅读更多',

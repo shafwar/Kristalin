@@ -363,6 +363,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.feb26_kisara_gold.date'),
                     content: getFeb26KisaraGoldTranslatedContent(),
                 };
+            case 'feb26-3':
+                return {
+                    title: t('news_detail.feb26_kamtibmas.title'),
+                    excerpt: t('news_detail.feb26_kamtibmas.excerpt'),
+                    categoryTitle: t('news_archive.categories.insiden-pos-kamtibmas-nabire'),
+                    author: t('news_detail.feb26_kamtibmas.author'),
+                    source: t('news_detail.feb26_kamtibmas.source'),
+                    date: t('news_detail.feb26_kamtibmas.date'),
+                    content: getFeb26KamtibmasTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7730,6 +7740,38 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                         <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_kisara_gold.quote')}"</blockquote>
                         <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.feb26_kisara_gold.quote_citation')}</cite>
                     </div>
+                </div>
+            </div>
+        `;
+    };
+
+    const getFeb26KamtibmasTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-blue-900">${t('news_detail.feb26_kamtibmas.opening_title')}</h3>
+                    <p class="text-blue-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.opening_content')}</p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kamtibmas.statement_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.statement_content')}</p>
+                </div>
+                <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.feb26_kamtibmas.location_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.location_content')}</p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_kamtibmas.investigation_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.investigation_content')}</p>
+                </div>
+                <div class="rounded-xl border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.feb26_kamtibmas.evacuation_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base mb-4">${t('news_detail.feb26_kamtibmas.evacuation_content')}</p>
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_kamtibmas.quote_kapolres')}"</blockquote>
+                    <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.feb26_kamtibmas.quote_citation')}</cite>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.condolences_content')}</p>
                 </div>
             </div>
         `;
