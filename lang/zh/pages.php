@@ -276,6 +276,10 @@ return [
                     'title' => 'PT Kristalin Ekalestari对纳比雷治安岗亭遭袭与焚烧表示遗憾',
                     'excerpt' => 'PT Kristalin Ekalestari对2026年2月21日纳比雷治安岗亭袭击与焚烧表示遗憾。事发地点位于公司区域之外。',
                 ],
+                'feb26-4' => [
+                    'title' => '表达哀悼，Kristalin Ekalestari团队赴纳比雷两名遇难者家中慰问',
+                    'excerpt' => 'PT Kristalin Ekalestari管理层前往纳比雷治安岗亭事件两名遇难者家中慰问，表达深切哀悼并向遇难者子女提供抚恤与教育保障。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1345,6 +1349,10 @@ return [
             'feb26_3' => [
                 'title' => 'PT Kristalin Ekalestari对纳比雷治安岗亭遭袭与焚烧表示遗憾',
                 'excerpt' => 'PT Kristalin Ekalestari对2026年2月21日纳比雷治安岗亭袭击与焚烧表示遗憾。事发地点位于公司区域之外。',
+            ],
+            'feb26_4' => [
+                'title' => '表达哀悼，Kristalin Ekalestari团队赴纳比雷两名遇难者家中慰问',
+                'excerpt' => 'PT Kristalin Ekalestari管理层前往纳比雷治安岗亭事件两名遇难者家中慰问，表达深切哀悼并向遇难者子女提供抚恤与教育保障。',
             ],
         ],
         'read_more' => '阅读更多',

@@ -271,6 +271,10 @@ return [
                     'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
                     'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
                 ],
+                'feb26-4' => [
+                    'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
+                    'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1320,6 +1324,10 @@ return [
             'feb26_3' => [
                 'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
                 'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
+            ],
+            'feb26_4' => [
+                'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
+                'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

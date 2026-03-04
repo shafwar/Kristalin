@@ -277,6 +277,10 @@ return [
                     'title' => 'PT Kristalin Ekalestari Regrets Attack and Burning of Kamtibmas Post in Nabire',
                     'excerpt' => 'PT Kristalin Ekalestari regrets the attack and burning at the Kamtibmas post in Nabire (21/2/2026). Incident location is outside the company\'s operational area.',
                 ],
+                'feb26-4' => [
+                    'title' => 'In Solidarity, Kristalin Ekalestari Team Visits Both Victims’ Families in Nabire',
+                    'excerpt' => 'PT Kristalin Ekalestari management visited the homes of the two victims of the Kamtibmas post incident in Nabire. The company expressed deep condolences and provided bereavement and education support for the victims’ children.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1336,6 +1340,10 @@ return [
             'feb26_3' => [
                 'title' => 'PT Kristalin Ekalestari Regrets Attack and Burning of Kamtibmas Post in Nabire',
                 'excerpt' => 'PT Kristalin Ekalestari regrets the attack and burning at the Kamtibmas post in Nabire (21/2/2026). Incident location is outside the company\'s operational area.',
+            ],
+            'feb26_4' => [
+                'title' => 'In Solidarity, Kristalin Ekalestari Team Visits Both Victims’ Families in Nabire',
+                'excerpt' => 'PT Kristalin Ekalestari management visited the homes of the two victims of the Kamtibmas post incident in Nabire. The company expressed deep condolences and provided bereavement and education support for the victims’ children.',
             ],
        ],
         'read_more' => 'Read More',

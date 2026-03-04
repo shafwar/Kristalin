@@ -373,6 +373,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.feb26_kamtibmas.date'),
                     content: getFeb26KamtibmasTranslatedContent(),
                 };
+            case 'feb26-4':
+                return {
+                    title: t('news_detail.feb26_condolence_visit.title'),
+                    excerpt: t('news_detail.feb26_condolence_visit.excerpt'),
+                    categoryTitle: t('news_archive.categories.insiden-pos-kamtibmas-nabire'),
+                    author: t('news_detail.feb26_condolence_visit.author'),
+                    source: t('news_detail.feb26_condolence_visit.source'),
+                    date: t('news_detail.feb26_condolence_visit.date'),
+                    content: getFeb26CondolenceTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7772,6 +7782,38 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_kamtibmas.condolences_content')}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    const getFeb26CondolenceTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-blue-900">${t('news_detail.feb26_condolence_visit.opening_title')}</h3>
+                    <p class="text-blue-800 leading-relaxed text-base">${t('news_detail.feb26_condolence_visit.opening_content')}</p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_condolence_visit.victims_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_condolence_visit.victims_content')}</p>
+                </div>
+                <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.feb26_condolence_visit.statement_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base mb-4">${t('news_detail.feb26_condolence_visit.statement_content')}</p>
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_condolence_visit.quote_andito_condolence')}"</blockquote>
+                    <blockquote class="mt-3 border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_condolence_visit.quote_andito_empathy')}"</blockquote>
+                    <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.feb26_condolence_visit.quote_citation')}</cite>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.feb26_condolence_visit.support_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base mb-4">${t('news_detail.feb26_condolence_visit.support_content')}</p>
+                    <blockquote class="border-l-4 border-green-600 pl-4 text-lg text-gray-700 italic">"${t('news_detail.feb26_condolence_visit.quote_andito_education')}"</blockquote>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_condolence_visit.visit_aksay_content')}</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.feb26_condolence_visit.incident_recap_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_condolence_visit.incident_recap_content')}</p>
                 </div>
             </div>
         `;

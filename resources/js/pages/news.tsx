@@ -96,6 +96,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'feb26-1': 'feb26_meyah_vehicle',
         'feb26-2': 'feb26_kisara_gold',
         'feb26-3': 'feb26_kamtibmas',
+        'feb26-4': 'feb26_condolence_visit',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -152,6 +153,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'feb26-1': 'feb26_meyah_vehicle',
         'feb26-2': 'feb26_kisara_gold',
         'feb26-3': 'feb26_kamtibmas',
+        'feb26-4': 'feb26_condolence_visit',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2147,6 +2149,23 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'Kompas.com',
                             sourceUrl: 'https://regional.kompas.com/read/2026/02/22/125353178/pt-kristalin-ekalestari-sayangkan-penyerangan-dan-pembakaran-pos-kamtibmas',
                             image: '/news-3-february.jpg',
+                            content: '',
+                        },
+                    },
+                    {
+                        id: 'feb26-4',
+                        title: 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
+                        date: '24 Feb 2026',
+                        url: '/news/feb26-4',
+                        excerpt:
+                            'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden penembakan dan pembakaran Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta memberikan uang duka dan jaminan pendidikan bagi anak korban.',
+                        fullContent: {
+                            title: 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
+                            date: '24 Februari 2026',
+                            author: 'M. Ichsan',
+                            source: 'Disway.id',
+                            sourceUrl: 'https://disway.id/read/931708/turut-empati-tim-kristalin-ekalestari-melayat-kedua-rumah-duka-korban-kkb-di-nabire',
+                            image: '/news-4-february.jpg',
                             content: '',
                         },
                     },
