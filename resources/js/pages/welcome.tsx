@@ -732,7 +732,26 @@ const Welcome = () => {
                                                             backfaceVisibility: 'hidden',
                                                         }}
                                                         onError={(e) => {
-                                                            e.currentTarget.style.display = 'none';
+                                                            const target = e.currentTarget as HTMLImageElement;
+                                                            const tried = parseInt(target.dataset.fallbackTried || '0', 10);
+                                                            try {
+                                                                const u = new URL(target.src);
+                                                                let pathPart = u.pathname.replace(/^\//, '');
+                                                                if (pathPart.startsWith('public/')) pathPart = pathPart.slice(7);
+                                                                if (pathPart.startsWith('images/')) pathPart = pathPart.slice(7);
+                                                                const filename = pathPart.replace(/^kristalin-assets\/public\//, '');
+                                                                if (tried === 0) {
+                                                                    target.dataset.fallbackTried = '1';
+                                                                    target.src = `${window.location.origin}/images/${filename}`;
+                                                                } else if (tried === 1) {
+                                                                    target.dataset.fallbackTried = '2';
+                                                                    target.src = `${window.location.origin}/kristalin-assets/public/${filename}`;
+                                                                } else {
+                                                                    target.style.display = 'none';
+                                                                }
+                                                            } catch {
+                                                                target.style.display = 'none';
+                                                            }
                                                         }}
                                                         loading="eager"
                                                     />
