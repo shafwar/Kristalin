@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -116,6 +116,14 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             excerpt: t('pages.csr.news.feb26_4.excerpt'),
             date: '24 Feb 2026',
             image: '/news-4-february.jpg',
+            category: t('pages.csr.categories.community_support'),
+        },
+        {
+            id: 'mar26-1',
+            title: t('pages.csr.news.mar26_1.title'),
+            excerpt: t('pages.csr.news.mar26_1.excerpt'),
+            date: '6 Mar 2026',
+            image: '/maret-news-1.jpeg',
             category: t('pages.csr.categories.community_support'),
         },
         {
@@ -343,6 +351,7 @@ function GalleryShowcaseCarousel({
 }) {
     const [current, setCurrent] = useState(0);
     const [imgIdx, setImgIdx] = useState(0);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
 
     const next = () => setCurrent((c) => (c + 1) % sections.length);
     const prev = () => setCurrent((c) => (c - 1 + sections.length) % sections.length);
@@ -357,6 +366,15 @@ function GalleryShowcaseCarousel({
         }, 3000);
         return () => clearTimeout(timer);
     }, [imgIdx, current, sections]);
+
+    // Close lightbox only via button or Escape (not by clicking outside)
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setLightboxOpen(false);
+        };
+        if (lightboxOpen) window.addEventListener('keydown', handleEscape);
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, [lightboxOpen]);
 
     return (
         <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-12">
@@ -374,9 +392,14 @@ function GalleryShowcaseCarousel({
                     </p>
                 </div>
 
-                {/* Image Section - MOBILE OPTIMIZED */}
+                {/* Image Section - MOBILE OPTIMIZED, click to enlarge */}
                 <div className="w-full flex-1">
-                    <div className="relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl bg-gray-100 sm:h-64 sm:rounded-2xl md:h-72 lg:h-80">
+                    <button
+                        type="button"
+                        onClick={() => setLightboxOpen(true)}
+                        className="relative flex h-48 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-gray-100 sm:h-64 sm:rounded-2xl md:h-72 lg:h-80 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                        aria-label={sections[current].title}
+                    >
                         <motion.img
                             key={sections[current].images[imgIdx]}
                             src={sections[current].images[imgIdx]}
@@ -386,9 +409,48 @@ function GalleryShowcaseCarousel({
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
                         />
-                    </div>
+                    </button>
                 </div>
             </div>
+
+            {/* Lightbox: close only via button or Escape, not by clicking outside */}
+            <AnimatePresence>
+                {lightboxOpen && (
+                    <>
+                        <motion.div
+                            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            aria-hidden
+                        />
+                        <motion.div
+                            className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <div className="pointer-events-auto relative max-h-[90vh] max-w-4xl" onClick={(e) => e.stopPropagation()}>
+                                <button
+                                    type="button"
+                                    onClick={() => setLightboxOpen(false)}
+                                    className="absolute -top-2 -right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-600 shadow-lg transition-colors hover:bg-red-50 hover:text-red-600 sm:-top-3 sm:-right-3 sm:h-12 sm:w-12"
+                                    aria-label="Close"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M18 6L6 18M6 6l12 12" />
+                                    </svg>
+                                </button>
+                                <img
+                                    src={sections[current].images[imgIdx]}
+                                    alt={sections[current].title + ' ' + (imgIdx + 1)}
+                                    className="max-h-[90vh] w-full rounded-lg object-contain shadow-2xl"
+                                />
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
             {/* Navigation Controls - MOBILE OPTIMIZED */}
             <div className="mt-6 flex items-center justify-center gap-3 sm:mt-10 sm:gap-6">

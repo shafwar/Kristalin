@@ -70,6 +70,15 @@ const Welcome = () => {
             priority: 'high',
         },
         {
+            id: 'mar26-1',
+            date: '6 Mar 2026',
+            title: t('pages.welcome.news.items.mar26-1.title'),
+            excerpt: t('pages.welcome.news.items.mar26-1.excerpt'),
+            image: imageUrl('/maret-news-1.jpeg'),
+            url: '/news/mar26-1',
+            priority: 'high',
+        },
+        {
             id: 'dec-3',
             date: '10 Dec 2025',
             title: t('pages.welcome.news.items.dec-3.title'),

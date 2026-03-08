@@ -281,6 +281,10 @@ return [
                     'title' => 'In Solidarity, Kristalin Ekalestari Team Visits Both Victims’ Families in Nabire',
                     'excerpt' => 'PT Kristalin Ekalestari management visited the homes of the two victims of the Kamtibmas post incident in Nabire. The company expressed deep condolences and provided bereavement and education support for the victims’ children.',
                 ],
+                'mar26-1' => [
+                    'title' => 'Antam Gold Scarcity Spurs New Alternative, KISA24 Offers Precious Metals',
+                    'excerpt' => 'Amid Antam LM scarcity in retail, Kisara Group through KISA24 offers a strategic alternative. KISA24 LM products SNI certified, 999.9, 24K, available in 1–100 g.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1344,6 +1348,10 @@ return [
             'feb26_4' => [
                 'title' => 'In Solidarity, Kristalin Ekalestari Team Visits Both Victims’ Families in Nabire',
                 'excerpt' => 'PT Kristalin Ekalestari management visited the homes of the two victims of the Kamtibmas post incident in Nabire. The company expressed deep condolences and provided bereavement and education support for the victims’ children.',
+            ],
+            'mar26_1' => [
+                'title' => 'Antam Gold Scarcity Spurs New Alternative, KISA24 Offers Precious Metals',
+                'excerpt' => 'Amid Antam LM scarcity in retail, Kisara Group through KISA24 offers a strategic alternative. KISA24 LM products SNI certified, 999.9, 24K, available in 1–100 g.',
             ],
        ],
         'read_more' => 'Read More',

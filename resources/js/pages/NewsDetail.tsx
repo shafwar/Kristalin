@@ -383,6 +383,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.feb26_condolence_visit.date'),
                     content: getFeb26CondolenceTranslatedContent(),
                 };
+            case 'mar26-1':
+                return {
+                    title: t('news_detail.mar26_kisa24.title'),
+                    excerpt: t('news_detail.mar26_kisa24.excerpt'),
+                    categoryTitle: t('news_archive.categories.kisa24-logam-mulia'),
+                    author: t('news_detail.mar26_kisa24.author'),
+                    source: t('news_detail.mar26_kisa24.source'),
+                    date: t('news_detail.mar26_kisa24.date'),
+                    content: getMar26Kisa24TranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7814,6 +7824,37 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                 <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.feb26_condolence_visit.incident_recap_title')}</h3>
                     <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.feb26_condolence_visit.incident_recap_content')}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    const getMar26Kisa24TranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <div class="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-amber-900">${t('news_detail.mar26_kisa24.opening_title')}</h3>
+                    <p class="text-amber-800 leading-relaxed text-base">${t('news_detail.mar26_kisa24.opening_content')}</p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.mar26_kisa24.launch_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.mar26_kisa24.launch_content')}</p>
+                </div>
+                <div class="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.mar26_kisa24.founder_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base mb-4">${t('news_detail.mar26_kisa24.positioning_content')}</p>
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.mar26_kisa24.founder_quote')}"</blockquote>
+                    <cite class="mt-2 block text-sm text-gray-600">- ${t('news_detail.mar26_kisa24.quote_citation')}</cite>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.mar26_kisa24.product_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.mar26_kisa24.product_content')}</p>
+                </div>
+                <div class="rounded-xl border border-amber-200 bg-white p-6 shadow-sm">
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.mar26_kisa24.target_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base mb-4">${t('news_detail.mar26_kisa24.target_content')}</p>
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-700 italic">"${t('news_detail.mar26_kisa24.quality_quote')}"</blockquote>
+                    <p class="mt-4 text-gray-800 leading-relaxed text-base">${t('news_detail.mar26_kisa24.best_option_quote')}</p>
                 </div>
             </div>
         `;

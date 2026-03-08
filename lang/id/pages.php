@@ -275,6 +275,10 @@ return [
                     'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
                     'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
                 ],
+                'mar26-1' => [
+                    'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
+                    'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1328,6 +1332,10 @@ return [
             'feb26_4' => [
                 'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
                 'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
+            ],
+            'mar26_1' => [
+                'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
+                'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

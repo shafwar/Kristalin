@@ -280,6 +280,10 @@ return [
                     'title' => '表达哀悼，Kristalin Ekalestari团队赴纳比雷两名遇难者家中慰问',
                     'excerpt' => 'PT Kristalin Ekalestari管理层前往纳比雷治安岗亭事件两名遇难者家中慰问，表达深切哀悼并向遇难者子女提供抚恤与教育保障。',
                 ],
+                'mar26-1' => [
+                    'title' => 'Antam黄金短缺催生新选择，KISA24推出贵金属',
+                    'excerpt' => '面对Antam贵金属零售短缺，Kisara集团通过KISA24提供战略替代。KISA24贵金属SNI认证，999.9、24K，规格1–100克。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1353,6 +1357,10 @@ return [
             'feb26_4' => [
                 'title' => '表达哀悼，Kristalin Ekalestari团队赴纳比雷两名遇难者家中慰问',
                 'excerpt' => 'PT Kristalin Ekalestari管理层前往纳比雷治安岗亭事件两名遇难者家中慰问，表达深切哀悼并向遇难者子女提供抚恤与教育保障。',
+            ],
+            'mar26_1' => [
+                'title' => 'Antam黄金短缺催生新选择，KISA24推出贵金属',
+                'excerpt' => '面对Antam贵金属零售短缺，Kisara集团通过KISA24提供战略替代。KISA24贵金属SNI认证，999.9、24K，规格1–100克。',
             ],
         ],
         'read_more' => '阅读更多',

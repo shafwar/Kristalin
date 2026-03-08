@@ -13,6 +13,7 @@ const getTranslatedMonth = (monthId: string, t: any) => {
         'februari-2025': 'februari',
         'februari-2026': 'februari',
         'maret-2025': 'maret',
+        'maret-2026': 'maret',
         'juni-2025': 'juni',
         'juli-2025': 'juli',
         'agustus-2025': 'agustus',
@@ -97,6 +98,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'feb26-2': 'feb26_kisara_gold',
         'feb26-3': 'feb26_kamtibmas',
         'feb26-4': 'feb26_condolence_visit',
+        'mar26-1': 'mar26_kisa24',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -154,6 +156,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'feb26-2': 'feb26_kisara_gold',
         'feb26-3': 'feb26_kamtibmas',
         'feb26-4': 'feb26_condolence_visit',
+        'mar26-1': 'mar26_kisa24',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2166,6 +2169,35 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'Disway.id',
                             sourceUrl: 'https://disway.id/read/931708/turut-empati-tim-kristalin-ekalestari-melayat-kedua-rumah-duka-korban-kkb-di-nabire',
                             image: '/news-4-february.jpg',
+                            content: '',
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        month: 'MARET',
+        monthId: 'maret-2026',
+        categories: [
+            {
+                id: 'kisa24-logam-mulia',
+                title: 'KISA24 Tawarkan Logam Mulia',
+                newsItems: [
+                    {
+                        id: 'mar26-1',
+                        title: 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
+                        date: '6 Mar 2026',
+                        url: '/news/mar26-1',
+                        excerpt:
+                            'Di tengah kelangkaan Logam Mulia Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 bersertifikasi SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
+                        fullContent: {
+                            title: 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
+                            date: '6 Maret 2026',
+                            author: 'M. Ichsan',
+                            source: 'Disway.id',
+                            sourceUrl: 'https://disway.id/read/933742/kelangkaan-emas-antam-picu-alternatif-baru-kisa24-tawarkan-logam-mulia',
+                            image: '/maret-news-1.jpeg',
                             content: '',
                         },
                     },
@@ -7342,6 +7374,7 @@ const KristalinNewsPage: React.FC = () => {
             'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt-torindo-jaya-persada',
             'investasi-dubai-blockchain-emas',
             'ekspansi-kisara-capital-emas',
+            'kisa24-logam-mulia',
         ],
         [t('pages.news.categories.community_development')]: [
             'csr-hut-ri-80-cidata-barat-papua',
