@@ -225,6 +225,26 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
                                         src={news.image}
                                         alt={news.title}
                                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                        onError={(e) => {
+                                            const target = e.currentTarget as HTMLImageElement;
+                                            const tried = parseInt(target.dataset.fallbackTried || '0', 10);
+                                            try {
+                                                const u = new URL(target.src);
+                                                let pathPart = u.pathname.replace(/^\//, '');
+                                                if (pathPart.startsWith('public/')) pathPart = pathPart.slice(7);
+                                                if (pathPart.startsWith('images/')) pathPart = pathPart.slice(7);
+                                                const filename = pathPart.replace(/^kristalin-assets\/public\//, '');
+                                                if (tried === 0) {
+                                                    target.dataset.fallbackTried = '1';
+                                                    target.src = `${window.location.origin}/images/${filename}`;
+                                                } else if (tried === 1) {
+                                                    target.dataset.fallbackTried = '2';
+                                                    target.src = `${window.location.origin}/kristalin-assets/public/${filename}`;
+                                                }
+                                            } catch {
+                                                // ignore
+                                            }
+                                        }}
                                     />
                                     <div className="absolute top-3 left-3">
                                         <span className="rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-white">{news.category}</span>
