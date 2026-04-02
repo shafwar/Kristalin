@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
-import { SplashScreen } from '../components/SplashScreen';
 
 /**
  * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
@@ -27,7 +26,6 @@ const Welcome = () => {
     const [currentContent, setCurrentContent] = useState(0);
     const [currentNews, setCurrentNews] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [showLoadingScreen, setShowLoadingScreen] = useState(true);
     const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth <= 768 : false));
 
     // 6 berita relevan dari news archive (termasuk Feb 2026 – mobil operasional Dewan Adat Meyah)
@@ -176,16 +174,6 @@ const Welcome = () => {
         },
     ];
 
-    // Loading screen effect - show on first visit or page reload
-    useEffect(() => {
-        const isReload = !sessionStorage.getItem('kristalin_session');
-        if (isReload) {
-            // SplashScreen will handle duration; session flag set on onDone
-            return;
-        }
-        setShowLoadingScreen(false);
-    }, []);
-
     // Detect mobile viewport once on mount and on resize (used to simplify animations on mobile)
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -202,66 +190,23 @@ const Welcome = () => {
 
     // Content rotation - Slower rotation for better UX
     useEffect(() => {
-        // Start with "Introducing" and give it more time
-        const initialDelay = setTimeout(() => {
-            setCurrentContent(0); // Start with "Introducing"
-        }, 1200); // Wait a bit longer after loading for stability
-
-        // Rotate content with a longer, more stable cadence
         const interval = setInterval(() => {
             setCurrentContent((prev) => (prev + 1) % contentSets.length);
-        }, 14000); // 14 seconds for smoother, longer reads
-
-        return () => {
-            clearTimeout(initialDelay);
-            clearInterval(interval);
-        };
+        }, 14000);
+        return () => clearInterval(interval);
     }, [contentSets.length]);
 
     // Main Content
     return (
-            <>
+        <>
             <Head title="">
                 <meta name="description" content={t('pages.welcome.description')} />
             </Head>
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-                {/* Splash Screen */}
-                {showLoadingScreen && (
-                    <SplashScreen
-                        minDurationMs={1400}
-                        fadeDurationMs={450}
-                        title="Kristalin Ekalestari"
-                        subtitle="Gold Mining Excellence"
-                        onDone={() => {
-                            sessionStorage.setItem('kristalin_session', 'true');
-                            setShowLoadingScreen(false);
-                        }}
-                    />
-                )}
-
-                {/* Header - Hidden during loading */}
-                <AnimatePresence>
-                    {!showLoadingScreen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-                        >
-                            <Header sticky={true} transparent={false} />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                <Header sticky={true} transparent={false} />
 
                 <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
-                    {/* Main Content with Elegant Fade In */}
-                    <AnimatePresence>
-                        {!showLoadingScreen && (
-                            <motion.div
-                                className="flex flex-1 flex-col"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.08 }}
-                            >
+                    <div className="flex flex-1 flex-col">
                                 {/* DISABLED - Feedback Form Modal */}
                                 {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
 
@@ -304,107 +249,28 @@ const Welcome = () => {
                                                                 initial={{ opacity: 0 }}
                                                                 animate={{ opacity: 1 }}
                                                                 exit={{ opacity: 0 }}
-                                                                transition={{
-                                                                    duration: 1.05,
-                                                                    ease: [0.16, 1, 0.3, 1],
-                                                                }}
-                                                                style={{
-                                                                    transform: 'translate3d(0, 0, 0)',
-                                                                    willChange: 'opacity',
-                                                                    backfaceVisibility: 'hidden',
-                                                                    WebkitBackfaceVisibility: 'hidden',
-                                                                }}
+                                                                transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
                                                             >
                                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
-                                                                    {/* Title 1 - Smooth letter cascade */}
-                                                                    <div className="inline-block text-gray-800">
-                                                                        {contentSets[currentContent].title1
-                                                                            .split('')
-                                                                            .map((letter: string, index: number) => (
-                                                                                <motion.span
-                                                                                    key={`${currentContent}-${index}`}
-                                                                                    initial={{
-                                                                                        opacity: 0,
-                                                                                        y: 8,
-                                                                                    }}
-                                                                                    animate={{
-                                                                                        opacity: 1,
-                                                                                        y: 0,
-                                                                                    }}
-                                                                                    exit={{
-                                                                                        opacity: 0,
-                                                                                    }}
-                                                                                    transition={{
-                                                                                        duration: 1.05,
-                                                                                        ease: [0.16, 1, 0.3, 1],
-                                                                                        delay: index * 0.035,
-                                                                                    }}
-                                                                                    className="inline-block"
-                                                                                    style={{
-                                                                                        transform: 'translate3d(0, 0, 0)',
-                                                                                        willChange: 'opacity',
-                                                                                        backfaceVisibility: 'hidden',
-                                                                                        WebkitBackfaceVisibility: 'hidden',
-                                                                                    }}
-                                                                                >
-                                                                                    {letter === ' ' ? '\u00A0' : letter}
-                                                                                </motion.span>
-                                                                            ))}
-                                                                    </div>
+                                                                    <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                                     <br />
-                                                                    {/* Title 2 - Gold gradient */}
-                                                                    <motion.div
-                                                                        initial={{ opacity: 0, y: 10 }}
-                                                                        animate={{ opacity: 1, y: 0 }}
-                                                                        exit={{ opacity: 0 }}
-                                                                        transition={{
-                                                                            duration: 1.2,
-                                                                            ease: [0.16, 1, 0.3, 1],
-                                                                            delay: 0.45,
-                                                                        }}
+                                                                    <span
                                                                         className="inline-block"
                                                                         style={{
                                                                             background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
                                                                             WebkitBackgroundClip: 'text',
                                                                             WebkitTextFillColor: 'transparent',
                                                                             backgroundClip: 'text',
-                                                                            transform: 'translate3d(0, 0, 0)',
-                                                                            willChange: 'opacity',
-                                                                            backfaceVisibility: 'hidden',
-                                                                            WebkitBackfaceVisibility: 'hidden',
                                                                         }}
                                                                     >
                                                                         {contentSets[currentContent].title2}
-                                                                    </motion.div>
+                                                                    </span>
                                                                 </h1>
+                                                                <p className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg">
+                                                                    {contentSets[currentContent].subtitle}
+                                                                </p>
                                                             </motion.div>
                                                         </AnimatePresence>
-
-                                                        {/* Subtitle - smooth fade on desktop */}
-                                                        <div className="relative">
-                                                            <AnimatePresence mode="wait">
-                                                                <motion.p
-                                                                    key={`subtitle-${currentContent}`}
-                                                                    initial={{ opacity: 0, y: 8 }}
-                                                                    animate={{ opacity: 1, y: 0 }}
-                                                                    exit={{ opacity: 0 }}
-                                                                    transition={{
-                                                                        duration: 1.05,
-                                                                        ease: [0.16, 1, 0.3, 1],
-                                                                        delay: 0.65,
-                                                                    }}
-                                                                    className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg"
-                                                                    style={{
-                                                                        transform: 'translate3d(0, 0, 0)',
-                                                                        willChange: 'opacity',
-                                                                        backfaceVisibility: 'hidden',
-                                                                        WebkitBackfaceVisibility: 'hidden',
-                                                                    }}
-                                                                >
-                                                                    {contentSets[currentContent].subtitle}
-                                                                </motion.p>
-                                                            </AnimatePresence>
-                                                        </div>
                                                     </>
                                                 )}
                                             </div>
@@ -458,9 +324,7 @@ const Welcome = () => {
                                     >
                                         <PapuaChildrenHeroPicture
                                             pictureClassName="absolute inset-0 block h-full w-full"
-                                            className={`h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
-                                                hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
-                                            }`}
+                                            className="welcome-lcp-hero h-full w-full object-cover"
                                             style={{
                                                 objectPosition: 'center center',
                                                 transform: 'translateZ(0)',
@@ -965,14 +829,10 @@ const Welcome = () => {
                                     </Link>
                                 </section>
 
-                                {/* Footer moved outside animated block */}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                            </div>
                 </div>
 
-                {/* Visible Internal feedback / Whistleblower strip – above footer */}
-                {!showLoadingScreen && <Footer />}
+                <Footer />
 
                 {/* Premium Staggered Animation Styles */}
                 <style
@@ -1258,11 +1118,15 @@ const Welcome = () => {
             }
           }
 
-          /* Smooth transitions for all interactive elements */
-          * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+          /* Transitions: omit transform/filter on universal selector so LCP images paint without extra work */
+          .welcome-page :where(a, button, input, select, textarea, label, [role='button']) {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, backdrop-filter;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 150ms;
+          }
+
+          .welcome-lcp-hero {
+            transition: none !important;
           }
 
           /* Enhanced hover states for cards */
@@ -1275,10 +1139,9 @@ const Welcome = () => {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
           }
 
-          /* Image optimization for different screen sizes */
-          img {
+          /* Hero/LCP images: smooth scaling; crisp-edges avoided for photos */
+          .welcome-page img:not(.welcome-lcp-hero) {
             image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
           }
 
           /* Typography responsive scaling */

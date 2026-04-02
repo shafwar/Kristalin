@@ -5,13 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        {{-- Google tag (gtag.js) --}}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6HXW60WWP"></script>
+        {{-- Defer GA until after load so LCP/critical path are not competing with gtag --}}
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-C6HXW60WWP');
+            window.addEventListener('load', function () {
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=G-C6HXW60WWP';
+                s.onload = function () {
+                    gtag('js', new Date());
+                    gtag('config', 'G-C6HXW60WWP');
+                };
+                document.head.appendChild(s);
+            });
         </script>
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
@@ -60,14 +67,17 @@
         <link rel="preconnect" href="{{ $cdnOrigin }}" crossorigin>
 
         @if(request()->routeIs('home'))
-        {{-- AVIF preloads by viewport; browsers without AVIF skip and use <picture> WebP/JPEG --}}
+        {{-- One format per breakpoint avoids double fetch; AVIF skipped by engines that ignore type --}}
         <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-640w.avif') }}" media="(max-width: 640px)" fetchpriority="high">
         <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-960w.avif') }}" media="(min-width: 641px) and (max-width: 1023px)" fetchpriority="high">
         <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-1280w.avif') }}" media="(min-width: 1024px)" fetchpriority="high">
         @endif
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
+        </noscript>
 
         @routes
         @viteReactRefresh
