@@ -309,6 +309,20 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
         };
     }, [showGoldDetail, showSilverDetail]);
 
+    // Close modal only via button or Escape (not by clicking outside)
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setShowGoldDetail(false);
+                setShowSilverDetail(false);
+            }
+        };
+        if (showGoldDetail || showSilverDetail) {
+            window.addEventListener('keydown', handleEscape);
+        }
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, [showGoldDetail, showSilverDetail]);
+
     return (
         <section className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16 sm:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -486,19 +500,20 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                onClick={() => setShowGoldDetail(false)}
+                                aria-hidden
                             />
                             <motion.div
-                                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                                className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
                                 initial={{ opacity: 0, scale: 0.92, y: 40 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.92, y: 40 }}
                                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                             >
-                                <div className="relative mx-4 flex max-h-[90vh] w-full max-w-lg flex-col items-center overflow-y-auto rounded-2xl border border-amber-200 bg-white px-4 py-6 shadow-2xl sm:px-6 sm:py-8">
+                                <div className="relative mx-4 flex max-h-[90vh] w-full max-w-lg flex-col items-center overflow-y-auto rounded-2xl border border-amber-200 bg-white px-4 py-6 shadow-2xl sm:px-6 sm:py-8 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
                                     <button
                                         className="absolute top-3 right-3 z-20 sm:top-4 sm:right-4"
                                         onClick={() => setShowGoldDetail(false)}
+                                        type="button"
                                         aria-label="Close"
                                     >
                                         <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-gray-100/80 text-gray-500 shadow transition-colors duration-200 hover:bg-red-100 hover:text-red-500 sm:h-10 sm:w-10">
@@ -542,19 +557,20 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                onClick={() => setShowSilverDetail(false)}
+                                aria-hidden
                             />
                             <motion.div
-                                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                                className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
                                 initial={{ opacity: 0, scale: 0.92, y: 40 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.92, y: 40 }}
                                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                             >
-                                <div className="relative mx-4 flex max-h-[90vh] w-full max-w-lg flex-col items-center overflow-y-auto rounded-2xl border border-amber-200 bg-white px-4 py-6 shadow-2xl sm:px-6 sm:py-8">
+                                <div className="relative mx-4 flex max-h-[90vh] w-full max-w-lg flex-col items-center overflow-y-auto rounded-2xl border border-amber-200 bg-white px-4 py-6 shadow-2xl sm:px-6 sm:py-8 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
                                     <button
                                         className="absolute top-3 right-3 z-20 sm:top-4 sm:right-4"
                                         onClick={() => setShowSilverDetail(false)}
+                                        type="button"
                                         aria-label="Close"
                                     >
                                         <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-gray-100/80 text-gray-500 shadow transition-colors duration-200 hover:bg-red-100 hover:text-red-500 sm:h-10 sm:w-10">

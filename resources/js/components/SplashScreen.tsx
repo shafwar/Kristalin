@@ -10,8 +10,8 @@ type SplashScreenProps = {
 };
 
 export function SplashScreen({
-    minDurationMs = 4200,
-    fadeDurationMs = 900,
+    minDurationMs = 1400,
+    fadeDurationMs = 450,
     onDone,
     title = 'Kristalin Ekalestari',
     subtitle = 'Gold Mining Excellence',
