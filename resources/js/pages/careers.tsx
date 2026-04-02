@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
 
 const Careers = () => {
     const { t } = useTranslation();
@@ -357,7 +358,14 @@ const Careers = () => {
                                         </ul>
                                     </div>
                                     <div className="relative">
-                                        <img src={imageUrl('papua-children.png')} alt="Company Culture" className="rounded-lg shadow-lg" />
+                                        <PapuaChildrenHeroPicture
+                                            pictureClassName="block w-full"
+                                            className="h-auto w-full rounded-lg object-cover shadow-lg"
+                                            alt="Company Culture"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            loading="lazy"
+                                            fetchPriority="low"
+                                        />
                                     </div>
                                 </div>
                             </section>

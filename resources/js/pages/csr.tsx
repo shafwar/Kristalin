@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
+import { papuaHeroResponsive } from '../lib/papuaHeroImage';
 
-const heroImage = imageUrl('papua-children.png');
+const heroImage = papuaHeroResponsive.jpgBackground;
 const toImage = (path: string) => imageUrl(path);
 const toImages = (paths: string[]) => paths.map(toImage);
 
@@ -654,7 +656,14 @@ export default function CSRPageMobileFix() {
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img src={heroImage} alt={t('pages.csr.hero.alt_text')} className="h-full w-full object-cover" />
+                    <PapuaChildrenHeroPicture
+                        pictureClassName="block h-full w-full"
+                        className="h-full w-full object-cover"
+                        alt={t('pages.csr.hero.alt_text')}
+                        sizes="100vw"
+                        loading="eager"
+                        fetchPriority="high"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
 

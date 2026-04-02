@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
 import { SplashScreen } from '../components/SplashScreen';
 
 /**
@@ -22,7 +23,6 @@ import { SplashScreen } from '../components/SplashScreen';
 const Welcome = () => {
     const { t } = useTranslation();
     // const [showFeedbackForm, setShowFeedbackForm] = useState(false); // DISABLED - Feedback system
-    const [isLoaded, setIsLoaded] = useState(false);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
     const [currentNews, setCurrentNews] = useState(0);
@@ -202,11 +202,6 @@ const Welcome = () => {
 
     // Content rotation - Slower rotation for better UX
     useEffect(() => {
-        const timer = setTimeout(() => setIsLoaded(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
         // Start with "Introducing" and give it more time
         const initialDelay = setTimeout(() => {
             setCurrentContent(0); // Start with "Introducing"
@@ -233,8 +228,8 @@ const Welcome = () => {
                 {/* Splash Screen */}
                 {showLoadingScreen && (
                     <SplashScreen
-                        minDurationMs={4200}
-                        fadeDurationMs={900}
+                        minDurationMs={1400}
+                        fadeDurationMs={450}
                         title="Kristalin Ekalestari"
                         subtitle="Gold Mining Excellence"
                         onDone={() => {
@@ -265,7 +260,7 @@ const Welcome = () => {
                                 className="flex flex-1 flex-col"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
+                                transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.08 }}
                             >
                                 {/* DISABLED - Feedback Form Modal */}
                                 {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
@@ -277,11 +272,7 @@ const Welcome = () => {
                                 <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
                                     {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
                                     <div className="relative flex h-full w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
-                                        <div
-                                            className={`relative z-10 transition-all duration-1000 ${
-                                                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-                                            }`}
-                                        >
+                                        <div className="relative z-10">
                                             {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
                                             <div className="relative">
                                                 {isMobile ? (
@@ -465,11 +456,9 @@ const Welcome = () => {
                                         onMouseEnter={() => setHoveredCard(4)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
-                                        {/* Background Image - Mobile optimized with proper aspect */}
-                                        <img
-                                            src={imageUrl('papua-children.png')}
-                                            alt="CSR Impact in Papua"
-                                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                        <PapuaChildrenHeroPicture
+                                            pictureClassName="absolute inset-0 block h-full w-full"
+                                            className={`h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'
                                             }`}
                                             style={{
@@ -477,11 +466,12 @@ const Welcome = () => {
                                                 transform: 'translateZ(0)',
                                                 backfaceVisibility: 'hidden',
                                             }}
+                                            alt="CSR Impact in Papua"
+                                            loading="eager"
+                                            fetchPriority="high"
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';
                                             }}
-                                            loading="lazy"
-                                            decoding="async"
                                         />
 
                                         {/* Dark overlay - Static, stronger gradient */}
@@ -533,8 +523,9 @@ const Welcome = () => {
                                                         onError={(e) => {
                                                             e.currentTarget.style.display = 'none';
                                                         }}
-                                                        loading="lazy"
+                                                        loading="eager"
                                                         decoding="async"
+                                                        fetchPriority="low"
                                                     />
                                                 </div>
 
@@ -600,8 +591,9 @@ const Welcome = () => {
                                                             onError={(e) => {
                                                                 e.currentTarget.style.display = 'none';
                                                             }}
-                                                            loading="lazy"
+                                                            loading="eager"
                                                             decoding="async"
+                                                            fetchPriority="low"
                                                         />
                                                     </motion.div>
 

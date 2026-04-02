@@ -42,16 +42,32 @@
 
         <title inertia>{{ config('app.name', 'Kristalin Ekalestari') }}</title>
 
-        <link rel="icon" href="{{ image_url('favicon.ico') }}?v={{ time() }}" sizes="any">
-        <link rel="icon" href="{{ image_url('favicon.svg') }}?v={{ time() }}" type="image/svg+xml">
-        <link rel="icon" href="{{ image_url('favicon-16x16.png') }}?v={{ time() }}" sizes="16x16" type="image/png">
-        <link rel="icon" href="{{ image_url('favicon-32x32.png') }}?v={{ time() }}" sizes="32x32" type="image/png">
-        <link rel="apple-touch-icon" href="{{ image_url('apple-touch-icon.png') }}?v={{ time() }}" sizes="180x180">
-        <meta name="msapplication-TileImage" content="{{ image_url('apple-touch-icon.png') }}?v={{ time() }}">
+        <link rel="icon" href="{{ image_url('favicon.ico') }}" sizes="any">
+        <link rel="icon" href="{{ image_url('favicon.svg') }}" type="image/svg+xml">
+        <link rel="icon" href="{{ image_url('favicon-16x16.png') }}" sizes="16x16" type="image/png">
+        <link rel="icon" href="{{ image_url('favicon-32x32.png') }}" sizes="32x32" type="image/png">
+        <link rel="apple-touch-icon" href="{{ image_url('apple-touch-icon.png') }}" sizes="180x180">
+        <meta name="msapplication-TileImage" content="{{ image_url('apple-touch-icon.png') }}">
         <meta name="theme-color" content="#FFD700">
 
+        @php
+            $cdnOrigin = rtrim((string) env('AWS_URL', 'https://cdn.kristalin.co.id'), '/');
+            if (! str_starts_with($cdnOrigin, 'http')) {
+                $cdnOrigin = 'https://' . ltrim($cdnOrigin, '/');
+            }
+        @endphp
+        <link rel="dns-prefetch" href="{{ $cdnOrigin }}">
+        <link rel="preconnect" href="{{ $cdnOrigin }}" crossorigin>
+
+        @if(request()->routeIs('home'))
+        {{-- AVIF preloads by viewport; browsers without AVIF skip and use <picture> WebP/JPEG --}}
+        <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-640w.avif') }}" media="(max-width: 640px)" fetchpriority="high">
+        <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-960w.avif') }}" media="(min-width: 641px) and (max-width: 1023px)" fetchpriority="high">
+        <link rel="preload" as="image" type="image/avif" href="{{ asset('kristalin-assets/public/papua-children-hero-1280w.avif') }}" media="(min-width: 1024px)" fetchpriority="high">
+        @endif
+
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
 
         @routes
         @viteReactRefresh
