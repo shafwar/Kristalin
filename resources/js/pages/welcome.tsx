@@ -9,6 +9,7 @@ import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
+import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 
 /**
  * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
@@ -132,14 +133,14 @@ const Welcome = () => {
     const carouselSlides = [
         {
             id: 1,
-            image: imageUrl('directorshero.jpg'),
+            gridId: 'directorshero' as const,
             category: t('pages.welcome.board.category'),
             title: t('pages.welcome.board.title'),
             link: '/board-of-directors',
         },
         {
             id: 0,
-            image: imageUrl('portofolio.jpg'),
+            gridId: 'portofolio' as const,
             category: t('pages.welcome.portfolio.category'),
             title: t('pages.welcome.portfolio.title'),
             link: '/line-of-business',
@@ -383,21 +384,20 @@ const Welcome = () => {
                                                 onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
                                             >
                                                 <div className="absolute inset-0 h-full w-full">
-                                                    <img
-                                                        src={carouselSlides[currentSlide].image}
+                                                    <WelcomeGridPicture
+                                                        key={carouselSlides[currentSlide].gridId}
+                                                        imageId={carouselSlides[currentSlide].gridId}
                                                         alt={carouselSlides[currentSlide].title}
+                                                        pictureClassName="block h-full w-full"
                                                         className="h-full w-full object-cover"
+                                                        sizes="(max-width: 1023px) 100vw, 50vw"
                                                         style={{
                                                             objectPosition: 'center center',
                                                             transform: 'translate3d(0, 0, 0)',
                                                             backfaceVisibility: 'hidden',
                                                             WebkitBackfaceVisibility: 'hidden',
                                                         }}
-                                                        onError={(e) => {
-                                                            e.currentTarget.style.display = 'none';
-                                                        }}
                                                         loading="lazy"
-                                                        decoding="async"
                                                         fetchPriority="low"
                                                     />
                                                 </div>
@@ -450,10 +450,13 @@ const Welcome = () => {
                                                             willChange: 'opacity',
                                                         }}
                                                     >
-                                                        <img
-                                                            src={carouselSlides[currentSlide].image}
+                                                        <WelcomeGridPicture
+                                                            key={carouselSlides[currentSlide].gridId}
+                                                            imageId={carouselSlides[currentSlide].gridId}
                                                             alt={carouselSlides[currentSlide].title}
+                                                            pictureClassName="block h-full w-full"
                                                             className="h-full w-full object-cover"
+                                                            sizes="(max-width: 1023px) 100vw, 50vw"
                                                             style={{
                                                                 objectPosition: 'center center',
                                                                 transform: 'translate3d(0, 0, 0)',
@@ -461,11 +464,7 @@ const Welcome = () => {
                                                                 WebkitBackfaceVisibility: 'hidden',
                                                                 imageRendering: '-webkit-optimize-contrast',
                                                             }}
-                                                            onError={(e) => {
-                                                                e.currentTarget.style.display = 'none';
-                                                            }}
                                                             loading="lazy"
-                                                            decoding="async"
                                                             fetchPriority="low"
                                                         />
                                                     </motion.div>
@@ -530,22 +529,20 @@ const Welcome = () => {
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
                                         {/* Background Image - Mobile optimized with proper aspect */}
-                                        <img
-                                            src={imageUrl('businessactivity.jpg')}
+                                        <WelcomeGridPicture
+                                            imageId="businessactivity"
                                             alt={t('pages.welcome.business_activities_alt')}
-                                            className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                            pictureClassName={`absolute inset-0 block h-full w-full transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
                                             }`}
+                                            className="h-full w-full object-cover"
+                                            sizes="(max-width: 1023px) 100vw, 30vw"
                                             style={{
                                                 objectPosition: 'center center',
                                                 transform: 'translateZ(0)',
                                                 backfaceVisibility: 'hidden',
                                             }}
-                                            onError={(e) => {
-                                                e.currentTarget.style.display = 'none';
-                                            }}
                                             loading="lazy"
-                                            decoding="async"
                                             fetchPriority="low"
                                         />
 
