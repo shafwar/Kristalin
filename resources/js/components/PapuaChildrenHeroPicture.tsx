@@ -1,4 +1,5 @@
-import { PAPUA_HERO_HEIGHT, PAPUA_HERO_WIDTH, papuaHeroResponsive } from '@/lib/papuaHeroImage';
+import { useNetworkProfile } from '@/hooks/useNetworkProfile';
+import { PAPUA_HERO_HEIGHT, PAPUA_HERO_WIDTH, getPapuaHeroBundle, papuaHeroResponsive } from '@/lib/papuaHeroImage';
 
 type Props = {
     alt: string;
@@ -7,6 +8,7 @@ type Props = {
     /** Classes on <picture> (e.g. absolute inset-0) */
     pictureClassName?: string;
     style?: React.CSSProperties;
+    /** Override sizes (default derives from network tier) */
     sizes?: string;
     loading?: 'eager' | 'lazy';
     fetchPriority?: 'high' | 'low' | 'auto';
@@ -15,17 +17,22 @@ type Props = {
 
 /**
  * Responsive LCP-friendly hero for papua-children (AVIF → WebP → JPEG; PNG fallback on error).
+ * Srcset depth adapts to Save-Data / effectiveType / prefers-reduced-data.
  */
 export function PapuaChildrenHeroPicture({
     alt,
     className,
     pictureClassName,
     style,
-    sizes = '(max-width: 1023px) 100vw, 50vw',
+    sizes: sizesProp,
     loading = 'eager',
     fetchPriority = 'high',
     onError,
 }: Props) {
+    const { imageTier } = useNetworkProfile();
+    const bundle = getPapuaHeroBundle(imageTier);
+    const sizes = sizesProp ?? bundle.sizes;
+
     const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
         const el = e.currentTarget;
         if (!el.dataset.fallbackTried) {
@@ -39,11 +46,11 @@ export function PapuaChildrenHeroPicture({
 
     return (
         <picture className={pictureClassName}>
-            <source type="image/avif" srcSet={papuaHeroResponsive.avifSrcSet} sizes={sizes} />
-            <source type="image/webp" srcSet={papuaHeroResponsive.webpSrcSet} sizes={sizes} />
+            <source type="image/avif" srcSet={bundle.avifSrcSet} sizes={sizes} />
+            <source type="image/webp" srcSet={bundle.webpSrcSet} sizes={sizes} />
             <img
-                src={papuaHeroResponsive.jpgFallback}
-                srcSet={papuaHeroResponsive.jpgSrcSet}
+                src={bundle.jpgFallback}
+                srcSet={bundle.jpgSrcSet}
                 sizes={sizes}
                 width={PAPUA_HERO_WIDTH}
                 height={PAPUA_HERO_HEIGHT}

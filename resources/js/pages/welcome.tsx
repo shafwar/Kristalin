@@ -1,8 +1,10 @@
+import { useNetworkProfile } from '@/hooks/useNetworkProfile';
 import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
@@ -21,6 +23,7 @@ import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture
 // Main Welcome Component
 const Welcome = () => {
     const { t } = useTranslation();
+    const { deferWelcomeBelowFold } = useNetworkProfile();
     // const [showFeedbackForm, setShowFeedbackForm] = useState(false); // DISABLED - Feedback system
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
@@ -363,6 +366,7 @@ const Welcome = () => {
                                     </Link>
                                 </section>
 
+                                <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
                                 {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                                 <section className="flex flex-1 flex-col bg-white lg:flex-row">
                                     {/* Carousel Card - Mobile Anti-Flicker Optimized */}
@@ -387,7 +391,7 @@ const Welcome = () => {
                                                         onError={(e) => {
                                                             e.currentTarget.style.display = 'none';
                                                         }}
-                                                        loading="eager"
+                                                        loading="lazy"
                                                         decoding="async"
                                                         fetchPriority="low"
                                                     />
@@ -455,7 +459,7 @@ const Welcome = () => {
                                                             onError={(e) => {
                                                                 e.currentTarget.style.display = 'none';
                                                             }}
-                                                            loading="eager"
+                                                            loading="lazy"
                                                             decoding="async"
                                                             fetchPriority="low"
                                                         />
@@ -535,7 +539,9 @@ const Welcome = () => {
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';
                                             }}
-                                            loading="eager"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchPriority="low"
                                         />
 
                                         {/* Dark overlay - Static, stronger gradient */}
@@ -618,7 +624,9 @@ const Welcome = () => {
                                                                 target.style.display = 'none';
                                                             }
                                                         }}
-                                                        loading="eager"
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        fetchPriority="low"
                                                     />
                                                 </motion.div>
                                             </AnimatePresence>
@@ -828,6 +836,7 @@ const Welcome = () => {
                                         </div>
                                     </Link>
                                 </section>
+                                </DeferredBelowFold>
 
                             </div>
                 </div>

@@ -4,22 +4,22 @@ import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
+import { useNetworkProfile } from '../hooks/useNetworkProfile';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
-import { papuaHeroResponsive } from '../lib/papuaHeroImage';
+import { papuaBackgroundForTier } from '../lib/papuaHeroImage';
 
-const heroImage = papuaHeroResponsive.jpgBackground;
 const toImage = (path: string) => imageUrl(path);
 const toImages = (paths: string[]) => paths.map(toImage);
 
 // Video Section Component - MOBILE OPTIMIZED
-function VideoSection({ t }: { t: (key: string) => string }) {
+function VideoSection({ t, videoHeroBg }: { t: (key: string) => string; videoHeroBg: string }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (
         <section
             className="relative bg-cover bg-fixed bg-center py-16 sm:py-20"
-            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroImage}')` }}
+            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${videoHeroBg}')` }}
         >
             <div className="mx-auto max-w-4xl px-4 sm:px-6">
                 <motion.div
@@ -517,6 +517,8 @@ function GalleryShowcaseCarousel({
 
 export default function CSRPageMobileFix() {
     const { t } = useTranslation();
+    const { imageTier } = useNetworkProfile();
+    const videoHeroBg = papuaBackgroundForTier(imageTier);
     const [scrollY, setScrollY] = useState(0);
     const commitmentRef = useRef<HTMLDivElement>(null);
 
@@ -871,7 +873,7 @@ export default function CSRPageMobileFix() {
             </main>
 
             {/* Video Section - MOBILE OPTIMIZED */}
-            <VideoSection t={t} />
+            <VideoSection t={t} videoHeroBg={videoHeroBg} />
 
             {/* CSR News Section */}
             <CSRNewsSection t={t} />
