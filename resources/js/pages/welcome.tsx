@@ -1,3 +1,4 @@
+import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useNetworkProfile } from '@/hooks/useNetworkProfile';
 import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
@@ -24,6 +25,7 @@ import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture
 const Welcome = () => {
     const { t } = useTranslation();
     const { deferWelcomeBelowFold } = useNetworkProfile();
+    const heroMicroReady = useLcpSafeMicroMotion();
     // const [showFeedbackForm, setShowFeedbackForm] = useState(false); // DISABLED - Feedback system
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [currentContent, setCurrentContent] = useState(0);
@@ -220,11 +222,14 @@ const Welcome = () => {
                                 <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
                                     {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
                                     <div className="relative flex h-full w-full flex-col justify-center bg-white p-6 sm:p-8 lg:w-1/2 lg:p-16">
-                                        <div className="relative z-10">
-                                            {/* Hero Text - desktop animated, mobile simplified to avoid flicker */}
+                                        <div
+                                            className={`relative z-10 welcome-hero-micro ${heroMicroReady ? 'welcome-hero-micro--ready' : ''}`}
+                                        >
+                                            {/* Hero Text - LCP-safe: opacity 1; transform-only nudge after rAF */}
                                             <div className="relative">
                                                 {isMobile ? (
                                                     <>
+                                                        <div className="welcome-hero-nudge welcome-hero-nudge--a">
                                                         <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
                                                             <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                             <br />
@@ -243,16 +248,17 @@ const Welcome = () => {
                                                         <p className="mb-6 text-center text-sm text-gray-600 sm:text-center sm:text-base lg:text-left lg:text-lg">
                                                             {contentSets[currentContent].subtitle}
                                                         </p>
+                                                        </div>
                                                     </>
                                                 ) : (
                                                     <>
                                                         <AnimatePresence mode="wait">
                                                             <motion.div
                                                                 key={currentContent}
-                                                                initial={{ opacity: 0 }}
-                                                                animate={{ opacity: 1 }}
-                                                                exit={{ opacity: 0 }}
-                                                                transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                                                initial={{ opacity: 1, y: 10 }}
+                                                                animate={{ opacity: 1, y: 0 }}
+                                                                exit={{ opacity: 0, y: -6 }}
+                                                                transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
                                                             >
                                                                 <h1 className="mb-6 text-center text-2xl leading-tight font-bold sm:text-center sm:text-3xl lg:text-left lg:text-4xl xl:text-5xl">
                                                                     <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
@@ -279,7 +285,7 @@ const Welcome = () => {
                                             </div>
 
                                             {/* Buttons - responsive alignment */}
-                                            <div className="mt-6 w-full">
+                                            <div className="welcome-hero-nudge welcome-hero-nudge--b mt-6 w-full">
                                                 <div className="button-container flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4 md:flex-row md:justify-center md:gap-4 lg:flex-row lg:justify-start lg:gap-4">
                                                     <button
                                                         className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
@@ -321,16 +327,15 @@ const Welcome = () => {
                                     {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                     <Link
                                         href="/csr"
-                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12"
+                                        className={`relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12 ${heroMicroReady ? 'welcome-csr-hover-ready' : ''}`}
                                         onMouseEnter={() => setHoveredCard(4)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
                                         <PapuaChildrenHeroPicture
                                             pictureClassName="absolute inset-0 block h-full w-full"
-                                            className="welcome-lcp-hero h-full w-full object-cover"
+                                            className={`welcome-lcp-hero h-full w-full object-cover transform will-change-auto lg:origin-center ${hoveredCard === 4 ? 'lg:scale-105' : 'scale-100'}`}
                                             style={{
                                                 objectPosition: 'center center',
-                                                transform: 'translateZ(0)',
                                                 backfaceVisibility: 'hidden',
                                             }}
                                             alt="CSR Impact in Papua"
@@ -1134,8 +1139,37 @@ const Welcome = () => {
             transition-duration: 150ms;
           }
 
+          /* LCP-safe hero motion: full opacity; transform-only slide; starts after .welcome-hero-micro--ready */
+          @media (prefers-reduced-motion: no-preference) {
+            .welcome-hero-micro .welcome-hero-nudge--a {
+              transform: translate3d(0, 14px, 0);
+              opacity: 1;
+              transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            .welcome-hero-micro--ready .welcome-hero-nudge--a {
+              transform: translate3d(0, 0, 0);
+            }
+            .welcome-hero-micro .welcome-hero-nudge--b {
+              transform: translate3d(0, 12px, 0);
+              opacity: 1;
+              transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+              transition-delay: 0ms;
+            }
+            .welcome-hero-micro--ready .welcome-hero-nudge--b {
+              transform: translate3d(0, 0, 0);
+              transition-delay: 0.1s;
+            }
+          }
+
           .welcome-lcp-hero {
-            transition: none !important;
+            transition: none;
+            transform: translateZ(0);
+          }
+
+          @media (prefers-reduced-motion: no-preference) {
+            .welcome-csr-hover-ready .welcome-lcp-hero {
+              transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
           }
 
           /* Enhanced hover states for cards */
