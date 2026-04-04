@@ -59,6 +59,8 @@ return [
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
+            /** Object key prefix; must match VITE_ASSET_PREFIX (default public) so CDN URLs like /public/file.jpg resolve */
+            'root_prefix' => env('R2_PREFIX', 'public'),
             'options' => [
                 'CacheControl' => 'max-age=31536000, public',
             ],

@@ -8,8 +8,8 @@ if (!function_exists('r2_prefix')) {
      */
     function r2_prefix(): string
     {
-        // Allow override via config, fallback to env for quick tweaks
-        return trim(config('filesystems.disks.s3.root_prefix', env('R2_PREFIX', '')), '/');
+        // Default "public" matches resources/js/lib/assets.ts (VITE_ASSET_PREFIX) → cdn.../public/filename
+        return trim((string) config('filesystems.disks.s3.root_prefix', 'public'), '/');
     }
 }
 

@@ -29,21 +29,27 @@ class PushFileToR2 extends Command
         }
 
         $targetPath = r2_object_path($relativePath);
+        $basename = basename($targetPath);
         $this->info("Uploading: {$relativePath} → R2 key: {$targetPath}");
 
         try {
             if (Storage::disk('s3')->exists($targetPath)) {
                 $this->warn('File already exists in R2. Overwriting.');
             }
-            Storage::disk('s3')->put(
-                $targetPath,
-                file_get_contents($fullPath),
-                'public'
-            );
-            $url = Storage::disk('s3')->url($targetPath);
+            $body = file_get_contents($fullPath);
+            Storage::disk('s3')->put($targetPath, $body, 'public');
+
+            // IMAGE-IMPLEMENTATION-GUIDE: also store root key for legacy fallbacks (optional second path)
+            if ($basename !== '' && $targetPath !== $basename) {
+                Storage::disk('s3')->put($basename, $body, 'public');
+                $this->line("Also mirrored at R2 key: {$basename}");
+            }
+
+            $cdnBase = rtrim((string) config('filesystems.disks.s3.url', 'https://cdn.kristalin.co.id'), '/');
             $this->info('✅ Uploaded successfully.');
-            $this->line('R2 URL: ' . $url);
-            $this->line('Frontend: use imageUrl(\'february news 01.jpg\'); URL will resolve via /images/ proxy or CDN.');
+            $this->line('Primary CDN (imageUrl /file): ' . $cdnBase . '/public/' . rawurlencode($basename));
+            $this->line('R2 driver URL: ' . Storage::disk('s3')->url($targetPath));
+            $this->line('Verify: curl -I "' . $cdnBase . '/public/' . rawurlencode($basename) . '"');
             return 0;
         } catch (\Throwable $e) {
             $this->error('Upload failed: ' . $e->getMessage());

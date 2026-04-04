@@ -1,5 +1,7 @@
 # 📸 IMAGE IMPLEMENTATION GUIDE - KRISTALIN PROJECT
 
+**Untuk langkah lengkap menambah berita (termasuk gambar):** lihat **docs/NEWS-CREATION-GUIDE.md**.
+
 ## ✅ POLA YANG BENAR (DO)
 
 ### 1. Path di Code (news.tsx, NewsDetail.tsx, welcome.tsx)
@@ -32,6 +34,8 @@ File harus di-upload ke R2 dengan **DUA path**:
 
 - `filename.jpg` (tanpa prefix) - untuk fallback
 - `public/filename.jpg` (dengan prefix) - untuk match dengan imageUrl() output
+
+**Penting — prefix `public/` di bucket:** `php artisan r2:push-file` memakai `r2_object_path()` + **`config/filesystems.php` → `s3.root_prefix`** (default dari env `R2_PREFIX`, fallback **`public`**). Itu harus selaras dengan `VITE_ASSET_PREFIX` di frontend (biasanya `public`). Jika `root_prefix` kosong, file ter-upload ke akar bucket (`tataboardmemberkel.jpeg`) sementara `imageUrl('/tataboardmemberkel.jpeg')` meminta **`https://cdn.kristalin.co.id/public/tataboardmemberkel.jpeg`** → **404**. Setelah mengubah config, jalankan `php artisan config:clear` lalu push ulang.
 
 **Command:**
 
