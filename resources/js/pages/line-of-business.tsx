@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { Head } from '@inertiajs/react';
+import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
 
@@ -74,13 +76,23 @@ const CounterAnimation = ({ target, duration = 1000 }: { target: number; duratio
 export default function KristalinPortfolio() {
     const { t } = useTranslation();
     const companyProfileRef = React.useRef<HTMLDivElement>(null);
+    const scrollRafRef = useRef(0);
     const [scrollY, setScrollY] = useState(0);
 
-    // Parallax effect
+    // Parallax: throttle to one update per frame (less main-thread work than raw scroll)
     useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            if (scrollRafRef.current) return;
+            scrollRafRef.current = requestAnimationFrame(() => {
+                scrollRafRef.current = 0;
+                setScrollY(window.scrollY);
+            });
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            cancelAnimationFrame(scrollRafRef.current);
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     const handleScrollToCompanyProfile = () => {
@@ -90,20 +102,27 @@ export default function KristalinPortfolio() {
     };
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title={t('pages.line_of_business.page_title')} />
+
             <Header sticky={true} transparent={true} />
 
             {/* Hero Section with Parallax - PERBAIKAN MOBILE */}
             <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
                 <div
-                    className="absolute inset-0 h-full w-full"
+                    className="absolute inset-0 h-full w-full will-change-transform"
                     style={{
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img
-                        src={imageUrl('portofolio.jpg')}
+                    <WelcomeGridPicture
+                        imageId="portofolio"
                         alt={t('pages.line_of_business.alt_texts.mining_future')}
-                        className="h-full w-full object-cover"
+                        pictureClassName="block h-full min-h-full w-full"
+                        className="h-full min-h-full w-full object-cover"
+                        sizes="100vw"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
@@ -112,29 +131,29 @@ export default function KristalinPortfolio() {
                     className="relative z-20 mx-auto w-full max-w-5xl px-4 pt-16 pb-4 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
+                    transition={{ duration: 0.45, ease: 'easeOut' }}
                 >
                     <motion.div
-                        className="transform transition-all duration-1000 ease-out"
+                        className="transform transition-all duration-700 ease-out"
                         style={{
                             transform: `translateY(${scrollY * 0.2}px)`,
                             opacity: Math.max(0, 1 - scrollY / 600),
                         }}
                         initial={{ opacity: 0, y: 80 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.65, delay: 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
                         <motion.h1
                             className="mb-4 text-3xl leading-tight font-bold sm:mb-6 sm:text-4xl md:text-5xl lg:text-7xl"
                             initial={{ opacity: 0, y: 50, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+                            transition={{ duration: 0.55, delay: 0.2, ease: 'easeOut' }}
                         >
                             <motion.span
                                 className="text-white drop-shadow-lg"
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
                             >
                                 {t('pages.line_of_business.hero_title_1')}{' '}
                             </motion.span>
@@ -142,7 +161,7 @@ export default function KristalinPortfolio() {
                                 className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
                                 initial={{ opacity: 0, x: 30 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6, delay: 1.0 }}
+                                transition={{ duration: 0.5, delay: 0.38 }}
                             >
                                 {t('pages.line_of_business.hero_title_2')}
                             </motion.span>
@@ -152,7 +171,7 @@ export default function KristalinPortfolio() {
                             style={{ letterSpacing: '-1px' }}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                            transition={{ duration: 0.55, delay: 0.48, ease: 'easeOut' }}
                         >
                             {t('pages.line_of_business.hero_subtitle')}
                         </motion.h2>
@@ -160,7 +179,7 @@ export default function KristalinPortfolio() {
                             className="mx-auto mb-4 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:text-lg md:text-xl lg:text-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
+                            transition={{ duration: 0.55, delay: 0.58, ease: 'easeOut' }}
                         >
                             {t('pages.line_of_business.hero_description')}
                         </motion.p>
@@ -176,7 +195,7 @@ export default function KristalinPortfolio() {
                     }}
                     initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 1.6, ease: 'easeOut' }}
+                    transition={{ duration: 0.65, delay: 0.72, ease: 'easeOut' }}
                 >
                     <div className="mx-auto max-w-5xl">
                         <motion.div
@@ -279,7 +298,7 @@ export default function KristalinPortfolio() {
                     }}
                     initial={{ opacity: 0, y: 40, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 2.2, ease: 'easeOut' }}
+                    transition={{ duration: 0.65, delay: 0.95, ease: 'easeOut' }}
                 >
                     <div className="flex justify-center">
                         <motion.button
@@ -317,7 +336,7 @@ export default function KristalinPortfolio() {
                     className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 2.8, ease: 'easeOut' }}
+                    transition={{ duration: 0.5, delay: 1.15, ease: 'easeOut' }}
                 >
                     <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
                         <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
@@ -442,6 +461,9 @@ export default function KristalinPortfolio() {
                                 src={imageUrl('kristalinlogotransisi1.png')}
                                 alt="Kristalin Logo"
                                 className="mx-auto mb-6 h-40 w-40 object-contain md:h-56 md:w-56"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
                             />
                         </motion.div>
                     </motion.div>
@@ -661,6 +683,9 @@ export default function KristalinPortfolio() {
                                 src={imageUrl('gold-bars.jpg')}
                                 alt={t('pages.line_of_business.gold_price.alt_text')}
                                 className="h-96 w-full rounded-2xl object-cover shadow-lg"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
                             />
                         </motion.div>
 
@@ -700,7 +725,7 @@ export default function KristalinPortfolio() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                className="relative bg-cover bg-fixed bg-center py-20"
+                className="relative bg-cover bg-local bg-center py-20 md:bg-fixed"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('hero-linebusiness.png')}')`,
                 }}
