@@ -31,7 +31,7 @@ const directorsData = [
     { id: 15, name: 'Jeanie Adeleide Pipit', positionKey: 'position_advisor_shareholder', company: '', image: '/IMG_5110.JPG' },
     { id: 1, name: 'Jilan Jia Auranya', positionKey: 'position_board_member', company: '', image: '/IMG_9617.JPG' },
     { id: 13, name: 'Novriadji Wibowo', positionKey: 'position_board_member', company: '', image: '/IMG_4892.JPG' },
-    { id: 18, name: 'Talitha Arif', positionKey: 'position_board_member', company: '', image: '/talitha-arif-board.jpg' },
+    { id: 18, name: 'Talitha Arif', positionKey: 'position_board_member', company: '', image: '/tataboardmemberkel.jpeg' },
 ];
 
 // Enhanced Optimized Image Component - Performance focused for scroll
