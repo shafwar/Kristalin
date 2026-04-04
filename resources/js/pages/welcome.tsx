@@ -288,15 +288,18 @@ const Welcome = () => {
                                             {/* Buttons - responsive alignment */}
                                             <div className="welcome-hero-nudge welcome-hero-nudge--b mt-6 w-full">
                                                 <div className="button-container flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-4 md:flex-row md:justify-center md:gap-4 lg:flex-row lg:justify-start lg:gap-4">
+                                                    {/* Same box model for all three: h-12 + border-2 (transparent on primary) + flex center, no py — avoids border vs padding clash and uneven heights */}
                                                     <button
-                                                        className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-yellow-400 to-amber-500 px-7 py-3.5 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        type="button"
+                                                        className="inline-flex h-12 w-full max-w-[280px] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-7 text-base font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:w-auto sm:min-w-[200px] md:w-auto md:min-w-[200px] lg:w-auto lg:min-w-[200px]"
                                                         onClick={() => (window.location.href = '/about#about-kristalin')}
                                                     >
                                                         {t('pages.welcome.buttons.learn_more')}
                                                     </button>
 
                                                     <button
-                                                        className="relative flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-yellow-400 bg-transparent px-7 py-3.5 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        type="button"
+                                                        className="inline-flex h-12 w-full max-w-[280px] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-transparent px-7 text-base font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:w-auto sm:min-w-[200px] md:w-auto md:min-w-[200px] lg:w-auto lg:min-w-[200px]"
                                                         onClick={() => (window.location.href = '/milestones')}
                                                     >
                                                         {t('pages.welcome.buttons.see_milestones')}
@@ -307,7 +310,7 @@ const Welcome = () => {
                                                         href="https://www.instagram.com/kristalin_ekalestari/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="flex h-12 w-full max-w-[280px] cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-7 py-3.5 text-base font-semibold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-xl sm:w-auto sm:min-w-[180px] md:w-auto md:min-w-[180px] lg:w-auto lg:min-w-[180px]"
+                                                        className="inline-flex h-12 w-full max-w-[280px] shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 border-gray-300 bg-white px-7 text-base font-semibold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-xl sm:w-auto sm:min-w-[200px] md:w-auto md:min-w-[200px] lg:w-auto lg:min-w-[200px]"
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                     >
