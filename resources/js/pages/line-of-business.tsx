@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
+import { useLazySectionBackground } from '../hooks/useLazySectionBackground';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
 
@@ -78,6 +79,7 @@ export default function KristalinPortfolio() {
     const companyProfileRef = React.useRef<HTMLDivElement>(null);
     const scrollRafRef = useRef(0);
     const [scrollY, setScrollY] = useState(0);
+    const whyChooseUsBg = useLazySectionBackground(imageUrl('hero-linebusiness.jpg'));
 
     // Parallax: throttle to one update per frame (less main-thread work than raw scroll)
     useEffect(() => {
@@ -123,6 +125,7 @@ export default function KristalinPortfolio() {
                         loading="eager"
                         fetchPriority="high"
                         decoding="async"
+                        bundleOptions={{ maxWidth: 960 }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
@@ -720,15 +723,14 @@ export default function KristalinPortfolio() {
                 </div>
             </motion.section>
 
-            {/* Why Choose Us Section */}
+            {/* Why Choose Us — JPEG + lazy bg (PNG was ~13MB). Animations unchanged. */}
             <motion.section
+                ref={whyChooseUsBg.ref}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative bg-cover bg-local bg-center py-20 md:bg-fixed"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('hero-linebusiness.png')}')`,
-                }}
+                style={{ backgroundImage: whyChooseUsBg.backgroundImage }}
             >
                 <div className="mx-auto max-w-6xl px-4">
                     <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">

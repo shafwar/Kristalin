@@ -3,6 +3,7 @@ import {
     getWelcomeGridBundle,
     legacyGridJpg,
     type WelcomeGridImageId,
+    type WelcomeGridBundleOptions,
     WELCOME_GRID_INTRINSIC,
 } from '@/lib/welcomeGridImages';
 
@@ -16,6 +17,8 @@ type Props = {
     loading?: 'eager' | 'lazy';
     fetchPriority?: 'high' | 'low' | 'auto';
     decoding?: 'async' | 'auto' | 'sync';
+    /** Passed to getWelcomeGridBundle — limits largest srcset width (lighter on Slow 4G / large DPR). */
+    bundleOptions?: WelcomeGridBundleOptions;
 };
 
 /**
@@ -32,9 +35,10 @@ export function WelcomeGridPicture({
     loading = 'lazy',
     fetchPriority = 'low',
     decoding = 'async',
+    bundleOptions,
 }: Props) {
     const { imageTier } = useNetworkProfile();
-    const bundle = getWelcomeGridBundle(imageId, imageTier);
+    const bundle = getWelcomeGridBundle(imageId, imageTier, bundleOptions);
     const sizes = sizesOverride ?? bundle.sizes;
     const { width, height } = WELCOME_GRID_INTRINSIC[imageId];
 

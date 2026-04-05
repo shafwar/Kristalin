@@ -35,14 +35,43 @@ function bundleFor(
     };
 }
 
-export function getWelcomeGridBundle(id: WelcomeGridImageId, tier: NetworkImageTier): PapuaHeroBundle {
+export type WelcomeGridBundleOptions = {
+    /** Cap largest variant (e.g. 960 for full-bleed heroes — skips 1280w on fast connections). */
+    maxWidth?: 640 | 960 | 1280;
+};
+
+export function getWelcomeGridBundle(
+    id: WelcomeGridImageId,
+    tier: NetworkImageTier,
+    options?: WelcomeGridBundleOptions,
+): PapuaHeroBundle {
+    const cap = options?.maxWidth;
+
+    let widths: (640 | 960 | 1280)[];
+    let sizes: string;
+    let jpgFallbackW: 640 | 960 | 1280;
+
     if (tier === 'minimal') {
-        return bundleFor(id, [640], '(max-width: 1023px) 96vw, 48vw', 640);
+        widths = [640];
+        sizes = '(max-width: 1023px) 96vw, 48vw';
+        jpgFallbackW = 640;
+    } else if (tier === 'conserve') {
+        widths = [640, 960];
+        sizes = '(max-width: 1023px) 98vw, 50vw';
+        jpgFallbackW = 960;
+    } else {
+        widths = [640, 960, 1280];
+        sizes = '(max-width: 1023px) 100vw, 50vw';
+        jpgFallbackW = 1280;
     }
-    if (tier === 'conserve') {
-        return bundleFor(id, [640, 960], '(max-width: 1023px) 98vw, 50vw', 960);
+
+    if (cap) {
+        widths = widths.filter((w) => w <= cap);
+        if (widths.length === 0) widths = [640];
+        jpgFallbackW = widths[widths.length - 1];
     }
-    return bundleFor(id, [640, 960, 1280], '(max-width: 1023px) 100vw, 50vw', 1280);
+
+    return bundleFor(id, widths, sizes, jpgFallbackW);
 }
 
 export function legacyGridJpg(id: WelcomeGridImageId): string {
