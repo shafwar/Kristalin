@@ -1,8 +1,10 @@
 import { AnimatePresence, Easing, motion, Variants } from 'framer-motion';
+import { Head } from '@inertiajs/react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
 
@@ -463,14 +465,18 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
                             transition={{ duration: 0.7, ease: 'easeOut' }}
                         >
                             <div className="relative flex flex-col items-center justify-center overflow-visible rounded-2xl bg-white p-6 shadow-xl sm:p-8 lg:p-12">
-                                <div className="flex w-full items-center justify-center overflow-hidden rounded-lg" style={{ minHeight: 200 }}>
+                                <div className="relative h-[220px] w-full overflow-hidden rounded-lg bg-slate-200 sm:h-[260px]">
                                     <AnimatePresence mode="wait">
                                         <motion.img
                                             key={images[activeIndex].src}
                                             src={images[activeIndex].src}
                                             alt={images[activeIndex].alt}
-                                            className="h-auto w-full rounded-lg object-cover"
-                                            style={{ maxHeight: 280 }}
+                                            width={800}
+                                            height={600}
+                                            className="absolute inset-0 h-full w-full object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                            fetchPriority="low"
                                             initial={{ x: 100, opacity: 0, scale: 0.98, filter: 'blur(6px)' }}
                                             animate={{ x: 0, opacity: 1, scale: 1, filter: 'blur(0px)' }}
                                             exit={{ x: -100, opacity: 0, scale: 0.98, filter: 'blur(6px)' }}
@@ -527,7 +533,11 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
                                         <img
                                             src={imageUrl('gold1.jpg')}
                                             alt="Gold Operation"
+                                            width={400}
+                                            height={300}
                                             className="mb-4 aspect-[4/3] w-full max-w-xs rounded-xl bg-white object-cover sm:mb-6"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
                                     </div>
 
@@ -584,7 +594,11 @@ function EnhancedMiningSectors({ t }: { t: (key: string) => string }) {
                                         <img
                                             src={imageUrl('silver.jpg')}
                                             alt="Silver Operation"
+                                            width={400}
+                                            height={300}
                                             className="mb-4 aspect-[4/3] w-full max-w-xs rounded-xl bg-white object-cover sm:mb-6"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
                                     </div>
 
@@ -736,8 +750,17 @@ function AlluvialGoldMiningSection({ t }: { t: (key: string) => string }) {
                         className="space-y-6"
                     >
                         {/* Main Image */}
-                        <div className="relative overflow-hidden rounded-xl shadow-lg">
-                            <img src={imageUrl('tracktor.png')} alt="Gold mining operations" className="h-64 w-full object-cover" />
+                        <div className="relative h-64 w-full overflow-hidden rounded-xl bg-slate-200 shadow-lg">
+                            <img
+                                src={imageUrl('tracktor.png')}
+                                alt="Gold mining operations"
+                                width={800}
+                                height={256}
+                                className="h-full w-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
+                            />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                             <div className="absolute right-4 bottom-4 left-4 text-white">
                                 <p className="text-sm font-medium">{t('pages.business_activity.modern_operations.title')}</p>
@@ -798,31 +821,47 @@ function AlluvialGoldMiningSection({ t }: { t: (key: string) => string }) {
 export default function BusinessActivityPage() {
     const { t } = useTranslation();
     const miningSectorsRef = useRef<HTMLDivElement>(null);
+    const scrollRafRef = useRef(0);
     const [scrollY, setScrollY] = useState(0);
 
-    // Parallax effect
     useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            if (scrollRafRef.current) return;
+            scrollRafRef.current = requestAnimationFrame(() => {
+                scrollRafRef.current = 0;
+                setScrollY(window.scrollY);
+            });
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            cancelAnimationFrame(scrollRafRef.current);
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title={t('pages.business_activity.page_title')} />
+
             <Header sticky={true} transparent={true} />
 
             {/* Hero Section - MOBILE OPTIMIZED */}
             <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
                 <div
-                    className="absolute inset-0 h-full w-full"
+                    className="absolute inset-0 h-full w-full will-change-transform"
                     style={{
                         transform: `translateY(${scrollY * 0.5}px)`,
                     }}
                 >
-                    <img
-                        src={imageUrl('businessactivity.jpg')}
+                    <WelcomeGridPicture
+                        imageId="businessactivity"
                         alt={t('pages.business_activity.hero.alt_text')}
-                        className="h-full w-full object-cover"
+                        pictureClassName="block h-full min-h-full w-full"
+                        className="h-full min-h-full w-full object-cover"
+                        sizes="100vw"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
@@ -831,30 +870,30 @@ export default function BusinessActivityPage() {
                     className="relative z-20 mx-auto w-full max-w-5xl px-4 py-16 text-center sm:py-24"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
+                    transition={{ duration: 0.45, ease: 'easeOut' }}
                 >
                     <motion.div
-                        className="transform transition-all duration-1000 ease-out"
+                        className="transform transition-all duration-700 ease-out"
                         style={{
                             transform: `translateY(${scrollY * 0.2}px)`,
                             opacity: Math.max(0, 1 - scrollY / 600),
                         }}
                         initial={{ opacity: 0, y: 80 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.65, delay: 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
                         {/* MOBILE RESPONSIVE HEADING */}
                         <motion.h1
                             className="mb-6 text-3xl leading-tight font-bold sm:mb-8 sm:text-4xl md:text-5xl lg:text-7xl"
                             initial={{ opacity: 0, y: 50, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+                            transition={{ duration: 0.55, delay: 0.2, ease: 'easeOut' }}
                         >
                             <motion.span
                                 className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent drop-shadow-lg"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
                             >
                                 {t('pages.business_activity.hero.title_line1')}
                             </motion.span>
@@ -863,7 +902,7 @@ export default function BusinessActivityPage() {
                                 className="text-white drop-shadow-lg"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 1.0 }}
+                                transition={{ duration: 0.5, delay: 0.38 }}
                             >
                                 {t('pages.business_activity.hero.title_line2')}
                             </motion.span>
@@ -874,7 +913,7 @@ export default function BusinessActivityPage() {
                             className="mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed font-light text-white/95 sm:mb-12 sm:text-lg md:text-xl lg:text-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                            transition={{ duration: 0.55, delay: 0.48, ease: 'easeOut' }}
                         >
                             {t('pages.business_activity.hero.description')}
                         </motion.p>
@@ -884,7 +923,7 @@ export default function BusinessActivityPage() {
                             className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
                             initial={{ opacity: 0, y: 30, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
+                            transition={{ duration: 0.65, delay: 0.6, ease: 'easeOut' }}
                         >
                             <motion.button
                                 onClick={() => {
@@ -921,7 +960,7 @@ export default function BusinessActivityPage() {
                     className="absolute bottom-4 left-1/2 -translate-x-1/2 transform sm:bottom-6 lg:bottom-8"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.8, ease: 'easeOut' }}
+                    transition={{ duration: 0.5, delay: 0.85, ease: 'easeOut' }}
                 >
                     <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/60 sm:h-10 sm:w-6">
                         <div className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white sm:mt-2 sm:h-3"></div>
@@ -939,7 +978,7 @@ export default function BusinessActivityPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                className="relative bg-cover bg-fixed bg-center py-20"
+                className="relative bg-cover bg-local bg-center py-20 md:bg-fixed"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('nabire.jpg')}')`,
                 }}
@@ -1308,7 +1347,12 @@ export default function BusinessActivityPage() {
                                 <img
                                     src={imageUrl('comdevelop.jpg')}
                                     alt="Community Development"
+                                    width={1280}
+                                    height={854}
                                     className="h-80 w-full rounded-xl object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchPriority="low"
                                 />
                                 <div className="absolute inset-2 rounded-xl bg-gradient-to-t from-black/20 to-transparent"></div>
                             </div>
@@ -1479,7 +1523,7 @@ export default function BusinessActivityPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                className="relative bg-cover bg-fixed bg-center py-20"
+                className="relative bg-cover bg-local bg-center py-20 md:bg-fixed"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${imageUrl('hero-linebusiness.png')}')`,
                 }}
