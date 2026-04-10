@@ -88,6 +88,9 @@ Route::post('/contact-message', [ContactMessageController::class, 'store']);
 // Internal Feedback (Whistle Blower) – email via Resend only; no admin panel
 Route::get('/internal-feedback', [InternalReportController::class, 'showForm'])->name('internal-feedback');
 Route::post('/internal-feedback', [InternalReportController::class, 'store'])->name('internal-feedback.store');
+Route::get('/internal-feedback/attachments/{token}', [InternalReportController::class, 'downloadAttachment'])
+    ->middleware('throttle:60,1')
+    ->name('internal-feedback.attachment');
 
 // Language switching routes
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');

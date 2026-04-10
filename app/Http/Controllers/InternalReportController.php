@@ -36,6 +36,35 @@ class InternalReportController extends Controller
     }
 
     /**
+     * Stream a stored attachment (S3/R2) using an unguessable token from the notification email.
+     * Does not use expiring presigned URLs; access lasts as long as the object remains in storage.
+     */
+    public function downloadAttachment(string $token)
+    {
+        if (strlen($token) !== 64 || !ctype_xdigit($token)) {
+            abort(404);
+        }
+
+        $report = InternalReport::query()
+            ->where('attachment_secret', $token)
+            ->whereNotNull('attachment_path')
+            ->first();
+
+        if ($report === null) {
+            abort(404);
+        }
+
+        $disk = Storage::disk('s3');
+        if (!$disk->exists($report->attachment_path)) {
+            abort(404);
+        }
+
+        $name = $report->attachment_original_name ?: basename($report->attachment_path);
+
+        return $disk->download($report->attachment_path, $name);
+    }
+
+    /**
      * Store a new internal report and send email via Resend.
      * Attachment: upload to S3/R2 first, then email contains download link (reliable for large files).
      * If S3 is not available, fallback to in-memory attachment.
@@ -88,31 +117,30 @@ class InternalReportController extends Controller
             $attachmentMime = null;
             $attachmentDownloadUrl = null;
             $tempPath = null;
+            $s3Path = null;
+            $attachmentSecret = null;
 
             if ($file) {
                 $attachmentName = $file->getClientOriginalName();
                 $attachmentMime = $file->getMimeType() ?: 'application/octet-stream';
 
-                // Prefer S3/R2: store file and send download link in email (no size/timeout issues)
+                // Prefer S3/R2: store privately; email uses app download URL (no presigned expiry)
                 try {
                     $disk = Storage::disk('s3');
-                    $path = $disk->putFileAs(
+                    $s3Path = $disk->putFileAs(
                         'internal-feedback/' . now()->format('Y-m-d'),
                         $file,
                         Str::uuid() . '_' . $file->getClientOriginalName(),
                         'private'
                     );
-                    $safeFilename = str_replace('"', '\\"', $file->getClientOriginalName());
-                    $attachmentDownloadUrl = $disk->temporaryUrl($path, now()->addDays(7), [
-                        'ResponseContentDisposition' => 'attachment; filename="' . $safeFilename . '"',
-                    ]);
-                    Log::info('Internal Feedback: attachment stored to S3/R2, email will contain download link.', ['filename' => $attachmentName]);
+                    $attachmentSecret = bin2hex(random_bytes(32));
+                    Log::info('Internal Feedback: attachment stored to S3/R2, email will contain app download link.', ['filename' => $attachmentName]);
                 } catch (\Throwable $e) {
                     Log::warning('Internal Feedback: S3/R2 store failed, falling back to in-memory attachment.', ['message' => $e->getMessage()]);
                 }
 
-                // Fallback: in-memory attachment when S3 not used or failed
-                if ($attachmentDownloadUrl === null) {
+                // Fallback: in-memory attachment when S3 not used or failed (no durable link)
+                if ($s3Path === null) {
                     $path = $file->getRealPath();
                     if ($path && is_readable($path)) {
                         $attachmentContent = file_get_contents($path);
@@ -126,6 +154,39 @@ class InternalReportController extends Controller
                     }
                     if ($attachmentContent !== null && $attachmentContent !== false) {
                         Log::info('Internal Feedback: sending with in-memory attachment.', ['filename' => $attachmentName]);
+                    }
+                }
+            }
+
+            // Save before email so the notification can include a non-expiring app download URL
+            try {
+                InternalReport::create([
+                    'name' => $data['is_anonymous'] ? null : ($data['name'] ?? null),
+                    'email' => $data['is_anonymous'] ? null : ($data['email'] ?? null),
+                    'phone' => $data['is_anonymous'] ? null : ($data['phone'] ?? null),
+                    'category' => $data['category'],
+                    'description' => $description,
+                    'attachment_path' => $s3Path,
+                    'attachment_original_name' => $attachmentName,
+                    'attachment_secret' => $s3Path !== null ? $attachmentSecret : null,
+                    'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
+                    'status' => 'submitted',
+                ]);
+                if ($s3Path !== null && $attachmentSecret !== null) {
+                    $attachmentDownloadUrl = route('internal-feedback.attachment', ['token' => $attachmentSecret], true);
+                }
+            } catch (\Throwable $e) {
+                Log::warning('Internal Feedback: DB save skipped. ' . $e->getMessage());
+                if ($s3Path !== null && $attachmentName !== null) {
+                    try {
+                        $disk = Storage::disk('s3');
+                        $safeFilename = str_replace('"', '\\"', $attachmentName);
+                        $attachmentDownloadUrl = $disk->temporaryUrl($s3Path, now()->addDays(7), [
+                            'ResponseContentDisposition' => 'attachment; filename="' . $safeFilename . '"',
+                        ]);
+                        Log::warning('Internal Feedback: using 7-day presigned URL because DB row was not saved.');
+                    } catch (\Throwable $e2) {
+                        Log::warning('Internal Feedback: could not build fallback temporary URL.', ['message' => $e2->getMessage()]);
                     }
                 }
             }
@@ -147,23 +208,6 @@ class InternalReportController extends Controller
 
             if ($tempPath && file_exists($tempPath)) {
                 @unlink($tempPath);
-            }
-
-            // Optional: save to DB for audit (jangan gagalkan response jika migrasi belum jalan)
-            try {
-                InternalReport::create([
-                    'name' => $data['is_anonymous'] ? null : ($data['name'] ?? null),
-                    'email' => $data['is_anonymous'] ? null : ($data['email'] ?? null),
-                    'phone' => $data['is_anonymous'] ? null : ($data['phone'] ?? null),
-                    'category' => $data['category'],
-                    'description' => $description,
-                    'attachment_path' => null,
-                    'attachment_original_name' => $attachmentName,
-                    'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
-                    'status' => 'submitted',
-                ]);
-            } catch (\Throwable $e) {
-                Log::warning('Internal Feedback: DB save skipped. ' . $e->getMessage());
             }
 
             return redirect()->route('internal-feedback')->with('success', true);

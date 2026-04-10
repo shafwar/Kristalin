@@ -36,7 +36,6 @@
         <p style="margin-top: 20px; font-size: 0.875rem; color: #1f2937;">
             <span class="label">Attachment:</span>
             <a href="{{ $attachmentDownloadUrl }}" style="color: #2563eb; text-decoration: underline;">Download {{ $attachmentName ?? 'file' }}</a>
-            <span style="color: #6b7280;"> (link valid 7 days)</span>
         </p>
     @elseif($hasAttachment ?? false)
         <p style="margin-top: 20px; font-size: 0.875rem; color: #6b7280;">An attachment is included with this email.</p>

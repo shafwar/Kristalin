@@ -14,6 +14,7 @@ class InternalReport extends Model
         'description',
         'attachment_path',
         'attachment_original_name',
+        'attachment_secret',
         'is_anonymous',
         'status',
     ];

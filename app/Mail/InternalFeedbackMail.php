@@ -22,7 +22,7 @@ class InternalFeedbackMail extends Mailable
         public readonly ?string $attachmentContent = null,
         public readonly ?string $attachmentName = null,
         public readonly ?string $attachmentMime = null,
-        /** When set, email contains download link (file stored in S3/R2); no inline attachment. */
+        /** When set, email contains app download URL (streams from private S3/R2); no inline attachment. */
         public readonly ?string $attachmentDownloadUrl = null,
     ) {
         $this->submittedAt = now()->format('Y-m-d H:i:s');
