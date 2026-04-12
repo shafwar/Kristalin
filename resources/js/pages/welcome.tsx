@@ -376,50 +376,52 @@ const Welcome = () => {
                                     </Link>
                                 </section>
 
-                                <section className="border-b border-stone-100 bg-white px-4 py-3 sm:px-6 sm:py-4" aria-labelledby="welcome-b2c-teaser-heading">
-                                    <div className="mx-auto max-w-6xl">
-                                        <Link
-                                            href="/b2c"
-                                            className="group flex items-center gap-3 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-stone-50 to-white p-3.5 shadow-sm ring-1 ring-stone-900/[0.03] transition-all duration-200 hover:border-amber-200/80 hover:shadow-md sm:gap-4 sm:p-4"
-                                        >
+                                <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
+                                {/* Bottom area: B2C bridge + grid — shared white block so the teaser reads as part of the mosaic */}
+                                <section className="flex flex-1 flex-col bg-white">
+                                    <Link
+                                        href="/b2c"
+                                        className="group relative flex w-full shrink-0 flex-col gap-4 border-b border-stone-200/90 bg-gradient-to-r from-stone-50 via-white to-amber-50/25 px-5 py-5 no-underline transition-colors duration-300 sm:px-6 sm:py-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:px-8 lg:py-6"
+                                        aria-labelledby="welcome-b2c-teaser-heading"
+                                    >
+                                        <span
+                                            className="pointer-events-none absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 opacity-90"
+                                            aria-hidden
+                                        />
+                                        <div className="flex min-w-0 flex-1 items-start gap-4">
                                             <div
-                                                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-stone-900 shadow-sm sm:h-11 sm:w-11"
+                                                className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 text-stone-900 shadow-md ring-2 ring-white/80 sm:h-14 sm:w-14"
                                                 aria-hidden
                                             >
-                                                <Coins className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={2} />
+                                                <Coins className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
                                             </div>
-                                            <div className="min-w-0 flex-1">
-                                                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">
-                                                    <span className="text-[10px] font-bold tracking-wider text-amber-800 uppercase sm:text-xs">
-                                                        {t('pages.welcome.b2c_teaser.badge')}
-                                                    </span>
-                                                </div>
+                                            <div className="min-w-0 pt-0.5">
+                                                <p className="text-[11px] font-semibold tracking-[0.2em] text-amber-700 uppercase sm:text-xs">
+                                                    {t('pages.welcome.b2c_teaser.badge')}
+                                                </p>
                                                 <h2
                                                     id="welcome-b2c-teaser-heading"
-                                                    className="text-sm font-bold leading-snug text-stone-900 sm:text-base"
+                                                    className="mt-1 text-base font-bold leading-snug text-stone-900 sm:text-lg lg:text-xl"
                                                 >
                                                     {t('pages.welcome.b2c_teaser.title')}
                                                 </h2>
-                                                <p className="mt-0.5 line-clamp-2 text-xs leading-snug text-stone-500 sm:text-sm">
+                                                <p className="mt-1 max-w-2xl text-sm leading-relaxed text-stone-600 lg:text-[0.9375rem]">
                                                     {t('pages.welcome.b2c_teaser.body')}
                                                 </p>
                                             </div>
-                                            <div className="flex shrink-0 flex-col items-end justify-center gap-0.5 self-center sm:flex-row sm:items-center sm:gap-1">
-                                                <span className="max-w-[5.5rem] text-right text-[10px] font-semibold leading-tight text-amber-800 sm:max-w-[9rem] sm:text-xs">
-                                                    {t('pages.welcome.b2c_teaser.cta')}
-                                                </span>
+                                        </div>
+                                        <div className="flex w-full shrink-0 justify-stretch sm:justify-end lg:w-auto lg:shrink-0">
+                                            <span className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-300/90 bg-white/90 px-5 py-2.5 text-sm font-semibold text-stone-900 shadow-sm transition-all duration-200 group-hover:border-amber-400 group-hover:bg-yellow-400/90 group-hover:text-stone-900 group-hover:shadow-md sm:w-auto sm:justify-center lg:px-6">
+                                                <span>{t('pages.welcome.b2c_teaser.cta')}</span>
                                                 <ChevronRight
-                                                    className="h-5 w-5 shrink-0 text-stone-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-amber-600"
+                                                    className="h-4 w-4 shrink-0 text-stone-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-stone-900"
                                                     aria-hidden
                                                 />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </section>
+                                            </span>
+                                        </div>
+                                    </Link>
 
-                                <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
-                                {/* Bottom Grid - fills remaining height and touches footer on desktop */}
-                                <section className="flex flex-1 flex-col bg-white lg:flex-row">
+                                    <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
                                     {/* Carousel Card - Mobile Anti-Flicker Optimized */}
                                     <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
                                         {isMobile ? (
@@ -882,6 +884,7 @@ const Welcome = () => {
                                             </div>
                                         </div>
                                     </Link>
+                                    </div>
                                 </section>
                                 </DeferredBelowFold>
 
