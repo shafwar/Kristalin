@@ -382,7 +382,7 @@ const Welcome = () => {
                                     <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/50 to-white px-4 py-3 sm:px-5 sm:py-4 lg:py-5">
                                         <Link
                                             href="/b2c"
-                                            className="group relative flex w-full max-w-xl flex-col gap-3 overflow-hidden rounded-xl border border-stone-200/70 bg-white px-4 py-4 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_10px_28px_-12px_rgba(15,23,42,0.12)] transition-all duration-300 hover:border-amber-200/60 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_36px_-12px_rgba(15,23,42,0.14)] sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-row md:items-center md:justify-between md:gap-5 md:py-3.5"
+                                            className="group relative flex w-full max-w-2xl flex-col gap-3 overflow-hidden rounded-xl border border-stone-200/70 bg-white px-4 py-4 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_10px_28px_-12px_rgba(15,23,42,0.12)] transition-all duration-300 hover:border-amber-200/60 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_36px_-12px_rgba(15,23,42,0.14)] sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-row md:items-center md:justify-between md:gap-5 md:py-3.5"
                                             aria-labelledby="welcome-b2c-teaser-heading"
                                         >
                                             <span
