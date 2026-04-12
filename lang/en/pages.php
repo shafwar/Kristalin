@@ -244,10 +244,10 @@ return [
         ],
 
         'b2c_teaser' => [
-            'badge' => 'Consumer program',
-            'title' => 'B2C gold purchase journey & client support',
-            'body' => 'Kristalin explains the consumer gold purchase program clearly—from LM handover timing and market-based pricing to profit sharing under the agreement—so you understand how we support clients before you sign official documents.',
-            'cta' => 'View the B2C program summary',
+            'badge' => 'B2C',
+            'title' => 'Consumer gold purchase program',
+            'body' => 'Terms, LM handover timing, and pricing—clearly summarized on one page.',
+            'cta' => 'Read summary',
         ],
 
         // Sections

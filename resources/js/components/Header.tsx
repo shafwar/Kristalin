@@ -187,6 +187,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             href: '#',
             hasDropdown: true,
             dropdownItems: [
+                { label: t('nav.b2c'), href: '/b2c' },
                 { label: t('nav.about_kristalin'), href: '/about#about-kristalin' },
                 { label: t('nav.board_of_directors'), href: '/board-of-directors' },
                 { label: t('nav.vision_mission'), href: '/vision-mission' },
@@ -201,7 +202,6 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
         { label: t('nav.gold_price'), href: 'https://goldprice.org/gold-price-indonesia.html', external: true },
         { label: t('nav.line_of_business'), href: '/line-of-business' },
-        { label: t('nav.b2c'), href: '/b2c' },
         { label: t('nav.business_activities'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
         { label: t('nav.contact'), href: '/contact' },

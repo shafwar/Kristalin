@@ -240,10 +240,10 @@ return [
         ],
 
         'b2c_teaser' => [
-            'badge' => 'Program konsumen',
-            'title' => 'Alur pembelian emas B2C & pendampingan klien',
-            'body' => 'Kristalin menyampaikan ketentuan program pembelian emas bagi konsumen secara transparan—mulai dari penjadwalan serah terima LM, acuan harga pasar, hingga bagi hasil sesuai perjanjian. Tim kami mengedepankan kejelasan informasi sebelum Anda berkomitmen pada dokumen resmi.',
-            'cta' => 'Lihat ringkasan program B2C',
+            'badge' => 'B2C',
+            'title' => 'Program pembelian emas untuk konsumen',
+            'body' => 'Ringkasan ketentuan, jadwal serah terima LM, dan acuan harga—dalam satu halaman ringkas.',
+            'cta' => 'Baca ringkasan',
         ],
 
         'csr' => [

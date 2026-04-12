@@ -4,6 +4,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronRight, Coins } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
@@ -375,33 +376,44 @@ const Welcome = () => {
                                     </Link>
                                 </section>
 
-                                <section
-                                    className="border-y border-amber-200/50 bg-gradient-to-r from-stone-50 via-amber-50/40 to-stone-50 px-4 py-5 sm:px-6"
-                                    aria-labelledby="welcome-b2c-teaser-heading"
-                                >
-                                    <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-                                        <div className="min-w-0 flex-1">
-                                            <p className="text-xs font-semibold tracking-widest text-amber-800/90 uppercase">
-                                                {t('pages.welcome.b2c_teaser.badge')}
-                                            </p>
-                                            <h2
-                                                id="welcome-b2c-teaser-heading"
-                                                className="mt-1 text-lg font-bold text-stone-900 sm:text-xl"
+                                <section className="border-b border-stone-100 bg-white px-4 py-3 sm:px-6 sm:py-4" aria-labelledby="welcome-b2c-teaser-heading">
+                                    <div className="mx-auto max-w-6xl">
+                                        <Link
+                                            href="/b2c"
+                                            className="group flex items-center gap-3 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-stone-50 to-white p-3.5 shadow-sm ring-1 ring-stone-900/[0.03] transition-all duration-200 hover:border-amber-200/80 hover:shadow-md sm:gap-4 sm:p-4"
+                                        >
+                                            <div
+                                                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-stone-900 shadow-sm sm:h-11 sm:w-11"
+                                                aria-hidden
                                             >
-                                                {t('pages.welcome.b2c_teaser.title')}
-                                            </h2>
-                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600 sm:text-base">
-                                                {t('pages.welcome.b2c_teaser.body')}
-                                            </p>
-                                        </div>
-                                        <div className="shrink-0 sm:self-center">
-                                            <Link
-                                                href="/b2c"
-                                                className="inline-flex w-full items-center justify-center rounded-xl border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-900 shadow-sm transition-colors duration-200 hover:border-amber-300 hover:bg-amber-50/80 sm:w-auto"
-                                            >
-                                                {t('pages.welcome.b2c_teaser.cta')}
-                                            </Link>
-                                        </div>
+                                                <Coins className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={2} />
+                                            </div>
+                                            <div className="min-w-0 flex-1">
+                                                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">
+                                                    <span className="text-[10px] font-bold tracking-wider text-amber-800 uppercase sm:text-xs">
+                                                        {t('pages.welcome.b2c_teaser.badge')}
+                                                    </span>
+                                                </div>
+                                                <h2
+                                                    id="welcome-b2c-teaser-heading"
+                                                    className="text-sm font-bold leading-snug text-stone-900 sm:text-base"
+                                                >
+                                                    {t('pages.welcome.b2c_teaser.title')}
+                                                </h2>
+                                                <p className="mt-0.5 line-clamp-2 text-xs leading-snug text-stone-500 sm:text-sm">
+                                                    {t('pages.welcome.b2c_teaser.body')}
+                                                </p>
+                                            </div>
+                                            <div className="flex shrink-0 flex-col items-end justify-center gap-0.5 self-center sm:flex-row sm:items-center sm:gap-1">
+                                                <span className="max-w-[5.5rem] text-right text-[10px] font-semibold leading-tight text-amber-800 sm:max-w-[9rem] sm:text-xs">
+                                                    {t('pages.welcome.b2c_teaser.cta')}
+                                                </span>
+                                                <ChevronRight
+                                                    className="h-5 w-5 shrink-0 text-stone-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-amber-600"
+                                                    aria-hidden
+                                                />
+                                            </div>
+                                        </Link>
                                     </div>
                                 </section>
 
