@@ -379,43 +379,47 @@ const Welcome = () => {
                                 <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
                                 {/* Bottom area: centered B2C card + full-bleed grid below */}
                                 <section className="flex flex-1 flex-col bg-white">
-                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/50 to-white px-4 py-3 sm:px-5 sm:py-4 lg:py-5">
+                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7">
                                         <Link
                                             href="/b2c"
-                                            className="group relative flex w-full max-w-2xl flex-col gap-3 overflow-hidden rounded-xl border border-stone-200/70 bg-white px-4 py-4 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_10px_28px_-12px_rgba(15,23,42,0.12)] transition-all duration-300 hover:border-amber-200/60 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_36px_-12px_rgba(15,23,42,0.14)] sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-row md:items-center md:justify-between md:gap-5 md:py-3.5"
+                                            className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6"
                                             aria-labelledby="welcome-b2c-teaser-heading"
                                         >
                                             <span
-                                                className="pointer-events-none absolute top-0 right-0 left-0 h-0.5 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500"
+                                                className="pointer-events-none absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400"
                                                 aria-hidden
                                             />
-                                            <div className="flex min-w-0 flex-1 items-start gap-3 md:items-center md:gap-3.5">
+                                            <span
+                                                className="pointer-events-none absolute top-0 bottom-0 left-0 w-[3px] bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-500/90 opacity-95"
+                                                aria-hidden
+                                            />
+                                            <div className="flex min-w-0 flex-1 items-start gap-4 pl-2.5 md:items-center md:gap-5 md:pl-1">
                                                 <div
-                                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 text-stone-900 shadow-sm ring-1 ring-amber-300/40 sm:h-11 sm:w-11"
+                                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 text-stone-900 shadow-md ring-1 ring-amber-200/50 sm:h-14 sm:w-14"
                                                     aria-hidden
                                                 >
-                                                    <Coins className="h-[1.15rem] w-[1.15rem] sm:h-5 sm:w-5" strokeWidth={2} />
+                                                    <Coins className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
                                                 </div>
                                                 <div className="min-w-0">
-                                                    <p className="text-[10px] font-semibold tracking-[0.18em] text-amber-800/90 uppercase sm:text-[11px]">
+                                                    <p className="text-[11px] font-semibold tracking-[0.22em] text-amber-800 uppercase sm:text-xs">
                                                         {t('pages.welcome.b2c_teaser.badge')}
                                                     </p>
                                                     <h2
                                                         id="welcome-b2c-teaser-heading"
-                                                        className="mt-0.5 text-sm font-semibold leading-snug tracking-tight text-stone-900 sm:text-[0.9375rem] md:text-base"
+                                                        className="mt-1 text-base font-semibold leading-snug tracking-tight text-stone-900 sm:text-lg md:text-xl"
                                                     >
                                                         {t('pages.welcome.b2c_teaser.title')}
                                                     </h2>
-                                                    <p className="mt-1 text-xs leading-relaxed text-stone-500 sm:text-[0.8125rem]">
+                                                    <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-stone-600 sm:text-[0.9375rem]">
                                                         {t('pages.welcome.b2c_teaser.body')}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="flex w-full shrink-0 justify-stretch md:w-auto md:justify-end">
-                                                <span className="inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-stone-200/90 bg-stone-50/80 px-4 py-2 text-xs font-semibold text-stone-800 transition-all duration-200 group-hover:border-amber-300/80 group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-yellow-400 group-hover:text-stone-900 md:w-auto md:px-4 md:py-2 md:text-[0.8125rem]">
+                                                <span className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-6 py-2.5 text-sm font-semibold text-stone-800 shadow-sm transition-all duration-200 group-hover:border-amber-300/90 group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-yellow-400 group-hover:text-stone-900 group-hover:shadow md:w-auto md:px-7 md:py-3">
                                                     <span>{t('pages.welcome.b2c_teaser.cta')}</span>
                                                     <ChevronRight
-                                                        className="h-3.5 w-3.5 shrink-0 text-stone-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-stone-900"
+                                                        className="h-4 w-4 shrink-0 text-stone-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-stone-900"
                                                         aria-hidden
                                                     />
                                                 </span>
