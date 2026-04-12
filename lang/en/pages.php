@@ -246,7 +246,7 @@ return [
         'b2c_teaser' => [
             'badge' => 'B2C',
             'title' => 'Consumer gold purchase program',
-            'body' => 'Terms, LM handover timing, and pricing, clearly summarized on one page.',
+            'body' => 'Program terms, delivery timing, and pricing on one clear page.',
             'cta' => 'Read summary',
         ],
 

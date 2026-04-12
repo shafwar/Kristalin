@@ -242,7 +242,7 @@ return [
         'b2c_teaser' => [
             'badge' => 'B2C',
             'title' => 'Program pembelian emas untuk konsumen',
-            'body' => 'Ringkasan ketentuan, jadwal serah terima LM, dan acuan harga dalam satu halaman ringkas.',
+            'body' => 'Ketentuan, jadwal serah terima LM, dan acuan harga dalam satu ringkasan ringkas.',
             'cta' => 'Baca ringkasan',
         ],
 
