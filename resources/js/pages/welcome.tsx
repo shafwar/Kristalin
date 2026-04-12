@@ -375,6 +375,36 @@ const Welcome = () => {
                                     </Link>
                                 </section>
 
+                                <section
+                                    className="border-y border-amber-200/50 bg-gradient-to-r from-stone-50 via-amber-50/40 to-stone-50 px-4 py-5 sm:px-6"
+                                    aria-labelledby="welcome-b2c-teaser-heading"
+                                >
+                                    <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-widest text-amber-800/90 uppercase">
+                                                {t('pages.welcome.b2c_teaser.badge')}
+                                            </p>
+                                            <h2
+                                                id="welcome-b2c-teaser-heading"
+                                                className="mt-1 text-lg font-bold text-stone-900 sm:text-xl"
+                                            >
+                                                {t('pages.welcome.b2c_teaser.title')}
+                                            </h2>
+                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600 sm:text-base">
+                                                {t('pages.welcome.b2c_teaser.body')}
+                                            </p>
+                                        </div>
+                                        <div className="shrink-0 sm:self-center">
+                                            <Link
+                                                href="/b2c"
+                                                className="inline-flex w-full items-center justify-center rounded-xl border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-900 shadow-sm transition-colors duration-200 hover:border-amber-300 hover:bg-amber-50/80 sm:w-auto"
+                                            >
+                                                {t('pages.welcome.b2c_teaser.cta')}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </section>
+
                                 <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
                                 {/* Bottom Grid - fills remaining height and touches footer on desktop */}
                                 <section className="flex flex-1 flex-col bg-white lg:flex-row">

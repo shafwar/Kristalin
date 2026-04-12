@@ -45,7 +45,7 @@ class MigrateToR2 extends Command
         $prefix = r2_prefix();
 
         // Image extensions
-        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico'];
+        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'svg', 'ico'];
         // Video extensions
         $videoExtensions = ['mp4', 'mov', 'avi', 'webm', 'mkv'];
         // All allowed extensions

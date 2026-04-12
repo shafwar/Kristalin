@@ -243,6 +243,12 @@ return [
             'see_milestones' => 'See Milestones',
         ],
 
+        'b2c_teaser' => [
+            'badge' => 'Consumer program',
+            'title' => 'B2C gold purchase journey & client support',
+            'body' => 'Kristalin explains the consumer gold purchase program clearly—from LM handover timing and market-based pricing to profit sharing under the agreement—so you understand how we support clients before you sign official documents.',
+            'cta' => 'View the B2C program summary',
+        ],
 
         // Sections
         'csr' => [
@@ -900,6 +906,38 @@ return [
         'alt_texts' => [
             'leadership_meeting' => 'Leadership Meeting',
         ],
+    ],
+
+    'b2c' => [
+        'page_title' => 'Consumer Gold Purchase Program | Kristalin Ekalestari',
+        'meta_description' => 'Overview of Kristalin’s B2C gold purchase program: LM handover schedule, ANTAM-based pricing, and profit sharing under the agreement.',
+        'hero_kicker' => 'Official company program',
+        'hero_title' => 'Gold Purchase for Consumers',
+        'hero_subtitle' => 'A clear walkthrough of how the program works—metal delivery, pricing references, and timelines—while keeping the core policy wording aligned with the source document.',
+        'hero_alt' => 'Kristalin mining operations and industrial infrastructure',
+        'cta_scroll' => 'View program steps',
+        'cta_contact' => 'Contact us',
+        'section_process_kicker' => 'Program documentation',
+        'section_process_title' => 'B2C program steps at Kristalin',
+        'bridge_intro' => 'This page guides you through the information flow of the program; each quoted policy line below reflects the source wording in meaning and structure for the English audience.',
+        'step0_title' => 'Step 0 — What form does the program take?',
+        'step0_lead' => 'Before scheduling, pricing, or profit sharing, align first on how the program is defined so the sections that follow stay consistent with the governing documents.',
+        'verbatim_program' => 'The program is a gold purchase program, subject to the following terms.',
+        'step1_title' => 'Step 1 — Handover of the first 50% of the nominal amount',
+        'step1_lead' => 'Here the focus is how handover for half of the purchase nominal is scheduled from the moment funds are administratively received by the Company; please read the policy sentence and the date illustration in full.',
+        'verbatim_delivery_50a' => 'Fifty percent (50%) of the LM gold purchase nominal shall be handed over 21 calendar days after the funds are received by the Company.',
+        'verbatim_example' => 'Example: If the purchase funds are received by the Company on 16 July 2025, handover of the gold is on 6 August 2025.',
+        'step2_title' => 'Step 2 — Handover of the remaining 50% of the nominal amount',
+        'step2_lead' => 'After the first portion follows the 21-calendar-day mechanism above, the remaining half follows the schedule tied to the end of the placement period as agreed in the Agreement.',
+        'verbatim_delivery_50b' => 'Fifty percent (50%) of the purchase nominal, LM gold, shall be handed over in accordance with the end date of the placement period as agreed in the Agreement.',
+        'step3_title' => 'Step 3 — How program gold pricing is determined',
+        'step3_lead' => 'To keep price expectations aligned from the outset, the following is the official program pricing formula as stated in the source materials.',
+        'verbatim_pricing' => 'The price offered for this program is the ANTAM market price (-1%), with gold purity of 999.',
+        'step4_title' => 'Step 4 — Profit sharing at the end of the placement period',
+        'step4_lead' => 'Finally, the following states how profit sharing applies to the LM gold nominal at the end of the placement period, as recorded in the Agreement.',
+        'verbatim_profit' => 'You receive profit sharing on the LM gold nominal to be received at the end of the placement period, in accordance with the agreement stated in the Agreement.',
+        'footnote' => 'Any further operational terms that bind you and the Company remain governed by the written Agreement you sign with the Company.',
+        'bottom_prompt' => 'Questions about documents or administrative flow? Kristalin’s team is available through our official contact channels.',
     ],
 
     'line_of_business' => [

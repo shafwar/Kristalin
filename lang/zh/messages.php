@@ -15,6 +15,7 @@ return [
 
         'news' => '新闻',
         'line_of_business' => '业务范围',
+        'b2c' => 'B2C 黄金购买',
         'business_activities' => '商业活动',
         'csr' => '企业社会责任',
         'careers' => '招聘',

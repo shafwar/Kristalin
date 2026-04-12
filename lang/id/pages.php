@@ -239,6 +239,13 @@ return [
             'see_milestones' => 'Lihat Perjalanan',
         ],
 
+        'b2c_teaser' => [
+            'badge' => 'Program konsumen',
+            'title' => 'Alur pembelian emas B2C & pendampingan klien',
+            'body' => 'Kristalin menyampaikan ketentuan program pembelian emas bagi konsumen secara transparan—mulai dari penjadwalan serah terima LM, acuan harga pasar, hingga bagi hasil sesuai perjanjian. Tim kami mengedepankan kejelasan informasi sebelum Anda berkomitmen pada dokumen resmi.',
+            'cta' => 'Lihat ringkasan program B2C',
+        ],
+
         'csr' => [
             'category' => 'TANGGUNG JAWAB SOSIAL PERUSAHAAN',
             'title' => 'Pengembangan Masyarakat',
@@ -884,6 +891,38 @@ return [
         'alt_texts' => [
             'leadership_meeting' => 'Rapat Kepemimpinan',
         ],
+    ],
+
+    'b2c' => [
+        'page_title' => 'Program Pembelian Emas B2C | Kristalin Ekalestari',
+        'meta_description' => 'Ringkasan alur program pembelian emas B2C Kristalin: jadwal serah terima LM, penetapan harga ANTAM, dan bagi hasil sesuai perjanjian.',
+        'hero_kicker' => 'Program resmi perusahaan',
+        'hero_title' => 'Pembelian Emas untuk Konsumen',
+        'hero_subtitle' => 'Transparansi alur kerja, serah terima logam mulia, dan acuan harga—dirangkum dalam langkah agar mudah dipahami, dengan kutipan ketentuan inti persis seperti dokumen sumber.',
+        'hero_alt' => 'Operasi industri dan infrastruktur pertambangan Kristalin',
+        'cta_scroll' => 'Lihat langkah program',
+        'cta_contact' => 'Hubungi kami',
+        'section_process_kicker' => 'Dokumentasi program',
+        'section_process_title' => 'Rangkaian langkah B2C Kristalin',
+        'bridge_intro' => 'Halaman ini memandu Anda melalui alur informasi program; setiap kutipan ketentuan inti di bawah ini menggunakan redaksi persis dari dokumentasi program tanpa mengubah pilihan kata.',
+        'step0_title' => 'Langkah 0 — Pengenalan bentuk program',
+        'step0_lead' => 'Sebelum membahas penjadwalan serah terima, harga, atau bagi hasil, samakan terlebih dahulu definisi program sehingga pembahasan berikutnya tetap selaras dengan dokumen yang menjadi acuan.',
+        'verbatim_program' => 'Program berupa Pembelian Emas dengan ketentuan sebagai berikut.',
+        'step1_title' => 'Langkah 1 — Serah terima bagian nominal pertama (50%)',
+        'step1_lead' => 'Pada tahap ini, fokusnya adalah memahami bagaimana jadwal serah terima untuk separuh nominal pembelian diatur sejak dana secara administratif diterima oleh Perusahaan; silakan baca kalimat ketentuan berikut beserta contoh tanggal secara utuh.',
+        'verbatim_delivery_50a' => '50% dari Nominal Pembelian Emas LM akan diserahkan 21 hari kalender setelah Dana diterima oleh Perusahaan.',
+        'verbatim_example' => 'Contoh: Jika Dana Pembelian diterima oleh Perusahaan tanggal 16 Juli 2025, maka serah terima emas pada tanggal 6 Agustus 2025.',
+        'step2_title' => 'Langkah 2 — Serah terima bagian nominal kedua (50%)',
+        'step2_lead' => 'Setelah bagian pertama mengikuti mekanisme 21 hari kalender di atas, separuh nominal berikutnya mengikuti jadwal yang mengacu pada isi Perjanjian terkait periode penempatan.',
+        'verbatim_delivery_50b' => '50% dari Nominal Pembelian, Emas LM akan diserahkan sesuai dengan tanggal berakhirnya periode penempatan yang sudah disepakati dalam Perjanjian.',
+        'step3_title' => 'Langkah 3 — Dasar penetapan harga emas program',
+        'step3_lead' => 'Agar ekspektasi harga antara Anda dan Perusahaan konsisten sejak awal, berikut rumusan harga resmi program sebagaimana tercantum tanpa mengubah frasa aslinya.',
+        'verbatim_pricing' => 'Harga yg diberikan untuk program ini adalah Harga Pasar ANTAM (-1%) dengan kadar emas 999.',
+        'step4_title' => 'Langkah 4 — Mekanisme bagi hasil di akhir periode',
+        'step4_lead' => 'Pada penutupan pembahasan, berikut rumusan mengenai bagi hasil di akhir periode penempatan sebagaimana tertuang dalam dokumen; mohon baca kalimat berikut sebagai penegasan resmi bagian tersebut.',
+        'verbatim_profit' => 'Mendapatkan bagi hasil dari nominal Emas LM yang akan diterima di akhir periode penempatan sesuai dengan kesepakatan yang tertuang dalam Perjanjian.',
+        'footnote' => 'Ketentuan operasional lain yang mengikat Anda dan Perusahaan tetap mengacu pada Perjanjian tertulis yang telah ditandatangani bersama.',
+        'bottom_prompt' => 'Masih ada pertanyaan mengenai dokumen atau alur administrasi? Tim Kristalin siap membantu melalui saluran resmi.',
     ],
 
     'line_of_business' => [

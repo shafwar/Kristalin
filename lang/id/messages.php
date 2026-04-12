@@ -15,6 +15,7 @@ return [
 
         'news' => 'Berita',
         'line_of_business' => 'Bidang Usaha',
+        'b2c' => 'Pembelian Emas B2C',
         'business_activities' => 'Aktivitas Bisnis',
         'csr' => 'CSR',
         'careers' => 'Karir',

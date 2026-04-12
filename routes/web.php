@@ -54,6 +54,10 @@ Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
 })->name('line-of-business');
 
+Route::get('/b2c', function () {
+    return Inertia::render('b2c');
+})->name('b2c');
+
 Route::get('/news', function () {
     return Inertia::render('news');
 })->name('news');
