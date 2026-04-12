@@ -4,7 +4,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Coins } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
@@ -377,39 +377,55 @@ const Welcome = () => {
                                 </section>
 
                                 <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
-                                {/* Bottom area: B2C first column on desktop + image mosaic, one shared surface */}
+                                {/* Bottom area: centered B2C card + full-bleed grid below */}
                                 <section className="flex flex-1 flex-col bg-white">
-                                    <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12 lg:items-stretch">
+                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100 bg-gradient-to-b from-stone-50/60 to-white px-4 py-5 sm:px-6 lg:px-8 lg:py-6">
                                         <Link
                                             href="/b2c"
-                                            className="group flex flex-col justify-center gap-4 border-b border-stone-200 bg-white px-5 py-4 no-underline transition-colors duration-200 hover:bg-stone-50/90 sm:px-6 sm:py-5 lg:col-span-3 lg:h-full lg:min-h-0 lg:border-b-0 lg:border-r lg:border-stone-200 lg:px-6 lg:py-8 xl:px-7"
+                                            className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-stone-50/80 to-amber-50/30 px-5 py-5 no-underline shadow-sm ring-1 ring-stone-900/[0.04] transition-all duration-300 hover:border-amber-200/80 hover:shadow-md sm:px-6 sm:py-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:px-8 lg:py-6"
                                             aria-labelledby="welcome-b2c-teaser-heading"
                                         >
-                                            <div className="border-l-[3px] border-amber-400 pl-4">
-                                                <p className="text-[10px] font-semibold tracking-[0.2em] text-amber-700/90 uppercase">
-                                                    {t('pages.welcome.b2c_teaser.badge')}
-                                                </p>
-                                                <h2
-                                                    id="welcome-b2c-teaser-heading"
-                                                    className="mt-2 text-[15px] font-bold leading-snug text-stone-900 sm:text-base lg:text-[15px] xl:text-lg"
-                                                >
-                                                    {t('pages.welcome.b2c_teaser.title')}
-                                                </h2>
-                                                <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-stone-500 sm:line-clamp-2 sm:text-sm lg:line-clamp-4 lg:text-[13px]">
-                                                    {t('pages.welcome.b2c_teaser.body')}
-                                                </p>
-                                            </div>
-                                            <span className="inline-flex items-center gap-1 pl-4 text-sm font-semibold text-stone-800 underline decoration-amber-400/80 decoration-2 underline-offset-4 transition group-hover:text-amber-900">
-                                                {t('pages.welcome.b2c_teaser.cta')}
-                                                <ChevronRight
-                                                    className="h-4 w-4 shrink-0 text-amber-700/80 transition-transform duration-200 group-hover:translate-x-0.5"
+                                            <span
+                                                className="pointer-events-none absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 opacity-90"
+                                                aria-hidden
+                                            />
+                                            <div className="flex min-w-0 flex-1 items-start gap-4">
+                                                <div
+                                                    className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 text-stone-900 shadow-md ring-2 ring-white/80 sm:h-14 sm:w-14"
                                                     aria-hidden
-                                                />
-                                            </span>
+                                                >
+                                                    <Coins className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
+                                                </div>
+                                                <div className="min-w-0 pt-0.5">
+                                                    <p className="text-[11px] font-semibold tracking-[0.2em] text-amber-700 uppercase sm:text-xs">
+                                                        {t('pages.welcome.b2c_teaser.badge')}
+                                                    </p>
+                                                    <h2
+                                                        id="welcome-b2c-teaser-heading"
+                                                        className="mt-1 text-base font-bold leading-snug text-stone-900 sm:text-lg lg:text-xl"
+                                                    >
+                                                        {t('pages.welcome.b2c_teaser.title')}
+                                                    </h2>
+                                                    <p className="mt-1 text-sm leading-relaxed text-stone-600 sm:max-w-xl lg:text-[0.9375rem]">
+                                                        {t('pages.welcome.b2c_teaser.body')}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex w-full shrink-0 justify-stretch sm:justify-end lg:w-auto lg:shrink-0">
+                                                <span className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-300/90 bg-white/95 px-5 py-2.5 text-sm font-semibold text-stone-900 shadow-sm transition-all duration-200 group-hover:border-amber-400 group-hover:bg-yellow-400/90 group-hover:text-stone-900 group-hover:shadow-md sm:w-auto sm:justify-center lg:px-6">
+                                                    <span>{t('pages.welcome.b2c_teaser.cta')}</span>
+                                                    <ChevronRight
+                                                        className="h-4 w-4 shrink-0 text-stone-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-stone-900"
+                                                        aria-hidden
+                                                    />
+                                                </span>
+                                            </div>
                                         </Link>
+                                    </div>
 
+                                    <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
                                     {/* Carousel Card - Mobile Anti-Flicker Optimized */}
-                                    <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:col-span-5 lg:aspect-auto lg:h-full lg:min-h-[16rem]">
+                                    <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
                                         {isMobile ? (
                                             // Mobile: no framer-motion to avoid flicker, still updates with currentSlide
                                             <div
@@ -423,7 +439,7 @@ const Welcome = () => {
                                                         alt={carouselSlides[currentSlide].title}
                                                         pictureClassName="block h-full w-full"
                                                         className="h-full w-full object-cover"
-                                                        sizes="(max-width: 1023px) 100vw, 42vw"
+                                                        sizes="(max-width: 1023px) 100vw, 50vw"
                                                         style={{
                                                             objectPosition: 'center center',
                                                             transform: 'translate3d(0, 0, 0)',
@@ -489,7 +505,7 @@ const Welcome = () => {
                                                             alt={carouselSlides[currentSlide].title}
                                                             pictureClassName="block h-full w-full"
                                                             className="h-full w-full object-cover"
-                                                            sizes="(max-width: 1023px) 100vw, 42vw"
+                                                            sizes="(max-width: 1023px) 100vw, 50vw"
                                                             style={{
                                                                 objectPosition: 'center center',
                                                                 transform: 'translate3d(0, 0, 0)',
@@ -557,7 +573,7 @@ const Welcome = () => {
                                     {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
                                     <Link
                                         href="/business-activity"
-                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:col-span-2 lg:aspect-auto lg:h-full lg:min-h-[16rem] lg:p-8"
+                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                         onMouseEnter={() => setHoveredCard(1)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
@@ -569,7 +585,7 @@ const Welcome = () => {
                                                 hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
                                             }`}
                                             className="h-full w-full object-cover"
-                                            sizes="(max-width: 1023px) 100vw, 18vw"
+                                            sizes="(max-width: 1023px) 100vw, 30vw"
                                             style={{
                                                 objectPosition: 'center center',
                                                 transform: 'translateZ(0)',
@@ -605,7 +621,7 @@ const Welcome = () => {
                                         id="news-update"
                                         data-news-section="true"
                                         href={newsItems[currentNews].url}
-                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-between overflow-hidden bg-yellow-400 p-6 no-underline sm:aspect-[16/9] sm:p-8 lg:col-span-2 lg:aspect-auto lg:h-full lg:min-h-[16rem] lg:p-8"
+                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-between overflow-hidden bg-yellow-400 p-6 no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
                                         onMouseEnter={() => setHoveredCard(2)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
