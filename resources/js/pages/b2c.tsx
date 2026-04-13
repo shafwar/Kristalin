@@ -26,13 +26,17 @@ export default function B2cPage() {
     });
 
     /** Multi-stop maps mimic ease-out curves without extra animation loops. */
-    const heroImageY = useTransform(heroScroll, [0, 0.22, 0.55, 1], [0, 38, 78, 128]);
-    const heroImageScale = useTransform(heroScroll, [0, 0.35, 1], [1, 1.03, 1.065]);
-    const heroOverlayY = useTransform(heroScroll, [0, 0.28, 0.72, 1], [0, 20, 46, 72]);
-    const heroContentY = useTransform(heroScroll, [0, 0.32, 0.72, 1], [0, 22, 42, 58]);
-    const heroContentOpacity = useTransform(heroScroll, [0, 0.45, 0.72, 1], [1, 0.98, 0.88, 0.74]);
+    const heroImageY = useTransform(heroScroll, [0, 0.18, 0.48, 0.78, 1], [0, 26, 54, 82, 108]);
+    const heroImageScale = useTransform(heroScroll, [0, 0.3, 0.65, 1], [1, 1.018, 1.038, 1.058]);
+    const heroOverlayY = useTransform(heroScroll, [0, 0.25, 0.62, 1], [0, 12, 32, 54]);
+    const heroOverlayOpacity = useTransform(heroScroll, [0, 0.38, 0.72, 1], [1, 0.94, 0.86, 0.78]);
+    const heroContentY = useTransform(heroScroll, [0, 0.28, 0.65, 1], [0, 14, 30, 48]);
+    const heroContentOpacity = useTransform(heroScroll, [0, 0.45, 0.75, 1], [1, 0.99, 0.92, 0.84]);
+    /** Subtle “recede into the scene” — GPU-friendly with parent perspective. */
+    const heroContentScale = useTransform(heroScroll, [0, 0.4, 0.82, 1], [1, 0.995, 0.978, 0.962]);
+    const heroContentRotateX = useTransform(heroScroll, [0, 0.35, 0.75, 1], [0, 1.25, 2.75, 3.75]);
     /** White panel eases up into final overlap as the hero scrolls away. */
-    const processPanelY = useTransform(heroScroll, [0, 0.42, 0.82, 1], [28, 14, 5, 0]);
+    const processPanelY = useTransform(heroScroll, [0, 0.38, 0.78, 1], [22, 11, 3, 0]);
 
     useEffect(() => {
         const els = Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
@@ -64,7 +68,7 @@ export default function B2cPage() {
 
             <section
                 ref={heroRef}
-                className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]"
+                className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden perspective-[1100px] md:min-h-[85vh]"
             >
                 <motion.div
                     className="absolute inset-0 isolate will-change-transform [transform:translateZ(0)]"
@@ -82,17 +86,22 @@ export default function B2cPage() {
                     />
                 </motion.div>
                 <motion.div
-                    className="pointer-events-none absolute inset-0 z-[1] will-change-transform [transform:translateZ(0)]"
-                    style={{ y: prefersReducedMotion ? 0 : heroOverlayY }}
+                    className="pointer-events-none absolute inset-0 z-[1] will-change-[transform,opacity] [transform:translateZ(0)]"
+                    style={{
+                        y: prefersReducedMotion ? 0 : heroOverlayY,
+                        opacity: prefersReducedMotion ? 1 : heroOverlayOpacity,
+                    }}
                 >
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-900/35" />
                 </motion.div>
 
                 <motion.div
-                    className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-16 pt-28 md:pb-20 md:pt-32"
+                    className="relative z-10 mx-auto w-full max-w-5xl origin-bottom px-4 pb-16 pt-28 [transform-style:preserve-3d] md:pb-20 md:pt-32"
                     style={{
                         y: prefersReducedMotion ? 0 : heroContentY,
                         opacity: prefersReducedMotion ? 1 : heroContentOpacity,
+                        scale: prefersReducedMotion ? 1 : heroContentScale,
+                        rotateX: prefersReducedMotion ? 0 : heroContentRotateX,
                     }}
                 >
                     <div
