@@ -3,9 +3,8 @@ import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -13,42 +12,72 @@ function scrollToProcess() {
     document.getElementById('b2c-process')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+/** Card shell only; motion is handled by GSAP ScrollTrigger (lazy-loaded). */
+const b2cCardClass = 'data-b2c-reveal rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm md:p-8';
+
 export default function B2cPage() {
     const { t } = useTranslation();
     const heroMicroReady = useLcpSafeMicroMotion();
-    const heroRef = useRef<HTMLElement>(null);
-    const prefersReducedMotion = useReducedMotion();
-
-    const { scrollYProgress } = useScroll({
-        target: heroRef,
-        offset: ['start start', 'end start'],
-    });
-
-    /** Background drifts upward as the hero scrolls away (subtle parallax). Disabled when reduced motion is on. */
-    const heroImageY = useTransform(
-        scrollYProgress,
-        [0, 0.45, 1],
-        prefersReducedMotion ? [0, 0, 0] : [0, -36, -96],
-    );
-
     useEffect(() => {
-        const els = Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
-        if (els.length === 0) return;
-        const io = new IntersectionObserver(
-            (entries) => {
-                for (const entry of entries) {
-                    if (entry.isIntersecting) {
-                        entry.target.setAttribute('data-b2c-visible', 'true');
-                    }
-                }
-            },
-            { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
-        );
-        els.forEach((el) => io.observe(el));
-        return () => io.disconnect();
-    }, []);
+        if (typeof window === 'undefined') return;
 
-    const reveal = 'data-b2c-reveal rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none md:p-8 opacity-0 translate-y-5 data-[b2c-visible=true]:opacity-100 data-[b2c-visible=true]:translate-y-0 motion-reduce:opacity-100 motion-reduce:translate-y-0';
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targets = () => Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
+
+        if (reduced) {
+            targets().forEach((el) => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.visibility = 'visible';
+            });
+            return;
+        }
+
+        let cancelled = false;
+        let dispose: (() => void) | null = null;
+
+        void (async () => {
+            const gsap = (await import('gsap')).default;
+            const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+            if (cancelled) return;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            const ctx = gsap.context(() => {
+                const items = gsap.utils.toArray<HTMLElement>('[data-b2c-reveal]');
+                items.forEach((el, i) => {
+                    const fromLeft = i % 2 === 0;
+                    gsap.fromTo(
+                        el,
+                        { autoAlpha: 0, x: fromLeft ? -28 : 28 },
+                        {
+                            autoAlpha: 1,
+                            x: 0,
+                            duration: 0.7,
+                            ease: 'power2.out',
+                            scrollTrigger: {
+                                trigger: el,
+                                start: 'top 88%',
+                                end: 'top 62%',
+                                toggleActions: 'play reverse play reverse',
+                            },
+                        },
+                    );
+                });
+            });
+
+            if (cancelled) {
+                ctx.revert();
+                return;
+            }
+            dispose = () => ctx.revert();
+        })();
+
+        return () => {
+            cancelled = true;
+            dispose?.();
+        };
+    }, []);
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-stone-50 text-stone-900">
@@ -59,15 +88,8 @@ export default function B2cPage() {
 
             <Header sticky={true} transparent={true} />
 
-            <section
-                ref={heroRef}
-                className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]"
-            >
-                <motion.div
-                    className="pointer-events-none absolute -top-[10%] left-0 h-[120%] w-full will-change-transform"
-                    style={{ y: heroImageY }}
-                    aria-hidden
-                >
+            <section className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]">
+                <div className="absolute inset-0">
                     <B2cHeroPicture
                         pictureClassName="block h-full w-full"
                         className="h-full w-full object-cover object-center"
@@ -76,7 +98,7 @@ export default function B2cPage() {
                         fetchPriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-900/35" />
-                </motion.div>
+                </div>
 
                 <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-16 pt-28 md:pb-20 md:pt-32">
                     <div
@@ -115,14 +137,14 @@ export default function B2cPage() {
             </section>
 
             <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
-                <div className="mx-auto max-w-3xl text-center">
+                <div data-b2c-reveal className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold tracking-wide text-amber-700/90 uppercase">{t('pages.b2c.section_process_kicker')}</p>
                     <h2 className="mt-2 text-2xl font-bold text-stone-900 md:text-3xl">{t('pages.b2c.section_process_title')}</h2>
                     <p className="mx-auto mt-4 max-w-2xl text-stone-600">{t('pages.b2c.bridge_intro')}</p>
                 </div>
 
                 <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-8">
-                    <article data-b2c-reveal className={reveal}>
+                    <article data-b2c-reveal className={b2cCardClass}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Sparkles className="h-5 w-5" aria-hidden />
@@ -135,7 +157,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={reveal}>
+                    <article data-b2c-reveal className={b2cCardClass}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Building2 className="h-5 w-5" aria-hidden />
@@ -151,7 +173,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={reveal}>
+                    <article data-b2c-reveal className={b2cCardClass}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <FileText className="h-5 w-5" aria-hidden />
@@ -164,7 +186,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={reveal}>
+                    <article data-b2c-reveal className={b2cCardClass}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Scale className="h-5 w-5" aria-hidden />
@@ -177,7 +199,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={reveal}>
+                    <article data-b2c-reveal className={b2cCardClass}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Sparkles className="h-5 w-5" aria-hidden />
@@ -190,14 +212,14 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <p data-b2c-reveal className={clsx(reveal, 'text-center text-sm text-stone-500')}>
+                    <p data-b2c-reveal className={clsx(b2cCardClass, 'text-center text-sm text-stone-500')}>
                         {t('pages.b2c.footnote')}
                     </p>
                 </div>
             </section>
 
             <section className="border-t border-stone-200 bg-white px-4 py-12">
-                <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+                <div data-b2c-reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
                     <p className="text-stone-600">{t('pages.b2c.bottom_prompt')}</p>
                     <Link
                         href="/contact"
