@@ -3,8 +3,9 @@ import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -15,6 +16,24 @@ function scrollToProcess() {
 export default function B2cPage() {
     const { t } = useTranslation();
     const heroMicroReady = useLcpSafeMicroMotion();
+    const heroRef = useRef<HTMLElement | null>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ['start start', 'end start'],
+    });
+
+    const smoothHeroProgress = useSpring(scrollYProgress, {
+        stiffness: 90,
+        damping: 28,
+        mass: 0.35,
+    });
+
+    const heroImageY = useTransform(smoothHeroProgress, [0, 1], [0, 88]);
+    const heroImageScale = useTransform(smoothHeroProgress, [0, 1], [1, 1.06]);
+    const heroContentY = useTransform(smoothHeroProgress, [0, 1], [0, 36]);
+    const heroContentOpacity = useTransform(smoothHeroProgress, [0, 0.45, 0.92], [1, 0.98, 0.88]);
 
     useEffect(() => {
         const els = Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
@@ -44,19 +63,34 @@ export default function B2cPage() {
 
             <Header sticky={true} transparent={true} />
 
-            <section className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]">
-                <div className="absolute inset-0">
+            <section
+                ref={heroRef}
+                className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]"
+            >
+                <motion.div
+                    className="absolute inset-0 will-change-transform"
+                    style={{
+                        y: prefersReducedMotion ? 0 : heroImageY,
+                        scale: prefersReducedMotion ? 1 : heroImageScale,
+                    }}
+                >
                     <B2cHeroPicture
-                        pictureClassName="block h-full w-full"
+                        pictureClassName="block h-full min-h-full w-full"
                         className="h-full w-full object-cover object-center"
                         alt={t('pages.b2c.hero_alt')}
                         loading="eager"
                         fetchPriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-900/35" />
-                </div>
+                </motion.div>
 
-                <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-16 pt-28 md:pb-20 md:pt-32">
+                <motion.div
+                    className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-16 pt-28 md:pb-20 md:pt-32"
+                    style={{
+                        y: prefersReducedMotion ? 0 : heroContentY,
+                        opacity: prefersReducedMotion ? 1 : heroContentOpacity,
+                    }}
+                >
                     <div
                         className={clsx(
                             'max-w-3xl transition-transform duration-500 ease-out motion-reduce:transition-none',
@@ -89,7 +123,7 @@ export default function B2cPage() {
                             </Link>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </section>
 
             <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
