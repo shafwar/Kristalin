@@ -3,7 +3,7 @@ import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import Footer from '../components/Footer';
@@ -19,21 +19,20 @@ export default function B2cPage() {
     const heroRef = useRef<HTMLElement | null>(null);
     const prefersReducedMotion = useReducedMotion();
 
-    const { scrollYProgress } = useScroll({
+    /** Raw scroll progress: no spring physics = less main-thread work after scroll stops (INP friendly). */
+    const { scrollYProgress: heroScroll } = useScroll({
         target: heroRef,
         offset: ['start start', 'end start'],
     });
 
-    const smoothHeroProgress = useSpring(scrollYProgress, {
-        stiffness: 90,
-        damping: 28,
-        mass: 0.35,
-    });
-
-    const heroImageY = useTransform(smoothHeroProgress, [0, 1], [0, 88]);
-    const heroImageScale = useTransform(smoothHeroProgress, [0, 1], [1, 1.06]);
-    const heroContentY = useTransform(smoothHeroProgress, [0, 1], [0, 36]);
-    const heroContentOpacity = useTransform(smoothHeroProgress, [0, 0.45, 0.92], [1, 0.98, 0.88]);
+    /** Multi-stop maps mimic ease-out curves without extra animation loops. */
+    const heroImageY = useTransform(heroScroll, [0, 0.22, 0.55, 1], [0, 28, 58, 96]);
+    const heroImageScale = useTransform(heroScroll, [0, 0.35, 1], [1, 1.02, 1.048]);
+    const heroOverlayY = useTransform(heroScroll, [0, 0.28, 0.72, 1], [0, 14, 34, 52]);
+    const heroContentY = useTransform(heroScroll, [0, 0.32, 0.72, 1], [0, 16, 32, 46]);
+    const heroContentOpacity = useTransform(heroScroll, [0, 0.5, 0.78, 1], [1, 0.99, 0.93, 0.85]);
+    /** White panel eases up into final overlap as the hero scrolls away. */
+    const processPanelY = useTransform(heroScroll, [0, 0.42, 0.82, 1], [20, 10, 3, 0]);
 
     useEffect(() => {
         const els = Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
@@ -68,7 +67,7 @@ export default function B2cPage() {
                 className="relative flex min-h-[78vh] flex-col justify-end overflow-hidden md:min-h-[85vh]"
             >
                 <motion.div
-                    className="absolute inset-0 will-change-transform"
+                    className="absolute inset-0 isolate will-change-transform [transform:translateZ(0)]"
                     style={{
                         y: prefersReducedMotion ? 0 : heroImageY,
                         scale: prefersReducedMotion ? 1 : heroImageScale,
@@ -81,6 +80,11 @@ export default function B2cPage() {
                         loading="eager"
                         fetchPriority="high"
                     />
+                </motion.div>
+                <motion.div
+                    className="pointer-events-none absolute inset-0 z-[1] will-change-transform [transform:translateZ(0)]"
+                    style={{ y: prefersReducedMotion ? 0 : heroOverlayY }}
+                >
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-900/35" />
                 </motion.div>
 
@@ -126,7 +130,11 @@ export default function B2cPage() {
                 </motion.div>
             </section>
 
-            <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
+            <motion.section
+                id="b2c-process"
+                className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20"
+                style={{ y: prefersReducedMotion ? 0 : processPanelY }}
+            >
                 <div className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold tracking-wide text-amber-700/90 uppercase">{t('pages.b2c.section_process_kicker')}</p>
                     <h2 className="mt-2 text-2xl font-bold text-stone-900 md:text-3xl">{t('pages.b2c.section_process_title')}</h2>
@@ -206,7 +214,7 @@ export default function B2cPage() {
                         {t('pages.b2c.footnote')}
                     </p>
                 </div>
-            </section>
+            </motion.section>
 
             <section className="border-t border-stone-200 bg-white px-4 py-12">
                 <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
