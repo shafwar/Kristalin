@@ -26,13 +26,13 @@ export default function B2cPage() {
     });
 
     /** Multi-stop maps mimic ease-out curves without extra animation loops. */
-    const heroImageY = useTransform(heroScroll, [0, 0.22, 0.55, 1], [0, 28, 58, 96]);
-    const heroImageScale = useTransform(heroScroll, [0, 0.35, 1], [1, 1.02, 1.048]);
-    const heroOverlayY = useTransform(heroScroll, [0, 0.28, 0.72, 1], [0, 14, 34, 52]);
-    const heroContentY = useTransform(heroScroll, [0, 0.32, 0.72, 1], [0, 16, 32, 46]);
-    const heroContentOpacity = useTransform(heroScroll, [0, 0.5, 0.78, 1], [1, 0.99, 0.93, 0.85]);
+    const heroImageY = useTransform(heroScroll, [0, 0.22, 0.55, 1], [0, 38, 78, 128]);
+    const heroImageScale = useTransform(heroScroll, [0, 0.35, 1], [1, 1.03, 1.065]);
+    const heroOverlayY = useTransform(heroScroll, [0, 0.28, 0.72, 1], [0, 20, 46, 72]);
+    const heroContentY = useTransform(heroScroll, [0, 0.32, 0.72, 1], [0, 22, 42, 58]);
+    const heroContentOpacity = useTransform(heroScroll, [0, 0.45, 0.72, 1], [1, 0.98, 0.88, 0.74]);
     /** White panel eases up into final overlap as the hero scrolls away. */
-    const processPanelY = useTransform(heroScroll, [0, 0.42, 0.82, 1], [20, 10, 3, 0]);
+    const processPanelY = useTransform(heroScroll, [0, 0.42, 0.82, 1], [28, 14, 5, 0]);
 
     useEffect(() => {
         const els = Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
