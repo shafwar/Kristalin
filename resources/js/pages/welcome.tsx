@@ -84,6 +84,15 @@ const Welcome = () => {
             priority: 'high',
         },
         {
+            id: 'apr26-1',
+            date: '11 Apr 2026',
+            title: t('pages.welcome.news.items.apr26-1.title'),
+            excerpt: t('pages.welcome.news.items.apr26-1.excerpt'),
+            image: imageUrl('/kristalin-news-april-1.jpeg'),
+            url: '/news/apr26-1',
+            priority: 'high',
+        },
+        {
             id: 'dec-3',
             date: '10 Dec 2025',
             title: t('pages.welcome.news.items.dec-3.title'),

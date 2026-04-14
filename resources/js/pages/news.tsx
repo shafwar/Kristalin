@@ -14,6 +14,7 @@ const getTranslatedMonth = (monthId: string, t: any) => {
         'februari-2026': 'februari',
         'maret-2025': 'maret',
         'maret-2026': 'maret',
+        'april-2026': 'april',
         'juni-2025': 'juni',
         'juli-2025': 'juli',
         'agustus-2025': 'agustus',
@@ -99,6 +100,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'feb26-3': 'feb26_kamtibmas',
         'feb26-4': 'feb26_condolence_visit',
         'mar26-1': 'mar26_kisa24',
+        'apr26-1': 'apr26_tka_nabire',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -157,6 +159,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'feb26-3': 'feb26_kamtibmas',
         'feb26-4': 'feb26_condolence_visit',
         'mar26-1': 'mar26_kisa24',
+        'apr26-1': 'apr26_tka_nabire',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2198,6 +2201,35 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             source: 'Disway.id',
                             sourceUrl: 'https://disway.id/read/933742/kelangkaan-emas-antam-picu-alternatif-baru-kisa24-tawarkan-logam-mulia',
                             image: '/maret-news-1.jpeg',
+                            content: '',
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        month: 'APRIL',
+        monthId: 'april-2026',
+        categories: [
+            {
+                id: 'pengawasan-tka-nabire',
+                title: 'Pengawasan TKA di Nabire',
+                newsItems: [
+                    {
+                        id: 'apr26-1',
+                        title: 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
+                        date: '11 Apr 2026',
+                        url: '/news/apr26-1',
+                        excerpt:
+                            'Operasi gabungan pengawasan TKA oleh Kantor Imigrasi Kelas II TPI Biak bersama instansi di Nabire, Papua Tengah, menjaga situasi kondusif di kawasan pertambangan Kampung Lagari, Distrik Makimi. Kegiatan dilaksanakan Rabu, 8 April 2026.',
+                        fullContent: {
+                            title: 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
+                            date: '11 April 2026',
+                            author: 'Deny Irwanto',
+                            source: 'MetroTV News',
+                            sourceUrl: 'https://www.metrotvnews.com/read/kM6C4Y92-pengawasan-tka-di-nabire-perkuat-kepatuhan-dan-jaga-situasi-kondusif',
+                            image: '/kristalin-news-april-1.jpeg',
                             content: '',
                         },
                     },
@@ -7381,6 +7413,7 @@ const KristalinNewsPage: React.FC = () => {
             'pemberitahuan-bantuan-dana-hak-garap',
             'mobil-operasional-dewan-adat-meyah',
             'insiden-pos-kamtibmas-nabire',
+            'pengawasan-tka-nabire',
         ],
         [t('pages.news.categories.house_construction')]: [
             'pembangunan-rumah-nifasi-feb',

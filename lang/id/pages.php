@@ -286,6 +286,10 @@ return [
                     'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
                     'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
                 ],
+                'apr26-1' => [
+                    'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
+                    'excerpt' => 'Operasi gabungan pengawasan TKA di Nabire menjaga situasi kondusif di kawasan pertambangan Lagari, Makimi. Kegiatan 8 April 2026; dokumen TKA di lokasi lengkap dan berlaku.',
+                ],
                 'dec-3' => [
                     'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
                     'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
@@ -1375,6 +1379,10 @@ return [
             'mar26_1' => [
                 'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
                 'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
+            ],
+            'apr26_1' => [
+                'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
+                'excerpt' => 'Operasi gabungan pengawasan TKA di Nabire menjaga situasi kondusif di kawasan pertambangan Lagari, Makimi. Kegiatan 8 April 2026; dokumen TKA di lokasi lengkap dan berlaku.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

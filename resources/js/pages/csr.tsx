@@ -129,6 +129,14 @@ function CSRNewsSection({ t }: { t: (key: string) => string }) {
             category: t('pages.csr.categories.community_support'),
         },
         {
+            id: 'apr26-1',
+            title: t('pages.csr.news.apr26_1.title'),
+            excerpt: t('pages.csr.news.apr26_1.excerpt'),
+            date: '11 Apr 2026',
+            image: '/kristalin-news-april-1.jpeg',
+            category: t('pages.csr.categories.community_support'),
+        },
+        {
             id: 'feb-7',
             title: t('pages.csr.news.feb_7.title'),
             excerpt: t('pages.csr.news.feb_7.excerpt'),
