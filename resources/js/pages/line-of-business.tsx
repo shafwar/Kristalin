@@ -79,7 +79,23 @@ export default function KristalinPortfolio() {
     const companyProfileRef = React.useRef<HTMLDivElement>(null);
     const scrollRafRef = useRef(0);
     const [scrollY, setScrollY] = useState(0);
+    /** `null` until mounted — avoids SSR/client srcset mismatch. */
+    const [isLgViewport, setIsLgViewport] = useState<boolean | null>(null);
     const whyChooseUsBg = useLazySectionBackground(imageUrl('hero-linebusiness.jpg'));
+
+    const heroParallaxOn = isLgViewport === true;
+    const heroBundleOptions =
+        isLgViewport === false
+            ? ({ lcpHero: true } as const)
+            : ({ maxWidth: 960 as const } satisfies { maxWidth: 960 });
+
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const syncViewport = () => setIsLgViewport(mq.matches);
+        syncViewport();
+        mq.addEventListener('change', syncViewport);
+        return () => mq.removeEventListener('change', syncViewport);
+    }, []);
 
     // Parallax: throttle to one update per frame (less main-thread work than raw scroll)
     useEffect(() => {
@@ -108,24 +124,26 @@ export default function KristalinPortfolio() {
 
             <Header sticky={true} transparent={true} />
 
-            {/* Hero Section with Parallax - PERBAIKAN MOBILE */}
+            {/* Hero: mobile uses full srcset (sharp Retina + object-cover); parallax only lg+ (iOS GPU). */}
             <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
                 <div
-                    className="absolute inset-0 h-full w-full will-change-transform"
-                    style={{
-                        transform: `translateY(${scrollY * 0.5}px)`,
-                    }}
+                    className={`absolute inset-0 h-full w-full ${heroParallaxOn ? 'will-change-transform' : ''}`}
+                    style={
+                        heroParallaxOn
+                            ? { transform: `translateY(${scrollY * 0.5}px)` }
+                            : { transform: 'none' }
+                    }
                 >
                     <WelcomeGridPicture
                         imageId="portofolio"
                         alt={t('pages.line_of_business.alt_texts.mining_future')}
                         pictureClassName="block h-full min-h-full w-full"
-                        className="h-full min-h-full w-full object-cover"
-                        sizes="100vw"
+                        className="h-full min-h-full w-full object-cover object-center"
+                        sizes="(max-width: 1023px) 100vw, 100vw"
                         loading="eager"
                         fetchPriority="high"
                         decoding="async"
-                        bundleOptions={{ maxWidth: 960 }}
+                        bundleOptions={heroBundleOptions}
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
                 </div>
@@ -139,7 +157,7 @@ export default function KristalinPortfolio() {
                     <motion.div
                         className="transform transition-all duration-700 ease-out"
                         style={{
-                            transform: `translateY(${scrollY * 0.2}px)`,
+                            transform: heroParallaxOn ? `translateY(${scrollY * 0.2}px)` : 'none',
                             opacity: Math.max(0, 1 - scrollY / 600),
                         }}
                         initial={{ opacity: 0, y: 80 }}
@@ -193,7 +211,7 @@ export default function KristalinPortfolio() {
                 <motion.div
                     className="relative z-20 -mt-2 mb-4 w-full px-3 sm:mb-6 sm:px-4"
                     style={{
-                        transform: `translateY(${scrollY * 0.15}px)`,
+                        transform: heroParallaxOn ? `translateY(${scrollY * 0.15}px)` : 'none',
                         opacity: Math.max(0.3, 1 - scrollY / 800),
                     }}
                     initial={{ opacity: 0, y: 60 }}
@@ -296,7 +314,7 @@ export default function KristalinPortfolio() {
                 <motion.div
                     className="relative z-20 mb-6 w-full px-4 sm:mb-8"
                     style={{
-                        transform: `translateY(${scrollY * 0.1}px)`,
+                        transform: heroParallaxOn ? `translateY(${scrollY * 0.1}px)` : 'none',
                         opacity: Math.max(0.4, 1 - scrollY / 700),
                     }}
                     initial={{ opacity: 0, y: 40, scale: 0.8 }}

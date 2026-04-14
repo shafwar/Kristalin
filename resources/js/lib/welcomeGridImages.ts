@@ -38,6 +38,11 @@ function bundleFor(
 export type WelcomeGridBundleOptions = {
     /** Cap largest variant (e.g. 960 for full-bleed heroes — skips 1280w on fast connections). */
     maxWidth?: 640 | 960 | 1280;
+    /**
+     * Full-viewport / LCP heroes: on `minimal` image tier, still expose 960w so mobile Retina
+     * does not upscale a 640px asset to the full screen (looks blocky with object-cover).
+     */
+    lcpHero?: boolean;
 };
 
 export function getWelcomeGridBundle(
@@ -52,9 +57,15 @@ export function getWelcomeGridBundle(
     let jpgFallbackW: 640 | 960 | 1280;
 
     if (tier === 'minimal') {
-        widths = [640];
-        sizes = '(max-width: 1023px) 96vw, 48vw';
-        jpgFallbackW = 640;
+        if (options?.lcpHero) {
+            widths = [640, 960];
+            sizes = '(max-width: 1023px) 100vw, 50vw';
+            jpgFallbackW = 960;
+        } else {
+            widths = [640];
+            sizes = '(max-width: 1023px) 96vw, 48vw';
+            jpgFallbackW = 640;
+        }
     } else if (tier === 'conserve') {
         widths = [640, 960];
         sizes = '(max-width: 1023px) 98vw, 50vw';
