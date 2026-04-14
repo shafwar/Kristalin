@@ -391,20 +391,20 @@ const Welcome = () => {
                                     <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7">
                                         <Link
                                             href="/b2c"
-                                            className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6"
+                                            className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 max-sm:from-white max-sm:via-white max-sm:to-white max-sm:border-stone-200/65 max-sm:shadow-sm max-sm:hover:border-stone-300/80 max-sm:hover:shadow-md hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6"
                                             aria-labelledby="welcome-b2c-teaser-heading"
                                         >
                                             <span
-                                                className="pointer-events-none absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400"
+                                                className="pointer-events-none absolute top-0 right-0 left-0 hidden h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-400 sm:block"
                                                 aria-hidden
                                             />
                                             <span
-                                                className="pointer-events-none absolute top-0 bottom-0 left-0 w-[3px] bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-500/90 opacity-95"
+                                                className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-[3px] bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-500/90 opacity-95 sm:block"
                                                 aria-hidden
                                             />
-                                            <div className="flex min-w-0 flex-1 items-start gap-4 pl-2.5 md:items-center md:gap-5 md:pl-1">
+                                            <div className="flex min-w-0 flex-1 items-start gap-4 max-sm:pl-0 pl-2.5 md:items-center md:gap-5 md:pl-1">
                                                 <div
-                                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 text-stone-900 shadow-md ring-1 ring-amber-200/50 sm:h-14 sm:w-14"
+                                                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 via-amber-400 to-amber-600 text-stone-900 shadow-md ring-1 ring-amber-200/50 max-sm:ring-0 sm:h-14 sm:w-14"
                                                     aria-hidden
                                                 >
                                                     <Coins className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
@@ -425,7 +425,7 @@ const Welcome = () => {
                                                 </div>
                                             </div>
                                             <div className="flex w-full shrink-0 justify-stretch md:w-auto md:justify-end">
-                                                <span className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-6 py-2.5 text-sm font-semibold text-stone-800 shadow-sm transition-all duration-200 group-hover:border-amber-300/90 group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-yellow-400 group-hover:text-stone-900 group-hover:shadow md:w-auto md:px-7 md:py-3">
+                                                <span className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stone-200/90 bg-white/90 px-6 py-2.5 text-sm font-semibold text-stone-800 shadow-sm transition-all duration-200 max-sm:group-hover:border-stone-300 max-sm:group-hover:bg-stone-50 max-sm:group-hover:shadow-sm group-hover:border-amber-300/90 group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-yellow-400 group-hover:text-stone-900 group-hover:shadow md:w-auto md:px-7 md:py-3">
                                                     <span>{t('pages.welcome.b2c_teaser.cta')}</span>
                                                     <ChevronRight
                                                         className="h-4 w-4 shrink-0 text-stone-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-stone-900"
