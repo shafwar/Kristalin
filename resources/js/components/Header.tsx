@@ -1,6 +1,7 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { Link, router } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { imageUrl } from '../lib/assets';
 
 interface HeaderProps {
@@ -21,8 +22,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     const [isSearching, setIsSearching] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
     const aboutDropdownRef = useRef<HTMLDivElement>(null);
     const searchRef = useRef<HTMLDivElement>(null);
+    const [mobileOverlayMounted, setMobileOverlayMounted] = useState(false);
 
     // Handle scroll effect for transparent/sticky behavior
     useEffect(() => {
@@ -37,32 +40,51 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         }
     }, [transparent, sticky]);
 
+    useEffect(() => {
+        setMobileOverlayMounted(true);
+    }, []);
+
     // Close dropdown on outside click
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        function getEventTargetNode(event: MouseEvent | TouchEvent): Node | null {
+            if ('changedTouches' in event && event.changedTouches[0]) {
+                return event.changedTouches[0].target as Node | null;
+            }
+            if ('touches' in event && event.touches[0]) {
+                return event.touches[0].target as Node | null;
+            }
+            return (event as MouseEvent).target as Node | null;
+        }
+
+        function handlePointerOutside(event: MouseEvent | TouchEvent) {
+            const target = getEventTargetNode(event);
+            if (!target) return;
+
+            if (dropdownRef.current && !dropdownRef.current.contains(target)) {
                 setDropdownOpen(false);
             }
-            if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
+            if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(target)) {
                 setAboutDropdownOpen(false);
             }
-            if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+            if (searchRef.current && !searchRef.current.contains(target)) {
                 setSearchOpen(false);
             }
-            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-                const hamburgerButton = (event.target as Element).closest('[aria-label*="menu"]');
-                if (!hamburgerButton) {
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) {
+                if (!mobileMenuToggleRef.current?.contains(target)) {
                     setMobileMenuOpen(false);
                 }
             }
         }
         if (dropdownOpen || aboutDropdownOpen || mobileMenuOpen || searchOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handlePointerOutside);
+            document.addEventListener('touchstart', handlePointerOutside, { passive: true });
         } else {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handlePointerOutside);
+            document.removeEventListener('touchstart', handlePointerOutside);
         }
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handlePointerOutside);
+            document.removeEventListener('touchstart', handlePointerOutside);
         };
     }, [dropdownOpen, aboutDropdownOpen, mobileMenuOpen, searchOpen]);
 
@@ -92,35 +114,63 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 // Ensure any page-level scroll lock is removed when switching to desktop
                 document.body.style.position = '';
                 document.body.style.top = '';
+                document.body.style.left = '';
+                document.body.style.right = '';
                 document.body.style.width = '';
                 document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+                document.documentElement.style.paddingRight = '';
             }
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Lock body scroll when mobile menu is open
+    // Lock body scroll when mobile menu is open (scrollbar gutter avoids horizontal shift on iOS/desktop)
     useEffect(() => {
-        if (mobileMenuOpen) {
-            const scrollY = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.width = '100%';
-            document.body.style.overflow = 'hidden';
-            document.body.classList.add('mobile-menu-open');
-
-            return () => {
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.width = '';
-                document.body.style.overflow = '';
-                document.body.classList.remove('mobile-menu-open');
-                window.scrollTo(0, scrollY);
-            };
-        } else {
+        if (!mobileMenuOpen) {
             document.body.classList.remove('mobile-menu-open');
+            return;
         }
+
+        const scrollY = window.scrollY;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const body = document.body;
+        const html = document.documentElement;
+
+        body.style.position = 'fixed';
+        body.style.top = `-${scrollY}px`;
+        body.style.left = '0';
+        body.style.right = '0';
+        body.style.width = '100%';
+        body.style.overflow = 'hidden';
+        if (scrollbarWidth > 0) {
+            body.style.paddingRight = `${scrollbarWidth}px`;
+            html.style.paddingRight = `${scrollbarWidth}px`;
+        }
+        body.classList.add('mobile-menu-open');
+
+        return () => {
+            body.style.position = '';
+            body.style.top = '';
+            body.style.left = '';
+            body.style.right = '';
+            body.style.width = '';
+            body.style.overflow = '';
+            body.style.paddingRight = '';
+            html.style.paddingRight = '';
+            body.classList.remove('mobile-menu-open');
+            window.scrollTo(0, scrollY);
+        };
+    }, [mobileMenuOpen]);
+
+    useEffect(() => {
+        if (!mobileMenuOpen) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setMobileMenuOpen(false);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
     }, [mobileMenuOpen]);
 
     // Calculate opacity based on scroll position for smooth transition
@@ -302,9 +352,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             {/* Mobile Navigation Toggle */}
             <div className="flex flex-1 items-center justify-end gap-2 lg:hidden">
                 <button
+                    ref={mobileMenuToggleRef}
+                    type="button"
                     className="p-2 text-white transition-all duration-300 ease-out hover:text-yellow-400"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={mobileMenuOpen}
+                    aria-controls="mobile-navigation-drawer"
                     style={{ opacity: textOpacity }}
                 >
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -467,27 +521,34 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         <rect width="3" height="1" y="1" fill="#FFFFFF" />
                     </svg>
                 </div>
-                {/* Backdrop */}
-                <div
-                    className={`fixed inset-0 z-40 bg-black/40 transition-all duration-300 lg:hidden ${
-                        mobileMenuOpen ? 'visible opacity-100 backdrop-blur-sm' : 'invisible opacity-0'
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                />
+                {mobileOverlayMounted &&
+                    createPortal(
+                        <>
+                            <div
+                                className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none lg:hidden ${
+                                    mobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+                                }`}
+                                aria-hidden={!mobileMenuOpen}
+                                onClick={() => setMobileMenuOpen(false)}
+                            />
 
-                {/* Drawer */}
-                <div
-                    ref={mobileMenuRef}
-                    className={`fixed top-0 right-0 bottom-0 z-50 w-80 overflow-y-auto bg-white shadow-2xl transition-transform duration-300 ease-out sm:w-96 lg:hidden ${
-                        mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                    }`}
-                    style={{
-                        backdropFilter: 'blur(12px)',
-                        WebkitBackdropFilter: 'blur(12px)',
-                        overscrollBehavior: 'contain',
-                        WebkitOverflowScrolling: 'touch',
-                    }}
-                >
+                            <div
+                                ref={mobileMenuRef}
+                                id="mobile-navigation-drawer"
+                                role="dialog"
+                                aria-modal="true"
+                                aria-label="Main menu"
+                                className={`fixed top-0 right-0 bottom-0 z-[101] flex w-full max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-md lg:hidden ${
+                                    mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+                                }`}
+                                style={{
+                                    maxHeight: '100dvh',
+                                    overscrollBehavior: 'contain',
+                                    WebkitOverflowScrolling: 'touch',
+                                    paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+                                    paddingRight: 'env(safe-area-inset-right, 0px)',
+                                }}
+                            >
                     {/* Close button inside menu */}
                     <div className="flex items-center justify-between px-4 pt-4 pb-2">
                         <img src={imageUrl('kristalinlogotransisi1.png')} alt="Kristalin Logo" className="h-10 object-contain" />
@@ -502,7 +563,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         </button>
                     </div>
 
-                    <div className="min-h-full space-y-4 px-4 py-4">
+                    <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4">
                         {/* Mobile Language Switcher */}
                         <div className="flex items-center justify-between pb-4">
                             <span className="text-sm font-semibold text-gray-800 uppercase">{t('common.language')}:</span>
@@ -638,6 +699,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         ))}
                     </div>
                 </div>
+                        </>,
+                        document.body,
+                    )}
             </>
         </header>
     );
