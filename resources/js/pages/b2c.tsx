@@ -3,81 +3,72 @@ import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
-import { useEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function scrollToProcess() {
     document.getElementById('b2c-process')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Card shell only; motion is handled by GSAP ScrollTrigger (lazy-loaded). */
-const b2cCardClass = 'data-b2c-reveal rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm md:p-8';
-
 export default function B2cPage() {
     const { t } = useTranslation();
     const heroMicroReady = useLcpSafeMicroMotion();
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
+    const scrollAnimScopeRef = useRef<HTMLDivElement>(null);
 
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const targets = () => Array.from(document.querySelectorAll<HTMLElement>('[data-b2c-reveal]'));
+    /** ScrollTrigger: alternate subtle slide from left/right + fade. GPU-friendly (x, opacity only), once, scoped revert. */
+    useLayoutEffect(() => {
+        const scope = scrollAnimScopeRef.current;
+        if (!scope || typeof window === 'undefined') return;
 
-        if (reduced) {
-            targets().forEach((el) => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-                el.style.visibility = 'visible';
-            });
-            return;
-        }
+        const prefersReduced =
+            typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        let cancelled = false;
-        let dispose: (() => void) | null = null;
+        const ctx = gsap.context(() => {
+            const blocks = gsap.utils.toArray<HTMLElement>(scope.querySelectorAll('[data-b2c-reveal]'));
+            if (blocks.length === 0) return;
 
-        void (async () => {
-            const gsap = (await import('gsap')).default;
-            const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-            if (cancelled) return;
-
-            gsap.registerPlugin(ScrollTrigger);
-
-            const ctx = gsap.context(() => {
-                const items = gsap.utils.toArray<HTMLElement>('[data-b2c-reveal]');
-                items.forEach((el, i) => {
-                    const fromLeft = i % 2 === 0;
-                    gsap.fromTo(
-                        el,
-                        { autoAlpha: 0, x: fromLeft ? -28 : 28 },
-                        {
-                            autoAlpha: 1,
-                            x: 0,
-                            duration: 0.7,
-                            ease: 'power2.out',
-                            scrollTrigger: {
-                                trigger: el,
-                                start: 'top 88%',
-                                end: 'top 62%',
-                                toggleActions: 'play reverse play reverse',
-                            },
-                        },
-                    );
-                });
-            });
-
-            if (cancelled) {
-                ctx.revert();
+            if (prefersReduced) {
+                gsap.set(blocks, { opacity: 1, x: 0, clearProps: 'transform' });
                 return;
             }
-            dispose = () => ctx.revert();
-        })();
+
+            const xOffset = window.innerWidth < 768 ? 20 : 32;
+
+            blocks.forEach((el, index) => {
+                const fromX = index % 2 === 0 ? -xOffset : xOffset;
+                gsap.fromTo(
+                    el,
+                    { opacity: 0, x: fromX, immediateRender: true },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.78,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 88%',
+                            toggleActions: 'play none none none',
+                            once: true,
+                        },
+                    },
+                );
+            });
+        }, scope);
 
         return () => {
-            cancelled = true;
-            dispose?.();
+            ctx.revert();
         };
     }, []);
+
+    const reveal =
+        'data-b2c-reveal rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm md:p-8 motion-reduce:opacity-100';
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-stone-50 text-stone-900">
@@ -137,14 +128,15 @@ export default function B2cPage() {
             </section>
 
             <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
-                <div data-b2c-reveal className="mx-auto max-w-3xl text-center">
+                <div ref={scrollAnimScopeRef}>
+                <div className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold tracking-wide text-amber-700/90 uppercase">{t('pages.b2c.section_process_kicker')}</p>
                     <h2 className="mt-2 text-2xl font-bold text-stone-900 md:text-3xl">{t('pages.b2c.section_process_title')}</h2>
                     <p className="mx-auto mt-4 max-w-2xl text-stone-600">{t('pages.b2c.bridge_intro')}</p>
                 </div>
 
                 <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-8">
-                    <article data-b2c-reveal className={b2cCardClass}>
+                    <article data-b2c-reveal className={reveal}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Sparkles className="h-5 w-5" aria-hidden />
@@ -157,7 +149,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={b2cCardClass}>
+                    <article data-b2c-reveal className={reveal}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Building2 className="h-5 w-5" aria-hidden />
@@ -173,7 +165,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={b2cCardClass}>
+                    <article data-b2c-reveal className={reveal}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <FileText className="h-5 w-5" aria-hidden />
@@ -186,7 +178,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={b2cCardClass}>
+                    <article data-b2c-reveal className={reveal}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Scale className="h-5 w-5" aria-hidden />
@@ -199,7 +191,7 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <article data-b2c-reveal className={b2cCardClass}>
+                    <article data-b2c-reveal className={reveal}>
                         <div className="mb-4 flex items-center gap-3 text-amber-800">
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
                                 <Sparkles className="h-5 w-5" aria-hidden />
@@ -212,14 +204,15 @@ export default function B2cPage() {
                         </blockquote>
                     </article>
 
-                    <p data-b2c-reveal className={clsx(b2cCardClass, 'text-center text-sm text-stone-500')}>
+                    <p data-b2c-reveal className={clsx(reveal, 'text-center text-sm text-stone-500')}>
                         {t('pages.b2c.footnote')}
                     </p>
+                </div>
                 </div>
             </section>
 
             <section className="border-t border-stone-200 bg-white px-4 py-12">
-                <div data-b2c-reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+                <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
                     <p className="text-stone-600">{t('pages.b2c.bottom_prompt')}</p>
                     <Link
                         href="/contact"
