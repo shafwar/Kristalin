@@ -1445,6 +1445,7 @@ return [
             'subject_options' => [
                 'select' => '选择主题',
                 'general' => '一般',
+                'b2c' => 'B2C',
                 'partnership' => '合作伙伴',
                 'csr' => 'CSR (企业社会责任)',
                 'career' => '职业',

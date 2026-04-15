@@ -1436,6 +1436,7 @@ return [
             'subject_options' => [
                 'select' => 'Select Subject',
                 'general' => 'General',
+                'b2c' => 'B2C',
                 'partnership' => 'Partnership',
                 'csr' => 'CSR',
                 'career' => 'Career',

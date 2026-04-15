@@ -1421,6 +1421,7 @@ return [
             'subject_options' => [
                 'select' => 'Pilih Subjek',
                 'general' => 'Umum',
+                'b2c' => 'B2C',
                 'partnership' => 'Kemitraan',
                 'csr' => 'CSR',
                 'career' => 'Karir',

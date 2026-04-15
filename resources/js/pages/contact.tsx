@@ -310,6 +310,7 @@ export default function ContactPage() {
                                 >
                                     <option value="">{t('pages.contact.form.subject_options.select')}</option>
                                     <option value="General">{t('pages.contact.form.subject_options.general')}</option>
+                                    <option value="B2C">{t('pages.contact.form.subject_options.b2c')}</option>
                                     <option value="Partnership">{t('pages.contact.form.subject_options.partnership')}</option>
                                     <option value="CSR">{t('pages.contact.form.subject_options.csr')}</option>
                                     <option value="Career">{t('pages.contact.form.subject_options.career')}</option>
