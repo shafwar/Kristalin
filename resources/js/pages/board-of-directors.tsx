@@ -18,7 +18,7 @@ const directorsData = [
         image: '/IMG_4701.JPG',
     },
     { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_commissioner', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
-    { id: 12, name: 'Dony Rivai', positionKey: 'position_finance_director', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
+    { id: 12, name: 'Dony Rivai', positionKey: 'position_commissioner_pt_kristalin', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
     { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0188.JPG' },
     { id: 7, name: 'Reza Rizky Darmawan', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0272.JPG' },
     { id: 10, name: 'Prasetyo Nugroho', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_4546.JPG' },
@@ -33,6 +33,25 @@ const directorsData = [
     { id: 13, name: 'Novriadji Wibowo', positionKey: 'position_board_member', company: '', image: '/IMG_4892.JPG' },
     { id: 18, name: 'Talitha Arif', positionKey: 'position_board_member', company: '', image: '/tataboardmemberkel.jpeg' },
 ];
+
+/** Silhouette placeholder when no photo or load fails (e.g. empty path no longer hits CDN 404). */
+function AnonymousProfilePlaceholder({ className }: { className?: string }) {
+    return (
+        <div className={`relative overflow-hidden ${className ?? ''}`}>
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200">
+                <div
+                    className="flex h-[42%] min-h-[5.5rem] w-[42%] min-w-[5.5rem] max-w-[7rem] items-center justify-center rounded-full bg-gradient-to-br from-slate-300 to-slate-400 shadow-inner ring-2 ring-white/80"
+                    aria-hidden
+                >
+                    <svg className="h-[55%] w-[55%] text-slate-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <span className="sr-only">Profile photo not available</span>
+            </div>
+        </div>
+    );
+}
 
 // Enhanced Optimized Image Component - Performance focused for scroll
 const OptimizedImage = ({
@@ -83,27 +102,8 @@ const OptimizedImage = ({
         setIsLoaded(true);
     }, []);
 
-    // Show mysterious icon when no image is provided
-    if (!src || src === '') {
-        return (
-            <div className={`relative overflow-hidden ${className}`}>
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-                    <div className="text-center">
-                        <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-slate-300 to-slate-400">
-                            <svg className="h-8 w-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={1.5}
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                />
-                            </svg>
-                        </div>
-                        <span className="text-xs font-medium text-slate-500">Anonymous</span>
-                    </div>
-                </div>
-            </div>
-        );
+    if (!src || src.trim() === '') {
+        return <AnonymousProfilePlaceholder className={className} />;
     }
 
     return (
@@ -115,18 +115,9 @@ const OptimizedImage = ({
                 </div>
             )}
 
-            {/* Error state */}
             {hasError && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-100">
-                    <svg className="mb-2 h-8 w-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                    </svg>
-                    <span className="text-xs text-slate-500">Image unavailable</span>
+                <div className="pointer-events-none absolute inset-0 z-[1]">
+                    <AnonymousProfilePlaceholder className="h-full w-full" />
                 </div>
             )}
 
@@ -209,7 +200,7 @@ const DirectorCard = ({ director, index }: { director: (typeof directorsData)[0]
                 {/* Director Photo - standard aspect ratio */}
                 <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
                     <OptimizedImage
-                        src={imageUrl(director.image)}
+                        src={director.image?.trim() ? imageUrl(director.image) : ''}
                         alt={director.name}
                         className="h-full w-full"
                         rotation={(director as { rotation?: string }).rotation}

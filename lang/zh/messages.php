@@ -62,7 +62,7 @@ return [
         'position_commissioner' => '监事',
         'position_managing_partner' => '管理合伙人',
         'position_corporate_secretary' => '公司秘书',
-        'position_finance_director' => '财务总监',
+        'position_commissioner_pt_kristalin' => 'PT Kristalin Ekalestari 监事',
         'position_group_head_compliance' => '集团合规主管',
         'position_group_hr_director' => '集团人力资源总监',
     ],
