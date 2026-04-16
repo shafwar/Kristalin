@@ -62,7 +62,7 @@ return [
         'position_commissioner' => 'Commissioner',
         'position_managing_partner' => 'Managing Partner',
         'position_corporate_secretary' => 'Corporate Secretary',
-        'position_commissioner_pt_kristalin' => 'Commissioner, PT Kristalin Ekalestari',
+        'position_commissioner_pt_kristalin' => 'Commissioner',
         'position_group_head_compliance' => 'Group Head Compliance',
         'position_group_hr_director' => 'Group HR Director',
     ],

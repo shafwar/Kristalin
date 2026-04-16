@@ -62,7 +62,7 @@ return [
         'position_commissioner' => 'Komisaris',
         'position_managing_partner' => 'Mitra Pengelola',
         'position_corporate_secretary' => 'Sekretaris Perusahaan',
-        'position_commissioner_pt_kristalin' => 'Komisaris PT Kristalin Ekalestari',
+        'position_commissioner_pt_kristalin' => 'Komisaris',
         'position_group_head_compliance' => 'Kepala Grup Kepatuhan',
         'position_group_hr_director' => 'Direktur SDM Grup',
     ],

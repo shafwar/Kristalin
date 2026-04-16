@@ -38,15 +38,16 @@ const directorsData = [
 function AnonymousProfilePlaceholder({ className }: { className?: string }) {
     return (
         <div className={`relative overflow-hidden ${className ?? ''}`}>
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200">
                 <div
-                    className="flex h-[42%] min-h-[5.5rem] w-[42%] min-w-[5.5rem] max-w-[7rem] items-center justify-center rounded-full bg-gradient-to-br from-slate-300 to-slate-400 shadow-inner ring-2 ring-white/80"
+                    className="flex h-[32%] min-h-[4rem] w-[32%] min-w-[4rem] max-w-[5.5rem] items-center justify-center rounded-full bg-gradient-to-br from-slate-300 to-slate-400 shadow-inner ring-2 ring-white/80"
                     aria-hidden
                 >
                     <svg className="h-[55%] w-[55%] text-slate-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
                         <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                 </div>
+                <span className="mt-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Anonymous</span>
                 <span className="sr-only">Profile photo not available</span>
             </div>
         </div>
