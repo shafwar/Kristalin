@@ -439,131 +439,61 @@ const Welcome = () => {
                                     <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
                                     {/* Carousel Card - Mobile Anti-Flicker Optimized */}
                                     <div className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/2 lg:flex-1">
-                                        {isMobile ? (
-                                            // Mobile: no framer-motion to avoid flicker, still updates with currentSlide
-                                            <div
-                                                className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
-                                                onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
-                                            >
-                                                <div className="absolute inset-0 h-full w-full">
-                                                    <WelcomeGridPicture
-                                                        key={carouselSlides[currentSlide].gridId}
-                                                        imageId={carouselSlides[currentSlide].gridId}
-                                                        alt={carouselSlides[currentSlide].title}
-                                                        pictureClassName="block h-full w-full"
-                                                        className="h-full w-full object-cover"
-                                                        sizes="(max-width: 1023px) 100vw, 50vw"
-                                                        style={{
-                                                            objectPosition: 'center center',
-                                                            transform: 'translate3d(0, 0, 0)',
-                                                            backfaceVisibility: 'hidden',
-                                                            WebkitBackfaceVisibility: 'hidden',
-                                                        }}
-                                                        loading="lazy"
-                                                        fetchPriority="low"
-                                                    />
-                                                </div>
-
-                                                <div className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                                                <div className="relative z-10">
-                                                    <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                                        {carouselSlides[currentSlide].category}
-                                                    </div>
-                                                    <h3 className="mb-4 text-xl font-bold sm:text-2xl lg:text-3xl">
-                                                        {carouselSlides[currentSlide].title}
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <AnimatePresence initial={false}>
-                                                <motion.div
-                                                    key={currentSlide}
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{
-                                                        duration: 1.05,
-                                                        ease: [0.16, 1, 0.3, 1],
-                                                    }}
-                                                    className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
-                                                    style={{
-                                                        transform: 'translate3d(0, 0, 0)',
-                                                        willChange: 'opacity',
-                                                        backfaceVisibility: 'hidden',
-                                                        WebkitBackfaceVisibility: 'hidden',
-                                                    }}
-                                                    onMouseEnter={() => setHoveredCard(0)}
-                                                    onMouseLeave={() => setHoveredCard(null)}
-                                                    onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
-                                                >
-                                                    {/* Image - Pure opacity crossfade for smoothness */}
-                                                    <motion.div
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{
-                                                            duration: 1.05,
-                                                            ease: [0.16, 1, 0.3, 1],
-                                                        }}
-                                                        className="absolute inset-0 h-full w-full"
-                                                        style={{
-                                                            transform: 'translate3d(0, 0, 0)',
-                                                            willChange: 'opacity',
-                                                        }}
+                                        {/* Stacked images: both stay mounted (no remount/black flash); CSS crossfade only */}
+                                        <div
+                                            className="absolute inset-0 flex flex-col justify-end p-6 text-white sm:p-8 lg:p-8"
+                                            onClick={() => (window.location.href = carouselSlides[currentSlide].link)}
+                                            onMouseEnter={() => !isMobile && setHoveredCard(0)}
+                                            onMouseLeave={() => !isMobile && setHoveredCard(null)}
+                                            role="presentation"
+                                        >
+                                            <div className="absolute inset-0 z-0 min-h-0 min-w-0">
+                                                {carouselSlides.map((slide, idx) => (
+                                                    <div
+                                                        key={slide.gridId}
+                                                        className={`absolute inset-0 min-h-0 min-w-0 transition-opacity duration-500 ease-out motion-reduce:transition-none ${
+                                                            idx === currentSlide
+                                                                ? 'z-[2] opacity-100'
+                                                                : 'pointer-events-none z-[1] opacity-0'
+                                                        }`}
+                                                        aria-hidden={idx !== currentSlide}
                                                     >
                                                         <WelcomeGridPicture
-                                                            key={carouselSlides[currentSlide].gridId}
-                                                            imageId={carouselSlides[currentSlide].gridId}
-                                                            alt={carouselSlides[currentSlide].title}
-                                                            pictureClassName="block h-full w-full"
-                                                            className="h-full w-full object-cover"
+                                                            imageId={slide.gridId}
+                                                            alt={slide.title}
+                                                            pictureClassName="absolute inset-0 block h-full w-full min-h-0"
+                                                            className="h-full min-h-0 w-full object-cover"
                                                             sizes="(max-width: 1023px) 100vw, 50vw"
+                                                            bundleOptions={{ lcpHero: true }}
                                                             style={{
                                                                 objectPosition: 'center center',
-                                                                transform: 'translate3d(0, 0, 0)',
+                                                                transform: 'translateZ(0)',
                                                                 backfaceVisibility: 'hidden',
                                                                 WebkitBackfaceVisibility: 'hidden',
-                                                                imageRendering: '-webkit-optimize-contrast',
                                                             }}
-                                                            loading="lazy"
-                                                            fetchPriority="low"
+                                                            loading="eager"
+                                                            fetchPriority={idx === 0 ? 'high' : 'low'}
+                                                            decoding="async"
                                                         />
-                                                    </motion.div>
+                                                    </div>
+                                                ))}
+                                            </div>
 
-                                                    {/* Overlay - Static (no animation) for stability */}
-                                                    <div className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                            <div className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                                                    {/* Text - Simple fade after image settled */}
-                                                    <motion.div
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{
-                                                            duration: 1.0,
-                                                            delay: 0.35,
-                                                            ease: [0.16, 1, 0.3, 1],
-                                                        }}
-                                                        className="relative z-10"
-                                                        style={{
-                                                            transform: 'translate3d(0, 0, 0)',
-                                                            willChange: 'opacity',
-                                                        }}
-                                                    >
-                                                        <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
-                                                            {carouselSlides[currentSlide].category}
-                                                        </div>
-                                                        <h3
-                                                            className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
-                                                                hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
-                                                            }`}
-                                                        >
-                                                            {carouselSlides[currentSlide].title}
-                                                        </h3>
-                                                    </motion.div>
-                                                </motion.div>
-                                            </AnimatePresence>
-                                        )}
+                                            <div className="relative z-10">
+                                                <div className="mb-2 text-xs font-semibold tracking-widest text-yellow-400 sm:text-sm">
+                                                    {carouselSlides[currentSlide].category}
+                                                </div>
+                                                <h3
+                                                    className={`mb-4 text-xl font-bold transition-transform duration-300 sm:text-2xl lg:text-3xl ${
+                                                        !isMobile && hoveredCard === 0 ? 'lg:translate-x-2' : 'translate-x-0'
+                                                    }`}
+                                                >
+                                                    {carouselSlides[currentSlide].title}
+                                                </h3>
+                                            </div>
+                                        </div>
 
                                         {/* Indicator Dots */}
                                         <div className="absolute bottom-6 left-6 z-20 flex gap-2 sm:bottom-8 sm:left-8 lg:bottom-8 lg:left-8">
@@ -594,18 +524,20 @@ const Welcome = () => {
                                         <WelcomeGridPicture
                                             imageId="businessactivity"
                                             alt={t('pages.welcome.business_activities_alt')}
-                                            pictureClassName={`absolute inset-0 block h-full w-full transition-transform duration-300 will-change-auto lg:duration-500 ${
+                                            pictureClassName={`absolute inset-0 block h-full min-h-0 w-full transition-transform duration-300 will-change-auto lg:duration-500 ${
                                                 hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
                                             }`}
-                                            className="h-full w-full object-cover"
+                                            className="h-full min-h-0 w-full object-cover"
                                             sizes="(max-width: 1023px) 100vw, 30vw"
+                                            bundleOptions={{ lcpHero: true }}
                                             style={{
                                                 objectPosition: 'center center',
                                                 transform: 'translateZ(0)',
                                                 backfaceVisibility: 'hidden',
                                             }}
-                                            loading="lazy"
+                                            loading="eager"
                                             fetchPriority="low"
+                                            decoding="async"
                                         />
 
                                         {/* Dark overlay - Static, stronger gradient */}
