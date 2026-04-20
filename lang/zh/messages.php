@@ -22,6 +22,8 @@ return [
         'contact' => '联系我们',
         'modi' => 'Modi',
         'gold_price' => '黄金价格',
+        'digital_asset' => '数字资产',
+        'digital_asset_short' => 'KLX',
         'management' => '管理',
     ],
 

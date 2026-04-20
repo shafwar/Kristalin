@@ -22,6 +22,8 @@ return [
         'contact' => 'Contact',
         'modi' => 'Modi',
         'gold_price' => 'Gold Price',
+        'digital_asset' => 'Digital Asset',
+        'digital_asset_short' => 'KLX',
         'management' => 'Management',
     ],
 

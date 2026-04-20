@@ -22,6 +22,8 @@ return [
         'contact' => 'Kontak',
         'modi' => 'Modi',
         'gold_price' => 'Harga Emas',
+        'digital_asset' => 'Aset Digital',
+        'digital_asset_short' => 'KLX',
         'management' => 'Manajemen',
     ],
 

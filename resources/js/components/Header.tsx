@@ -251,6 +251,12 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         },
         { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
         { label: t('nav.gold_price'), href: 'https://goldprice.org/gold-price-indonesia.html', external: true },
+        {
+            label: t('nav.digital_asset'),
+            labelDesktop: t('nav.digital_asset_short'),
+            href: 'https://myklx.io',
+            external: true,
+        },
         { label: t('nav.line_of_business'), href: '/line-of-business' },
         { label: t('nav.business_activities'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
@@ -332,9 +338,20 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     href={item.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
+                                    title={item.label}
+                                    className="inline-flex items-center gap-0.5 px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2 xl:px-2.5"
                                 >
-                                    {item.label}
+                                    <span>{'labelDesktop' in item && item.labelDesktop ? item.labelDesktop : item.label}</span>
+                                    <svg
+                                        className="h-2.5 w-2.5 shrink-0 opacity-70"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2.5}
+                                        aria-hidden
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
                                 </a>
                             ) : (
                                 <Link
@@ -678,9 +695,21 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
-                                        <div className="flex items-center">
-                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                                            <span>{item.label}</span>
+                                        <div className="flex items-center justify-between gap-2">
+                                            <div className="flex min-w-0 flex-1 items-center">
+                                                <div className="mr-3 h-2 w-2 shrink-0 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                                <span className="min-w-0 leading-snug">{item.label}</span>
+                                            </div>
+                                            <svg
+                                                className="h-4 w-4 shrink-0 text-amber-600/80"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                strokeWidth={2}
+                                                aria-hidden
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
                                         </div>
                                     </a>
                                 ) : (
