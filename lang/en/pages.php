@@ -984,7 +984,7 @@ return [
             'title' => 'We Provide Best Services',
             'gold_mining' => [
                 'title' => 'GOLD MINING & PROCESSING',
-                'description' => 'PT Kristalin Ekalestari operates in gold mining located in Central Kalimantan, Indonesia. This region is a major trading source for gold mineral products such as gold bars, gold concentrate, and other derivatives.',
+                'description' => 'PT Kristalin Ekalestari operates in gold mining located in Papua, Indonesia. This region is a major trading source for gold mineral products such as gold bars, gold concentrate, and other derivatives.',
             ],
             'environmental' => [
                 'title' => 'ENVIRONMENTAL MANAGEMENT',
@@ -2516,7 +2516,7 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
                 'metrics' => ['impact' => '40% Yield Increase', 'duration' => '18 Months Development'],
             ],
             6 => [
-                'title' => 'Golden Community Program: Mining Education Center Opens in Central Kalimantan',
+                'title' => 'Golden Community Program: Mining Education Center Opens in Papua',
                 'subtitle' => 'Empowering local communities through sustainable education initiatives',
                 'excerpt' => 'State-of-the-art education facility provides mining technology training for 500+ local youth, creating sustainable career opportunities in the region.',
                 'content' => 'State-of-the-art education facility provides comprehensive mining technology training for over 500 local youth, creating sustainable career opportunities and building technical expertise in the region. The program includes hands-on training, theoretical education, and practical internships with leading industry professionals.',

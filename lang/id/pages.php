@@ -969,7 +969,7 @@ return [
             'title' => 'Kami Menyediakan Layanan Terbaik',
             'gold_mining' => [
                 'title' => 'PERTAMBANGAN & PENGOLAHAN EMAS',
-                'description' => 'PT Kristalin Ekalestari bergerak dalam bidang pertambangan emas yang berlokasi di Kalimantan Tengah, Indonesia. Wilayah ini merupakan sumber perdagangan terbesar untuk produk mineral emas seperti batangan emas, konsentrat emas, dan produk turunan lainnya.',
+                'description' => 'PT Kristalin Ekalestari bergerak dalam bidang pertambangan emas yang berlokasi di Papua, Indonesia. Wilayah ini merupakan sumber perdagangan terbesar untuk produk mineral emas seperti batangan emas, konsentrat emas, dan produk turunan lainnya.',
             ],
             'environmental' => [
                 'title' => 'PENGELOLAAN LINGKUNGAN',
@@ -2496,7 +2496,7 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
                 'metrics' => ['dampak' => 'Peningkatan Hasil 40%', 'durasi' => 'Pengembangan 18 Bulan'],
             ],
             6 => [
-                'title' => 'Program Komunitas Emas: Pusat Pendidikan Pertambangan Dibuka di Kalimantan Tengah',
+                'title' => 'Program Komunitas Emas: Pusat Pendidikan Pertambangan Dibuka di Papua',
                 'subtitle' => 'Memberdayakan komunitas lokal melalui inisiatif pendidikan berkelanjutan',
                 'excerpt' => 'Fasilitas pendidikan canggih menyediakan pelatihan teknologi pertambangan untuk 500+ pemuda lokal, menciptakan peluang karir berkelanjutan di wilayah tersebut.',
                 'content' => 'Fasilitas pendidikan canggih menyediakan pelatihan teknologi pertambangan komprehensif untuk lebih dari 500 pemuda lokal, menciptakan peluang karir berkelanjutan dan membangun keahlian teknis di wilayah tersebut. Program ini mencakup pelatihan langsung, pendidikan teori, dan magang praktis dengan profesional industri terkemuka.',
