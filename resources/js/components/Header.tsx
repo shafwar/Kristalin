@@ -207,7 +207,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Determine header classes and styles
     const getHeaderClasses = () => {
-        const baseClasses = 'flex items-center h-16 w-full min-w-0 px-3 sm:px-4 md:px-5 xl:h-[4.25rem] xl:px-6 2xl:h-20 2xl:px-8 z-50';
+        const baseClasses =
+            'kristalin-site-header flex items-center h-14 w-full min-w-0 px-3 sm:px-4 md:px-5 xl:h-[3.75rem] xl:px-5 min-[1600px]:h-[4.25rem] min-[1600px]:px-6 min-[1920px]:h-20 min-[1920px]:px-8 z-50';
 
         if (sticky && transparent) {
             return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out`;
@@ -289,16 +290,16 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
-                        className="h-8 w-auto max-w-[120px] object-contain transition-all duration-700 ease-out sm:h-9 sm:max-w-[140px] xl:h-10 xl:max-w-none 2xl:h-12 min-[1536px]:h-14"
+                        className="h-7 w-auto max-w-[108px] object-contain transition-all duration-700 ease-out sm:h-8 sm:max-w-[120px] xl:h-9 xl:max-w-[130px] min-[1600px]:h-10 min-[1600px]:max-w-none min-[1920px]:h-14"
                         style={{ filter: getLogoFilter() }}
                     />
                 </a>
             </div>
 
             {/* Desktop Navigation — xl+ (1280px) avoids cramped laptop/iPad landscape */}
-            <nav className="hidden min-w-0 flex-1 justify-center xl:flex xl:px-1 2xl:px-4">
+            <nav className="hidden min-w-0 flex-1 justify-center xl:flex xl:px-0.5 min-[1600px]:px-2">
                 <ul
-                    className="flex max-w-full flex-wrap items-center justify-center gap-x-0.5 gap-y-1 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out 2xl:gap-x-2 2xl:text-xs min-[1536px]:gap-x-3 min-[1536px]:text-sm"
+                    className="kristalin-header-nav flex max-w-full flex-nowrap items-center justify-center font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
@@ -316,7 +317,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-0.5 px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:gap-1 2xl:px-2 2xl:py-2 min-[1536px]:px-3"
+                                        className="flex items-center gap-0.5 transition-all duration-300 ease-out hover:text-yellow-400 min-[1600px]:gap-1"
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         <span className="whitespace-nowrap">{item.label}</span>
@@ -357,10 +358,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={item.label}
-                                    className="inline-flex items-center gap-0.5 whitespace-nowrap px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:px-2 2xl:py-2"
+                                    className="inline-flex items-center gap-0.5 whitespace-nowrap transition-all duration-300 ease-out hover:text-yellow-400"
                                 >
-                                    <span className="2xl:hidden">{renderNavLabel(item, 'desktop')}</span>
-                                    <span className="hidden 2xl:inline">{item.label}</span>
+                                    <span className="min-[1600px]:hidden">{renderNavLabel(item, 'desktop')}</span>
+                                    <span className="hidden min-[1600px]:inline">{item.label}</span>
                                     <svg
                                         className="h-2.5 w-2.5 shrink-0 opacity-70"
                                         fill="none"
@@ -375,12 +376,12 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="block whitespace-nowrap px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:px-2 2xl:py-2 min-[1536px]:px-3"
+                                    className="block whitespace-nowrap transition-all duration-300 ease-out hover:text-yellow-400"
                                 >
                                     {item.labelCompact ? (
                                         <>
-                                            <span className="2xl:hidden">{item.labelCompact}</span>
-                                            <span className="hidden 2xl:inline">{item.label}</span>
+                                            <span className="min-[1600px]:hidden">{item.labelCompact}</span>
+                                            <span className="hidden min-[1600px]:inline">{item.label}</span>
                                         </>
                                     ) : (
                                         item.label
@@ -422,13 +423,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
             {/* Right Side Features - Desktop Only (xl+) */}
             <div
-                className="hidden h-full shrink-0 items-center gap-0.5 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out xl:flex 2xl:gap-1 2xl:text-xs"
+                className="hidden h-full shrink-0 items-center gap-0.5 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out xl:flex min-[1600px]:gap-1 min-[1600px]:text-xs"
                 style={{ opacity: textOpacity }}
             >
                 {/* Language Switcher */}
                 <div className="relative" ref={dropdownRef}>
                     <button
-                        className="flex h-10 min-w-[44px] items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none xl:text-sm"
+                        className="flex h-9 min-w-[40px] items-center justify-center px-1.5 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none min-[1600px]:h-10 min-[1600px]:min-w-[44px] min-[1600px]:px-2 min-[1600px]:text-sm"
                         onClick={() => setDropdownOpen(!dropdownOpen)}
                         aria-haspopup="listbox"
                         aria-expanded={dropdownOpen}
@@ -489,7 +490,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     <button
                         type="button"
                         onClick={() => setSearchOpen((o) => !o)}
-                        className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
+                        className="flex h-9 items-center justify-center px-1.5 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none min-[1600px]:h-10 min-[1600px]:px-2 min-[1600px]:text-sm"
                         aria-label={t('common.search')}
                     >
                         <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
@@ -551,7 +552,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Whistleblower / Internal feedback – subtle hint (shield icon) */}
                 <Link
                     href="/internal-feedback"
-                    className="flex h-9 w-9 items-center justify-center text-white/70 transition-all duration-300 hover:text-yellow-400 hover:opacity-100 focus:outline-none 2xl:h-10 2xl:w-10"
+                    className="flex h-8 w-8 items-center justify-center text-white/70 transition-all duration-300 hover:text-yellow-400 hover:opacity-100 focus:outline-none min-[1600px]:h-9 min-[1600px]:w-9 min-[1920px]:h-10 min-[1920px]:w-10"
                     title={t('pages.internal_feedback.page_title')}
                     aria-label={t('pages.internal_feedback.page_title')}
                 >
