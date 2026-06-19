@@ -1,3 +1,4 @@
+import { MilestoneYearNav } from '@/components/MilestoneYearNav';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,7 +22,8 @@ type MilestoneTimelinePanelProps = {
     resolveFilterGroup: (category: string) => MilestoneFilterKey;
     filterLabels: Record<MilestoneFilterKey, string>;
     emptyFilterMessage: string;
-    onActiveYearChange?: (year: string | null) => void;
+    activeYear: string | null;
+    onYearChange: (year: string) => void;
     variant: 'mobile' | 'desktop';
     isLoaded: boolean;
 };
@@ -43,9 +45,9 @@ function MilestoneCard({
         <article
             data-milestone-item
             data-milestone-year={milestone.year}
-            data-milestone-index={dataIndex}
+            data-milestone-index={String(dataIndex)}
             className={clsx(
-                'group rounded-2xl border border-transparent p-4 transition-colors duration-300 motion-reduce:transition-none md:p-6',
+                'group scroll-mt-24 rounded-2xl border border-transparent p-4 transition-colors duration-300 motion-reduce:transition-none sm:p-5 md:p-6',
                 'hover:border-amber-100 hover:bg-amber-50/40',
                 isActiveYear && 'border-amber-200/60 bg-amber-50/30',
             )}
@@ -54,7 +56,7 @@ function MilestoneCard({
                 <div className="shrink-0">
                     <div
                         className={clsx(
-                            'rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 px-3 py-2 text-center text-white transition-transform duration-500 motion-reduce:transition-none md:min-w-[80px] md:px-4',
+                            'rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 px-3 py-2 text-center text-white transition-transform duration-500 motion-reduce:transition-none sm:min-w-[72px] md:min-w-[80px] md:px-4',
                             isActiveYear && 'scale-105 shadow-lg shadow-amber-400/25',
                         )}
                     >
@@ -67,15 +69,31 @@ function MilestoneCard({
                         <span className={`mb-2 inline-block rounded-full px-2 py-1 text-xs font-medium md:px-3 ${getCategoryColor(milestone.category)}`}>
                             {milestone.category}
                         </span>
-                        <h3 className="text-base leading-tight font-semibold text-gray-900 transition-colors duration-300 group-hover:text-yellow-600 md:text-xl">
+                        <h3 className="text-sm leading-tight font-semibold text-gray-900 transition-colors duration-300 group-hover:text-yellow-600 sm:text-base md:text-xl">
                             {milestone.title}
                         </h3>
                     </div>
-                    <p className="text-xs leading-relaxed text-gray-600 md:text-sm">{milestone.description}</p>
+                    <p className="text-xs leading-relaxed text-gray-600 sm:text-sm">{milestone.description}</p>
                 </div>
             </div>
         </article>
     );
+}
+
+function resolveYearFromItems(items: NodeListOf<HTMLElement>, anchorY: number): string | null {
+    let best: HTMLElement | null = null;
+    let bestDistance = Infinity;
+
+    items.forEach((item) => {
+        const top = item.getBoundingClientRect().top;
+        const distance = Math.abs(top - anchorY);
+        if (distance < bestDistance) {
+            bestDistance = distance;
+            best = item;
+        }
+    });
+
+    return best?.dataset.milestoneYear ?? null;
 }
 
 export function MilestoneTimelinePanel({
@@ -84,44 +102,41 @@ export function MilestoneTimelinePanel({
     resolveFilterGroup,
     filterLabels,
     emptyFilterMessage,
-    onActiveYearChange,
+    activeYear,
+    onYearChange,
     variant,
     isLoaded,
 }: MilestoneTimelinePanelProps) {
     const [activeFilter, setActiveFilter] = useState<MilestoneFilterKey>('all');
-    const [activeYear, setActiveYear] = useState<string | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const animScopeRef = useRef<HTMLDivElement>(null);
     const programmaticScrollRef = useRef(false);
     const programmaticTimerRef = useRef<number | null>(null);
+    const scrollRafRef = useRef<number | null>(null);
 
     const isDesktop = variant === 'desktop';
 
-    useEffect(() => {
-        onActiveYearChange?.(activeYear);
-    }, [activeYear, onActiveYearChange]);
-
-    const filtered = useMemo(() => {
+    const filteredList = useMemo(() => {
         if (activeFilter === 'all') return milestones;
         return milestones.filter((m) => resolveFilterGroup(m.category) === activeFilter);
     }, [activeFilter, milestones, resolveFilterGroup]);
 
     const years = useMemo(() => {
         const seen = new Set<string>();
-        return filtered.reduce<string[]>((acc, m) => {
+        return filteredList.reduce<string[]>((acc, m) => {
             if (!seen.has(m.year)) {
                 seen.add(m.year);
                 acc.push(m.year);
             }
             return acc;
         }, []);
-    }, [filtered]);
+    }, [filteredList]);
 
     useEffect(() => {
         if (years.length > 0 && (!activeYear || !years.includes(activeYear))) {
-            setActiveYear(years[0] ?? null);
+            onYearChange(years[0]!);
         }
-    }, [years, activeYear]);
+    }, [years, activeYear, onYearChange]);
 
     useEffect(() => {
         scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'auto' });
@@ -129,65 +144,80 @@ export function MilestoneTimelinePanel({
 
     const scrollToYear = useCallback(
         (year: string) => {
+            const scope = animScopeRef.current;
             const container = scrollContainerRef.current;
-            const target = container?.querySelector<HTMLElement>(`[data-milestone-item][data-milestone-year="${year}"]`);
+            const target =
+                container?.querySelector<HTMLElement>(`[data-milestone-item][data-milestone-year="${year}"]`) ??
+                scope?.querySelector<HTMLElement>(`[data-milestone-item][data-milestone-year="${year}"]`);
             if (!target) return;
 
             if (programmaticTimerRef.current) {
                 window.clearTimeout(programmaticTimerRef.current);
             }
+
             programmaticScrollRef.current = true;
-            setActiveYear(year);
+            onYearChange(year);
 
             const prefersReduced =
                 typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const behavior: ScrollBehavior = prefersReduced ? 'auto' : 'smooth';
 
             if (isDesktop && container) {
-                const top = container.scrollTop + (target.getBoundingClientRect().top - container.getBoundingClientRect().top) - 12;
+                const top = container.scrollTop + (target.getBoundingClientRect().top - container.getBoundingClientRect().top) - 16;
                 container.scrollTo({ top: Math.max(0, top), behavior });
-            } else {
-                const headerOffset = 88;
-                const y = window.scrollY + target.getBoundingClientRect().top - headerOffset;
-                window.scrollTo({ top: y, behavior });
-            }
 
-            programmaticTimerRef.current = window.setTimeout(() => {
-                programmaticScrollRef.current = false;
-            }, 700);
+                const unlock = () => {
+                    programmaticScrollRef.current = false;
+                };
+                container.addEventListener('scrollend', unlock, { once: true });
+                programmaticTimerRef.current = window.setTimeout(unlock, prefersReduced ? 80 : 1000);
+            } else {
+                const headerOffset = 96;
+                const y = window.scrollY + target.getBoundingClientRect().top - headerOffset;
+                window.scrollTo({ top: Math.max(0, y), behavior });
+                programmaticTimerRef.current = window.setTimeout(() => {
+                    programmaticScrollRef.current = false;
+                }, prefersReduced ? 80 : 900);
+            }
         },
-        [isDesktop],
+        [isDesktop, onYearChange],
     );
 
+    const handleScrollUpdate = useCallback(() => {
+        if (programmaticScrollRef.current) return;
+
+        if (scrollRafRef.current) cancelAnimationFrame(scrollRafRef.current);
+        scrollRafRef.current = requestAnimationFrame(() => {
+            const scope = animScopeRef.current;
+            if (!scope) return;
+
+            const items = scope.querySelectorAll<HTMLElement>('[data-milestone-item]');
+            if (items.length === 0) return;
+
+            let anchorY: number;
+            if (isDesktop && scrollContainerRef.current) {
+                anchorY = scrollContainerRef.current.getBoundingClientRect().top + 48;
+            } else {
+                anchorY = 120;
+            }
+
+            const year = resolveYearFromItems(items, anchorY);
+            if (year && year !== activeYear) {
+                onYearChange(year);
+            }
+        });
+    }, [activeYear, isDesktop, onYearChange]);
+
     useEffect(() => {
-        const container = isDesktop ? scrollContainerRef.current : null;
-        const items = (container ?? document).querySelectorAll<HTMLElement>('[data-milestone-item]');
-        if (items.length === 0) return;
+        const container = scrollContainerRef.current;
+        if (isDesktop && container) {
+            container.addEventListener('scroll', handleScrollUpdate, { passive: true });
+            return () => container.removeEventListener('scroll', handleScrollUpdate);
+        }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (programmaticScrollRef.current) return;
-
-                const visible = entries
-                    .filter((e) => e.isIntersecting)
-                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-                const top = visible[0];
-                if (top?.target instanceof HTMLElement) {
-                    const year = top.target.dataset.milestoneYear;
-                    if (year) setActiveYear(year);
-                }
-            },
-            {
-                root: container,
-                rootMargin: isDesktop ? '-8% 0px -62% 0px' : '-20% 0px -55% 0px',
-                threshold: 0,
-            },
-        );
-
-        items.forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, [filtered, isDesktop]);
+        window.addEventListener('scroll', handleScrollUpdate, { passive: true });
+        return () => window.removeEventListener('scroll', handleScrollUpdate);
+    }, [handleScrollUpdate, isDesktop, filteredList]);
 
     useLayoutEffect(() => {
         const scope = animScopeRef.current;
@@ -228,30 +258,26 @@ export function MilestoneTimelinePanel({
         }, scope);
 
         return () => ctx.revert();
-    }, [filtered, isLoaded, isDesktop]);
+    }, [filteredList, isLoaded, isDesktop]);
 
     useEffect(
         () => () => {
             if (programmaticTimerRef.current) window.clearTimeout(programmaticTimerRef.current);
+            if (scrollRafRef.current) cancelAnimationFrame(scrollRafRef.current);
         },
         [],
     );
 
     return (
         <div ref={animScopeRef} className={clsx('flex min-h-0 flex-1 flex-col', isDesktop && 'overflow-hidden')}>
-            <div
-                className={clsx(
-                    'mb-4 flex flex-wrap gap-2 sm:mb-5',
-                    isLoaded ? 'opacity-100' : 'opacity-0',
-                )}
-            >
+            <div className={clsx('mb-3 flex flex-wrap gap-1.5 sm:mb-4 sm:gap-2', isLoaded ? 'opacity-100' : 'opacity-0')}>
                 {FILTER_ORDER.map((key) => (
                     <button
                         key={key}
                         type="button"
                         onClick={() => setActiveFilter(key)}
                         className={clsx(
-                            'rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-300 motion-reduce:transition-none md:text-sm',
+                            'rounded-full px-2.5 py-1 text-[11px] font-semibold transition-all duration-300 motion-reduce:transition-none sm:px-3 sm:py-1.5 sm:text-xs md:text-sm',
                             activeFilter === key
                                 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-md'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
@@ -262,55 +288,26 @@ export function MilestoneTimelinePanel({
                 ))}
             </div>
 
+            {!isDesktop ? (
+                <MilestoneYearNav years={years} activeYear={activeYear} onYearClick={scrollToYear} layout="horizontal" />
+            ) : null}
+
             <div className={clsx('flex min-h-0 flex-1 gap-3 md:gap-5', isDesktop && 'overflow-hidden')}>
-                {years.length > 0 ? (
-                    <nav
-                        aria-label="Timeline years"
-                        className={clsx(
-                            'relative hidden shrink-0 flex-col gap-0.5 self-start sm:flex',
-                            isDesktop ? 'sticky top-0 pt-1' : 'sticky top-20',
-                        )}
-                    >
-                        <div className="absolute top-2 bottom-2 left-[3px] w-px bg-gray-200" aria-hidden />
-                        {years.map((year) => {
-                            const isActive = activeYear === year;
-                            return (
-                                <button
-                                    key={year}
-                                    type="button"
-                                    onClick={() => scrollToYear(year)}
-                                    className={clsx(
-                                        'relative z-[1] min-w-[3.25rem] py-1.5 pl-5 text-left text-sm font-bold tabular-nums transition-all duration-300 motion-reduce:transition-none',
-                                        isActive ? 'text-yellow-600' : 'text-gray-400 hover:text-gray-600',
-                                    )}
-                                >
-                                    <span
-                                        className={clsx(
-                                            'absolute top-1/2 left-0 h-2.5 w-2.5 -translate-x-[calc(50%-0.5px)] -translate-y-1/2 rounded-full border-2 transition-all duration-300 motion-reduce:transition-none',
-                                            isActive
-                                                ? 'scale-110 border-yellow-500 bg-yellow-400 shadow-[0_0_10px_rgba(245,158,11,0.55)]'
-                                                : 'border-white bg-gray-300',
-                                        )}
-                                        aria-hidden
-                                    />
-                                    {year}
-                                </button>
-                            );
-                        })}
-                    </nav>
+                {isDesktop ? (
+                    <MilestoneYearNav years={years} activeYear={activeYear} onYearClick={scrollToYear} layout="vertical" />
                 ) : null}
 
                 <div
                     ref={scrollContainerRef}
                     className={clsx(
-                        'min-w-0 flex-1 space-y-4 md:space-y-5',
-                        isDesktop && 'overflow-y-auto pr-1 milestone-scroll',
+                        'min-w-0 flex-1 space-y-3 sm:space-y-4 md:space-y-5',
+                        isDesktop && 'max-h-full overflow-y-auto pr-1 milestone-scroll',
                     )}
                 >
-                    {filtered.length === 0 ? (
+                    {filteredList.length === 0 ? (
                         <p className="py-8 text-center text-sm text-gray-500">{emptyFilterMessage}</p>
                     ) : (
-                        filtered.map((milestone, index) => (
+                        filteredList.map((milestone, index) => (
                             <div key={`${milestone.year}-${milestone.title}-${index}`} data-milestone-reveal>
                                 <MilestoneCard
                                     milestone={milestone}
