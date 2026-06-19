@@ -25,9 +25,6 @@ import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
  */
 
 // Main Welcome Component
-const HERO_CTA_BASE =
-    'hero-cta-btn inline-flex w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 font-semibold transition-all duration-300 hover:-translate-y-0.5 sm:w-auto';
-
 const Welcome = () => {
     const { t } = useTranslation();
     const { deferWelcomeBelowFold } = useNetworkProfile();
@@ -225,7 +222,7 @@ const Welcome = () => {
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
                 <Header sticky={true} transparent={false} />
 
-                <div className="flex flex-1 flex-col overflow-hidden pt-14 sm:pt-16 xl:pt-[3.75rem] min-[1600px]:pt-[4.25rem] min-[1920px]:pt-20">
+                <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
                     <div className="flex flex-1 flex-col">
                                 {/* DISABLED - Feedback Form Modal */}
                                 {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
@@ -234,9 +231,9 @@ const Welcome = () => {
                                 {/* <FloatingFeedbackButton onClick={() => setShowFeedbackForm(true)} /> */}
 
                                 {/* Hero Section - top half of viewport on desktop */}
-                                <section className="flex h-auto flex-col lg:h-[44vh] lg:flex-row">
+                                <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
                                     {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
-                                    <div className="relative flex h-full w-full min-w-0 flex-col justify-center overflow-hidden bg-white p-6 sm:p-8 lg:w-1/2 lg:p-6 xl:p-7 min-[1600px]:p-10 min-[1920px]:p-14">
+                                    <div className="relative flex h-full w-full min-w-0 flex-col justify-center overflow-hidden bg-white p-6 sm:p-8 lg:w-1/2 lg:p-8 xl:p-12 2xl:p-16">
                                         <div
                                             className={`relative z-10 min-w-0 welcome-hero-micro ${heroMicroReady ? 'welcome-hero-micro--ready' : ''}`}
                                         >
@@ -245,7 +242,7 @@ const Welcome = () => {
                                                 {isMobile ? (
                                                     <>
                                                         <div className="welcome-hero-nudge welcome-hero-nudge--a">
-                                                        <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-4 lg:text-left lg:text-2xl xl:text-3xl min-[1600px]:mb-5 min-[1600px]:text-4xl min-[1920px]:text-5xl">
+                                                        <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-5 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
                                                             <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                             <br />
                                                             <span
@@ -260,7 +257,7 @@ const Welcome = () => {
                                                                 {contentSets[currentContent].title2}
                                                             </span>
                                                         </h1>
-                                                        <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-4 lg:text-left lg:text-sm xl:text-base min-[1600px]:mb-5 min-[1600px]:text-lg">
+                                                        <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-5 lg:text-left lg:text-base xl:text-lg">
                                                             {contentSets[currentContent].subtitle}
                                                         </p>
                                                         </div>
@@ -275,7 +272,7 @@ const Welcome = () => {
                                                                 exit={{ opacity: 0, y: -6 }}
                                                                 transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
                                                             >
-                                                                <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-4 lg:text-left lg:text-2xl xl:text-3xl min-[1600px]:mb-5 min-[1600px]:text-4xl min-[1920px]:text-5xl">
+                                                                <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-5 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
                                                                     <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                                     <br />
                                                                     <span
@@ -290,7 +287,7 @@ const Welcome = () => {
                                                                         {contentSets[currentContent].title2}
                                                                     </span>
                                                                 </h1>
-                                                                <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-4 lg:text-left lg:text-sm xl:text-base min-[1600px]:mb-5 min-[1600px]:text-lg">
+                                                                <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-5 lg:text-left lg:text-base xl:text-lg">
                                                                     {contentSets[currentContent].subtitle}
                                                                 </p>
                                                             </motion.div>
@@ -299,12 +296,12 @@ const Welcome = () => {
                                                 )}
                                             </div>
 
-                                            {/* Buttons — stack in split hero (lg–xl), row on mobile/tablet and wide desktop */}
+                                            {/* Buttons — row on sm+ (left-aligned on lg+ via CSS) */}
                                             <div className="welcome-hero-nudge welcome-hero-nudge--b mt-5 w-full min-w-0 sm:mt-6">
-                                                <div className="button-container flex w-full min-w-0 flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-2.5">
+                                                <div className="button-container flex w-full min-w-0 flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-start">
                                                     <button
                                                         type="button"
-                                                        className={`${HERO_CTA_BASE} border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 shadow-lg hover:from-amber-500 hover:to-orange-500 hover:shadow-xl`}
+                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-5 text-sm font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
                                                         onClick={() => (window.location.href = '/about#about-kristalin')}
                                                     >
                                                         {t('pages.welcome.buttons.learn_more')}
@@ -312,7 +309,7 @@ const Welcome = () => {
 
                                                     <button
                                                         type="button"
-                                                        className={`${HERO_CTA_BASE} border-yellow-400 bg-transparent text-gray-800 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg`}
+                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-transparent px-5 text-sm font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
                                                         onClick={() => (window.location.href = '/milestones')}
                                                     >
                                                         {t('pages.welcome.buttons.see_milestones')}
@@ -323,11 +320,11 @@ const Welcome = () => {
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         aria-label={t('common.follow_us')}
-                                                        className={`${HERO_CTA_BASE} gap-1.5 border-gray-300 bg-white text-gray-700 shadow-md hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-lg`}
+                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 border-gray-300 bg-white px-5 text-sm font-semibold text-gray-700 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-lg sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-5 sm:text-base"
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.98 }}
                                                     >
-                                                        <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                                                        <svg className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
                                                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                                         </svg>
                                                         <span className="truncate">{t('common.follow_us')}</span>
@@ -1046,13 +1043,12 @@ const Welcome = () => {
           }
 
           @media (min-width: 1024px) {
-            /* Desktop — horizontal row, left-aligned, tighter gap (~90% zoom feel) */
+            /* Desktop - buttons horizontal, left-aligned */
             .button-container {
               flex-direction: row !important;
-              flex-wrap: wrap !important;
               align-items: center !important;
               justify-content: flex-start !important;
-              gap: 0.625rem !important;
+              gap: 1rem !important;
             }
           }
 

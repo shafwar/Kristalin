@@ -127,7 +127,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     // Close mobile menu when window resizes to desktop
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1280) {
+            if (window.innerWidth >= 1024) {
                 setMobileMenuOpen(false);
                 // Ensure any page-level scroll lock is removed when switching to desktop
                 document.body.style.position = '';
@@ -207,8 +207,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Determine header classes and styles
     const getHeaderClasses = () => {
-        const baseClasses =
-            'kristalin-site-header flex items-center h-14 w-full min-w-0 px-3 sm:px-4 md:px-5 xl:h-[3.75rem] xl:px-5 min-[1600px]:h-[4.25rem] min-[1600px]:px-6 min-[1920px]:h-20 min-[1920px]:px-8 z-50';
+        const baseClasses = 'flex items-center h-16 w-full min-w-0 px-3 sm:px-4 md:px-6 lg:h-[4.5rem] lg:px-8 z-50';
 
         if (sticky && transparent) {
             return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out`;
@@ -284,22 +283,23 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     return (
         <header className={getHeaderClasses()} style={getHeaderStyle()}>
+            <div className="site-large-shell flex h-full w-full min-w-0 items-center">
             {/* Logo Section */}
-            <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-3 sm:pl-3 xl:pr-4 xl:pl-4">
+            <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-6 lg:pl-4">
                 <a href="/" className="flex items-center" aria-label="Company Logo">
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
-                        className="h-7 w-auto max-w-[108px] object-contain transition-all duration-700 ease-out sm:h-8 sm:max-w-[120px] xl:h-9 xl:max-w-[130px] min-[1600px]:h-10 min-[1600px]:max-w-none min-[1920px]:h-14"
+                        className="h-8 w-auto object-contain transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-11 xl:h-12"
                         style={{ filter: getLogoFilter() }}
                     />
                 </a>
             </div>
 
-            {/* Desktop Navigation — xl+ (1280px) avoids cramped laptop/iPad landscape */}
-            <nav className="hidden min-w-0 flex-1 justify-center xl:flex xl:px-0.5 min-[1600px]:px-2">
+            {/* Desktop Navigation */}
+            <nav className="hidden min-w-0 flex-1 justify-center lg:flex lg:px-2 xl:px-4">
                 <ul
-                    className="kristalin-header-nav flex max-w-full flex-nowrap items-center justify-center font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out"
+                    className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-1.5 xl:gap-2 xl:text-sm"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
@@ -317,7 +317,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-0.5 transition-all duration-300 ease-out hover:text-yellow-400 min-[1600px]:gap-1"
+                                        className="flex items-center gap-1 px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5 xl:px-3"
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         <span className="whitespace-nowrap">{item.label}</span>
@@ -358,10 +358,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={item.label}
-                                    className="inline-flex items-center gap-0.5 whitespace-nowrap transition-all duration-300 ease-out hover:text-yellow-400"
+                                    className="inline-flex items-center gap-1 whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5"
                                 >
-                                    <span className="min-[1600px]:hidden">{renderNavLabel(item, 'desktop')}</span>
-                                    <span className="hidden min-[1600px]:inline">{item.label}</span>
+                                    <span>{item.label}</span>
                                     <svg
                                         className="h-2.5 w-2.5 shrink-0 opacity-70"
                                         fill="none"
@@ -376,16 +375,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="block whitespace-nowrap transition-all duration-300 ease-out hover:text-yellow-400"
+                                    className="block whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5 xl:px-3"
                                 >
-                                    {item.labelCompact ? (
-                                        <>
-                                            <span className="min-[1600px]:hidden">{item.labelCompact}</span>
-                                            <span className="hidden min-[1600px]:inline">{item.label}</span>
-                                        </>
-                                    ) : (
-                                        item.label
-                                    )}
+                                    {item.label}
                                 </Link>
                             )}
                         </li>
@@ -393,8 +385,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </ul>
             </nav>
 
-            {/* Mobile / tablet navigation — below xl (1280px) */}
-            <div className="flex flex-1 items-center justify-end gap-1.5 xl:hidden">
+            {/* Mobile / tablet navigation — below lg (1024px) */}
+            <div className="flex flex-1 items-center justify-end gap-2 lg:hidden">
                 <div className="flex items-center" title="Indonesia">
                     <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow sm:h-5 sm:w-8">
                         <rect width="3" height="1" y="0" fill="#CE1126" />
@@ -421,15 +413,15 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </button>
             </div>
 
-            {/* Right Side Features - Desktop Only (xl+) */}
+            {/* Right Side Features - Desktop Only */}
             <div
-                className="hidden h-full shrink-0 items-center gap-0.5 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out xl:flex min-[1600px]:gap-1 min-[1600px]:text-xs"
+                className="hidden h-full shrink-0 items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex xl:gap-2 xl:text-sm"
                 style={{ opacity: textOpacity }}
             >
                 {/* Language Switcher */}
                 <div className="relative" ref={dropdownRef}>
                     <button
-                        className="flex h-9 min-w-[40px] items-center justify-center px-1.5 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none min-[1600px]:h-10 min-[1600px]:min-w-[44px] min-[1600px]:px-2 min-[1600px]:text-sm"
+                        className="flex h-10 min-w-[44px] items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:text-yellow-400 focus:outline-none xl:text-sm"
                         onClick={() => setDropdownOpen(!dropdownOpen)}
                         aria-haspopup="listbox"
                         aria-expanded={dropdownOpen}
@@ -490,7 +482,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     <button
                         type="button"
                         onClick={() => setSearchOpen((o) => !o)}
-                        className="flex h-9 items-center justify-center px-1.5 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none min-[1600px]:h-10 min-[1600px]:px-2 min-[1600px]:text-sm"
+                        className="flex h-10 items-center justify-center px-2 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 focus:outline-none xl:text-sm"
                         aria-label={t('common.search')}
                     >
                         <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
@@ -552,7 +544,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Whistleblower / Internal feedback – subtle hint (shield icon) */}
                 <Link
                     href="/internal-feedback"
-                    className="flex h-8 w-8 items-center justify-center text-white/70 transition-all duration-300 hover:text-yellow-400 hover:opacity-100 focus:outline-none min-[1600px]:h-9 min-[1600px]:w-9 min-[1920px]:h-10 min-[1920px]:w-10"
+                    className="flex h-9 w-9 items-center justify-center text-white/70 transition-all duration-300 hover:text-yellow-400 hover:opacity-100 focus:outline-none lg:h-10 lg:w-10"
                     title={t('pages.internal_feedback.page_title')}
                     aria-label={t('pages.internal_feedback.page_title')}
                 >
@@ -561,12 +553,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     </svg>
                 </Link>
 
-                <div className="ml-1 flex items-center 2xl:ml-2" title="Indonesia">
+                <div className="ml-1 flex items-center lg:ml-2" title="Indonesia">
                     <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow">
                         <rect width="3" height="1" y="0" fill="#CE1126" />
                         <rect width="3" height="1" y="1" fill="#FFFFFF" />
                     </svg>
                 </div>
+            </div>
             </div>
 
             {/* Mobile Menu - Right Drawer */}
@@ -575,7 +568,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     createPortal(
                         <>
                             <div
-                                className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none xl:hidden ${
+                                className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none lg:hidden ${
                                     mobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
                                 }`}
                                 aria-hidden={!mobileMenuOpen}
@@ -588,7 +581,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 role="dialog"
                                 aria-modal="true"
                                 aria-label="Main menu"
-                                className={`fixed top-0 right-0 bottom-0 z-[101] flex w-full max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-md xl:hidden ${
+                                className={`fixed top-0 right-0 bottom-0 z-[101] flex w-full max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-md lg:hidden ${
                                     mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
                                 }`}
                                 style={{
