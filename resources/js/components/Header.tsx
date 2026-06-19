@@ -33,7 +33,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             const currentScrollY = window.scrollY;
             setScrollY(currentScrollY);
         };
-
+ 
         if (transparent || sticky) {
             window.addEventListener('scroll', handleScroll, { passive: true });
             return () => window.removeEventListener('scroll', handleScroll);

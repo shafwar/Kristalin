@@ -1,3 +1,4 @@
+import { KristalinLocationTabs } from '@/components/KristalinLocationTabs';
 import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
@@ -51,6 +52,15 @@ export default function ContactPage() {
         const handleScroll = () => setScrollY(window.scrollY);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const params = new URLSearchParams(window.location.search);
+        const subject = params.get('subject')?.toLowerCase();
+        if (subject === 'b2c') {
+            setFormData((prev) => ({ ...prev, subject: 'B2C' }));
+        }
     }, []);
 
     const validateForm = () => {
@@ -617,6 +627,24 @@ export default function ContactPage() {
                     </div>
                 </div>
             </motion.section>
+
+            <KristalinLocationTabs
+                variant="dark"
+                labels={{
+                    section_kicker: t('pages.contact.locations.kicker'),
+                    section_title: t('pages.contact.locations.title'),
+                    jakarta_tab: t('pages.contact.locations.jakarta_tab'),
+                    jakarta_title: t('pages.contact.locations.jakarta_title'),
+                    jakarta_subtitle: t('pages.contact.locations.jakarta_subtitle'),
+                    jakarta_address: t('pages.contact.locations.jakarta_address'),
+                    nabire_tab: t('pages.contact.locations.nabire_tab'),
+                    nabire_title: t('pages.contact.locations.nabire_title'),
+                    nabire_subtitle: t('pages.contact.locations.nabire_subtitle'),
+                    nabire_address: t('pages.contact.locations.nabire_address'),
+                    nabire_note: t('pages.contact.locations.nabire_note'),
+                    open_maps: t('pages.contact.locations.open_maps'),
+                }}
+            />
 
             <Footer />
         </div>

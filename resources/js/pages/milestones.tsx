@@ -1,33 +1,34 @@
-import { useEffect, useRef, useState } from 'react';
+import { MilestoneTimelinePanel, resolveMilestoneFilterGroup, type MilestoneItem } from '@/components/MilestoneTimelinePanel';
+import clsx from 'clsx';
+import { useCallback, useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
 
-// Types
-interface Milestone {
-    year: string;
-    month: string;
-    title: string;
-    description: string;
-    category: string;
-}
-
 export default function MilestonesPage() {
     const { t } = useTranslation();
-    const rightPanelRef = useRef<HTMLDivElement>(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [activeYear, setActiveYear] = useState<string | null>(null);
 
     const HEADER_HEIGHT = 80;
     const FOOTER_HEIGHT = 40;
 
     useEffect(() => {
-        if (rightPanelRef.current) {
-            rightPanelRef.current.scrollTop = 0;
-        }
         const timer = setTimeout(() => setIsLoaded(true), 300);
         return () => clearTimeout(timer);
     }, []);
+
+    const resolveFilterGroup = useCallback((category: string) => resolveMilestoneFilterGroup(category, t), [t]);
+
+    const filterLabels = {
+        all: t('pages.milestones.filters.all'),
+        legal: t('pages.milestones.filters.legal'),
+        production: t('pages.milestones.filters.production'),
+        csr: t('pages.milestones.filters.csr'),
+        investment: t('pages.milestones.filters.investment'),
+        foundation: t('pages.milestones.filters.foundation'),
+    };
 
     const companyStats: Record<string, string> = {
         established: t('pages.milestones.company_values.established_year'),
@@ -37,7 +38,7 @@ export default function MilestonesPage() {
     };
 
     // Single unified timeline - All milestones from 1989 to 2025
-    const allMilestones: Milestone[] = [
+    const allMilestones: MilestoneItem[] = [
         // 2024-Now: Full Production
         {
             year: '2024',
@@ -274,56 +275,21 @@ export default function MilestonesPage() {
                                             <line x1="8" y1="2" x2="8" y2="6" />
                                             <line x1="3" y1="10" x2="21" y2="10" />
                                         </svg>
-                                        <span className="text-sm font-semibold tracking-wide">1989 - 2025</span>
+                                        <span className="text-sm font-semibold tracking-wide">{t('pages.milestones.timeline_range')}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Milestones Content */}
-                            <div className="space-y-4">
-                                {allMilestones.map((milestone: Milestone, index: number) => (
-                                    <div
-                                        key={`${milestone.year}-${milestone.title}`}
-                                        className={`group transform cursor-pointer transition-all duration-1000 ${
-                                            isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                        } rounded-xl p-4 hover:bg-gray-50`}
-                                        style={{
-                                            transitionDelay: `${600 + index * 150}ms`,
-                                        }}
-                                        onClick={() => {}}
-                                    >
-                                        <div className="flex items-start space-x-3">
-                                            {/* Year Badge */}
-                                            <div className="flex-shrink-0 transition-all duration-500">
-                                                <div className="min-w-[60px] rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-600 px-3 py-2 text-center text-white sm:min-w-[70px]">
-                                                    <div className="text-sm font-bold sm:text-base">{milestone.year}</div>
-                                                    <div className="text-xs opacity-90">{milestone.month}</div>
-                                                </div>
-                                            </div>
-                                            {/* Content */}
-                                            <div className="flex-1 space-y-2">
-                                                <div>
-                                                    <div
-                                                        className={`mb-2 inline-block rounded-full px-2 py-1 text-xs font-medium ${getCategoryColor(milestone.category)}`}
-                                                    >
-                                                        {milestone.category}
-                                                    </div>
-                                                    <h3
-                                                        className={`text-base leading-tight font-semibold text-gray-900 transition-colors duration-300 group-hover:text-yellow-600 sm:text-lg`}
-                                                    >
-                                                        {milestone.title}
-                                                    </h3>
-                                                </div>
-                                                <p
-                                                    className={`text-xs leading-relaxed text-gray-600 transition-all duration-500 group-hover:text-gray-800 sm:text-sm`}
-                                                >
-                                                    {milestone.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                            <MilestoneTimelinePanel
+                                milestones={allMilestones}
+                                getCategoryColor={getCategoryColor}
+                                resolveFilterGroup={resolveFilterGroup}
+                                filterLabels={filterLabels}
+                                emptyFilterMessage={t('pages.milestones.empty_filter')}
+                                variant="mobile"
+                                isLoaded={isLoaded}
+                                onActiveYearChange={setActiveYear}
+                            />
                         </div>
                     </div>
                 </div>
@@ -337,6 +303,17 @@ export default function MilestonesPage() {
                             alt={t('pages.milestones.alt_texts.mining_history')}
                             className="h-full w-full object-cover opacity-70"
                         />
+                        {activeYear ? (
+                            <div
+                                className={clsx(
+                                    'pointer-events-none absolute top-1/2 left-8 z-10 -translate-y-1/2 transition-all duration-500 motion-reduce:transition-none',
+                                    isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0',
+                                )}
+                            >
+                                <p className="text-xs font-medium tracking-[0.2em] text-white/60 uppercase">{t('pages.milestones.active_year_label')}</p>
+                                <p className="text-6xl font-light text-yellow-400 tabular-nums">{activeYear}</p>
+                            </div>
+                        ) : null}
                         <div
                             className={`absolute bottom-16 left-16 transform transition-all duration-1000 ease-out ${
                                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -422,56 +399,21 @@ export default function MilestonesPage() {
                                             <line x1="8" y1="2" x2="8" y2="6" />
                                             <line x1="3" y1="10" x2="21" y2="10" />
                                         </svg>
-                                        <span className="font-semibold tracking-wide">1989 - 2025</span>
+                                        <span className="font-semibold tracking-wide">{t('pages.milestones.timeline_range')}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Milestones Content */}
-                            <div ref={rightPanelRef} className="flex-1 space-y-6 overflow-y-auto">
-                                {allMilestones.map((milestone: Milestone, index: number) => (
-                                    <div
-                                        key={`${milestone.year}-${milestone.title}`}
-                                        className={`group transform cursor-pointer transition-all duration-1000 ${
-                                            isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                        } -mx-2 rounded-2xl p-6 hover:bg-gray-50`}
-                                        style={{
-                                            transitionDelay: `${600 + index * 150}ms`,
-                                        }}
-                                        onClick={() => {}}
-                                    >
-                                        <div className="flex items-start space-x-4">
-                                            {/* Year Badge */}
-                                            <div className="flex-shrink-0 transition-all duration-500">
-                                                <div className="min-w-[80px] rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 px-4 py-2 text-center text-white">
-                                                    <div className="text-lg font-bold">{milestone.year}</div>
-                                                    <div className="text-xs opacity-90">{milestone.month}</div>
-                                                </div>
-                                            </div>
-                                            {/* Content */}
-                                            <div className="flex-1 space-y-3">
-                                                <div>
-                                                    <div
-                                                        className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-medium ${getCategoryColor(milestone.category)}`}
-                                                    >
-                                                        {milestone.category}
-                                                    </div>
-                                                    <h3
-                                                        className={`text-xl leading-tight font-semibold text-gray-900 transition-colors duration-300 group-hover:text-yellow-600`}
-                                                    >
-                                                        {milestone.title}
-                                                    </h3>
-                                                </div>
-                                                <p
-                                                    className={`text-sm leading-relaxed text-gray-600 transition-all duration-500 group-hover:text-gray-800`}
-                                                >
-                                                    {milestone.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                            <MilestoneTimelinePanel
+                                milestones={allMilestones}
+                                getCategoryColor={getCategoryColor}
+                                resolveFilterGroup={resolveFilterGroup}
+                                filterLabels={filterLabels}
+                                emptyFilterMessage={t('pages.milestones.empty_filter')}
+                                onActiveYearChange={setActiveYear}
+                                variant="desktop"
+                                isLoaded={isLoaded}
+                            />
                         </div>
                     </div>
                 </div>
@@ -481,30 +423,19 @@ export default function MilestonesPage() {
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
-        .overflow-y-auto::-webkit-scrollbar {
+        .milestone-scroll::-webkit-scrollbar {
           width: 4px;
         }
-        .overflow-y-auto::-webkit-scrollbar-track {
+        .milestone-scroll::-webkit-scrollbar-track {
           background: transparent;
         }
-        .overflow-y-auto::-webkit-scrollbar-thumb {
+        .milestone-scroll::-webkit-scrollbar-thumb {
           background: linear-gradient(to bottom, #fbbf24, #f59e0b);
           border-radius: 2px;
         }
-        .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        .milestone-scroll::-webkit-scrollbar-thumb:hover {
           background: linear-gradient(to bottom, #f59e0b, #d97706);
         }
-        .overflow-x-auto::-webkit-scrollbar {
-          height: 4px;
-        }
-        .overflow-x-auto::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .overflow-x-auto::-webkit-scrollbar-thumb {
-          background: linear-gradient(to right, #fbbf24, #f59e0b);
-          border-radius: 2px;
-        }
-        * { scroll-behavior: smooth; }
       `,
                 }}
             />

@@ -321,6 +321,16 @@ return [
             'title' => 'Business Activities',
             'find_out_more' => 'Find out more →',
         ],
+        'gold_live' => [
+            'kicker' => 'Kristalin TV · Live',
+            'world_price' => 'World gold price',
+            'per_gram' => 'per gram (IDR)',
+            'best_sell' => 'Best sell · 1g',
+            'view_tv' => 'Full dashboard',
+            'offline' => 'Price feed temporarily unavailable.',
+            'retry' => 'Try again',
+            'stale' => 'Cached',
+        ],
         'footer' => [
             'copyright' => '© 2025 PT Kristalin Eka Lestari.',
             // Preserved from origin/faruq for reference/optional usage
@@ -683,6 +693,17 @@ return [
         'subtitle' => 'Company Milestones',
         'main_description' => 'This is how we began and embarked on our journey to become great.',
 
+        'timeline_range' => '1989 – 2025',
+        'active_year_label' => 'Highlight',
+        'empty_filter' => 'No milestones match this filter.',
+        'filters' => [
+            'all' => 'All',
+            'legal' => 'Legal',
+            'production' => 'Production',
+            'csr' => 'CSR',
+            'investment' => 'Investment',
+            'foundation' => 'Foundation',
+        ],
 
         'company_stats' => [
             'established' => 'Established',
@@ -942,6 +963,43 @@ return [
         'verbatim_profit' => 'You receive profit sharing on the LM gold nominal to be received at the end of the placement period, in accordance with the agreement stated in the Agreement.',
         'footnote' => 'Any further operational terms that bind you and the Company remain governed by the written Agreement you sign with the Company.',
         'bottom_prompt' => 'Questions about documents or administrative flow? Kristalin’s team is available through our official contact channels.',
+        'practical' => [
+            'kicker' => 'Practical information',
+            'title' => 'Before you visit or transact',
+            'intro' => 'Operational answers that complement the program steps above — location, hours, documents, and how to get started.',
+            'map_title' => 'ESQ Leadership Centre — 165 Tower',
+            'map_subtitle' => 'B2C consultation & administration',
+            'map_address' => 'Menara 165 Floor 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Pasar Minggu, South Jakarta 12560',
+        ],
+        'faq' => [
+            'contact_link' => 'Contact form (B2C subject)',
+            'kristalin_tv_link' => 'Kristalin TV live gold prices',
+            'process_link' => 'See program steps above',
+            'location' => [
+                'q' => 'Where are B2C transactions handled?',
+                'a' => 'Consultation, document review, and administrative processing for the consumer gold purchase program are conducted at Kristalin’s head office in Jakarta (Menara 165, TB Simatupang). Please arrange your visit in advance through our contact channels.',
+            ],
+            'hours' => [
+                'q' => 'What are the office hours?',
+                'a' => 'Monday–Friday, 09:00–17:00 Western Indonesian Time (WIB). Closed on national public holidays. For appointments outside these hours, contact us first.',
+            ],
+            'kyc' => [
+                'q' => 'What documents are required (KYC)?',
+                'a' => 'Valid national ID (KTP) for individuals; NPWP may be requested depending on transaction value and agreement type. Additional documents (proof of address, company documents for corporate participants) will be confirmed by our office team when you register interest — please do not send sensitive documents until instructed.',
+            ],
+            'how_to_start' => [
+                'q' => 'How do I start?',
+                'a' => 'Contact us via the official phone line (021) 22978900, email info@kristalin.co.id, or the contact form with subject “B2C”. Our team will guide you on the next steps and appointment scheduling. In-person visits are by appointment at the Jakarta office.',
+            ],
+            'price' => [
+                'q' => 'How is the gold price determined?',
+                'a' => 'Program pricing follows the policy stated in the steps above (ANTAM market reference). For daily indicative prices, see',
+            ],
+            'delivery' => [
+                'q' => 'How does the 50% delivery schedule work?',
+                'a' => 'The two-part handover schedule (50% + 50%) is explained in detail in the program steps section. In short: the first half follows a 21 calendar-day rule after funds are received; the remainder follows the agreed placement end date in your Agreement.',
+            ],
+        ],
     ],
 
     'line_of_business' => [
@@ -1472,6 +1530,20 @@ return [
             'phone' => 'Phone',
             'email' => 'Email',
             'address' => 'Address',
+        ],
+        'locations' => [
+            'kicker' => 'Our locations',
+            'title' => 'Head office & operations',
+            'jakarta_tab' => 'Head Office (Jakarta)',
+            'jakarta_title' => 'ESQ Leadership Centre — 165 Tower',
+            'jakarta_subtitle' => 'Head office',
+            'jakarta_address' => 'Menara 165 Floor 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Pasar Minggu, South Jakarta 12560',
+            'nabire_tab' => 'Operations (Nabire)',
+            'nabire_title' => 'Nabire operational area',
+            'nabire_subtitle' => 'Mining operations site',
+            'nabire_address' => 'Musairo River basin, Makimi District, Nabire Regency, Central Papua (approximate map pin — confirm with operations team)',
+            'nabire_note' => 'Exact site access coordinates may be updated after internal review. This pin shows the Nabire operational region for reference.',
+            'open_maps' => 'Open in Google Maps',
         ],
         'image_alt' => 'Menara 165',
     ],

@@ -1,3 +1,4 @@
+import { B2cFaqSection, type B2cFaqItem } from '@/components/B2cFaqSection';
 import { B2cHeroPicture } from '@/components/B2cHeroPicture';
 import { useLcpSafeMicroMotion } from '@/hooks/useLcpSafeMicroMotion';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -6,7 +7,7 @@ import clsx from 'clsx';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useMemo, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -66,6 +67,18 @@ export default function B2cPage() {
             ctx.revert();
         };
     }, []);
+
+    const faqItems: B2cFaqItem[] = useMemo(
+        () => [
+            { id: 'location', question: t('pages.b2c.faq.location.q'), answer: t('pages.b2c.faq.location.a') },
+            { id: 'hours', question: t('pages.b2c.faq.hours.q'), answer: t('pages.b2c.faq.hours.a') },
+            { id: 'kyc', question: t('pages.b2c.faq.kyc.q'), answer: t('pages.b2c.faq.kyc.a') },
+            { id: 'how_to_start', question: t('pages.b2c.faq.how_to_start.q'), answer: t('pages.b2c.faq.how_to_start.a') },
+            { id: 'price_disclaimer', question: t('pages.b2c.faq.price.q'), answer: t('pages.b2c.faq.price.a') },
+            { id: 'delivery_schedule', question: t('pages.b2c.faq.delivery.q'), answer: t('pages.b2c.faq.delivery.a') },
+        ],
+        [t],
+    );
 
     const reveal =
         'data-b2c-reveal rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm md:p-8 motion-reduce:opacity-100';
@@ -127,8 +140,8 @@ export default function B2cPage() {
                 </div>
             </section>
 
+            <div ref={scrollAnimScopeRef}>
             <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
-                <div ref={scrollAnimScopeRef}>
                 <div className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold tracking-wide text-amber-700/90 uppercase">{t('pages.b2c.section_process_kicker')}</p>
                     <h2 className="mt-2 text-2xl font-bold text-stone-900 md:text-3xl">{t('pages.b2c.section_process_title')}</h2>
@@ -208,20 +221,29 @@ export default function B2cPage() {
                         {t('pages.b2c.footnote')}
                     </p>
                 </div>
-                </div>
             </section>
 
-            <section className="border-t border-stone-200 bg-white px-4 py-12">
-                <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-                    <p className="text-stone-600">{t('pages.b2c.bottom_prompt')}</p>
-                    <Link
-                        href="/contact"
-                        className="inline-flex h-12 items-center justify-center rounded-xl bg-stone-900 px-8 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-stone-800"
-                    >
-                        {t('pages.b2c.cta_contact')}
-                    </Link>
-                </div>
-            </section>
+                <B2cFaqSection
+                    kicker={t('pages.b2c.practical.kicker')}
+                    title={t('pages.b2c.practical.title')}
+                    intro={t('pages.b2c.practical.intro')}
+                    items={faqItems}
+                    map={{
+                        title: t('pages.b2c.practical.map_title'),
+                        subtitle: t('pages.b2c.practical.map_subtitle'),
+                        address: t('pages.b2c.practical.map_address'),
+                    }}
+                    openMapsLabel={t('pages.contact.locations.open_maps')}
+                    contactCta={t('pages.b2c.cta_contact')}
+                    contactLinkLabel={t('pages.b2c.faq.contact_link')}
+                    kristalinTvLabel={t('pages.b2c.faq.kristalin_tv_link')}
+                    kristalinTvUrl="https://livegold-kristalintv.com/"
+                    processAnchorLabel={t('pages.b2c.faq.process_link')}
+                    onScrollToProcess={scrollToProcess}
+                    footerPrompt={t('pages.b2c.bottom_prompt')}
+                    revealClassName={reveal}
+                />
+            </div>
 
             <Footer />
         </div>

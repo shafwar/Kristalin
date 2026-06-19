@@ -14,6 +14,17 @@ interface NewsDetailProps {
     id: string;
 }
 
+const ARTICLE_PROSE_CLASSNAME =
+    'prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none';
+
+const renderArticleBody = (content: string | React.ReactNode) => {
+    if (typeof content === 'string') {
+        return <div className={ARTICLE_PROSE_CLASSNAME} dangerouslySetInnerHTML={{ __html: content }} />;
+    }
+
+    return <div className={ARTICLE_PROSE_CLASSNAME}>{content}</div>;
+};
+
 const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
     const { t, locale }: UseTranslationReturn = useTranslation();
     const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
@@ -8149,17 +8160,15 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
 
                         {/* Enhanced Article Content */}
                         <div className="px-6 py-8 sm:px-8 sm:py-10">
-                            {getTranslatedContent(id)?.content ? (
-                                <div
-                                    className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none"
-                                    dangerouslySetInnerHTML={{ __html: getTranslatedContent(id)?.content || '' }}
-                                />
-                            ) : newsItem.fullContent?.content ? (
-                                <div
-                                    className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none"
-                                    dangerouslySetInnerHTML={{ __html: newsItem.fullContent.content }}
-                                />
-                            ) : null}
+                            {(() => {
+                                const translated = getTranslatedContent(id);
+                                const body = translated?.content ?? newsItem.fullContent?.content;
+                                if (body == null || body === '') {
+                                    return null;
+                                }
+
+                                return renderArticleBody(body);
+                            })()}
                         </div>
                     </motion.div>
                 ) : (

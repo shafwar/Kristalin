@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\InternalReportController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\KristalinTvProxyController;
 use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
@@ -79,6 +80,9 @@ Route::get('/contact', function () {
 })->name('contact');
 
 // Search
+Route::get('/api/kristalin-tv/gold', [KristalinTvProxyController::class, 'market']);
+Route::get('/api/kristalin-tv/gold-prices', [KristalinTvProxyController::class, 'brandPrices']);
+
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/careers', function () {

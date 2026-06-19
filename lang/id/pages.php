@@ -312,6 +312,16 @@ return [
         'title' => 'Aktivitas Bisnis',
         'find_out_more' => 'Pelajari lebih lanjut →',
     ],
+    'gold_live' => [
+        'kicker' => 'Kristalin TV · Live',
+        'world_price' => 'Harga emas dunia',
+        'per_gram' => 'per gram (IDR)',
+        'best_sell' => 'Harga jual terbaik · 1g',
+        'view_tv' => 'Dashboard lengkap',
+        'offline' => 'Data harga sementara tidak tersedia.',
+        'retry' => 'Coba lagi',
+        'stale' => 'Cache',
+    ],
     'footer' => [
         'copyright' => '© 2025 PT Kristalin Eka Lestari.',
         // Alternatif dari origin/faruq jika ingin digunakan
@@ -668,6 +678,17 @@ return [
         'subtitle' => 'Pencapaian Perusahaan',
         'main_description' => 'Beginilah cara kami memulai dan memulai perjalanan untuk menjadi hebat.',
 
+        'timeline_range' => '1989 – 2025',
+        'active_year_label' => 'Sorotan',
+        'empty_filter' => 'Tidak ada milestone untuk filter ini.',
+        'filters' => [
+            'all' => 'Semua',
+            'legal' => 'Legal',
+            'production' => 'Produksi',
+            'csr' => 'CSR',
+            'investment' => 'Investasi',
+            'foundation' => 'Pendirian',
+        ],
 
         'company_stats' => [
             'established' => 'Didirikan',
@@ -927,6 +948,43 @@ return [
         'verbatim_profit' => 'Mendapatkan bagi hasil dari nominal Emas LM yang akan diterima di akhir periode penempatan sesuai dengan kesepakatan yang tertuang dalam Perjanjian.',
         'footnote' => 'Ketentuan operasional lain yang mengikat Anda dan Perusahaan tetap mengacu pada Perjanjian tertulis yang telah ditandatangani bersama.',
         'bottom_prompt' => 'Masih ada pertanyaan mengenai dokumen atau alur administrasi? Tim Kristalin siap membantu melalui saluran resmi.',
+        'practical' => [
+            'kicker' => 'Informasi praktis',
+            'title' => 'Sebelum kunjungan atau transaksi',
+            'intro' => 'Jawaban operasional yang melengkapi langkah program di atas — lokasi, jam kerja, dokumen, dan cara memulai.',
+            'map_title' => 'ESQ Leadership Centre — Menara 165',
+            'map_subtitle' => 'Konsultasi & administrasi B2C',
+            'map_address' => 'Menara 165 Lantai 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Ps. Minggu, Jakarta Selatan 12560',
+        ],
+        'faq' => [
+            'contact_link' => 'Formulir kontak (subjek B2C)',
+            'kristalin_tv_link' => 'Harga emas live Kristalin TV',
+            'process_link' => 'Lihat langkah program di atas',
+            'location' => [
+                'q' => 'Di mana transaksi B2C dilakukan?',
+                'a' => 'Konsultasi, peninjauan dokumen, dan proses administrasi program pembelian emas konsumen dilakukan di kantor pusat Kristalin, Jakarta (Menara 165, TB Simatupang). Mohon atur kunjungan terlebih dahulu melalui saluran kontak resmi.',
+            ],
+            'hours' => [
+                'q' => 'Jam operasional kantor?',
+                'a' => 'Senin–Jumat, 09.00–17.00 WIB. Tutup pada hari libur nasional. Untuk janji di luar jam tersebut, hubungi kami terlebih dahulu.',
+            ],
+            'kyc' => [
+                'q' => 'Dokumen apa yang diperlukan (KYC)?',
+                'a' => 'KTP valid untuk perorangan; NPWP dapat diminta sesuai nilai transaksi dan jenis perjanjian. Dokumen tambahan (bukti domisili, dokumen perusahaan untuk peserta korporat) akan dikonfirmasi tim kantor saat pendaftaran minat — jangan kirim dokumen sensitif sebelum diinstruksikan.',
+            ],
+            'how_to_start' => [
+                'q' => 'Bagaimana cara memulai?',
+                'a' => 'Hubungi kami melalui telepon (021) 22978900, email info@kristalin.co.id, atau formulir kontak dengan subjek “B2C”. Tim kami akan memandu langkah berikutnya dan penjadwalan janji. Kunjungan langsung by appointment di kantor Jakarta.',
+            ],
+            'price' => [
+                'q' => 'Bagaimana harga emas ditetapkan?',
+                'a' => 'Harga program mengacu ketentuan pada langkah di atas (referensi pasar ANTAM). Untuk indikasi harga harian, lihat',
+            ],
+            'delivery' => [
+                'q' => 'Bagaimana skema serah terima 50%?',
+                'a' => 'Jadwal serah terima dua tahap (50% + 50%) dijelaskan lengkap di bagian langkah program. Ringkasnya: bagian pertama 21 hari kalender setelah dana diterima; sisanya mengikuti tanggal akhir periode penempatan dalam Perjanjian Anda.',
+            ],
+        ],
     ],
 
     'line_of_business' => [
@@ -1457,6 +1515,20 @@ return [
             'phone' => 'Telepon',
             'email' => 'Email',
             'address' => 'Alamat',
+        ],
+        'locations' => [
+            'kicker' => 'Lokasi kami',
+            'title' => 'Kantor pusat & operasi',
+            'jakarta_tab' => 'Kantor Pusat (Jakarta)',
+            'jakarta_title' => 'ESQ Leadership Centre — Menara 165',
+            'jakarta_subtitle' => 'Kantor pusat',
+            'jakarta_address' => 'Menara 165 Lantai 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Ps. Minggu, Jakarta Selatan 12560',
+            'nabire_tab' => 'Operasi (Nabire)',
+            'nabire_title' => 'Wilayah operasi Nabire',
+            'nabire_subtitle' => 'Site operasi pertambangan',
+            'nabire_address' => 'Cekungan Sungai Musairo, Distrik Makimi, Kabupaten Nabire, Papua Tengah (pin peta perkiraan — konfirmasi dengan tim operasi)',
+            'nabire_note' => 'Koordinat akses site pasti dapat diperbarui setelah review internal. Pin ini menunjukkan wilayah operasi Nabire sebagai referensi.',
+            'open_maps' => 'Buka di Google Maps',
         ],
         'image_alt' => 'Menara 165',
     ],

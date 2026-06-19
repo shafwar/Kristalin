@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { KristalinTvGoldCard } from '../components/KristalinTvGoldCard';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 
@@ -513,53 +514,11 @@ const Welcome = () => {
                                         </div>
                                     </div>
 
-                                    {/* Business Activities Card - 25% width, gambar asli tanpa overlay warna */}
-                                    <Link
-                                        href="/business-activity"
-                                        className="relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 lg:p-8"
+                                    <KristalinTvGoldCard
                                         onMouseEnter={() => setHoveredCard(1)}
                                         onMouseLeave={() => setHoveredCard(null)}
-                                    >
-                                        {/* Background Image - Mobile optimized with proper aspect */}
-                                        <WelcomeGridPicture
-                                            imageId="businessactivity"
-                                            alt={t('pages.welcome.business_activities_alt')}
-                                            pictureClassName={`absolute inset-0 block h-full min-h-0 w-full transition-transform duration-300 will-change-auto lg:duration-500 ${
-                                                hoveredCard === 1 ? 'lg:scale-105' : 'scale-100'
-                                            }`}
-                                            className="h-full min-h-0 w-full object-cover"
-                                            sizes="(max-width: 1023px) 100vw, 30vw"
-                                            bundleOptions={{ lcpHero: true }}
-                                            style={{
-                                                objectPosition: 'center center',
-                                                transform: 'translateZ(0)',
-                                                backfaceVisibility: 'hidden',
-                                            }}
-                                            loading="eager"
-                                            fetchPriority="low"
-                                            decoding="async"
-                                        />
-
-                                        {/* Dark overlay - Static, stronger gradient */}
-                                        <div className="absolute top-0 left-0 z-1 h-full w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                                        <div className="relative z-10">
-                                            <h3
-                                                className={`mb-4 text-lg leading-tight font-bold transition-transform duration-200 sm:text-xl lg:text-2xl ${
-                                                    hoveredCard === 1 ? 'lg:translate-x-2' : 'translate-x-0'
-                                                }`}
-                                            >
-                                                {t('pages.welcome.business_activities.title')}
-                                            </h3>
-                                            <span
-                                                className={`text-sm font-medium underline transition-colors duration-200 ${
-                                                    hoveredCard === 1 ? 'text-yellow-400' : 'text-white'
-                                                }`}
-                                            >
-                                                {t('pages.welcome.business_activities.find_out_more')}
-                                            </span>
-                                        </div>
-                                    </Link>
+                                        hovered={hoveredCard === 1}
+                                    />
 
                                     {/* News Card - 25% width, warna emas konsisten dengan link ke berita spesifik */}
                                     <Link

@@ -322,6 +322,16 @@ return [
             'title' => '商业活动',
             'find_out_more' => '了解更多 →',
         ],
+        'gold_live' => [
+            'kicker' => 'Kristalin TV · 实时',
+            'world_price' => '国际金价',
+            'per_gram' => '每克（印尼盾）',
+            'best_sell' => '最低售价 · 1克',
+            'view_tv' => '完整看板',
+            'offline' => '价格数据暂时不可用。',
+            'retry' => '重试',
+            'stale' => '缓存',
+        ],
         'footer' => [
             'copyright' => '© 2025 PT Kristalin Eka Lestari.',
             // 备选（来自 origin/faruq）
@@ -684,6 +694,17 @@ return [
         'subtitle' => '公司里程碑',
         'main_description' => '这就是我们如何开始并踏上成为伟大企业的旅程。',
 
+        'timeline_range' => '1989 – 2025',
+        'active_year_label' => '当前',
+        'empty_filter' => '该筛选条件下暂无里程碑。',
+        'filters' => [
+            'all' => '全部',
+            'legal' => '法律',
+            'production' => '生产',
+            'csr' => 'CSR',
+            'investment' => '投资',
+            'foundation' => '创立',
+        ],
 
         'company_stats' => [
             'established' => '成立',
@@ -955,6 +976,43 @@ return [
         'verbatim_profit' => '就安置期结束时拟收到的 LM 黄金名义金额，按照协议所载约定获得收益分享。',
         'footnote' => '对您与公司具有约束力的其他运营事项，仍以双方签署的书面协议为准。',
         'bottom_prompt' => '对文件或行政流程仍有疑问？欢迎通过官方渠道联系 Kristalin 团队。',
+        'practical' => [
+            'kicker' => '实用信息',
+            'title' => '到访或交易前须知',
+            'intro' => '补充上述程序步骤的运营问答——地点、时间、文件及如何开始。',
+            'map_title' => 'ESQ Leadership Centre — 165 Tower',
+            'map_subtitle' => 'B2C 咨询与行政',
+            'map_address' => 'Menara 165 21层 A–C，Jl. TB Simatupang No.Kav 1，南雅加达 12560',
+        ],
+        'faq' => [
+            'contact_link' => '联系表单（B2C 主题）',
+            'kristalin_tv_link' => 'Kristalin TV 黄金实时价格',
+            'process_link' => '见上方程序步骤',
+            'location' => [
+                'q' => 'B2C 交易在哪里办理？',
+                'a' => '消费者黄金购买计划的咨询、文件审核及行政流程在 Kristalin 雅加达总部（Menara 165，TB Simatupang）办理。请通过官方渠道提前预约。',
+            ],
+            'hours' => [
+                'q' => '办公时间？',
+                'a' => '周一至周五 09:00–17:00（印尼西部时间 WIB）。国家法定节假日休息。如需其他时段预约，请先联系我们。',
+            ],
+            'kyc' => [
+                'q' => '需要哪些文件（KYC）？',
+                'a' => '个人需有效身份证（KTP）；根据交易金额及协议类型可能要求 NPWP。其他文件（地址证明、企业文件等）由办公室团队在登记意向时确认——请勿在未获指示前发送敏感文件。',
+            ],
+            'how_to_start' => [
+                'q' => '如何开始？',
+                'a' => '致电 (021) 22978900、电邮 info@kristalin.co.id，或通过联系表单选择“B2C”主题。团队将指导后续步骤及预约。雅加达办公室到访需预约。',
+            ],
+            'price' => [
+                'q' => '黄金价格如何确定？',
+                'a' => '计划定价遵循上文步骤中的政策（ANTAM 市场参考）。每日 indicative 价格请见',
+            ],
+            'delivery' => [
+                'q' => '50% 交付安排如何运作？',
+                'a' => '两阶段交付（50% + 50%）详见程序步骤部分。简要：首批在资金收到后 21 个日历日；余款按协议约定的 placement 结束日。',
+            ],
+        ],
     ],
 
     'line_of_business' => [
@@ -1481,6 +1539,20 @@ return [
             'phone' => '电话',
             'email' => '邮箱',
             'address' => '地址',
+        ],
+        'locations' => [
+            'kicker' => '我们的地点',
+            'title' => '总部与运营',
+            'jakarta_tab' => '总部（雅加达）',
+            'jakarta_title' => 'ESQ Leadership Centre — 165 Tower',
+            'jakarta_subtitle' => '总部',
+            'jakarta_address' => 'Menara 165 21层 A–C，Jl. TB Simatupang No.Kav 1，南雅加达 12560',
+            'nabire_tab' => '运营（纳比雷）',
+            'nabire_title' => '纳比雷运营区域',
+            'nabire_subtitle' => '采矿运营 site',
+            'nabire_address' => 'Musairo 河流域，Makimi 区，纳比雷县，中巴布亚（地图 pin 为近似位置——请与运营团队确认）',
+            'nabire_note' => '精确 site 坐标可在内部审核后更新。此 pin 仅供参考纳比雷运营区域。',
+            'open_maps' => '在 Google 地图中打开',
         ],
         'image_alt' => 'Menara 165',
     ],
