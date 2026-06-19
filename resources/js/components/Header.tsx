@@ -207,7 +207,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Determine header classes and styles
     const getHeaderClasses = () => {
-        const baseClasses = 'flex items-center h-16 w-full min-w-0 px-3 sm:px-4 md:px-6 lg:h-[4.5rem] lg:px-8 z-50';
+        const baseClasses = 'kristalin-site-header flex items-center h-16 w-full min-w-0 px-3 sm:px-4 md:px-6 lg:h-20 lg:px-0 z-50';
 
         if (sticky && transparent) {
             return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out`;
@@ -283,9 +283,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     return (
         <header className={getHeaderClasses()} style={getHeaderStyle()}>
-            <div className="site-large-shell flex h-full w-full min-w-0 items-center">
+            <div className="site-large-shell flex h-full w-full min-w-0 items-center gap-0 lg:gap-1">
             {/* Logo Section */}
-            <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-6 lg:pl-4">
+            <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-4 lg:pl-0">
                 <a href="/" className="flex items-center" aria-label="Company Logo">
                     <img
                         src={getLogoSrc()}
@@ -297,9 +297,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden min-w-0 flex-1 justify-center lg:flex lg:px-2 xl:px-4">
+            <nav className="kristalin-header-nav hidden min-w-0 flex-1 justify-center lg:flex lg:px-2 xl:px-4">
                 <ul
-                    className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-1.5 xl:gap-2 xl:text-sm"
+                    className="kristalin-header-nav-list flex items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-2 lg:text-xs xl:gap-3 xl:text-sm 2xl:gap-4"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
@@ -317,7 +317,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-1 px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5 xl:px-3"
+                                        className="flex items-center gap-1 px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-3"
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         <span className="whitespace-nowrap">{item.label}</span>
@@ -358,7 +358,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={item.label}
-                                    className="inline-flex items-center gap-1 whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5"
+                                    className="inline-flex items-center gap-1 whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2 xl:px-2.5"
                                 >
                                     <span>{item.label}</span>
                                     <svg
@@ -375,7 +375,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="block whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-2.5 xl:px-3"
+                                    className="block whitespace-nowrap px-2 py-2 transition-all duration-300 ease-out hover:text-yellow-400 lg:px-3"
                                 >
                                     {item.label}
                                 </Link>

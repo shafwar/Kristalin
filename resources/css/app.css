@@ -227,5 +227,6 @@
         width: 100%;
         max-width: 100rem;
         margin-inline: auto;
+        padding-inline: clamp(1.25rem, 2vw, 2rem);
     }
 }
