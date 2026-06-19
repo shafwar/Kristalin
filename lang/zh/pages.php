@@ -226,11 +226,15 @@ return [
             'title1' => '介绍',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => '自1989年以来值得信赖的黄金开采公司',
+            'kicker' => 'PT Kristalin Ekalestari · 始于1989',
+            'description' => '整合黄金开采、精炼与贸易，在纳比雷及巴布亚地区持续开展企业社会责任项目。',
         ],
         'content_set_2' => [
             'title1' => '可信赖的合作伙伴',
             'title2' => '黄金勘探与贸易',
             'subtitle' => '自1989年以来，致力于在巴布亚可持续开采黄金。',
+            'kicker' => '采矿 · 贸易 · 社区',
+            'description' => '从勘探、精炼到市场 — 为合作伙伴、社区与投资者提供透明可靠的运营。',
         ],
 
 
@@ -328,6 +332,9 @@ return [
             'per_gram' => '每克（印尼盾）',
             'best_sell' => '最低售价 · 1克',
             'view_tv' => '完整看板',
+            'card_title' => 'Kristalin TV',
+            'card_cta' => '打开实时金价看板 →',
+            'card_aria' => '打开 Kristalin TV 实时金价看板',
             'offline' => '价格数据暂时不可用。',
             'retry' => '重试',
             'stale' => '缓存',

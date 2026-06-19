@@ -179,6 +179,8 @@ const Welcome = () => {
             title1: t('pages.welcome.content_set_1.title1'),
             title2: t('pages.welcome.content_set_1.title2'),
             subtitle: t('pages.welcome.content_set_1.subtitle'),
+            kicker: t('pages.welcome.content_set_1.kicker'),
+            description: t('pages.welcome.content_set_1.description'),
             titleColors: 'text-white',
             title2Colors: 'text-white',
         },
@@ -186,6 +188,8 @@ const Welcome = () => {
             title1: t('pages.welcome.content_set_2.title1'),
             title2: t('pages.welcome.content_set_2.title2'),
             subtitle: t('pages.welcome.content_set_2.subtitle'),
+            kicker: t('pages.welcome.content_set_2.kicker'),
+            description: t('pages.welcome.content_set_2.description'),
             titleColors: 'text-white',
             title2Colors: 'text-white',
         },
@@ -222,8 +226,8 @@ const Welcome = () => {
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
                 <Header sticky={true} transparent={false} />
 
-                <div className="flex flex-1 flex-col overflow-hidden pt-16 lg:pt-20">
-                    <div className="site-large-shell flex min-w-0 flex-1 flex-col">
+                <div className="flex flex-1 flex-col overflow-hidden pt-16 sm:pt-20">
+                    <div className="flex flex-1 flex-col">
                                 {/* DISABLED - Feedback Form Modal */}
                                 {/* {showFeedbackForm && <InternalFeedbackModal onClose={() => setShowFeedbackForm(false)} />} */}
 
@@ -233,7 +237,7 @@ const Welcome = () => {
                                 {/* Hero Section - top half of viewport on desktop */}
                                 <section className="flex h-auto flex-col lg:h-[48vh] lg:flex-row">
                                     {/* Left Section - Background putih bersih tanpa elemen dekoratif */}
-                                    <div className="relative flex h-full w-full min-w-0 flex-col justify-center overflow-hidden bg-white p-6 sm:p-8 lg:w-1/2 lg:p-8 xl:p-10">
+                                    <div className="relative flex h-full w-full min-w-0 flex-col justify-center overflow-hidden bg-white p-6 sm:p-8 lg:w-1/2 lg:p-8 xl:p-12 2xl:p-16">
                                         <div
                                             className={`relative z-10 min-w-0 welcome-hero-micro ${heroMicroReady ? 'welcome-hero-micro--ready' : ''}`}
                                         >
@@ -242,7 +246,10 @@ const Welcome = () => {
                                                 {isMobile ? (
                                                     <>
                                                         <div className="welcome-hero-nudge welcome-hero-nudge--a">
-                                                        <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-5 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                                                        <p className="mb-3 text-center text-[11px] font-semibold tracking-[0.2em] text-amber-600/90 uppercase sm:text-xs lg:mb-3 lg:text-left">
+                                                            {contentSets[currentContent].kicker}
+                                                        </p>
+                                                        <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-4 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
                                                             <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                             <br />
                                                             <span
@@ -257,8 +264,11 @@ const Welcome = () => {
                                                                 {contentSets[currentContent].title2}
                                                             </span>
                                                         </h1>
-                                                        <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-5 lg:text-left lg:text-base xl:text-lg">
+                                                        <p className="mb-3 text-center text-sm font-medium text-gray-700 sm:mb-4 sm:text-center sm:text-base lg:mb-3 lg:text-left lg:text-base xl:text-lg">
                                                             {contentSets[currentContent].subtitle}
+                                                        </p>
+                                                        <p className="mx-auto mb-5 max-w-md text-center text-sm leading-relaxed text-gray-500 sm:mb-6 lg:mx-0 lg:max-w-lg lg:text-left lg:text-[0.9375rem]">
+                                                            {contentSets[currentContent].description}
                                                         </p>
                                                         </div>
                                                     </>
@@ -272,7 +282,10 @@ const Welcome = () => {
                                                                 exit={{ opacity: 0, y: -6 }}
                                                                 transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
                                                             >
-                                                                <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-5 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                                                                <p className="mb-3 text-center text-[11px] font-semibold tracking-[0.2em] text-amber-600/90 uppercase sm:text-xs lg:mb-3 lg:text-left">
+                                                                    {contentSets[currentContent].kicker}
+                                                                </p>
+                                                                <h1 className="mb-4 text-center text-2xl leading-tight font-bold sm:mb-5 sm:text-center sm:text-3xl lg:mb-4 lg:text-left lg:text-3xl xl:text-4xl 2xl:text-5xl">
                                                                     <div className="inline-block text-gray-800">{contentSets[currentContent].title1}</div>
                                                                     <br />
                                                                     <span
@@ -287,8 +300,11 @@ const Welcome = () => {
                                                                         {contentSets[currentContent].title2}
                                                                     </span>
                                                                 </h1>
-                                                                <p className="mb-5 text-center text-sm text-gray-600 sm:mb-6 sm:text-center sm:text-base lg:mb-5 lg:text-left lg:text-base xl:text-lg">
+                                                                <p className="mb-3 text-center text-sm font-medium text-gray-700 sm:mb-4 sm:text-center sm:text-base lg:mb-3 lg:text-left lg:text-base xl:text-lg">
                                                                     {contentSets[currentContent].subtitle}
+                                                                </p>
+                                                                <p className="mx-auto mb-5 max-w-md text-center text-sm leading-relaxed text-gray-500 sm:mb-6 lg:mx-0 lg:max-w-lg lg:text-left lg:text-[0.9375rem]">
+                                                                    {contentSets[currentContent].description}
                                                                 </p>
                                                             </motion.div>
                                                         </AnimatePresence>
@@ -298,7 +314,7 @@ const Welcome = () => {
 
                                             {/* Buttons — row on sm+ (left-aligned on lg+ via CSS) */}
                                             <div className="welcome-hero-nudge welcome-hero-nudge--b mt-5 w-full min-w-0 sm:mt-6">
-                                                <div className="button-container flex w-full min-w-0 flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-start lg:gap-3">
+                                                <div className="button-container flex w-full min-w-0 flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-start">
                                                     <button
                                                         type="button"
                                                         className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-5 text-sm font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
@@ -340,7 +356,7 @@ const Welcome = () => {
                                     {/* Right Section - CSR Card dengan gambar papua-children.png */}
                                     <Link
                                         href="/csr"
-                                        className={`relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-10 ${heroMicroReady ? 'welcome-csr-hover-ready' : ''}`}
+                                        className={`relative flex aspect-[16/10] w-full cursor-pointer flex-col justify-end overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white no-underline sm:aspect-[16/9] sm:p-8 lg:aspect-auto lg:h-full lg:w-1/2 lg:p-12 ${heroMicroReady ? 'welcome-csr-hover-ready' : ''}`}
                                         onMouseEnter={() => setHoveredCard(4)}
                                         onMouseLeave={() => setHoveredCard(null)}
                                     >
@@ -387,7 +403,7 @@ const Welcome = () => {
                                 <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
                                 {/* Bottom area: centered B2C card + full-bleed grid below */}
                                 <section className="flex flex-1 flex-col bg-white">
-                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:px-0 lg:py-6 xl:py-7">
+                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7">
                                         <Link
                                             href="/b2c"
                                             className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 max-sm:from-white max-sm:via-white max-sm:to-white max-sm:border-stone-200/65 max-sm:shadow-sm max-sm:hover:border-stone-300/80 max-sm:hover:shadow-md hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6"

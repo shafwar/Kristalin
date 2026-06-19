@@ -225,11 +225,15 @@ return [
             'title1' => 'Memperkenalkan',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => 'Perusahaan tambang emas terpercaya sejak 1989',
+            'kicker' => 'PT Kristalin Ekalestari · Sejak 1989',
+            'description' => 'Tambang, pengolahan, dan perdagangan emas terintegrasi dengan program CSR jangka panjang di Nabire dan Papua.',
         ],
         'content_set_2' => [
             'title1' => 'Mitra Terpercaya',
             'title2' => 'Eksplorasi & Perdagangan Emas',
             'subtitle' => 'Sejak 1989, berkomitmen pada pertambangan emas berkelanjutan di Papua.',
+            'kicker' => 'Pertambangan · Perdagangan · Masyarakat',
+            'description' => 'Dari eksplorasi hingga pengolahan dan pasar — operasi transparan untuk mitra, masyarakat, dan investor.',
         ],
 
         'buttons' => [
@@ -307,28 +311,31 @@ return [
                     'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi. Program ini mencerminkan semangat kemerdekaan melalui pemberdayaan masyarakat.',
                 ],
             ],
-    ],
-    'business_activities' => [
-        'title' => 'Aktivitas Bisnis',
-        'find_out_more' => 'Pelajari lebih lanjut →',
-    ],
-    'gold_live' => [
-        'kicker' => 'Kristalin TV · Live',
-        'world_price' => 'Harga emas dunia',
-        'per_gram' => 'per gram (IDR)',
-        'best_sell' => 'Harga jual terbaik · 1g',
-        'view_tv' => 'Dashboard lengkap',
-        'offline' => 'Data harga sementara tidak tersedia.',
-        'retry' => 'Coba lagi',
-        'stale' => 'Cache',
-    ],
-    'footer' => [
-        'copyright' => '© 2025 PT Kristalin Eka Lestari.',
-        // Alternatif dari origin/faruq jika ingin digunakan
-        'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
-    ],
+        ],
+        'business_activities' => [
+            'title' => 'Aktivitas Bisnis',
+            'find_out_more' => 'Pelajari lebih lanjut →',
+        ],
+        'gold_live' => [
+            'kicker' => 'Kristalin TV · Live',
+            'world_price' => 'Harga emas dunia',
+            'per_gram' => 'per gram (IDR)',
+            'best_sell' => 'Harga jual terbaik · 1g',
+            'view_tv' => 'Dashboard lengkap',
+            'card_title' => 'Kristalin TV',
+            'card_cta' => 'Buka dashboard emas live →',
+            'card_aria' => 'Buka dashboard emas live Kristalin TV',
+            'offline' => 'Data harga sementara tidak tersedia.',
+            'retry' => 'Coba lagi',
+            'stale' => 'Cache',
+        ],
+        'footer' => [
+            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
+            // Alternatif dari origin/faruq jika ingin digunakan
+            'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
+        ],
 
-    'feedback' => [
+        'feedback' => [
             'button_text' => 'Kirim Masukan',
             'modal_title' => 'Sistem Masukan Internal',
             'modal_subtitle' => 'Saluran Aman untuk Masukan dan Keluhan Karyawan',

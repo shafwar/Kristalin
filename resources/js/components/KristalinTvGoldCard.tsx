@@ -1,7 +1,6 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { useJakartaClock } from '@/hooks/useJakartaClock';
-import { formatIdr, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
-import { Link } from '@inertiajs/react';
+import { formatIdrAmount, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
 import { ExternalLink, TrendingUp } from 'lucide-react';
 
 const LIVEGOLD_URL = 'https://livegold-kristalintv.com/';
@@ -23,14 +22,18 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
     const hasData = worldGram > 0 || best !== null;
 
     return (
-        <article
-            className={`relative flex aspect-[16/10] w-full flex-col overflow-hidden sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 ${className ?? ''}`}
+        <a
+            href={LIVEGOLD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t('pages.welcome.gold_live.card_aria')}
+            className={`group relative flex aspect-[16/10] w-full cursor-pointer flex-col overflow-hidden no-underline sm:aspect-[16/9] lg:aspect-auto lg:h-auto lg:w-1/4 lg:flex-1 ${className ?? ''}`}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0d1f35] to-[#07111f]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0d1f35] to-[#07111f] transition-transform duration-500 ease-out group-hover:scale-[1.02] lg:origin-center" />
             <div
-                className="pointer-events-none absolute inset-0 opacity-40"
+                className="pointer-events-none absolute inset-0 opacity-40 transition-opacity duration-300 group-hover:opacity-55"
                 style={{
                     background:
                         'radial-gradient(circle at 20% 0%, rgba(255,211,107,.22), transparent 45%), radial-gradient(circle at 100% 100%, rgba(78,161,255,.12), transparent 40%)',
@@ -68,7 +71,7 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                     </div>
                 </div>
 
-                <div className="min-h-0 flex-1">
+                <div className="gold-card-body min-h-0 min-w-0 flex-1">
                     <p className="text-[11px] font-medium text-slate-300/90 sm:text-xs">{t('pages.welcome.gold_live.world_price')}</p>
                     {loading && !hasData ? (
                         <div className="mt-2 space-y-2" aria-hidden>
@@ -80,26 +83,31 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                             <p className="text-sm text-slate-400">{t('pages.welcome.gold_live.offline')}</p>
                             <button
                                 type="button"
-                                onClick={() => void refresh()}
-                                className="mt-2 text-xs font-semibold text-amber-300 underline-offset-2 hover:underline"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    void refresh();
+                                }}
+                                className="relative z-20 mt-2 cursor-pointer text-xs font-semibold text-amber-300 underline-offset-2 hover:underline"
                             >
                                 {t('pages.welcome.gold_live.retry')}
                             </button>
                         </div>
                     ) : (
                         <>
-                            <p className="mt-1 text-xl leading-none font-bold tracking-tight text-white sm:text-2xl lg:text-[1.65rem]">
-                                {formatIdr(worldGram, true)}
+                            <p className="gold-card-price-main mt-1 min-w-0 max-w-full font-bold text-white tabular-nums">
+                                <span className="mr-1 text-[0.72em] font-semibold text-amber-200/90">Rp</span>
+                                <span className="break-words">{formatIdrAmount(worldGram)}</span>
                             </p>
                             <p className="mt-1 text-[10px] font-medium text-amber-200/80 sm:text-xs">{t('pages.welcome.gold_live.per_gram')}</p>
                             <div className="mt-3 flex flex-wrap gap-1.5">
                                 {market?.usd_idr ? (
-                                    <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-slate-200">
+                                    <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] tabular-nums text-slate-200">
                                         USD {new Intl.NumberFormat('id-ID').format(Math.round(market.usd_idr))}
                                     </span>
                                 ) : null}
                                 {market?.sgd_idr ? (
-                                    <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-slate-200">
+                                    <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] tabular-nums text-slate-200">
                                         SGD {new Intl.NumberFormat('id-ID').format(Math.round(market.sgd_idr))}
                                     </span>
                                 ) : null}
@@ -110,12 +118,15 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                     {best && (
                         <div className="mt-4 rounded-xl border border-amber-400/25 bg-gradient-to-r from-amber-500/10 to-yellow-500/5 p-2.5 sm:p-3">
                             <div className="flex items-start justify-between gap-2">
-                                <div className="min-w-0">
+                                <div className="min-w-0 flex-1">
                                     <p className="text-[10px] font-semibold tracking-wide text-amber-200/90 uppercase">
                                         {t('pages.welcome.gold_live.best_sell')}
                                     </p>
                                     <p className="mt-0.5 truncate text-xs font-bold text-white">{best.brand}</p>
-                                    <p className="text-sm font-bold text-amber-300">{formatIdr(best.sell)}</p>
+                                    <p className="gold-card-price-sub mt-0.5 min-w-0 max-w-full font-bold text-amber-300 tabular-nums">
+                                        <span className="mr-0.5 text-[0.72em] font-semibold text-amber-200/80">Rp</span>
+                                        <span className="break-words">{formatIdrAmount(best.sell)}</span>
+                                    </p>
                                 </div>
                                 <span className="shrink-0 rounded-full bg-amber-400/20 px-2 py-0.5 text-[9px] font-bold text-amber-200">
                                     1g
@@ -125,30 +136,19 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                     )}
                 </div>
 
-                <div className="mt-auto space-y-2 pt-3">
-                    <Link
-                        href="/business-activity"
-                        className={`block text-sm font-bold text-white transition-transform duration-200 ${
-                            hovered ? 'lg:translate-x-1' : ''
-                        }`}
-                    >
-                        {t('pages.welcome.business_activities.title')}
-                        <span className="mt-0.5 block text-xs font-medium text-amber-300/90 underline underline-offset-2">
-                            {t('pages.welcome.business_activities.find_out_more')}
-                        </span>
-                    </Link>
-                    <a
-                        href={LIVEGOLD_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 transition-colors hover:text-amber-300"
-                    >
-                        <TrendingUp className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                        {t('pages.welcome.gold_live.view_tv')}
+                <div
+                    className={`mt-auto space-y-1 pt-3 transition-transform duration-200 ${hovered ? 'lg:translate-x-1' : ''}`}
+                >
+                    <p className="flex items-center gap-1.5 text-sm font-bold text-white">
+                        <TrendingUp className="h-3.5 w-3.5 shrink-0 text-amber-300" aria-hidden />
+                        {t('pages.welcome.gold_live.card_title')}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-300/90 underline underline-offset-2">
+                        {t('pages.welcome.gold_live.card_cta')}
                         <ExternalLink className="h-3 w-3 shrink-0 opacity-70" aria-hidden />
-                    </a>
+                    </span>
                 </div>
             </div>
-        </article>
+        </a>
     );
 }

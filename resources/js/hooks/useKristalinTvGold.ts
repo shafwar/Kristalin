@@ -63,11 +63,14 @@ export function formatIdr(value: number, compact = false): string {
         const formatted = jt >= 10 ? jt.toFixed(1) : jt.toFixed(2);
         return `Rp ${formatted.replace('.', ',')} jt`;
     }
-    return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        maximumFractionDigits: 0,
-    }).format(value);
+    const amount = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(value);
+    return `Rp ${amount}`;
+}
+
+/** Numeric amount only (Indonesian grouping) — for stacked Rp + value layouts */
+export function formatIdrAmount(value: number): string {
+    if (!Number.isFinite(value) || value <= 0) return '—';
+    return new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(value);
 }
 
 export function useKristalinTvGold(enabled = true): KristalinTvGoldState {

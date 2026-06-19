@@ -227,11 +227,15 @@ return [
             'title1' => 'Introducing',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => 'Trusted gold mining company since 1989',
+            'kicker' => 'PT Kristalin Ekalestari · Est. 1989',
+            'description' => 'Integrated gold mining, refining, and trading with long-standing CSR programs across Nabire and Papua.',
         ],
         'content_set_2' => [
             'title1' => 'Trusted Partner',
             'title2' => 'Gold Exploration & Trading',
             'subtitle' => 'Since 1989, committed to sustainable gold mining in Papua.',
+            'kicker' => 'Mining · Trading · Community',
+            'description' => 'From exploration to refining and market — transparent operations for partners, communities, and investors.',
         ],
 
 
@@ -327,6 +331,9 @@ return [
             'per_gram' => 'per gram (IDR)',
             'best_sell' => 'Best sell · 1g',
             'view_tv' => 'Full dashboard',
+            'card_title' => 'Kristalin TV',
+            'card_cta' => 'Open live gold dashboard →',
+            'card_aria' => 'Open Kristalin TV live gold dashboard',
             'offline' => 'Price feed temporarily unavailable.',
             'retry' => 'Try again',
             'stale' => 'Cached',
