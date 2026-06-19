@@ -5,7 +5,7 @@ import { imageUrl } from '@/lib/assets';
 import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, Coins } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DeferredBelowFold } from '../components/DeferredBelowFold';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -174,26 +174,25 @@ const Welcome = () => {
         return () => clearInterval(interval);
     }, [newsItems.length]);
 
-    const contentSets = [
-        {
-            title1: t('pages.welcome.content_set_1.title1'),
-            title2: t('pages.welcome.content_set_1.title2'),
-            subtitle: t('pages.welcome.content_set_1.subtitle'),
-            kicker: t('pages.welcome.content_set_1.kicker'),
-            description: t('pages.welcome.content_set_1.description'),
-            titleColors: 'text-white',
-            title2Colors: 'text-white',
-        },
-        {
-            title1: t('pages.welcome.content_set_2.title1'),
-            title2: t('pages.welcome.content_set_2.title2'),
-            subtitle: t('pages.welcome.content_set_2.subtitle'),
-            kicker: t('pages.welcome.content_set_2.kicker'),
-            description: t('pages.welcome.content_set_2.description'),
-            titleColors: 'text-white',
-            title2Colors: 'text-white',
-        },
-    ];
+    const contentSets = useMemo(
+        () => [
+            {
+                title1: t('pages.welcome.content_set_1.title1'),
+                title2: t('pages.welcome.content_set_1.title2'),
+                subtitle: t('pages.welcome.content_set_1.subtitle'),
+                kicker: t('pages.welcome.content_set_1.kicker'),
+                description: t('pages.welcome.content_set_1.description'),
+            },
+            {
+                title1: t('pages.welcome.content_set_2.title1'),
+                title2: t('pages.welcome.content_set_2.title2'),
+                subtitle: t('pages.welcome.content_set_2.subtitle'),
+                kicker: t('pages.welcome.content_set_2.kicker'),
+                description: t('pages.welcome.content_set_2.description'),
+            },
+        ],
+        [t],
+    );
 
     // Detect mobile viewport once on mount and on resize (used to simplify animations on mobile)
     useEffect(() => {
@@ -312,39 +311,37 @@ const Welcome = () => {
                                                 )}
                                             </div>
 
-                                            {/* Buttons — row on sm+ (left-aligned on lg+ via CSS) */}
-                                            <div className="welcome-hero-nudge welcome-hero-nudge--b mt-5 w-full min-w-0 sm:mt-6">
+                                            {/* Buttons — outside transform nudge wrapper to avoid hover/layout thrashing */}
+                                            <div className="mt-5 w-full min-w-0 sm:mt-6">
                                                 <div className="button-container flex w-full min-w-0 flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 lg:justify-start">
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-5 text-sm font-semibold text-gray-900 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-amber-500 hover:to-orange-500 hover:shadow-xl sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
-                                                        onClick={() => (window.location.href = '/about#about-kristalin')}
+                                                    <Link
+                                                        href="/about#about-kristalin"
+                                                        prefetch={false}
+                                                        className="hero-cta-btn hero-cta-btn--primary inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-5 text-sm font-semibold text-gray-900 shadow-lg sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
                                                     >
                                                         {t('pages.welcome.buttons.learn_more')}
-                                                    </button>
+                                                    </Link>
 
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-transparent px-5 text-sm font-semibold text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:bg-gradient-to-r hover:from-yellow-400 hover:to-amber-500 hover:text-gray-900 hover:shadow-lg sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
-                                                        onClick={() => (window.location.href = '/milestones')}
+                                                    <Link
+                                                        href="/milestones"
+                                                        prefetch={false}
+                                                        className="hero-cta-btn hero-cta-btn--outline inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-white px-5 text-sm font-semibold text-gray-800 sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
                                                     >
                                                         {t('pages.welcome.buttons.see_milestones')}
-                                                    </button>
+                                                    </Link>
 
-                                                    <motion.a
+                                                    <a
                                                         href="https://www.instagram.com/kristalin_ekalestari/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         aria-label={t('common.follow_us')}
-                                                        className="inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 border-gray-300 bg-white px-5 text-sm font-semibold text-gray-700 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 hover:shadow-lg sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-5 sm:text-base"
-                                                        whileHover={{ scale: 1.02 }}
-                                                        whileTap={{ scale: 0.98 }}
+                                                        className="hero-cta-btn hero-cta-btn--ghost inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 border-gray-300 bg-white px-5 text-sm font-semibold text-gray-700 shadow-md sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-5 sm:text-base"
                                                     >
                                                         <svg className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
                                                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                                         </svg>
                                                         <span className="truncate">{t('common.follow_us')}</span>
-                                                    </motion.a>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -972,13 +969,43 @@ const Welcome = () => {
             background-color: #fef3c7;
           }
 
-          /* Button hover effects */
-          button:hover {
-            transform: translateY(-1px);
+          /* Hero CTA — GPU-friendly hover (no transition-all / gradient morph) */
+          .hero-cta-btn {
+            transition:
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateZ(0);
           }
 
-          button:active {
-            transform: translateY(0);
+          @media (prefers-reduced-motion: no-preference) {
+            .hero-cta-btn:hover {
+              transform: translate3d(0, -2px, 0);
+            }
+
+            .hero-cta-btn:active {
+              transform: translate3d(0, 0, 0);
+            }
+          }
+
+          .hero-cta-btn--primary:hover {
+            box-shadow: 0 12px 28px -8px rgba(245, 158, 11, 0.45);
+          }
+
+          .hero-cta-btn--outline:hover {
+            background-color: #fde047;
+            border-color: #f59e0b;
+            color: #111827;
+            box-shadow: 0 10px 24px -10px rgba(245, 158, 11, 0.35);
+          }
+
+          .hero-cta-btn--ghost:hover {
+            border-color: #fbbf24;
+            background-color: #fffbeb;
+            color: #b45309;
+            box-shadow: 0 10px 24px -12px rgba(15, 23, 42, 0.18);
           }
 
           /* Tab animation */
@@ -1097,14 +1124,14 @@ const Welcome = () => {
             }
           }
 
-          /* Transitions: omit transform/filter on universal selector so LCP images paint without extra work */
-          .welcome-page :where(a, button, input, select, textarea, label, [role='button']) {
+          /* Transitions: omit transform on universal selector — hero CTAs manage their own */
+          .welcome-page :where(input, select, textarea, label) {
             transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, backdrop-filter;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 150ms;
           }
 
-          /* LCP-safe hero motion: full opacity; transform-only slide; starts after .welcome-hero-micro--ready */
+          /* LCP-safe hero motion: text block only (buttons excluded from transform nudge) */
           @media (prefers-reduced-motion: no-preference) {
             .welcome-hero-micro .welcome-hero-nudge--a {
               transform: translate3d(0, 14px, 0);
@@ -1113,16 +1140,6 @@ const Welcome = () => {
             }
             .welcome-hero-micro--ready .welcome-hero-nudge--a {
               transform: translate3d(0, 0, 0);
-            }
-            .welcome-hero-micro .welcome-hero-nudge--b {
-              transform: translate3d(0, 12px, 0);
-              opacity: 1;
-              transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
-              transition-delay: 0ms;
-            }
-            .welcome-hero-micro--ready .welcome-hero-nudge--b {
-              transform: translate3d(0, 0, 0);
-              transition-delay: 0.1s;
             }
           }
 
