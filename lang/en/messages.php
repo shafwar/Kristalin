@@ -15,8 +15,10 @@ return [
 
         'news' => 'News',
         'line_of_business' => 'Line of Business',
+        'line_of_business_short' => 'LOB',
         'b2c' => 'Gold purchase (B2C)',
         'business_activities' => 'Business Activities',
+        'business_activities_short' => 'Activities',
         'csr' => 'CSR',
         'careers' => 'Careers',
         'contact' => 'Contact',

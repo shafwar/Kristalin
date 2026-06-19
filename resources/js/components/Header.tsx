@@ -9,6 +9,24 @@ interface HeaderProps {
     transparent?: boolean;
 }
 
+type NavDropdownItem = { label: string; href: string };
+
+type NavItem = {
+    label: string;
+    labelCompact?: string;
+    labelDesktop?: string;
+    href: string;
+    external?: boolean;
+    hasDropdown?: boolean;
+    dropdownItems?: NavDropdownItem[];
+};
+
+function renderNavLabel(item: NavItem, mode: 'full' | 'compact' | 'desktop'): string {
+    if (mode === 'desktop' && item.labelDesktop) return item.labelDesktop;
+    if (mode === 'compact' && item.labelCompact) return item.labelCompact;
+    return item.label;
+}
+
 export default function Header({ sticky = false, transparent = false }: HeaderProps) {
     const { t, locale, switchLanguage, getCurrentLanguageCode } = useTranslation();
 
@@ -109,7 +127,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     // Close mobile menu when window resizes to desktop
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1024) {
+            if (window.innerWidth >= 1280) {
                 setMobileMenuOpen(false);
                 // Ensure any page-level scroll lock is removed when switching to desktop
                 document.body.style.position = '';
@@ -189,7 +207,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Determine header classes and styles
     const getHeaderClasses = () => {
-        const baseClasses = 'flex items-center h-16 sm:h-18 lg:h-20 w-full px-3 sm:px-4 md:px-6 lg:px-8 z-50';
+        const baseClasses = 'flex items-center h-16 w-full min-w-0 px-3 sm:px-4 md:px-5 xl:h-[4.25rem] xl:px-6 2xl:h-20 2xl:px-8 z-50';
 
         if (sticky && transparent) {
             return `${baseClasses} fixed top-0 left-0 right-0 transition-all duration-300 ease-out`;
@@ -230,7 +248,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     };
 
     // Navigation items for reusability
-    const navigationItems = [
+    const navigationItems: NavItem[] = [
         { label: t('nav.home'), href: '/' },
         {
             label: t('nav.about_us'),
@@ -257,8 +275,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             href: 'https://myklx.io',
             external: true,
         },
-        { label: t('nav.line_of_business'), href: '/line-of-business' },
-        { label: t('nav.business_activities'), href: '/business-activity' },
+        { label: t('nav.line_of_business'), labelCompact: t('nav.line_of_business_short'), href: '/line-of-business' },
+        { label: t('nav.business_activities'), labelCompact: t('nav.business_activities_short'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
         { label: t('nav.contact'), href: '/contact' },
     ];
@@ -266,25 +284,25 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     return (
         <header className={getHeaderClasses()} style={getHeaderStyle()}>
             {/* Logo Section */}
-            <div className="flex items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-6 lg:pl-4">
+            <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-3 sm:pl-3 xl:pr-4 xl:pl-4">
                 <a href="/" className="flex items-center" aria-label="Company Logo">
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
-                        className="h-8 w-auto object-contain transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-12 xl:h-14"
+                        className="h-8 w-auto max-w-[120px] object-contain transition-all duration-700 ease-out sm:h-9 sm:max-w-[140px] xl:h-10 xl:max-w-none 2xl:h-12 min-[1536px]:h-14"
                         style={{ filter: getLogoFilter() }}
                     />
                 </a>
             </div>
 
-            {/* Desktop Navigation Menu */}
-            <nav className="hidden flex-1 justify-center lg:flex lg:px-2 xl:px-4">
+            {/* Desktop Navigation — xl+ (1280px) avoids cramped laptop/iPad landscape */}
+            <nav className="hidden min-w-0 flex-1 justify-center xl:flex xl:px-1 2xl:px-4">
                 <ul
-                    className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:gap-2 lg:text-xs xl:gap-3 xl:text-sm 2xl:gap-4"
+                    className="flex max-w-full flex-wrap items-center justify-center gap-x-0.5 gap-y-1 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out 2xl:gap-x-2 2xl:text-xs min-[1536px]:gap-x-3 min-[1536px]:text-sm"
                     style={{ opacity: textOpacity }}
                 >
                     {navigationItems.map((item, index) => (
-                        <li key={index} className={item.hasDropdown ? 'group relative' : ''}>
+                        <li key={index} className={item.hasDropdown ? 'group relative shrink-0' : 'shrink-0'}>
                             {item.hasDropdown ? (
                                 <div
                                     className="relative"
@@ -298,10 +316,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 >
                                     <a
                                         href={item.href}
-                                        className="flex items-center gap-1 px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
+                                        className="flex items-center gap-0.5 px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:gap-1 2xl:px-2 2xl:py-2 min-[1536px]:px-3"
                                         onClick={(e) => e.preventDefault()}
                                     >
-                                        {item.label}
+                                        <span className="whitespace-nowrap">{item.label}</span>
                                         <svg
                                             className={`h-3 w-3 transform transition-transform duration-300 ease-out ${aboutDropdownOpen ? 'rotate-180' : ''}`}
                                             fill="currentColor"
@@ -339,9 +357,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={item.label}
-                                    className="inline-flex items-center gap-0.5 px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-2 xl:px-2.5"
+                                    className="inline-flex items-center gap-0.5 whitespace-nowrap px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:px-2 2xl:py-2"
                                 >
-                                    <span>{'labelDesktop' in item && item.labelDesktop ? item.labelDesktop : item.label}</span>
+                                    <span className="2xl:hidden">{renderNavLabel(item, 'desktop')}</span>
+                                    <span className="hidden 2xl:inline">{item.label}</span>
                                     <svg
                                         className="h-2.5 w-2.5 shrink-0 opacity-70"
                                         fill="none"
@@ -356,9 +375,16 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="px-2 py-2 transition-all duration-300 ease-out hover:scale-105 hover:text-yellow-400 lg:px-3"
+                                    className="block whitespace-nowrap px-1.5 py-1.5 transition-all duration-300 ease-out hover:text-yellow-400 2xl:px-2 2xl:py-2 min-[1536px]:px-3"
                                 >
-                                    {item.label}
+                                    {item.labelCompact ? (
+                                        <>
+                                            <span className="2xl:hidden">{item.labelCompact}</span>
+                                            <span className="hidden 2xl:inline">{item.label}</span>
+                                        </>
+                                    ) : (
+                                        item.label
+                                    )}
                                 </Link>
                             )}
                         </li>
@@ -366,8 +392,14 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </ul>
             </nav>
 
-            {/* Mobile Navigation Toggle */}
-            <div className="flex flex-1 items-center justify-end gap-2 lg:hidden">
+            {/* Mobile / tablet navigation — below xl (1280px) */}
+            <div className="flex flex-1 items-center justify-end gap-1.5 xl:hidden">
+                <div className="flex items-center" title="Indonesia">
+                    <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow sm:h-5 sm:w-8">
+                        <rect width="3" height="1" y="0" fill="#CE1126" />
+                        <rect width="3" height="1" y="1" fill="#FFFFFF" />
+                    </svg>
+                </div>
                 <button
                     ref={mobileMenuToggleRef}
                     type="button"
@@ -388,9 +420,9 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 </button>
             </div>
 
-            {/* Right Side Features - Desktop Only */}
+            {/* Right Side Features - Desktop Only (xl+) */}
             <div
-                className="hidden h-full items-center gap-1 text-xs font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out lg:flex xl:gap-2 xl:text-sm"
+                className="hidden h-full shrink-0 items-center gap-0.5 text-[10px] font-semibold tracking-wide text-white uppercase transition-all duration-300 ease-out xl:flex 2xl:gap-1 2xl:text-xs"
                 style={{ opacity: textOpacity }}
             >
                 {/* Language Switcher */}
@@ -519,7 +551,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                 {/* Whistleblower / Internal feedback – subtle hint (shield icon) */}
                 <Link
                     href="/internal-feedback"
-                    className="flex h-10 items-center justify-center px-2 py-1 text-white/70 transition-all duration-300 hover:scale-105 hover:text-yellow-400 hover:opacity-100 focus:outline-none"
+                    className="flex h-9 w-9 items-center justify-center text-white/70 transition-all duration-300 hover:text-yellow-400 hover:opacity-100 focus:outline-none 2xl:h-10 2xl:w-10"
                     title={t('pages.internal_feedback.page_title')}
                     aria-label={t('pages.internal_feedback.page_title')}
                 >
@@ -527,22 +559,22 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                 </Link>
-            </div>
 
-            {/* Mobile Menu - Right Drawer */}
-            <>
-                {/* Indonesian flag to represent site origin */}
-                <div className="ml-2 flex items-center" title="Indonesia">
-                    <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow sm:h-5 sm:w-8">
+                <div className="ml-1 flex items-center 2xl:ml-2" title="Indonesia">
+                    <svg role="img" aria-label="Flag of Indonesia" viewBox="0 0 3 2" className="h-4 w-6 rounded shadow">
                         <rect width="3" height="1" y="0" fill="#CE1126" />
                         <rect width="3" height="1" y="1" fill="#FFFFFF" />
                     </svg>
                 </div>
+            </div>
+
+            {/* Mobile Menu - Right Drawer */}
+            <>
                 {mobileOverlayMounted &&
                     createPortal(
                         <>
                             <div
-                                className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none lg:hidden ${
+                                className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ease-out motion-reduce:transition-none xl:hidden ${
                                     mobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
                                 }`}
                                 aria-hidden={!mobileMenuOpen}
@@ -555,7 +587,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 role="dialog"
                                 aria-modal="true"
                                 aria-label="Main menu"
-                                className={`fixed top-0 right-0 bottom-0 z-[101] flex w-full max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-md lg:hidden ${
+                                className={`fixed top-0 right-0 bottom-0 z-[101] flex w-full max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-md xl:hidden ${
                                     mobileMenuOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
                                 }`}
                                 style={{
