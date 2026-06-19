@@ -231,6 +231,20 @@
 }
 
 /* Kristalin TV card — full IDR values scale with card width, never overflow */
+.gold-card-root {
+    height: auto;
+}
+
+@media (min-width: 1024px) {
+    .gold-card-root {
+        min-height: 100%;
+    }
+}
+
+.gold-card-inner {
+    height: auto;
+}
+
 .gold-card-body {
     container-type: inline-size;
 }
