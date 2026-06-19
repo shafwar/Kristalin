@@ -71,17 +71,18 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                 {/* Price block */}
                 <div className="gold-card-body flex shrink-0 flex-col gap-3 lg:min-h-0 lg:flex-1 lg:gap-0">
                     <div>
-                        <p className="text-[11px] font-medium text-slate-300/90 sm:text-xs">
-                            {t('pages.welcome.gold_live.world_price')}
-                        </p>
                         {loading && !hasData ? (
-                            <div className="mt-2 space-y-2" aria-hidden>
-                                <div className="h-8 w-3/4 animate-pulse rounded-lg bg-white/10" />
+                            <div className="space-y-2" aria-hidden>
+                                <div className="h-5 w-28 animate-pulse rounded-full bg-white/10" />
+                                <div className="mt-2 h-8 w-4/5 animate-pulse rounded-lg bg-white/10" />
                                 <div className="h-4 w-1/2 animate-pulse rounded bg-white/10" />
                             </div>
                         ) : error && !hasData ? (
-                            <div className="mt-2">
-                                <p className="text-sm text-slate-400">{t('pages.welcome.gold_live.offline')}</p>
+                            <div className="mt-1">
+                                <span className="inline-flex rounded-full bg-amber-400/90 px-2.5 py-0.5 text-[9px] font-bold tracking-wide text-slate-900 uppercase sm:text-[10px]">
+                                    {t('pages.welcome.gold_live.world_price')}
+                                </span>
+                                <p className="mt-2 text-sm text-slate-400">{t('pages.welcome.gold_live.offline')}</p>
                                 <button
                                     type="button"
                                     onClick={(e) => {
@@ -96,13 +97,18 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                             </div>
                         ) : (
                             <>
-                                <p className="gold-card-price-main mt-1 min-w-0 max-w-full font-bold text-white tabular-nums">
-                                    <span className="mr-1 text-[0.72em] font-semibold text-amber-200/90">Rp</span>
-                                    <span>{formatIdrAmount(worldGram)}</span>
-                                </p>
-                                <p className="mt-1 text-[10px] font-medium text-amber-200/80 sm:text-xs">
-                                    {t('pages.welcome.gold_live.per_gram')}
-                                </p>
+                                <span className="inline-flex rounded-full bg-amber-400/90 px-2.5 py-0.5 text-[9px] font-bold tracking-wide text-slate-900 uppercase sm:text-[10px]">
+                                    {t('pages.welcome.gold_live.world_price')}
+                                </span>
+                                <div className="gold-card-price-row mt-2 flex min-w-0 max-w-full flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+                                    <p className="gold-card-price-main min-w-0 font-bold text-amber-50 tabular-nums">
+                                        <span className="mr-1 text-[0.62em] font-semibold text-amber-200/90">Rp</span>
+                                        <span>{formatIdrAmount(worldGram, 2)}</span>
+                                    </p>
+                                    <span className="gold-card-price-unit shrink-0 font-semibold text-amber-200/85 tabular-nums">
+                                        {t('pages.welcome.gold_live.per_gram_short')}
+                                    </span>
+                                </div>
                                 <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3">
                                     {market?.usd_idr ? (
                                         <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] tabular-nums text-slate-200">
@@ -129,7 +135,7 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                                     <p className="mt-0.5 truncate text-xs font-bold text-white">{best.brand}</p>
                                     <p className="gold-card-price-sub mt-0.5 min-w-0 max-w-full font-bold text-amber-300 tabular-nums">
                                         <span className="mr-0.5 text-[0.72em] font-semibold text-amber-200/80">Rp</span>
-                                        <span>{formatIdrAmount(best.sell)}</span>
+                                        <span>{formatIdrAmount(best.sell, 0)}</span>
                                     </p>
                                 </div>
                                 <span className="shrink-0 rounded-full bg-amber-400/20 px-2 py-0.5 text-[9px] font-bold text-amber-200">

@@ -329,6 +329,7 @@ return [
             'kicker' => 'Kristalin TV · Live',
             'world_price' => 'World gold price',
             'per_gram' => 'per gram (IDR)',
+            'per_gram_short' => '/gram',
             'best_sell' => 'Best sell · 1g',
             'view_tv' => 'Full dashboard',
             'card_title' => 'Kristalin TV',

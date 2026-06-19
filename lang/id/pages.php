@@ -318,8 +318,9 @@ return [
         ],
         'gold_live' => [
             'kicker' => 'Kristalin TV · Live',
-            'world_price' => 'Harga emas dunia',
-            'per_gram' => 'per gram (IDR)',
+        'world_price' => 'Harga emas dunia',
+        'per_gram' => 'per gram (IDR)',
+        'per_gram_short' => '/gram',
             'best_sell' => 'Harga jual terbaik · 1g',
             'view_tv' => 'Dashboard lengkap',
             'card_title' => 'Kristalin TV',

@@ -63,14 +63,17 @@ export function formatIdr(value: number, compact = false): string {
         const formatted = jt >= 10 ? jt.toFixed(1) : jt.toFixed(2);
         return `Rp ${formatted.replace('.', ',')} jt`;
     }
-    const amount = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(value);
+    const amount = formatIdrAmount(value, 0);
     return `Rp ${amount}`;
 }
 
-/** Numeric amount only (Indonesian grouping) — for stacked Rp + value layouts */
-export function formatIdrAmount(value: number): string {
+/** Indonesian grouping — optional fixed decimal places (e.g. 2 for world gold per gram) */
+export function formatIdrAmount(value: number, fractionDigits = 0): string {
     if (!Number.isFinite(value) || value <= 0) return '—';
-    return new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(value);
+    return new Intl.NumberFormat('id-ID', {
+        minimumFractionDigits: fractionDigits,
+        maximumFractionDigits: fractionDigits,
+    }).format(value);
 }
 
 export function useKristalinTvGold(enabled = true): KristalinTvGoldState {

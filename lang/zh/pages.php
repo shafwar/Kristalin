@@ -330,6 +330,7 @@ return [
             'kicker' => 'Kristalin TV · 实时',
             'world_price' => '国际金价',
             'per_gram' => '每克（印尼盾）',
+            'per_gram_short' => '/克',
             'best_sell' => '最低售价 · 1克',
             'view_tv' => '完整看板',
             'card_title' => 'Kristalin TV',
