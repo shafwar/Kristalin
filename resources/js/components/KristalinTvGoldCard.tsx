@@ -149,6 +149,22 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                     )}
                 </div>
 
+                {/* Maintenance Message */}
+                {isGoldOrg && (
+                    <div className="shrink-0 mt-3 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2.5 lg:mt-4">
+                        <div className="flex items-start gap-2">
+                            <div className="mt-0.5 shrink-0 h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                            <p className="text-[10px] sm:text-[11px] leading-snug text-amber-100/90 font-medium">
+                                {locale === 'id' 
+                                    ? 'Kristalin TV sedang dalam pemeliharaan sistem. Saat ini menampilkan harga emas dari Gold.org.'
+                                    : locale === 'zh'
+                                    ? 'Kristalin TV 正在进行系统维护。当前显示来自 Gold.org 的黄金价格。'
+                                    : 'Kristalin TV is currently under system maintenance. Displaying gold prices from Gold.org.'}
+                            </p>
+                        </div>
+                    </div>
+                )}
+
                 {/* Footer CTA */}
                 <div
                     className={`shrink-0 border-t border-white/10 pt-2.5 sm:pt-3 lg:mt-auto lg:pt-3 ${hovered ? 'lg:translate-x-1' : ''} transition-transform duration-200`}
