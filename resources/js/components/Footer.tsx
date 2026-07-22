@@ -15,16 +15,16 @@ export default function Footer({ className = '', minimal = false }) {
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent blur-sm" />
                     <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-                            <div className="text-stone-400 text-xs sm:text-sm text-center md:text-left font-medium tracking-wide flex items-center gap-2">
-                                <span className="text-amber-500 text-[10px]">◆</span> {t('pages.footer.copyright')}
-                            </div>
-                            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-stone-400 font-medium tracking-wide">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+                            <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-6 gap-y-2 text-[11px] sm:text-sm text-stone-400 font-medium tracking-wide order-1 md:order-2">
                                 <Link href="/privacy-policy" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.privacy_policy') || 'Privacy Policy'}</Link>
                                 <span className="text-stone-700 hidden sm:inline-block">|</span>
                                 <Link href="/terms" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.terms_of_service') || 'Terms of Service'}</Link>
                                 <span className="text-stone-700 hidden sm:inline-block">|</span>
                                 <Link href="/internal-feedback" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.whistleblower') || 'Whistleblower'}</Link>
+                            </div>
+                            <div className="text-stone-500 md:text-stone-400 text-[10px] sm:text-sm text-center md:text-left font-medium tracking-wide flex items-center justify-center gap-2 order-2 md:order-1 mt-1 md:mt-0">
+                                <span className="text-amber-500 text-[9px] md:text-[10px]">◆</span> {t('pages.footer.copyright')}
                             </div>
                         </div>
                     </div>
@@ -139,14 +139,14 @@ export default function Footer({ className = '', minimal = false }) {
                     </div>
 
                     {/* Bottom Bar / Copyright */}
-                    <div className="w-full border-t border-stone-800/80 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-                        <div className="text-stone-500 text-xs sm:text-sm text-center md:text-left font-medium tracking-wide">
-                            {t('pages.footer.copyright')}
-                        </div>
-                        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs sm:text-sm text-stone-500 font-medium tracking-wide">
+                    <div className="w-full border-t border-stone-800/80 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative z-10">
+                        <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-8 gap-y-2 md:gap-y-3 text-[11px] sm:text-sm text-stone-500 font-medium tracking-wide order-1 md:order-2">
                             <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">{t('pages.footer.privacy_policy') || 'Privacy Policy'}</Link>
                             <Link href="/terms" className="hover:text-amber-400 transition-colors">{t('pages.footer.terms_of_service') || 'Terms of Service'}</Link>
                             <Link href="/internal-feedback" className="hover:text-amber-400 transition-colors">{t('pages.footer.whistleblower') || 'Whistleblower'}</Link>
+                        </div>
+                        <div className="text-stone-600 md:text-stone-500 text-[10px] sm:text-sm text-center md:text-left font-medium tracking-wide order-2 md:order-1 mt-1 md:mt-0">
+                            {t('pages.footer.copyright')}
                         </div>
                     </div>
                 </div>

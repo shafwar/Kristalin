@@ -218,17 +218,47 @@ return [
             'title1' => 'Memperkenalkan',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => 'Perusahaan tambang emas terpercaya sejak 1989',
+            'kicker' => 'PT Kristalin Ekalestari · Est. 1989',
+            'description' => 'Pertambangan emas terintegrasi, pemurnian, dan perdagangan dengan program CSR jangka panjang di Nabire dan Papua.',
         ],
         'content_set_2' => [
             'title1' => 'Mitra Terpercaya',
             'title2' => 'Eksplorasi & Perdagangan Emas',
             'subtitle' => 'Sejak 1989, berkomitmen pada pertambangan emas berkelanjutan di Papua.',
+            'kicker' => 'Pertambangan · Perdagangan · Masyarakat',
+            'description' => 'Dari eksplorasi hingga pemurnian dan pasar — operasi transparan untuk mitra, masyarakat, dan investor.',
         ],
 
         'buttons' => [
             'learn_more' => 'Pelajari Lebih Lanjut',
             'send_feedback' => 'Kirim Masukan',
             'discover_more' => 'Pelajari lebih lanjut →',
+            'see_milestones' => 'Lihat Pencapaian (Milestones)',
+        ],
+
+        'b2c_teaser' => [
+            'badge' => 'B2C',
+            'title' => 'Program pembelian emas konsumen',
+            'body' => 'Ketentuan program, waktu pengiriman, dan harga dalam satu halaman yang jelas.',
+            'cta' => 'Baca ringkasan',
+        ],
+
+        'board' => [
+            'category' => 'DEWAN DIREKSI',
+            'title' => 'Dewan Direksi',
+        ],
+
+        'gold_live' => [
+            'kicker' => 'Live Gold Price',
+            'stale' => 'Harga Tertunda',
+            'world_price' => 'Harga Dunia',
+            'offline' => 'Sistem pembaruan harga tidak dapat dijangkau. Menampilkan data terakhir yang diketahui.',
+            'retry' => 'Coba muat ulang',
+            'per_gram_short' => '/gr',
+            'best_sell' => 'Harga Beli Kembali (Buyback)',
+            'card_title' => 'Harga Emas',
+            'card_cta' => 'Lihat pergerakan harga →',
+            'card_aria' => 'Ringkasan Harga Emas',
         ],
 
         'csr' => [
@@ -244,6 +274,54 @@ return [
             'title' => 'Pembaruan Perusahaan',
             'title_short' => 'Berita',
             'view_button' => 'Lihat',
+            'highlight_badge' => 'SOROTAN',
+            'no_news_available' => 'Belum ada berita tersedia',
+            'items' => [
+                'feb26-1' => [
+                    'title' => 'Kepala Suku Besar Dewan Adat 7 Suku Wilayah Sub Suku Meyah Terima Kendaraan Operasional untuk Aktivitas Warga',
+                    'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit mobil Toyota Hilux kepada Musa Mandacan, Kepala Suku Besar Dewan Adat 7 Suku Wilayah Sub Suku Meyah, sebagai kendaraan operasional pendukung aktivitas masyarakat.',
+                ],
+                'feb26-2' => [
+                    'title' => 'Harga Emas Melesat, Kisara Capital Makin Gencar Ekspansi Ekosistem Hilir',
+                    'excerpt' => 'Kisara Capital menyatakan komitmennya dalam memperluas ekosistem industri emas dari hulu ke hilir di tahun 2026, di tengah tren harga emas yang terus naik dan menjadi sinyal positif bagi pelaku industri.',
+                ],
+                'feb26-3' => [
+                    'title' => 'PT Kristalin Ekalestari Sesalkan Kejadian Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
+                    'excerpt' => 'PT Kristalin Ekalestari menyesalkan aksi penyerangan dan pembakaran di pos Kamtibmas Nabire (21/2/2026). Lokasi insiden berada di luar area operasional perusahaan.',
+                ],
+                'feb26-4' => [
+                    'title' => 'Bentuk Solidaritas, Tim Kristalin Ekalestari Kunjungi Kedua Keluarga Korban di Nabire',
+                    'excerpt' => 'Manajemen PT Kristalin Ekalestari mengunjungi kediaman kedua korban peristiwa pos Kamtibmas di Nabire. Perusahaan menyampaikan belasungkawa mendalam dan memberikan dukungan dana duka serta pendidikan bagi anak-anak korban.',
+                ],
+                'mar26-1' => [
+                    'title' => 'Kelangkaan Emas Antam Memicu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
+                    'excerpt' => 'Di tengah kelangkaan LM Antam di pasaran ritel, Kisara Group melalui KISA24 menawarkan alternatif strategis. Produk LM KISA24 bersertifikat SNI, 999.9, 24K, tersedia dalam ukuran 1–100 gr.',
+                ],
+                'apr26-1' => [
+                    'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
+                    'excerpt' => 'Pengawasan gabungan TKA di Nabire bantu jaga situasi kondusif di area tambang Lagari, Makimi. Aktivitas pada 8 April 2026; dokumen TKA di lapangan lengkap dan valid.',
+                ],
+                'dec-3' => [
+                    'title' => 'Komitmen pada Praktik Berkelanjutan dan Manfaat Sosial Ekonomi',
+                    'excerpt' => 'PT Kristalin Ekalestari meraih pengakuan atas dedikasinya terhadap program Corporate Social Responsibility (CSR) dan praktik lingkungan yang inovatif.',
+                ],
+                'sept-1' => [
+                    'title' => 'Eksplorasi Baru Menjanjikan Temuan Besar',
+                    'excerpt' => 'Kegiatan eksplorasi terbaru kami di Papua menunjukkan potensi signifikan, memperkuat posisi kami sebagai produsen emas terdepan.',
+                ],
+                'jul-1' => [
+                    'title' => 'Investasi dalam Teknologi Pemurnian Modern',
+                    'excerpt' => 'Peningkatan pada fasilitas pemurnian kami meningkatkan efisiensi dan mengurangi jejak lingkungan, sejalan dengan komitmen keberlanjutan kami.',
+                ],
+                'aug-2' => [
+                    'title' => 'Mendukung Pendidikan Melalui Program Beasiswa',
+                    'excerpt' => 'Meluncurkan prakarsa beasiswa baru untuk siswa di wilayah operasional kami, mendorong pengembangan bakat dan pendidikan lokal.',
+                ],
+                'feb-4' => [
+                    'title' => 'Ekspansi Armada Alat Berat Berjalan Sukses',
+                    'excerpt' => 'Penambahan beberapa ekskavator dan dump truck baru telah meningkatkan kapasitas produksi sebesar 15% di Q1.',
+                ],
+            ],
         ],
         'contact' => [
             'category' => 'HUBUNGI KAMI',
@@ -2592,8 +2670,72 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         'try_again' => 'Coba Lagi',
     ],
 
+    'b2c' => [
+        'page_title' => 'Program Pembelian Emas Konsumen | Kristalin Ekalestari',
+        'meta_description' => 'Gambaran umum program pembelian emas B2C Kristalin: jadwal penyerahan LM, harga yang mengacu pada ANTAM, dan pembagian keuntungan sesuai perjanjian.',
+        'hero_kicker' => 'Program resmi perusahaan',
+        'hero_title' => 'Pembelian Emas untuk Konsumen',
+        'hero_subtitle' => 'Panduan jelas tentang cara kerja program, mencakup penyerahan logam mulia, referensi harga, dan jadwal waktu, dengan tetap menjaga kebijakan inti selaras dengan dokumen sumber.',
+        'hero_alt' => 'Operasi pertambangan dan infrastruktur industri Kristalin',
+        'cta_scroll' => 'Lihat langkah program',
+        'cta_contact' => 'Hubungi kami',
+        'section_process_kicker' => 'Dokumentasi program',
+        'section_process_title' => 'Langkah-langkah program B2C di Kristalin',
+        'bridge_intro' => 'Halaman ini memandu Anda melalui alur informasi program; setiap kutipan kebijakan di bawah ini mencerminkan struktur dan makna dokumen sumber untuk audiens Indonesia.',
+        'step0_title' => 'Langkah 0: Bentuk program',
+        'step0_lead' => 'Sebelum penjadwalan, penentuan harga, atau pembagian keuntungan, selaraskan terlebih dahulu bentuk program agar bagian-bagian selanjutnya tetap konsisten dengan dokumen yang berlaku.',
+        'verbatim_program' => 'Program ini berbentuk program pembelian emas, dengan ketentuan sebagai berikut.',
+        'step1_title' => 'Langkah 1: Penyerahan 50% pertama dari nominal',
+        'step1_lead' => 'Di sini fokusnya adalah bagaimana penyerahan untuk setengah dari nominal pembelian dijadwalkan sejak dana diterima secara administratif oleh Perusahaan; harap baca kalimat kebijakan dan ilustrasi tanggal secara penuh.',
+        'verbatim_delivery_50a' => 'Lima puluh persen (50%) dari nominal pembelian emas LM akan diserahkan 21 hari kalender setelah dana diterima oleh Perusahaan.',
+        'verbatim_example' => 'Contoh: Jika dana pembelian diterima oleh Perusahaan pada 16 Juli 2025, penyerahan emas adalah pada 6 Agustus 2025.',
+        'step2_title' => 'Langkah 2: Penyerahan sisa 50% dari nominal',
+        'step2_lead' => 'Setelah porsi pertama mengikuti mekanisme 21 hari kalender di atas, setengah sisanya mengikuti jadwal yang terikat pada akhir masa penempatan sebagaimana disepakati dalam Perjanjian.',
+        'verbatim_delivery_50b' => 'Lima puluh persen (50%) dari nominal pembelian, berupa emas LM, akan diserahkan sesuai dengan tanggal akhir masa penempatan sebagaimana disepakati dalam Perjanjian.',
+        'step3_title' => 'Langkah 3: Penentuan harga emas program',
+        'step3_lead' => 'Untuk menjaga ekspektasi harga agar selaras sejak awal, berikut adalah formula harga program resmi sebagaimana tercantum dalam materi sumber.',
+        'verbatim_pricing' => 'Harga yang ditawarkan untuk program ini adalah harga pasar ANTAM dikurangi satu persen, dengan kemurnian emas 999.',
+        'step4_title' => 'Langkah 4: Pembagian keuntungan di akhir masa penempatan',
+        'step4_lead' => 'Terakhir, berikut ini menjelaskan bagaimana pembagian keuntungan berlaku untuk nominal emas LM pada akhir masa penempatan, sebagaimana dicatat dalam Perjanjian.',
+        'verbatim_profit' => 'Anda menerima pembagian keuntungan pada nominal emas LM yang akan diterima pada akhir masa penempatan, sesuai kesepakatan yang tertera dalam Perjanjian.',
+        'footnote' => 'Ketentuan operasional lebih lanjut yang mengikat Anda dan Perusahaan tetap tunduk pada Perjanjian tertulis yang Anda tandatangani dengan Perusahaan.',
+        'bottom_prompt' => 'Ada pertanyaan tentang dokumen atau alur administrasi? Tim Kristalin tersedia melalui saluran kontak resmi kami.',
+        'practical' => [
+            'kicker' => 'Informasi praktis',
+            'title' => 'Sebelum Anda berkunjung atau bertransaksi',
+            'intro' => 'Jawaban operasional yang melengkapi langkah-langkah program di atas — lokasi, jam kerja, dokumen, dan cara memulai.',
+            'map_title' => 'ESQ Leadership Centre — Menara 165',
+            'map_subtitle' => 'Konsultasi & administrasi B2C',
+            'map_address' => 'Menara 165 Lantai 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Pasar Minggu, Jakarta Selatan 12560',
+        ],
+        'faq' => [
+            'contact_link' => 'Formulir kontak (Subjek B2C)',
+            'kristalin_tv_link' => 'Harga emas live Kristalin TV',
+            'process_link' => 'Lihat langkah program di atas',
+            'location' => [
+                'q' => 'Di mana transaksi B2C ditangani?',
+                'a' => 'Konsultasi, tinjauan dokumen, dan pemrosesan administratif untuk program pembelian emas konsumen dilakukan di kantor pusat Kristalin di Jakarta (Menara 165, TB Simatupang). Harap jadwalkan kunjungan Anda terlebih dahulu melalui saluran kontak kami.',
+            ],
+            'hours' => [
+                'q' => 'Apa jam operasional kantor?',
+                'a' => 'Senin–Jumat, 09:00–17:00 Waktu Indonesia Barat (WIB). Tutup pada hari libur nasional. Untuk janji temu di luar jam tersebut, hubungi kami terlebih dahulu.',
+            ],
+            'kyc' => [
+                'q' => 'Dokumen apa yang diperlukan (KYC)?',
+                'a' => 'KTP yang berlaku untuk individu; NPWP mungkin diminta tergantung pada nilai transaksi dan jenis perjanjian. Dokumen tambahan (bukti alamat, dokumen perusahaan untuk peserta korporat) akan dikonfirmasi oleh tim kantor kami saat Anda mendaftar — mohon tidak mengirimkan dokumen sensitif hingga diminta.',
+            ],
+            'how_to_start' => [
+                'q' => 'Bagaimana cara memulainya?',
+                'a' => 'Hubungi kami melalui nomor telepon resmi (021) 22978900, email info@kristalin.co.id, atau formulir kontak dengan subjek “B2C”. Tim kami akan memandu Anda mengenai langkah selanjutnya dan penjadwalan janji temu. Kunjungan tatap muka dilakukan berdasarkan janji temu di kantor Jakarta.',
+            ],
+        ],
+    ],
+
     'footer' => [
-        'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
+        'copyright' => '© 2026 PT Kristalin Ekalestari. Semua hak dilindungi.',
+        'privacy_policy' => 'Kebijakan Privasi',
+        'terms_of_service' => 'Syarat dan Ketentuan',
+        'whistleblower' => 'Whistleblower',
     ],
     'company_profile' => [
         'page_title' => 'Company Profile | PT Kristalin Ekalestari',
