@@ -22,30 +22,28 @@ export default function InquiryForm({ type, title, subtitle, hideHeader, variant
         setStatus('submitting');
 
         const fd = new FormData(e.currentTarget);
-        const name = fd.get('name') as string;
-        const email = fd.get('email') as string;
-        const phone = fd.get('phone') as string;
+        
+        // Remove interest from FormData as it's not expected by controller, but we use it for subject/message
         const interest = fd.get('interest') as string;
-        const message = fd.get('message') as string;
-
-        const subject = `[${type} Inquiry] ${interest}`;
-        const fullMessage = `Nomor WA/Telepon: ${phone}\nKetertarikan: ${interest}\n\nPesan Tambahan:\n${message}`;
+        const phone = fd.get('phone') as string;
+        const originalMessage = fd.get('message') as string;
+        
+        // Build new form data specifically for the controller
+        const form = new FormData();
+        form.append('name', fd.get('name') as string);
+        form.append('email', fd.get('email') as string);
+        form.append('subject', `[${type} Inquiry] ${interest}`);
+        form.append('message', `Nomor WA/Telepon: ${phone}\nKetertarikan: ${interest}\n\nPesan Tambahan:\n${originalMessage}`);
 
         try {
             const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
             
             const res = await fetch('/contact-message', {
                 method: 'POST',
+                body: form,
                 headers: {
-                    'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': csrfToken || '',
                 },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    subject,
-                    message: fullMessage,
-                }),
             });
 
             const data = await res.json();
