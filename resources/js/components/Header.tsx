@@ -63,19 +63,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
     }, []);
 
     // Close dropdown on outside click
+    // NOTE: We only attach to mousedown (not touchstart) because attaching touchstart
+    // to the document causes it to fire BEFORE the Link component's onClick on iOS Safari,
+    // which closes (unmounts) the menu drawer before Inertia can process the navigation.
+    // The mobileMenuRef containment check handles tap-outside-to-close correctly via mousedown.
     useEffect(() => {
-        function getEventTargetNode(event: MouseEvent | TouchEvent): Node | null {
-            if ('changedTouches' in event && event.changedTouches[0]) {
-                return event.changedTouches[0].target as Node | null;
-            }
-            if ('touches' in event && event.touches[0]) {
-                return event.touches[0].target as Node | null;
-            }
-            return (event as MouseEvent).target as Node | null;
-        }
-
-        function handlePointerOutside(event: MouseEvent | TouchEvent) {
-            const target = getEventTargetNode(event);
+        function handlePointerOutside(event: MouseEvent) {
+            const target = event.target as Node | null;
             if (!target) return;
 
             if (dropdownRef.current && !dropdownRef.current.contains(target)) {
@@ -95,14 +89,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         }
         if (dropdownOpen || aboutDropdownOpen || mobileMenuOpen || searchOpen) {
             document.addEventListener('mousedown', handlePointerOutside);
-            document.addEventListener('touchstart', handlePointerOutside, { passive: true });
         } else {
             document.removeEventListener('mousedown', handlePointerOutside);
-            document.removeEventListener('touchstart', handlePointerOutside);
         }
         return () => {
             document.removeEventListener('mousedown', handlePointerOutside);
-            document.removeEventListener('touchstart', handlePointerOutside);
         };
     }, [dropdownOpen, aboutDropdownOpen, mobileMenuOpen, searchOpen]);
 
@@ -702,15 +693,11 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                                 <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
-                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 lg:hover:bg-amber-50 lg:hover:text-amber-600"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        router.visit(dropdownItem.href);
-                                                        setTimeout(() => setMobileMenuOpen(false), 200);
-                                                    }}
+                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
+                                                    onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     <div className="flex items-center">
-                                                        <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 lg:group-hover:opacity-100"></div>
+                                                        <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                                         <span>{dropdownItem.label}</span>
                                                     </div>
                                                 </a>
@@ -743,20 +730,16 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         </div>
                                     </a>
                                 ) : (
-                                    <a
+                                    <Link
                                         href={item.href}
-                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 lg:hover:bg-amber-50 lg:hover:text-amber-600"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            router.visit(item.href);
-                                            setTimeout(() => setMobileMenuOpen(false), 200);
-                                        }}
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center">
-                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 lg:group-hover:opacity-100"></div>
+                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                             <span>{item.label}</span>
                                         </div>
-                                    </a>
+                                    </Link>
                                 )}
                             </div>
                         ))}
