@@ -702,11 +702,15 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                                 <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
-                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
-                                                    onClick={() => setMobileMenuOpen(false)}
+                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 lg:hover:bg-amber-50 lg:hover:text-amber-600"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        router.visit(dropdownItem.href);
+                                                        setTimeout(() => setMobileMenuOpen(false), 200);
+                                                    }}
                                                 >
                                                     <div className="flex items-center">
-                                                        <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                                        <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 lg:group-hover:opacity-100"></div>
                                                         <span>{dropdownItem.label}</span>
                                                     </div>
                                                 </a>
@@ -739,16 +743,20 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         </div>
                                     </a>
                                 ) : (
-                                    <Link
+                                    <a
                                         href={item.href}
-                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
-                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-300 lg:hover:bg-amber-50 lg:hover:text-amber-600"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            router.visit(item.href);
+                                            setTimeout(() => setMobileMenuOpen(false), 200);
+                                        }}
                                     >
                                         <div className="flex items-center">
-                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                            <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 lg:group-hover:opacity-100"></div>
                                             <span>{item.label}</span>
                                         </div>
-                                    </Link>
+                                    </a>
                                 )}
                             </div>
                         ))}
