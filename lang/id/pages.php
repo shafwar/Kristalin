@@ -2731,11 +2731,26 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         ],
     ],
 
+    // Floating Action Menu
+    'floating_menu' => [
+        'title' => 'Ada yang bisa kami bantu?',
+        'subtitle' => 'Pilih cara untuk terhubung dengan kami',
+        'call_us' => 'Hubungi Kami',
+        'contact_page' => 'Halaman Kontak',
+    ],
+
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. Semua hak dilindungi.',
         'privacy_policy' => 'Kebijakan Privasi',
         'terms_of_service' => 'Syarat dan Ketentuan',
         'whistleblower' => 'Whistleblower',
+        'explore' => 'Jelajahi',
+        'business_activities' => 'Aktivitas Bisnis',
+        'investors_partners' => 'Investor & Mitra',
+        'community_csr' => 'Komunitas (CSR)',
+        'contact_us' => 'Hubungi Kami',
+        'hq_address_line1' => 'Kantor Pusat Jakarta',
+        'hq_address_line2' => 'Indonesia',
     ],
     'company_profile' => [
         'page_title' => 'Company Profile | PT Kristalin Ekalestari',

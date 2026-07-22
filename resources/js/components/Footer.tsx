@@ -83,7 +83,7 @@ export default function Footer({ className = '', minimal = false }) {
 
                         {/* Quick Links Column */}
                         <div className="lg:col-span-3 lg:col-start-7">
-                            <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Explore</h4>
+                            <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-xs">{t('pages.footer.explore') || 'Explore'}</h4>
                             <ul className="space-y-4">
                                 <li>
                                     <Link href="/about" className="text-stone-400 hover:text-white transition-colors inline-flex items-center group text-sm md:text-base">
@@ -94,19 +94,19 @@ export default function Footer({ className = '', minimal = false }) {
                                 <li>
                                     <Link href="/business-activity" className="text-stone-400 hover:text-white transition-colors inline-flex items-center group text-sm md:text-base">
                                         <span className="w-0 h-px bg-amber-400 mr-0 transition-all duration-300 ease-out group-hover:w-6 group-hover:mr-3 opacity-0 group-hover:opacity-100"></span>
-                                        Business Activities
+                                        {t('pages.footer.business_activities') || 'Business Activities'}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/investor" className="text-stone-400 hover:text-white transition-colors inline-flex items-center group text-sm md:text-base">
                                         <span className="w-0 h-px bg-amber-400 mr-0 transition-all duration-300 ease-out group-hover:w-6 group-hover:mr-3 opacity-0 group-hover:opacity-100"></span>
-                                        Investors & Partners
+                                        {t('pages.footer.investors_partners') || 'Investors & Partners'}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/csr" className="text-stone-400 hover:text-white transition-colors inline-flex items-center group text-sm md:text-base">
                                         <span className="w-0 h-px bg-amber-400 mr-0 transition-all duration-300 ease-out group-hover:w-6 group-hover:mr-3 opacity-0 group-hover:opacity-100"></span>
-                                        Community (CSR)
+                                        {t('pages.footer.community_csr') || 'Community (CSR)'}
                                     </Link>
                                 </li>
                             </ul>
@@ -114,13 +114,13 @@ export default function Footer({ className = '', minimal = false }) {
 
                         {/* Contact Column */}
                         <div className="lg:col-span-3">
-                            <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-xs">Contact Us</h4>
+                            <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-xs">{t('pages.footer.contact_us') || 'Contact Us'}</h4>
                             <ul className="space-y-5">
                                 <li className="flex items-start gap-4 text-stone-400 text-sm md:text-base">
                                     <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stone-900 border border-stone-800">
                                         <MapPin className="h-3.5 w-3.5 text-amber-500" />
                                     </div>
-                                    <span className="leading-relaxed">Jakarta Head Office<br/>Indonesia</span>
+                                    <span className="leading-relaxed">{t('pages.footer.hq_address_line1') || 'Jakarta Head Office'}<br/>{t('pages.footer.hq_address_line2') || 'Indonesia'}</span>
                                 </li>
                                 <li className="flex items-center gap-4 text-stone-400 text-sm md:text-base">
                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stone-900 border border-stone-800">

@@ -2675,11 +2675,26 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
         'try_again' => '再试一次',
     ],
 
+    // Floating Action Menu
+    'floating_menu' => [
+        'title' => '我们能帮您什么？',
+        'subtitle' => '选择联系方式',
+        'call_us' => '致电我们',
+        'contact_page' => '联系页面',
+    ],
+
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. 版权所有。',
         'privacy_policy' => '隐私政策',
         'terms_of_service' => '服务条款',
         'whistleblower' => '举报人系统',
+        'explore' => '探索',
+        'business_activities' => '业务活动',
+        'investors_partners' => '投资者与合作伙伴',
+        'community_csr' => '社区 (CSR)',
+        'contact_us' => '联系我们',
+        'hq_address_line1' => '雅加达总部',
+        'hq_address_line2' => '印度尼西亚',
     ],
 
     'investor' => [

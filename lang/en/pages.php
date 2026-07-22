@@ -2673,12 +2673,27 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
         'no_results_hint' => 'Try a different or more specific keyword',
         'try_again' => 'Try Again'
     ],
+    // Floating Action Menu
+    'floating_menu' => [
+        'title' => 'How can we help?',
+        'subtitle' => 'Choose a way to connect with us',
+        'call_us' => 'Call Us',
+        'contact_page' => 'Contact Page',
+    ],
+
     // Footer
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. All rights reserved.',
         'privacy_policy' => 'Privacy Policy',
         'terms_of_service' => 'Terms of Service',
         'whistleblower' => 'Whistleblower',
+        'explore' => 'Explore',
+        'business_activities' => 'Business Activities',
+        'investors_partners' => 'Investors & Partners',
+        'community_csr' => 'Community (CSR)',
+        'contact_us' => 'Contact Us',
+        'hq_address_line1' => 'Jakarta Head Office',
+        'hq_address_line2' => 'Indonesia',
     ],
 
     'investor' => [

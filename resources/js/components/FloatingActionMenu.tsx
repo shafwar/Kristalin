@@ -64,8 +64,8 @@ export default function FloatingActionMenu() {
                 
                 {/* Header Container */}
                 <div className="border-b border-stone-100 px-4 py-3">
-                    <h3 className="text-sm font-bold text-stone-900">How can we help?</h3>
-                    <p className="mt-0.5 text-xs text-stone-500">Choose a way to connect with us</p>
+                    <h3 className="text-sm font-bold text-stone-900">{t('pages.floating_menu.title') || 'How can we help?'}</h3>
+                    <p className="mt-0.5 text-xs text-stone-500">{t('pages.floating_menu.subtitle') || 'Choose a way to connect with us'}</p>
                 </div>
 
                 {/* List Container */}
@@ -95,7 +95,7 @@ export default function FloatingActionMenu() {
                             <Phone className="h-4 w-4" strokeWidth={2.5} />
                         </div>
                         <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-blue-600">
-                            Call Us
+                            {t('pages.floating_menu.call_us') || 'Call Us'}
                         </span>
                     </a>
 
@@ -109,7 +109,7 @@ export default function FloatingActionMenu() {
                             <Mail className="h-4 w-4" strokeWidth={2.5} />
                         </div>
                         <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-stone-900">
-                            Contact Page
+                            {t('pages.floating_menu.contact_page') || 'Contact Page'}
                         </span>
                     </Link>
 
