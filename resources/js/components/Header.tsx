@@ -699,19 +699,17 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                             }`}
                                         >
                                             {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                                                <Link
+                                                <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
                                                     className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-200 active:bg-amber-50 active:text-amber-600 lg:hover:bg-amber-50 lg:hover:text-amber-600"
-                                                    onClick={() => {
-                                                        setTimeout(() => setMobileMenuOpen(false), 150);
-                                                    }}
+                                                    onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     <div className="flex items-center">
                                                         <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-active:opacity-100 lg:group-hover:opacity-100"></div>
                                                         <span>{dropdownItem.label}</span>
                                                     </div>
-                                                </Link>
+                                                </a>
                                             ))}
                                         </div>
                                     </div>
@@ -721,9 +719,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:bg-amber-50 active:text-amber-600 lg:hover:bg-amber-50 lg:hover:text-amber-600"
-                                        onClick={() => {
-                                            setTimeout(() => setMobileMenuOpen(false), 150);
-                                        }}
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                             <div className="flex min-w-0 flex-1 items-center">
@@ -743,18 +739,16 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         </div>
                                     </a>
                                 ) : (
-                                    <Link
+                                    <a
                                         href={item.href}
                                         className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:bg-amber-50 active:text-amber-600 lg:hover:bg-amber-50 lg:hover:text-amber-600"
-                                        onClick={() => {
-                                            setTimeout(() => setMobileMenuOpen(false), 150);
-                                        }}
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center">
                                             <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-active:opacity-100 lg:group-hover:opacity-100"></div>
                                             <span>{item.label}</span>
                                         </div>
-                                    </Link>
+                                    </a>
                                 )}
                             </div>
                         ))}
