@@ -109,10 +109,11 @@ export default function InvestorPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
                         >
-                            <Link
+                            <a
                                 href="/company-profile-report"
                                 target="_blank"
-                                className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+                                rel="noopener noreferrer"
+                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 active:scale-95 hover:scale-105"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0"></span>
                                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
@@ -120,7 +121,7 @@ export default function InvestorPage() {
                                     <Download className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1" />
                                     {t('pages.investor.download_btn') || 'Download Company Profile'}
                                 </span>
-                            </Link>
+                            </a>
                         </motion.div>
                     </motion.div>
                 </div>
@@ -227,24 +228,24 @@ export default function InvestorPage() {
                         viewport={{ once: true, margin: "-50px" }}
                         variants={slideInLeft}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="mt-20 overflow-hidden rounded-[2.5rem] bg-stone-950 px-8 py-16 text-center text-white sm:px-16 md:text-left relative"
+                        className="mt-16 md:mt-20 overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-stone-950 px-6 py-12 text-center text-white sm:px-10 md:px-16 md:py-16 md:text-left relative shadow-2xl"
                     >
                         {/* Decorative elements */}
                         <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-[100px] pointer-events-none" />
                         <div className="absolute -bottom-40 -left-20 w-80 h-80 bg-stone-700/40 rounded-full blur-[100px] pointer-events-none" />
 
-                        <div className="relative z-10 flex flex-col items-center justify-between gap-10 lg:flex-row">
+                        <div className="relative z-20 flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-10">
                             <div className="max-w-2xl">
-                                <h3 className="mb-6 text-3xl font-bold md:text-4xl">
+                                <h3 className="mb-4 text-2xl font-bold md:mb-6 md:text-4xl">
                                     {t('pages.investor.milestone_title') || 'Pencapaian Milestone Kami'}
                                 </h3>
-                                <p className="text-lg leading-relaxed text-stone-400">
+                                <p className="text-base leading-relaxed text-stone-400 md:text-lg">
                                     {t('pages.investor.milestone_desc') || 'Sejak tahun 1989, Kristalin Ekalestari terus berinovasi dan menjaga komitmen CSR di seluruh wilayah operasional, mencetak pertumbuhan yang konsisten dan berkelanjutan.'}
                                 </p>
                             </div>
                             <Link 
                                 href="/milestones" 
-                                className="group relative shrink-0 inline-flex items-center gap-2 rounded-full border border-stone-700 bg-stone-900/50 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all duration-300 hover:border-amber-500 hover:bg-amber-500"
+                                className="group relative shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-700 bg-stone-900/80 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-200 active:scale-95 hover:border-amber-500 hover:bg-amber-500"
                             >
                                 {t('pages.investor.milestone_btn') || 'Lihat Milestones Penuh'}
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
