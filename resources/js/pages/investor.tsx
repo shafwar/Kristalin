@@ -109,11 +109,9 @@ export default function InvestorPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
                         >
-                            <a
+                            <Link
                                 href="/company-profile-report"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 active:scale-95 hover:scale-105"
+                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0"></span>
                                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
@@ -121,7 +119,7 @@ export default function InvestorPage() {
                                     <Download className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1" />
                                     {t('pages.investor.download_btn') || 'Download Company Profile'}
                                 </span>
-                            </a>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 </div>
