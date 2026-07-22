@@ -10,6 +10,7 @@ import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-rea
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import InquiryForm from '../components/InquiryForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -220,6 +221,12 @@ export default function B2cPage() {
                     <p data-b2c-reveal className={clsx(reveal, 'text-center text-sm text-stone-500')}>
                         {t('pages.b2c.footnote')}
                     </p>
+                </div>
+            </section>
+
+            <section className="relative z-10 bg-stone-50 px-4 py-8 md:py-12">
+                <div data-b2c-reveal>
+                    <InquiryForm type="B2C" />
                 </div>
             </section>
 

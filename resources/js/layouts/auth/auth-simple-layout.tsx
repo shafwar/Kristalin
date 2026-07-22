@@ -16,7 +16,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                     <div className="flex flex-col items-center gap-4">
                         <Link href={route('home')} className="flex flex-col items-center gap-2 font-medium">
                             <img
-                                src={imageUrl('kristalinlogotransisi1.png')}
+                                src={imageUrl('kristalin-logo-v2.png')}
                                 alt="Kristalin Eka Lestari Logo"
                                 className="mb-1 h-9 w-9 rounded-md object-contain"
                             />

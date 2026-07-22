@@ -57,6 +57,25 @@
         <meta name="msapplication-TileImage" content="{{ image_url('apple-touch-icon.png') }}">
         <meta name="theme-color" content="#FFD700">
 
+        {{-- SEO & Open Graph --}}
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{ config('app.name', 'Kristalin Ekalestari') }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:image" content="{{ image_url('Mark-Gold.webp') }}">
+        <meta property="og:image:width" content="1200">
+
+        {{-- Structured Data --}}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Kristalin Ekalestari",
+          "url": "{{ url('/') }}",
+          "logo": "{{ image_url('Mark-Gold.webp') }}",
+          "image": "{{ image_url('Mark-Gold.webp') }}"
+        }
+        </script>
+
         @php
             $cdnOrigin = rtrim((string) env('AWS_URL', 'https://cdn.kristalin.co.id'), '/');
             if (! str_starts_with($cdnOrigin, 'http')) {

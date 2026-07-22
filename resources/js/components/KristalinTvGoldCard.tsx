@@ -20,10 +20,13 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
     const worldGram = market?.gold_idr_per_gram ?? 0;
     const best = getBestSell1g(brandPrices?.brands);
     const hasData = worldGram > 0 || best !== null;
+    
+    const isGoldOrg = market?.source === 'gold.org';
+    const targetUrl = isGoldOrg ? 'https://goldprice.org/gold-price-indonesia.html' : LIVEGOLD_URL;
 
     return (
         <a
-            href={LIVEGOLD_URL}
+            href={targetUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t('pages.welcome.gold_live.card_aria')}
@@ -51,7 +54,7 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                             aria-hidden
                         />
                         <span className="text-[10px] font-bold tracking-[0.18em] text-amber-300/95 uppercase sm:text-[11px]">
-                            {t('pages.welcome.gold_live.kicker')}
+                            {isGoldOrg ? 'GOLD.ORG · LIVE' : t('pages.welcome.gold_live.kicker')}
                         </span>
                         {stale && (
                             <span className="shrink-0 rounded-full bg-white/10 px-1.5 py-0.5 text-[8px] font-medium text-white/70">
@@ -152,7 +155,7 @@ export function KristalinTvGoldCard({ className, onMouseEnter, onMouseLeave, hov
                 >
                     <p className="flex items-center gap-1.5 text-xs font-bold text-white sm:text-sm">
                         <TrendingUp className="h-3.5 w-3.5 shrink-0 text-amber-300" aria-hidden />
-                        {t('pages.welcome.gold_live.card_title')}
+                        {isGoldOrg ? 'Gold.org' : t('pages.welcome.gold_live.card_title')}
                     </p>
                     <span className="mt-1 inline-flex items-center gap-1.5 text-[11px] font-medium text-amber-300/90 underline underline-offset-2 sm:text-xs">
                         {t('pages.welcome.gold_live.card_cta')}

@@ -1,19 +1,12 @@
 <?php
 
 return [
-    'notFound' => [
-        'title' => 'Halaman tidak ditemukan',
-        'subtitle' => 'Ooops... Halaman atau URL tidak ditemukan',
-        'backToHome' => 'Kembali ke beranda',
-        'goToSearch' => 'Cari di situs',
-    ],
     'careers' => [
         'hero' => [
             'title' => 'Kami Sedang Menerima Lamaran',
             'subtitle' => 'Bergabunglah dengan tim kami dan jadilah bagian dari masa depan pertambangan emas berkelanjutan',
             'view_positions' => 'Lihat Posisi',
             'apply_now' => 'Lamar Sekarang',
-            'badge' => 'Bergabung Bersama Kami',
         ],
         'tabs' => [
             'overview' => 'Ikhtisar',
@@ -225,29 +218,17 @@ return [
             'title1' => 'Memperkenalkan',
             'title2' => 'Kristalin Ekalestari',
             'subtitle' => 'Perusahaan tambang emas terpercaya sejak 1989',
-            'kicker' => 'PT Kristalin Ekalestari · Sejak 1989',
-            'description' => 'Tambang, pengolahan, dan perdagangan emas terintegrasi dengan program CSR jangka panjang di Nabire dan Papua.',
         ],
         'content_set_2' => [
             'title1' => 'Mitra Terpercaya',
             'title2' => 'Eksplorasi & Perdagangan Emas',
             'subtitle' => 'Sejak 1989, berkomitmen pada pertambangan emas berkelanjutan di Papua.',
-            'kicker' => 'Pertambangan · Perdagangan · Masyarakat',
-            'description' => 'Dari eksplorasi hingga pengolahan dan pasar — operasi transparan untuk mitra, masyarakat, dan investor.',
         ],
 
         'buttons' => [
             'learn_more' => 'Pelajari Lebih Lanjut',
             'send_feedback' => 'Kirim Masukan',
             'discover_more' => 'Pelajari lebih lanjut →',
-            'see_milestones' => 'Lihat Perjalanan',
-        ],
-
-        'b2c_teaser' => [
-            'badge' => 'B2C',
-            'title' => 'Program pembelian emas untuk konsumen',
-            'body' => 'Ketentuan, jadwal serah terima LM, dan acuan harga dalam satu ringkasan ringkas.',
-            'cta' => 'Baca ringkasan',
         ],
 
         'csr' => [
@@ -258,77 +239,19 @@ return [
             'category' => 'BIDANG USAHA',
             'title' => 'Portofolio Kami',
         ],
-        'board' => [
-            'category' => 'DEWAN DIREKSI',
-            'title' => 'Dewan Direksi',
-        ],
         'news' => [
             'category' => 'BERITA TERBARU',
             'title' => 'Pembaruan Perusahaan',
             'title_short' => 'Berita',
             'view_button' => 'Lihat',
-            'highlight_badge' => 'HIGHLIGHT',
-            'no_news_available' => 'Belum ada berita tersedia',
-            'items' => [
-                'feb26-1' => [
-                    'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
-                    'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
-                ],
-                'feb26-2' => [
-                    'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
-                    'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
-                ],
-                'feb26-3' => [
-                    'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
-                    'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
-                ],
-                'feb26-4' => [
-                    'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
-                    'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
-                ],
-                'mar26-1' => [
-                    'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
-                    'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
-                ],
-                'apr26-1' => [
-                    'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
-                    'excerpt' => 'Operasi gabungan pengawasan TKA di Nabire menjaga situasi kondusif di kawasan pertambangan Lagari, Makimi. Kegiatan 8 April 2026; dokumen TKA di lokasi lengkap dan berlaku.',
-                ],
-                'dec-3' => [
-                    'title' => 'Dari Sawah ke Pasar: Pabrik Penggilingan Padi di Boyolali Perkuat Kesejahteraan Petani',
-                    'excerpt' => 'Pabrik penggilingan padi di Desa Cepokosawit, Boyolali, resmi memulai operasinya, membawa harapan baru bagi petani dengan meningkatkan nilai panen mereka dan memastikan akses pasar.',
-                ],
-                'sept-1' => [
-                    'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada',
-                    'excerpt' => 'Ekspansi strategis bisnis alat berat di sektor pertambangan di wilayah Indonesia Timur. Akuisisi ini memperkuat posisi kami di pasar alat berat dan meningkatkan kemampuan operasional.',
-                ],
-                'jul-1' => [
-                    'title' => 'Distribusi Sembako untuk Masyarakat Papua Tengah',
-                    'excerpt' => 'PT Kristalin Ekalestari melakukan distribusi sembako kepada masyarakat Papua Tengah sebagai bagian dari program CSR berkelanjutan untuk meningkatkan kesejahteraan masyarakat sekitar.',
-                ],
-                'aug-2' => [
-                    'title' => 'Rumah Layak untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
-                    'excerpt' => 'Sebagai rangkaian peringatan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi. Program ini mencerminkan semangat kemerdekaan melalui pemberdayaan masyarakat.',
-                ],
-            ],
+        ],
+        'contact' => [
+            'category' => 'HUBUNGI KAMI',
+            'title' => 'Kontak Kami',
         ],
         'business_activities' => [
             'title' => 'Aktivitas Bisnis',
             'find_out_more' => 'Pelajari lebih lanjut →',
-        ],
-        'gold_live' => [
-            'kicker' => 'Kristalin TV · Live',
-        'world_price' => 'Harga emas dunia',
-        'per_gram' => 'per gram (IDR)',
-        'per_gram_short' => '/gram',
-            'best_sell' => 'Harga jual terbaik · 1g',
-            'view_tv' => 'Dashboard lengkap',
-            'card_title' => 'Kristalin TV',
-            'card_cta' => 'Buka dashboard emas live →',
-            'card_aria' => 'Buka dashboard emas live Kristalin TV',
-            'offline' => 'Data harga sementara tidak tersedia.',
-            'retry' => 'Coba lagi',
-            'stale' => 'Cache',
         ],
         'footer' => [
             'copyright' => '© 2025 PT Kristalin Eka Lestari.',
@@ -409,54 +332,6 @@ return [
                 'high' => '📕 Tinggi',
                 'urgent' => '🚨 Mendesak',
             ],
-        ],
-    ],
-
-    'internal_feedback' => [
-        'page_title' => 'Masukan Internal',
-        'contact_page_intro' => 'Untuk masukan internal atau komunikasi bisnis, gunakan',
-        'hero' => [
-            'title' => 'Masukan Internal',
-            'subtitle' => 'Sampaikan masukan Anda kepada kami secara profesional dan terjamin kerahasiaannya.',
-            'description' => 'Kami menghargai komunikasi yang terbuka. Gunakan formulir ini untuk mengirim masukan, saran, atau pertanyaan terkait proses bisnis dan hal-hal di lingkungan kerja.',
-        ],
-        'form' => [
-            'full_name' => 'Nama Lengkap',
-            'email' => 'Email',
-            'phone' => 'Telepon',
-            'category' => 'Kategori',
-            'description' => 'Pesan / Deskripsi',
-            'attachment' => 'Lampiran',
-            'optional' => '(Opsional)',
-            'required' => '(Wajib)',
-            'confirm_accurate' => 'Saya menegaskan bahwa informasi yang diberikan akurat dan disampaikan dengan itikad baik.',
-            'submit_anonymously' => 'Kirim tanpa mencantumkan data kontak saya',
-            'submit' => 'Kirim',
-            'submitting' => 'Mengirim...',
-            'reset' => 'Reset',
-            'placeholders' => [
-                'name' => 'Nama Anda',
-                'email' => 'email@anda.com',
-                'phone' => 'Nomor telepon',
-                'description' => 'Silakan sampaikan masukan, saran, atau pertanyaan Anda secara rinci. Kami akan meninjau dan merespons sesuai kebutuhan.',
-            ],
-            'categories' => [
-                'general' => 'Pertanyaan Umum',
-                'process_improvement' => 'Peningkatan Proses',
-                'workplace' => 'Lingkungan Kerja',
-                'safety' => 'Keselamatan & Kesehatan',
-                'harassment' => 'Pelecehan / Diskriminasi',
-                'policy' => 'Kebijakan & Kepatuhan',
-                'management' => 'Masalah Manajemen',
-                'facilities' => 'Fasilitas',
-                'ethics' => 'Etika Kerja & Integritas',
-                'suggestion' => 'Saran & Masukan',
-                'other' => 'Lainnya',
-            ],
-            'select_category' => 'Pilih kategori...',
-            'success_message' => 'Pesan Anda telah berhasil dikirim. Tim kami akan meninjau dan menghubungi Anda jika diperlukan.',
-            'error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
-            'file_not_received' => 'File tidak diterima. Mungkin melebihi batas server (maks. 10 MB). Coba file lebih kecil atau hubungi dukungan.',
         ],
     ],
 
@@ -686,17 +561,6 @@ return [
         'subtitle' => 'Pencapaian Perusahaan',
         'main_description' => 'Beginilah cara kami memulai dan memulai perjalanan untuk menjadi hebat.',
 
-        'timeline_range' => '1989 – 2025',
-        'active_year_label' => 'Sorotan',
-        'empty_filter' => 'Tidak ada milestone untuk filter ini.',
-        'filters' => [
-            'all' => 'Semua',
-            'legal' => 'Legal',
-            'production' => 'Produksi',
-            'csr' => 'CSR',
-            'investment' => 'Investasi',
-            'foundation' => 'Pendirian',
-        ],
 
         'company_stats' => [
             'established' => 'Didirikan',
@@ -772,70 +636,152 @@ return [
 
         'milestones_data' => [
             '2020-2025' => [
-                '0' => [
-                    'title' => 'Produksi Penuh Dimulai',
-                    'description' => 'PT Kristalin Eka Lestari memasuki tahap produksi penuh, dengan fokus pada efisiensi operasional dan pengembangan berkelanjutan.',
+                [
+                    'title' => 'Pencapaian Produksi Emas Tertinggi',
+                    'description' => 'Mencapai produksi emas tahunan tertinggi dalam sejarah perusahaan, melampaui 10 ton emas murni dan memperkuat posisi Kristalin Ekalestari sebagai perusahaan pertambangan emas terkemuka di Indonesia.',
                 ],
-                '1' => [
-                    'title' => 'Pendaftaran MODI & MOMI',
-                    'description' => 'PT Kristalin Eka Lestari resmi terdaftar dalam sistem MODI & MOMI untuk empat IUP: 108 dan 112.',
+                [
+                    'title' => 'Ekspansi Operasi Penambangan Emas Berkelanjutan',
+                    'description' => 'Menyelesaikan ekspansi operasi penambangan emas berkelanjutan di Nabire, Papua, meningkatkan kapasitas produksi sambil mempertahankan standar lingkungan dan masyarakat yang ketat.',
                 ],
-                '2' => [
-                    'title' => 'IUP Produksi 108 & 112 Diperoleh',
-                    'description' => 'PT Kristalin Eka Lestari memperoleh izin IUP Produksi 108 dan 112, menandai peralihan dari tahap eksplorasi menuju tahap produksi.',
+                [
+                    'title' => 'Ekspansi Kemitraan Strategis',
+                    'description' => 'Menandatangani perjanjian kerjasama komprehensif dengan perusahaan teknologi pertambangan China terkemuka, membawa kemampuan pengolahan kelas dunia ke operasi Papua kami.',
+                ],
+                [
+                    'title' => 'Pencapaian Sertifikasi Lingkungan',
+                    'description' => 'Meraih sertifikasi ISO 14001 Manajemen Lingkungan, memperkuat komitmen kami terhadap praktik pertambangan berkelanjutan dan pengelolaan lingkungan di Papua.',
+                ],
+                [
+                    'title' => 'Ekspansi Kapasitas Produksi',
+                    'description' => 'Menyelesaikan proyek ekspansi infrastruktur besar, menggandakan kapasitas pengolahan emas sambil mempertahankan standar lingkungan dan keselamatan yang ketat.',
+                ],
+                [
+                    'title' => 'Inisiatif Transformasi Digital',
+                    'description' => 'Meluncurkan program transformasi digital komprehensif, mengimplementasikan sensor IoT dan sistem monitoring real-time di seluruh operasi pertambangan.',
                 ],
             ],
             '2015-2019' => [
-                '0' => [
-                    'title' => 'Kegiatan Eksplorasi dan Uji Coba Produksi',
-                    'description' => 'PT Kristalin Eka Lestari melakukan kegiatan eksplorasi berdasarkan izin IUP dan secara bertahap memulai uji coba produksi di beberapa wilayah tambang.',
+                [
+                    'title' => 'Peluncuran Program Pengembangan Masyarakat',
+                    'description' => 'Mendirikan program pengembangan masyarakat komprehensif di Nabire, berfokus pada pendidikan, kesehatan, dan inisiatif pemberdayaan ekonomi lokal.',
                 ],
-                '1' => [
-                    'title' => 'CSR: Pembagian Sembako',
-                    'description' => 'Pembagian sembako dan bantuan sosial.',
+                [
+                    'title' => 'Kemitraan Teknologi Korea',
+                    'description' => 'Membentuk aliansi strategis dengan produsen peralatan pertambangan Korea, membawa teknologi otomatisasi canggih ke proses ekstraksi emas kami.',
                 ],
-                '2' => [
-                    'title' => 'CSR: Pembangunan Rumah',
-                    'description' => 'Pembangunan rumah dan fasilitas umum.',
+                [
+                    'title' => 'Pengakuan Keunggulan Keselamatan',
+                    'description' => 'Mencapai tonggak zero-accident selama 1000+ hari kerja berturut-turut, menetapkan standar keselamatan industri baru di sektor pertambangan Indonesia.',
                 ],
-                '3' => [
-                    'title' => 'CSR: Program Kesehatan dan Pendidikan',
-                    'description' => 'Program kesehatan dan pendidikan masyarakat.',
+                [
+                    'title' => 'Sertifikasi Pertambangan Berkelanjutan',
+                    'description' => 'Menjadi perusahaan pertambangan pertama di Papua yang meraih sertifikasi pertambangan berkelanjutan, menetapkan benchmark lingkungan baru untuk wilayah ini.',
                 ],
-                '4' => [
-                    'title' => 'CSR: Perbaikan Irigasi Air',
-                    'description' => 'Perbaikan irigasi air di wilayah SP I & SP II, Kampung Legari, Papua.',
+                [
+                    'title' => 'Kolaborasi Investasi China',
+                    'description' => 'Mengamankan investasi besar dari mitra China, memungkinkan ekspansi signifikan operasi pertambangan dan akuisisi peralatan canggih.',
                 ],
             ],
             '2010-2014' => [
-                '0' => [
-                    'title' => 'Kemitraan Investasi Eksternal',
-                    'description' => 'Investor eksternal bergabung dan berkontribusi dalam pengembangan bisnis PT Kristalin Eka Lestari.',
+                [
+                    'title' => 'Fasilitas Pengolahan Canggih',
+                    'description' => 'Mengoperasikan fasilitas pengolahan emas canggih, menggabungkan praktik terbaik internasional dan teknologi perlindungan lingkungan.',
                 ],
-                '1' => [
-                    'title' => 'Izin IUP Eksplorasi Diperoleh',
-                    'description' => 'PT Kristalin Eka Lestari memperoleh izin IUP Eksplorasi, yang menjadi dasar hukum untuk melakukan kegiatan eksplorasi lebih lanjut.',
+                [
+                    'title' => 'Inisiatif Ekspansi Regional',
+                    'description' => 'Memperluas operasi ke konsesi pertambangan baru di Papua, mendiversifikasi lokasi ekstraksi dan meningkatkan kapasitas produksi keseluruhan.',
                 ],
-                '2' => [
-                    'title' => 'Kontribusi Masyarakat Melalui Humas',
-                    'description' => 'PT Kristalin Eka Lestari aktif berkontribusi bagi masyarakat Papua melalui kerja sama dengan berbagai pihak, terutama melalui peran Humas perusahaan.',
+                [
+                    'title' => 'Standar Kualitas Internasional',
+                    'description' => 'Meraih sertifikasi manajemen kualitas ISO 9001, mendemonstrasikan komitmen terhadap standar keunggulan operasional internasional.',
+                ],
+                [
+                    'title' => 'Program Pengembangan Tenaga Kerja',
+                    'description' => 'Meluncurkan program pelatihan komprehensif untuk tenaga kerja lokal, menciptakan peluang kerja terampil untuk komunitas Papua.',
+                ],
+                [
+                    'title' => 'Akuisisi Peralatan Modern',
+                    'description' => 'Berinvestasi dalam peralatan dan mesin pertambangan modern, secara signifikan meningkatkan efisiensi operasional dan standar keselamatan.',
                 ],
             ],
             '2005-2009' => [
-                '0' => [
-                    'title' => 'Kuasa Tambang Diperoleh',
-                    'description' => 'PT Kristalin Eka Lestari memperoleh kuasa tambang sebagai langkah awal kegiatan eksplorasi sumber daya mineral.',
+                [
+                    'title' => 'Sistem Manajemen Lingkungan',
+                    'description' => 'Mengimplementasikan sistem manajemen lingkungan komprehensif, menetapkan program rehabilitasi dan konservasi untuk area pertambangan.',
+                ],
+                [
+                    'title' => 'Pencapaian Tonggak Produksi',
+                    'description' => 'Mencapai tonggak produksi emas yang signifikan, menetapkan PT Kristalin Ekalestari sebagai pemain utama dalam industri pertambangan Indonesia.',
+                ],
+                [
+                    'title' => 'Pengembangan Kemitraan Lokal',
+                    'description' => 'Memperkuat kemitraan dengan komunitas lokal Papua, menciptakan program keuntungan bersama dan inisiatif pembangunan berkelanjutan.',
+                ],
+                [
+                    'title' => 'Program Keunggulan Operasional',
+                    'description' => 'Meluncurkan program keunggulan operasional yang berfokus pada efisiensi, keselamatan, dan tanggung jawab lingkungan di seluruh operasi pertambangan.',
+                ],
+                [
+                    'title' => 'Proyek Pengembangan Infrastruktur',
+                    'description' => 'Menyelesaikan proyek pengembangan infrastruktur besar, meningkatkan jalan akses dan membangun fasilitas penting untuk operasi pertambangan.',
+                ],
+            ],
+            '2000-2004' => [
+                [
+                    'title' => 'Ekspansi Konsesi Pertambangan',
+                    'description' => 'Mengamankan konsesi pertambangan tambahan di wilayah Papua, memperluas jejak operasional dan meningkatkan portofolio sumber daya mineral.',
+                ],
+                [
+                    'title' => 'Modernisasi Teknologi',
+                    'description' => 'Memulai program modernisasi teknologi komprehensif, meningkatkan peralatan ekstraksi dan pengolahan untuk efisiensi yang lebih baik.',
+                ],
+                [
+                    'title' => 'Implementasi Protokol Keselamatan',
+                    'description' => 'Menetapkan protokol keselamatan komprehensif dan program pelatihan, memprioritaskan keselamatan pekerja dan manajemen risiko operasional.',
+                ],
+                [
+                    'title' => 'Produksi Emas Pertama',
+                    'description' => 'Mencapai produksi emas komersial pertama dari operasi Nabire, menandai tonggak penting dalam pengembangan perusahaan.',
+                ],
+                [
+                    'title' => 'Kesuksesan Eksplorasi',
+                    'description' => 'Menyelesaikan fase eksplorasi yang sukses, mengkonfirmasi cadangan emas signifikan di wilayah Papua dan memvalidasi strategi pengembangan bisnis.',
                 ],
             ],
             '1989-1999' => [
-                '0' => [
+                [
+                    'title' => 'Akuisisi Izin Pertambangan',
+                    'description' => 'Berhasil memperoleh izin pertambangan komprehensif untuk operasi Papua, meletakkan fondasi untuk kegiatan pertambangan emas skala besar.',
+                ],
+                [
+                    'title' => 'Fase Eksplorasi Awal',
+                    'description' => 'Memulai eksplorasi geologis ekstensif di wilayah Papua, melakukan survei detail dan studi kelayakan untuk potensi pertambangan emas.',
+                ],
+                [
+                    'title' => 'Masuk Wilayah Papua',
+                    'description' => 'Mendirikan basis operasi di Nabire, Papua, memulai penilaian komprehensif sumber daya mineral regional dan peluang pertambangan.',
+                ],
+                [
                     'title' => 'Pendirian Perusahaan',
-                    'description' => 'PT Kristalin Eka Lestari resmi berdiri dan memulai kegiatan usaha di bidang pertambangan.',
+                    'description' => 'PT Kristalin Ekalestari resmi didirikan di Jakarta sebagai perusahaan pertambangan yang berfokus pada eksplorasi dan ekstraksi sumber daya alam di Indonesia.',
                 ],
             ],
         ],
     ],
 
+
+    'contact' => [
+        'title' => 'Hubungi Kami',
+        'description' => 'Hubungi tim kami untuk pertanyaan tentang layanan dan peluang bisnis kami.',
+        'form_name' => 'Nama Lengkap',
+        'form_email' => 'Alamat Email',
+        'form_message' => 'Pesan',
+        'form_submit' => 'Kirim Pesan',
+        'address_title' => 'Alamat Kami',
+        'phone_title' => 'Telepon',
+        'email_title' => 'Email',
+    ],
 
     'core_values' => [
         'page_title' => 'Nilai-Nilai Inti Kami',
@@ -926,75 +872,6 @@ return [
         ],
     ],
 
-    'b2c' => [
-        'page_title' => 'Program Pembelian Emas B2C | Kristalin Ekalestari',
-        'meta_description' => 'Ringkasan alur program pembelian emas B2C Kristalin: jadwal serah terima LM, penetapan harga ANTAM, dan bagi hasil sesuai perjanjian.',
-        'hero_kicker' => 'Program resmi perusahaan',
-        'hero_title' => 'Pembelian Emas untuk Konsumen',
-        'hero_subtitle' => 'Transparansi alur kerja, serah terima logam mulia, dan acuan harga dirangkum dalam langkah agar mudah dipahami, dengan kutipan ketentuan inti persis seperti dokumen sumber.',
-        'hero_alt' => 'Operasi industri dan infrastruktur pertambangan Kristalin',
-        'cta_scroll' => 'Lihat langkah program',
-        'cta_contact' => 'Hubungi kami',
-        'section_process_kicker' => 'Dokumentasi program',
-        'section_process_title' => 'Rangkaian langkah B2C Kristalin',
-        'bridge_intro' => 'Halaman ini memandu Anda melalui alur informasi program; setiap kutipan ketentuan inti di bawah ini menggunakan redaksi persis dari dokumentasi program tanpa mengubah pilihan kata.',
-        'step0_title' => 'Langkah 0: Pengenalan bentuk program',
-        'step0_lead' => 'Sebelum membahas penjadwalan serah terima, harga, atau bagi hasil, samakan terlebih dahulu definisi program sehingga pembahasan berikutnya tetap selaras dengan dokumen yang menjadi acuan.',
-        'verbatim_program' => 'Program berupa Pembelian Emas dengan ketentuan sebagai berikut.',
-        'step1_title' => 'Langkah 1: Serah terima bagian nominal pertama (50%)',
-        'step1_lead' => 'Pada tahap ini, fokusnya adalah memahami bagaimana jadwal serah terima untuk separuh nominal pembelian diatur sejak dana secara administratif diterima oleh Perusahaan; silakan baca kalimat ketentuan berikut beserta contoh tanggal secara utuh.',
-        'verbatim_delivery_50a' => '50% dari Nominal Pembelian Emas LM akan diserahkan 21 hari kalender setelah Dana diterima oleh Perusahaan.',
-        'verbatim_example' => 'Contoh: Jika Dana Pembelian diterima oleh Perusahaan tanggal 16 Juli 2025, maka serah terima emas pada tanggal 6 Agustus 2025.',
-        'step2_title' => 'Langkah 2: Serah terima bagian nominal kedua (50%)',
-        'step2_lead' => 'Setelah bagian pertama mengikuti mekanisme 21 hari kalender di atas, separuh nominal berikutnya mengikuti jadwal yang mengacu pada isi Perjanjian terkait periode penempatan.',
-        'verbatim_delivery_50b' => '50% dari Nominal Pembelian, Emas LM akan diserahkan sesuai dengan tanggal berakhirnya periode penempatan yang sudah disepakati dalam Perjanjian.',
-        'step3_title' => 'Langkah 3: Dasar penetapan harga emas program',
-        'step3_lead' => 'Agar ekspektasi harga antara Anda dan Perusahaan konsisten sejak awal, berikut rumusan harga resmi program sebagaimana tercantum tanpa mengubah frasa aslinya.',
-        'verbatim_pricing' => 'Harga yg diberikan untuk program ini adalah Harga Pasar ANTAM dikurangi satu persen dengan kadar emas 999.',
-        'step4_title' => 'Langkah 4: Mekanisme bagi hasil di akhir periode',
-        'step4_lead' => 'Pada penutupan pembahasan, berikut rumusan mengenai bagi hasil di akhir periode penempatan sebagaimana tertuang dalam dokumen; mohon baca kalimat berikut sebagai penegasan resmi bagian tersebut.',
-        'verbatim_profit' => 'Mendapatkan bagi hasil dari nominal Emas LM yang akan diterima di akhir periode penempatan sesuai dengan kesepakatan yang tertuang dalam Perjanjian.',
-        'footnote' => 'Ketentuan operasional lain yang mengikat Anda dan Perusahaan tetap mengacu pada Perjanjian tertulis yang telah ditandatangani bersama.',
-        'bottom_prompt' => 'Masih ada pertanyaan mengenai dokumen atau alur administrasi? Tim Kristalin siap membantu melalui saluran resmi.',
-        'practical' => [
-            'kicker' => 'Informasi praktis',
-            'title' => 'Sebelum kunjungan atau transaksi',
-            'intro' => 'Jawaban operasional yang melengkapi langkah program di atas — lokasi, jam kerja, dokumen, dan cara memulai.',
-            'map_title' => 'ESQ Leadership Centre — Menara 165',
-            'map_subtitle' => 'Konsultasi & administrasi B2C',
-            'map_address' => 'Menara 165 Lantai 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Ps. Minggu, Jakarta Selatan 12560',
-        ],
-        'faq' => [
-            'contact_link' => 'Formulir kontak (subjek B2C)',
-            'kristalin_tv_link' => 'Harga emas live Kristalin TV',
-            'process_link' => 'Lihat langkah program di atas',
-            'location' => [
-                'q' => 'Di mana transaksi B2C dilakukan?',
-                'a' => 'Konsultasi, peninjauan dokumen, dan proses administrasi program pembelian emas konsumen dilakukan di kantor pusat Kristalin, Jakarta (Menara 165, TB Simatupang). Mohon atur kunjungan terlebih dahulu melalui saluran kontak resmi.',
-            ],
-            'hours' => [
-                'q' => 'Jam operasional kantor?',
-                'a' => 'Senin–Jumat, 09.00–17.00 WIB. Tutup pada hari libur nasional. Untuk janji di luar jam tersebut, hubungi kami terlebih dahulu.',
-            ],
-            'kyc' => [
-                'q' => 'Dokumen apa yang diperlukan (KYC)?',
-                'a' => 'KTP valid untuk perorangan; NPWP dapat diminta sesuai nilai transaksi dan jenis perjanjian. Dokumen tambahan (bukti domisili, dokumen perusahaan untuk peserta korporat) akan dikonfirmasi tim kantor saat pendaftaran minat — jangan kirim dokumen sensitif sebelum diinstruksikan.',
-            ],
-            'how_to_start' => [
-                'q' => 'Bagaimana cara memulai?',
-                'a' => 'Hubungi kami melalui telepon (021) 22978900, email info@kristalin.co.id, atau formulir kontak dengan subjek “B2C”. Tim kami akan memandu langkah berikutnya dan penjadwalan janji. Kunjungan langsung by appointment di kantor Jakarta.',
-            ],
-            'price' => [
-                'q' => 'Bagaimana harga emas ditetapkan?',
-                'a' => 'Harga program mengacu ketentuan pada langkah di atas (referensi pasar ANTAM). Untuk indikasi harga harian, lihat',
-            ],
-            'delivery' => [
-                'q' => 'Bagaimana skema serah terima 50%?',
-                'a' => 'Jadwal serah terima dua tahap (50% + 50%) dijelaskan lengkap di bagian langkah program. Ringkasnya: bagian pertama 21 hari kalender setelah dana diterima; sisanya mengikuti tanggal akhir periode penempatan dalam Perjanjian Anda.',
-            ],
-        ],
-    ],
-
     'line_of_business' => [
         'page_title' => 'Bidang Usaha',
         'hero_title_1' => 'Portofolio',
@@ -1074,10 +951,10 @@ return [
             'title' => 'Mitra Terpercaya Kami',
         ],
         'gold_price' => [
-            'header' => 'HARGA EMAS INDONESIA',
+            'header' => 'HARGA EMAS GLOBAL',
             'title_line1' => 'Informasi Harga Emas',
-            'title_line2' => 'Indonesia',
-            'description' => 'Tetap update dengan tren harga emas Indonesia terbaru. Untuk harga emas, perak, dan logam mulia real-time dalam Rupiah Indonesia, klik di bawah untuk melihat grafik harga emas resmi Indonesia.',
+            'title_line2' => 'Harian / Mingguan',
+            'description' => 'Tetap update dengan tren harga emas global terbaru. Untuk harga emas, perak, dan logam mulia real-time, klik di bawah untuk melihat grafik harga emas resmi.',
             'button' => 'LIHAT SELENGKAPNYA',
             'alt_text' => 'Operasi Pertambangan Emas',
         ],
@@ -1136,6 +1013,11 @@ return [
             'learn_more_silver' => 'Pelajari lebih lanjut tentang operasi perak',
             'learn_more_other_metals' => 'Pelajari lebih lanjut tentang eksplorasi lainnya',
         ],
+        'location' => [
+            'header' => 'LOKASI KAMI',
+            'title' => 'Lokasi Pertambangan Strategis',
+            'description_part1' => 'PT Kristalin Ekalestari melakukan eksplorasi emas di sepanjang Sungai Musairo, di Distrik Makimi, Nabire, Papua. Lokasi eksplorasi mencakup area sepanjang 60 km menuju kota Nabire di sebelah timur. Lokasi kami dapat dijangkau dengan transportasi darat selama 1,5 hingga 2 jam, hingga mencapai Desa Legari/SP-1, kemudian menggunakan kendaraan 4x4 khusus sepanjang Sungai Musairo selama 10 km yang memakan waktu sekitar 0,5 jam.',
+        ],
         'why_choose_us' => [
             'header' => 'MENGAPA MEMILIH KAMI',
             'title' => 'Pengalaman Bekerja dengan Industri Global',
@@ -1156,6 +1038,10 @@ return [
         'sustainable_excellence' => [
             'title' => 'Keunggulan Pertambangan Berkelanjutan',
             'description' => 'Pendekatan terdiversifikasi kami di bidang emas, perak, dan logam lainnya memastikan pemanfaatan sumber daya yang komprehensif sambil mempertahankan standar lingkungan dan keselamatan tertinggi di seluruh operasi di cekungan Sungai Musairo yang kaya mineral.',
+        ],
+        'achievements' => [
+            'title' => 'Pencapaian Kami',
+            'subtitle' => 'Rekam jejak terbukti dalam keunggulan operasi pertambangan berkelanjutan dan pengembangan masyarakat.',
         ],
         'location' => [
             'header' => 'LOKASI KAMI',
@@ -1354,111 +1240,30 @@ return [
         'gallery_sections' => [
             [
                 'title' => 'Kegiatan CSR 2025 - Update Terbaru',
-                'description' => 'Kegiatan tanggung jawab sosial perusahaan terbaru oleh PT Kristalin Ekalestari termasuk penyaluran sembako, pembangunan infrastruktur, dan program pemberdayaan masyarakat.',
+                'description' => 'Kegiatan tanggung jawab sosial perusahaan terbaru oleh PT Kristalin Ekalestari termasuk distribusi makanan, pengembangan infrastruktur, dan program pemberdayaan masyarakat.',
             ],
             [
                 'title' => 'Program Pengembangan Masyarakat 2025',
-                'description' => 'Program pengembangan masyarakat yang komprehensif termasuk pelatihan komputer, bantuan peralatan musik, pelatihan pertanian organik, dan pembangunan taman bermain anak.',
+                'description' => 'Program pengembangan masyarakat komprehensif termasuk pelatihan komputer, bantuan peralatan musik, pelatihan pertanian organik, dan pembangunan taman bermain anak-anak.',
             ],
             [
-                'title' => 'Program Penyaluran Sembako - Februari 2025',
-                'description' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada warga Desa Nifasi sebagai bagian dari program CSR berkelanjutan, memprioritaskan janda lansia dan kesejahteraan masyarakat.',
+                'title' => '3.000 Bahan Makanan untuk Masyarakat Poso',
+                'description' => 'PT Kristalin Ekalestari mendistribusikan 3.000 bahan makanan untuk membantu masyarakat Poso yang membutuhkan, sebagai bentuk tanggung jawab sosial perusahaan.',
             ],
             [
-                'title' => 'Program Pendanaan Pendidikan - Juni 2025',
-                'description' => 'PT Kristalin Ekalestari memberikan bantuan dana pendidikan senilai Rp18.240.000 untuk 8 pelajar SMAN 6 Nabire asal Desa Nifasi, memastikan pendidikan mereka hingga lulus.',
+                'title' => 'Kegiatan CSR untuk Papua',
+                'description' => 'Berbagai kegiatan sosial untuk masyarakat Papua, mulai dari bantuan pangan, pendidikan, hingga dukungan untuk kegiatan olahraga dan sosial.',
             ],
             [
-                'title' => 'Penyaluran Sembako Bulanan - Juli 2025',
-                'description' => 'Penyaluran bulanan yang konsisten sebanyak 506 paket sembako kepada 506 Kepala Keluarga di Desa Nifasi, dengan 50% diprioritaskan untuk janda lansia dan tempat ibadah.',
+                'title' => 'Distribusi Makanan untuk Karyawan \'Menara 165\'',
+                'description' => 'Distribusi paket makanan kepada karyawan Menara 165 sebagai bentuk dukungan perusahaan di masa-masa sulit.',
             ],
             [
-                'title' => 'Bantuan Sembako Berkelanjutan - Agustus 2025',
-                'description' => 'PT Kristalin Ekalestari melanjutkan komitmen CSR dengan menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di Nabire, menunjukkan solidaritas berkelanjutan untuk kesejahteraan masyarakat.',
-            ],
-            [
-                'title' => 'Program Pembangunan Rumah - 2025',
-                'description' => 'PT Kristalin Ekalestari membangun rumah layak huni untuk buruh harian dan nelayan di Desa Nifasi, memberikan solusi perumahan berkelanjutan sebagai bagian dari program CSR yang komprehensif.',
-            ],
-            [
-                'title' => 'Program Penyaluran Sembako - Februari 2025',
-                'description' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada warga Desa Nifasi sebagai bagian dari program CSR berkelanjutan, memprioritaskan janda lansia dan kesejahteraan masyarakat.',
-            ],
-            [
-                'title' => 'Program Pendanaan Pendidikan - Juni 2025',
-                'description' => 'PT Kristalin Ekalestari memberikan pendanaan pendidikan senilai Rp18.240.000 untuk 8 pelajar SMAN 6 Nabire asal Desa Nifasi, memastikan pendidikan mereka hingga lulus.',
-            ],
-            [
-                'title' => 'Penyaluran Sembako Bulanan - Juli 2025',
-                'description' => 'Penyaluran konsisten 506 paket sembako kepada 506 keluarga di Desa Nifasi setiap bulan, dengan 50% diprioritaskan untuk janda lansia dan tempat ibadah.',
-            ],
-            [
-                'title' => 'Bantuan Sembako Berkelanjutan - Agustus 2025',
-                'description' => 'PT Kristalin Ekalestari melanjutkan komitmen CSR dengan menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di Nabire, menunjukkan solidaritas berkelanjutan untuk kesejahteraan masyarakat.',
+                'title' => 'Distribusi Makanan untuk Papua',
+                'description' => 'Distribusi bantuan pangan dan kebutuhan pokok untuk masyarakat Papua di berbagai desa dan wilayah.',
             ],
         ],
         'csr_activity_label' => 'Kegiatan CSR',
-        'news' => [
-            'title_line1' => 'Berita CSR',
-            'title_line2' => '& Update',
-            'description' => 'Ikuti perkembangan terbaru kegiatan CSR dan program pengembangan masyarakat kami',
-            'feb_7' => [
-                'title' => 'PT Kristalin Ekalestari Salurkan 506 Paket Sembako untuk Warga Desa Nifasi',
-                'excerpt' => 'PT Kristalin Ekalestari memulai tahun 2025 dengan program CSR berkelanjutan, menyalurkan 506 paket sembako kepada masyarakat Desa Nifasi dan sekitarnya.',
-            ],
-            'jun_1' => [
-                'title' => 'Dana Pendidikan Pelajar SMAN 6 Nabire Asal Desa Nifasi Dijamin Hingga Lulus',
-                'excerpt' => 'PT Kristalin Ekalestari menanggung fasilitas dana pendidikan bagi delapan pelajar SMAN 6 Nabire asal Desa Nifasi hingga menyelesaikan studi.',
-            ],
-            'jul_1' => [
-                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
-                'excerpt' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada 506 Kepala Keluarga di Desa Nifasi melalui program CSR yang konsisten setiap bulan.',
-            ],
-            'aug_4' => [
-                'title' => 'Berbagi Kebahagiaan: 506 Paket Sembako untuk Janda Lansia dan Tempat Ibadah di Nabire',
-                'excerpt' => 'PT Kristalin Ekalestari menyalurkan 506 paket sembako kepada janda lansia dan tempat ibadah di wilayah Nabire sebagai wujud komitmen CSR berkelanjutan bulan Agustus 2025.',
-            ],
-            'mar_1' => [
-                'title' => 'Buruh Harian Lepas Desa Nifasi Dapat Rumah dari CSR Kristalin Ekalestari',
-                'excerpt' => 'Yundiles Wonda dari Suku Dani menerima rumah layak huni dari program CSR PT Kristalin Ekalestari di Desa Nifasi, Nabire.',
-            ],
-            'aug_2' => [
-                'title' => 'Rumah Layak Huni untuk Lomon Monei: Kado Kemerdekaan dari Program CSR',
-                'excerpt' => 'Sebagai bagian dari perayaan HUT RI ke-80, PT Kristalin Ekalestari membangun rumah layak huni untuk Lomon Monei di Desa Nifasi.',
-            ],
-            'feb26_1' => [
-                'title' => 'Ketua Dewan Adat 7 Wilayah Sub Suku Meyah Terima Mobil Operasional untuk Kegiatan Masyarakat',
-                'excerpt' => 'PT Cidata Citra Papua (Kristalin Ekalestari Group) menyerahkan satu unit Toyota Hilux kepada Ketua Dewan Adat 7 Wilayah Sub Suku Meyah, Musa Mandacan, sebagai kendaraan operasional untuk mendukung kegiatan kemasyarakatan.',
-            ],
-            'feb26_2' => [
-                'title' => 'Harga Emas Naik, Kisara Capital Perkuat Ekspansi di Ekosistem Hilir',
-                'excerpt' => 'Kisara Capital menyatakan komitmen memperluas ekosistem industri emas dari hulu ke hilir pada 2026, seiring tren kenaikan harga emas yang memberikan sinyal positif bagi pelaku industri.',
-            ],
-            'feb26_3' => [
-                'title' => 'PT Kristalin Ekalestari Sayangkan Penyerangan dan Pembakaran Pos Kamtibmas di Nabire',
-                'excerpt' => 'PT Kristalin Ekalestari menyayangkan insiden penyerangan dan pembakaran Pos Kamtibmas di Nabire (21/2/2026). Lokasi kejadian di luar wilayah area perusahaan.',
-            ],
-            'feb26_4' => [
-                'title' => 'Turut Empati, Tim Kristalin Ekalestari Melayat Kedua Rumah Duka Korban KKB di Nabire',
-                'excerpt' => 'Manajemen PT Kristalin Ekalestari melayat ke rumah duka dua korban insiden Pos Kamtibmas di Nabire. Perusahaan menyampaikan duka mendalam serta bantuan uang duka dan jaminan pendidikan bagi anak korban.',
-            ],
-            'mar26_1' => [
-                'title' => 'Kelangkaan Emas Antam Picu Alternatif Baru, KISA24 Tawarkan Logam Mulia',
-                'excerpt' => 'Di tengah kelangkaan LM Antam di pasar ritel, Group Kisara melalui brand KISA24 hadir sebagai alternatif strategis. Produk LM KISA24 SNI, 999.9, 24 Karat, tersedia 1–100 gram.',
-            ],
-            'apr26_1' => [
-                'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
-                'excerpt' => 'Operasi gabungan pengawasan TKA di Nabire menjaga situasi kondusif di kawasan pertambangan Lagari, Makimi. Kegiatan 8 April 2026; dokumen TKA di lokasi lengkap dan berlaku.',
-            ],
-        ],
-        'read_more' => 'Baca Selengkapnya',
-        'read_full' => 'Baca Cerita Lengkap',
-        'categories' => [
-            'food_distribution' => 'Distribusi Makanan',
-            'education_support' => 'Dukungan Pendidikan',
-            'house_construction' => 'Pembangunan Rumah',
-            'community_support' => 'Dukungan Kegiatan Masyarakat',
-        ],
     ],
     'contact' => [
         'page_title' => 'Hubungi Kami - PT Kristalin Ekalestari',
@@ -1487,7 +1292,6 @@ return [
             'subject_options' => [
                 'select' => 'Pilih Subjek',
                 'general' => 'Umum',
-                'b2c' => 'B2C',
                 'partnership' => 'Kemitraan',
                 'csr' => 'CSR',
                 'career' => 'Karir',
@@ -1524,20 +1328,6 @@ return [
             'email' => 'Email',
             'address' => 'Alamat',
         ],
-        'locations' => [
-            'kicker' => 'Lokasi kami',
-            'title' => 'Kantor pusat & operasi',
-            'jakarta_tab' => 'Kantor Pusat (Jakarta)',
-            'jakarta_title' => 'ESQ Leadership Centre — Menara 165',
-            'jakarta_subtitle' => 'Kantor pusat',
-            'jakarta_address' => 'Menara 165 Lantai 21 A–C, Jl. TB Simatupang No.Kav 1, Cilandak Timur, Ps. Minggu, Jakarta Selatan 12560',
-            'nabire_tab' => 'Operasi (Nabire)',
-            'nabire_title' => 'Wilayah operasi Nabire',
-            'nabire_subtitle' => 'Site operasi pertambangan',
-            'nabire_address' => 'Cekungan Sungai Musairo, Distrik Makimi, Kabupaten Nabire, Papua Tengah (pin peta perkiraan — konfirmasi dengan tim operasi)',
-            'nabire_note' => 'Koordinat akses site pasti dapat diperbarui setelah review internal. Pin ini menunjukkan wilayah operasi Nabire sebagai referensi.',
-            'open_maps' => 'Buka di Google Maps',
-        ],
         'image_alt' => 'Menara 165',
     ],
 
@@ -1560,9 +1350,154 @@ return [
             'community_development' => 'Pengembangan Masyarakat',
             'partnership' => 'Kemitraan',
             'technology' => 'Teknologi',
-            'house_construction' => 'Pembangunan Rumah',
-            'food_distribution' => 'Distribusi Makanan',
-            'education_support' => 'Dukungan Pendidikan',
+            'pembangunan_rumah_nelayan' => 'Pembangunan Rumah Baru untuk Nelayan di Desa Nifasi',
+            'pembangunan-rumah-nelayan' => 'Pembangunan Rumah Baru untuk Nelayan di Desa Nifasi',
+            'pendanaan_pendidikan' => 'Pendanaan Pendidikan',
+            'pendanaan-pendidikan' => 'Pendanaan Pendidikan',
+            'csr_pembagian_sembako_juli' => 'CSR Pembagian 506 Paket Sembako di Desa Nifasi',
+            'csr-pembagian-sembako-juli' => 'CSR Pembagian 506 Paket Sembako di Desa Nifasi',
+            'csr_pembangunan_rumah_lomon_monei' => 'CSR Pembangunan Rumah Warga Lomon Monei',
+            'kristalin_ekalestari_group_akuisisi_saham_50_persen_pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+            'penyaluran-sembako-feb' => 'Penyaluran Sembako Februari',
+            'pembangunan-rumah-nifasi-feb' => 'Pembangunan Rumah Nifasi Februari',
+            'pembangun rumah-nifasi-feb' => 'Pembangunan Rumah Nifasi Februari',
+            'pembangunan-rumah-juni' => 'Pembangunan Rumah Juni',
+            'pemberitah-bantuan-dana-hak-garap' => 'Pemberitahuan Bantuan Dana Hak Garap',
+            'csr-hut-ri-80-cidata-barat-papua' => 'CSR HUT RI 80 Cidata Barat Papua',
+            'csr-penyaluran-bantuan-sembako-agustus' => 'CSR Penyaluran Bantuan Sembako Agustus',
+            'pemberitahuan-bantuan-dana-hak-garap' => 'Pemberitahuan Bantuan Dana Hak Garap',
+            'csr-pembangunan-rumah-lomon-monei' => 'CSR Pembangunan Rumah Lomon Monei',
+            'kristalin-ekalestari-group-akuisisi-saham-50-persen-pt_torindo_jaya_persada' => 'Kristalin Ekalestari Group Akuisisi Saham 50 Persen PT Torindo Jaya Persada',
+        ],
+        'months' => [
+            'februari' => 'FEBRUARI',
+            'maret' => 'MARET',
+            'juni' => 'JUNI',
+            'juli' => 'JULI',
+            'agustus' => 'AGUSTUS',
+            'september' => 'SEPTEMBER',
+        ],
+        'articles' => [
+            'feb-3' => [
+                'title' => 'Program Penyaluran Sembako Februari',
+                'excerpt' => 'Program CSR penyaluran paket sembako kepada masyarakat di bulan Februari.',
+            ],
+            'feb-4' => [
+                'title' => 'Pembangunan Rumah Desa Nifasi Februari',
+                'excerpt' => 'Pembangunan rumah baru untuk warga Desa Nifasi di bulan Februari.',
+            ],
+            'feb-7' => [
+                'title' => 'Inisiatif Pengembangan Masyarakat Februari',
+                'excerpt' => 'Implementasi program pengembangan masyarakat di bulan Februari.',
+            ],
+            'feb-8' => [
+                'title' => 'Laporan Aktivitas CSR Februari',
+                'excerpt' => 'Laporan aktivitas CSR yang dilaksanakan di bulan Februari.',
+            ],
+            'feb-9' => [
+                'title' => 'Program Bantuan Sosial Februari',
+                'excerpt' => 'Program bantuan sosial untuk masyarakat di bulan Februari.',
+            ],
+            'mar-1' => [
+                'title' => 'Nelayan Laut Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan laut Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan terhadap masyarakat sekitar.',
+            ],
+            'mar-2' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi sebagai bentuk tanggung jawab sosial perusahaan.',
+            ],
+            'mar-3' => [
+                'title' => 'Nelayan Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'mar-4' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi.',
+            ],
+            'mar-5' => [
+                'title' => 'Nelayan Yustinus Monei Terima Rumah Baru dari PT Kristalin Ekalestari',
+                'excerpt' => 'Nelayan Yustinus Monei dari Desa Nifasi menerima rumah baru dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'mar-6' => [
+                'title' => 'Nelayan Desa Nifasi Dapat Rumah Baru dari CSR Kristalin Ekalestari',
+                'excerpt' => 'Program CSR PT Kristalin Ekalestari memberikan rumah baru kepada nelayan Desa Nifasi.',
+            ],
+            'jun-1' => [
+                'title' => 'Dana Pendidikan Siswa SMA di Desa Nifasi Dijamin Hingga Lulus',
+                'excerpt' => 'PT Kristalin Ekalestari memberikan jaminan dana pendidikan untuk siswa SMA di Desa Nifasi hingga mereka lulus.',
+            ],
+            'jun-2' => [
+                'title' => 'Dana Pendidikan SMA Desa Nifasi Dijamin oleh PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari menjamin dana pendidikan untuk siswa SMA di Desa Nifasi.',
+            ],
+            'jun-3' => [
+                'title' => 'Dana Pendidikan Siswa SMA di Desa Nifasi Dijamin Hingga Lulus',
+                'excerpt' => 'PT Kristalin Ekalestari memberikan jaminan dana pendidikan untuk siswa SMA di Desa Nifasi hingga mereka lulus.',
+            ],
+            'jun-4' => [
+                'title' => 'Dana Pendidikan SMA Desa Nifasi Dijamin oleh PT Kristalin Ekalestari',
+                'excerpt' => 'PT Kristalin Ekalestari menjamin dana pendidikan untuk siswa SMA di Desa Nifasi.',
+            ],
+            'jul-1' => [
+                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Ratusan warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan.',
+            ],
+            'jul-2' => [
+                'title' => 'Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'jul-3' => [
+                'title' => 'Ratusan Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Ratusan warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari sebagai bentuk kepedulian perusahaan.',
+            ],
+            'jul-4' => [
+                'title' => 'Warga Desa Nifasi Terima Bantuan Paket Sembako dari PT Kristalin Ekalestari',
+                'excerpt' => 'Warga Desa Nifasi menerima bantuan paket sembako dari program CSR PT Kristalin Ekalestari.',
+            ],
+            'aug-1' => [
+                'title' => 'Hadiah HUT RI ke-80, Buruh Harian di Desa Nifasi Dapat Rumah dari PT Kristalin Ekalestari',
+                'excerpt' => 'Sebagai hadiah HUT RI ke-80, PT Kristalin Ekalestari memberikan rumah kepada buruh harian di Desa Nifasi melalui program CSR.',
+            ],
+            'aug-2' => [
+                'title' => 'Momen Bersejarah, Buruh Harian di Desa Nifasi Dapat Rumah dari PT Kristalin Ekalestari',
+                'excerpt' => 'Momen bersejarah terjadi ketika PT Kristalin Ekalestari memberikan rumah kepada buruh harian di Desa Nifasi.',
+            ],
+            'aug-3' => [
+                'title' => 'Perayaan HUT RI ke-80: Warga Desa Nanimori Antusias Ikut Permainan Tradisional Bersama PT Cidata Barat Papua',
+                'excerpt' => 'Perayaan HUT RI ke-80 di Desa Nanimori, Distrik Kuri Wamesa berlangsung meriah dengan berbagai permainan tradisional yang diselenggarakan bersama PT Cidata Barat Papua.',
+            ],
+            'aug-4' => [
+                'title' => 'Berbagi Kebahagiaan, PT Kristalin Ekalestari Bagikan Paket Sembako untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari berbagi kebahagiaan dengan membagikan paket sembako untuk warga Desa Nifasi melalui program CSR.',
+            ],
+            'aug-5' => [
+                'title' => 'Konsisten Penyaluran Sembako, PT Kristalin Ekalestari Bagikan 506 Paket untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan konsistensi dalam penyaluran sembako dengan membagikan 506 paket untuk warga Desa Nifasi.',
+            ],
+            'aug-6' => [
+                'title' => 'Komitmen Berkelanjutan, PT Kristalin Ekalestari Bagikan 506 Paket Sembako untuk Warga Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan komitmen berkelanjutan dengan membagikan 506 paket sembako untuk warga Desa Nifasi.',
+            ],
+            'aug-7' => [
+                'title' => 'Kepedulian Nyata, PT Kristalin Ekalestari Prioritaskan Lansia dan Tempat Ibadah dalam Penyaluran Sembako',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan kepedulian nyata dengan memprioritaskan lansia dan tempat ibadah dalam penyaluran sembako.',
+            ],
+            'aug-8' => [
+                'title' => 'Solidaritas Berkelanjutan, PT Kristalin Ekalestari Bagikan Sembako untuk Lansia dan Janda di Desa Nifasi',
+                'excerpt' => 'PT Kristalin Ekalestari menunjukkan solidaritas berkelanjutan dengan membagikan sembako untuk lansia dan janda di Desa Nifasi.',
+            ],
+            'sept-1' => [
+                'title' => 'Kristalin Ekalestari Group Mengakuisisi 51% Saham PT Torindo Jaya Persada untuk Ekspansi Industri Alat Berat',
+                'excerpt' => 'Kristalin Ekalestari Group resmi mengakuisisi 51% kepemilikan saham PT Torindo Jaya Persada dalam strategi ekspansi bisnis alat berat sektor pertambangan di wilayah Indonesia Timur.',
+            ],
+        ],
+        'archive' => [
+            'articles_count' => 'artikel di',
+            'categories_count' => 'kategori',
+            'articles_available' => 'artikel tersedia',
+            'articles' => 'Artikel',
+            'category' => 'Kategori',
+            'read_more' => 'Baca Selengkapnya',
         ],
 
         'stats' => [
@@ -2659,5 +2594,146 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
 
     'footer' => [
         'copyright' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
+    ],
+    'company_profile' => [
+        'page_title' => 'Company Profile | PT Kristalin Ekalestari',
+        'report_title' => 'COMPANY PROFILE REPORT',
+        'report_year' => 'EDISI 2026',
+        'tagline' => 'Tanggung jawab bukanlah apa yang kami klaim, melainkan apa yang terus kami lakukan.',
+        'exec_summary' => 'Ringkasan Eksekutif',
+        'exec_summary_text' => 'PT Kristalin Ekalestari adalah perusahaan pertambangan dan pemurnian emas terintegrasi terkemuka di Indonesia. Beroperasi sejak 1989, kami mengelola seluruh rantai nilai dari eksplorasi di Papua hingga fasilitas pemurnian mutakhir kami di Jakarta. Komitmen kami terhadap praktik penambangan berkelanjutan dan pemberdayaan masyarakat membedakan kami sebagai pemimpin industri.',
+        'vision_mission' => 'Visi & Misi',
+        'vision_title' => 'Visi Kami',
+        'vision_text' => 'Menjadi perusahaan pertambangan emas terintegrasi yang terdepan dan terpercaya di Asia Tenggara, memelopori operasi berkelanjutan dan mendorong pertumbuhan sosial-ekonomi masyarakat lokal.',
+        'mission_title' => 'Misi Kami',
+        'mission_text' => 'Beroperasi secara bertanggung jawab di seluruh rantai nilai emas—dari eksplorasi hulu hingga perdagangan hilir—dengan memanfaatkan teknologi mutakhir, mematuhi standar lingkungan dan keselamatan tertinggi, dan membina kemitraan jangka panjang.',
+        'core_values' => 'Nilai-Nilai Inti',
+        'cv_integrity' => 'Integritas',
+        'cv_integrity_text' => 'Menjunjung tinggi standar etika dan transparansi dalam seluruh operasi kami.',
+        'cv_sustainability' => 'Keberlanjutan',
+        'cv_sustainability_text' => 'Komitmen terhadap pelestarian lingkungan dan pengembangan masyarakat jangka panjang.',
+        'cv_excellence' => 'Keunggulan',
+        'cv_excellence_text' => 'Memberikan kualitas kelas dunia dalam pemurnian emas dan sertifikasi produk.',
+        'cv_innovation' => 'Inovasi',
+        'cv_innovation_text' => 'Terus mengadopsi teknologi mutakhir untuk mengoptimalkan rantai nilai pertambangan.',
+        'line_of_business' => 'Lini Bisnis',
+        'lob_upstream' => 'Eksplorasi & Hulu',
+        'lob_upstream_text' => 'Fokus menemukan cadangan emas primer dan sekunder berkualitas tinggi dengan standar operasi ketat di Nabire, Papua Tengah. Kami menerapkan pemetaan geologi canggih dan metode ekstraksi yang bertanggung jawab.',
+        'lob_midstream' => 'Pemrosesan & Pemurnian',
+        'lob_midstream_text' => 'Infrastruktur Smelter & Refinery mutakhir kami memproses bijih emas menjadi logam mulia bersertifikat dengan kemurnian 99,99%. Kami mematuhi standar internasional LBMA (London Bullion Market Association) secara ketat.',
+        'lob_downstream' => 'Perdagangan Hilir',
+        'lob_downstream_text' => 'Menghubungkan emas fisik langsung ke pasar konsumen (B2C) melalui platform digital kami dan kemitraan strategis, menawarkan emas tingkat investasi langsung kepada masyarakat.',
+        'csr' => 'Tanggung Jawab Sosial (CSR)',
+        'csr_text' => 'Kami percaya bahwa kesuksesan kami sangat terkait erat dengan kesejahteraan komunitas tempat kami beroperasi. Melalui program CSR bulanan kami, kami menyediakan pasokan bahan pokok, membangun infrastruktur komunitas, dan mendanai inisiatif pendidikan dan kesehatan di Nabire.',
+        'csr_env' => 'Pelestarian Lingkungan',
+        'csr_env_text' => 'Menerapkan standar ISO 14001, reklamasi lahan, dan energi terbarukan dalam operasi penambangan untuk meminimalkan jejak karbon kami.',
+        'csr_com' => 'Pemberdayaan Masyarakat',
+        'csr_com_text' => 'Membangun sekolah, rumah sakit, dan infrastruktur untuk komunitas di Nabire, Papua Tengah, memastikan kesejahteraan bersama.',
+        'csr_edu' => 'Pendidikan & Kesehatan',
+        'csr_edu_text' => 'Memberikan beasiswa dan mendanai klinik kesehatan lokal untuk meningkatkan kualitas hidup generasi mendatang.',
+        'milestones' => 'Tonggak Sejarah Perusahaan',
+        'ms_1989' => '1989',
+        'ms_1989_title' => 'Pendirian',
+        'ms_1989_text' => 'Didirikan di Papua dengan fokus pada eksplorasi emas berkelanjutan dan keterlibatan komunitas.',
+        'ms_2005' => '2005',
+        'ms_2005_title' => 'Pabrik Pemurnian Pertama',
+        'ms_2005_text' => 'Membuka fasilitas pemurnian canggih pertama kami di Jakarta, memungkinkan pemrosesan hulu ke hilir.',
+        'ms_2015' => '2015',
+        'ms_2015_title' => 'Sertifikasi LBMA',
+        'ms_2015_text' => 'Emas batangan 99.99% kami mencapai standar LBMA internasional, membuktikan kualitas kelas dunia kami.',
+        'ms_2026' => '2026',
+        'ms_2026_title' => 'Transformasi Digital',
+        'ms_2026_text' => 'Meluncurkan platform digital B2C yang menghubungkan emas fisik secara langsung ke investor.',
+        'print_btn' => 'Cetak / Simpan PDF',
+        'footer_note' => 'Dihasilkan otomatis dari Platform Digital Kristalin Ekalestari.',
+        'op_excellence' => 'Keunggulan Operasional',
+        'op_experience' => 'Pengalaman Puluhan Tahun',
+        'op_experience_text' => 'Beroperasi secara mulus sejak 1989 dengan rekam jejak yang terbukti.',
+        'op_purity' => 'Kemurnian 99.99%',
+        'op_purity_text' => 'Logam mulia berkualitas tinggi bersertifikat memenuhi standar internasional.',
+        'op_sustainability' => 'Ramah Lingkungan',
+        'op_sustainability_text' => 'Menerapkan teknologi penambangan hijau bersertifikasi ISO.',
+        'op_community' => 'Pemberdayaan Lokal',
+        'op_community_text' => 'Menciptakan ribuan lapangan kerja dan mendukung bisnis lokal Papua.',
+        'chairman_title' => 'Pesan dari Chairman',
+        'chairman_msg' => 'Selamat datang di PT Kristalin Ekalestari. Sejak awal berdiri, kami didorong oleh satu visi: mendefinisikan ulang industri pertambangan emas di Indonesia melalui komitmen tak tergoyahkan terhadap keberlanjutan, inovasi, dan pemberdayaan masyarakat. Perjalanan kami bukan hanya tentang mengekstraksi logam mulia; ini tentang menciptakan nilai jangka panjang bagi para pemangku kepentingan, melestarikan lingkungan untuk generasi mendatang, dan memajukan masyarakat di Papua dan sekitarnya. Seiring langkah kami menuju transformasi digital, kami tetap berdedikasi pada transparansi dan keunggulan. Terima kasih atas kepercayaan dan kemitraan Anda yang berkelanjutan.',
+        'chairman_name' => 'Arif Budi Setiawan',
+        'chairman_position' => 'Chairman',
+        'lob_upstream_extra' => '• 15.000+ Hektar area eksplorasi<br>• Survei geofisika mutakhir<br>• Protokol keselamatan zero-harm',
+        'lob_midstream_extra' => '• Kapasitas tahunan 2,5+ Ton<br>• Teknologi peleburan canggih<br>• 100% Sumber dapat dilacak',
+        'lob_downstream_extra' => '• Akses digital B2C langsung<br>• Integrasi harga real-time<br>• Pengiriman berasuransi nasional',
+        'csr_env_extra' => '• 100.000+ pohon ditanam untuk reklamasi<br>• Pengurangan emisi karbon sebesar 30%<br>• Sistem daur ulang air yang komprehensif',
+        'csr_com_extra' => '• Membangun 15+ pusat kegiatan masyarakat<br>• Memberdayakan 50+ UMKM lokal<br>• Acara pelestarian budaya rutin',
+        'csr_edu_extra' => '• 500+ Beasiswa pelajar tahunan<br>• Membangun 3 klinik kesehatan modern<br>• Pemeriksaan kesehatan gratis bulanan',
+    ],
+
+    'investor' => [
+        'page_title' => 'Investor & Partner Pack | Kristalin Ekalestari',
+        'meta_description' => 'Informasi lengkap dan panduan untuk calon investor dan mitra PT Kristalin Ekalestari.',
+        'hero_subtitle' => 'Partnership & Investment',
+        'hero_title' => 'Investor & Partner Pack',
+        'hero_description' => 'Bergabunglah bersama kami membangun ekosistem pertambangan emas yang terintegrasi dan berkelanjutan. Unduh profil perusahaan dan skema kemitraan kami.',
+        'download_btn' => 'Unduh Company Profile',
+        'strength_title' => 'Skala Operasional & Transparansi',
+        'strength_subtitle' => 'Lebih dari 3 dekade keunggulan operasional, didukung infrastruktur kelas dunia.',
+        'strength_1_val' => '12+',
+        'strength_1_label' => 'Armada Excavator',
+        'strength_1_desc' => 'Sistem operasional tambang dengan alat berat modern secara mandiri.',
+        'strength_2_val' => '30+',
+        'strength_2_label' => 'Tahun Pengalaman',
+        'strength_2_desc' => 'Berdiri sejak 1989, memiliki rekam jejak panjang di industri emas.',
+        'strength_3_val' => 'B2B',
+        'strength_3_label' => 'Penawaran Institusional',
+        'strength_3_desc' => 'Sistem inquiry transparan langsung ke manajemen untuk kebutuhan B2B.',
+        'strength_4_val' => 'ESG',
+        'strength_4_label' => 'Komitmen Sosial',
+        'strength_4_desc' => 'Fokus pada keberlanjutan lingkungan dan pemberdayaan masyarakat Nabire.',
+        'lob_title' => 'Line of Business & Highlights',
+        'lob_subtitle' => 'Ekosistem terintegrasi dari hulu ke hilir',
+        'lob_1_title' => 'Eksplorasi & Hulu',
+        'lob_1_desc' => 'Fokus pada penemuan cadangan emas primer dan sekunder berkualitas dengan standar operasi ketat.',
+        'lob_2_title' => 'Pemrosesan & Pemurnian',
+        'lob_2_desc' => 'Infrastruktur canggih (Smelter & Refinery) untuk mengolah bijih emas menjadi logam mulia bersertifikat.',
+        'lob_3_title' => 'Perdagangan Hilir',
+        'lob_3_desc' => 'Menghubungkan emas fisik langsung ke pasar konsumen (B2C) melalui platform digital.',
+        'milestone_title' => 'Pencapaian Milestone Kami',
+        'milestone_desc' => 'Sejak 1989, Kristalin Ekalestari terus berinovasi dan menjaga komitmen CSR di seluruh wilayah operasional.',
+        'milestone_btn' => 'Lihat Milestone Lengkap',
+        'form_title' => 'Mulai Kemitraan',
+        'form_subtitle' => 'Isi form di bawah ini untuk berdiskusi dengan tim perwakilan institusional kami.',
+        'contact_email_label' => 'Email Institusional',
+        'contact_hq_label' => 'Kantor Pusat',
+        'contact_hq_val' => 'Jakarta Selatan, Indonesia',
+    ],
+
+    'inquiry_form' => [
+        'name_label' => 'Nama Lengkap',
+        'name_placeholder' => 'Nama Anda',
+        'phone_label' => 'Nomor WhatsApp',
+        'phone_placeholder' => 'Contoh: 081234567890',
+        'email_label' => 'Email Utama',
+        'email_placeholder' => 'nama@email.com',
+        'interest_label' => 'Tujuan / Ketertarikan',
+        'interest_placeholder' => 'Pilih salah satu...',
+        'message_label' => 'Pesan',
+        'message_optional' => '(Opsional)',
+        'message_placeholder' => 'Tuliskan pertanyaan atau kebutuhan detail Anda di sini...',
+        'submit_btn' => 'Kirim Pesan',
+        'submitting' => 'Mengirim...',
+        'success_title' => 'Pesan Berhasil Terkirim!',
+        'success_desc' => 'Terima kasih atas ketertarikan Anda. Tim kami akan merespons melalui Email atau WhatsApp.',
+        'success_retry' => 'Kirim pesan lain',
+        'error_msg' => 'Gagal mengirim pesan. Silakan coba lagi atau hubungi via WhatsApp.',
+        
+        'opt_b2c_6m' => 'Program Beli Emas 6 Bulan',
+        'opt_b2c_12m' => 'Program Beli Emas 12 Bulan',
+        'opt_b2c_24m' => 'Program Beli Emas 24 Bulan',
+        'opt_b2c_general' => 'Pertanyaan Umum B2C',
+        
+        'opt_inv_partnership' => 'Partnership & Kerjasama',
+        'opt_inv_investor' => 'Institutional Investor',
+        'opt_inv_excavator' => 'Permintaan Alat Berat (Excavator)',
+        'opt_inv_data' => 'Permintaan Data / Dokumen Ekstra',
+        'opt_inv_other' => 'Lainnya',
     ],
 ];

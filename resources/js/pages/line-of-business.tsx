@@ -479,7 +479,7 @@ export default function KristalinPortfolio() {
                     >
                         <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} className="mx-auto w-full max-w-md text-center">
                             <img
-                                src={imageUrl('kristalinlogotransisi1.png')}
+                                src={imageUrl('kristalin-logo-v2.png')}
                                 alt="Kristalin Logo"
                                 className="mx-auto mb-6 h-40 w-40 object-contain md:h-56 md:w-56"
                                 loading="lazy"

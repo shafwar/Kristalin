@@ -49,7 +49,13 @@ Route::get('/board-of-directors', function () {
     return Inertia::render('board-of-directors');
 })->name('board-of-directors');
 
+Route::get('/investor', function () {
+    return Inertia::render('investor');
+})->name('investor');
 
+Route::get('/company-profile-report', function () {
+    return Inertia::render('CompanyProfileReport');
+})->name('company-profile-report');
 
 Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
@@ -78,6 +84,14 @@ Route::get('/csr', function () {
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
+
+Route::get('/privacy-policy', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy-policy');
+
+Route::get('/terms', function () {
+    return Inertia::render('TermsOfService');
+})->name('terms');
 
 // Search
 Route::get('/api/kristalin-tv/gold', [KristalinTvProxyController::class, 'market']);

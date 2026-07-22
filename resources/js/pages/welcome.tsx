@@ -11,18 +11,9 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { KristalinTvGoldCard } from '../components/KristalinTvGoldCard';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
+import { SplashScreen } from '../components/SplashScreen';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 
-/**
- * INTERNAL FEEDBACK SYSTEM - TEMPORARILY DISABLED
- *
- * Components backed up to: resources/js/components/InternalFeedbackModal.BACKUP.tsx
- * To re-enable: Import from backup file
- *
- * Removed components:
- * - InternalFeedbackModal (line 8-526)
- * - FloatingFeedbackButton (line 528-571)
- */
 
 // Main Welcome Component
 const Welcome = () => {
@@ -222,6 +213,7 @@ const Welcome = () => {
             <Head title="">
                 <meta name="description" content={t('pages.welcome.description')} />
             </Head>
+            <SplashScreen />
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
                 <Header sticky={true} transparent={false} />
 
@@ -325,9 +317,18 @@ const Welcome = () => {
                                                     <Link
                                                         href="/milestones"
                                                         prefetch={false}
-                                                        className="hero-cta-btn hero-cta-btn--outline inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-white px-5 text-sm font-semibold text-gray-800 sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
+                                                        className="hero-cta-btn hero-cta-btn--outline md:hidden inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-white px-5 text-sm font-semibold text-gray-800 sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
                                                     >
                                                         {t('pages.welcome.buttons.see_milestones')}
+                                                    </Link>
+
+                                                    <Link
+                                                        href="/b2c"
+                                                        prefetch={false}
+                                                        className="hero-cta-btn hero-cta-btn--outline hidden md:inline-flex h-11 w-full min-w-0 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-xl border-2 border-yellow-400 bg-white px-5 text-sm font-semibold text-gray-800 sm:h-12 sm:w-auto sm:min-w-[180px] sm:px-6 sm:text-base"
+                                                    >
+                                                        <Coins className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-amber-500" strokeWidth={2} />
+                                                        B2C Gold Program
                                                     </Link>
 
                                                     <a
@@ -400,7 +401,7 @@ const Welcome = () => {
                                 <DeferredBelowFold enabled={deferWelcomeBelowFold} className="flex min-h-0 flex-1 flex-col">
                                 {/* Bottom area: centered B2C card + full-bleed grid below */}
                                 <section className="flex flex-1 flex-col bg-white">
-                                    <div className="flex w-full shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7">
+                                    <div className="flex w-full md:hidden shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7">
                                         <Link
                                             href="/b2c"
                                             className="group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 max-sm:from-white max-sm:via-white max-sm:to-white max-sm:border-stone-200/65 max-sm:shadow-sm max-sm:hover:border-stone-300/80 max-sm:hover:shadow-md hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6"
@@ -808,7 +809,7 @@ const Welcome = () => {
                             </div>
                 </div>
 
-                <Footer />
+                <Footer minimal={true} />
 
                 {/* Premium Staggered Animation Styles */}
                 <style

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://kristalin.co.id/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kristalin.co.id/images/Mark-Gold.png</image:loc>
+      <image:title>Kristalin Ekalestari</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://kristalin.co.id/about</loc></url>
+  <url><loc>https://kristalin.co.id/line-of-business</loc></url>
+  <url><loc>https://kristalin.co.id/b2c</loc></url>
+  <url><loc>https://kristalin.co.id/news</loc></url>
+  <url><loc>https://kristalin.co.id/contact</loc></url>
+</urlset>

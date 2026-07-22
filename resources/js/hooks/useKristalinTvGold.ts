@@ -6,6 +6,7 @@ export type KristalinTvMarket = {
     usd_idr?: number;
     sgd_idr?: number;
     updated_at?: string;
+    source?: string;
 };
 
 export type KristalinTvBrandRow = {
@@ -22,6 +23,7 @@ export type KristalinTvBrandPrices = {
     success?: boolean;
     updated_at?: string;
     brands?: KristalinTvBrand[];
+    source?: string;
 };
 
 export type KristalinTvGoldState = {

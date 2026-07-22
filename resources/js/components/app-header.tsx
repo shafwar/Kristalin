@@ -61,7 +61,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                                 <SheetHeader className="flex justify-start text-left">
                                     <img
-                                        src={imageUrl('kristalinlogotransisi1.png')}
+                                        src={imageUrl('kristalin-logo-v2.png')}
                                         alt="Kristalin Eka Lestari Logo"
                                         className="h-6 w-6 object-contain"
                                     />
@@ -98,7 +98,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     </div>
 
                     <Link href="/dashboard" prefetch className="flex items-center space-x-2">
-                        <img src={imageUrl('kristalinlogotransisi1.png')} alt="Kristalin Eka Lestari Logo" className="h-10 w-auto object-contain" />
+                        <img src={imageUrl('kristalin-logo-v2.png')} alt="Kristalin Eka Lestari Logo" className="h-10 w-auto object-contain" />
                     </Link>
 
                     {/* Desktop Navigation */}

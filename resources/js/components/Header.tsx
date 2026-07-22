@@ -239,12 +239,13 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
 
     // Logo logic
     const getLogoSrc = () => {
-        return imageUrl('kristalinlogotransisi1.png');
+        return imageUrl('Vertikal-Black-Mark-Gold.webp');
     };
 
     const getLogoFilter = () => {
         if (!transparent || mobileMenuOpen) return 'none';
-        return scrollY < 50 ? 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.3))' : 'none';
+        // Turn the logo solid white when the navbar is transparent to match the navbar text color adaptation pattern
+        return scrollY < 50 ? 'brightness(0) invert(1)' : 'none';
     };
 
     // Navigation items for reusability
@@ -269,11 +270,10 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
         },
         { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
         { label: t('nav.gold_price'), href: 'https://goldprice.org/gold-price-indonesia.html', external: true },
-        {
-            label: t('nav.digital_asset'),
-            labelDesktop: t('nav.digital_asset_short'),
-            href: 'https://myklx.io',
-            external: true,
+        { 
+            label: 'Investors', 
+            labelDesktop: 'Investors', 
+            href: '/investor' 
         },
         { label: t('nav.line_of_business'), labelCompact: t('nav.line_of_business_short'), href: '/line-of-business' },
         { label: t('nav.business_activities'), labelCompact: t('nav.business_activities_short'), href: '/business-activity' },
@@ -290,7 +290,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
-                        className="h-8 w-auto object-contain transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-11 xl:h-12"
+                        className="h-8 w-auto object-contain py-0.5 transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-11 xl:h-11"
                         style={{ filter: getLogoFilter() }}
                     />
                 </a>
@@ -594,7 +594,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                             >
                     {/* Close button inside menu */}
                     <div className="flex items-center justify-between px-4 pt-4 pb-2">
-                        <img src={imageUrl('kristalinlogotransisi1.png')} alt="Kristalin Logo" className="h-10 object-contain" />
+                        <img src={imageUrl('Vertikal-Black-Mark-Gold.webp')} alt="Kristalin Logo" className="h-9 object-contain" />
                         <button
                             className="p-2 text-gray-600 transition-all duration-300 ease-out hover:text-yellow-500"
                             onClick={() => setMobileMenuOpen(false)}
