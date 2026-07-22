@@ -32,14 +32,25 @@ export default function InquiryForm({ type, title, subtitle, hideHeader, variant
         const fullMessage = `Nomor WA/Telepon: ${phone}\nKetertarikan: ${interest}\n\nPesan Tambahan:\n${message}`;
 
         try {
-            const res = await axios.post('/contact-message', {
-                name,
-                email,
-                subject,
-                message: fullMessage,
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            
+            const res = await fetch('/contact-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken || '',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message: fullMessage,
+                }),
             });
 
-            if (res.data?.success) {
+            const data = await res.json();
+
+            if (res.ok && data.success) {
                 setStatus('success');
                 e.currentTarget.reset();
             } else {
