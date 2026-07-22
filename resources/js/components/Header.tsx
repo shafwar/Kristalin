@@ -702,8 +702,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                                 <a
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
-                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-200 active:scale-95 active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600"
-                                                    onClick={() => setTimeout(() => setMobileMenuOpen(false), 150)}
+                                                    className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-200 active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600"
+                                                    onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     <div className="flex items-center">
                                                         <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
@@ -718,8 +718,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         href={item.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:scale-[0.98] active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600"
-                                        onClick={() => setTimeout(() => setMobileMenuOpen(false), 150)}
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600"
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                             <div className="flex min-w-0 flex-1 items-center">
@@ -741,8 +741,8 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:scale-[0.98] active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600 select-none"
-                                        onClick={() => setTimeout(() => setMobileMenuOpen(false), 150)}
+                                        className="group block rounded-lg px-4 py-3 text-base font-semibold text-gray-800 uppercase transition-all duration-200 active:bg-amber-100 hover:bg-amber-50 hover:text-amber-600"
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <div className="flex items-center">
                                             <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
