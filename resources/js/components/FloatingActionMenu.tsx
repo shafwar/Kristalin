@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 export default function FloatingActionMenu() {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -14,7 +15,20 @@ export default function FloatingActionMenu() {
     const phoneNumber = '+622122978900';
     const phoneUrl = `tel:${phoneNumber}`;
 
-    // Close menu when clicking outside
+    // Detect when the mobile sidebar nav is open so we can hide the FAB entirely.
+    // Header.tsx adds 'mobile-menu-open' class to body when the drawer is open.
+    // This prevents the FAB's fixed z-[9999] container from intercepting tap events
+    // on the sidebar menu items (Line of Business, Investor, Business Activity, Contact).
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setMobileNavOpen(document.body.classList.contains('mobile-menu-open'));
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        setMobileNavOpen(document.body.classList.contains('mobile-menu-open'));
+        return () => observer.disconnect();
+    }, []);
+
+    // Close FAB menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -34,17 +48,19 @@ export default function FloatingActionMenu() {
     }, [isOpen]);
 
     return (
-        <div 
+        <div
             ref={menuRef}
-            className="fixed z-[9999] flex flex-col-reverse items-end bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6"
+            className={`fixed z-[9999] flex flex-col-reverse items-end bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6 transition-opacity duration-200 ${
+                mobileNavOpen ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
+            }`}
         >
             {/* Main Toggle Button */}
             <button
                 onClick={toggleMenu}
                 className={`relative flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg ring-2 transition-all duration-300 focus:outline-none focus:ring-offset-2 active:scale-95 ${
-                    isOpen 
-                    ? 'bg-stone-800 ring-stone-700 hover:bg-stone-900 shadow-xl' 
-                    : 'bg-amber-500 ring-amber-400/50 hover:bg-amber-600 hover:shadow-xl hover:ring-amber-400'
+                    isOpen
+                        ? 'bg-stone-800 ring-stone-700 hover:bg-stone-900 shadow-xl'
+                        : 'bg-amber-500 ring-amber-400/50 hover:bg-amber-600 hover:shadow-xl hover:ring-amber-400'
                 }`}
                 aria-label="Toggle Contact Menu"
                 style={{ WebkitTapHighlightColor: 'transparent' }}
@@ -58,10 +74,11 @@ export default function FloatingActionMenu() {
             </button>
 
             {/* Pop-up Container Menu */}
-            <div className={`mb-4 w-[280px] origin-bottom-right rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] ${
-                isOpen ? 'translate-y-0 scale-100 opacity-100 pointer-events-auto' : 'translate-y-4 scale-90 opacity-0 pointer-events-none'
-            }`}>
-                
+            <div
+                className={`mb-4 w-[280px] origin-bottom-right rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] ${
+                    isOpen ? 'translate-y-0 scale-100 opacity-100 pointer-events-auto' : 'translate-y-4 scale-90 opacity-0 pointer-events-none'
+                }`}
+            >
                 {/* Header Container */}
                 <div className="border-b border-stone-100 px-4 py-3">
                     <h3 className="text-sm font-bold text-stone-900">{t('pages.floating_menu.title') || 'How can we help?'}</h3>
@@ -70,7 +87,7 @@ export default function FloatingActionMenu() {
 
                 {/* List Container */}
                 <div className="mt-2 flex flex-col space-y-1">
-                    
+
                     {/* 1. Internal Feedback */}
                     <Link
                         href="/internal-feedback"
