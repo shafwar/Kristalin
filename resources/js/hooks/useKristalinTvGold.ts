@@ -35,7 +35,8 @@ export type KristalinTvGoldState = {
     refresh: () => void;
 };
 
-const POLL_MS = 20_000;
+// Poll interval: refresh price every 60 seconds
+const POLL_MS = 60_000;
 
 async function fetchJson<T>(url: string): Promise<{ data: T; stale: boolean }> {
     const res = await fetch(url, { cache: 'no-store', headers: { Accept: 'application/json' } });
@@ -89,34 +90,13 @@ export function useKristalinTvGold(enabled = true): KristalinTvGoldState {
     const load = useCallback(async () => {
         if (!enabled) return;
         try {
-            // Mocking Gold.org data due to Kristalin TV maintenance
-            const marketRes = {
-                data: {
-                    success: true,
-                    gold_idr_per_gram: 1385450, // Example realistic price
-                    usd_idr: 16185,
-                    sgd_idr: 11990,
-                    updated_at: new Date().toISOString(),
-                    source: 'gold.org'
-                } as KristalinTvMarket,
-                stale: false
-            };
-            
-            const brandsRes = {
-                data: {
-                    success: true,
-                    updated_at: new Date().toISOString(),
-                    brands: [
-                        { brand: 'Antam', rows: { '1': { sell: 1425000, buy: 1315000 } } },
-                        { brand: 'UBS', rows: { '1': { sell: 1415000, buy: 1300000 } } }
-                    ],
-                    source: 'gold.org'
-                } as KristalinTvBrandPrices,
-                stale: false
-            };
-
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 600));
+            // Fetch both endpoints in parallel from the Laravel backend proxy.
+            // The proxy first tries Kristalin TV, then falls back to goldprice.org API,
+            // and finally to stale cache — so this is always real-time when possible.
+            const [marketRes, brandsRes] = await Promise.all([
+                fetchJson<KristalinTvMarket>('/api/kristalin-tv/gold'),
+                fetchJson<KristalinTvBrandPrices>('/api/kristalin-tv/gold-prices'),
+            ]);
 
             if (!mountedRef.current) return;
             setMarket(marketRes.data);

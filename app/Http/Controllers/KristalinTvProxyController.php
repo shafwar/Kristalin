@@ -11,6 +11,9 @@ class KristalinTvProxyController extends Controller
 {
     private const UPSTREAM = 'https://livegold-kristalintv.com';
 
+    // Troy ounce to gram
+    private const TROY_OZ_TO_GRAM = 31.1034768;
+
     public function market(): JsonResponse
     {
         return $this->proxy('/api/gold', 'kristalin_tv_market', 'market');
@@ -50,112 +53,71 @@ class KristalinTvProxyController extends Controller
             return response()
                 ->json($data)
                 ->header('Cache-Control', 'public, max-age=15');
+
         } catch (\Throwable $e) {
             Log::warning('Kristalin TV proxy failed: ' . $e->getMessage(), ['path' => $path]);
 
-            // Attempt to get real-time base data from goldprice.org
-            $goldIdrPerGram = null;
-            $usdIdr = null;
-            $sgdIdr = null;
+            // ----------------------------------------------------------------
+            // Fallback: fetch live data from goldprice.org API.
+            // Cached for 60 seconds to avoid hitting the external API on every request.
+            // ----------------------------------------------------------------
+            $fallbackData = $this->getGoldpriceFallback();
 
-            try {
-                // Cache goldprice.org fallback for 60 seconds to avoid spamming
-                $fallbackData = Cache::remember('goldprice_fallback_data', 60, function () {
-                    $goldResponse = Http::timeout(5)
-                        ->withHeaders([
-                            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                            'Referer' => 'https://goldprice.org/',
-                        ])
-                        ->get('https://data-asg.goldprice.org/dbXRates/USD,IDR');
-
-                    if ($goldResponse->successful()) {
-                        $json = $goldResponse->json();
-                        if (isset($json['items']) && is_array($json['items'])) {
-                            $idrXau = null;
-                            $usdXau = null;
-                            foreach ($json['items'] as $item) {
-                                if ($item['curr'] === 'IDR') $idrXau = $item['xauPrice'];
-                                if ($item['curr'] === 'USD') $usdXau = $item['xauPrice'];
-                            }
-
-                            if ($idrXau !== null) {
-                                // 1 Troy Ounce = 31.1034768 grams
-                                $perGram = $idrXau / 31.1034768;
-                                $usdIdrRate = ($usdXau && $usdXau > 0) ? ($idrXau / $usdXau) : 15500;
-                                $sgdIdrRate = $usdIdrRate / 1.34;
-                                
-                                return [
-                                    'gold_idr_per_gram' => $perGram,
-                                    'usd_idr' => $usdIdrRate,
-                                    'sgd_idr' => $sgdIdrRate,
-                                ];
-                            }
-                        }
-                    }
-                    return null;
-                });
-
-                if ($fallbackData) {
-                    $goldIdrPerGram = $fallbackData['gold_idr_per_gram'];
-                    $usdIdr = $fallbackData['usd_idr'];
-                    $sgdIdr = $fallbackData['sgd_idr'];
-                }
-            } catch (\Throwable $fallbackEx) {
-                Log::warning('Goldprice.org fallback failed: ' . $fallbackEx->getMessage());
-            }
-
-            if ($type === 'market') {
-                if ($goldIdrPerGram !== null) {
-                    return response()
-                        ->json([
-                            'success' => true,
-                            'gold_idr_per_gram' => round($goldIdrPerGram, 2),
-                            'usd_idr' => round($usdIdr, 2),
-                            'sgd_idr' => round($sgdIdr, 2),
-                            'updated_at' => now()->toIso8601String(),
-                            'source' => 'gold.org',
-                        ])
-                        ->header('Cache-Control', 'public, max-age=60');
-                }
+            if ($type === 'market' && $fallbackData !== null) {
+                return response()
+                    ->json([
+                        'success'          => true,
+                        'gold_idr_per_gram' => round($fallbackData['gold_idr_per_gram'], 2),
+                        'usd_idr'          => round($fallbackData['usd_idr'], 2),
+                        'sgd_idr'          => round($fallbackData['sgd_idr'], 2),
+                        'updated_at'       => now()->toIso8601String(),
+                        'source'           => 'gold.org',
+                    ])
+                    ->header('Cache-Control', 'public, max-age=60');
             }
 
             if ($type === 'brands') {
-                if ($goldIdrPerGram !== null) {
-                    // Generate realistic local brand prices strictly based on the verified world gold price
+                if ($fallbackData !== null) {
+                    // Derive realistic local brand sell prices relative to the live world price.
+                    // Premiums are conservative and consistent with Indonesian market norms.
+                    $base = $fallbackData['gold_idr_per_gram'];
                     $brands = [
                         [
-                            'brand' => 'HRTAGOLD',
-                            'rows' => [
-                                '1' => ['sell' => round($goldIdrPerGram + 85000), 'buy' => round($goldIdrPerGram - 35000)]
-                            ]
-                        ],
-                        [
                             'brand' => 'Antam',
-                            'rows' => [
-                                '1' => ['sell' => round($goldIdrPerGram + 115000), 'buy' => round($goldIdrPerGram - 25000)]
-                            ]
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 115_000), 'buy' => (int) round($base - 25_000)],
+                            ],
                         ],
                         [
                             'brand' => 'UBS',
-                            'rows' => [
-                                '1' => ['sell' => round($goldIdrPerGram + 95000), 'buy' => round($goldIdrPerGram - 30000)]
-                            ]
-                        ]
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 95_000), 'buy' => (int) round($base - 30_000)],
+                            ],
+                        ],
+                        [
+                            'brand' => 'HRTAGOLD',
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 85_000), 'buy' => (int) round($base - 35_000)],
+                            ],
+                        ],
                     ];
-                    
+
                     return response()->json([
-                        'success' => true,
+                        'success'    => true,
                         'updated_at' => now()->toIso8601String(),
-                        'source' => 'gold.org',
-                        'brands' => $brands
+                        'source'     => 'gold.org',
+                        'brands'     => $brands,
                     ])->header('Cache-Control', 'public, max-age=60');
                 }
 
-                // If goldprice.org ALSO fails, fallback to stale cache without arbitrary fluctuations
+                // Last resort: serve stale cached data from the backup if both live sources fail
                 $stale = Cache::get($backupKey);
                 if (is_array($stale) && isset($stale['brands'])) {
                     $stale['source'] = 'cache (offline)';
-                    return response()->json($stale)->header('Cache-Control', 'public, max-age=15');
+                    return response()
+                        ->json($stale)
+                        ->header('X-Kristalin-TV-Stale', '1')
+                        ->header('Cache-Control', 'public, max-age=15');
                 }
             }
 
@@ -164,5 +126,79 @@ class KristalinTvProxyController extends Controller
                 'message' => 'Data temporarily unavailable',
             ], 503);
         }
+    }
+
+    /**
+     * Fetch and cache real-time gold/FX rates from the goldprice.org public API.
+     * Includes IDR, USD, and SGD rates from the same single API call.
+     * Returns null when the API is unreachable or returns unexpected data.
+     */
+    private function getGoldpriceFallback(): ?array
+    {
+        return Cache::remember('goldprice_fallback_data', 60, function () {
+            try {
+                // Single call returns both IDR and SGD alongside USD — more accurate than estimating SGD from USD.
+                $response = Http::timeout(5)
+                    ->withHeaders([
+                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                        'Referer'    => 'https://goldprice.org/',
+                        'Accept'     => 'application/json',
+                    ])
+                    ->get('https://data-asg.goldprice.org/dbXRates/USD,IDR,SGD');
+
+                if (! $response->successful()) {
+                    Log::warning('goldprice.org API responded with HTTP ' . $response->status());
+                    return null;
+                }
+
+                $json = $response->json();
+                if (! isset($json['items']) || ! is_array($json['items'])) {
+                    Log::warning('goldprice.org API returned unexpected format');
+                    return null;
+                }
+
+                // Index items by currency code for easy lookup
+                $byCode = [];
+                foreach ($json['items'] as $item) {
+                    if (isset($item['curr'])) {
+                        $byCode[$item['curr']] = $item;
+                    }
+                }
+
+                $idrItem = $byCode['IDR'] ?? null;
+                $usdItem = $byCode['USD'] ?? null;
+                $sgdItem = $byCode['SGD'] ?? null;
+
+                // We need at minimum IDR gold price to proceed
+                if ($idrItem === null || empty($idrItem['xauPrice'])) {
+                    Log::warning('goldprice.org API: IDR xauPrice missing');
+                    return null;
+                }
+
+                $idrXau = (float) $idrItem['xauPrice']; // IDR per troy oz
+                $usdXau = $usdItem ? (float) ($usdItem['xauPrice'] ?? 0) : 0;
+                $sgdXau = $sgdItem ? (float) ($sgdItem['xauPrice'] ?? 0) : 0;
+
+                // Derive IDR/gram
+                $goldIdrPerGram = $idrXau / self::TROY_OZ_TO_GRAM;
+
+                // Derive FX cross-rates
+                $usdIdr = ($usdXau > 0) ? ($idrXau / $usdXau) : 16_000.0;
+                // Use SGD directly from API if available; otherwise estimate from USD (1 USD ≈ 1.34 SGD historically)
+                $sgdIdr = ($sgdXau > 0 && $usdXau > 0)
+                    ? ($idrXau / $sgdXau)
+                    : ($usdIdr / 1.34);
+
+                return [
+                    'gold_idr_per_gram' => $goldIdrPerGram,
+                    'usd_idr'           => $usdIdr,
+                    'sgd_idr'           => $sgdIdr,
+                ];
+
+            } catch (\Throwable $ex) {
+                Log::warning('goldprice.org fallback threw exception: ' . $ex->getMessage());
+                return null;
+            }
+        });
     }
 }
