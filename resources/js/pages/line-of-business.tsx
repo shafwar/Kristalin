@@ -477,11 +477,11 @@ export default function KristalinPortfolio() {
                         transition={{ delay: 0.4, duration: 0.4, ease: 'easeInOut' }}
                         className="flex items-center justify-center"
                     >
-                        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} className="mx-auto w-full max-w-md text-center">
+                        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} className="mx-auto w-full max-w-lg text-center">
                             <img
                                 src={imageUrl('kristalin-logo-v2.png')}
                                 alt="Kristalin Logo"
-                                className="mx-auto mb-6 h-40 w-40 object-contain md:h-56 md:w-56"
+                                className="mx-auto mb-6 h-56 w-56 object-contain md:h-80 md:w-80 lg:h-96 lg:w-96"
                                 loading="lazy"
                                 decoding="async"
                                 fetchPriority="low"

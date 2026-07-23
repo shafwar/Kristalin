@@ -413,6 +413,54 @@ return [
         ],
     ],
 
+    'internal_feedback' => [
+        'page_title' => 'Umpan Balik Internal',
+        'contact_page_intro' => 'Untuk umpan balik internal atau komunikasi bisnis, gunakan',
+        'hero' => [
+            'title' => 'Umpan Balik Internal',
+            'subtitle' => 'Bagikan masukan Anda kepada kami secara profesional dan rahasia.',
+            'description' => 'Kami menghargai komunikasi yang terbuka. Gunakan formulir ini untuk mengirimkan umpan balik, saran, atau pertanyaan terkait proses bisnis dan masalah tempat kerja.',
+        ],
+        'form' => [
+            'full_name' => 'Nama Lengkap',
+            'email' => 'Email',
+            'phone' => 'Telepon',
+            'category' => 'Kategori',
+            'description' => 'Pesan / Deskripsi',
+            'attachment' => 'Lampiran',
+            'optional' => '(Opsional)',
+            'required' => '(Wajib)',
+            'confirm_accurate' => 'Saya mengonfirmasi bahwa informasi yang diberikan adalah akurat dan dikirimkan dengan iktikad baik.',
+            'submit_anonymously' => 'Kirim tanpa mengungkapkan detail kontak saya',
+            'submit' => 'Kirim',
+            'submitting' => 'Mengirim...',
+            'reset' => 'Reset',
+            'placeholders' => [
+                'name' => 'Nama Anda',
+                'email' => 'email@anda.com',
+                'phone' => 'Nomor telepon',
+                'description' => 'Silakan bagikan umpan balik, saran, atau pertanyaan Anda secara rinci. Kami akan meninjau dan menanggapi sebagaimana mestinya.',
+            ],
+            'categories' => [
+                'general' => 'Pertanyaan Umum',
+                'process_improvement' => 'Perbaikan Proses',
+                'workplace' => 'Tempat Kerja & Lingkungan',
+                'safety' => 'Keselamatan & Kesehatan',
+                'harassment' => 'Pelecehan / Diskriminasi',
+                'policy' => 'Kebijakan & Kepatuhan',
+                'management' => 'Masalah Manajemen',
+                'facilities' => 'Fasilitas',
+                'ethics' => 'Etika Kerja & Integritas',
+                'suggestion' => 'Saran & Umpan Balik',
+                'other' => 'Lainnya',
+            ],
+            'select_category' => 'Pilih kategori...',
+            'success_message' => 'Pesan Anda telah berhasil dikirim. Tim kami akan meninjaunya dan menghubungi Anda kembali jika diperlukan.',
+            'error_message' => 'Terjadi kesalahan. Silakan coba lagi.',
+            'file_not_received' => 'File tidak diterima. Mungkin melebihi batas server (maks 10 MB). Coba file yang lebih kecil atau hubungi dukungan.',
+        ],
+    ],
+
     'about' => [
         'title' => 'Tentang Kristalin Ekalestari',
         'description' => 'Pelajari lebih lanjut tentang perusahaan kami, sejarah, dan komitmen terhadap keunggulan dalam industri pertambangan dan perdagangan.',
@@ -2970,8 +3018,77 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         
         'opt_inv_partnership' => 'Partnership & Kerjasama',
         'opt_inv_investor' => 'Institutional Investor',
-        'opt_inv_excavator' => 'Permintaan Alat Berat (Excavator)',
+        'opt_inv_excavator' => 'Permintaan Alat Kerja / Eksplorasi (Excavator)',
         'opt_inv_data' => 'Permintaan Data / Dokumen Ekstra',
         'opt_inv_other' => 'Lainnya',
+    ],
+
+    'privacy_policy' => [
+        'page_title' => 'Kebijakan Privasi',
+        'last_updated' => 'Terakhir diperbarui: :date',
+        'sections' => [
+            '1' => [
+                'title' => '1. Informasi yang Kami Kumpulkan',
+                'content' => 'PT Kristalin Ekalestari ("kami" atau "kita") berkomitmen untuk melindungi privasi Anda. Kami dapat mengumpulkan informasi pribadi yang Anda berikan secara langsung kepada kami, seperti nama, alamat email, dan nomor telepon Anda saat Anda mengisi formulir di situs web kami atau menghubungi kami. Kami juga secara otomatis mengumpulkan informasi tertentu tentang perangkat Anda dan bagaimana Anda berinteraksi dengan situs web kami melalui cookie dan teknologi serupa.',
+            ],
+            '2' => [
+                'title' => '2. Bagaimana Kami Menggunakan Informasi Anda',
+                'content' => 'Informasi yang kami kumpulkan digunakan dengan cara-cara berikut:',
+                'list' => [
+                    'Untuk menyediakan, memelihara, dan meningkatkan layanan dan operasi kami.',
+                    'Untuk berkomunikasi dengan Anda, termasuk menanggapi pertanyaan dan permintaan Anda.',
+                    'Untuk memantau dan menganalisis tren, penggunaan, dan aktivitas yang berkaitan dengan situs web kami.',
+                    'Untuk memantau kepatuhan hukum dan menegakkan ketentuan kami.',
+                ],
+            ],
+            '3' => [
+                'title' => '3. Berbagi Informasi',
+                'content' => 'Kami tidak menjual informasi pribadi Anda. Kami dapat membagikan informasi Anda dengan penyedia layanan pihak ketiga tepercaya yang membantu kami dalam mengoperasikan situs web kami dan menjalankan bisnis kami, asalkan pihak-pihak tersebut setuju untuk menjaga kerahasiaan informasi ini. Kami juga dapat merilis informasi ketika perilisannya dinilai tepat untuk mematuhi hukum, menegakkan kebijakan situs kami, atau melindungi hak, properti, atau keselamatan kami atau orang lain.',
+            ],
+            '4' => [
+                'title' => '4. Keamanan Data',
+                'content' => 'Kami menerapkan berbagai langkah keamanan untuk menjaga keselamatan informasi pribadi Anda. Namun, perlu diketahui bahwa tidak ada metode transmisi melalui internet atau metode penyimpanan elektronik yang 100% aman.',
+            ],
+            '5' => [
+                'title' => '5. Hubungi Kami',
+                'content' => 'Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di: ',
+            ],
+        ],
+    ],
+
+    'terms_of_service' => [
+        'page_title' => 'Ketentuan Layanan',
+        'last_updated' => 'Terakhir diperbarui: :date',
+        'sections' => [
+            '1' => [
+                'title' => '1. Penerimaan Ketentuan',
+                'content' => 'Dengan mengakses atau menggunakan situs web PT Kristalin Ekalestari ("kami" atau "kita"), Anda setuju untuk mematuhi dan terikat oleh Ketentuan Layanan ini. Jika Anda tidak menyetujui bagian mana pun dari ketentuan ini, Anda tidak boleh menggunakan situs web kami.',
+            ],
+            '2' => [
+                'title' => '2. Penggunaan Situs Web',
+                'content' => 'Anda hanya boleh menggunakan situs web kami untuk tujuan yang sah menurut hukum. Anda setuju untuk tidak:',
+                'list' => [
+                    'Menggunakan situs web dengan cara apa pun yang melanggar hukum atau peraturan lokal, nasional, atau internasional yang berlaku.',
+                    'Mencoba mengganggu berfungsinya situs web atau jaringan kami dengan benar.',
+                    'Melakukan tindakan apa pun yang membatasi atau menghalangi penggunaan atau kenyamanan orang lain atas situs web ini.',
+                ],
+            ],
+            '3' => [
+                'title' => '3. Hak Kekayaan Intelektual',
+                'content' => 'Semua konten, fitur, dan fungsionalitas di situs web ini, termasuk namun tidak terbatas pada teks, grafik, logo, gambar, dan perangkat lunak, adalah properti eksklusif PT Kristalin Ekalestari atau pemberi lisensinya dan dilindungi oleh undang-undang hak cipta internasional, merek dagang, dan kekayaan intelektual lainnya. Anda tidak boleh mereproduksi, mendistribusikan, memodifikasi, atau membuat karya turunan dari materi apa pun tanpa persetujuan tertulis dari kami.',
+            ],
+            '4' => [
+                'title' => '4. Batasan Tanggung Jawab',
+                'content' => 'Dalam hal apa pun PT Kristalin Ekalestari, direktur, karyawan, atau mitranya tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau punitif yang timbul dari atau terkait dengan penggunaan Anda atas situs web ini. Situs web kami dan kontennya disediakan atas dasar "sebagaimana adanya" dan "sebagaimana tersedia" tanpa jaminan apa pun.',
+            ],
+            '5' => [
+                'title' => '5. Perubahan Ketentuan',
+                'content' => 'Kami berhak, atas kebijakan kami sendiri, untuk mengubah atau mengganti Ketentuan Layanan ini kapan saja. Kami akan memberikan pemberitahuan tentang perubahan signifikan apa pun di halaman ini. Penggunaan berkelanjutan Anda atas situs web setelah posting perubahan apa pun merupakan penerimaan atas perubahan tersebut.',
+            ],
+            '6' => [
+                'title' => '6. Informasi Kontak',
+                'content' => 'Jika Anda memiliki pertanyaan atau kekhawatiran mengenai Ketentuan Layanan ini, silakan hubungi kami di: ',
+            ],
+        ],
     ],
 ];
