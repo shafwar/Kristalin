@@ -39,7 +39,6 @@ export default function CompanyProfileReport() {
                 {/* ----------------- PAGE 1: COVER ----------------- */}
                 <div className="relative flex min-h-[100svh] md:h-[297mm] print:h-[297mm] flex-col overflow-hidden bg-stone-950 text-white print:h-[297mm]">
                     <div className="absolute inset-0 opacity-40">
-                        {/* Using the user's specific requested background image */}
                         <img 
                             src={imageUrl('KristalinCompanyProfileBackground.webp')} 
                             alt="Kristalin Company Profile Background" 
@@ -48,27 +47,34 @@ export default function CompanyProfileReport() {
                         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
                     </div>
                     
-                    <div className="relative z-10 p-8 md:p-16 print:p-16 flex h-full flex-col justify-between">
-                        <div className="flex justify-between items-start">
-                            <img src={imageUrl('Kristalin-New-Logo.webp')} alt="Logo" className="h-16 w-auto brightness-0 invert" />
-                            <p className="mt-4 text-lg font-bold tracking-[0.2em] text-amber-500 uppercase">
+                    <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-10 md:p-16 print:p-16">
+                        {/* Header row: Logo + Year badge */}
+                        <div className="flex flex-wrap items-start justify-between gap-3">
+                            <img
+                                src={imageUrl('Kristalin-New-Logo.webp')}
+                                alt="Logo"
+                                className="h-10 w-auto brightness-0 invert sm:h-14 md:h-16"
+                            />
+                            <p className="mt-1 text-xs font-bold tracking-[0.18em] text-amber-500 uppercase sm:text-sm md:text-lg">
                                 {t('pages.company_profile.report_year') || '2026 Edition'}
                             </p>
                         </div>
                         
-                        <div>
-                            <h1 className="mb-6 text-4xl sm:text-5xl font-black uppercase tracking-tight md:text-7xl">
+                        {/* Bottom content: title + divider + tagline */}
+                        <div className="mt-auto">
+                            <h1 className="mb-4 text-3xl font-black uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-7xl print:text-7xl">
                                 {t('pages.company_profile.report_title') || 'COMPANY PROFILE REPORT'}
                             </h1>
-                            <div className="h-1.5 w-32 bg-amber-500 mb-8" />
+                            <div className="mb-6 h-1.5 w-24 bg-amber-500 sm:w-32" />
                             
-                            {/* TAGLINE AS REQUESTED */}
-                            <p className="text-2xl font-light italic text-stone-200 border-l-4 border-amber-500 pl-6 py-2 max-w-2xl">
-                                "{t('pages.company_profile.tagline') || 'Responsibility is not what we claim, but what we consistently do.'}"
+                            {/* Tagline */}
+                            <p className="border-l-4 border-amber-500 py-2 pl-4 text-base font-light italic text-stone-200 sm:pl-6 sm:text-lg md:text-2xl print:text-2xl max-w-2xl">
+                                &ldquo;{t('pages.company_profile.tagline') || 'Responsibility is not what we claim, but what we consistently do.'}&rdquo;
                             </p>
                         </div>
                     </div>
                 </div>
+
 
                 {/* ----------------- PAGE 2: EXECUTIVE SUMMARY & CORE VALUES ----------------- */}
                 <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">

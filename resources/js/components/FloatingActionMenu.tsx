@@ -48,88 +48,100 @@ export default function FloatingActionMenu() {
     }, [isOpen]);
 
     return (
+        // CRITICAL FIX: The wrapper div ONLY wraps the visible button + popup — it does NOT
+        // expand to cover the whole screen. On mobile, a full-width/height fixed container
+        // with z-[9999] would silently intercept ALL taps (e.g. hero buttons, sidebar links).
+        //
+        // Solution: wrapper is `w-fit h-fit` (shrinks to contents only) + `pointer-events-none`
+        // on the wrapper itself. Individual interactive children re-enable pointer-events via
+        // `pointer-events-auto`. This ensures zero invisible hit-test area outside the FAB itself.
         <div
-            ref={menuRef}
-            className={`fixed z-[9999] flex flex-col-reverse items-end bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6 transition-opacity duration-200 ${
-                mobileNavOpen ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
+            className={`fixed z-[9999] bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6 transition-opacity duration-200 ${
+                mobileNavOpen ? 'pointer-events-none opacity-0' : 'pointer-events-none opacity-100'
             }`}
         >
-            {/* Main Toggle Button */}
-            <button
-                onClick={toggleMenu}
-                className={`relative flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg ring-2 transition-all duration-300 focus:outline-none focus:ring-offset-2 active:scale-95 ${
-                    isOpen
-                        ? 'bg-stone-800 ring-stone-700 hover:bg-stone-900 shadow-xl'
-                        : 'bg-amber-500 ring-amber-400/50 hover:bg-amber-600 hover:shadow-xl hover:ring-amber-400'
-                }`}
-                aria-label="Toggle Contact Menu"
-                style={{ WebkitTapHighlightColor: 'transparent' }}
-            >
-                <span className={`absolute transition-all duration-300 ${isOpen ? 'scale-0 opacity-0 rotate-90' : 'scale-100 opacity-100 rotate-0'}`}>
-                    <MessageCircle className="h-6 w-6" strokeWidth={2} />
-                </span>
-                <span className={`absolute transition-all duration-300 ${isOpen ? 'scale-100 opacity-100 rotate-0' : 'scale-0 opacity-0 -rotate-90'}`}>
-                    <X className="h-6 w-6" strokeWidth={2} />
-                </span>
-            </button>
+            {/* Inner wrapper: flex layout for button + popup, pointer-events-none on container */}
+            <div ref={menuRef} className="flex flex-col-reverse items-end gap-0">
 
-            {/* Pop-up Container Menu */}
-            <div
-                className={`mb-4 w-[280px] origin-bottom-right rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] ${
-                    isOpen ? 'translate-y-0 scale-100 opacity-100 pointer-events-auto' : 'translate-y-4 scale-90 opacity-0 pointer-events-none'
-                }`}
-            >
-                {/* Header Container */}
-                <div className="border-b border-stone-100 px-4 py-3">
-                    <h3 className="text-sm font-bold text-stone-900">{t('pages.floating_menu.title') || 'How can we help?'}</h3>
-                    <p className="mt-0.5 text-xs text-stone-500">{t('pages.floating_menu.subtitle') || 'Choose a way to connect with us'}</p>
-                </div>
+                {/* Main Toggle Button — pointer-events-auto so it is always tappable */}
+                <button
+                    onClick={toggleMenu}
+                    className={`pointer-events-auto relative flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg ring-2 transition-all duration-300 focus:outline-none focus:ring-offset-2 active:scale-95 ${
+                        isOpen
+                            ? 'bg-stone-800 ring-stone-700 hover:bg-stone-900 shadow-xl'
+                            : 'bg-amber-500 ring-amber-400/50 hover:bg-amber-600 hover:shadow-xl hover:ring-amber-400'
+                    }`}
+                    aria-label="Toggle Contact Menu"
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                >
+                    <span className={`absolute transition-all duration-300 ${isOpen ? 'scale-0 opacity-0 rotate-90' : 'scale-100 opacity-100 rotate-0'}`}>
+                        <MessageCircle className="h-6 w-6" strokeWidth={2} />
+                    </span>
+                    <span className={`absolute transition-all duration-300 ${isOpen ? 'scale-100 opacity-100 rotate-0' : 'scale-0 opacity-0 -rotate-90'}`}>
+                        <X className="h-6 w-6" strokeWidth={2} />
+                    </span>
+                </button>
 
-                {/* List Container */}
-                <div className="mt-2 flex flex-col space-y-1">
+                {/* Pop-up Container Menu — pointer-events-auto only when open */}
+                <div
+                    className={`mb-4 w-[280px] origin-bottom-right rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] ${
+                        isOpen
+                            ? 'translate-y-0 scale-100 opacity-100 pointer-events-auto'
+                            : 'translate-y-4 scale-90 opacity-0 pointer-events-none'
+                    }`}
+                >
+                    {/* Header Container */}
+                    <div className="border-b border-stone-100 px-4 py-3">
+                        <h3 className="text-sm font-bold text-stone-900">{t('pages.floating_menu.title') || 'How can we help?'}</h3>
+                        <p className="mt-0.5 text-xs text-stone-500">{t('pages.floating_menu.subtitle') || 'Choose a way to connect with us'}</p>
+                    </div>
 
-                    {/* 1. Internal Feedback */}
-                    <Link
-                        href="/internal-feedback"
-                        className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white">
-                            <Shield className="h-4 w-4" strokeWidth={2.5} />
-                        </div>
-                        <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-amber-600">
-                            {t('pages.internal_feedback.page_title') || 'Internal Feedback'}
-                        </span>
-                    </Link>
+                    {/* List Container */}
+                    <div className="mt-2 flex flex-col space-y-1">
 
-                    {/* 2. Phone Call */}
-                    <a
-                        href={phoneUrl}
-                        className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                            <Phone className="h-4 w-4" strokeWidth={2.5} />
-                        </div>
-                        <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-blue-600">
-                            {t('pages.floating_menu.call_us') || 'Call Us'}
-                        </span>
-                    </a>
+                        {/* 1. Internal Feedback */}
+                        <Link
+                            href="/internal-feedback"
+                            className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white">
+                                <Shield className="h-4 w-4" strokeWidth={2.5} />
+                            </div>
+                            <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-amber-600">
+                                {t('pages.internal_feedback.page_title') || 'Internal Feedback'}
+                            </span>
+                        </Link>
 
-                    {/* 3. Contact Page */}
-                    <Link
-                        href="/contact"
-                        className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition-colors group-hover:bg-stone-800 group-hover:text-white">
-                            <Mail className="h-4 w-4" strokeWidth={2.5} />
-                        </div>
-                        <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-stone-900">
-                            {t('pages.floating_menu.contact_page') || 'Contact Page'}
-                        </span>
-                    </Link>
+                        {/* 2. Phone Call */}
+                        <a
+                            href={phoneUrl}
+                            className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                <Phone className="h-4 w-4" strokeWidth={2.5} />
+                            </div>
+                            <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-blue-600">
+                                {t('pages.floating_menu.call_us') || 'Call Us'}
+                            </span>
+                        </a>
 
+                        {/* 3. Contact Page */}
+                        <Link
+                            href="/contact"
+                            className="group flex items-center rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50 focus:outline-none"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <div className="mr-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition-colors group-hover:bg-stone-800 group-hover:text-white">
+                                <Mail className="h-4 w-4" strokeWidth={2.5} />
+                            </div>
+                            <span className="text-sm font-medium text-stone-700 transition-colors group-hover:text-stone-900">
+                                {t('pages.floating_menu.contact_page') || 'Contact Page'}
+                            </span>
+                        </Link>
+
+                    </div>
                 </div>
             </div>
         </div>
