@@ -1,5 +1,4 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import axios from 'axios';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 import { Input } from './ui/input';
@@ -21,42 +20,44 @@ export default function InquiryForm({ type, title, subtitle, hideHeader, variant
         e.preventDefault();
         setStatus('submitting');
 
-        const fd = new FormData(e.currentTarget);
-        
-        // Remove interest from FormData as it's not expected by controller, but we use it for subject/message
+        // Save reference to the form BEFORE any async operation.
+        // After await, React may have re-rendered and e.currentTarget becomes null (stale synthetic event).
+        const formEl = e.currentTarget;
+        const fd = new FormData(formEl);
+
+        // Map InquiryForm fields → ContactMessageController expected fields
         const interest = fd.get('interest') as string;
         const phone = fd.get('phone') as string;
         const originalMessage = fd.get('message') as string;
-        
-        // Build new form data specifically for the controller
+
         const form = new FormData();
         form.append('name', fd.get('name') as string);
         form.append('email', fd.get('email') as string);
         form.append('subject', `[${type} Inquiry] ${interest}`);
         form.append('message', `Nomor WA/Telepon: ${phone}\nKetertarikan: ${interest}\n\nPesan Tambahan:\n${originalMessage}`);
 
-        try {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-            
-            const res = await fetch('/contact-message', {
-                method: 'POST',
-                body: form,
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken || '',
-                },
-            });
+        // Read CSRF token exactly as contact.tsx does
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
-            const data = await res.json();
-
-            if (res.ok && data.success) {
-                setStatus('success');
-                e.currentTarget.reset();
-            } else {
+        fetch('/contact-message', {
+            method: 'POST',
+            body: form,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken || '',
+            },
+        })
+            .then(async (res) => {
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    setStatus('success');
+                    formEl.reset();
+                } else {
+                    setStatus('error');
+                }
+            })
+            .catch(() => {
                 setStatus('error');
-            }
-        } catch (error) {
-            setStatus('error');
-        }
+            });
     }
 
     return (
