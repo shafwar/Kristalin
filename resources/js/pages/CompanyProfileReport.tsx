@@ -125,41 +125,41 @@ export default function CompanyProfileReport() {
                   - pdf-page class (targeted by print CSS below)
                   - overflow-hidden to prevent content bleed between pages
             ============================================================ */}
-            <div className="mx-auto w-full max-w-[210mm] overflow-hidden bg-white text-stone-800 shadow-2xl print:w-[210mm] print:max-w-none print:shadow-none">
+            <div className="mx-auto w-full max-w-[210mm] @container overflow-hidden bg-white text-stone-800 shadow-2xl print:w-[210mm] print:max-w-none print:shadow-none">
 
                 {/* ==================== PAGE 1: COVER ==================== */}
-                <div className="pdf-page relative flex min-h-[100svh] flex-col overflow-hidden bg-stone-950 text-white md:h-[297mm]">
+                <div className="pdf-page relative flex w-full aspect-[210/297] flex-col overflow-hidden bg-stone-950 text-white md:h-[297mm] print:h-[297mm]">
                     <div className="absolute inset-0 opacity-40">
                         <img
                             src={imageUrl('KristalinCompanyProfileBackground.webp')}
                             alt="" aria-hidden
-                            className="h-full w-full object-cover"
+                            className="h-full w-full object-cover object-center"
                             loading="eager"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
                     </div>
 
-                    <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-10 md:p-16 print:p-16">
-                        {/* Header row */}
-                        <div className="flex flex-wrap items-start justify-between gap-2">
+                    <div className="relative z-10 flex h-full flex-col justify-between p-[7cqw] sm:p-10 md:p-16 print:p-16">
+                        {/* Header: Logo + Year */}
+                        <div className="flex items-center justify-between gap-4">
                             <img
                                 src={imageUrl('Kristalin-New-Logo.webp')}
                                 alt="Kristalin Ekalestari"
-                                className="h-9 w-auto brightness-0 invert sm:h-12 md:h-16 print:h-16"
+                                className="h-[7cqw] min-h-[28px] max-h-[64px] w-auto brightness-0 invert"
                                 loading="eager"
                             />
-                            <p className="text-[10px] font-bold tracking-[0.18em] text-amber-500 uppercase sm:text-xs md:text-base print:text-base">
+                            <p className="text-[2.2cqw] min-text-[10px] font-bold tracking-[0.18em] text-amber-500 uppercase whitespace-nowrap">
                                 {t('pages.company_profile.report_year') || '2026 Edition'}
                             </p>
                         </div>
 
                         {/* Title + Tagline */}
-                        <div className="mt-auto pb-2">
-                            <h1 className="mb-4 font-black uppercase leading-[1.05] tracking-tight text-[clamp(1.75rem,8vw,4.5rem)] print:text-7xl">
+                        <div className="mt-auto pb-[1cqw]">
+                            <h1 className="mb-[2cqw] font-black uppercase leading-[1.05] tracking-tight text-[7.5cqw] print:text-7xl">
                                 {t('pages.company_profile.report_title') || 'COMPANY PROFILE REPORT'}
                             </h1>
-                            <div className="mb-5 h-1.5 w-20 bg-amber-500 sm:w-28 print:w-32" />
-                            <p className="max-w-xl border-l-4 border-amber-500 py-2 pl-4 text-sm font-light italic text-stone-200 sm:text-base md:text-xl print:text-xl">
+                            <div className="mb-[2.5cqw] h-[0.7cqw] min-h-[3px] w-[14cqw] bg-amber-500 print:w-32" />
+                            <p className="max-w-xl border-l-[0.5cqw] border-amber-500 py-[1cqw] pl-[3cqw] text-[2.7cqw] font-light italic text-stone-200 print:text-xl">
                                 &ldquo;{t('pages.company_profile.tagline') || 'Responsibility is not what we claim, but what we consistently do.'}&rdquo;
                             </p>
                         </div>
