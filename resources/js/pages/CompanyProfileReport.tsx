@@ -77,7 +77,7 @@ export default function CompanyProfileReport() {
     const printLabel = PRINT_STATE_LABELS[printState];
 
     return (
-        <div className="min-h-screen bg-stone-100 py-8 print:bg-white print:py-0">
+        <div className="min-h-screen bg-stone-100 py-0 md:py-8 print:bg-white print:py-0">
             <Head title={t('pages.company_profile.page_title') || 'Company Profile | PT Kristalin Ekalestari'} />
 
             {/* Loading Overlay */}
@@ -113,9 +113,6 @@ export default function CompanyProfileReport() {
                     </span>
                 </button>
             </div>
-
-            {/* Mobile spacer so content isn't hidden behind fixed bottom bar */}
-            <div className="h-20 print:hidden md:hidden" />
 
             {/* ============================================================
                 A4 REPORT CONTAINER
@@ -486,6 +483,9 @@ export default function CompanyProfileReport() {
                 </div>
 
             </div>{/* end A4 container */}
+
+            {/* Mobile spacer so bottom content isn't hidden behind fixed bottom bar */}
+            <div className="h-20 print:hidden md:hidden" />
 
             {/*
                 CRITICAL PRINT CSS
