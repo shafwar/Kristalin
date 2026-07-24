@@ -1,496 +1,460 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Head } from '@inertiajs/react';
-import { Printer, ArrowLeft, Target, Award, HeartHandshake, ShieldCheck, Gem, Building2, TrendingUp, HandHeart, History, Leaf, Users, GraduationCap, Smartphone, Pickaxe, Factory, Store, MapPin, Mail, Phone, ChevronRight, Eye } from 'lucide-react';
+import {
+    Printer, ArrowLeft, Target, Award, HeartHandshake, ShieldCheck, Gem,
+    TrendingUp, HandHeart, History, Leaf, Users, GraduationCap, Smartphone,
+    Pickaxe, Factory, Store, MapPin, Mail, Phone, Eye, Loader2,
+} from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
 
+// ---------------------------------------------------------------------------
+// Asset Preloader — resolves when every <img> in the document is fully loaded.
+// Prevents blank/incomplete PDF pages on slow mobile connections.
+// ---------------------------------------------------------------------------
+function preloadAllImages(): Promise<void> {
+    const imgs = Array.from(document.querySelectorAll<HTMLImageElement>('img'));
+    const promises = imgs.map(
+        (img) =>
+            new Promise<void>((resolve) => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    resolve();
+                } else {
+                    img.onload = () => resolve();
+                    img.onerror = () => resolve(); // resolve even on error so print isn't blocked forever
+                }
+            }),
+    );
+    return Promise.all(promises).then(() => undefined);
+}
+
+// ---------------------------------------------------------------------------
+// Print states for loading UX
+// ---------------------------------------------------------------------------
+type PrintState = 'idle' | 'preparing' | 'rendering' | 'generating';
+
+const PRINT_STATE_LABELS: Record<PrintState, string> = {
+    idle: '',
+    preparing: 'Preparing document...',
+    rendering: 'Rendering pages...',
+    generating: 'Generating PDF...',
+};
+
 export default function CompanyProfileReport() {
     const { t } = useTranslation();
+    const [printState, setPrintState] = useState<PrintState>('idle');
+    const printTriggered = useRef(false);
 
-    const handlePrint = () => {
+    // Robust print handler: preloads all assets, shows loading steps, then triggers print dialog.
+    const handlePrint = useCallback(async () => {
+        if (printTriggered.current) return;
+        printTriggered.current = true;
+
+        setPrintState('preparing');
+        await new Promise((r) => setTimeout(r, 300)); // allow UI to update
+
+        setPrintState('rendering');
+        await preloadAllImages();
+        await new Promise((r) => setTimeout(r, 400)); // allow final layout reflow
+
+        setPrintState('generating');
+        await new Promise((r) => setTimeout(r, 200));
+
         window.print();
-    };
+
+        // Reset state after print dialog closes
+        setTimeout(() => {
+            setPrintState('idle');
+            printTriggered.current = false;
+        }, 1000);
+    }, []);
+
+    // Also handle browser afterprint event to reset state
+    useEffect(() => {
+        const handleAfterPrint = () => {
+            setPrintState('idle');
+            printTriggered.current = false;
+        };
+        window.addEventListener('afterprint', handleAfterPrint);
+        return () => window.removeEventListener('afterprint', handleAfterPrint);
+    }, []);
+
+    const isPrinting = printState !== 'idle';
+    const printLabel = PRINT_STATE_LABELS[printState];
 
     return (
         <div className="min-h-screen bg-stone-100 py-8 print:bg-white print:py-0">
             <Head title={t('pages.company_profile.page_title') || 'Company Profile | PT Kristalin Ekalestari'} />
 
+            {/* Loading Overlay — shown during asset preparation, hidden on screen during actual print */}
+            {isPrinting && (
+                <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-stone-950/80 backdrop-blur-sm print:hidden">
+                    <div className="flex flex-col items-center gap-4 rounded-2xl bg-white px-8 py-6 shadow-2xl">
+                        <Loader2 className="h-10 w-10 animate-spin text-amber-500" />
+                        <p className="text-base font-semibold text-stone-700">{printLabel}</p>
+                    </div>
+                </div>
+            )}
+
             {/* Floating Action Buttons (Hidden when printing) */}
-            <div className="fixed bottom-6 left-6 right-6 md:bottom-auto md:left-auto md:top-8 md:right-8 z-50 flex justify-between md:justify-end gap-4 print:hidden">
-                <a 
-                    href="/investor" 
-                    className="flex h-14 w-14 md:h-12 md:w-12 flex-shrink-0 items-center justify-center rounded-full bg-white text-stone-600 shadow-xl transition-all hover:bg-stone-50 hover:text-stone-900"
+            <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3 border-t border-stone-200 bg-white/90 px-4 py-3 backdrop-blur-sm print:hidden md:bottom-auto md:left-auto md:top-8 md:right-8 md:border-0 md:bg-transparent md:backdrop-blur-none md:justify-end md:px-0 md:py-0 md:gap-4">
+                <a
+                    href="/investor"
+                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-stone-600 shadow-md ring-1 ring-stone-200 transition-all hover:bg-stone-50 hover:text-stone-900 md:h-12 md:w-12 md:shadow-xl"
                     title="Back to Investors"
                 >
-                    <ArrowLeft className="h-6 w-6 md:h-5 md:w-5" />
+                    <ArrowLeft className="h-5 w-5" />
                 </a>
-                <button 
+                <button
                     onClick={handlePrint}
-                    className="flex h-14 md:h-12 flex-grow md:flex-grow-0 items-center justify-center gap-2 rounded-full bg-amber-500 px-6 font-semibold text-white shadow-xl transition-all hover:bg-amber-600"
+                    disabled={isPrinting}
+                    className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-amber-500 px-5 font-semibold text-white shadow-md transition-all hover:bg-amber-600 disabled:opacity-70 md:h-12 md:flex-none md:px-6 md:shadow-xl"
                 >
-                    <Printer className="h-6 w-6 md:h-5 md:w-5" />
-                    <span className="text-sm md:text-base">{t('pages.company_profile.print_btn') || 'Print / Save as PDF'}</span>
+                    {isPrinting ? (
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                    ) : (
+                        <Printer className="h-5 w-5" />
+                    )}
+                    <span className="text-sm md:text-base">
+                        {isPrinting ? printLabel : (t('pages.company_profile.print_btn') || 'Print / Save as PDF')}
+                    </span>
                 </button>
             </div>
 
-            {/* A4 Report Container - Will flow naturally onto multiple pages when printed */}
-            <div className="mx-auto w-full max-w-[210mm] bg-white shadow-2xl print:shadow-none text-stone-800 print:w-[210mm] print:max-w-none overflow-hidden">
-                
-                {/* ----------------- PAGE 1: COVER ----------------- */}
-                <div className="relative flex min-h-[100svh] md:h-[297mm] print:h-[297mm] flex-col overflow-hidden bg-stone-950 text-white print:h-[297mm]">
+            {/* Bottom spacer on mobile so content is not hidden behind fixed bar */}
+            <div className="h-20 print:hidden md:hidden" />
+
+            {/* A4 Report Container */}
+            <div className="mx-auto w-full max-w-[210mm] overflow-hidden bg-white text-stone-800 shadow-2xl print:w-[210mm] print:max-w-none print:shadow-none">
+
+                {/* ==================== PAGE 1: COVER ==================== */}
+                <div className="relative flex min-h-[100svh] flex-col overflow-hidden bg-stone-950 text-white md:h-[297mm] print:h-[297mm]">
+                    {/* Background image */}
                     <div className="absolute inset-0 opacity-40">
-                        <img 
-                            src={imageUrl('KristalinCompanyProfileBackground.webp')} 
-                            alt="Kristalin Company Profile Background" 
+                        <img
+                            src={imageUrl('KristalinCompanyProfileBackground.webp')}
+                            alt=""
+                            aria-hidden
                             className="h-full w-full object-cover"
+                            loading="eager"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
                     </div>
-                    
+
                     <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-10 md:p-16 print:p-16">
-                        {/* Header row: Logo + Year badge */}
-                        <div className="flex flex-wrap items-start justify-between gap-3">
+                        {/* Header: Logo + Year */}
+                        <div className="flex flex-wrap items-start justify-between gap-2">
                             <img
                                 src={imageUrl('Kristalin-New-Logo.webp')}
-                                alt="Logo"
-                                className="h-10 w-auto brightness-0 invert sm:h-14 md:h-16"
+                                alt="Kristalin Ekalestari"
+                                className="h-9 w-auto brightness-0 invert sm:h-12 md:h-16 print:h-16"
+                                loading="eager"
                             />
-                            <p className="mt-1 text-xs font-bold tracking-[0.18em] text-amber-500 uppercase sm:text-sm md:text-lg">
+                            <p className="text-[10px] font-bold tracking-[0.18em] text-amber-500 uppercase sm:text-xs md:text-base print:text-base">
                                 {t('pages.company_profile.report_year') || '2026 Edition'}
                             </p>
                         </div>
-                        
-                        {/* Bottom content: title + divider + tagline */}
-                        <div className="mt-auto">
-                            <h1 className="mb-4 text-3xl font-black uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-7xl print:text-7xl">
+
+                        {/* Bottom: Title + Tagline */}
+                        <div className="mt-auto pb-2">
+                            <h1 className="mb-4 text-[clamp(1.75rem,8vw,4.5rem)] font-black uppercase leading-[1.05] tracking-tight print:text-7xl">
                                 {t('pages.company_profile.report_title') || 'COMPANY PROFILE REPORT'}
                             </h1>
-                            <div className="mb-6 h-1.5 w-24 bg-amber-500 sm:w-32" />
-                            
-                            {/* Tagline */}
-                            <p className="border-l-4 border-amber-500 py-2 pl-4 text-base font-light italic text-stone-200 sm:pl-6 sm:text-lg md:text-2xl print:text-2xl max-w-2xl">
+                            <div className="mb-5 h-1.5 w-20 bg-amber-500 sm:w-28 print:w-32" />
+                            <p className="max-w-xl border-l-4 border-amber-500 py-2 pl-4 text-sm font-light italic text-stone-200 sm:text-base md:text-xl print:text-xl">
                                 &ldquo;{t('pages.company_profile.tagline') || 'Responsibility is not what we claim, but what we consistently do.'}&rdquo;
                             </p>
                         </div>
                     </div>
                 </div>
 
+                {/* ==================== PAGE 2: EXECUTIVE SUMMARY & CORE VALUES ==================== */}
+                <div className="flex min-h-[100svh] flex-col p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
 
-                {/* ----------------- PAGE 2: EXECUTIVE SUMMARY & CORE VALUES ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">
-                    
                     {/* Executive Summary */}
-                    <div className="mb-12">
-                        <div className="inline-block mb-6">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.exec_summary') || 'Executive Summary'}
-                            </h2>
-                        </div>
-                        <p className="text-base md:text-lg print:text-lg leading-relaxed text-stone-700">
+                    <div className="mb-8 md:mb-12">
+                        <h2 className="mb-5 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.exec_summary') || 'Executive Summary'}
+                        </h2>
+                        <p className="text-sm leading-relaxed text-stone-700 md:text-lg print:text-lg">
                             {t('pages.company_profile.exec_summary_text') || 'PT Kristalin Ekalestari is a premier integrated gold mining and refining company based in Indonesia. Operating since 1989, we manage the entire value chain from exploration in Papua to our state-of-the-art refinery in Jakarta. We are committed to sustainable operations and community development.'}
                         </p>
                     </div>
 
                     {/* Core Values */}
                     <div className="flex-grow">
-                        <div className="inline-block mb-8">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.core_values') || 'Core Values'}
-                            </h2>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-8">
-                            <div className="rounded-2xl bg-white p-8 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col h-full">
-                                <ShieldCheck className="h-8 w-8 text-amber-500 mb-6" strokeWidth={1.5} />
-                                <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('pages.company_profile.cv_integrity') || 'Integrity'}</h3>
-                                <p className="text-stone-600 leading-relaxed flex-grow">{t('pages.company_profile.cv_integrity_text') || 'Upholding the highest standards of ethics and transparency in all our operations.'}</p>
-                            </div>
-                            
-                            <div className="rounded-2xl bg-white p-8 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col h-full">
-                                <HeartHandshake className="h-8 w-8 text-amber-500 mb-6" strokeWidth={1.5} />
-                                <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('pages.company_profile.cv_sustainability') || 'Sustainability'}</h3>
-                                <p className="text-stone-600 leading-relaxed flex-grow">{t('pages.company_profile.cv_sustainability_text') || 'Commitment to environmental stewardship and long-term community development.'}</p>
-                            </div>
-                            
-                            <div className="rounded-2xl bg-white p-8 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col h-full">
-                                <Award className="h-8 w-8 text-amber-500 mb-6" strokeWidth={1.5} />
-                                <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('pages.company_profile.cv_excellence') || 'Excellence'}</h3>
-                                <p className="text-stone-600 leading-relaxed flex-grow">{t('pages.company_profile.cv_excellence_text') || 'Delivering world-class quality in gold refining and product certification.'}</p>
-                            </div>
-                            
-                            <div className="rounded-2xl bg-white p-8 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col h-full">
-                                <TrendingUp className="h-8 w-8 text-amber-500 mb-6" strokeWidth={1.5} />
-                                <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('pages.company_profile.cv_innovation') || 'Innovation'}</h3>
-                                <p className="text-stone-600 leading-relaxed flex-grow">{t('pages.company_profile.cv_innovation_text') || 'Continuously adopting cutting-edge technologies to optimize the mining value chain.'}</p>
-                            </div>
+                        <h2 className="mb-6 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-8 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.core_values') || 'Core Values'}
+                        </h2>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8 print:grid-cols-2 print:gap-8">
+                            {[
+                                { icon: <ShieldCheck className="h-7 w-7 text-amber-500" strokeWidth={1.5} />, title: t('pages.company_profile.cv_integrity') || 'Integrity', text: t('pages.company_profile.cv_integrity_text') || 'Upholding the highest standards of ethics and transparency in all our operations.' },
+                                { icon: <HeartHandshake className="h-7 w-7 text-amber-500" strokeWidth={1.5} />, title: t('pages.company_profile.cv_sustainability') || 'Sustainability', text: t('pages.company_profile.cv_sustainability_text') || 'Commitment to environmental stewardship and long-term community development.' },
+                                { icon: <Award className="h-7 w-7 text-amber-500" strokeWidth={1.5} />, title: t('pages.company_profile.cv_excellence') || 'Excellence', text: t('pages.company_profile.cv_excellence_text') || 'Delivering world-class quality in gold refining and product certification.' },
+                                { icon: <TrendingUp className="h-7 w-7 text-amber-500" strokeWidth={1.5} />, title: t('pages.company_profile.cv_innovation') || 'Innovation', text: t('pages.company_profile.cv_innovation_text') || 'Continuously adopting cutting-edge technologies to optimize the mining value chain.' },
+                            ].map((item, i) => (
+                                <div key={i} className="flex flex-col rounded-xl border border-stone-100 border-l-4 border-l-amber-500 bg-white p-5 shadow-sm md:rounded-2xl md:p-8 print:rounded-2xl print:p-8">
+                                    <div className="mb-4">{item.icon}</div>
+                                    <h3 className="mb-2 text-lg font-bold text-stone-900 md:text-2xl print:text-2xl">{item.title}</h3>
+                                    <p className="text-sm leading-relaxed text-stone-600 md:text-base print:text-base">{item.text}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">01</p>
-                    </div>
+                    <PageFooter page="01" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 2: CHAIRMAN'S MESSAGE ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page relative overflow-hidden bg-white">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-bl-full pointer-events-none" />
-                    
-                    <div className="inline-block mb-12">
-                        <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                            {t('pages.company_profile.chairman_title') || 'Message from the Chairman'}
-                        </h2>
-                    </div>
-                    
-                    <div className="flex-grow flex flex-col justify-center max-w-4xl mx-auto">
-                        <div className="relative bg-stone-50 p-6 md:p-12 print:p-12 rounded-3xl border border-stone-200 shadow-sm">
-                            <div className="absolute -top-6 -left-6 text-amber-500 opacity-20">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.714 4.195-7.79 7.983-8.83l.004 2.06c-1.636 1.111-3.693 2.923-3.693 4.957v1.204h3.689V21h-8.017zm-14.017 0v-7.391c0-5.714 4.194-7.79 7.983-8.83l.004 2.06c-1.635 1.111-3.693 2.923-3.693 4.957v1.204h3.689V21H0z"/></svg>
+                {/* ==================== PAGE 3: CHAIRMAN'S MESSAGE ==================== */}
+                <div className="relative flex min-h-[100svh] flex-col overflow-hidden bg-white p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
+                    <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-bl-full bg-amber-500/10 md:h-64 md:w-64" />
+
+                    <h2 className="mb-8 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-12 md:text-4xl print:text-4xl">
+                        {t('pages.company_profile.chairman_title') || "Message from the Chairman"}
+                    </h2>
+
+                    <div className="flex-grow flex flex-col justify-center">
+                        <div className="relative rounded-2xl border border-stone-200 bg-stone-50 p-5 shadow-sm sm:p-8 md:rounded-3xl md:p-12 print:rounded-3xl print:p-12">
+                            <div className="pointer-events-none absolute -top-4 -left-4 text-amber-500 opacity-20 md:-top-6 md:-left-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="currentColor" className="md:w-[80px] md:h-[80px]"><path d="M14.017 21v-7.391c0-5.714 4.195-7.79 7.983-8.83l.004 2.06c-1.636 1.111-3.693 2.923-3.693 4.957v1.204h3.689V21h-8.017zm-14.017 0v-7.391c0-5.714 4.194-7.79 7.983-8.83l.004 2.06c-1.635 1.111-3.693 2.923-3.693 4.957v1.204h3.689V21H0z"/></svg>
                             </div>
-                            
-                            <p className="text-lg md:text-xl print:text-xl leading-loose text-stone-700 italic relative z-10 font-medium">
-                                "{t('pages.company_profile.chairman_msg') || 'Welcome to PT Kristalin Ekalestari. Since our inception, we have been driven by a singular vision: to redefine the gold mining industry in Indonesia through unwavering commitment to sustainability, innovation, and community empowerment. Our journey is not just about extracting precious metals; it is about creating lasting value for our stakeholders, preserving the environment for future generations, and uplifting the communities in Papua and beyond. As we embark on our digital transformation, we remain dedicated to transparency and excellence. Thank you for your continued trust and partnership.'}"
+                            <p className="relative z-10 text-sm font-medium italic leading-loose text-stone-700 md:text-xl print:text-xl">
+                                &ldquo;{t('pages.company_profile.chairman_msg') || 'Welcome to PT Kristalin Ekalestari. Since our inception, we have been driven by a singular vision: to redefine the gold mining industry in Indonesia through unwavering commitment to sustainability, innovation, and community empowerment.'}&rdquo;
                             </p>
-                            
-                            <div className="mt-12 flex items-center justify-end border-t border-stone-200 pt-8">
+                            <div className="mt-8 flex items-center justify-end border-t border-stone-200 pt-6 md:mt-12 md:pt-8 print:mt-12 print:pt-8">
                                 <div className="text-right">
-                                    <h3 className="text-2xl font-bold text-stone-900">{t('pages.company_profile.chairman_name') || 'Arif Budi Setiawan'}</h3>
-                                    <p className="text-amber-600 font-semibold uppercase tracking-widest text-sm mt-1">{t('pages.company_profile.chairman_position') || 'Chairman'}</p>
+                                    <h3 className="text-lg font-bold text-stone-900 md:text-2xl print:text-2xl">{t('pages.company_profile.chairman_name') || 'Arif Budi Setiawan'}</h3>
+                                    <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-amber-600 md:text-sm print:text-sm">{t('pages.company_profile.chairman_position') || 'Chairman'}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">02</p>
-                    </div>
+                    <PageFooter page="02" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 3: VISION, MISSION & HIGHLIGHTS ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">
-                    
+                {/* ==================== PAGE 4: VISION, MISSION & OPERATIONAL EXCELLENCE ==================== */}
+                <div className="flex min-h-[100svh] flex-col p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
+
                     {/* Vision & Mission */}
-                    <div className="mb-12 flex flex-col md:flex-row print:flex-row gap-8">
-                        <div className="w-full md:w-1/2 print:w-1/2 bg-stone-900 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-                            <div className="absolute -right-4 -top-4 opacity-10">
-                                <Eye className="h-32 w-32" />
-                            </div>
-                            <Eye className="h-10 w-10 text-amber-500 mb-6" />
-                            <h2 className="text-2xl md:text-3xl print:text-3xl font-bold mb-4">{t('pages.company_profile.vision_title') || 'Our Vision'}</h2>
-                            <p className="text-stone-300 leading-relaxed text-lg relative z-10">
-                                {t('pages.company_profile.vision_text') || 'To become the leading and most trusted integrated gold mining company in Southeast Asia, pioneering sustainable operations and driving socio-economic growth for local communities.'}
-                            </p>
+                    <div className="mb-6 grid grid-cols-1 gap-4 md:mb-12 md:grid-cols-2 md:gap-8 print:grid-cols-2 print:gap-8">
+                        <div className="relative overflow-hidden rounded-2xl bg-stone-900 p-6 text-white shadow-xl md:rounded-3xl md:p-8 print:rounded-3xl print:p-8">
+                            <div className="pointer-events-none absolute -right-4 -top-4 opacity-10"><Eye className="h-24 w-24 md:h-32 md:w-32" /></div>
+                            <Eye className="mb-4 h-8 w-8 text-amber-500 md:mb-6 md:h-10 md:w-10" />
+                            <h2 className="mb-3 text-xl font-bold md:mb-4 md:text-3xl print:text-3xl">{t('pages.company_profile.vision_title') || 'Our Vision'}</h2>
+                            <p className="relative z-10 text-sm leading-relaxed text-stone-300 md:text-lg print:text-lg">{t('pages.company_profile.vision_text') || 'To become the leading and most trusted integrated gold mining company in Southeast Asia, pioneering sustainable operations and driving socio-economic growth for local communities.'}</p>
                         </div>
-                        <div className="w-full md:w-1/2 print:w-1/2 bg-amber-500 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-                            <div className="absolute -right-4 -top-4 opacity-10 text-black">
-                                <Target className="h-32 w-32" />
-                            </div>
-                            <Target className="h-10 w-10 text-stone-900 mb-6" />
-                            <h2 className="text-2xl md:text-3xl print:text-3xl font-bold text-stone-900 mb-4">{t('pages.company_profile.mission_title') || 'Our Mission'}</h2>
-                            <p className="text-stone-900 font-medium leading-relaxed text-lg relative z-10">
-                                {t('pages.company_profile.mission_text') || 'To operate responsibly across the entire gold value chain—from upstream exploration to downstream trading—by utilizing state-of-the-art technology, adhering to the highest environmental and safety standards, and fostering long-term partnerships.'}
-                            </p>
+                        <div className="relative overflow-hidden rounded-2xl bg-amber-500 p-6 text-white shadow-xl md:rounded-3xl md:p-8 print:rounded-3xl print:p-8">
+                            <div className="pointer-events-none absolute -right-4 -top-4 opacity-10 text-black"><Target className="h-24 w-24 md:h-32 md:w-32" /></div>
+                            <Target className="mb-4 h-8 w-8 text-stone-900 md:mb-6 md:h-10 md:w-10" />
+                            <h2 className="mb-3 text-xl font-bold text-stone-900 md:mb-4 md:text-3xl print:text-3xl">{t('pages.company_profile.mission_title') || 'Our Mission'}</h2>
+                            <p className="relative z-10 text-sm font-medium leading-relaxed text-stone-900 md:text-lg print:text-lg">{t('pages.company_profile.mission_text') || 'To operate responsibly across the entire gold value chain—from upstream exploration to downstream trading—by utilizing state-of-the-art technology, adhering to the highest environmental and safety standards, and fostering long-term partnerships.'}</p>
                         </div>
                     </div>
 
                     {/* Operational Excellence */}
-                    <div className="flex-grow flex flex-col justify-center">
-                        <div className="inline-block mb-8">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.op_excellence') || 'Operational Excellence'}
-                            </h2>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6">
-                            <div className="flex items-center gap-6 p-6 rounded-2xl border border-stone-200 bg-stone-50 hover:bg-white hover:shadow-lg transition-all">
-                                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-amber-100 flex items-center justify-center">
-                                    <History className="h-8 w-8 text-amber-600" />
+                    <div className="flex-grow">
+                        <h2 className="mb-5 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-8 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.op_excellence') || 'Operational Excellence'}
+                        </h2>
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-6 print:grid-cols-2 print:gap-6">
+                            {[
+                                { icon: <History className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />, title: t('pages.company_profile.op_experience') || 'Decades of Experience', text: t('pages.company_profile.op_experience_text') || 'Operating seamlessly since 1989 with a proven track record.' },
+                                { icon: <Gem className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />, title: t('pages.company_profile.op_purity') || '99.99% Purity', text: t('pages.company_profile.op_purity_text') || 'Certified high-quality precious metals meeting international standards.' },
+                                { icon: <Leaf className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />, title: t('pages.company_profile.op_sustainability') || 'Eco-Friendly', text: t('pages.company_profile.op_sustainability_text') || 'Implementing ISO-certified green mining technologies.' },
+                                { icon: <Users className="h-6 w-6 text-amber-600 md:h-8 md:w-8" />, title: t('pages.company_profile.op_community') || 'Local Empowerment', text: t('pages.company_profile.op_community_text') || 'Creating thousands of jobs and supporting local Papuan businesses.' },
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-center gap-4 rounded-xl border border-stone-200 bg-stone-50 p-4 md:gap-6 md:rounded-2xl md:p-6 print:gap-6 print:rounded-2xl print:p-6">
+                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 md:h-16 md:w-16 print:h-16 print:w-16">{item.icon}</div>
+                                    <div>
+                                        <h3 className="text-base font-bold text-stone-900 md:text-xl print:text-xl">{item.title}</h3>
+                                        <p className="mt-0.5 text-xs leading-relaxed text-stone-600 md:text-base print:text-base">{item.text}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-stone-900 mb-1">{t('pages.company_profile.op_experience') || 'Decades of Experience'}</h3>
-                                    <p className="text-stone-600 leading-relaxed">{t('pages.company_profile.op_experience_text') || 'Operating seamlessly since 1989 with a proven track record.'}</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center gap-6 p-6 rounded-2xl border border-stone-200 bg-stone-50 hover:bg-white hover:shadow-lg transition-all">
-                                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-amber-100 flex items-center justify-center">
-                                    <Gem className="h-8 w-8 text-amber-600" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-stone-900 mb-1">{t('pages.company_profile.op_purity') || '99.99% Purity'}</h3>
-                                    <p className="text-stone-600 leading-relaxed">{t('pages.company_profile.op_purity_text') || 'Certified high-quality precious metals meeting international standards.'}</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center gap-6 p-6 rounded-2xl border border-stone-200 bg-stone-50 hover:bg-white hover:shadow-lg transition-all">
-                                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-amber-100 flex items-center justify-center">
-                                    <Leaf className="h-8 w-8 text-amber-600" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-stone-900 mb-1">{t('pages.company_profile.op_sustainability') || 'Eco-Friendly'}</h3>
-                                    <p className="text-stone-600 leading-relaxed">{t('pages.company_profile.op_sustainability_text') || 'Implementing ISO-certified green mining technologies.'}</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center gap-6 p-6 rounded-2xl border border-stone-200 bg-stone-50 hover:bg-white hover:shadow-lg transition-all">
-                                <div className="h-16 w-16 flex-shrink-0 rounded-full bg-amber-100 flex items-center justify-center">
-                                    <Users className="h-8 w-8 text-amber-600" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-stone-900 mb-1">{t('pages.company_profile.op_community') || 'Local Empowerment'}</h3>
-                                    <p className="text-stone-600 leading-relaxed">{t('pages.company_profile.op_community_text') || 'Creating thousands of jobs and supporting local Papuan businesses.'}</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">03</p>
-                    </div>
+                    <PageFooter page="03" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 5: COMPANY MILESTONES ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">
+                {/* ==================== PAGE 5: COMPANY MILESTONES ==================== */}
+                <div className="flex min-h-[100svh] flex-col p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
                     <div className="flex-grow flex flex-col">
-                        <div className="inline-block mb-10">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.milestones') || 'Company Milestones'}
-                            </h2>
-                        </div>
-                        
+                        <h2 className="mb-8 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-10 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.milestones') || 'Company Milestones'}
+                        </h2>
+
                         <div className="flex-grow flex flex-col justify-center">
-                            <div className="relative border-l-2 border-stone-200 ml-8 space-y-16 pb-8">
-                                <div className="relative pl-14">
-                                    <div className="absolute -left-[29px] md:-left-[33px] print:-left-[33px] top-1 h-16 w-16 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center">
-                                        <History className="h-7 w-7 text-amber-500" />
+                            <div className="relative ml-6 space-y-10 border-l-2 border-stone-200 pb-4 md:ml-8 md:space-y-16 print:ml-8 print:space-y-16">
+                                {[
+                                    { year: t('pages.company_profile.ms_1989') || '1989', title: t('pages.company_profile.ms_1989_title') || 'Foundation', text: t('pages.company_profile.ms_1989_text') || 'Established in Papua with a focus on sustainable gold exploration and community engagement.', icon: <History className="h-5 w-5 text-amber-500 md:h-7 md:w-7" /> },
+                                    { year: t('pages.company_profile.ms_2005') || '2005', title: t('pages.company_profile.ms_2005_title') || 'First Refinery', text: t('pages.company_profile.ms_2005_text') || 'Opened our first state-of-the-art refining facility in Jakarta, enabling end-to-end processing.', icon: <Factory className="h-5 w-5 text-amber-500 md:h-7 md:w-7" /> },
+                                    { year: t('pages.company_profile.ms_2015') || '2015', title: t('pages.company_profile.ms_2015_title') || 'LBMA Certification', text: t('pages.company_profile.ms_2015_text') || 'Achieved international LBMA standard for our 99.99% gold bars, recognizing our world-class quality.', icon: <Award className="h-5 w-5 text-amber-500 md:h-7 md:w-7" /> },
+                                    { year: t('pages.company_profile.ms_2026') || '2026', title: t('pages.company_profile.ms_2026_title') || 'Digital Transformation', text: t('pages.company_profile.ms_2026_text') || 'Launched B2C digital platform connecting physical gold directly to investors.', icon: <Smartphone className="h-5 w-5 text-amber-500 md:h-7 md:w-7" /> },
+                                ].map((ms, i) => (
+                                    <div key={i} className="relative pl-10 md:pl-14 print:pl-14">
+                                        <div className="absolute -left-5 top-1 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-amber-50 shadow-sm md:-left-[33px] md:h-16 md:w-16 print:-left-[33px] print:h-16 print:w-16">
+                                            {ms.icon}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-amber-500 mb-1 md:text-4xl md:mb-3 print:text-4xl print:mb-3">{ms.year}</h3>
+                                        <h4 className="text-base font-bold text-stone-900 mb-1 md:text-2xl md:mb-3 print:text-2xl print:mb-3">{ms.title}</h4>
+                                        <p className="text-xs leading-relaxed text-stone-600 md:text-lg print:text-lg">{ms.text}</p>
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl print:text-4xl font-bold text-amber-500 mb-3">{t('pages.company_profile.ms_1989') || '1989'}</h3>
-                                    <h4 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.ms_1989_title') || 'Foundation'}</h4>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed">{t('pages.company_profile.ms_1989_text') || 'Established in Papua with a focus on sustainable gold exploration and community engagement.'}</p>
-                                </div>
-
-                                <div className="relative pl-14">
-                                    <div className="absolute -left-[29px] md:-left-[33px] print:-left-[33px] top-1 h-16 w-16 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center">
-                                        <Factory className="h-7 w-7 text-amber-500" />
-                                    </div>
-                                    <h3 className="text-3xl md:text-4xl print:text-4xl font-bold text-amber-500 mb-3">{t('pages.company_profile.ms_2005') || '2005'}</h3>
-                                    <h4 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.ms_2005_title') || 'First Refinery'}</h4>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed">{t('pages.company_profile.ms_2005_text') || 'Opened our first state-of-the-art refining facility in Jakarta, enabling end-to-end processing.'}</p>
-                                </div>
-
-                                <div className="relative pl-14">
-                                    <div className="absolute -left-[29px] md:-left-[33px] print:-left-[33px] top-1 h-16 w-16 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center">
-                                        <Award className="h-7 w-7 text-amber-500" />
-                                    </div>
-                                    <h3 className="text-3xl md:text-4xl print:text-4xl font-bold text-amber-500 mb-3">{t('pages.company_profile.ms_2015') || '2015'}</h3>
-                                    <h4 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.ms_2015_title') || 'LBMA Certification'}</h4>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed">{t('pages.company_profile.ms_2015_text') || 'Achieved international LBMA standard for our 99.99% gold bars, recognizing our world-class quality.'}</p>
-                                </div>
-
-                                <div className="relative pl-14">
-                                    <div className="absolute -left-[29px] md:-left-[33px] print:-left-[33px] top-1 h-16 w-16 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center">
-                                        <Smartphone className="h-7 w-7 text-amber-500" />
-                                    </div>
-                                    <h3 className="text-3xl md:text-4xl print:text-4xl font-bold text-amber-500 mb-3">{t('pages.company_profile.ms_2026') || '2026'}</h3>
-                                    <h4 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.ms_2026_title') || 'Digital Transformation'}</h4>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed">{t('pages.company_profile.ms_2026_text') || 'Launched B2C digital platform connecting physical gold directly to investors.'}</p>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">04</p>
-                    </div>
+
+                    <PageFooter page="04" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 6: LINE OF BUSINESS ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">
+                {/* ==================== PAGE 6: LINE OF BUSINESS ==================== */}
+                <div className="flex min-h-[100svh] flex-col p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
                     <div className="flex-grow flex flex-col">
-                        <div className="inline-block mb-10">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.line_of_business') || 'Line of Business'}
-                            </h2>
-                        </div>
-                        
-                        <div className="flex-grow flex flex-col justify-between gap-6">
-                            
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-amber-50 flex items-center justify-center border border-amber-100">
-                                    <Pickaxe className="h-10 w-10 text-amber-600" strokeWidth={1.5} />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.lob_upstream') || 'Exploration & Upstream'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.lob_upstream_text') || 'Focusing on discovering high-quality primary and secondary gold reserves with strict operational standards in Nabire, Central Papua. We employ advanced geological mapping and responsible extraction methods.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.lob_upstream_extra') || '• 15,000+ Hectares of exploration area<br>• Advanced geophysical surveying<br>• Zero-harm safety protocols' }}></p>
-                                </div>
-                            </div>
-                            
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-amber-50 flex items-center justify-center border border-amber-100">
-                                    <Factory className="h-10 w-10 text-amber-600" strokeWidth={1.5} />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.lob_midstream') || 'Processing & Refining'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.lob_midstream_text') || 'Our advanced Smelter & Refinery infrastructure processes gold ore into certified precious metal bars, achieving 99.99% purity. We adhere strictly to international LBMA standards.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.lob_midstream_extra') || '• 2.5+ Tons annual capacity<br>• Advanced smelting technology<br>• 100% Traceable sourcing' }}></p>
-                                </div>
-                            </div>
-                            
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-amber-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-amber-50 flex items-center justify-center border border-amber-100">
-                                    <Store className="h-10 w-10 text-amber-600" strokeWidth={1.5} />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.lob_downstream') || 'Downstream Trading'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.lob_downstream_text') || 'Connecting physical gold directly to the consumer market (B2C) through our digital platforms and strategic partnerships, offering investment-grade gold directly to the public.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.lob_downstream_extra') || '• Direct B2C digital access<br>• Real-time pricing integration<br>• Insured nationwide delivery' }}></p>
-                                </div>
-                            </div>
+                        <h2 className="mb-6 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-10 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.line_of_business') || 'Line of Business'}
+                        </h2>
 
+                        <div className="flex-grow flex flex-col justify-between gap-4 md:gap-6 print:gap-6">
+                            {[
+                                { icon: <Pickaxe className="h-8 w-8 text-amber-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.lob_upstream') || 'Exploration & Upstream', text: t('pages.company_profile.lob_upstream_text') || 'Focusing on discovering high-quality primary and secondary gold reserves with strict operational standards in Nabire, Central Papua.', extra: t('pages.company_profile.lob_upstream_extra') || '• 15,000+ Hectares of exploration area<br>• Advanced geophysical surveying<br>• Zero-harm safety protocols' },
+                                { icon: <Factory className="h-8 w-8 text-amber-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.lob_midstream') || 'Processing & Refining', text: t('pages.company_profile.lob_midstream_text') || 'Our advanced Smelter & Refinery infrastructure processes gold ore into certified precious metal bars, achieving 99.99% purity.', extra: t('pages.company_profile.lob_midstream_extra') || '• 2.5+ Tons annual capacity<br>• Advanced smelting technology<br>• 100% Traceable sourcing' },
+                                { icon: <Store className="h-8 w-8 text-amber-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.lob_downstream') || 'Downstream Trading', text: t('pages.company_profile.lob_downstream_text') || 'Connecting physical gold directly to the consumer market (B2C) through our digital platforms and strategic partnerships.', extra: t('pages.company_profile.lob_downstream_extra') || '• Direct B2C digital access<br>• Real-time pricing integration<br>• Insured nationwide delivery' },
+                            ].map((lob, i) => (
+                                <div key={i} className="flex flex-grow flex-col items-start gap-4 rounded-2xl border border-stone-100 border-l-4 border-l-amber-500 bg-white p-5 shadow-sm sm:flex-row sm:items-center md:gap-8 md:rounded-3xl md:p-8 print:flex-row print:items-center print:gap-8 print:rounded-3xl print:p-8">
+                                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border border-amber-100 bg-amber-50 md:h-20 md:w-20 print:h-20 print:w-20">{lob.icon}</div>
+                                    <div className="flex-grow min-w-0">
+                                        <h3 className="text-base font-bold text-stone-900 mb-1 md:text-2xl md:mb-3 print:text-2xl print:mb-3">{lob.title}</h3>
+                                        <p className="text-xs leading-relaxed text-stone-600 mb-2 md:text-lg md:mb-4 print:text-lg print:mb-4">{lob.text}</p>
+                                        <p className="text-xs leading-loose text-stone-500" dangerouslySetInnerHTML={{ __html: lob.extra }} />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">05</p>
-                    </div>
+                    <PageFooter page="05" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 7: CORPORATE SOCIAL RESPONSIBILITY ----------------- */}
-                <div className="flex flex-col p-8 md:p-16 print:p-16 min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page">
+                {/* ==================== PAGE 7: CSR ==================== */}
+                <div className="flex min-h-[100svh] flex-col p-6 sm:p-10 md:min-h-[297mm] md:p-16 print:h-[297mm] print:break-before-page print:p-16">
                     <div className="flex-grow flex flex-col">
-                        <div className="inline-block mb-10">
-                            <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-stone-900 border-b-4 border-amber-500 pb-3">
-                                {t('pages.company_profile.csr') || 'Corporate Social Responsibility'}
-                            </h2>
-                        </div>
-                        
-                        <p className="text-lg md:text-xl print:text-xl leading-relaxed text-stone-700 mb-10">
+                        <h2 className="mb-5 border-b-4 border-amber-500 pb-2 text-2xl font-bold text-stone-900 md:mb-10 md:text-4xl print:text-4xl">
+                            {t('pages.company_profile.csr') || 'Corporate Social Responsibility'}
+                        </h2>
+                        <p className="mb-6 text-sm leading-relaxed text-stone-700 md:mb-10 md:text-xl print:text-xl">
                             {t('pages.company_profile.csr_text') || 'We believe that our success is deeply intertwined with the prosperity of the communities where we operate. Through our monthly CSR programs, we provide essential food supplies, build community infrastructure, and fund educational and health initiatives in Nabire.'}
                         </p>
-                        
-                        <div className="flex-grow flex flex-col justify-between gap-6">
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-emerald-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-100">
-                                    <Leaf className="h-10 w-10 text-emerald-600" strokeWidth={1.5} />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.csr_env') || 'Environmental Stewardship'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.csr_env_text') || 'Implementing ISO 14001 standards, land reclamation, and renewable energy in mining operations to minimize our carbon footprint.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.csr_env_extra') || '• 100,000+ trees planted for land reclamation<br>• 30% reduction in carbon emissions<br>• Comprehensive water recycling system' }}></p>
-                                </div>
-                            </div>
 
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-blue-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-blue-50 flex items-center justify-center border border-blue-100">
-                                    <Users className="h-10 w-10 text-blue-600" strokeWidth={1.5} />
+                        <div className="flex-grow flex flex-col justify-between gap-4 md:gap-6 print:gap-6">
+                            {[
+                                { color: 'emerald', icon: <Leaf className="h-8 w-8 text-emerald-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.csr_env') || 'Environmental Stewardship', text: t('pages.company_profile.csr_env_text') || 'Implementing ISO 14001 standards, land reclamation, and renewable energy in mining operations.', extra: t('pages.company_profile.csr_env_extra') || '• 100,000+ trees planted for land reclamation<br>• 30% reduction in carbon emissions<br>• Comprehensive water recycling system' },
+                                { color: 'blue', icon: <Users className="h-8 w-8 text-blue-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.csr_com') || 'Community Empowerment', text: t('pages.company_profile.csr_com_text') || 'Building schools, hospitals, and infrastructure for the communities in Nabire, Central Papua.', extra: t('pages.company_profile.csr_com_extra') || '• Built 15+ community centers<br>• Empowering 50+ local MSMEs<br>• Regular cultural preservation events' },
+                                { color: 'rose', icon: <GraduationCap className="h-8 w-8 text-rose-600 md:h-10 md:w-10" strokeWidth={1.5} />, title: t('pages.company_profile.csr_edu') || 'Education & Health', text: t('pages.company_profile.csr_edu_text') || 'Providing scholarships and funding local health clinics to improve the quality of life for future generations.', extra: t('pages.company_profile.csr_edu_extra') || '• 500+ Annual student scholarships<br>• Constructed 3 modern health clinics<br>• Monthly free health check-ups' },
+                            ].map((csr, i) => (
+                                <div key={i} className={`flex flex-grow flex-col items-start gap-4 rounded-2xl border border-stone-100 border-l-4 border-l-${csr.color}-500 bg-white p-5 shadow-sm sm:flex-row sm:items-center md:gap-8 md:rounded-3xl md:p-8 print:flex-row print:items-center print:gap-8 print:rounded-3xl print:p-8`}>
+                                    <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border border-${csr.color}-100 bg-${csr.color}-50 md:h-20 md:w-20 print:h-20 print:w-20`}>{csr.icon}</div>
+                                    <div className="flex-grow min-w-0">
+                                        <h3 className="text-base font-bold text-stone-900 mb-1 md:text-2xl md:mb-3 print:text-2xl print:mb-3">{csr.title}</h3>
+                                        <p className="text-xs leading-relaxed text-stone-600 mb-2 md:text-lg md:mb-4 print:text-lg print:mb-4">{csr.text}</p>
+                                        <p className="text-xs leading-loose text-stone-500" dangerouslySetInnerHTML={{ __html: csr.extra }} />
+                                    </div>
                                 </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.csr_com') || 'Community Empowerment'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.csr_com_text') || 'Building schools, hospitals, and infrastructure for the communities in Nabire, Central Papua, ensuring mutual prosperity.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.csr_com_extra') || '• Built 15+ community centers<br>• Empowering 50+ local MSMEs<br>• Regular cultural preservation events' }}></p>
-                                </div>
-                            </div>
-
-                            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-100 border-l-4 border-l-rose-500 flex flex-col md:flex-row print:flex-row gap-6 md:gap-8 items-start md:items-center print:items-center flex-grow">
-                                <div className="flex-shrink-0 h-16 w-16 md:h-20 md:w-20 print:h-20 print:w-20 rounded-full bg-rose-50 flex items-center justify-center border border-rose-100">
-                                    <GraduationCap className="h-10 w-10 text-rose-600" strokeWidth={1.5} />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-3">{t('pages.company_profile.csr_edu') || 'Education & Health'}</h3>
-                                    <p className="text-stone-600 text-base md:text-lg print:text-lg leading-relaxed mb-4">{t('pages.company_profile.csr_edu_text') || 'Providing scholarships and funding local health clinics to improve the quality of life for future generations.'}</p>
-                                    <p className="text-stone-500 text-sm leading-loose" dangerouslySetInnerHTML={{ __html: t('pages.company_profile.csr_edu_extra') || '• 500+ Annual student scholarships<br>• Constructed 3 modern health clinics<br>• Monthly free health check-ups' }}></p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-stone-200 flex justify-between items-end">
-                        <p className="text-sm font-medium text-stone-400">
-                            {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
-                        </p>
-                        <p className="text-lg font-bold text-stone-400">06</p>
-                    </div>
+                    <PageFooter page="06" t={t} />
                 </div>
 
-                {/* ----------------- PAGE 8: BACK COVER (CONTACT US) ----------------- */}
-                <div 
-                    className="flex flex-col min-h-[100svh] md:min-h-[297mm] print:h-[297mm] print:break-before-page relative overflow-hidden"
-                    style={{
-                        backgroundImage: `url('${imageUrl('public/KristalinCompanyProfileBackground.webp')}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                >
-                    {/* Dark Overlay exactly like Cover Page */}
-                    <div className="absolute inset-0 bg-stone-950/85"></div>
-                    
-                    {/* Ambient Glows */}
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/3"></div>
-                    
-                    <div className="flex-grow flex flex-col items-center justify-center relative z-10 text-center p-8 md:p-16 print:p-16">
-                        
-                        {/* Logo section matching the screenshot */}
-                        <div className="mb-20 flex flex-col items-center">
-                            <div className="flex items-center gap-4 mb-2">
-                                <h1 className="text-5xl font-medium text-stone-300 tracking-wide font-sans">
-                                    Kristalin Ekalestari
-                                </h1>
-                            </div>
-                            <p className="text-xl text-stone-500 tracking-widest uppercase font-medium ml-16">
+                {/* ==================== PAGE 8: BACK COVER (CONTACT) ==================== */}
+                <div className="relative flex min-h-[100svh] flex-col overflow-hidden md:min-h-[297mm] print:h-[297mm] print:break-before-page">
+                    {/* Background — using <img> instead of CSS background for reliable print rendering */}
+                    <img
+                        src={imageUrl('KristalinCompanyProfileBackground.webp')}
+                        alt=""
+                        aria-hidden
+                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-stone-950/85" />
+
+                    {/* Ambient glows */}
+                    <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl md:h-96 md:w-96" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/2 translate-y-1/3 rounded-full bg-amber-500/5 blur-3xl md:h-[500px] md:w-[500px]" />
+
+                    <div className="relative z-10 flex flex-grow flex-col items-center justify-center p-8 text-center md:p-16 print:p-16">
+
+                        {/* Company name */}
+                        <div className="mb-10 flex flex-col items-center md:mb-20 print:mb-20">
+                            <h1 className="text-3xl font-medium tracking-wide text-stone-300 md:text-5xl print:text-5xl">
+                                Kristalin Ekalestari
+                            </h1>
+                            <p className="mt-1 text-sm font-medium uppercase tracking-widest text-stone-500 md:ml-16 md:text-xl print:ml-16 print:text-xl">
                                 Integrated Gold Industries
                             </p>
                         </div>
-                        
-                        {/* Contact Us Title */}
-                        <h2 className="text-3xl md:text-4xl print:text-4xl font-bold text-amber-500 mb-16 tracking-wider uppercase">
+
+                        <h2 className="mb-10 text-2xl font-bold uppercase tracking-wider text-amber-500 md:mb-16 md:text-4xl print:mb-16 print:text-4xl">
                             CONTACT US
                         </h2>
-                        
-                        {/* Contact Details List */}
-                        <div className="space-y-8 text-left inline-block">
-                            <div className="flex items-center gap-6">
-                                <MapPin className="h-7 w-7 text-amber-500 flex-shrink-0" strokeWidth={2} />
-                                <span className="text-xl text-stone-200 font-medium">Jakarta Head Office, Indonesia</span>
-                            </div>
-                            
-                            <div className="flex items-center gap-6">
-                                <Mail className="h-7 w-7 text-amber-500 flex-shrink-0" strokeWidth={2} />
-                                <span className="text-xl text-stone-200 font-medium">info@kristalin.co.id</span>
-                            </div>
-                            
-                            <div className="flex items-center gap-6">
-                                <Phone className="h-7 w-7 text-amber-500 flex-shrink-0" strokeWidth={2} />
-                                <span className="text-xl text-stone-200 font-medium">+62 21 22978900</span>
-                            </div>
-                        </div>
 
+                        <div className="inline-block space-y-5 text-left md:space-y-8 print:space-y-8">
+                            {[
+                                { icon: <MapPin className="h-5 w-5 text-amber-500 flex-shrink-0 md:h-7 md:w-7" strokeWidth={2} />, text: 'Jakarta Head Office, Indonesia' },
+                                { icon: <Mail className="h-5 w-5 text-amber-500 flex-shrink-0 md:h-7 md:w-7" strokeWidth={2} />, text: 'info@kristalin.co.id' },
+                                { icon: <Phone className="h-5 w-5 text-amber-500 flex-shrink-0 md:h-7 md:w-7" strokeWidth={2} />, text: '+62 21 22978900' },
+                            ].map((c, i) => (
+                                <div key={i} className="flex items-center gap-4 md:gap-6 print:gap-6">
+                                    {c.icon}
+                                    <span className="text-base font-medium text-stone-200 md:text-xl print:text-xl">{c.text}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
             </div>
 
-            {/* Print Styles */}
+            {/* Print CSS — forces exact A4 layout, color printing, and prevents blank pages */}
             <style dangerouslySetInnerHTML={{ __html: `
                 @media print {
-                    @page { margin: 0; size: A4; }
-                    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: white; }
+                    @page {
+                        margin: 0;
+                        size: A4 portrait;
+                    }
+                    html, body {
+                        -webkit-print-color-adjust: exact !important;
+                        print-color-adjust: exact !important;
+                        background: white !important;
+                    }
+                    /* Prevent any page element from being split across print pages */
+                    .print\\:break-before-page {
+                        break-before: page !important;
+                        page-break-before: always !important;
+                    }
+                    /* Ensure images are always rendered in print */
+                    img {
+                        -webkit-print-color-adjust: exact !important;
+                        print-color-adjust: exact !important;
+                    }
                 }
             `}} />
+        </div>
+    );
+}
+
+// ---------------------------------------------------------------------------
+// Shared Page Footer component
+// ---------------------------------------------------------------------------
+function PageFooter({ page, t }: { page: string; t: (key: string) => string }) {
+    return (
+        <div className="mt-6 flex items-end justify-between border-t border-stone-200 pt-4 md:mt-8 md:pt-6 print:mt-8 print:pt-6">
+            <p className="text-xs font-medium text-stone-400 md:text-sm print:text-sm">
+                {t('pages.company_profile.footer_note') || 'Generated automatically from Kristalin Ekalestari Digital Platform.'}
+            </p>
+            <p className="text-base font-bold text-stone-400 md:text-lg print:text-lg">{page}</p>
         </div>
     );
 }
