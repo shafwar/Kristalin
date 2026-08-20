@@ -1,15 +1,9 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Packages.composer", "nodejs-20_x"]
+nixPkgs = ["php82", "php82Packages.composer", "nodejs_20"]
 
 [phases.install]
 cmds = [
-    "COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev --no-interaction",
-    "npm ci --prefer-offline --no-audit"
-]
-
-[phases.build]
-cmds = [
-    "npm run build"
+    "COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev --no-interaction"
 ]
 
 [start]
