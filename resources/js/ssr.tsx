@@ -8,7 +8,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Kristalin Ekalestari';
 
 createServer((page) =>
     createInertiaApp({
-        title: (title) => (title ? (title.toLowerCase().includes('kristalin') ? title : `${title} | ${appName}`) : appName),
+        title: (title) => (title ? (title.toLowerCase().includes('kristalin') ? title : `${title} | ${appName}`) : `PT ${appName}`),
         page,
         render: ReactDOMServer.renderToString,
         resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
