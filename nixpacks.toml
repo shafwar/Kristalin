@@ -1,17 +1,10 @@
-providers = ["node", "php"]
-
-[phases.setup]
-nixPkgs = ["php82Extensions.pdo_mysql", "php82Packages.composer"]
-
 [phases.install]
 cmds = [
-    "composer install --optimize-autoloader --no-dev",
-    "npm ci"
+    "composer install --optimize-autoloader --no-dev --no-interaction"
 ]
 
 [phases.build]
 cmds = [
-    "NODE_OPTIONS='--max-old-space-size=400' npm run build",
     "php artisan config:cache",
     "php artisan route:cache",
     "php artisan view:cache"
