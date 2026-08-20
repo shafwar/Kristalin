@@ -183,12 +183,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-BzXYxk7l.css",
+    "file": "assets/app-CGm4IjyZ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-CZMzcq7k.js",
+    "file": "assets/app-Dx3yYWKD.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -233,7 +233,7 @@
       "resources/js/pages/welcome.tsx"
     ],
     "css": [
-      "assets/app-BzXYxk7l.css"
+      "assets/app-CGm4IjyZ.css"
     ]
   },
   "resources/js/pages/CompanyProfileReport.tsx": {
@@ -683,7 +683,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-DQRkNbMy.js",
+    "file": "assets/appearance-CxYHStuh.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -698,7 +698,7 @@
       "_assets-ZAgbBrkL.js"
     ],
     "css": [
-      "assets/app-BzXYxk7l.css"
+      "assets/app-CGm4IjyZ.css"
     ]
   },
   "resources/js/pages/settings/password.tsx": {
@@ -749,7 +749,7 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-BsHw8wfY.js",
+    "file": "assets/welcome-Bui4F4nH.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,
