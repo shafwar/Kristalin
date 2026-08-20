@@ -8,19 +8,19 @@ const appName = import.meta.env.VITE_APP_NAME || 'Kristalin Ekalestari';
 
 createServer((page) =>
     createInertiaApp({
-        title: (title) => (title ? `${title} | ${appName}` : appName),
+        title: (title) => (title ? (title.toLowerCase().includes('kristalin') ? title : `${title} | ${appName}`) : `PT ${appName}`),
         page,
         render: ReactDOMServer.renderToString,
         resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
         setup: ({ App, props }) => {
             /* eslint-disable */
+            const ziggyConfig = (page.props as any)?.ziggy || {};
+            const locationUrl = ziggyConfig.location ? new URL(ziggyConfig.location) : new URL('https://kristalin.co.id');
             // @ts-expect-error
             global.route<RouteName> = (name, params, absolute) =>
                 route(name, params as any, absolute, {
-                    // @ts-expect-error
-                    ...page.props.ziggy,
-                    // @ts-expect-error
-                    location: new URL(page.props.ziggy.location),
+                    ...ziggyConfig,
+                    location: locationUrl,
                 });
             /* eslint-enable */
 

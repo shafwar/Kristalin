@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -152,6 +153,11 @@ export default function LeadershipTraitsPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Leadership Traits | PT Kristalin Ekalestari">
+                <meta name="description" content="Karakter kepemimpinan dan budaya kerja di PT Kristalin Ekalestari: Kompeten, Visioner, Menginspirasi, Adaptif, dan Mengutamakan Keselamatan serta Etika." />
+                <meta property="og:title" content="Leadership Traits - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Karakteristik dan prinsip kepemimpinan profesional di PT Kristalin Ekalestari." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {/* Mobile Layout - Stack Vertically */}

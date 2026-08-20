@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /dashboard
+Disallow: /admin/
+Disallow: /internal-feedback/attachments/
+
+Sitemap: https://kristalin.co.id/sitemap.xml

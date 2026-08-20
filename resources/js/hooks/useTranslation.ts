@@ -21,14 +21,18 @@ export interface UseTranslationReturn {
 }
 
 export function useTranslation(): UseTranslationReturn {
-    const { props } = usePage<PageProps>();
-    const { locale, translations } = props;
-    const pageTranslations = translations.pages ?? translations.messages ?? {};
+    const page = usePage<PageProps>();
+    const props = page?.props || ({} as PageProps);
+    const locale = props?.locale || 'en';
+    const translations = props?.translations || { messages: {}, pages: {} };
+    const messages = translations?.messages || {};
+    const pageTranslations = translations?.pages ?? messages;
 
     // Helper function to get translation
     const t = (key: string, options?: Record<string, string> | TranslationOptions) => {
+        if (!key) return '';
         const keys = key.split('.');
-        let value = translations.messages;
+        let value: any = messages;
 
         // Check if it's a page translation; fall back to messages if pages not provided
         if (keys[0] === 'pages') {
@@ -40,7 +44,7 @@ export function useTranslation(): UseTranslationReturn {
             value = value?.[k];
         }
 
-        let result = value || key;
+        let result = value !== undefined && value !== null ? value : key;
 
         // Handle string replacements
         const replaceMap: Record<string, string> | undefined =
@@ -58,7 +62,9 @@ export function useTranslation(): UseTranslationReturn {
 
     // Helper function to switch language
     const switchLanguage = (newLocale: string) => {
-        window.location.href = `/language/${newLocale}`;
+        if (typeof window !== 'undefined') {
+            window.location.href = `/language/${newLocale}`;
+        }
     };
 
     // Get current language display code

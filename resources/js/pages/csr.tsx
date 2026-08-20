@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
@@ -656,6 +656,12 @@ export default function CSRPageMobileFix() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Corporate Social Responsibility (CSR) | PT Kristalin Ekalestari">
+                <meta name="description" content="Program Tanggung Jawab Sosial dan Lingkungan (CSR) PT Kristalin Ekalestari: Pembangunan rumah warga adat Nifasi & Meyah, beasiswa pendidikan, penyaluran pangan sembako, dan fasilitas kesehatan masyarakat di Nabire, Papua." />
+                <meta property="og:title" content="Corporate Social Responsibility (CSR) - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Komitmen pemberdayaan masyarakat adat, konservasi alam, dan program sosial berkelanjutan PT Kristalin Ekalestari di Nabire, Papua." />
+            </Head>
+
             <Header sticky={true} transparent={true} />
 
             {/* Hero Section - MOBILE OPTIMIZED */}

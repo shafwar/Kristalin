@@ -23,7 +23,6 @@ export default defineConfig(({ mode }) => ({
         },
     },
     build: {
-        outDir: 'public/build',
         assetsDir: 'assets',
         sourcemap: mode === 'development',
         rollupOptions: {

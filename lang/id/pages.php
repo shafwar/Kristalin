@@ -200,7 +200,7 @@ return [
             ],
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
+            'copyright' => '© 2026 PT Kristalin Ekalestari.',
             // Alternatif dari origin/faruq jika ingin digunakan
             'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
             'contact_info' => 'Untuk pertanyaan tentang karir, hubungi kami di hr@kristalin.com',
@@ -332,7 +332,7 @@ return [
             'find_out_more' => 'Pelajari lebih lanjut →',
         ],
         'footer' => [
-            'copyright' => '© 2025 PT Kristalin Eka Lestari.',
+            'copyright' => '© 2026 PT Kristalin Ekalestari.',
             // Alternatif dari origin/faruq jika ingin digunakan
             'copyright_alt' => '© 2025 PT Kristalin Ekalestari. Semua hak dilindungi.',
         ],

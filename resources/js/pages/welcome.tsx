@@ -210,8 +210,10 @@ const Welcome = () => {
     // Main Content
     return (
         <>
-            <Head title="">
-                <meta name="description" content={t('pages.welcome.description')} />
+            <Head title="Sustainable Gold Mining & Mineral Refining">
+                <meta name="description" content="PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua Barat." />
+                <meta property="og:title" content="PT Kristalin Ekalestari | Sustainable Gold Mining & Mineral Refining" />
+                <meta property="og:description" content="PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua Barat." />
             </Head>
             <SplashScreen />
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">

@@ -1,4 +1,5 @@
 import { MilestoneTimelinePanel, resolveMilestoneFilterGroup, type MilestoneItem } from '@/components/MilestoneTimelinePanel';
+import { Head } from '@inertiajs/react';
 import clsx from 'clsx';
 import { useCallback, useEffect, useState } from 'react';
 import Footer from '../components/Footer';
@@ -209,19 +210,13 @@ export default function MilestonesPage() {
         </div>
     );
 
-    if (isLargeScreen === undefined) {
-        return (
-            <div className="flex min-h-screen flex-col bg-white">
-                <Header sticky={true} transparent={false} />
-                <div className="flex flex-1 items-center justify-center pt-20">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-400 border-t-transparent" />
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Milestones & History | PT Kristalin Ekalestari">
+                <meta name="description" content="Perjalanan dan sejarah PT Kristalin Ekalestari sejak didirikan pada 1989, eksplorasi tambang emas, perolehan IUP Operasi Produksi 2020-2030 (198 Ha di Nabire Papua), hingga ekspansi pengolahan logam mulia dan kemitraan masyarakat." />
+                <meta property="og:title" content="Milestones & History - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Perjalanan dan sejarah PT Kristalin Ekalestari sejak didirikan pada 1989 hingga era pertambangan modern berkelanjutan." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {!isLargeScreen ? (

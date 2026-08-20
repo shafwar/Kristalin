@@ -843,7 +843,11 @@ export default function BusinessActivityPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-            <Head title={t('pages.business_activity.page_title')} />
+            <Head title={`${t('pages.business_activity.page_title') || 'Business Activities'} | PT Kristalin Ekalestari`}>
+                <meta name="description" content="Kegiatan usaha PT Kristalin Ekalestari: Eksplorasi, penambangan emas ramah lingkungan, pemurnian logam mulia Kisara Gold di Nabire Papua (IUP OP No. 561/2021/DESDM, 198 Ha, 2020-2030), pengadaan alat berat PT Torindo, dan agribisnis PT ABS." />
+                <meta property="og:title" content="Business Activities - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Operasi penambangan emas terintegrasi, pemurnian logam mulia, dan portofolio bisnis berkelanjutan PT Kristalin Ekalestari di Nabire, Papua." />
+            </Head>
 
             <Header sticky={true} transparent={true} />
 

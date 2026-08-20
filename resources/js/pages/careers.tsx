@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { imageUrl } from '@/lib/assets';
 import { motion } from 'framer-motion';
@@ -166,6 +167,11 @@ const Careers = () => {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200">
+            <Head title="Careers | PT Kristalin Ekalestari">
+                <meta name="description" content="Peluang karir dan pengembangan profesional di PT Kristalin Ekalestari. Bergabung bersama kami membangun industri pertambangan yang berkelanjutan dan berdaya saing." />
+                <meta property="og:title" content="Careers - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Peluang karir di bidang pertambangan, metalurgi, teknik geologi, dan manajemen di PT Kristalin Ekalestari." />
+            </Head>
             <Header sticky={true} transparent={true} />
             <main className="flex-1">
                 {/* Hero Section - Premium Style (match board-of-directors) */}

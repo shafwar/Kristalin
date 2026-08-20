@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -116,6 +117,11 @@ export default function CoreValuesPage() {
 
   return (
     <div className="flex flex-col bg-white relative overflow-x-hidden min-h-screen">
+      <Head title="Core Values | PT Kristalin Ekalestari">
+        <meta name="description" content="Nilai-nilai utama PT Kristalin Ekalestari: Integritas, Keselamatan Kerja, Keberlanjutan Lingkungan, dan Kemitraan Harmonis dengan Masyarakat Adat Papua." />
+        <meta property="og:title" content="Core Values - PT Kristalin Ekalestari" />
+        <meta property="og:description" content="Prinsip dasar dan nilai-nilai integritas kerja di PT Kristalin Ekalestari." />
+      </Head>
       <Header sticky={true} transparent={false} />
       <div className="flex-1 flex flex-col z-10 pt-16 sm:pt-20">
 

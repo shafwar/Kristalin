@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -189,6 +190,11 @@ export default function AboutPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="About Us | PT Kristalin Ekalestari">
+                <meta name="description" content="Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat dengan izin IUP OP resmi No. 561/2021/DESDM dan kemitraan masyarakat adat." />
+                <meta property="og:title" content="About Us - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {/* Mobile Layout - Stack Vertically */}

@@ -1,5 +1,5 @@
 import { KristalinLocationTabs } from '@/components/KristalinLocationTabs';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -183,6 +183,11 @@ export default function ContactPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Contact Us | PT Kristalin Ekalestari">
+                <meta name="description" content="Hubungi kantor pusat PT Kristalin Ekalestari di Menara 165 Jakarta Selatan atau kantor operasional tambang di Nabire, Papua. Layanan komunikasi korporat dan kemitraan resmi." />
+                <meta property="og:title" content="Contact Us - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Hubungi kantor pusat PT Kristalin Ekalestari di Menara 165 Jakarta Selatan atau kantor operasional tambang di Nabire, Papua." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-20">
                 <div className="relative flex min-h-screen w-full max-w-none flex-1 flex-col lg:flex-row">

@@ -1,18 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Core Corporate Pages -->
   <url>
     <loc>https://kristalin.co.id/</loc>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://kristalin.co.id/images/Mark-Gold.png</image:loc>
-      <image:title>Kristalin Ekalestari</image:title>
+      <image:loc>https://kristalin.co.id/images/Mark-Gold.webp</image:loc>
+      <image:title>PT Kristalin Ekalestari</image:title>
     </image:image>
   </url>
-  <url><loc>https://kristalin.co.id/about</loc></url>
-  <url><loc>https://kristalin.co.id/line-of-business</loc></url>
-  <url><loc>https://kristalin.co.id/b2c</loc></url>
-  <url><loc>https://kristalin.co.id/news</loc></url>
-  <url><loc>https://kristalin.co.id/contact</loc></url>
+  <url>
+    <loc>https://kristalin.co.id/about</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/company-overview</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/vision-mission</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/core-values</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/leadership-traits</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/board-of-directors</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/milestones</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/investor</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/company-profile-report</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/line-of-business</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/business-activity</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/b2c</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/csr</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/news</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/careers</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/contact</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/privacy-policy</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://kristalin.co.id/terms</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- News & Articles -->
+  <url><loc>https://kristalin.co.id/news/feb26-1</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb26-2</loc><lastmod>2026-02-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb26-3</loc><lastmod>2026-02-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb26-4</loc><lastmod>2026-02-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar26-1</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/apr26-1</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kristalin.co.id/news/dec-1</loc><lastmod>2025-12-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/dec-2</loc><lastmod>2025-12-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/dec-3</loc><lastmod>2025-12-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/oct-1</loc><lastmod>2025-10-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/sept-1</loc><lastmod>2025-09-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/sept-3</loc><lastmod>2025-09-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/aug-1</loc><lastmod>2025-08-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/aug-2</loc><lastmod>2025-08-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/aug-3</loc><lastmod>2025-08-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/aug-4</loc><lastmod>2025-08-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jul-1</loc><lastmod>2025-07-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jul-2</loc><lastmod>2025-07-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jul-3</loc><lastmod>2025-07-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jul-4</loc><lastmod>2025-07-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jun-1</loc><lastmod>2025-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jun-2</loc><lastmod>2025-06-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jun-3</loc><lastmod>2025-06-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/jun-4</loc><lastmod>2025-06-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-1</loc><lastmod>2025-03-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-2</loc><lastmod>2025-03-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-3</loc><lastmod>2025-03-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-4</loc><lastmod>2025-03-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-5</loc><lastmod>2025-03-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/mar-6</loc><lastmod>2025-03-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb-4</loc><lastmod>2025-02-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb-7</loc><lastmod>2025-02-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb-8</loc><lastmod>2025-02-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kristalin.co.id/news/feb-9</loc><lastmod>2025-02-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

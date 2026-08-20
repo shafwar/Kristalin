@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -134,6 +135,11 @@ export default function CompanyOverview() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Company Overview | PT Kristalin Ekalestari">
+                <meta name="description" content="Ringkasan profil perusahaan PT Kristalin Ekalestari, izin IUP OP No. 561/2021/DESDM (2020-2030), wilayah konsesi 198 hektar di Nabire Papua, dan struktur tata kelola perusahaan." />
+                <meta property="og:title" content="Company Overview - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Ringkasan profil perusahaan, legalitas IUP pertambangan emas resmi di Nabire Papua, dan tata kelola PT Kristalin Ekalestari." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {/* Mobile Layout - Stack Vertically */}

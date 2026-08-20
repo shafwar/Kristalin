@@ -4,8 +4,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "NODE_OPTIONS='--max-old-space-size=400' vite build",
+        "build": "NODE_OPTIONS='--max-old-space-size=400' vite build && vite build --ssr",
         "preview": "vite preview",
+        "ssr": "php artisan inertia:start-ssr",
         "postinstall": "npm run build",
         "pre-push": "npm run build && git add -f public/build/ && git commit -m '🔧 BUILD: Auto-update assets before push' || true"
     },

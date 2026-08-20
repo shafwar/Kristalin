@@ -17,7 +17,7 @@ export function SplashScreen({
         if (typeof window !== 'undefined') {
             return !sessionStorage.getItem('splash_played');
         }
-        return true;
+        return false;
     });
     const containerRef = useRef<HTMLDivElement>(null);
     const baseLogoRef = useRef<HTMLImageElement>(null);

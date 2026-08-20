@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -192,6 +193,11 @@ export default function VisionMissionPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="Vision & Mission | PT Kristalin Ekalestari">
+                <meta name="description" content="Visi dan misi PT Kristalin Ekalestari: Menjadi pemimpin pertambangan emas berkelanjutan, terintegrasi, berorientasi ESG, dan berdaya saing global di Indonesia." />
+                <meta property="og:title" content="Vision & Mission - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Visi dan misi PT Kristalin Ekalestari: Menjadi pemimpin pertambangan emas berkelanjutan di Indonesia." />
+            </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">
                 {/* Mobile Layout - Stack Vertically */}

@@ -12,6 +12,9 @@ use App\Http\Controllers\KristalinTvProxyController;
 use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
+    if (request()->has('p') || request()->has('page_id') || request()->has('post_type')) {
+        return redirect('/', 301);
+    }
     return Inertia::render('welcome');
 })->name('home');
 
@@ -224,6 +227,51 @@ Route::get('/images/{path}', function ($path) {
     
     return response()->file($filePath);
 })->where('path', '.*');
+
+// Common Aliases & Legacy Indonesian/English Route Redirects (301 Permanent)
+Route::redirect('/about-us', '/about', 301);
+Route::redirect('/about-kristalin', '/about', 301);
+Route::redirect('/tentang-kami', '/about', 301);
+Route::redirect('/profile', '/company-overview', 301);
+Route::redirect('/tentang-perusahaan', '/company-overview', 301);
+Route::redirect('/contact-us', '/contact', 301);
+Route::redirect('/hubungi-kami', '/contact', 301);
+Route::redirect('/kontak', '/contact', 301);
+Route::redirect('/berita', '/news', 301);
+Route::redirect('/artikel', '/news', 301);
+Route::redirect('/blog', '/news', 301);
+Route::redirect('/karir', '/careers', 301);
+Route::redirect('/career', '/careers', 301);
+Route::redirect('/business-activities', '/business-activity', 301);
+Route::redirect('/kegiatan-usaha', '/business-activity', 301);
+Route::redirect('/lini-bisnis', '/line-of-business', 301);
+Route::redirect('/modi', '/company-profile-report', 301);
+Route::redirect('/company-profile', '/company-profile-report', 301);
+Route::redirect('/csr-kristalin', '/csr', 301);
+Route::redirect('/tanggung-jawab-sosial', '/csr', 301);
+Route::redirect('/investor-relations', '/investor', 301);
+Route::redirect('/kebijakan-privasi', '/privacy-policy', 301);
+Route::redirect('/syarat-ketentuan', '/terms', 301);
+
+// Purge / Intercept Legacy WordPress URLs (Redirecting 301 to purge old search index)
+Route::any('/wp-login.php', fn() => redirect('/', 301));
+Route::any('/xmlrpc.php', fn() => redirect('/', 301));
+Route::any('/hello-world', fn() => redirect('/news', 301));
+Route::any('/hello-world/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/welcome-to-wordpress', fn() => redirect('/news', 301));
+Route::any('/welcome-to-wordpress/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/2019/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/2020/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/2021/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/wp-admin/{any?}', fn() => redirect('/', 301))->where('any', '.*');
+Route::any('/wp-includes/{any?}', fn() => redirect('/', 301))->where('any', '.*');
+Route::any('/wp-content/{any?}', fn() => redirect('/', 301))->where('any', '.*');
+Route::any('/wp-json/{any?}', fn() => redirect('/', 301))->where('any', '.*');
+Route::any('/feed/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/rss', fn() => redirect('/news', 301));
+Route::any('/category/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/tag/{any?}', fn() => redirect('/news', 301))->where('any', '.*');
+Route::any('/author/{any?}', fn() => redirect('/about', 301))->where('any', '.*');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

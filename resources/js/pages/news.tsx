@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { motion, Variants } from 'framer-motion';
 import { Calendar, ChevronDown, Search } from 'lucide-react';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
@@ -7562,6 +7562,12 @@ const KristalinNewsPage: React.FC = () => {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
+            <Head title="News & Press Releases | PT Kristalin Ekalestari">
+                <meta name="description" content="Berita resmi, siaran pers, dan liputan kegiatan operasional serta CSR PT Kristalin Ekalestari: Penyerahan kendaraan operasional Dewan Adat Meyah, program Kisara Gold, bantuan sosial masyarakat Papua." />
+                <meta property="og:title" content="News & Press Releases - PT Kristalin Ekalestari" />
+                <meta property="og:description" content="Berita resmi, siaran pers, dan dokumentasi program berkelanjutan PT Kristalin Ekalestari." />
+            </Head>
+
             <Header sticky={true} transparent={true} />
 
             {/* Hero Section - ULTRA FLEXIBLE RESPONSIVE */}

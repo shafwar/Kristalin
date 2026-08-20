@@ -12,7 +12,9 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import InquiryForm from '../components/InquiryForm';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 function scrollToProcess() {
     document.getElementById('b2c-process')?.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, ExternalLink, Home, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -25,11 +25,23 @@ const renderArticleBody = (content: string | React.ReactNode) => {
     return <div className={ARTICLE_PROSE_CLASSNAME}>{content}</div>;
 };
 
+function findNewsItemAndCategory(id: string) {
+    for (const monthData of newsData) {
+        for (const categoryData of monthData.categories) {
+            const foundItem = categoryData.newsItems.find((item) => item.id === id);
+            if (foundItem) {
+                return { newsItem: foundItem, category: categoryData };
+            }
+        }
+    }
+    return { newsItem: null, category: null };
+}
+
 const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
     const { t, locale }: UseTranslationReturn = useTranslation();
-    const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
-    const [category, setCategory] = useState<NewsCategory | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [newsDataState, setNewsDataState] = useState(() => findNewsItemAndCategory(id));
+    const newsItem = newsDataState.newsItem;
+    const category = newsDataState.category;
 
     // Helper function to get translated content for specific articles
     const getTranslatedContent = (articleId: string) => {
@@ -7912,35 +7924,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
     };
 
     useEffect(() => {
-        // Find the news item by ID
-        const findNewsItem = () => {
-            for (const monthData of newsData) {
-                for (const categoryData of monthData.categories) {
-                    const foundItem = categoryData.newsItems.find((item) => item.id === id);
-                    if (foundItem) {
-                        setNewsItem(foundItem);
-                        setCategory(categoryData);
-                        setLoading(false);
-                        return;
-                    }
-                }
-            }
-            setLoading(false);
-        };
-
-        findNewsItem();
+        setNewsDataState(findNewsItemAndCategory(id));
     }, [id]);
-
-    if (loading) {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
-                <div className="text-center">
-                    <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-amber-500"></div>
-                    <p className="text-gray-600">{t('news_detail.loading')}</p>
-                </div>
-            </div>
-        );
-    }
     if (!newsItem) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
@@ -7964,8 +7949,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
         );
     }
 
+    const articleTitle = getTranslatedContent(id)?.title || newsItem.title;
+    const articleExcerpt = getTranslatedContent(id)?.excerpt || newsItem.excerpt || '';
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
+            <Head title={`${articleTitle} | News - PT Kristalin Ekalestari`}>
+                <meta name="description" content={articleExcerpt} />
+                <meta property="og:title" content={`${articleTitle} - PT Kristalin Ekalestari`} />
+                <meta property="og:description" content={articleExcerpt} />
+            </Head>
             <Header sticky={true} />
 
             {/* Enhanced Breadcrumb Navigation */}
