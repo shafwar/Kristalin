@@ -687,6 +687,18 @@ return [
         'subtitle' => 'Pencapaian Perusahaan',
         'main_description' => 'Beginilah cara kami memulai dan memulai perjalanan untuk menjadi hebat.',
 
+        'timeline_range' => '1989 – 2025',
+        'active_year_label' => 'Tahun Aktif',
+        'empty_filter' => 'Tidak ada pencapaian yang sesuai dengan filter ini.',
+        'filters' => [
+            'all' => 'Semua',
+            'legal' => 'Hukum & Perizinan',
+            'production' => 'Produksi & Operasi',
+            'csr' => 'CSR & Komunitas',
+            'investment' => 'Investasi & Kemitraan',
+            'foundation' => 'Pendirian Perusahaan',
+        ],
+
 
         'company_stats' => [
             'established' => 'Didirikan',

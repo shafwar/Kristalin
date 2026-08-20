@@ -703,15 +703,15 @@ return [
         'main_description' => '这就是我们如何开始并踏上成为伟大企业的旅程。',
 
         'timeline_range' => '1989 – 2025',
-        'active_year_label' => '当前',
+        'active_year_label' => '选定年份',
         'empty_filter' => '该筛选条件下暂无里程碑。',
         'filters' => [
             'all' => '全部',
-            'legal' => '法律',
-            'production' => '生产',
-            'csr' => 'CSR',
-            'investment' => '投资',
-            'foundation' => '创立',
+            'legal' => '法律与许可',
+            'production' => '生产与运营',
+            'csr' => '企业社会责任与社区',
+            'investment' => '投资与增长',
+            'foundation' => '公司创立',
         ],
 
         'company_stats' => [

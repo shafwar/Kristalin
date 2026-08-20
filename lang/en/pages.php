@@ -702,15 +702,15 @@ return [
         'main_description' => 'This is how we began and embarked on our journey to become great.',
 
         'timeline_range' => '1989 – 2025',
-        'active_year_label' => 'Highlight',
+        'active_year_label' => 'Active Year',
         'empty_filter' => 'No milestones match this filter.',
         'filters' => [
             'all' => 'All',
-            'legal' => 'Legal',
-            'production' => 'Production',
-            'csr' => 'CSR',
-            'investment' => 'Investment',
-            'foundation' => 'Foundation',
+            'legal' => 'Legal & Permits',
+            'production' => 'Production & Operations',
+            'csr' => 'CSR & Community',
+            'investment' => 'Investment & Growth',
+            'foundation' => 'Company Foundation',
         ],
 
         'company_stats' => [
