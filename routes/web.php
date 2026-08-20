@@ -228,6 +228,34 @@ Route::get('/images/{path}', function ($path) {
     return response()->file($filePath);
 })->where('path', '.*');
 
+// Direct Static Build Asset Handler (Fail-safe for PHP built-in server in cloud containers)
+Route::get('/build/{path}', function ($path) {
+    $fullPath = public_path("build/{$path}");
+    if (file_exists($fullPath) && is_file($fullPath)) {
+        $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+        $mime = match ($ext) {
+            'js', 'mjs' => 'application/javascript; charset=utf-8',
+            'css' => 'text/css; charset=utf-8',
+            'json' => 'application/json; charset=utf-8',
+            'svg' => 'image/svg+xml',
+            'png' => 'image/png',
+            'jpg', 'jpeg' => 'image/jpeg',
+            'webp' => 'image/webp',
+            'avif' => 'image/avif',
+            'woff' => 'font/woff',
+            'woff2' => 'font/woff2',
+            'ttf' => 'font/ttf',
+            default => mime_content_type($fullPath) ?: 'application/octet-stream',
+        };
+        return response()->file($fullPath, [
+            'Content-Type' => $mime,
+            'Cache-Control' => 'public, max-age=31536000, immutable',
+        ]);
+    }
+    abort(404, 'Asset not found: ' . $path);
+})->where('path', '.*');
+
+
 // Common Aliases & Legacy Indonesian/English Route Redirects (301 Permanent)
 Route::redirect('/about-us', '/about', 301);
 Route::redirect('/about-kristalin', '/about', 301);
