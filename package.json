@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "NODE_OPTIONS='--max-old-space-size=400' vite build && vite build --ssr",
+        "build": "vite build && vite build --ssr",
         "preview": "vite preview",
         "ssr": "php artisan inertia:start-ssr",
         "postinstall": "npm run build",
