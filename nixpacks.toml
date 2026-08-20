@@ -1,7 +1,12 @@
+providers = ["php", "node"]
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "php82", "php82Packages.composer"]
+
 [phases.install]
 cmds = [
     "COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev --no-interaction"
 ]
 
 [start]
-cmd = "php artisan optimize:clear; php artisan config:cache; php artisan route:cache; php artisan view:cache; (node bootstrap/ssr/ssr.js &>/dev/null &); sleep 2; php artisan serve --host=0.0.0.0 --port=$PORT"
+cmd = "php artisan optimize:clear; php artisan config:cache; php artisan route:cache; php artisan view:cache; (php artisan inertia:start-ssr &); sleep 2; php artisan serve --host=0.0.0.0 --port=$PORT"
