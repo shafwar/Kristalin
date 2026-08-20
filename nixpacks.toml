@@ -1,12 +1,6 @@
 [phases.install]
 cmds = [
-    "COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev --no-interaction",
-    "npm ci"
-]
-
-[phases.build]
-cmds = [
-    "npm run build"
+    "COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev --no-interaction"
 ]
 
 [start]
