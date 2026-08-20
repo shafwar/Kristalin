@@ -83,89 +83,89 @@
 
         {{-- Structured Data --}}
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": ["Organization", "Corporation"],
-              "@id": "https://kristalin.co.id/#organization",
-              "name": "PT Kristalin Ekalestari",
-              "alternateName": ["Kristalin", "Kristalin Ekalestari", "PT KEL"],
-              "url": "https://kristalin.co.id",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "{{ asset('kristalin-logo-seo.png') }}"
-              },
-              "image": "{{ asset('kristalin-og-preview.jpg') }}",
-              "description": "Perusahaan pertambangan emas dan pengolahan mineral berkelanjutan terkemuka di Indonesia yang memegang Izin Usaha Pertambangan Operasi Produksi (IUP OP) resmi di Nabire, Papua.",
-              "foundingDate": "1989",
-              "email": "info@kristalin.co.id",
-              "telephone": "+622122978900",
-              "sameAs": [
-                "https://instagram.com/kristalin_ekalestari"
+        {!! json_encode([
+          '@context' => 'https://schema.org',
+          '@graph' => [
+            [
+              '@type' => ['Organization', 'Corporation'],
+              '@id' => 'https://kristalin.co.id/#organization',
+              'name' => 'PT Kristalin Ekalestari',
+              'alternateName' => ['Kristalin', 'Kristalin Ekalestari', 'PT KEL'],
+              'url' => 'https://kristalin.co.id',
+              'logo' => [
+                '@type' => 'ImageObject',
+                'url' => asset('kristalin-logo-seo.png'),
               ],
-              "address": [
-                {
-                  "@type": "PostalAddress",
-                  "name": "Headquarters",
-                  "streetAddress": "Menara 165, Lt. 4, Jl. TB Simatupang Kav. 1, Cilandak Timur",
-                  "addressLocality": "Jakarta Selatan",
-                  "addressRegion": "DKI Jakarta",
-                  "postalCode": "12560",
-                  "addressCountry": "ID"
-                },
-                {
-                  "@type": "PostalAddress",
-                  "name": "Operational Mine Site Office",
-                  "addressLocality": "Nabire",
-                  "addressRegion": "Papua Tengah / Papua Barat",
-                  "addressCountry": "ID"
-                }
+              'image' => asset('kristalin-og-preview.jpg'),
+              'description' => 'Perusahaan pertambangan emas dan pengolahan mineral berkelanjutan terkemuka di Indonesia yang memegang Izin Usaha Pertambangan Operasi Produksi (IUP OP) resmi di Nabire, Papua.',
+              'foundingDate' => '1989',
+              'email' => 'info@kristalin.co.id',
+              'telephone' => '+622122978900',
+              'sameAs' => [
+                'https://instagram.com/kristalin_ekalestari',
               ],
-              "contactPoint": [
-                {
-                  "@type": "ContactPoint",
-                  "contactType": "Corporate Affairs & Customer Service",
-                  "telephone": "+622122978900",
-                  "email": "info@kristalin.co.id",
-                  "url": "https://kristalin.co.id/contact",
-                  "availableLanguage": ["id", "en", "zh"]
-                }
+              'address' => [
+                [
+                  '@type' => 'PostalAddress',
+                  'name' => 'Headquarters',
+                  'streetAddress' => 'Menara 165, Lt. 4, Jl. TB Simatupang Kav. 1, Cilandak Timur',
+                  'addressLocality' => 'Jakarta Selatan',
+                  'addressRegion' => 'DKI Jakarta',
+                  'postalCode' => '12560',
+                  'addressCountry' => 'ID',
+                ],
+                [
+                  '@type' => 'PostalAddress',
+                  'name' => 'Operational Mine Site Office',
+                  'addressLocality' => 'Nabire',
+                  'addressRegion' => 'Papua Tengah / Papua Barat',
+                  'addressCountry' => 'ID',
+                ],
               ],
-              "additionalProperty": [
-                {
-                  "@type": "PropertyValue",
-                  "name": "Legal Mining Permit (IUP OP)",
-                  "value": "IUP Operasi Produksi No. 561/2021/DESDM (Registered on ESDM MODI/MOMI)"
-                },
-                {
-                  "@type": "PropertyValue",
-                  "name": "IUP Validity Period",
-                  "value": "2020 - 2030 (10 Years Active Production Permit)"
-                },
-                {
-                  "@type": "PropertyValue",
-                  "name": "Concession Area",
-                  "value": "198 Hectares, Nabire, Papua"
-                },
-                {
-                  "@type": "PropertyValue",
-                  "name": "Core Commodity",
-                  "value": "Gold Exploration, Production, Refining & Kisara Gold Bullion"
-                }
-              ]
-            },
-            {
-              "@type": "WebSite",
-              "@id": "https://kristalin.co.id/#website",
-              "url": "https://kristalin.co.id",
-              "name": "PT Kristalin Ekalestari Official Website",
-              "publisher": {
-                "@id": "https://kristalin.co.id/#organization"
-              }
-            }
-          ]
-        }
+              'contactPoint' => [
+                [
+                  '@type' => 'ContactPoint',
+                  'contactType' => 'Corporate Affairs & Customer Service',
+                  'telephone' => '+622122978900',
+                  'email' => 'info@kristalin.co.id',
+                  'url' => 'https://kristalin.co.id/contact',
+                  'availableLanguage' => ['id', 'en', 'zh'],
+                ],
+              ],
+              'additionalProperty' => [
+                [
+                  '@type' => 'PropertyValue',
+                  'name' => 'Legal Mining Permit (IUP OP)',
+                  'value' => 'IUP Operasi Produksi No. 561/2021/DESDM (Registered on ESDM MODI/MOMI)',
+                ],
+                [
+                  '@type' => 'PropertyValue',
+                  'name' => 'IUP Validity Period',
+                  'value' => '2020 - 2030 (10 Years Active Production Permit)',
+                ],
+                [
+                  '@type' => 'PropertyValue',
+                  'name' => 'Concession Area',
+                  'value' => '198 Hectares, Nabire, Papua',
+                ],
+                [
+                  '@type' => 'PropertyValue',
+                  'name' => 'Core Commodity',
+                  'value' => 'Gold Exploration, Production, Refining & Kisara Gold Bullion',
+                ],
+              ],
+            ],
+            [
+              '@type' => 'WebSite',
+              '@id' => 'https://kristalin.co.id/#website',
+              'url' => 'https://kristalin.co.id',
+              'name' => 'PT Kristalin Ekalestari Official Website',
+              'publisher' => [
+                '@id' => 'https://kristalin.co.id/#organization',
+              ],
+            ],
+          ],
+        ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
         </script>
 
         @php
