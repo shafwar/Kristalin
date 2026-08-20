@@ -188,7 +188,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-BKMQs4h-.js",
+    "file": "assets/app-B98NPua6.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -683,7 +683,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-DTA2cGEI.js",
+    "file": "assets/appearance-BzJEd6A1.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
