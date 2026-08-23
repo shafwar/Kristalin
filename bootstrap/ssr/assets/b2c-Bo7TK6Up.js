@@ -14,7 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { H as Header, F as Footer } from "./Header-PE8OL-v1.js";
 import { I as InquiryForm } from "./InquiryForm-4NUO8kae.js";
 import { createPortal } from "react-dom";
-import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-BOYeZnc5.js";
+import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-MI5BXMrn.js";
 import "./label-B_m42RSr.js";
 import "./utils-H80jjgLf.js";
 import "tailwind-merge";

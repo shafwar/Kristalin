@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { H as Header, F as Footer } from "./Header-PE8OL-v1.js";
 import { u as useTranslation } from "./useTranslation-DutJeAb2.js";
 import { i as imageUrl } from "./assets-CvOUY0DF.js";
-import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-BOYeZnc5.js";
+import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-MI5BXMrn.js";
 import "lucide-react";
 import "react-dom";
 const IconBuilding = () => /* @__PURE__ */ jsxs(
