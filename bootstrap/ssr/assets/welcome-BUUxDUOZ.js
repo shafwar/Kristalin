@@ -11,7 +11,7 @@ import { H as Header, F as Footer } from "./Header-PE8OL-v1.js";
 import { P as PapuaChildrenHeroPicture } from "./PapuaChildrenHeroPicture-D2Fa_1ZV.js";
 import gsap from "gsap";
 import { W as WelcomeGridPicture } from "./WelcomeGridPicture-BBBlV399.js";
-import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-DGJ8rXgu.js";
+import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-D-smxsPk.js";
 import "react-dom";
 function DeferredBelowFold({ children, enabled, className, rootMargin = "280px" }) {
   const [show, setShow] = useState(!enabled);

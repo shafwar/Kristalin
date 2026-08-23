@@ -117,7 +117,7 @@ export default function B2cPage() {
                         )}
                     >
                         <div className="mb-4">
-                            <EsmdVerificationBadge variant="compact" />
+                            <EsmdVerificationBadge variant="compact" theme="dark" />
                         </div>
                         <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-amber-300/95 uppercase">
                             {t('pages.b2c.hero_kicker')}

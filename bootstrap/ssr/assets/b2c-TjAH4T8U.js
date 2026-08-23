@@ -14,7 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { H as Header, F as Footer } from "./Header-PE8OL-v1.js";
 import { I as InquiryForm } from "./InquiryForm-4NUO8kae.js";
 import { createPortal } from "react-dom";
-import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-DGJ8rXgu.js";
+import { E as EsmdVerificationBadge } from "./EsmdVerificationModal-D-smxsPk.js";
 import "./label-B_m42RSr.js";
 import "./utils-H80jjgLf.js";
 import "tailwind-merge";
@@ -728,7 +728,7 @@ function B2cPage() {
             heroMicroReady ? "translate-y-0" : "translate-y-2"
           ),
           children: [
-            /* @__PURE__ */ jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsx(EsmdVerificationBadge, { variant: "compact" }) }),
+            /* @__PURE__ */ jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsx(EsmdVerificationBadge, { variant: "compact", theme: "dark" }) }),
             /* @__PURE__ */ jsx("p", { className: "mb-3 text-xs font-semibold tracking-[0.2em] text-amber-300/95 uppercase", children: t("pages.b2c.hero_kicker") }),
             /* @__PURE__ */ jsx("h1", { className: "mb-4 text-3xl leading-tight font-bold text-white drop-shadow-md sm:text-4xl md:text-5xl", children: t("pages.b2c.hero_title") }),
             /* @__PURE__ */ jsx("p", { className: "mb-8 max-w-2xl text-base leading-relaxed text-stone-200/95 sm:text-lg", children: t("pages.b2c.hero_subtitle") }),

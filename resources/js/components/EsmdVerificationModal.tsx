@@ -205,25 +205,31 @@ export function EsmdVerificationModal({ isOpen, onClose }: EsmdVerificationModal
 type EsmdVerificationBadgeProps = {
     className?: string;
     variant?: 'pill' | 'compact' | 'tag';
+    theme?: 'light' | 'dark';
 };
 
-export function EsmdVerificationBadge({ className = '', variant = 'pill' }: EsmdVerificationBadgeProps) {
+export function EsmdVerificationBadge({ className = '', variant = 'pill', theme = 'light' }: EsmdVerificationBadgeProps) {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
     if (variant === 'compact') {
+        const isDark = theme === 'dark';
         return (
             <>
                 <button
                     type="button"
                     onClick={() => setIsOpen(true)}
-                    className={`group inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-stone-900/90 hover:bg-stone-800 px-3.5 py-1.5 text-xs font-semibold text-amber-300 shadow-sm backdrop-blur-md transition-all hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-95 cursor-pointer ${className}`}
+                    className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${
+                        isDark
+                            ? 'border-amber-400/35 bg-white/10 hover:bg-white/15 text-amber-300 backdrop-blur-md hover:border-amber-300 shadow-sm'
+                            : 'border-amber-500/30 bg-amber-50/80 hover:bg-amber-100/90 text-amber-900 hover:border-amber-400 shadow-sm'
+                    } ${className}`}
                 >
-                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                    <span className={`flex h-4 w-4 items-center justify-center rounded-full ${isDark ? 'bg-amber-400/20 text-amber-300' : 'bg-amber-500/20 text-amber-700'}`}>
                         <Shield className="h-2.5 w-2.5" strokeWidth={2.5} />
                     </span>
                     <span className="tracking-wide">IUP OP No. 561/2021/DESDM</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 </button>
                 <EsmdVerificationModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
             </>
@@ -236,7 +242,7 @@ export function EsmdVerificationBadge({ className = '', variant = 'pill' }: Esmd
                 <button
                     type="button"
                     onClick={() => setIsOpen(true)}
-                    className={`inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 hover:text-amber-500 transition-colors cursor-pointer ${className}`}
+                    className={`inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-600 transition-colors cursor-pointer ${className}`}
                 >
                     <Shield className="h-3.5 w-3.5" />
                     <span className="underline underline-offset-2">Verified MODI ESDM</span>
@@ -247,22 +253,32 @@ export function EsmdVerificationBadge({ className = '', variant = 'pill' }: Esmd
     }
 
     // Default 'pill' variant
+    const isDark = theme === 'dark';
     return (
         <>
             <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className={`group inline-flex items-center gap-2.5 rounded-full border border-amber-500/40 bg-stone-950/90 hover:bg-stone-900 px-4 py-1.5 text-xs font-semibold text-stone-200 shadow-md backdrop-blur-md transition-all duration-300 hover:border-amber-400 hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] active:scale-95 cursor-pointer ${className}`}
+                className={`group inline-flex items-center gap-2.5 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-300 active:scale-95 cursor-pointer ${
+                    isDark
+                        ? 'border-amber-400/40 bg-white/10 hover:bg-white/15 text-stone-100 backdrop-blur-md hover:border-amber-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.25)]'
+                        : 'border-amber-500/30 bg-amber-50/80 hover:bg-amber-100 text-stone-800 hover:border-amber-400 shadow-sm hover:shadow-md'
+                } ${className}`}
             >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                <span className={`flex h-5 w-5 items-center justify-center rounded-full transition-colors ${
+                    isDark
+                        ? 'bg-amber-400/20 text-amber-300 group-hover:bg-amber-400 group-hover:text-stone-950'
+                        : 'bg-amber-500/20 text-amber-700 group-hover:bg-amber-500 group-hover:text-white'
+                }`}>
                     <Shield className="h-3 w-3" strokeWidth={2.5} />
                 </span>
                 <span className="tracking-wide">
-                    {t('pages.esdm_verification.badge_label') || 'Kepatuhan Resmi ESDM'} · <span className="font-mono text-amber-300">561/2021/DESDM</span>
+                    {t('pages.esdm_verification.badge_label') || 'Kepatuhan Resmi ESDM'} · <span className={`font-mono font-bold ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>561/2021/DESDM</span>
                 </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </button>
             <EsmdVerificationModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
     );
 }
+
