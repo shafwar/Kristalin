@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { H as Header, F as Footer } from "./Header-PE8OL-v1.js";
 import { u as useTranslation } from "./useTranslation-DutJeAb2.js";
 import { g as getArticleImageUrl } from "./assets-CvOUY0DF.js";
-import { newsData } from "./news-D38-Hguu.js";
+import { newsData } from "./news-CIGk20Ef.js";
 import "react-dom";
 const ARTICLE_PROSE_CLASSNAME = "prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight prose-headings:mb-4 prose-headings:mt-6 prose-p:text-gray-800 prose-p:leading-relaxed prose-p:text-base prose-p:mb-4 prose-strong:text-gray-900 prose-strong:font-semibold prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-amber-50 prose-blockquote:to-yellow-50 prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:p-4 prose-blockquote:my-6 prose-ul:text-gray-800 prose-li:text-gray-800 prose-li:leading-relaxed prose-li:mb-1 prose-a:text-amber-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md prose-img:ring-1 prose-img:ring-gray-200/50 max-w-none";
 const renderArticleBody = (content) => {

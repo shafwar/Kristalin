@@ -177,7 +177,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-CBPRsq2P.js",
+    "file": "assets/app-CQR5hIND.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -238,7 +238,7 @@
     ]
   },
   "resources/js/pages/NewsDetail.tsx": {
-    "file": "assets/NewsDetail-CeW0axnz.js",
+    "file": "assets/NewsDetail-DVRGulJm.js",
     "name": "NewsDetail",
     "src": "resources/js/pages/NewsDetail.tsx",
     "isDynamicEntry": true,
@@ -433,7 +433,7 @@
     ]
   },
   "resources/js/pages/business-activity.tsx": {
-    "file": "assets/business-activity-2dedNZws.js",
+    "file": "assets/business-activity-LqmJNETs.js",
     "name": "business-activity",
     "src": "resources/js/pages/business-activity.tsx",
     "isDynamicEntry": true,
@@ -587,7 +587,7 @@
     ]
   },
   "resources/js/pages/line-of-business.tsx": {
-    "file": "assets/line-of-business-B-0Qyz6o.js",
+    "file": "assets/line-of-business-CFqYjV58.js",
     "name": "line-of-business",
     "src": "resources/js/pages/line-of-business.tsx",
     "isDynamicEntry": true,
@@ -619,7 +619,7 @@
     ]
   },
   "resources/js/pages/news.tsx": {
-    "file": "assets/news-CFppkfPg.js",
+    "file": "assets/news-CoD5kGyj.js",
     "name": "news",
     "src": "resources/js/pages/news.tsx",
     "isEntry": true,
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-DvGoWhBx.js",
+    "file": "assets/appearance-DdDq8roF.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,

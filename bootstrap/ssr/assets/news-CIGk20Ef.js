@@ -7165,7 +7165,7 @@ const staggerContainer = {
   }
 };
 const CounterAnimation = ({ end, duration = 2e3, delay = 0, suffix = "" }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
   const [isAnimating, setIsAnimating] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {

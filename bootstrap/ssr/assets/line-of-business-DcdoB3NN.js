@@ -27,7 +27,7 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1 }
 };
 const CounterAnimation = ({ target, duration = 1e3 }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const [hasStarted, setHasStarted] = useState(false);
   useEffect(() => {
     if (hasStarted) {

@@ -31,7 +31,7 @@ const scaleIn = {
 
 // CounterAnimation component for smooth animated counter
 const CounterAnimation = ({ target, duration = 1000 }: { target: number; duration?: number }) => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(target);
     const [hasStarted, setHasStarted] = useState(false);
 
     useEffect(() => {

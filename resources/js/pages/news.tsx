@@ -7304,7 +7304,7 @@ interface CounterAnimationProps {
 }
 
 const CounterAnimation: React.FC<CounterAnimationProps> = ({ end, duration = 2000, delay = 0, suffix = '' }) => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {

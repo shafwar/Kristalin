@@ -22,15 +22,19 @@ const fadeInUp = {
     }
   }
 };
-const CounterAnimation = ({ target, suffix = "", duration = 2e3, delay = 0 }) => {
-  const [count, setCount] = useState(0);
+const CounterAnimation = ({ target, suffix = "", duration = 1800, delay = 0, isDecimal = false }) => {
+  const [count, setCount] = useState(target);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef(null);
   const startCounting = () => {
-    if (isAnimating) return;
+    if (hasAnimated || isAnimating) return;
+    setHasAnimated(true);
     setIsAnimating(true);
     setCount(0);
-    const increment = target / (duration / 50);
+    const steps = 30;
+    const increment = target / steps;
+    const stepTime = duration / steps;
     let current = 0;
     intervalRef.current = setInterval(() => {
       current += increment;
@@ -41,9 +45,9 @@ const CounterAnimation = ({ target, suffix = "", duration = 2e3, delay = 0 }) =>
           clearInterval(intervalRef.current);
         }
       } else {
-        setCount(Math.floor(current));
+        setCount(isDecimal ? Number(current.toFixed(2)) : Math.floor(current));
       }
-    }, 50);
+    }, stepTime);
   };
   useEffect(() => {
     return () => {
@@ -86,7 +90,7 @@ const CounterAnimation = ({ target, suffix = "", duration = 2e3, delay = 0 }) =>
               repeatType: "reverse"
             },
             children: [
-              count.toLocaleString(),
+              isDecimal ? count.toFixed(2) : count.toLocaleString(),
               suffix
             ]
           }
@@ -1113,32 +1117,36 @@ function BusinessActivityPage() {
           ] }),
           /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 gap-8 md:grid-cols-4", children: [
             {
-              number: 18,
-              label: t("pages.business_activity.achievements.years_experience.label"),
-              description: t("pages.business_activity.achievements.years_experience.description"),
+              number: 35,
+              label: t("pages.business_activity.achievements.years_experience.label") || "Tahun Warisan Industri",
+              description: t("pages.business_activity.achievements.years_experience.description") || "Eksplorasi dan pemurnian emas terintegrasi di Indonesia sejak 1989.",
               icon: "trophy",
-              suffix: "+"
+              suffix: "+",
+              isDecimal: false
             },
             {
-              number: 12,
-              label: t("pages.business_activity.achievements.mining_sites.label"),
-              description: t("pages.business_activity.achievements.mining_sites.description"),
+              number: 198,
+              label: t("pages.business_activity.achievements.mining_sites.label") || "Ha IUP Operasi Produksi",
+              description: t("pages.business_activity.achievements.mining_sites.description") || "IUP OP No. 561/2021/DESDM (2020–2030) resmi di Nabire, Papua Tengah.",
               icon: "location",
-              suffix: ""
+              suffix: " Ha",
+              isDecimal: false
             },
             {
-              number: 46,
-              label: t("pages.business_activity.achievements.gold_reserves.label"),
-              description: t("pages.business_activity.achievements.gold_reserves.description"),
+              number: 99.99,
+              label: t("pages.business_activity.achievements.gold_reserves.label") || "Kemurnian Fine Gold",
+              description: t("pages.business_activity.achievements.gold_reserves.description") || "Emas murni batangan 24K berstandar internasional LBMA dan sertifikasi resmi.",
               icon: "mining",
-              suffix: ".4T"
+              suffix: "%",
+              isDecimal: true
             },
             {
-              number: 99,
-              label: t("pages.business_activity.achievements.success_rate.label"),
-              description: t("pages.business_activity.achievements.success_rate.description"),
+              number: 2.5,
+              label: t("pages.business_activity.achievements.success_rate.label") || "Ton Kapasitas Smelter",
+              description: t("pages.business_activity.achievements.success_rate.description") || "Kapasitas pengolahan tahunan terpadu dengan 100% kepatuhan ESG & zero mercury.",
               icon: "analytics",
-              suffix: "%"
+              suffix: "+ Ton",
+              isDecimal: true
             }
           ].map((stat, index) => /* @__PURE__ */ jsxs(
             motion.div,
@@ -1170,7 +1178,7 @@ function BusinessActivityPage() {
                       children: /* @__PURE__ */ jsx(Icon, { type: stat.icon, className: "h-8 w-8 text-white" })
                     }
                   ),
-                  /* @__PURE__ */ jsx(CounterAnimation, { target: stat.number, suffix: stat.suffix, duration: 2e3, delay: index * 300 }),
+                  /* @__PURE__ */ jsx(CounterAnimation, { target: stat.number, suffix: stat.suffix, duration: 1800, delay: index * 200, isDecimal: stat.isDecimal }),
                   /* @__PURE__ */ jsx("h4", { className: "mb-3 text-lg font-semibold text-white transition-colors duration-300 group-hover:text-amber-400", children: stat.label }),
                   /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed font-normal text-gray-400 transition-colors duration-300 group-hover:text-gray-300", children: stat.description })
                 ] })

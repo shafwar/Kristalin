@@ -1209,38 +1209,38 @@ return [
     ],
 
     'business_activity' => [
-        'page_title' => 'Business Activity',
+        'page_title' => 'Business Activities & Mining Operations',
         'hero' => [
             'title_line1' => 'Business',
-            'title_line2' => 'Activities',
-            'description' => 'Premium gold mining operations with sustainable practices and cutting-edge technology for Indonesia\'s future.',
+            'title_line2' => 'Activities & Operations',
+            'description' => 'Integrated alluvial gold mining and refining operations in the Musairo River Basin, Nabire, Central Papua. Operating under official IUP OP Mining Permit No. 561/2021/DESDM with an end-to-end 99.99% fine gold supply chain.',
             'explore_button' => 'Explore Operations',
-            'alt_text' => 'Mining Operations',
+            'alt_text' => 'Nabire Mining Operations',
         ],
         'mining_sectors' => [
             'title_line1' => 'Mining',
             'title_line2' => 'Sectors',
-            'description' => 'To achieve our goals, our company operates in several specialized sectors with advanced technology and sustainable practices across premium mineral extraction operations.',
+            'description' => 'Our mineral operations focus on integrated alluvial gold extraction and certified precious metal refining in Nabire, Central Papua, maintaining accredited environmental and safety standards.',
             'sectors' => [
                 'gold' => [
-                    'name' => 'Gold',
-                    'description' => 'Premium gold extraction using modern alluvial technology in the Musairo River basin. Sustainable processes with advanced equipment for maximum results while preserving the environment.',
-                    'highlight' => 'Primary Focus',
+                    'name' => 'Alluvial Gold & Refining',
+                    'description' => 'Modern mercury-free gravity alluvial gold extraction in the Musairo River Basin, processing high-grade concentrates into 99.99% pure minted bullion.',
+                    'highlight' => 'Primary Focus (198 Ha IUP OP)',
                 ],
                 'silver' => [
-                    'name' => 'Silver',
-                    'description' => 'Processing of silver and other precious metals through integrated separation systems. Advanced refining technology ensures high purity and best quality.',
+                    'name' => 'Silver & Associated Minerals',
+                    'description' => 'Secondary recovery and processing of associated precious metals through integrated separation circuits to optimize mineral recovery sustainably.',
                     'highlight' => 'Secondary Operations',
                 ],
                 'other_metals' => [
-                    'name' => 'Other Metals',
-                    'description' => 'Exploration and extraction of strategic minerals including rare earth elements. Using leading geological surveys for identification of new mineral resource potential.',
+                    'name' => 'Geological Exploration',
+                    'description' => 'Advanced geophysical surveys and reserve mapping across our 5,000-hectare exploration concession in Nabire, Central Papua.',
                     'highlight' => 'Future Development',
                 ],
             ],
             'images' => [
-                'gold_alt' => 'Gold mining',
-                'silver_alt' => 'Silver mining',
+                'gold_alt' => 'Nabire gold mining',
+                'silver_alt' => 'Precious metal refining',
             ],
             'learn_more_gold' => 'Learn more about gold operations',
             'learn_more_silver' => 'Learn more about silver operations',
@@ -1248,8 +1248,8 @@ return [
         ],
         'location' => [
             'header' => 'OUR LOCATION',
-            'title' => 'Strategic Mining Location',
-            'description_part1' => 'PT Kristalin Ekalestari explores gold along the Musairo River, in Makimi district, Nabire, Papua. The exploration site spans 60km towards the eastern town of Nabire. Our location can be travelled by land transportation for 1.5 to 2 hours, reaching Legari village/SP-1, then using a special 4x4 vehicle along the Musairo river for another 10km that takes about 0.5 hours.',
+            'title' => 'Gold Mining Operations in Nabire, Papua',
+            'description_part1' => 'PT Kristalin Ekalestari operates its gold mining concession along the Musairo River, Makimi District, Nabire, Central Papua. The 198-hectare active IUP OP concession is accessible via a 1.5 to 2-hour land transit from Nabire town, followed by dedicated 4x4 transport along the Musairo corridor.',
             'mining_area_details' => [
                 'title' => 'Mining Area Details',
                 'total_area_label' => 'Total Area',
@@ -1270,13 +1270,13 @@ return [
             'map_caption' => 'Musairo River Basin, Makimi District, Nabire, Papua',
         ],
         'modern_operations' => [
-            'title' => 'Modern Mining Operations',
-            'subtitle' => 'Advanced equipment and sustainable practices in mineral extraction',
-            'location' => 'Nabire, Papua',
+            'title' => 'Gold Mining Operations in Nabire, Papua',
+            'subtitle' => 'Integrated heavy machinery fleet, mercury-free gravity processing, and strict ESG compliance',
+            'location' => 'Nabire, Central Papua',
         ],
         'sustainable_excellence' => [
-            'title' => 'Sustainable Mining Excellence',
-            'description' => 'Our diversified approach across gold, silver, and other metals ensures comprehensive resource utilization while maintaining the highest environmental and safety standards throughout all operations in the mineral-rich Musairo River basin.',
+            'title' => 'Integrated Gold Mining & Refining Operations in Nabire',
+            'description' => 'PT Kristalin Ekalestari manages an end-to-end gold value chain from the 198-hectare licensed IUP OP concession in Makimi to advanced refining in Jakarta. We utilize modern mercury-free gravity separation, active land reclamation, and community partnerships with the Meyah Customary Council.',
         ],
         'alluvial_mining' => [
             'title' => 'ALLUVIAL GOLD MINING',
@@ -1288,7 +1288,7 @@ return [
             'content' => [
                 'paragraph1' => 'The Papua province of Indonesia is rich of natural resources. Papua joined the Republic of Indonesia May 1st, 1963 with a total area of 404,669 kilometer square, and only inhabited by 7,310,000 population, approximately 18 people per kilometer square. The city of Timika that is located in the Mimika district is dominant in the area, where PT Freeport Indonesia, the biggest mining company with the most gold and silver output in the nation is located.',
                 'paragraph2' => 'Aside from Mimika, also located in Nabire is a mining site of alluvial gold. As a newly established district, the area contains a high level of minerals, especially gold. PT Kristalin Ekalestari entered the gold mining sector in Nabire on 2007, owning authority to gold mining and exploration for 5000 hectares of land around Nifase village, along the musairo river, Nabire, Papua.',
-                'paragraph3' => 'In 2010, the authority to mine changed into mining lisence for exploration. In addition, in 2011, PT Kristalin Ekalestari was also granted mining lisence for operational production for 198 hectares in Makimi village. To conduct mass mining for alluvial gold, PT Kristalin Ekalestari is cooperating with local and foreign investors to optimize the mining sector, with a noble purpose to improve the local and national economies.',
+                'paragraph3' => 'On 2010, the authority to mine changed to mining license for exploration. Furthermore on 2011, PT Kristalin Ekalestari is also granted mining license for operational production for 198 hectares on Makimi village. In order to do mass mining for the alluvial gold, PT Kristalin Ekalestari cooperates with both local and foreign investors to optimize the mining sector, with the noble goal of increasing both the local and national economy.',
             ],
             'current_operations' => [
                 'title' => 'Current Operations',
@@ -1299,11 +1299,11 @@ return [
             ],
             'economic_impact' => [
                 'title' => 'Economic Impact',
-                'description' => 'Gold minerals have a significant role in improving the nation\'s economy. PT Kristalin Ekalestari aims to contribute to the region\'s government, optimizing underdeveloped economies of local areas, and support potential mining sites in Nabire, Papua.',
+                'description' => 'Gold mineral has a big role in elevating the country\'s economy. PT Kristalin Ekalestari aims to contribute to the local government, optimizing the economy of the under-developed area, and supporting potential mining sites in Nabire, Papua.',
             ],
             'stats' => [
-                'est_year' => 'Est. Year',
-                'years_exp' => 'Years Exp',
+                'est_year' => 'Established Year',
+                'years_exp' => 'Years of Experience',
             ],
             'timeline' => [
                 'title' => 'Timeline',
@@ -1313,27 +1313,27 @@ return [
             ],
         ],
         'achievements' => [
-            'title' => 'Our Achievements',
-            'subtitle' => 'Proven track record of excellence in sustainable mining operations and community development.',
+            'title' => 'Operational Strength & Key Metrics',
+            'subtitle' => 'Licensed and integrated mining ecosystem spanning from Nabire exploration to downstream gold bullion refining.',
             'years_experience' => [
-                'value' => '18+',
-                'label' => 'Years Experience',
-                'description' => 'Proven mining operations with sustainable practices',
+                'value' => '35+',
+                'label' => 'Years Industry Heritage',
+                'description' => 'Pioneering integrated gold exploration and precious metal refining in Indonesia since 1989.',
             ],
             'mining_sites' => [
-                'value' => '12',
-                'label' => 'Mining Sites',
-                'description' => 'Active locations across Papua region',
+                'value' => '198 Ha',
+                'label' => 'Licensed IUP OP Concession',
+                'description' => 'IUP OP No. 561/2021/DESDM (2020–2030) officially registered on ESDM MODI/MOMI in Nabire, Central Papua.',
             ],
             'gold_reserves' => [
-                'value' => '46.4T',
-                'label' => 'Gold Reserves',
-                'description' => 'Tons of proven mineral resources identified',
+                'value' => '99.99%',
+                'label' => 'Fine Gold Purity Standard',
+                'description' => 'Certified 24K bullion minted bars meeting international LBMA standards and strict laboratory assays.',
             ],
             'success_rate' => [
-                'value' => '99%',
-                'label' => 'Success Rate',
-                'description' => 'Project completion and safety compliance',
+                'value' => '2.5+ Tons',
+                'label' => 'Annual Smelting Capacity',
+                'description' => 'Integrated processing capacity with 100% ESG compliance, zero-mercury gravity separation, and land reclamation.',
             ],
         ],
         'community_impact' => [
