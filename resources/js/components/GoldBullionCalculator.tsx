@@ -1,18 +1,24 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { formatIdrAmount, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
-import { Calculator, CheckCircle2, ChevronRight, HelpCircle, RefreshCw, Send, ShieldCheck, Sparkles, X } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import { Calculator, CheckCircle2, ChevronRight, RefreshCw, Send, ShieldCheck, X } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const GRAM_PRESETS = [1, 5, 10, 25, 50, 100, 500, 1000];
 
 export default function GoldBullionCalculator() {
-    const { t, locale } = useTranslation();
-    const { market, brandPrices, loading, error, refresh } = useKristalinTvGold(true);
+    const { t } = useTranslation();
+    const { market, brandPrices, loading, refresh } = useKristalinTvGold(true);
 
     const [selectedGrams, setSelectedGrams] = useState<number>(10);
     const [customGrams, setCustomGrams] = useState<string>('');
     const [isCustom, setIsCustom] = useState<boolean>(false);
     const [isRfqModalOpen, setIsRfqModalOpen] = useState<boolean>(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Form submission state
     const [rfqStatus, setRfqStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -23,6 +29,18 @@ export default function GoldBullionCalculator() {
         notes: '',
     });
 
+    // Prevent body scroll when RFQ modal is open
+    useEffect(() => {
+        if (isRfqModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isRfqModalOpen]);
+
     // Determine current active grams
     const activeGrams = useMemo(() => {
         if (isCustom) {
@@ -32,7 +50,7 @@ export default function GoldBullionCalculator() {
         return selectedGrams;
     }, [isCustom, customGrams, selectedGrams]);
 
-    // Base price per gram (fallback to 1.450.000 if feed is loading/offline)
+    // Base price per gram
     const bestBrandPrice = getBestSell1g(brandPrices?.brands)?.sell;
     const basePricePerGram = useMemo(() => {
         if (market?.gold_idr_per_gram && market.gold_idr_per_gram > 0) {
@@ -99,10 +117,10 @@ export default function GoldBullionCalculator() {
     };
 
     return (
-        <div className="relative mx-auto my-12 w-full max-w-4xl overflow-hidden rounded-3xl border border-amber-500/30 bg-gradient-to-b from-[#0c1626] via-[#091322] to-[#060c17] p-6 text-white shadow-2xl sm:p-10">
+        <div className="relative mx-auto my-8 sm:my-12 w-full max-w-4xl overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 text-white shadow-xl sm:p-10 ring-1 ring-white/10">
             {/* Ambient gold glow */}
-            <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-amber-500/15 blur-[90px]" />
-            <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-yellow-500/10 blur-[90px]" />
+            <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full bg-amber-500/10 blur-[60px]" />
+            <div className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-amber-600/10 blur-[60px]" />
 
             {/* Header */}
             <div className="relative z-10 flex flex-col items-start justify-between gap-4 border-b border-white/10 pb-6 md:flex-row md:items-center">
@@ -111,11 +129,11 @@ export default function GoldBullionCalculator() {
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
                             <Calculator className="h-3.5 w-3.5" />
                         </span>
-                        <span className="text-xs font-bold tracking-[0.2em] text-amber-400 uppercase">
+                        <span className="text-[11px] font-bold tracking-[0.2em] text-amber-400 uppercase">
                             {t('pages.b2c.calculator.kicker') || 'Simulasi & Kalkulator Emas'}
                         </span>
                     </div>
-                    <h3 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
+                    <h3 className="mt-1 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight">
                         {t('pages.b2c.calculator.title') || 'Kalkulator Investasi Logam Mulia'}
                     </h3>
                     <p className="mt-1 text-xs text-stone-300 sm:text-sm">
@@ -140,7 +158,7 @@ export default function GoldBullionCalculator() {
                         type="button"
                         onClick={refresh}
                         disabled={loading}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-stone-300 transition-colors hover:bg-amber-500 hover:text-white active:scale-95 disabled:opacity-50"
+                        className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-stone-300 transition-colors hover:bg-amber-500 hover:text-stone-950 active:scale-95 disabled:opacity-50"
                         title="Refresh live price"
                         aria-label="Refresh live price"
                     >
@@ -150,14 +168,14 @@ export default function GoldBullionCalculator() {
             </div>
 
             {/* Body */}
-            <div className="relative z-10 mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <div className="relative z-10 mt-6 sm:mt-8 grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-12">
                 {/* Left: Input Selection */}
-                <div className="space-y-6 lg:col-span-7">
+                <div className="space-y-5 sm:space-y-6 lg:col-span-7">
                     <div>
-                        <label className="mb-3 block text-xs font-semibold tracking-wider text-stone-300 uppercase">
+                        <label className="mb-2.5 block text-xs font-semibold tracking-wider text-stone-300 uppercase">
                             {t('pages.b2c.calculator.select_weight') || 'Pilih Gramatur Emas'}
                         </label>
-                        <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
+                        <div className="grid grid-cols-4 gap-2 sm:gap-3">
                             {GRAM_PRESETS.map((grams) => {
                                 const active = !isCustom && selectedGrams === grams;
                                 return (
@@ -165,13 +183,13 @@ export default function GoldBullionCalculator() {
                                         key={grams}
                                         type="button"
                                         onClick={() => handleSelectPreset(grams)}
-                                        className={`group relative flex flex-col items-center justify-center rounded-xl border p-3 font-semibold transition-all duration-200 active:scale-95 ${
+                                        className={`group relative flex flex-col items-center justify-center rounded-xl border p-2.5 sm:p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${
                                             active
-                                                ? 'border-amber-400 bg-gradient-to-b from-amber-500/25 to-yellow-500/10 text-white shadow-[0_0_15px_rgba(245,158,11,0.25)] ring-1 ring-amber-400'
+                                                ? 'border-amber-400 bg-amber-500/20 text-white shadow-md ring-1 ring-amber-400'
                                                 : 'border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10'
                                         }`}
                                     >
-                                        <span className="text-base font-bold sm:text-lg">{grams >= 1000 ? `${grams / 1000} kg` : `${grams}g`}</span>
+                                        <span className="text-sm font-bold sm:text-base">{grams >= 1000 ? `${grams / 1000} kg` : `${grams}g`}</span>
                                         <span className={`text-[10px] ${active ? 'text-amber-300 font-medium' : 'text-stone-400'}`}>
                                             {grams >= 1000 ? '1.000 Gram' : `${grams} Gram`}
                                         </span>
@@ -194,7 +212,7 @@ export default function GoldBullionCalculator() {
                                 placeholder="Contoh: 15"
                                 value={customGrams}
                                 onChange={handleCustomChange}
-                                className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 pr-16 text-sm font-medium text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
+                                className="h-11 sm:h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 pr-16 text-sm font-medium text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
                             />
                             <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-semibold text-amber-400 uppercase">
                                 {t('pages.b2c.calculator.gram_unit') || 'Gram'}
@@ -203,7 +221,7 @@ export default function GoldBullionCalculator() {
                     </div>
 
                     {/* Purity Guarantee Badge */}
-                    <div className="flex items-center gap-3 rounded-2xl border border-emerald-500/20 bg-emerald-950/30 p-3.5 text-xs text-emerald-300">
+                    <div className="flex items-center gap-3 rounded-xl sm:rounded-2xl border border-emerald-500/20 bg-emerald-950/20 p-3.5 text-xs text-emerald-300">
                         <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400" />
                         <div>
                             <p className="font-semibold text-emerald-200">
@@ -217,19 +235,19 @@ export default function GoldBullionCalculator() {
                 </div>
 
                 {/* Right: Total & CTA */}
-                <div className="flex flex-col justify-between rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-md lg:col-span-5">
+                <div className="flex flex-col justify-between rounded-xl sm:rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 sm:p-6 backdrop-blur-md lg:col-span-5">
                     <div>
                         <div className="flex items-center justify-between">
                             <span className="text-xs font-semibold tracking-wider text-stone-400 uppercase">
                                 {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total Pembelian'}
                             </span>
-                            <span className="rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                            <span className="rounded-full bg-amber-400/20 px-2.5 py-0.5 text-[10px] font-bold text-amber-300">
                                 {activeGrams} Gram
                             </span>
                         </div>
 
                         <div className="mt-3">
-                            <p className="font-mono text-3xl font-extrabold tracking-tight text-amber-300 sm:text-4xl">
+                            <p className="font-mono text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-amber-300">
                                 {formatIdrAmount(estimatedTotal)}
                             </p>
                             <p className="mt-1 text-[11px] text-stone-400">
@@ -237,7 +255,7 @@ export default function GoldBullionCalculator() {
                             </p>
                         </div>
 
-                        <div className="mt-6 border-t border-white/10 pt-4">
+                        <div className="mt-5 border-t border-white/10 pt-3.5">
                             <p className="text-[10px] leading-relaxed text-stone-400">
                                 {t('pages.b2c.calculator.pricing_note') || '* Harga bersifat indikatif mengikuti update pasar live. Kuotasi final dikunci saat verifikasi administrasi.'}
                             </p>
@@ -251,7 +269,7 @@ export default function GoldBullionCalculator() {
                                 setRfqStatus('idle');
                                 setIsRfqModalOpen(true);
                             }}
-                            className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-6 font-bold text-stone-900 shadow-lg transition-all duration-300 hover:from-amber-300 hover:to-yellow-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] active:scale-[0.98]"
+                            className="group flex h-11 sm:h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer"
                         >
                             <span>{t('pages.b2c.calculator.cta_rfq') || 'Minta Penawaran Resmi (RFQ)'}</span>
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -260,34 +278,41 @@ export default function GoldBullionCalculator() {
                 </div>
             </div>
 
-            {/* RFQ Submission Modal */}
-            {isRfqModalOpen && (
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
-                    <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/20 bg-stone-900 p-6 text-white shadow-2xl sm:p-8">
+            {/* RFQ Submission Modal with createPortal */}
+            {isRfqModalOpen && mounted && createPortal(
+                <div 
+                    className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 p-4 sm:p-6 backdrop-blur-md overflow-y-auto"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setIsRfqModalOpen(false);
+                    }}
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <div className="relative my-auto w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 text-white shadow-2xl sm:p-8 ring-1 ring-white/10">
                         {/* Close button */}
                         <button
                             type="button"
                             onClick={() => setIsRfqModalOpen(false)}
-                            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-stone-300 hover:bg-white/20 hover:text-white"
+                            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-stone-300 hover:bg-white/20 hover:text-white transition-colors"
                         >
-                            <X className="h-5 w-5" />
+                            <X className="h-4 w-4 sm:h-5 sm:w-5" />
                         </button>
 
                         {rfqStatus === 'success' ? (
                             <div className="py-6 text-center">
-                                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                                    <CheckCircle2 className="h-8 w-8" />
+                                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+                                    <CheckCircle2 className="h-7 w-7" />
                                 </div>
                                 <h4 className="text-xl font-bold text-white">
                                     {t('pages.b2c.calculator.success_title') || 'Permintaan Kuotasi Terkirim!'}
                                 </h4>
-                                <p className="mt-2 text-sm text-stone-300">
+                                <p className="mt-2 text-xs sm:text-sm text-stone-300">
                                     {t('pages.b2c.calculator.success_desc') || 'Terima kasih. Tim penjualan Kristalin Ekalestari akan segera mengirimkan konfirmasi kuotasi resmi ke email Anda.'}
                                 </p>
                                 <button
                                     type="button"
                                     onClick={() => setIsRfqModalOpen(false)}
-                                    className="mt-6 rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-bold text-stone-900 hover:bg-amber-400"
+                                    className="mt-6 rounded-xl bg-amber-500 px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 hover:bg-amber-400 transition-colors"
                                 >
                                     Selesai
                                 </button>
@@ -295,7 +320,7 @@ export default function GoldBullionCalculator() {
                         ) : (
                             <form onSubmit={handleSubmitRfq} className="space-y-4">
                                 <div>
-                                    <h4 className="text-xl font-bold text-white">
+                                    <h4 className="text-lg sm:text-xl font-bold text-white">
                                         {t('pages.b2c.calculator.rfq_modal_title') || 'Permintaan Kuotasi Emas Resmi'}
                                     </h4>
                                     <p className="mt-1 text-xs text-stone-400">
@@ -318,7 +343,7 @@ export default function GoldBullionCalculator() {
                                         required
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className="h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
+                                        className="h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
                                         placeholder="Nama Anda / Perusahaan"
                                     />
                                 </div>
@@ -332,7 +357,7 @@ export default function GoldBullionCalculator() {
                                         required
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
+                                        className="h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
                                         placeholder="email@domain.com"
                                     />
                                 </div>
@@ -345,7 +370,7 @@ export default function GoldBullionCalculator() {
                                         type="tel"
                                         value={formData.phone}
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                        className="h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
+                                        className="h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
                                         placeholder="+62 812..."
                                     />
                                 </div>
@@ -358,7 +383,7 @@ export default function GoldBullionCalculator() {
                                         rows={2}
                                         value={formData.notes}
                                         onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                        className="w-full rounded-xl border border-white/15 bg-white/5 p-3 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
+                                        className="w-full rounded-xl border border-white/15 bg-white/5 p-3 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"
                                         placeholder="Kebutuhan khusus atau jadwal temu..."
                                     />
                                 </div>
@@ -372,7 +397,7 @@ export default function GoldBullionCalculator() {
                                 <button
                                     type="submit"
                                     disabled={rfqStatus === 'submitting'}
-                                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-amber-500 font-bold text-stone-900 hover:bg-amber-400 disabled:opacity-50"
+                                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 font-bold text-stone-950 hover:from-amber-400 hover:to-yellow-400 disabled:opacity-50 transition-all cursor-pointer"
                                 >
                                     <Send className="h-4 w-4" />
                                     <span>
@@ -384,7 +409,8 @@ export default function GoldBullionCalculator() {
                             </form>
                         )}
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );

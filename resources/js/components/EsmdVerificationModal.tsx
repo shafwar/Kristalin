@@ -1,6 +1,7 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { Award, CheckCircle, ExternalLink, FileCheck, Landmark, MapPin, Shield, X } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 type EsmdVerificationModalProps = {
     isOpen: boolean;
@@ -9,202 +10,206 @@ type EsmdVerificationModalProps = {
 
 export function EsmdVerificationModal({ isOpen, onClose }: EsmdVerificationModalProps) {
     const { t } = useTranslation();
+    const [mounted, setMounted] = useState(false);
 
-    if (!isOpen) return null;
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-    return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md">
-            <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-amber-500/40 bg-gradient-to-b from-[#0e1b2f] via-[#091322] to-[#050b14] p-6 text-white shadow-2xl sm:p-8">
-                {/* Glow backdrop */}
-                <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-amber-500/15 blur-[90px]" />
-                <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-blue-500/10 blur-[90px]" />
+    // Close on Escape key press
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isOpen) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, onClose]);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
+    if (!mounted || !isOpen) return null;
+
+    const modalContent = (
+        <div 
+            className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 p-4 sm:p-6 backdrop-blur-md overflow-y-auto"
+            onClick={(e) => {
+                if (e.target === e.currentTarget) onClose();
+            }}
+            role="dialog"
+            aria-modal="true"
+        >
+            <div className="relative my-auto w-full max-w-2xl overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/40 bg-[#0f172a] p-6 sm:p-8 text-white shadow-2xl ring-1 ring-white/10">
+                {/* Subtle Brand Ambient Glow */}
+                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-amber-500/10 blur-[60px]" />
+                <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-amber-600/10 blur-[60px]" />
 
                 {/* Close Button */}
                 <button
                     type="button"
                     onClick={onClose}
-                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-stone-300 transition-colors hover:bg-white/20 hover:text-white active:scale-95"
+                    className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-stone-300 transition-all hover:bg-white/20 hover:text-white active:scale-95 focus:outline-none"
                     aria-label="Close modal"
                 >
-                    <X className="h-5 w-5" />
+                    <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
 
-                {/* Modal Header */}
-                <div className="relative z-10 flex items-start gap-4 border-b border-white/10 pb-6">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-400/40 bg-amber-500/10 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                        <Shield className="h-6 w-6" strokeWidth={2.2} />
+                {/* Header with Verified Badge */}
+                <div className="relative z-10 flex items-start gap-3 sm:gap-4 border-b border-white/10 pb-5 sm:pb-6">
+                    <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl border border-amber-400/50 bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-amber-400 shadow-md">
+                        <Shield className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2.2} />
                     </div>
-                    <div>
-                        <div className="flex items-center gap-2">
-                            <span className="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-[10px] font-bold tracking-wider text-emerald-300 uppercase">
+                    <div className="pr-6">
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-[10px] font-bold tracking-wider text-emerald-400 uppercase">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                 Verified Clean & Clear
                             </span>
+                            <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider">
+                                MODI ESDM RI
+                            </span>
                         </div>
-                        <h3 className="mt-1 text-xl font-extrabold text-white sm:text-2xl">
+                        <h3 className="mt-1.5 text-lg sm:text-2xl font-bold tracking-tight text-white leading-tight">
                             {t('pages.esdm_verification.modal_title') || 'Verifikasi Legalitas & Kepatuhan IUP OP'}
                         </h3>
-                        <p className="mt-0.5 text-xs text-stone-400">
+                        <p className="mt-1 text-xs text-stone-300/90 leading-relaxed">
                             {t('pages.esdm_verification.modal_subtitle') || 'Transparansi Izin Usaha Pertambangan Resmi PT Kristalin Ekalestari'}
                         </p>
                     </div>
                 </div>
 
                 {/* Certificate Grid Details */}
-                <div className="relative z-10 mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="relative z-10 mt-5 sm:mt-6 grid grid-cols-1 gap-2.5 sm:gap-3.5 sm:grid-cols-2">
                     {/* Company Name */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <Landmark className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.company_name_label') || 'Nama Perusahaan'}
                             </span>
                         </div>
-                        <p className="mt-1 text-sm font-bold text-white">
+                        <p className="mt-1 text-xs sm:text-sm font-bold text-white">
                             {t('pages.esdm_verification.company_name_val') || 'PT Kristalin Ekalestari'}
                         </p>
                     </div>
 
                     {/* Permit Type */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <FileCheck className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.permit_type_label') || 'Jenis Izin Usaha'}
                             </span>
                         </div>
-                        <p className="mt-1 text-sm font-bold text-amber-300">
+                        <p className="mt-1 text-xs sm:text-sm font-bold text-amber-300">
                             {t('pages.esdm_verification.permit_type_val') || 'IUP Operasi Produksi (IUP OP)'}
                         </p>
                     </div>
 
                     {/* Decree Number */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <Award className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.decree_number_label') || 'Nomor Keputusan SK'}
                             </span>
                         </div>
-                        <p className="mt-1 font-mono text-sm font-bold text-white">
+                        <p className="mt-1 font-mono text-xs sm:text-sm font-bold text-white">
                             {t('pages.esdm_verification.decree_number_val') || '561/2021/DESDM'}
                         </p>
                     </div>
 
                     {/* Validity Period */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.validity_label') || 'Masa Berlaku Izin'}
                             </span>
                         </div>
-                        <p className="mt-1 text-sm font-bold text-white">
+                        <p className="mt-1 text-xs sm:text-sm font-bold text-white">
                             {t('pages.esdm_verification.validity_val') || '2020 – 2030 (10 Tahun Operasi)'}
                         </p>
                     </div>
 
                     {/* Commodity */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <Shield className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.commodity_label') || 'Komoditas Tambang'}
                             </span>
                         </div>
-                        <p className="mt-1 text-sm font-bold text-white">
+                        <p className="mt-1 text-xs sm:text-sm font-bold text-white">
                             {t('pages.esdm_verification.commodity_val') || 'Emas Primer (DMP) & Mineral Ikutan'}
                         </p>
                     </div>
 
                     {/* Location */}
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 text-stone-400">
+                    <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                        <div className="flex items-center gap-1.5 text-stone-400">
                             <MapPin className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="text-[11px] font-semibold uppercase tracking-wider">
+                            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                                 {t('pages.esdm_verification.location_label') || 'Lokasi & Luas Wilayah'}
                             </span>
                         </div>
-                        <p className="mt-1 text-xs font-semibold text-white">
+                        <p className="mt-1 text-[11px] sm:text-xs font-semibold text-white">
                             {t('pages.esdm_verification.location_val') || 'Distrik Topo, Kab. Nabire, Papua (198 Ha)'}
                         </p>
                     </div>
                 </div>
 
                 {/* Disclaimer */}
-                <p className="relative z-10 mt-4 text-[11px] leading-relaxed text-stone-400">
+                <p className="relative z-10 mt-4 text-[10px] sm:text-[11px] leading-relaxed text-stone-400">
                     {t('pages.esdm_verification.disclaimer') || 'Seluruh data legalitas di atas dapat diverifikasi langsung melalui database publik Kementerian Energi dan Sumber Daya Mineral (ESDM) Republik Indonesia.'}
                 </p>
 
                 {/* Action Buttons */}
-                <div className="relative z-10 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="relative z-10 mt-5 sm:mt-6 flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-between gap-3">
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 text-xs font-semibold text-stone-300 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+                    >
+                        {t('pages.esdm_verification.close_btn') || 'Tutup'}
+                    </button>
+
                     <a
-                        href="https://modi.esdm.go.id/"
+                        href="https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-5 text-xs font-bold text-stone-900 shadow-lg transition-all hover:from-amber-300 hover:to-yellow-400 active:scale-95"
+                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 px-5 text-xs font-bold text-stone-950 shadow-md transition-all active:scale-95"
                     >
                         <span>{t('pages.esdm_verification.verify_portal_btn') || 'Buka Portal Resmi MODI ESDM RI'}</span>
                         <ExternalLink className="h-3.5 w-3.5" />
                     </a>
-
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 text-xs font-semibold text-stone-300 transition-colors hover:bg-white/10 hover:text-white"
-                    >
-                        {t('pages.esdm_verification.close_btn') || 'Tutup Verifikasi'}
-                    </button>
                 </div>
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 }
 
 type EsmdVerificationBadgeProps = {
     className?: string;
-    variant?: 'pill' | 'banner' | 'compact';
+    variant?: 'pill' | 'compact' | 'tag';
 };
 
 export function EsmdVerificationBadge({ className = '', variant = 'pill' }: EsmdVerificationBadgeProps) {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
-
-    if (variant === 'banner') {
-        return (
-            <>
-                <div
-                    onClick={() => setIsOpen(true)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsOpen(true); }}
-                    className={`group relative cursor-pointer overflow-hidden rounded-2xl border border-amber-500/30 bg-gradient-to-r from-[#0d1c31] via-[#091524] to-[#060e18] p-4 text-white shadow-md transition-all duration-300 hover:border-amber-400/60 hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] ${className}`}
-                >
-                    <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-400">
-                                <Shield className="h-5 w-5" strokeWidth={2.2} />
-                            </div>
-                            <div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs font-bold text-white group-hover:text-amber-300">
-                                        {t('pages.esdm_verification.badge_label') || 'Kepatuhan Resmi ESDM'}
-                                    </span>
-                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                                </div>
-                                <p className="text-[11px] text-stone-400">
-                                    {t('pages.esdm_verification.badge_sub') || 'IUP OP No. 561/2021/DESDM · 198 Ha Nabire, Papua'}
-                                </p>
-                            </div>
-                        </div>
-                        <span className="hidden text-xs font-semibold text-amber-400 underline underline-offset-2 sm:inline-block">
-                            {t('pages.esdm_verification.badge_tooltip') || 'Verifikasi Legalitas →'}
-                        </span>
-                    </div>
-                </div>
-                <EsmdVerificationModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-            </>
-        );
-    }
 
     if (variant === 'compact') {
         return (
@@ -212,10 +217,29 @@ export function EsmdVerificationBadge({ className = '', variant = 'pill' }: Esmd
                 <button
                     type="button"
                     onClick={() => setIsOpen(true)}
-                    className={`inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-stone-900/80 px-3 py-1 text-xs font-medium text-amber-300 backdrop-blur-md transition-all hover:border-amber-400 hover:bg-stone-900 hover:shadow-[0_0_12px_rgba(245,158,11,0.25)] ${className}`}
+                    className={`group inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-stone-900/90 hover:bg-stone-800 px-3.5 py-1.5 text-xs font-semibold text-amber-300 shadow-sm backdrop-blur-md transition-all hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-95 cursor-pointer ${className}`}
                 >
-                    <Shield className="h-3.5 w-3.5 text-amber-400" />
-                    <span>IUP OP No. 561/2021/DESDM</span>
+                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                        <Shield className="h-2.5 w-2.5" strokeWidth={2.5} />
+                    </span>
+                    <span className="tracking-wide">IUP OP No. 561/2021/DESDM</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                </button>
+                <EsmdVerificationModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            </>
+        );
+    }
+
+    if (variant === 'tag') {
+        return (
+            <>
+                <button
+                    type="button"
+                    onClick={() => setIsOpen(true)}
+                    className={`inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 hover:text-amber-500 transition-colors cursor-pointer ${className}`}
+                >
+                    <Shield className="h-3.5 w-3.5" />
+                    <span className="underline underline-offset-2">Verified MODI ESDM</span>
                 </button>
                 <EsmdVerificationModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
             </>
@@ -228,7 +252,7 @@ export function EsmdVerificationBadge({ className = '', variant = 'pill' }: Esmd
             <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className={`group inline-flex items-center gap-2.5 rounded-full border border-amber-500/40 bg-stone-950/80 px-4 py-1.5 text-xs font-semibold text-stone-200 shadow-md backdrop-blur-md transition-all duration-300 hover:border-amber-400 hover:bg-stone-900 hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] active:scale-95 ${className}`}
+                className={`group inline-flex items-center gap-2.5 rounded-full border border-amber-500/40 bg-stone-950/90 hover:bg-stone-900 px-4 py-1.5 text-xs font-semibold text-stone-200 shadow-md backdrop-blur-md transition-all duration-300 hover:border-amber-400 hover:text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.25)] active:scale-95 cursor-pointer ${className}`}
             >
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
                     <Shield className="h-3 w-3" strokeWidth={2.5} />
