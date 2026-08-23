@@ -91,7 +91,7 @@ export default function CompanyProfileReport() {
             )}
 
             {/* Floating Action Bar — mobile: bottom bar, desktop: top-right */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-3 border-t border-stone-200 bg-white/95 px-4 py-3 backdrop-blur-sm print:hidden md:bottom-auto md:left-auto md:right-8 md:top-8 md:border-0 md:bg-transparent md:backdrop-blur-none md:gap-4 md:justify-end md:px-0 md:py-0">
+            <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between gap-2 border-t border-stone-200 bg-white/95 px-3 py-2.5 backdrop-blur-sm print:hidden md:bottom-auto md:left-auto md:right-8 md:top-8 md:border-0 md:bg-transparent md:backdrop-blur-none md:gap-3 md:justify-end md:px-0 md:py-0">
                 <a
                     href="/investor"
                     className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-stone-600 shadow-md ring-1 ring-stone-200 transition-all hover:bg-stone-50 hover:text-stone-900 md:h-12 md:w-12 md:shadow-xl"
@@ -99,17 +99,27 @@ export default function CompanyProfileReport() {
                 >
                     <ArrowLeft className="h-5 w-5" />
                 </a>
+                
+                <a
+                    href="/download-company-profile"
+                    download="Company Profile _ PT Kristalin Ekalestari.pdf"
+                    className="flex h-11 flex-1 sm:flex-none items-center justify-center gap-2 rounded-full bg-stone-900 px-4 sm:px-5 font-semibold text-white shadow-md transition-all hover:bg-stone-800 md:h-12 md:shadow-xl text-xs sm:text-sm"
+                >
+                    <Printer className="h-4 w-4" />
+                    <span>{t('pages.company_profile.download_btn') || 'Unduh PDF Asli'}</span>
+                </a>
+
                 <button
                     onClick={handlePrint}
                     disabled={isPrinting}
-                    className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-amber-500 px-5 font-semibold text-white shadow-md transition-all hover:bg-amber-600 disabled:opacity-70 md:h-12 md:flex-none md:px-6 md:shadow-xl"
+                    className="flex h-11 flex-1 sm:flex-none items-center justify-center gap-2 rounded-full bg-amber-500 px-4 sm:px-5 font-semibold text-white shadow-md transition-all hover:bg-amber-600 disabled:opacity-70 md:h-12 md:shadow-xl text-xs sm:text-sm cursor-pointer"
                 >
                     {isPrinting
-                        ? <Loader2 className="h-5 w-5 animate-spin" />
-                        : <Printer className="h-5 w-5" />
+                        ? <Loader2 className="h-4 w-4 animate-spin" />
+                        : <Printer className="h-4 w-4" />
                     }
-                    <span className="text-sm md:text-base">
-                        {isPrinting ? printLabel : (t('pages.company_profile.print_btn') || 'Print / Save as PDF')}
+                    <span>
+                        {isPrinting ? printLabel : (t('pages.company_profile.print_btn') || 'Cetak / Print')}
                     </span>
                 </button>
             </div>

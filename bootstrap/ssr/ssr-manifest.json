@@ -1,13 +1,13 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/components/B2cFaqSection.tsx": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/components/B2cHeroPicture.tsx": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
-    "/build/assets/welcome-lotS_f9Z.js"
+    "/build/assets/welcome-VTc_WQLH.js"
   ],
   "resources/js/components/EsmdVerificationModal.tsx": [
     "/build/assets/EsmdVerificationModal-MI5BXMrn.js"
@@ -19,7 +19,7 @@
     "/build/assets/Header-PE8OL-v1.js"
   ],
   "resources/js/components/GoldBullionCalculator.tsx": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/components/Header.tsx": [
     "/build/assets/Header-PE8OL-v1.js"
@@ -34,7 +34,7 @@
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
   ],
   "resources/js/components/KristalinTvGoldCard.tsx": [
-    "/build/assets/welcome-lotS_f9Z.js"
+    "/build/assets/welcome-VTc_WQLH.js"
   ],
   "resources/js/components/MilestoneTimelinePanel.tsx": [
     "/build/assets/milestones-B2sn4FtY.js"
@@ -46,7 +46,7 @@
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/components/SplashScreen.tsx": [
-    "/build/assets/welcome-lotS_f9Z.js"
+    "/build/assets/welcome-VTc_WQLH.js"
   ],
   "resources/js/components/WelcomeGridPicture.tsx": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -109,7 +109,7 @@
     "/build/assets/checkbox-DSNs_p6D.js"
   ],
   "resources/js/components/ui/collapsible.tsx": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/components/ui/dialog.tsx": [
     "/build/assets/profile-IkEmY0sA.js"
@@ -160,16 +160,16 @@
     "/build/assets/app-layout-BWIrT9VS.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
-    "/build/assets/welcome-lotS_f9Z.js"
+    "/build/assets/welcome-VTc_WQLH.js"
   ],
   "resources/js/hooks/useKristalinTvGold.ts": [
-    "/build/assets/useKristalinTvGold-D0hJyzUY.js"
+    "/build/assets/useKristalinTvGold-BKHryome.js"
   ],
   "resources/js/hooks/useLazySectionBackground.ts": [
     "/build/assets/useLazySectionBackground-B142Bpn2.js"
   ],
   "resources/js/hooks/useLcpSafeMicroMotion.ts": [
-    "/build/assets/useKristalinTvGold-D0hJyzUY.js"
+    "/build/assets/useKristalinTvGold-BKHryome.js"
   ],
   "resources/js/hooks/useNetworkProfile.ts": [
     "/build/assets/useNetworkProfile-BaMceDYv.js"
@@ -196,7 +196,7 @@
     "/build/assets/assets-CvOUY0DF.js"
   ],
   "resources/js/lib/b2cHeroImage.ts": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/lib/kristalinLocations.ts": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -211,7 +211,7 @@
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
   ],
   "resources/js/pages/CompanyProfileReport.tsx": [
-    "/build/assets/CompanyProfileReport-DBwyiw-O.js"
+    "/build/assets/CompanyProfileReport-BNAU1EEu.js"
   ],
   "resources/js/pages/NewsDetail.tsx": [
     "/build/assets/NewsDetail-BUPDBQdZ.js"
@@ -247,7 +247,7 @@
     "/build/assets/verify-email-Btb5PXjo.js"
   ],
   "resources/js/pages/b2c.tsx": [
-    "/build/assets/b2c-rDxy_31t.js"
+    "/build/assets/b2c-LrQy1yix.js"
   ],
   "resources/js/pages/board-of-directors.tsx": [
     "/build/assets/board-of-directors-DDmkcl7n.js"
@@ -277,7 +277,7 @@
     "/build/assets/internal-feedback-DqMUNglU.js"
   ],
   "resources/js/pages/investor.tsx": [
-    "/build/assets/investor-DXtBew5r.js"
+    "/build/assets/investor-CmD_a3sl.js"
   ],
   "resources/js/pages/leadership-traits.tsx": [
     "/build/assets/leadership-traits-BSyxjnbB.js"
@@ -310,7 +310,7 @@
     "/build/assets/vision-mission-E3llqBni.js"
   ],
   "resources/js/pages/welcome.tsx": [
-    "/build/assets/welcome-lotS_f9Z.js"
+    "/build/assets/welcome-VTc_WQLH.js"
   ],
   "resources/js/pages/welcomeBelowFoldCss.ts": [
     "/build/assets/WelcomeBelowFold-D4jfmaUR.js"

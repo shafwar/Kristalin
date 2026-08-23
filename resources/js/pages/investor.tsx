@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import InquiryForm from '@/components/InquiryForm';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
-import { Building2, Download, LineChart, Target } from 'lucide-react';
+import { Building2, Download, Eye, LineChart, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { imageUrl } from '@/lib/assets';
 import { useEffect, useRef, useState } from 'react';
@@ -108,21 +108,28 @@ export default function InvestorPage() {
                         <motion.div 
                             variants={fadeInUp}
                             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+                            className="flex flex-col sm:flex-row items-center justify-center gap-4"
                         >
                             <a
-                                href="/Company-Profile-PT-Kristalin-Ekalestari.pdf"
+                                href="/download-company-profile"
                                 download="Company Profile _ PT Kristalin Ekalestari.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0"></span>
                                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                                 <span className="relative z-10 flex items-center gap-3">
                                     <Download className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1" />
-                                    {t('pages.investor.download_btn') || 'Download Company Profile'}
+                                    {t('pages.investor.download_btn') || 'Download Company Profile (PDF)'}
                                 </span>
                             </a>
+
+                            <Link
+                                href="/company-profile-report"
+                                className="inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border border-white/30 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-8 text-base font-semibold shadow-xl transition-all hover:scale-105 active:scale-95"
+                            >
+                                <Eye className="h-5 w-5 text-amber-400" />
+                                <span>{t('pages.investor.preview_btn') || 'Preview Dokumen Online'}</span>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 </div>

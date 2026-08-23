@@ -1,6 +1,9 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import { formatIdr, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
-import { CheckCircle2, ChevronRight, Coins, RefreshCw, Send, ShieldCheck, Sparkles, X } from 'lucide-react';
+import { formatIdr, formatIdrAmount, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
+import { 
+    CheckCircle2, ChevronRight, Coins, Info, Plus, 
+    RefreshCw, Send, ShieldCheck, Sparkles, X 
+} from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -44,7 +47,8 @@ export default function GoldBullionCalculator() {
     // Determine current active grams
     const activeGrams = useMemo(() => {
         if (isCustom) {
-            const parsed = parseFloat(customGrams.replace(',', '.'));
+            const cleanStr = customGrams.trim().replace(/\./g, '').replace(',', '.');
+            const parsed = parseFloat(cleanStr);
             return isNaN(parsed) || parsed <= 0 ? 1 : parsed;
         }
         return selectedGrams;
@@ -70,11 +74,19 @@ export default function GoldBullionCalculator() {
     const handleSelectPreset = (g: number) => {
         setIsCustom(false);
         setSelectedGrams(g);
+        setCustomGrams('');
     };
 
     const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsCustom(true);
         setCustomGrams(e.target.value);
+    };
+
+    const handleQuickAdd = (increment: number) => {
+        setIsCustom(true);
+        const current = activeGrams;
+        const next = Math.max(1, current + increment);
+        setCustomGrams(next.toString());
     };
 
     const handleSubmitRfq = async (e: React.FormEvent) => {
@@ -116,8 +128,10 @@ export default function GoldBullionCalculator() {
         }
     };
 
+    const formattedWeightLabel = activeGrams >= 1000 ? `${activeGrams / 1000} kg (${formatIdrAmount(activeGrams)} Gram)` : `${formatIdrAmount(activeGrams)} Gram`;
+
     return (
-        <div className="relative mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-6 sm:p-8 lg:p-10 text-stone-900 shadow-2xl ring-1 ring-black/5">
+        <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-6 sm:p-8 lg:p-10 text-stone-900 shadow-2xl ring-1 ring-black/5">
             {/* Top Metallic Gold Accent Stripe */}
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600" />
 
@@ -166,15 +180,28 @@ export default function GoldBullionCalculator() {
                 </div>
             </div>
 
+            {/* Prominent System Estimation Note Badge */}
+            <div className="relative z-10 mt-5 flex items-start gap-2.5 rounded-2xl bg-amber-500/10 border border-amber-300/80 p-3 text-xs text-amber-950">
+                <Info className="h-4 w-4 shrink-0 text-amber-700 mt-0.5" />
+                <p className="leading-relaxed text-[11px] sm:text-xs">
+                    <strong>Catatan Estimasi Sistem:</strong> Nilai ini merupakan simulasi perhitungan berdasarkan data acuan harga pasar emas spot terkini. Harga final transaksi resmi dan nomor seri emas batangan (Assay Stamp) akan dikonfirmasi dan dikunci saat penerbitan faktur / kuotasi resmi.
+                </p>
+            </div>
+
             {/* Main Interactive Grid */}
-            <div className="relative z-10 mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
+            <div className="relative z-10 mt-6 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
                 
                 {/* Left Column: Denomination & Input */}
                 <div className="flex flex-col justify-between space-y-6 lg:col-span-7">
                     <div>
-                        <label className="mb-3 block text-xs font-bold tracking-wider text-stone-600 uppercase">
-                            {t('pages.b2c.calculator.select_weight') || 'Pilih Gramatur Emas Batangan (Minted Bars)'}
-                        </label>
+                        <div className="mb-3 flex items-center justify-between">
+                            <label className="block text-xs font-bold tracking-wider text-stone-600 uppercase">
+                                {t('pages.b2c.calculator.select_weight') || 'Pilih Gramatur Emas Batangan (Minted Bars)'}
+                            </label>
+                            <span className="text-[11px] font-semibold text-amber-800">
+                                Terpilih: <strong className="font-bold">{formattedWeightLabel}</strong>
+                            </span>
+                        </div>
                         <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
                             {GRAM_PRESETS.map((grams) => {
                                 const active = !isCustom && selectedGrams === grams;
@@ -201,24 +228,48 @@ export default function GoldBullionCalculator() {
                         </div>
                     </div>
 
-                    {/* Custom input */}
+                    {/* Custom input with quick increment adjusters */}
                     <div>
-                        <label className="mb-2 block text-xs font-bold tracking-wider text-stone-600 uppercase">
-                            {t('pages.b2c.calculator.custom_weight') || 'Atau Masukkan Berat Kustom (Gram):'}
-                        </label>
+                        <div className="mb-2 flex items-center justify-between">
+                            <label className="block text-xs font-bold tracking-wider text-stone-600 uppercase">
+                                {t('pages.b2c.calculator.custom_weight') || 'Atau Masukkan Berat Kustom (Gram):'}
+                            </label>
+                            {isCustom && (
+                                <span className="rounded-md bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800 uppercase">
+                                    Mode Kustom Aktif
+                                </span>
+                            )}
+                        </div>
+
                         <div className="relative">
                             <input
                                 type="number"
                                 min="0.1"
-                                step="0.5"
-                                placeholder="Contoh: 15"
+                                step="any"
+                                placeholder="Ketik gram kustom, contoh: 24"
                                 value={customGrams}
                                 onChange={handleCustomChange}
-                                className="h-12 w-full rounded-2xl border border-stone-300 bg-white px-4 pr-16 text-sm font-semibold text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-xs"
+                                className="h-12 w-full rounded-2xl border border-stone-300 bg-white px-4 pr-20 text-sm font-bold text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-xs"
                             />
                             <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-bold text-amber-700 uppercase">
                                 {t('pages.b2c.calculator.gram_unit') || 'Gram'}
                             </div>
+                        </div>
+
+                        {/* Quick increment buttons */}
+                        <div className="mt-2.5 flex items-center gap-2">
+                            <span className="text-[11px] text-stone-500">Tambah Cepat:</span>
+                            {[1, 5, 10, 25].map((inc) => (
+                                <button
+                                    key={inc}
+                                    type="button"
+                                    onClick={() => handleQuickAdd(inc)}
+                                    className="inline-flex items-center gap-1 rounded-lg border border-stone-200 bg-stone-50 hover:bg-amber-50 hover:border-amber-300 px-2.5 py-1 text-[11px] font-semibold text-stone-700 transition-colors cursor-pointer"
+                                >
+                                    <Plus className="h-3 w-3 text-amber-600" />
+                                    <span>{inc}g</span>
+                                </button>
+                            ))}
                         </div>
                     </div>
 
@@ -245,17 +296,22 @@ export default function GoldBullionCalculator() {
                                 {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total Pembelian'}
                             </span>
                             <span className="rounded-full bg-amber-100 border border-amber-300/80 px-3 py-0.5 text-xs font-bold text-amber-900">
-                                {activeGrams} Gram
+                                {formattedWeightLabel}
                             </span>
                         </div>
 
-                        {/* Price Hero Display with prominent Rp */}
-                        <div className="my-5">
-                            <p className="font-mono text-3xl sm:text-4xl font-extrabold tracking-tight text-amber-800">
-                                {formatIdr(estimatedTotal)}
-                            </p>
+                        {/* Price Hero Display — Guaranteed Single-Line with Rp */}
+                        <div className="my-5 overflow-hidden">
+                            <div className="flex items-baseline gap-1.5 flex-nowrap overflow-hidden">
+                                <span className="shrink-0 text-xl sm:text-2xl font-bold tracking-tight text-amber-800">
+                                    Rp
+                                </span>
+                                <span className="font-mono text-2xl sm:text-3xl xl:text-3xl font-extrabold tracking-tight text-amber-900 truncate">
+                                    {formatIdrAmount(estimatedTotal)}
+                                </span>
+                            </div>
                             <p className="mt-1 text-xs text-stone-500">
-                                {activeGrams} Gram × {formatIdr(basePricePerGram)} / gram
+                                {formatIdrAmount(activeGrams)} Gram × {formatIdr(basePricePerGram)} / gram
                             </p>
                         </div>
 
@@ -281,7 +337,7 @@ export default function GoldBullionCalculator() {
                         </p>
                     </div>
 
-                    {/* Primary CTA Button */}
+                    {/* Primary CTA Button — Dynamic label reflecting current weight */}
                     <div className="mt-6">
                         <button
                             type="button"
@@ -289,10 +345,10 @@ export default function GoldBullionCalculator() {
                                 setRfqStatus('idle');
                                 setIsRfqModalOpen(true);
                             }}
-                            className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                            className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-4 sm:px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer text-xs sm:text-sm"
                         >
-                            <span>{t('pages.b2c.calculator.cta_rfq') || 'Minta Penawaran Resmi (RFQ)'}</span>
-                            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            <span>Minta Penawaran Resmi ({formattedWeightLabel})</span>
+                            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1 shrink-0" />
                         </button>
                     </div>
                 </div>
@@ -356,7 +412,7 @@ export default function GoldBullionCalculator() {
                                     <div className="rounded-xl border border-amber-300/80 bg-amber-50 p-3.5 text-xs text-amber-900">
                                         <div className="flex justify-between items-center">
                                             <span className="font-bold">{t('pages.b2c.calculator.selected_summary') || 'Ringkasan Pilihan:'}</span>
-                                            <span className="font-bold text-amber-800">{activeGrams} Gram Emas 24K</span>
+                                            <span className="font-bold text-amber-800">{formattedWeightLabel} Emas 24K</span>
                                         </div>
                                         <p className="mt-1 font-mono text-sm font-bold text-stone-900">
                                             Estimasi: {formatIdr(estimatedTotal)}

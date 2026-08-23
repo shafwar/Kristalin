@@ -6,7 +6,7 @@ import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowDownRight, Building2, FileText, Scale, Sparkles } from 'lucide-react';
+import { ArrowDownRight, Award, Building2, FileText, RotateCcw, Scale, ShieldCheck, Sparkles, Truck } from 'lucide-react';
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -231,10 +231,56 @@ export default function B2cPage() {
                 </div>
             </section>
 
-            {/* Interactive Live Gold Bullion Calculator Section */}
-            <section className="relative z-10 bg-stone-100/70 border-y border-stone-200/80 px-4 py-10 md:py-16">
+            {/* Interactive Live Gold Bullion Calculator & Trust Guarantee Suite */}
+            <section className="relative z-10 bg-gradient-to-b from-stone-100 via-stone-50 to-stone-100 border-y border-stone-200/90 px-4 py-12 md:py-20">
                 <div data-b2c-reveal className="mx-auto max-w-5xl">
+                    {/* Section Header */}
+                    <div className="mb-8 text-center sm:mb-12">
+                        <span className="inline-block rounded-full bg-amber-100 border border-amber-300/80 px-4 py-1 text-xs font-bold text-amber-900 uppercase tracking-widest">
+                            Direct Refinery Supply · Kisara Gold 24K
+                        </span>
+                        <h2 className="mt-3 text-2xl font-extrabold text-stone-900 sm:text-3xl md:text-4xl tracking-tight">
+                            Simulasi Investasi & Pemesanan Emas Fisik
+                        </h2>
+                        <p className="mx-auto mt-2 max-w-2xl text-xs sm:text-sm text-stone-600 leading-relaxed">
+                            Akses langsung ke likuiditas emas batangan murni 99.99% langsung dari rantai pasok PT Kristalin Ekalestari dengan transparansi kuotasi harga acuan bursa terkini.
+                        </p>
+                    </div>
+
+                    {/* The Interactive Calculator Terminal */}
                     <GoldBullionCalculator />
+
+                    {/* 4 Trust & Security Guarantee Badges */}
+                    <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+                        <div className="rounded-2xl border border-stone-200 bg-white p-4 text-center shadow-xs transition-transform hover:-translate-y-0.5">
+                            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                                <Award className="h-5 w-5" />
+                            </div>
+                            <h4 className="text-xs sm:text-sm font-bold text-stone-900">Kemurnian 99.99%</h4>
+                            <p className="mt-0.5 text-[11px] text-stone-500">Fine Gold 24 Karat terverifikasi standar SNI & LBMA.</p>
+                        </div>
+                        <div className="rounded-2xl border border-stone-200 bg-white p-4 text-center shadow-xs transition-transform hover:-translate-y-0.5">
+                            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                                <ShieldCheck className="h-5 w-5" />
+                            </div>
+                            <h4 className="text-xs sm:text-sm font-bold text-stone-900">Assay Packaging</h4>
+                            <p className="mt-0.5 text-[11px] text-stone-500">Segel keamanan anti-pemalsuan dan nomor seri unik.</p>
+                        </div>
+                        <div className="rounded-2xl border border-stone-200 bg-white p-4 text-center shadow-xs transition-transform hover:-translate-y-0.5">
+                            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                                <Truck className="h-5 w-5" />
+                            </div>
+                            <h4 className="text-xs sm:text-sm font-bold text-stone-900">Asuransi Penuh 100%</h4>
+                            <p className="mt-0.5 text-[11px] text-stone-500">Pengiriman fisik aman dengan proteksi asuransi terpadu.</p>
+                        </div>
+                        <div className="rounded-2xl border border-stone-200 bg-white p-4 text-center shadow-xs transition-transform hover:-translate-y-0.5">
+                            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                                <RotateCcw className="h-5 w-5" />
+                            </div>
+                            <h4 className="text-xs sm:text-sm font-bold text-stone-900">Jaminan Buyback</h4>
+                            <p className="mt-0.5 text-[11px] text-stone-500">Likuiditas pembelian kembali dengan harga acuan kompetitif.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
