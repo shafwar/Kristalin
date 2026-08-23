@@ -11,6 +11,8 @@ import { useLayoutEffect, useMemo, useRef } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import InquiryForm from '../components/InquiryForm';
+import GoldBullionCalculator from '@/components/GoldBullionCalculator';
+import { EsmdVerificationBadge } from '@/components/EsmdVerificationModal';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -114,6 +116,9 @@ export default function B2cPage() {
                             heroMicroReady ? 'translate-y-0' : 'translate-y-2',
                         )}
                     >
+                        <div className="mb-4">
+                            <EsmdVerificationBadge variant="compact" />
+                        </div>
                         <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-amber-300/95 uppercase">
                             {t('pages.b2c.hero_kicker')}
                         </p>
@@ -223,6 +228,13 @@ export default function B2cPage() {
                     <p data-b2c-reveal className={clsx(reveal, 'text-center text-sm text-stone-500')}>
                         {t('pages.b2c.footnote')}
                     </p>
+                </div>
+            </section>
+
+            {/* Interactive Live Gold Bullion Calculator Section */}
+            <section className="relative z-10 bg-stone-900 px-4 py-12 md:py-16">
+                <div data-b2c-reveal className="mx-auto max-w-5xl">
+                    <GoldBullionCalculator />
                 </div>
             </section>
 

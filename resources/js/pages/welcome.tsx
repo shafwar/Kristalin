@@ -13,6 +13,7 @@ import { KristalinTvGoldCard } from '../components/KristalinTvGoldCard';
 import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture';
 import { SplashScreen } from '../components/SplashScreen';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
+import { EsmdVerificationBadge } from '../components/EsmdVerificationModal';
 
 
 // Main Welcome Component
@@ -239,6 +240,9 @@ const Welcome = () => {
                                                 {isMobile ? (
                                                     <>
                                                         <div className="welcome-hero-nudge welcome-hero-nudge--a">
+                                                        <div className="mb-3 flex justify-center lg:justify-start">
+                                                            <EsmdVerificationBadge variant="compact" />
+                                                        </div>
                                                         <p className="mb-3 text-center text-[11px] font-semibold tracking-[0.2em] text-amber-600/90 uppercase sm:text-xs lg:mb-3 lg:text-left">
                                                             {contentSets[currentContent].kicker}
                                                         </p>
@@ -267,6 +271,9 @@ const Welcome = () => {
                                                     </>
                                                 ) : (
                                                     <>
+                                                        <div className="mb-3.5 flex justify-start">
+                                                            <EsmdVerificationBadge variant="compact" />
+                                                        </div>
                                                         <AnimatePresence mode="wait">
                                                             <motion.div
                                                                 key={currentContent}

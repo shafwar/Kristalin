@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
+import { EsmdVerificationBadge } from '../components/EsmdVerificationModal';
 
 // SVG Icon Components
 const IconTarget = () => (
@@ -196,6 +197,9 @@ export default function CompanyOverview() {
                                     isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                                 }`}
                             >
+                                <div className="mb-3">
+                                    <EsmdVerificationBadge variant="compact" />
+                                </div>
                                 <div className="mb-3 flex items-center space-x-2">
                                     <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
                                     <span className="text-xs font-medium tracking-wider text-gray-500 uppercase">
@@ -349,6 +353,9 @@ export default function CompanyOverview() {
                                         isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                                     }`}
                                 >
+                                    <div className="mb-4">
+                                        <EsmdVerificationBadge variant="compact" />
+                                    </div>
                                     <div className="mb-4 flex items-center space-x-3">
                                         <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
                                         <span className="text-sm font-medium tracking-wider text-gray-500 uppercase">
