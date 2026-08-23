@@ -115,9 +115,12 @@ function InvestorPage() {
                 variants: fadeInUp,
                 transition: { duration: 0.8, delay: 0.3, ease: "easeOut" },
                 children: /* @__PURE__ */ jsxs(
-                  Link,
+                  "a",
                   {
-                    href: "/company-profile-report",
+                    href: "/Company-Profile-PT-Kristalin-Ekalestari.pdf",
+                    download: "Company Profile _ PT Kristalin Ekalestari.pdf",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
                     className: "group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105",
                     children: [
                       /* @__PURE__ */ jsx("span", { className: "absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0" }),

@@ -57,8 +57,25 @@ Route::get('/investor', function () {
 })->name('investor');
 
 Route::get('/company-profile-report', function () {
+    $pdfPath = public_path('Company-Profile-PT-Kristalin-Ekalestari.pdf');
+    if (file_exists($pdfPath)) {
+        return response()->file($pdfPath, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="Company Profile _ PT Kristalin Ekalestari.pdf"',
+        ]);
+    }
     return Inertia::render('CompanyProfileReport');
 })->name('company-profile-report');
+
+Route::get('/download-company-profile', function () {
+    $pdfPath = public_path('Company-Profile-PT-Kristalin-Ekalestari.pdf');
+    if (file_exists($pdfPath)) {
+        return response()->download($pdfPath, 'Company Profile _ PT Kristalin Ekalestari.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+    return redirect('/investor');
+})->name('download-company-profile');
 
 Route::get('/line-of-business', function () {
     return Inertia::render('line-of-business');
