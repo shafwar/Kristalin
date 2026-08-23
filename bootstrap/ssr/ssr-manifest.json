@@ -1,10 +1,10 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/components/B2cFaqSection.tsx": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/components/B2cHeroPicture.tsx": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
     "/build/assets/welcome-lotS_f9Z.js"
@@ -19,7 +19,7 @@
     "/build/assets/Header-PE8OL-v1.js"
   ],
   "resources/js/components/GoldBullionCalculator.tsx": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/components/Header.tsx": [
     "/build/assets/Header-PE8OL-v1.js"
@@ -109,7 +109,7 @@
     "/build/assets/checkbox-DSNs_p6D.js"
   ],
   "resources/js/components/ui/collapsible.tsx": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/components/ui/dialog.tsx": [
     "/build/assets/profile-IkEmY0sA.js"
@@ -196,7 +196,7 @@
     "/build/assets/assets-CvOUY0DF.js"
   ],
   "resources/js/lib/b2cHeroImage.ts": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/lib/kristalinLocations.ts": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -247,7 +247,7 @@
     "/build/assets/verify-email-Btb5PXjo.js"
   ],
   "resources/js/pages/b2c.tsx": [
-    "/build/assets/b2c-Bo7TK6Up.js"
+    "/build/assets/b2c-rDxy_31t.js"
   ],
   "resources/js/pages/board-of-directors.tsx": [
     "/build/assets/board-of-directors-DDmkcl7n.js"

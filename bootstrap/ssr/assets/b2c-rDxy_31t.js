@@ -367,28 +367,27 @@ function GoldBullionCalculator() {
       setRfqStatus("error");
     }
   };
-  return /* @__PURE__ */ jsxs("div", { className: "relative mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-3xl border border-amber-500/30 bg-[#0c1424] p-6 sm:p-8 lg:p-10 text-white shadow-2xl ring-1 ring-white/10", children: [
-    /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-amber-500/10 blur-[80px]" }),
-    /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-amber-600/10 blur-[80px]" }),
-    /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col justify-between gap-5 border-b border-white/10 pb-6 lg:flex-row lg:items-center", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "relative mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-6 sm:p-8 lg:p-10 text-stone-900 shadow-2xl ring-1 ring-black/5", children: [
+    /* @__PURE__ */ jsx("div", { className: "absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600" }),
+    /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col justify-between gap-5 border-b border-stone-100 pb-6 pt-1 lg:flex-row lg:items-center", children: [
       /* @__PURE__ */ jsxs("div", { children: [
         /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsx("span", { className: "flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-amber-400", children: /* @__PURE__ */ jsx(Coins, { className: "h-3.5 w-3.5" }) }),
-          /* @__PURE__ */ jsx("span", { className: "text-[11px] font-bold tracking-[0.2em] text-amber-400 uppercase", children: t("pages.b2c.calculator.kicker") || "Simulasi & Kalkulator Emas" })
+          /* @__PURE__ */ jsx("span", { className: "flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-800 shadow-xs", children: /* @__PURE__ */ jsx(Coins, { className: "h-3.5 w-3.5" }) }),
+          /* @__PURE__ */ jsx("span", { className: "text-[11px] font-bold tracking-[0.2em] text-amber-800 uppercase", children: t("pages.b2c.calculator.kicker") || "Simulasi & Estimasi Logam Mulia" })
         ] }),
-        /* @__PURE__ */ jsx("h3", { className: "mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl", children: t("pages.b2c.calculator.title") || "Kalkulator Investasi Logam Mulia" }),
-        /* @__PURE__ */ jsx("p", { className: "mt-1 text-xs text-stone-300 sm:text-sm leading-relaxed max-w-2xl", children: t("pages.b2c.calculator.subtitle") || "Hitung estimasi nilai pembelian emas fisik Kisara Gold (99.99% 24K) secara instan berdasarkan data harga pasar hari ini." })
+        /* @__PURE__ */ jsx("h3", { className: "mt-2 text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl", children: t("pages.b2c.calculator.title") || "Kalkulator Investasi Emas Batangan 24K" }),
+        /* @__PURE__ */ jsx("p", { className: "mt-1 text-xs text-stone-500 sm:text-sm leading-relaxed max-w-2xl", children: t("pages.b2c.calculator.subtitle") || "Hitung estimasi nilai pembelian emas fisik bersertifikat murni 99.99% (Kisara Gold) secara instan dan transparan berdasarkan harga pasar acuan hari ini." })
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "flex shrink-0 items-center justify-between gap-4 rounded-2xl border border-amber-500/20 bg-stone-900/80 px-4 py-3 shadow-inner backdrop-blur-md", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex shrink-0 items-center justify-between gap-4 rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3 shadow-xs", children: [
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsx("span", { className: "h-2 w-2 animate-pulse rounded-full bg-emerald-400" }),
-            /* @__PURE__ */ jsx("p", { className: "text-[10px] font-semibold text-stone-400 uppercase tracking-wider", children: t("pages.b2c.calculator.live_price_per_gram") || "Harga Acuan per Gram" })
+            /* @__PURE__ */ jsx("span", { className: "h-2 w-2 animate-pulse rounded-full bg-emerald-500" }),
+            /* @__PURE__ */ jsx("p", { className: "text-[10px] font-bold text-stone-500 uppercase tracking-wider", children: t("pages.b2c.calculator.live_price_per_gram") || "Harga Acuan Pasar Hari Ini" })
           ] }),
-          /* @__PURE__ */ jsxs("p", { className: "mt-0.5 font-mono text-base sm:text-lg font-bold text-amber-300", children: [
+          /* @__PURE__ */ jsxs("p", { className: "mt-0.5 font-mono text-base sm:text-lg font-bold text-amber-900", children: [
             formatIdr(basePricePerGram),
             " ",
-            /* @__PURE__ */ jsx("span", { className: "text-xs font-normal text-stone-400", children: "/ gram" })
+            /* @__PURE__ */ jsx("span", { className: "text-xs font-medium text-stone-500", children: "/ gram" })
           ] })
         ] }),
         /* @__PURE__ */ jsx(
@@ -397,9 +396,9 @@ function GoldBullionCalculator() {
             type: "button",
             onClick: refresh,
             disabled: loading,
-            className: "flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-stone-300 transition-colors hover:bg-amber-500 hover:text-stone-950 active:scale-95 disabled:opacity-50 cursor-pointer",
-            title: "Perbarui harga live",
-            "aria-label": "Perbarui harga live",
+            className: "flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100/80 text-amber-800 transition-colors hover:bg-amber-500 hover:text-white active:scale-95 disabled:opacity-50 cursor-pointer shadow-xs",
+            title: "Perbarui harga pasar live",
+            "aria-label": "Perbarui harga pasar live",
             children: /* @__PURE__ */ jsx(RefreshCw, { className: `h-4 w-4 ${loading ? "animate-spin" : ""}` })
           }
         )
@@ -408,7 +407,7 @@ function GoldBullionCalculator() {
     /* @__PURE__ */ jsxs("div", { className: "relative z-10 mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex flex-col justify-between space-y-6 lg:col-span-7", children: [
         /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx("label", { className: "mb-3 block text-xs font-bold tracking-wider text-stone-300 uppercase", children: t("pages.b2c.calculator.select_weight") || "Pilih Gramatur Emas (Minted Bars)" }),
+          /* @__PURE__ */ jsx("label", { className: "mb-3 block text-xs font-bold tracking-wider text-stone-600 uppercase", children: t("pages.b2c.calculator.select_weight") || "Pilih Gramatur Emas Batangan (Minted Bars)" }),
           /* @__PURE__ */ jsx("div", { className: "grid grid-cols-4 gap-2.5 sm:gap-3", children: GRAM_PRESETS.map((grams) => {
             const active = !isCustom && selectedGrams === grams;
             return /* @__PURE__ */ jsxs(
@@ -416,10 +415,10 @@ function GoldBullionCalculator() {
               {
                 type: "button",
                 onClick: () => handleSelectPreset(grams),
-                className: `group relative flex flex-col items-center justify-center rounded-2xl border p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${active ? "border-amber-400 bg-gradient-to-b from-amber-500/25 to-amber-600/10 text-white shadow-lg ring-1 ring-amber-400" : "border-white/10 bg-white/[0.04] text-stone-300 hover:border-white/20 hover:bg-white/[0.08]"}`,
+                className: `group relative flex flex-col items-center justify-center rounded-2xl border p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${active ? "border-2 border-amber-500 bg-amber-50 text-stone-950 shadow-md ring-2 ring-amber-400/30" : "border-stone-200 bg-stone-50 hover:bg-stone-100/80 hover:border-stone-300 text-stone-700"}`,
                 children: [
-                  /* @__PURE__ */ jsx("span", { className: "text-base font-bold sm:text-lg tracking-tight", children: grams >= 1e3 ? `${grams / 1e3} kg` : `${grams}g` }),
-                  /* @__PURE__ */ jsx("span", { className: `text-[10px] mt-0.5 ${active ? "text-amber-300 font-medium" : "text-stone-400"}`, children: grams >= 1e3 ? "1.000 Gram" : `${grams} Gram` })
+                  /* @__PURE__ */ jsx("span", { className: `text-base font-bold sm:text-lg tracking-tight ${active ? "text-amber-900" : "text-stone-900"}`, children: grams >= 1e3 ? `${grams / 1e3} kg` : `${grams}g` }),
+                  /* @__PURE__ */ jsx("span", { className: `text-[10px] mt-0.5 ${active ? "text-amber-800 font-bold" : "text-stone-500"}`, children: grams >= 1e3 ? "1.000 Gram" : `${grams} Gram` })
                 ]
               },
               grams
@@ -427,7 +426,7 @@ function GoldBullionCalculator() {
           }) })
         ] }),
         /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx("label", { className: "mb-2 block text-xs font-bold tracking-wider text-stone-300 uppercase", children: t("pages.b2c.calculator.custom_weight") || "Atau Masukkan Gram Kustom:" }),
+          /* @__PURE__ */ jsx("label", { className: "mb-2 block text-xs font-bold tracking-wider text-stone-600 uppercase", children: t("pages.b2c.calculator.custom_weight") || "Atau Masukkan Berat Kustom (Gram):" }),
           /* @__PURE__ */ jsxs("div", { className: "relative", children: [
             /* @__PURE__ */ jsx(
               "input",
@@ -438,56 +437,56 @@ function GoldBullionCalculator() {
                 placeholder: "Contoh: 15",
                 value: customGrams,
                 onChange: handleCustomChange,
-                className: "h-12 w-full rounded-2xl border border-white/15 bg-white/[0.05] px-4 pr-16 text-sm font-medium text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
+                className: "h-12 w-full rounded-2xl border border-stone-300 bg-white px-4 pr-16 text-sm font-semibold text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-xs"
               }
             ),
-            /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-bold text-amber-400 uppercase", children: t("pages.b2c.calculator.gram_unit") || "Gram" })
+            /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-bold text-amber-700 uppercase", children: t("pages.b2c.calculator.gram_unit") || "Gram" })
           ] })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 rounded-2xl border border-amber-500/20 bg-stone-900/60 p-3.5 text-xs text-stone-300", children: [
-          /* @__PURE__ */ jsx(ShieldCheck, { className: "h-5 w-5 shrink-0 text-amber-400" }),
+        /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3.5 rounded-2xl border border-emerald-200/80 bg-emerald-50/70 p-3.5 text-xs text-stone-700 shadow-xs", children: [
+          /* @__PURE__ */ jsx(ShieldCheck, { className: "h-5 w-5 shrink-0 text-emerald-600" }),
           /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("p", { className: "font-bold text-white", children: t("pages.b2c.calculator.purity_label") || "Standar Kemurnian Resmi" }),
-            /* @__PURE__ */ jsx("p", { className: "text-[11px] text-stone-400", children: t("pages.b2c.calculator.purity_value") || "99.99% Emas Murni (24 Karat) Bersertifikat Resmi" })
+            /* @__PURE__ */ jsx("p", { className: "font-bold text-emerald-900", children: t("pages.b2c.calculator.purity_label") || "Jaminan Kemurnian 99.99% (24 Karat)" }),
+            /* @__PURE__ */ jsx("p", { className: "text-[11px] text-emerald-800/80 leading-relaxed", children: t("pages.b2c.calculator.purity_value") || "Emas murni bersertifikat resmi dengan kemasan segel keamanan tinggi (Assay Stamp)." })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "flex flex-col justify-between rounded-2xl border border-white/15 bg-stone-900/90 p-6 shadow-xl backdrop-blur-md lg:col-span-5", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex flex-col justify-between rounded-2xl border border-stone-200/90 bg-stone-50/80 p-6 sm:p-7 shadow-sm lg:col-span-5", children: [
         /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between border-b border-white/10 pb-4", children: [
-            /* @__PURE__ */ jsx("span", { className: "text-[11px] font-bold tracking-wider text-stone-400 uppercase", children: t("pages.b2c.calculator.estimated_total") || "Estimasi Total Pembelian" }),
-            /* @__PURE__ */ jsxs("span", { className: "rounded-full bg-amber-400/20 px-3 py-0.5 text-xs font-bold text-amber-300", children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between border-b border-stone-200 pb-4", children: [
+            /* @__PURE__ */ jsx("span", { className: "text-[11px] font-bold tracking-wider text-stone-500 uppercase", children: t("pages.b2c.calculator.estimated_total") || "Estimasi Total Pembelian" }),
+            /* @__PURE__ */ jsxs("span", { className: "rounded-full bg-amber-100 border border-amber-300/80 px-3 py-0.5 text-xs font-bold text-amber-900", children: [
               activeGrams,
               " Gram"
             ] })
           ] }),
           /* @__PURE__ */ jsxs("div", { className: "my-5", children: [
-            /* @__PURE__ */ jsx("p", { className: "font-mono text-3xl sm:text-4xl font-extrabold tracking-tight text-amber-400", children: formatIdr(estimatedTotal) }),
-            /* @__PURE__ */ jsxs("p", { className: "mt-1 text-xs text-stone-400", children: [
+            /* @__PURE__ */ jsx("p", { className: "font-mono text-3xl sm:text-4xl font-extrabold tracking-tight text-amber-800", children: formatIdr(estimatedTotal) }),
+            /* @__PURE__ */ jsxs("p", { className: "mt-1 text-xs text-stone-500", children: [
               activeGrams,
               " Gram × ",
               formatIdr(basePricePerGram),
               " / gram"
             ] })
           ] }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-2.5 rounded-xl bg-white/[0.03] p-3.5 text-xs border border-white/5", children: [
-            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-400", children: [
+          /* @__PURE__ */ jsxs("div", { className: "space-y-2.5 rounded-xl bg-white p-3.5 text-xs border border-stone-200/80 shadow-xs", children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_rate") || "Harga Acuan Hari Ini" }),
-              /* @__PURE__ */ jsxs("span", { className: "font-mono font-medium text-white", children: [
+              /* @__PURE__ */ jsxs("span", { className: "font-mono font-bold text-stone-900", children: [
                 formatIdr(basePricePerGram),
                 "/g"
               ] })
             ] }),
-            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-400", children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_purity") || "Standar Kemurnian" }),
-              /* @__PURE__ */ jsx("span", { className: "font-medium text-amber-300", children: "24K (99.99% Fine Gold)" })
+              /* @__PURE__ */ jsx("span", { className: "font-bold text-amber-800", children: "24K (99.99% Fine Gold)" })
             ] }),
-            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-400", children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_cert") || "Sertifikasi & Segel" }),
-              /* @__PURE__ */ jsx("span", { className: "font-medium text-emerald-400", children: t("pages.b2c.calculator.breakdown_cert_val") || "Termasuk (Official Assay)" })
+              /* @__PURE__ */ jsx("span", { className: "font-bold text-emerald-700", children: t("pages.b2c.calculator.breakdown_cert_val") || "Termasuk (Official Assay)" })
             ] })
           ] }),
-          /* @__PURE__ */ jsx("p", { className: "mt-4 text-[10px] leading-relaxed text-stone-400", children: t("pages.b2c.calculator.pricing_note") || "* Harga bersifat indikatif mengikuti update pasar live. Kuotasi final dikunci saat verifikasi administrasi resmi." })
+          /* @__PURE__ */ jsx("p", { className: "mt-4 text-[10px] leading-relaxed text-stone-500", children: t("pages.b2c.calculator.pricing_note") || "* Estimasi nilai dihitung secara indikatif mengikuti harga acuan pasar terkini. Kuotasi final dikunci saat konfirmasi transaksi." })
         ] }),
         /* @__PURE__ */ jsx("div", { className: "mt-6", children: /* @__PURE__ */ jsxs(
           "button",
@@ -497,7 +496,7 @@ function GoldBullionCalculator() {
               setRfqStatus("idle");
               setIsRfqModalOpen(true);
             },
-            className: "group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 px-6 font-bold text-stone-950 shadow-lg transition-all active:scale-[0.98] cursor-pointer",
+            className: "group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer",
             children: [
               /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.cta_rfq") || "Minta Penawaran Resmi (RFQ)" }),
               /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4 transition-transform group-hover:translate-x-1" })
@@ -510,58 +509,59 @@ function GoldBullionCalculator() {
       /* @__PURE__ */ jsx(
         "div",
         {
-          className: "fixed inset-0 z-[999999] flex items-center justify-center bg-black/80 p-4 sm:p-6 backdrop-blur-md overflow-y-auto",
+          className: "fixed inset-0 z-[999999] flex items-center justify-center bg-stone-950/60 p-3 sm:p-6 backdrop-blur-md overflow-hidden",
           onClick: (e) => {
             if (e.target === e.currentTarget) setIsRfqModalOpen(false);
           },
           role: "dialog",
           "aria-modal": "true",
-          children: /* @__PURE__ */ jsxs("div", { className: "relative my-auto w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 sm:p-8 text-white shadow-2xl ring-1 ring-white/10", children: [
+          children: /* @__PURE__ */ jsxs("div", { className: "relative my-auto flex max-h-[92dvh] sm:max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-200/90 bg-white text-stone-900 shadow-2xl ring-1 ring-black/5", children: [
+            /* @__PURE__ */ jsx("div", { className: "shrink-0 h-1.5 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600" }),
             /* @__PURE__ */ jsx(
               "button",
               {
                 type: "button",
                 onClick: () => setIsRfqModalOpen(false),
-                className: "absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-stone-300 hover:bg-white/20 hover:text-white transition-colors",
+                className: "absolute right-3.5 top-3.5 sm:right-5 sm:top-5 z-20 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-900 transition-colors cursor-pointer",
                 children: /* @__PURE__ */ jsx(X, { className: "h-4 w-4 sm:h-5 sm:w-5" })
               }
             ),
-            rfqStatus === "success" ? /* @__PURE__ */ jsxs("div", { className: "py-6 text-center", children: [
-              /* @__PURE__ */ jsx("div", { className: "mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400", children: /* @__PURE__ */ jsx(CheckCircle2, { className: "h-7 w-7" }) }),
-              /* @__PURE__ */ jsx("h4", { className: "text-xl font-bold text-white", children: t("pages.b2c.calculator.success_title") || "Permintaan Kuotasi Terkirim!" }),
-              /* @__PURE__ */ jsx("p", { className: "mt-2 text-xs sm:text-sm text-stone-300 leading-relaxed", children: t("pages.b2c.calculator.success_desc") || "Terima kasih. Tim penjualan Kristalin Ekalestari akan segera mengirimkan konfirmasi kuotasi resmi ke email Anda." }),
+            /* @__PURE__ */ jsx("div", { className: "flex-1 overflow-y-auto overscroll-contain p-5 sm:p-7", children: rfqStatus === "success" ? /* @__PURE__ */ jsxs("div", { className: "py-6 text-center", children: [
+              /* @__PURE__ */ jsx("div", { className: "mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600", children: /* @__PURE__ */ jsx(CheckCircle2, { className: "h-7 w-7" }) }),
+              /* @__PURE__ */ jsx("h4", { className: "text-xl font-bold text-stone-900", children: t("pages.b2c.calculator.success_title") || "Permintaan Kuotasi Terkirim!" }),
+              /* @__PURE__ */ jsx("p", { className: "mt-2 text-xs sm:text-sm text-stone-600 leading-relaxed", children: t("pages.b2c.calculator.success_desc") || "Terima kasih. Tim penjualan Kristalin Ekalestari akan segera mengirimkan konfirmasi kuotasi resmi ke email Anda." }),
               /* @__PURE__ */ jsx(
                 "button",
                 {
                   type: "button",
                   onClick: () => setIsRfqModalOpen(false),
-                  className: "mt-6 rounded-xl bg-amber-500 px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 hover:bg-amber-400 transition-colors",
+                  className: "mt-6 rounded-xl bg-amber-500 hover:bg-amber-600 px-6 py-2.5 text-xs sm:text-sm font-bold text-stone-950 transition-colors shadow-sm cursor-pointer",
                   children: "Selesai"
                 }
               )
             ] }) : /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmitRfq, className: "space-y-4", children: [
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("h4", { className: "text-lg sm:text-xl font-bold text-white", children: t("pages.b2c.calculator.rfq_modal_title") || "Permintaan Kuotasi Emas Resmi" }),
-                /* @__PURE__ */ jsx("p", { className: "mt-1 text-xs text-stone-400", children: t("pages.b2c.calculator.rfq_modal_desc") || "Kirim detail estimasi pembelian Anda langsung ke tim penjualan PT Kristalin Ekalestari." })
+                /* @__PURE__ */ jsx("h4", { className: "text-lg sm:text-xl font-bold text-stone-900", children: t("pages.b2c.calculator.rfq_modal_title") || "Permintaan Kuotasi Emas Resmi" }),
+                /* @__PURE__ */ jsx("p", { className: "mt-1 text-xs text-stone-500", children: t("pages.b2c.calculator.rfq_modal_desc") || "Kirim detail estimasi pembelian Anda langsung ke tim penjualan PT Kristalin Ekalestari." })
               ] }),
-              /* @__PURE__ */ jsxs("div", { className: "rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-xs text-amber-200", children: [
+              /* @__PURE__ */ jsxs("div", { className: "rounded-xl border border-amber-300/80 bg-amber-50 p-3.5 text-xs text-amber-900", children: [
                 /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center", children: [
                   /* @__PURE__ */ jsx("span", { className: "font-bold", children: t("pages.b2c.calculator.selected_summary") || "Ringkasan Pilihan:" }),
-                  /* @__PURE__ */ jsxs("span", { className: "font-bold text-amber-400", children: [
+                  /* @__PURE__ */ jsxs("span", { className: "font-bold text-amber-800", children: [
                     activeGrams,
                     " Gram Emas 24K"
                   ] })
                 ] }),
-                /* @__PURE__ */ jsxs("p", { className: "mt-1 font-mono text-sm font-bold text-white", children: [
+                /* @__PURE__ */ jsxs("p", { className: "mt-1 font-mono text-sm font-bold text-stone-900", children: [
                   "Estimasi: ",
                   formatIdr(estimatedTotal)
                 ] })
               ] }),
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsxs("label", { className: "mb-1 block text-xs font-semibold text-stone-300", children: [
+                /* @__PURE__ */ jsxs("label", { className: "mb-1 block text-xs font-bold text-stone-700", children: [
                   t("pages.b2c.calculator.field_name") || "Nama Lengkap",
                   " ",
-                  /* @__PURE__ */ jsx("span", { className: "text-amber-400", children: "*" })
+                  /* @__PURE__ */ jsx("span", { className: "text-amber-600", children: "*" })
                 ] }),
                 /* @__PURE__ */ jsx(
                   "input",
@@ -570,16 +570,16 @@ function GoldBullionCalculator() {
                     required: true,
                     value: formData.name,
                     onChange: (e) => setFormData({ ...formData, name: e.target.value }),
-                    className: "h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none",
+                    className: "h-10 sm:h-11 w-full rounded-xl border border-stone-300 bg-white px-3.5 text-xs sm:text-sm text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20",
                     placeholder: "Nama Anda / Perusahaan"
                   }
                 )
               ] }),
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsxs("label", { className: "mb-1 block text-xs font-semibold text-stone-300", children: [
+                /* @__PURE__ */ jsxs("label", { className: "mb-1 block text-xs font-bold text-stone-700", children: [
                   t("pages.b2c.calculator.field_email") || "Alamat Email",
                   " ",
-                  /* @__PURE__ */ jsx("span", { className: "text-amber-400", children: "*" })
+                  /* @__PURE__ */ jsx("span", { className: "text-amber-600", children: "*" })
                 ] }),
                 /* @__PURE__ */ jsx(
                   "input",
@@ -588,51 +588,51 @@ function GoldBullionCalculator() {
                     required: true,
                     value: formData.email,
                     onChange: (e) => setFormData({ ...formData, email: e.target.value }),
-                    className: "h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none",
+                    className: "h-10 sm:h-11 w-full rounded-xl border border-stone-300 bg-white px-3.5 text-xs sm:text-sm text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20",
                     placeholder: "email@domain.com"
                   }
                 )
               ] }),
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("label", { className: "mb-1 block text-xs font-semibold text-stone-300", children: t("pages.b2c.calculator.field_phone") || "Nomor WhatsApp / Telepon (Opsional)" }),
+                /* @__PURE__ */ jsx("label", { className: "mb-1 block text-xs font-bold text-stone-700", children: t("pages.b2c.calculator.field_phone") || "Nomor WhatsApp / Telepon (Opsional)" }),
                 /* @__PURE__ */ jsx(
                   "input",
                   {
                     type: "tel",
                     value: formData.phone,
                     onChange: (e) => setFormData({ ...formData, phone: e.target.value }),
-                    className: "h-10 sm:h-11 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none",
+                    className: "h-10 sm:h-11 w-full rounded-xl border border-stone-300 bg-white px-3.5 text-xs sm:text-sm text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20",
                     placeholder: "+62 812..."
                   }
                 )
               ] }),
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("label", { className: "mb-1 block text-xs font-semibold text-stone-300", children: t("pages.b2c.calculator.field_notes") || "Catatan Tambahan (Opsional)" }),
+                /* @__PURE__ */ jsx("label", { className: "mb-1 block text-xs font-bold text-stone-700", children: t("pages.b2c.calculator.field_notes") || "Catatan Tambahan (Opsional)" }),
                 /* @__PURE__ */ jsx(
                   "textarea",
                   {
                     rows: 2,
                     value: formData.notes,
                     onChange: (e) => setFormData({ ...formData, notes: e.target.value }),
-                    className: "w-full rounded-xl border border-white/15 bg-white/5 p-3 text-xs sm:text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none",
-                    placeholder: "Kebutuhan khusus atau jadwal temu..."
+                    className: "w-full rounded-xl border border-stone-300 bg-white p-3 text-xs sm:text-sm text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20",
+                    placeholder: "Kebutuhan khusus atau preferensi jadwal temu..."
                   }
                 )
               ] }),
-              rfqStatus === "error" && /* @__PURE__ */ jsx("p", { className: "text-xs text-red-400", children: "Gagal mengirim pesan. Silakan coba kembali atau hubungi info@kristalin.co.id." }),
+              rfqStatus === "error" && /* @__PURE__ */ jsx("p", { className: "text-xs font-medium text-red-600", children: "Gagal mengirim pesan. Silakan coba kembali atau hubungi info@kristalin.co.id." }),
               /* @__PURE__ */ jsxs(
                 "button",
                 {
                   type: "submit",
                   disabled: rfqStatus === "submitting",
-                  className: "flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 font-bold text-stone-950 hover:from-amber-400 hover:to-yellow-400 disabled:opacity-50 transition-all cursor-pointer shadow-md",
+                  className: "flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 font-bold text-stone-950 hover:from-amber-600 hover:to-yellow-600 disabled:opacity-50 transition-all cursor-pointer shadow-md",
                   children: [
                     /* @__PURE__ */ jsx(Send, { className: "h-4 w-4" }),
                     /* @__PURE__ */ jsx("span", { children: rfqStatus === "submitting" ? t("pages.b2c.calculator.sending_btn") || "Mengirim Kuotasi..." : t("pages.b2c.calculator.send_btn") || "Kirim Permintaan Kuotasi" })
                   ]
                 }
               )
-            ] })
+            ] }) })
           ] })
         }
       ),
