@@ -65,19 +65,28 @@ Route::get('/company-profile', function () {
 })->name('company-profile');
 
 Route::get('/download-company-profile', function () {
-    $pdfPath = public_path('Company Profile _ PT Kristalin Ekalestari.pdf');
+    $pdfPath = public_path('Company-Profile-PT-Kristalin-Ekalestari.pdf');
     if (! file_exists($pdfPath)) {
-        $pdfPath = public_path('Company-Profile-PT-Kristalin-Ekalestari.pdf');
+        $pdfPath = public_path('Company Profile _ PT Kristalin Ekalestari.pdf');
     }
     if (! file_exists($pdfPath)) {
         $pdfPath = base_path('Company Profile _ PT Kristalin Ekalestari.pdf');
     }
     if (file_exists($pdfPath)) {
-        return response()->download($pdfPath, 'Company Profile _ PT Kristalin Ekalestari.pdf', [
+        $filename = 'Company-Profile-PT-Kristalin-Ekalestari.pdf';
+        return response()->download($pdfPath, $filename, [
             'Content-Type' => 'application/pdf',
+            'Content-Description' => 'File Transfer',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+            'Content-Transfer-Encoding' => 'binary',
+            'Accept-Ranges' => 'bytes',
+            'Expires' => '0',
+            'Cache-Control' => 'private, must-revalidate, post-check=0, pre-check=0',
+            'Pragma' => 'public',
+            'Content-Length' => (string) filesize($pdfPath),
         ]);
     }
-    return redirect('/company-profile-report');
+    return redirect('/Company-Profile-PT-Kristalin-Ekalestari.pdf');
 })->name('download-company-profile');
 
 Route::get('/line-of-business', function () {
