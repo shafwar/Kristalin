@@ -177,7 +177,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-BBx7paY2.js",
+    "file": "assets/app-CP6HDz5T.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-xBhbH3K2.js",
+    "file": "assets/appearance-BcZY_ebz.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -723,7 +723,7 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-M4_PX1nG.js",
+    "file": "assets/welcome-ab1Y8Y3v.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,

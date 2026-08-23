@@ -450,10 +450,10 @@ const Welcome = () => {
     return () => clearInterval(interval);
   }, [contentSets.length]);
   return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsxs(Head, { title: "PT Kristalin Ekalestari | Sustainable Gold Mining & Mineral Refining", children: [
-      /* @__PURE__ */ jsx("meta", { name: "description", content: "PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua Barat." }),
-      /* @__PURE__ */ jsx("meta", { property: "og:title", content: "PT Kristalin Ekalestari | Sustainable Gold Mining & Mineral Refining" }),
-      /* @__PURE__ */ jsx("meta", { property: "og:description", content: "PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua Barat." })
+    /* @__PURE__ */ jsxs(Head, { title: "PT Kristalin Ekalestari", children: [
+      /* @__PURE__ */ jsx("meta", { name: "description", content: "PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua." }),
+      /* @__PURE__ */ jsx("meta", { property: "og:title", content: "PT Kristalin Ekalestari" }),
+      /* @__PURE__ */ jsx("meta", { property: "og:description", content: "PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua." })
     ] }),
     /* @__PURE__ */ jsx(SplashScreen, {}),
     /* @__PURE__ */ jsxs("div", { className: "welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white", children: [

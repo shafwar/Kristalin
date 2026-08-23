@@ -67,8 +67,8 @@
         {{-- SEO & Open Graph --}}
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="PT Kristalin Ekalestari">
-        <meta property="og:title" content="{{ config('app.name', 'PT Kristalin Ekalestari') }} - Sustainable Mining & Natural Resources">
-        <meta property="og:description" content="PT Kristalin Ekalestari adalah pelopor pertambangan emas berkelanjutan di Papua Barat, memadukan keunggulan operasional, inovasi teknologi, dan pemberdayaan masyarakat adat.">
+        <meta property="og:title" content="PT Kristalin Ekalestari">
+        <meta property="og:description" content="PT Kristalin Ekalestari adalah pelopor pertambangan emas berkelanjutan di Papua, memadukan keunggulan operasional, inovasi teknologi, dan pemberdayaan masyarakat adat.">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="{{ asset('kristalin-og-preview.jpg') }}">
         <meta property="og:image:width" content="1200">
@@ -77,7 +77,7 @@
 
         {{-- Twitter Card --}}
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ config('app.name', 'PT Kristalin Ekalestari') }} - Sustainable Mining">
+        <meta name="twitter:title" content="PT Kristalin Ekalestari">
         <meta name="twitter:description" content="Pelopor pertambangan emas berkelanjutan dan pengolahan mineral bernilai tambah di Indonesia.">
         <meta name="twitter:image" content="{{ asset('kristalin-og-preview.jpg') }}">
 
@@ -159,7 +159,8 @@
               '@type' => 'WebSite',
               '@id' => 'https://kristalin.co.id/#website',
               'url' => 'https://kristalin.co.id',
-              'name' => 'PT Kristalin Ekalestari Official Website',
+              'name' => 'PT Kristalin Ekalestari',
+              'alternateName' => 'Kristalin',
               'publisher' => [
                 '@id' => 'https://kristalin.co.id/#organization',
               ],
