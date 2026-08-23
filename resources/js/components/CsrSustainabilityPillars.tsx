@@ -30,6 +30,14 @@ interface PillarData {
 export default function CsrSustainabilityPillars() {
     const { t } = useTranslation();
 
+    const getTags = (itemKey: string, fallbackTag: string): string[] => {
+        const raw = t(`pages.csr.pillars.items.${itemKey}.tags`);
+        if (Array.isArray(raw) && raw.length > 0) {
+            return raw;
+        }
+        return [fallbackTag];
+    };
+
     const pillars: PillarData[] = [
         {
             id: 'food_security',
@@ -37,11 +45,7 @@ export default function CsrSustainabilityPillars() {
             title: t('pages.csr.pillars.items.food_security.title') || 'Pilar Ketahanan Pangan',
             tag: t('pages.csr.pillars.items.food_security.tag') || 'Distribusi Sembako Berkala',
             description: t('pages.csr.pillars.items.food_security.description') || 'Program penyaluran paket sembako bergizi secara rutin kepada keluarga masyarakat adat, janda lansia, dan pemuka adat di sekitar area operasional pertambangan untuk memastikan kecukupan gizi harian.',
-            tags: [
-                'Penyaluran Sembako Rutin',
-                'Masyarakat Adat Nabire',
-                'Jaring Pengaman Sosial'
-            ],
+            tags: getTags('food_security', 'Penyaluran Sembako Rutin'),
             icon: <Wheat className="h-6 w-6 text-amber-700" />,
             accentColor: 'from-amber-400 via-yellow-500 to-amber-600',
             badgeBg: 'bg-amber-100/90 text-amber-900 border-amber-300/80',
@@ -53,11 +57,7 @@ export default function CsrSustainabilityPillars() {
             title: t('pages.csr.pillars.items.infrastructure.title') || 'Pilar Infrastruktur & Hunian',
             tag: t('pages.csr.pillars.items.infrastructure.tag') || 'Pemukiman & Fasilitas Air Bersih',
             description: t('pages.csr.pillars.items.infrastructure.description') || 'Bantuan pembangunan unit rumah layak huni bagi warga adat Kampung Nifasi, pembangunan jaringan perpipaan air bersih pedesaan, serta pemeliharaan sarana jalan pemukiman.',
-            tags: [
-                'Rumah Layak Huni',
-                'Akses Air Bersih',
-                'Fasilitas Desa Nifasi'
-            ],
+            tags: getTags('infrastructure', 'Rumah Layak Huni'),
             icon: <Home className="h-6 w-6 text-blue-700" />,
             accentColor: 'from-blue-400 via-indigo-500 to-blue-600',
             badgeBg: 'bg-blue-100/90 text-blue-900 border-blue-300/80',
@@ -69,11 +69,7 @@ export default function CsrSustainabilityPillars() {
             title: t('pages.csr.pillars.items.education_health.title') || 'Pilar Pendidikan & Kesehatan',
             tag: t('pages.csr.pillars.items.education_health.tag') || 'Dukungan Belajar & Sarana Medis',
             description: t('pages.csr.pillars.items.education_health.description') || 'Penyediaan perlengkapan sekolah, beasiswa pendidikan bagi putra-putri berprestasi Nabire hingga jenjang lanjutan, dan dukungan fasilitas operasional pos pelayanan kesehatan masyarakat.',
-            tags: [
-                'Beasiswa Siswa Berprestasi',
-                'Perlengkapan Belajar',
-                'Pos Pelayanan Medis'
-            ],
+            tags: getTags('education_health', 'Beasiswa Siswa Berprestasi'),
             icon: <GraduationCap className="h-6 w-6 text-emerald-700" />,
             accentColor: 'from-emerald-400 via-teal-500 to-emerald-600',
             badgeBg: 'bg-emerald-100/90 text-emerald-900 border-emerald-300/80',
@@ -85,11 +81,7 @@ export default function CsrSustainabilityPillars() {
             title: t('pages.csr.pillars.items.reclamation.title') || 'Pilar Reklamasi Progresif',
             tag: t('pages.csr.pillars.items.reclamation.tag') || 'Konservasi & Revegetasi Lahan',
             description: t('pages.csr.pillars.items.reclamation.description') || 'Komitmen penataan kembali kontur tanah pasca-tambang, pengelolaan sedimen dan kualitas air, serta penanaman vegetasi endemik untuk memulihkan keanekaragaman hayati ekosistem Papua.',
-            tags: [
-                'Revegetasi Bertahap',
-                'Penataan Tanah Pucuk',
-                'Pemulihan Keanekaragaman Hayati'
-            ],
+            tags: getTags('reclamation', 'Revegetasi Bertahap'),
             icon: <Trees className="h-6 w-6 text-green-700" />,
             accentColor: 'from-green-500 via-emerald-600 to-green-700',
             badgeBg: 'bg-green-100/90 text-green-900 border-green-300/80',
@@ -203,10 +195,10 @@ export default function CsrSustainabilityPillars() {
                             </div>
                             <div>
                                 <h4 className="text-base sm:text-lg font-bold text-stone-900">
-                                    Harmonisasi Berkelanjutan dengan Masyarakat Adat Papua
+                                    {t('pages.csr.pillars.assurance_title') || 'Harmonisasi Berkelanjutan dengan Masyarakat Adat Papua'}
                                 </h4>
                                 <p className="mt-0.5 text-xs sm:text-sm text-stone-600 leading-relaxed max-w-3xl">
-                                    Seluruh program TJSL dan operasional tambang PT Kristalin Ekalestari berlandaskan pada persetujuan musyawarah adat, kepatuhan AMDAL lingkungan hidup, serta komitmen kemitraan berkesinambungan.
+                                    {t('pages.csr.pillars.assurance_desc') || 'Seluruh program TJSL dan operasional tambang PT Kristalin Ekalestari berlandaskan pada persetujuan musyawarah adat, kepatuhan AMDAL lingkungan hidup, serta komitmen kemitraan berkesinambungan.'}
                                 </p>
                             </div>
                         </div>
