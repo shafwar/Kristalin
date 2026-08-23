@@ -1,10 +1,10 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/components/B2cFaqSection.tsx": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/components/B2cHeroPicture.tsx": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
     "/build/assets/welcome-VTc_WQLH.js"
@@ -19,13 +19,13 @@
     "/build/assets/Header-PE8OL-v1.js"
   ],
   "resources/js/components/GoldBullionCalculator.tsx": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/components/Header.tsx": [
     "/build/assets/Header-PE8OL-v1.js"
   ],
   "resources/js/components/KristalinLocationTabs.tsx": [
-    "/build/assets/contact-D89cfu1V.js"
+    "/build/assets/contact-CCZPHUQx.js"
   ],
   "resources/js/components/KristalinMapEmbed.tsx": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -106,7 +106,7 @@
     "/build/assets/checkbox-D07xazED.js"
   ],
   "resources/js/components/ui/collapsible.tsx": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/components/ui/dialog.tsx": [
     "/build/assets/profile-Dfae8-Al.js"
@@ -193,7 +193,7 @@
     "/build/assets/assets-CvOUY0DF.js"
   ],
   "resources/js/lib/b2cHeroImage.ts": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/lib/kristalinLocations.ts": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -244,7 +244,7 @@
     "/build/assets/verify-email-DTymDeGV.js"
   ],
   "resources/js/pages/b2c.tsx": [
-    "/build/assets/b2c-D4vSRiwZ.js"
+    "/build/assets/b2c-BykLQKgi.js"
   ],
   "resources/js/pages/board-of-directors.tsx": [
     "/build/assets/board-of-directors-DDmkcl7n.js"
@@ -259,7 +259,7 @@
     "/build/assets/company-overview-DjajVkJP.js"
   ],
   "resources/js/pages/contact.tsx": [
-    "/build/assets/contact-D89cfu1V.js"
+    "/build/assets/contact-CCZPHUQx.js"
   ],
   "resources/js/pages/core-values.tsx": [
     "/build/assets/core-values-C7z2lxP0.js"

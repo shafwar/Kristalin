@@ -311,23 +311,25 @@ function GoldBullionCalculator() {
     const next = Math.max(1, current + increment);
     setCustomGrams(next.toString());
   };
-  const formattedWeightLabel = activeGrams >= 1e3 ? `${activeGrams / 1e3} kg (${formatIdrAmount(activeGrams)} Gram)` : `${formatIdrAmount(activeGrams)} Gram`;
-  return /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14 items-start", children: [
-    /* @__PURE__ */ jsxs("div", { className: "flex flex-col space-y-8 lg:col-span-7", children: [
+  const unitGram = t("pages.b2c.calculator.gram_unit") || "Gram";
+  const formattedWeightLabel = activeGrams >= 1e3 ? `${activeGrams / 1e3} kg (${formatIdrAmount(activeGrams)} ${unitGram})` : `${formatIdrAmount(activeGrams)} ${unitGram}`;
+  return /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-start", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex flex-col space-y-7 lg:col-span-7", children: [
       /* @__PURE__ */ jsxs("div", { children: [
-        /* @__PURE__ */ jsx("div", { className: "flex items-center gap-2", children: /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-amber-100/90 border border-amber-300/80 px-3.5 py-1 text-xs font-bold text-amber-900 uppercase tracking-wider shadow-2xs", children: [
+        /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-1.5 rounded-full bg-amber-100/90 border border-amber-300/80 px-3.5 py-1 text-xs font-bold text-amber-900 uppercase tracking-wider shadow-2xs", children: [
           /* @__PURE__ */ jsx(Coins, { className: "h-3.5 w-3.5 text-amber-700" }),
-          "Direct Refinery Supply · Kisara Gold 24K"
-        ] }) }),
-        /* @__PURE__ */ jsx("h2", { className: "mt-3.5 text-2xl font-extrabold tracking-tight text-stone-900 sm:text-3xl lg:text-4xl leading-tight", children: "Simulasi Investasi & Pemesanan Emas Fisik" }),
-        /* @__PURE__ */ jsx("p", { className: "mt-2 text-sm leading-relaxed text-stone-600 sm:text-base", children: "Akses langsung ke likuiditas emas batangan murni 99.99% langsung dari rantai pasok PT Kristalin Ekalestari dengan transparansi kuotasi harga acuan bursa terkini." })
+          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "Direct Refinery Supply · Kisara Gold 24K" })
+        ] }),
+        /* @__PURE__ */ jsx("h2", { className: "mt-3.5 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
+        /* @__PURE__ */ jsx("p", { className: "mt-2 text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl", children: t("pages.b2c.calculator.subtitle") || "Akses langsung likuiditas emas batangan murni 99.99% langsung dari rantai pasok PT Kristalin Ekalestari." })
       ] }),
       /* @__PURE__ */ jsxs("div", { children: [
         /* @__PURE__ */ jsxs("div", { className: "mb-3 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsx("label", { className: "block text-xs font-bold tracking-wider text-stone-700 uppercase", children: t("pages.b2c.calculator.select_weight") || "Pilih Gramatur Emas Batangan (Minted Bars)" }),
+          /* @__PURE__ */ jsx("label", { className: "block text-xs font-bold tracking-wider text-stone-700 uppercase", children: t("pages.b2c.calculator.select_weight") || "Pilih Gramatur Emas Batangan" }),
           /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1.5 rounded-full border border-amber-300/80 bg-amber-50 px-3 py-0.5 text-xs font-semibold text-amber-900", children: [
             /* @__PURE__ */ jsx("span", { className: "h-1.5 w-1.5 rounded-full bg-amber-500" }),
-            "Terpilih: ",
+            t("pages.b2c.calculator.selected_label") || "Terpilih",
+            ": ",
             /* @__PURE__ */ jsx("strong", { className: "font-bold", children: formattedWeightLabel })
           ] })
         ] }),
@@ -341,44 +343,45 @@ function GoldBullionCalculator() {
               className: `group relative flex flex-col items-center justify-center rounded-2xl border p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${active ? "border-2 border-amber-500 bg-amber-50/80 text-stone-950 shadow-sm ring-2 ring-amber-400/20" : "border-stone-200/90 bg-white hover:bg-stone-50 hover:border-stone-300 text-stone-700 shadow-2xs"}`,
               children: [
                 /* @__PURE__ */ jsx("span", { className: `text-base font-bold sm:text-lg tracking-tight ${active ? "text-amber-950 font-extrabold" : "text-stone-900"}`, children: grams >= 1e3 ? `${grams / 1e3} kg` : `${grams}g` }),
-                /* @__PURE__ */ jsx("span", { className: `text-[10px] mt-0.5 ${active ? "text-amber-800 font-bold" : "text-stone-500"}`, children: grams >= 1e3 ? "1.000 Gram" : `${grams} Gram` })
+                /* @__PURE__ */ jsx("span", { className: `text-[10px] mt-0.5 ${active ? "text-amber-800 font-bold" : "text-stone-500"}`, children: grams >= 1e3 ? `1.000 ${unitGram}` : `${grams} ${unitGram}` })
               ]
             },
             grams
           );
         }) })
       ] }),
-      /* @__PURE__ */ jsxs("div", { children: [
-        /* @__PURE__ */ jsxs("div", { className: "mb-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsx("label", { className: "block text-xs font-bold tracking-wider text-stone-700 uppercase", children: t("pages.b2c.calculator.custom_weight") || "Atau Masukkan Berat Kustom (Gram):" }),
-          isCustom && /* @__PURE__ */ jsx("span", { className: "rounded-md bg-amber-100 border border-amber-200 px-2 py-0.5 text-[10px] font-bold text-amber-800 uppercase", children: "Mode Kustom Aktif" })
+      /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-stone-200/90 bg-stone-50/60 p-4 sm:p-5", children: [
+        /* @__PURE__ */ jsxs("div", { className: "mb-2.5 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsx("label", { className: "block text-xs font-bold tracking-wider text-stone-700 uppercase", children: t("pages.b2c.calculator.custom_weight") || "Berat Kustom" }),
+          isCustom && /* @__PURE__ */ jsx("span", { className: "rounded-full bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-bold text-amber-800 uppercase tracking-wide", children: t("pages.b2c.calculator.custom_active") || "Mode Kustom" })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "relative", children: [
+        /* @__PURE__ */ jsxs("div", { className: "relative flex items-center", children: [
           /* @__PURE__ */ jsx(
             "input",
             {
               type: "number",
               min: "0.1",
               step: "any",
-              placeholder: "Ketik gram kustom, contoh: 24",
+              placeholder: t("pages.b2c.calculator.custom_placeholder") || "Ketik gram, contoh: 24",
               value: customGrams,
               onChange: handleCustomChange,
-              className: "h-12 w-full rounded-2xl border border-stone-300 bg-white px-4 pr-20 text-sm font-bold text-stone-900 placeholder-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-2xs"
+              className: "h-16 w-full rounded-2xl border-2 border-stone-300/90 bg-white px-5 pr-28 text-2xl sm:text-3xl font-extrabold font-mono text-stone-900 placeholder:text-stone-400 placeholder:text-base focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/20 shadow-sm transition-all"
             }
           ),
-          /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-bold text-amber-700 uppercase", children: t("pages.b2c.calculator.gram_unit") || "Gram" })
+          /* @__PURE__ */ jsx("div", { className: "absolute right-3 flex items-center", children: /* @__PURE__ */ jsx("span", { className: "rounded-xl bg-amber-50 border border-amber-200 px-3 py-1.5 text-xs font-black tracking-wider text-amber-900 uppercase", children: unitGram }) })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-2.5 flex flex-wrap items-center gap-2", children: [
-          /* @__PURE__ */ jsx("span", { className: "text-[11px] text-stone-500", children: "Tambah Cepat:" }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-3 flex flex-wrap items-center gap-2", children: [
+          /* @__PURE__ */ jsx("span", { className: "text-xs font-medium text-stone-500", children: t("pages.b2c.calculator.quick_add") || "Tambah Cepat:" }),
           [1, 5, 10, 25, 100].map((inc) => /* @__PURE__ */ jsxs(
             "button",
             {
               type: "button",
               onClick: () => handleQuickAdd(inc),
-              className: "inline-flex items-center gap-1 rounded-lg border border-stone-200 bg-white hover:bg-amber-50 hover:border-amber-300 px-2.5 py-1 text-[11px] font-semibold text-stone-700 transition-colors cursor-pointer shadow-2xs",
+              className: "inline-flex items-center gap-1 rounded-xl border border-stone-200 bg-white hover:bg-amber-50 hover:border-amber-300 px-3 py-1.5 text-xs font-bold text-stone-700 transition-colors cursor-pointer shadow-2xs active:scale-95",
               children: [
                 /* @__PURE__ */ jsx(Plus, { className: "h-3 w-3 text-amber-600" }),
                 /* @__PURE__ */ jsxs("span", { children: [
+                  "+",
                   inc,
                   "g"
                 ] })
@@ -391,30 +394,31 @@ function GoldBullionCalculator() {
       /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3 rounded-2xl bg-amber-50/70 border border-amber-200/90 p-3.5 sm:p-4 text-xs text-amber-950 shadow-2xs", children: [
         /* @__PURE__ */ jsx(Info, { className: "h-4 w-4 shrink-0 text-amber-700 mt-0.5" }),
         /* @__PURE__ */ jsxs("p", { className: "leading-relaxed text-[11px] sm:text-xs", children: [
-          /* @__PURE__ */ jsx("strong", { children: "Catatan Estimasi Sistem:" }),
-          " Nilai ini merupakan simulasi perhitungan berdasarkan data acuan harga pasar emas spot terkini. Harga final transaksi resmi dan nomor seri emas batangan (Assay Stamp) akan dikonfirmasi dan dikunci saat penerbitan faktur / kuotasi resmi."
+          /* @__PURE__ */ jsx("strong", { children: t("pages.b2c.calculator.estimation_note_title") || "Catatan Estimasi Sistem:" }),
+          " ",
+          t("pages.b2c.calculator.estimation_note") || "Dihitung berdasarkan harga acuan pasar spot terkini. Harga final dan nomor seri segel dikonfirmasi saat penerbitan invoice resmi."
         ] })
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-2 gap-3.5 sm:grid-cols-4 sm:gap-4 pt-2", children: [
+      /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-3.5", children: [
         /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-stone-200/90 bg-white p-3.5 text-center shadow-2xs transition-all hover:border-amber-200", children: [
           /* @__PURE__ */ jsx("div", { className: "mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-700", children: /* @__PURE__ */ jsx(Award, { className: "h-4 w-4" }) }),
-          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: "Kemurnian 99.99%" }),
-          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: "Fine Gold 24K standar SNI & LBMA." })
+          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: t("pages.b2c.calculator.trust_purity_title") || "Kemurnian 99.99%" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: t("pages.b2c.calculator.trust_purity_desc") || "Fine Gold 24K standar SNI & LBMA." })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-stone-200/90 bg-white p-3.5 text-center shadow-2xs transition-all hover:border-emerald-200", children: [
           /* @__PURE__ */ jsx("div", { className: "mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700", children: /* @__PURE__ */ jsx(ShieldCheck, { className: "h-4 w-4" }) }),
-          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: "Assay Packaging" }),
-          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: "Segel keamanan & seri unik." })
+          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: t("pages.b2c.calculator.trust_assay_title") || "Kemasan Assay" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: t("pages.b2c.calculator.trust_assay_desc") || "Segel keamanan tinggi ber-seri unik." })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-stone-200/90 bg-white p-3.5 text-center shadow-2xs transition-all hover:border-blue-200", children: [
           /* @__PURE__ */ jsx("div", { className: "mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-700", children: /* @__PURE__ */ jsx(Truck, { className: "h-4 w-4" }) }),
-          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: "Asuransi 100%" }),
-          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: "Pengiriman fisik aman terproteksi." })
+          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: t("pages.b2c.calculator.trust_insurance_title") || "Asuransi 100%" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: t("pages.b2c.calculator.trust_insurance_desc") || "Pengiriman fisik aman terproteksi." })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-stone-200/90 bg-white p-3.5 text-center shadow-2xs transition-all hover:border-amber-200", children: [
           /* @__PURE__ */ jsx("div", { className: "mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-700", children: /* @__PURE__ */ jsx(RotateCcw, { className: "h-4 w-4" }) }),
-          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: "Jaminan Buyback" }),
-          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: "Likuiditas pembelian kembali." })
+          /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-stone-900", children: t("pages.b2c.calculator.trust_buyback_title") || "Jaminan Buyback" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-0.5 text-[10px] text-stone-500 leading-tight", children: t("pages.b2c.calculator.trust_buyback_desc") || "Jaminan likuiditas pembelian kembali." })
         ] })
       ] })
     ] }),
@@ -428,7 +432,10 @@ function GoldBullionCalculator() {
           /* @__PURE__ */ jsxs("p", { className: "mt-0.5 font-mono text-base sm:text-lg font-bold text-stone-900", children: [
             formatIdr(basePricePerGram),
             " ",
-            /* @__PURE__ */ jsx("span", { className: "text-xs font-medium text-stone-500", children: "/ gram" })
+            /* @__PURE__ */ jsxs("span", { className: "text-xs font-medium text-stone-500", children: [
+              "/ ",
+              t("pages.b2c.calculator.per_gram") || "gram"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsx(
@@ -455,41 +462,46 @@ function GoldBullionCalculator() {
         ] }),
         /* @__PURE__ */ jsxs("p", { className: "mt-1 text-xs text-stone-500", children: [
           formatIdrAmount(activeGrams),
-          " Gram × ",
+          " ",
+          unitGram,
+          " × ",
           formatIdr(basePricePerGram),
-          " / gram"
+          " / ",
+          t("pages.b2c.calculator.per_gram") || "gram"
         ] })
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-2.5 rounded-2xl bg-stone-50/80 p-4 text-xs border border-stone-200/80", children: [
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
-          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_rate") || "Harga Acuan Hari Ini" }),
+          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_rate") || "Harga Acuan" }),
           /* @__PURE__ */ jsxs("span", { className: "font-mono font-bold text-stone-900", children: [
             formatIdr(basePricePerGram),
-            "/g"
+            "/",
+            t("pages.b2c.calculator.per_gram") || "g"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
           /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_purity") || "Standar Kemurnian" }),
-          /* @__PURE__ */ jsx("span", { className: "font-bold text-amber-800", children: "24K (99.99% Fine Gold)" })
+          /* @__PURE__ */ jsx("span", { className: "font-bold text-amber-800", children: t("pages.b2c.calculator.breakdown_purity_val") || "24K (99.99% Fine Gold)" })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
           /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_cert") || "Sertifikasi & Segel" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-emerald-700", children: t("pages.b2c.calculator.breakdown_cert_val") || "Termasuk (Official Assay)" })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-stone-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "Pengiriman Fisik" }),
-          /* @__PURE__ */ jsx("span", { className: "font-bold text-blue-700", children: "Asuransi Penuh 100%" })
+          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.breakdown_shipping") || "Pengiriman Fisik" }),
+          /* @__PURE__ */ jsx("span", { className: "font-bold text-blue-700", children: t("pages.b2c.calculator.breakdown_shipping_val") || "Asuransi Penuh 100%" })
         ] })
       ] }),
-      /* @__PURE__ */ jsx("p", { className: "mt-3.5 text-[10px] leading-relaxed text-stone-500", children: t("pages.b2c.calculator.pricing_note") || "* Estimasi nilai dihitung secara indikatif mengikuti harga acuan pasar terkini. Kuotasi final dikunci saat konfirmasi transaksi." }),
+      /* @__PURE__ */ jsx("p", { className: "mt-3.5 text-[10px] leading-relaxed text-stone-500", children: t("pages.b2c.calculator.pricing_note") || "* Nilai bersifat indikatif mengikuti harga acuan pasar harian. Kuotasi final dikunci saat transaksi." }),
       /* @__PURE__ */ jsx("div", { className: "mt-6", children: /* @__PURE__ */ jsxs(
         Link,
         {
-          href: `/contact?subject=b2c&grams=${activeGrams}`,
+          href: `/contact?subject=b2c&grams=${activeGrams}&est=${estimatedTotal}#contact-form`,
           className: "group flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-4 sm:px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer text-xs sm:text-sm text-center",
           children: [
             /* @__PURE__ */ jsxs("span", { children: [
-              "Minta Penawaran Resmi (",
+              t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi",
+              " (",
               formattedWeightLabel,
               ")"
             ] }),
@@ -499,7 +511,7 @@ function GoldBullionCalculator() {
       ) }),
       /* @__PURE__ */ jsxs("div", { className: "mt-4 flex items-center justify-center gap-1.5 text-[11px] text-stone-500", children: [
         /* @__PURE__ */ jsx(ShieldCheck, { className: "h-3.5 w-3.5 text-emerald-600 shrink-0" }),
-        /* @__PURE__ */ jsx("span", { children: "Kuotasi resmi diverifikasi PT Kristalin Ekalestari" })
+        /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.verified_note") || "Kuotasi resmi diverifikasi PT Kristalin Ekalestari" })
       ] })
     ] }) })
   ] }) });

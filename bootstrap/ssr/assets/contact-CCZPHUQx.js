@@ -130,18 +130,33 @@ function ContactPage() {
     const params = new URLSearchParams(window.location.search);
     const subject = (_a = params.get("subject")) == null ? void 0 : _a.toLowerCase();
     const grams = params.get("grams");
+    const est = params.get("est");
+    const formattedEst = est ? parseInt(est).toLocaleString("id-ID") : "";
     if (subject === "b2c" || subject === "gold") {
+      const defaultMsg = grams ? `Permintaan Kuotasi Pembelian Emas Fisik 24K:
+- Gramatur: ${grams} Gram
+${formattedEst ? `- Estimasi Nilai: Rp ${formattedEst}
+` : ""}
+Mohon informasi prosedur pemesanan resmi dan konfirmasi nomor seri segel assay.` : "";
       setFormData((prev) => ({
         ...prev,
         subject: "B2C",
-        inquiry: grams ? `Permintaan simulasi kuotasi pembelian emas fisik ${grams} gram.` : prev.inquiry
+        inquiry: defaultMsg || prev.inquiry
       }));
+      setTimeout(() => {
+        var _a2;
+        (_a2 = document.getElementById("contact-form")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 150);
     } else if (subject === "partnership" || subject === "investor" || subject === "investment") {
       setFormData((prev) => ({
         ...prev,
         subject: "Partnership",
-        inquiry: prev.inquiry || "Permintaan diskusi peluang kemitraan / investasi institusional."
+        inquiry: prev.inquiry || "Permintaan diskusi peluang kemitraan strategis / investasi institusional bersama PT Kristalin Ekalestari."
       }));
+      setTimeout(() => {
+        var _a2;
+        (_a2 = document.getElementById("contact-form")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 150);
     } else if (subject === "csr") {
       setFormData((prev) => ({ ...prev, subject: "CSR" }));
     } else if (subject === "career") {
@@ -294,10 +309,11 @@ function ContactPage() {
         /* @__PURE__ */ jsxs(
           motion.form,
           {
+            id: "contact-form",
             initial: { opacity: 0, y: 40 },
             animate: { opacity: 1, y: 0 },
             transition: { duration: 0.7, ease: "easeOut" },
-            className: "z-10 mb-4 w-full max-w-none rounded-2xl bg-white p-3 shadow-2xl md:p-5",
+            className: "z-10 mb-4 w-full max-w-none rounded-2xl bg-white p-3 shadow-2xl md:p-5 scroll-mt-28",
             onSubmit: handleSubmit,
             autoComplete: "off",
             noValidate: true,
