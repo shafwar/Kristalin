@@ -3010,6 +3010,7 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         'ms_2026' => '2026',
         'ms_2026_title' => 'Transformasi Digital',
         'ms_2026_text' => 'Meluncurkan platform digital B2C yang menghubungkan emas fisik secara langsung ke investor.',
+        'download_btn' => 'Unduh PDF',
         'print_btn' => 'Cetak / Simpan PDF',
         'footer_note' => 'Dihasilkan otomatis dari Platform Digital Kristalin Ekalestari.',
         'op_excellence' => 'Keunggulan Operasional',

@@ -2878,6 +2878,7 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
         'ms_2026' => '2026',
         'ms_2026_title' => 'Digital Transformation',
         'ms_2026_text' => 'Launched B2C digital platform connecting physical gold directly to investors.',
+        'download_btn' => 'Download PDF',
         'print_btn' => 'Print / Save as PDF',
         'footer_note' => 'Generated automatically from Kristalin Ekalestari Digital Platform.',
         'op_excellence' => 'Operational Excellence',

@@ -2879,6 +2879,7 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
         'ms_2026' => '2026',
         'ms_2026_title' => '数字化转型',
         'ms_2026_text' => '推出将实物黄金直接连接到投资者的 B2C 数字平台。',
+        'download_btn' => '下载 PDF',
         'print_btn' => '打印 / 保存为 PDF',
         'footer_note' => '从 Kristalin Ekalestari 数字平台自动生成。',
         'op_excellence' => '卓越运营',
