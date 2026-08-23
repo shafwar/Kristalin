@@ -8,6 +8,7 @@ import { useNetworkProfile } from '../hooks/useNetworkProfile';
 import { useTranslation } from '../hooks/useTranslation';
 import { imageUrl } from '../lib/assets';
 import { papuaBackgroundForTier } from '../lib/papuaHeroImage';
+import CsrSustainabilityPillars from '@/components/CsrSustainabilityPillars';
 
 const toImage = (path: string) => imageUrl(path);
 const toImages = (paths: string[]) => paths.map(toImage);
@@ -835,6 +836,9 @@ export default function CSRPageMobileFix() {
                     </motion.p>
                 </motion.div>
             </section>
+
+            {/* 4 Pillars of Sustainability Framework */}
+            <CsrSustainabilityPillars />
 
             {/* Main Content */}
             <main className="bg-white py-16 sm:py-20">
