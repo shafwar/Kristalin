@@ -1,10 +1,10 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/components/B2cFaqSection.tsx": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/components/B2cHeroPicture.tsx": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
     "/build/assets/welcome-VTc_WQLH.js"
@@ -19,16 +19,13 @@
     "/build/assets/Header-PE8OL-v1.js"
   ],
   "resources/js/components/GoldBullionCalculator.tsx": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/components/Header.tsx": [
     "/build/assets/Header-PE8OL-v1.js"
   ],
-  "resources/js/components/InquiryForm.tsx": [
-    "/build/assets/InquiryForm-4NUO8kae.js"
-  ],
   "resources/js/components/KristalinLocationTabs.tsx": [
-    "/build/assets/contact-CbMlvS1x.js"
+    "/build/assets/contact-D89cfu1V.js"
   ],
   "resources/js/components/KristalinMapEmbed.tsx": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -52,112 +49,112 @@
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
   ],
   "resources/js/components/app-content.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/app-shell.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/app-sidebar-header.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/app-sidebar.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/appearance-tabs.tsx": [
-    "/build/assets/appearance-Drf1Q_yP.js"
+    "/build/assets/appearance-tEtdChXh.js"
   ],
   "resources/js/components/breadcrumbs.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/delete-user.tsx": [
-    "/build/assets/profile-IkEmY0sA.js"
+    "/build/assets/profile-Dfae8-Al.js"
   ],
   "resources/js/components/heading-small.tsx": [
-    "/build/assets/layout-BQfvbqxj.js"
+    "/build/assets/layout-DACAqMbO.js"
   ],
   "resources/js/components/heading.tsx": [
-    "/build/assets/layout-BQfvbqxj.js"
+    "/build/assets/layout-DACAqMbO.js"
   ],
   "resources/js/components/icon.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/input-error.tsx": [
-    "/build/assets/input-error-BLBpO4tZ.js"
+    "/build/assets/input-error-QUUakoix.js"
   ],
   "resources/js/components/nav-footer.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/nav-main.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/nav-user.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/text-link.tsx": [
-    "/build/assets/text-link-BSn7bBpr.js"
+    "/build/assets/text-link-EYWQF2VT.js"
   ],
   "resources/js/components/ui/avatar.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/ui/breadcrumb.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/ui/button.tsx": [
-    "/build/assets/button-DNDCPnEW.js"
+    "/build/assets/button-hAi0Fg-Q.js"
   ],
   "resources/js/components/ui/checkbox.tsx": [
-    "/build/assets/checkbox-DSNs_p6D.js"
+    "/build/assets/checkbox-D07xazED.js"
   ],
   "resources/js/components/ui/collapsible.tsx": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/components/ui/dialog.tsx": [
-    "/build/assets/profile-IkEmY0sA.js"
+    "/build/assets/profile-Dfae8-Al.js"
   ],
   "resources/js/components/ui/dropdown-menu.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/ui/input.tsx": [
-    "/build/assets/label-B_m42RSr.js"
+    "/build/assets/label-qls5No9M.js"
   ],
   "resources/js/components/ui/label.tsx": [
-    "/build/assets/label-B_m42RSr.js"
+    "/build/assets/label-qls5No9M.js"
   ],
   "resources/js/components/ui/placeholder-pattern.tsx": [
-    "/build/assets/dashboard-PqbbYsgA.js"
+    "/build/assets/dashboard-DpKIv9nU.js"
   ],
   "resources/js/components/ui/separator.tsx": [
-    "/build/assets/layout-BQfvbqxj.js"
+    "/build/assets/layout-DACAqMbO.js"
   ],
   "resources/js/components/ui/sheet.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/ui/sidebar.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/ui/tooltip.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/user-info.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/components/user-menu-content.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/use-appearance.tsx": [
-    "/build/assets/appearance-Drf1Q_yP.js"
+    "/build/assets/appearance-tEtdChXh.js"
   ],
   "resources/js/hooks/use-initials.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/use-large-screen.ts": [
     "/build/assets/milestones-B2sn4FtY.js"
   ],
   "resources/js/hooks/use-mobile-navigation.ts": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/use-mobile.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
     "/build/assets/welcome-VTc_WQLH.js"
@@ -178,10 +175,10 @@
     "/build/assets/useTranslation-DutJeAb2.js"
   ],
   "resources/js/layouts/app-layout.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/layouts/app/app-sidebar-layout.tsx": [
-    "/build/assets/app-layout-BWIrT9VS.js"
+    "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/layouts/auth-layout.tsx": [
     "/build/assets/auth-layout-Cah37PdJ.js"
@@ -190,13 +187,13 @@
     "/build/assets/auth-layout-Cah37PdJ.js"
   ],
   "resources/js/layouts/settings/layout.tsx": [
-    "/build/assets/layout-BQfvbqxj.js"
+    "/build/assets/layout-DACAqMbO.js"
   ],
   "resources/js/lib/assets.ts": [
     "/build/assets/assets-CvOUY0DF.js"
   ],
   "resources/js/lib/b2cHeroImage.ts": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/lib/kristalinLocations.ts": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -205,7 +202,7 @@
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/lib/utils.ts": [
-    "/build/assets/utils-H80jjgLf.js"
+    "/build/assets/button-hAi0Fg-Q.js"
   ],
   "resources/js/lib/welcomeGridImages.ts": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -229,25 +226,25 @@
     "/build/assets/about-Br5rWn1s.js"
   ],
   "resources/js/pages/auth/confirm-password.tsx": [
-    "/build/assets/confirm-password-CxIMBltO.js"
+    "/build/assets/confirm-password-Chn-9jkw.js"
   ],
   "resources/js/pages/auth/forgot-password.tsx": [
-    "/build/assets/forgot-password-CpMd85mF.js"
+    "/build/assets/forgot-password-CJbyH-zc.js"
   ],
   "resources/js/pages/auth/login.tsx": [
-    "/build/assets/login-xFQKlfFf.js"
+    "/build/assets/login-BSF6V80o.js"
   ],
   "resources/js/pages/auth/register.tsx": [
-    "/build/assets/register-Bu6G3YQD.js"
+    "/build/assets/register-Cl8bNz9W.js"
   ],
   "resources/js/pages/auth/reset-password.tsx": [
-    "/build/assets/reset-password-R3NDzIAb.js"
+    "/build/assets/reset-password-c2wLYfYi.js"
   ],
   "resources/js/pages/auth/verify-email.tsx": [
-    "/build/assets/verify-email-Btb5PXjo.js"
+    "/build/assets/verify-email-DTymDeGV.js"
   ],
   "resources/js/pages/b2c.tsx": [
-    "/build/assets/b2c-LrQy1yix.js"
+    "/build/assets/b2c-D4vSRiwZ.js"
   ],
   "resources/js/pages/board-of-directors.tsx": [
     "/build/assets/board-of-directors-DDmkcl7n.js"
@@ -262,7 +259,7 @@
     "/build/assets/company-overview-DjajVkJP.js"
   ],
   "resources/js/pages/contact.tsx": [
-    "/build/assets/contact-CbMlvS1x.js"
+    "/build/assets/contact-D89cfu1V.js"
   ],
   "resources/js/pages/core-values.tsx": [
     "/build/assets/core-values-C7z2lxP0.js"
@@ -271,13 +268,13 @@
     "/build/assets/csr-B-qBRz4O.js"
   ],
   "resources/js/pages/dashboard.tsx": [
-    "/build/assets/dashboard-PqbbYsgA.js"
+    "/build/assets/dashboard-DpKIv9nU.js"
   ],
   "resources/js/pages/internal-feedback.tsx": [
-    "/build/assets/internal-feedback-DqMUNglU.js"
+    "/build/assets/internal-feedback-DaTu9ewN.js"
   ],
   "resources/js/pages/investor.tsx": [
-    "/build/assets/investor-CmD_a3sl.js"
+    "/build/assets/investor-C8oPqE7X.js"
   ],
   "resources/js/pages/leadership-traits.tsx": [
     "/build/assets/leadership-traits-BSyxjnbB.js"
@@ -298,13 +295,13 @@
     "/build/assets/search-v0k6tI7w.js"
   ],
   "resources/js/pages/settings/appearance.tsx": [
-    "/build/assets/appearance-Drf1Q_yP.js"
+    "/build/assets/appearance-tEtdChXh.js"
   ],
   "resources/js/pages/settings/password.tsx": [
-    "/build/assets/password-Dgd3zIVk.js"
+    "/build/assets/password-DNQZqv_X.js"
   ],
   "resources/js/pages/settings/profile.tsx": [
-    "/build/assets/profile-IkEmY0sA.js"
+    "/build/assets/profile-Dfae8-Al.js"
   ],
   "resources/js/pages/vision-mission.tsx": [
     "/build/assets/vision-mission-E3llqBni.js"

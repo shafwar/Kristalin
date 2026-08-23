@@ -1,11 +1,9 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import InquiryForm from '@/components/InquiryForm';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
-import { Building2, Download, Eye, LineChart, Target } from 'lucide-react';
+import { Building2, ChevronRight, Eye, LineChart, Mail, Sparkles, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { imageUrl } from '@/lib/assets';
 import { useEffect, useRef, useState } from 'react';
 
 const fadeInUp = {
@@ -108,27 +106,18 @@ export default function InvestorPage() {
                         <motion.div 
                             variants={fadeInUp}
                             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                            className="flex items-center justify-center"
                         >
-                            <a
-                                href="/download-company-profile"
-                                download="Company Profile _ PT Kristalin Ekalestari.pdf"
-                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105"
+                            <Link
+                                href="/company-profile-report"
+                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0"></span>
                                 <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                                 <span className="relative z-10 flex items-center gap-3">
-                                    <Download className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1" />
-                                    {t('pages.investor.download_btn') || 'Download Company Profile (PDF)'}
+                                    <Eye className="h-5 w-5 text-amber-200 transition-transform duration-300 group-hover:scale-110" />
+                                    <span>{t('pages.investor.view_profile_btn') || 'Lihat & Unduh Company Profile'}</span>
                                 </span>
-                            </a>
-
-                            <Link
-                                href="/company-profile-report"
-                                className="inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border border-white/30 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-8 text-base font-semibold shadow-xl transition-all hover:scale-105 active:scale-95"
-                            >
-                                <Eye className="h-5 w-5 text-amber-400" />
-                                <span>{t('pages.investor.preview_btn') || 'Preview Dokumen Online'}</span>
                             </Link>
                         </motion.div>
                     </motion.div>
@@ -308,70 +297,100 @@ export default function InvestorPage() {
                 </div>
             </section>
 
-            {/* B2B Inquiry Form */}
-            <section className="relative z-10 bg-stone-950 px-4 py-24 md:py-32 overflow-hidden">
-                {/* Decorative background for the dark section */}
-                <div className="absolute inset-0 pointer-events-none opacity-20">
-                    <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-amber-500 blur-[120px]"></div>
-                    <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-amber-500 blur-[120px]"></div>
-                    <div className="absolute inset-0 bg-[url('/img/grid.svg')] bg-center bg-repeat opacity-10"></div>
+            {/* Partnership Contact Section */}
+            <section className="relative z-10 bg-stone-950 px-4 py-20 md:py-28 overflow-hidden text-white">
+                {/* Ambient glow decoration */}
+                <div className="absolute inset-0 pointer-events-none opacity-25">
+                    <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-amber-500 blur-[130px]" />
+                    <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-amber-600 blur-[140px]" />
                 </div>
 
                 <div className="relative z-10 mx-auto max-w-6xl">
-                    <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-                        <motion.div 
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="text-left"
-                        >
-                            <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
-                                {t('pages.investor.form_title') || 'Initiate Partnership'}
-                            </h2>
-                            <p className="mt-6 text-lg text-stone-400 leading-relaxed max-w-lg">
-                                {t('pages.investor.form_subtitle') || 'Fill out the form below to discuss with our institutional representative team.'}
-                            </p>
+                    <div className="rounded-3xl border border-stone-800 bg-stone-900/90 p-8 sm:p-12 lg:p-16 backdrop-blur-md shadow-2xl">
+                        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 items-center">
                             
-                            <div className="mt-12 space-y-8 hidden md:block">
-                                <div className="flex items-center gap-5">
-                                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-900 border border-stone-800 shadow-inner">
-                                        <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium uppercase tracking-wider text-stone-500">{t('pages.investor.contact_email_label') || 'Institutional Email'}</p>
-                                        <p className="text-lg font-semibold text-stone-200 mt-1">investor@kristalin.co.id</p>
-                                    </div>
+                            {/* Left Info Column */}
+                            <motion.div 
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="lg:col-span-7 space-y-6"
+                            >
+                                <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-amber-400">
+                                    <Sparkles className="h-3.5 w-3.5" />
+                                    <span>{t('pages.investor.form_badge') || 'Partnership & Institutional Inquiries'}</span>
                                 </div>
-                                <div className="flex items-center gap-5">
-                                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-900 border border-stone-800 shadow-inner">
-                                        <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium uppercase tracking-wider text-stone-500">{t('pages.investor.contact_hq_label') || 'Headquarters'}</p>
-                                        <p className="text-lg font-semibold text-stone-200 mt-1">{t('pages.investor.contact_hq_val') || 'Jakarta Selatan, Indonesia'}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
 
-                        <motion.div 
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                            className="relative"
-                        >
-                            <InquiryForm 
-                                type="Investor" 
-                                hideHeader={true}
-                                variant="dark"
-                            />
-                        </motion.div>
+                                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+                                    {t('pages.investor.form_title') || 'Mulai Kemitraan Strategis'}
+                                </h2>
+
+                                <p className="text-base sm:text-lg text-stone-300 leading-relaxed max-w-xl">
+                                    {t('pages.investor.form_subtitle') || 'Diskusikan peluang kemitraan, aliansi rantai pasok, atau penjadwalan audiensi resmi bersama tim perwakilan institusional PT Kristalin Ekalestari.'}
+                                </p>
+
+                                {/* Direct Contact Badges */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                    <div className="flex items-start gap-4 rounded-2xl border border-stone-800 bg-stone-950/60 p-4">
+                                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                                            <Mail className="h-5 w-5" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+                                                {t('pages.investor.contact_email_label') || 'Email Institusional'}
+                                            </p>
+                                            <p className="text-sm font-semibold text-stone-200 mt-0.5">investor@kristalin.co.id</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4 rounded-2xl border border-stone-800 bg-stone-950/60 p-4">
+                                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                                            <Building2 className="h-5 w-5" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">
+                                                {t('pages.investor.contact_hq_label') || 'Kantor Pusat'}
+                                            </p>
+                                            <p className="text-sm font-semibold text-stone-200 mt-0.5">
+                                                {t('pages.investor.contact_hq_val') || 'Jakarta Selatan, Indonesia'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Right Action CTA Card */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                                className="lg:col-span-5 flex flex-col justify-center rounded-2xl border border-amber-500/30 bg-gradient-to-b from-stone-950/90 to-stone-900/90 p-6 sm:p-8 text-center sm:text-left shadow-xl"
+                            >
+                                <h3 className="text-xl font-bold text-white">
+                                    Siap Mengembangkan Ekosistem?
+                                </h3>
+                                <p className="mt-2 text-sm text-stone-400 leading-relaxed">
+                                    Kunjungi formulir kontak resmi kami untuk mengajukan proposal atau menjadwalkan diskusi kemitraan bersama manajemen.
+                                </p>
+
+                                <div className="mt-6">
+                                    <Link
+                                        href="/contact?subject=partnership"
+                                        className="group relative flex h-14 w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 px-6 font-bold text-stone-950 shadow-lg shadow-amber-500/20 transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.98]"
+                                    >
+                                        <span>Hubungi Tim Kemitraan</span>
+                                        <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                    </Link>
+                                </div>
+
+                                <p className="mt-3.5 text-center text-[11px] text-stone-400">
+                                    * Kategori form otomatis diatur ke <strong>Partnership</strong>
+                                </p>
+                            </motion.div>
+
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1,38 +1,40 @@
 #!/bin/bash
+set -e
 
-# Railway Deployment Script for Kristalin
+# Railway Deployment Script for Kristalin (Cost & Performance Optimized)
 echo "🚀 Starting Railway deployment..."
 
-# Install PHP dependencies
-echo "📦 Installing PHP dependencies..."
-composer install --optimize-autoloader --no-dev
+# 1. Install PHP dependencies with Classmap Authoritative (Fastest Class Loading)
+echo "📦 Installing PHP dependencies with optimizations..."
+composer install --optimize-autoloader --no-dev --no-interaction --classmap-authoritative
 
-# Install Node.js dependencies
+# 2. Install Node.js dependencies
 echo "📦 Installing Node.js dependencies..."
-npm ci
+npm ci --prefer-offline --no-audit
 
-# Build frontend assets
+# 3. Build frontend assets (Client & SSR)
 echo "🔨 Building frontend assets..."
 npm run build
 
-# Generate application key if not exists
+# 4. Generate application key if not exists
 if [ -z "$APP_KEY" ]; then
     echo "🔑 Generating application key..."
-    php artisan key:generate
+    php artisan key:generate --force
 fi
 
-# Run database migrations
+# 5. Run database migrations
 echo "🗄️ Running database migrations..."
-php artisan migrate --force
+php artisan migrate --force || true
 
-# Clear and cache configurations
+# 6. Clear and cache all configurations, routes, events, and views
 echo "⚡ Optimizing Laravel for production..."
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+php artisan optimize:clear || true
+php artisan optimize || true
+php artisan event:cache || true
 
-# Set proper permissions
+# 7. Set proper permissions
 echo "🔒 Setting file permissions..."
-chmod -R 755 storage bootstrap/cache
+mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
-echo "✅ Deployment script completed!"
+echo "✅ Deployment script completed successfully!"

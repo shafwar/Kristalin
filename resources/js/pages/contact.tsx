@@ -58,8 +58,24 @@ export default function ContactPage() {
         if (typeof window === 'undefined') return;
         const params = new URLSearchParams(window.location.search);
         const subject = params.get('subject')?.toLowerCase();
-        if (subject === 'b2c') {
-            setFormData((prev) => ({ ...prev, subject: 'B2C' }));
+        const grams = params.get('grams');
+
+        if (subject === 'b2c' || subject === 'gold') {
+            setFormData((prev) => ({
+                ...prev,
+                subject: 'B2C',
+                inquiry: grams ? `Permintaan simulasi kuotasi pembelian emas fisik ${grams} gram.` : prev.inquiry,
+            }));
+        } else if (subject === 'partnership' || subject === 'investor' || subject === 'investment') {
+            setFormData((prev) => ({
+                ...prev,
+                subject: 'Partnership',
+                inquiry: prev.inquiry || 'Permintaan diskusi peluang kemitraan / investasi institusional.',
+            }));
+        } else if (subject === 'csr') {
+            setFormData((prev) => ({ ...prev, subject: 'CSR' }));
+        } else if (subject === 'career') {
+            setFormData((prev) => ({ ...prev, subject: 'Career' }));
         }
     }, []);
 
