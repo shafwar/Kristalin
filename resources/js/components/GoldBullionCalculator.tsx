@@ -1,6 +1,6 @@
 import { useTranslation } from '@/hooks/useTranslation';
-import { formatIdrAmount, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
-import { Calculator, CheckCircle2, ChevronRight, RefreshCw, Send, ShieldCheck, X } from 'lucide-react';
+import { formatIdr, getBestSell1g, useKristalinTvGold } from '@/hooks/useKristalinTvGold';
+import { CheckCircle2, ChevronRight, Coins, RefreshCw, Send, ShieldCheck, Sparkles, X } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -10,7 +10,7 @@ export default function GoldBullionCalculator() {
     const { t } = useTranslation();
     const { market, brandPrices, loading, refresh } = useKristalinTvGold(true);
 
-    const [selectedGrams, setSelectedGrams] = useState<number>(10);
+    const [selectedGrams, setSelectedGrams] = useState<number>(5);
     const [customGrams, setCustomGrams] = useState<string>('');
     const [isCustom, setIsCustom] = useState<boolean>(false);
     const [isRfqModalOpen, setIsRfqModalOpen] = useState<boolean>(false);
@@ -91,8 +91,8 @@ export default function GoldBullionCalculator() {
             'message',
             `Permintaan Kuotasi Pembelian Emas Fisik:\n` +
             `- Jumlah: ${activeGrams} Gram\n` +
-            `- Estimasi Nilai: ${formatIdrAmount(estimatedTotal)}\n` +
-            `- Harga Acuan per Gram: ${formatIdrAmount(basePricePerGram)}\n` +
+            `- Estimasi Nilai: ${formatIdr(estimatedTotal)}\n` +
+            `- Harga Acuan per Gram: ${formatIdr(basePricePerGram)}\n` +
             `- No. WhatsApp / Telp: ${formData.phone || '-'}\n` +
             `- Catatan Pemesan: ${formData.notes || '-'}\n`
         );
@@ -117,65 +117,66 @@ export default function GoldBullionCalculator() {
     };
 
     return (
-        <div className="relative mx-auto my-8 sm:my-12 w-full max-w-4xl overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 text-white shadow-xl sm:p-10 ring-1 ring-white/10">
-            {/* Ambient gold glow */}
-            <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full bg-amber-500/10 blur-[60px]" />
-            <div className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-amber-600/10 blur-[60px]" />
+        <div className="relative mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-3xl border border-amber-500/30 bg-[#0c1424] p-6 sm:p-8 lg:p-10 text-white shadow-2xl ring-1 ring-white/10">
+            {/* Subtle Brand Accent Light */}
+            <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-amber-500/10 blur-[80px]" />
+            <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-amber-600/10 blur-[80px]" />
 
-            {/* Header */}
-            <div className="relative z-10 flex flex-col items-start justify-between gap-4 border-b border-white/10 pb-6 md:flex-row md:items-center">
+            {/* Top Bar / Header */}
+            <div className="relative z-10 flex flex-col justify-between gap-5 border-b border-white/10 pb-6 lg:flex-row lg:items-center">
                 <div>
                     <div className="flex items-center gap-2">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
-                            <Calculator className="h-3.5 w-3.5" />
+                            <Coins className="h-3.5 w-3.5" />
                         </span>
                         <span className="text-[11px] font-bold tracking-[0.2em] text-amber-400 uppercase">
                             {t('pages.b2c.calculator.kicker') || 'Simulasi & Kalkulator Emas'}
                         </span>
                     </div>
-                    <h3 className="mt-1 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                    <h3 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">
                         {t('pages.b2c.calculator.title') || 'Kalkulator Investasi Logam Mulia'}
                     </h3>
-                    <p className="mt-1 text-xs text-stone-300 sm:text-sm">
-                        {t('pages.b2c.calculator.subtitle') || 'Hitung estimasi nilai pembelian emas fisik Kisara Gold (99.99% 24K) secara instan.'}
+                    <p className="mt-1 text-xs text-stone-300 sm:text-sm leading-relaxed max-w-2xl">
+                        {t('pages.b2c.calculator.subtitle') || 'Hitung estimasi nilai pembelian emas fisik Kisara Gold (99.99% 24K) secara instan berdasarkan data harga pasar hari ini.'}
                     </p>
                 </div>
 
                 {/* Live rate badge */}
-                <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-md">
+                <div className="flex shrink-0 items-center justify-between gap-4 rounded-2xl border border-amber-500/20 bg-stone-900/80 px-4 py-3 shadow-inner backdrop-blur-md">
                     <div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2">
                             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                            <p className="text-[10px] font-medium text-stone-400 uppercase">
-                                {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan per Gram:'}
+                            <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider">
+                                {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan per Gram'}
                             </p>
                         </div>
-                        <p className="font-mono text-sm font-bold text-amber-300 sm:text-base">
-                            {formatIdrAmount(basePricePerGram)}
+                        <p className="mt-0.5 font-mono text-base sm:text-lg font-bold text-amber-300">
+                            {formatIdr(basePricePerGram)} <span className="text-xs font-normal text-stone-400">/ gram</span>
                         </p>
                     </div>
                     <button
                         type="button"
                         onClick={refresh}
                         disabled={loading}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-stone-300 transition-colors hover:bg-amber-500 hover:text-stone-950 active:scale-95 disabled:opacity-50"
-                        title="Refresh live price"
-                        aria-label="Refresh live price"
+                        className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-stone-300 transition-colors hover:bg-amber-500 hover:text-stone-950 active:scale-95 disabled:opacity-50 cursor-pointer"
+                        title="Perbarui harga live"
+                        aria-label="Perbarui harga live"
                     >
-                        <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
+                        <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                     </button>
                 </div>
             </div>
 
-            {/* Body */}
-            <div className="relative z-10 mt-6 sm:mt-8 grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-12">
-                {/* Left: Input Selection */}
-                <div className="space-y-5 sm:space-y-6 lg:col-span-7">
+            {/* Main Interactive Grid */}
+            <div className="relative z-10 mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
+                
+                {/* Left Column: Denomination & Input */}
+                <div className="flex flex-col justify-between space-y-6 lg:col-span-7">
                     <div>
-                        <label className="mb-2.5 block text-xs font-semibold tracking-wider text-stone-300 uppercase">
-                            {t('pages.b2c.calculator.select_weight') || 'Pilih Gramatur Emas'}
+                        <label className="mb-3 block text-xs font-bold tracking-wider text-stone-300 uppercase">
+                            {t('pages.b2c.calculator.select_weight') || 'Pilih Gramatur Emas (Minted Bars)'}
                         </label>
-                        <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                        <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
                             {GRAM_PRESETS.map((grams) => {
                                 const active = !isCustom && selectedGrams === grams;
                                 return (
@@ -183,14 +184,16 @@ export default function GoldBullionCalculator() {
                                         key={grams}
                                         type="button"
                                         onClick={() => handleSelectPreset(grams)}
-                                        className={`group relative flex flex-col items-center justify-center rounded-xl border p-2.5 sm:p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${
+                                        className={`group relative flex flex-col items-center justify-center rounded-2xl border p-3 font-semibold transition-all duration-200 active:scale-95 cursor-pointer ${
                                             active
-                                                ? 'border-amber-400 bg-amber-500/20 text-white shadow-md ring-1 ring-amber-400'
-                                                : 'border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10'
+                                                ? 'border-amber-400 bg-gradient-to-b from-amber-500/25 to-amber-600/10 text-white shadow-lg ring-1 ring-amber-400'
+                                                : 'border-white/10 bg-white/[0.04] text-stone-300 hover:border-white/20 hover:bg-white/[0.08]'
                                         }`}
                                     >
-                                        <span className="text-sm font-bold sm:text-base">{grams >= 1000 ? `${grams / 1000} kg` : `${grams}g`}</span>
-                                        <span className={`text-[10px] ${active ? 'text-amber-300 font-medium' : 'text-stone-400'}`}>
+                                        <span className="text-base font-bold sm:text-lg tracking-tight">
+                                            {grams >= 1000 ? `${grams / 1000} kg` : `${grams}g`}
+                                        </span>
+                                        <span className={`text-[10px] mt-0.5 ${active ? 'text-amber-300 font-medium' : 'text-stone-400'}`}>
                                             {grams >= 1000 ? '1.000 Gram' : `${grams} Gram`}
                                         </span>
                                     </button>
@@ -201,7 +204,7 @@ export default function GoldBullionCalculator() {
 
                     {/* Custom input */}
                     <div>
-                        <label className="mb-2 block text-xs font-semibold tracking-wider text-stone-300 uppercase">
+                        <label className="mb-2 block text-xs font-bold tracking-wider text-stone-300 uppercase">
                             {t('pages.b2c.calculator.custom_weight') || 'Atau Masukkan Gram Kustom:'}
                         </label>
                         <div className="relative">
@@ -212,56 +215,74 @@ export default function GoldBullionCalculator() {
                                 placeholder="Contoh: 15"
                                 value={customGrams}
                                 onChange={handleCustomChange}
-                                className="h-11 sm:h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 pr-16 text-sm font-medium text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
+                                className="h-12 w-full rounded-2xl border border-white/15 bg-white/[0.05] px-4 pr-16 text-sm font-medium text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
                             />
-                            <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-semibold text-amber-400 uppercase">
+                            <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs font-bold text-amber-400 uppercase">
                                 {t('pages.b2c.calculator.gram_unit') || 'Gram'}
                             </div>
                         </div>
                     </div>
 
-                    {/* Purity Guarantee Badge */}
-                    <div className="flex items-center gap-3 rounded-xl sm:rounded-2xl border border-emerald-500/20 bg-emerald-950/20 p-3.5 text-xs text-emerald-300">
-                        <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400" />
+                    {/* Official Certification Seal */}
+                    <div className="flex items-center gap-3 rounded-2xl border border-amber-500/20 bg-stone-900/60 p-3.5 text-xs text-stone-300">
+                        <ShieldCheck className="h-5 w-5 shrink-0 text-amber-400" />
                         <div>
-                            <p className="font-semibold text-emerald-200">
-                                {t('pages.b2c.calculator.purity_label') || 'Standar Kemurnian'}
+                            <p className="font-bold text-white">
+                                {t('pages.b2c.calculator.purity_label') || 'Standar Kemurnian Resmi'}
                             </p>
-                            <p className="text-[11px] text-emerald-300/80">
+                            <p className="text-[11px] text-stone-400">
                                 {t('pages.b2c.calculator.purity_value') || '99.99% Emas Murni (24 Karat) Bersertifikat Resmi'}
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Right: Total & CTA */}
-                <div className="flex flex-col justify-between rounded-xl sm:rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 sm:p-6 backdrop-blur-md lg:col-span-5">
+                {/* Right Column: Receipt-style Investment Summary */}
+                <div className="flex flex-col justify-between rounded-2xl border border-white/15 bg-stone-900/90 p-6 shadow-xl backdrop-blur-md lg:col-span-5">
                     <div>
-                        <div className="flex items-center justify-between">
-                            <span className="text-xs font-semibold tracking-wider text-stone-400 uppercase">
+                        {/* Summary Header */}
+                        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span className="text-[11px] font-bold tracking-wider text-stone-400 uppercase">
                                 {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total Pembelian'}
                             </span>
-                            <span className="rounded-full bg-amber-400/20 px-2.5 py-0.5 text-[10px] font-bold text-amber-300">
+                            <span className="rounded-full bg-amber-400/20 px-3 py-0.5 text-xs font-bold text-amber-300">
                                 {activeGrams} Gram
                             </span>
                         </div>
 
-                        <div className="mt-3">
-                            <p className="font-mono text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-amber-300">
-                                {formatIdrAmount(estimatedTotal)}
+                        {/* Price Hero Display with prominent Rp */}
+                        <div className="my-5">
+                            <p className="font-mono text-3xl sm:text-4xl font-extrabold tracking-tight text-amber-400">
+                                {formatIdr(estimatedTotal)}
                             </p>
-                            <p className="mt-1 text-[11px] text-stone-400">
-                                ≈ {activeGrams} g × {formatIdrAmount(basePricePerGram)} / gram
+                            <p className="mt-1 text-xs text-stone-400">
+                                {activeGrams} Gram × {formatIdr(basePricePerGram)} / gram
                             </p>
                         </div>
 
-                        <div className="mt-5 border-t border-white/10 pt-3.5">
-                            <p className="text-[10px] leading-relaxed text-stone-400">
-                                {t('pages.b2c.calculator.pricing_note') || '* Harga bersifat indikatif mengikuti update pasar live. Kuotasi final dikunci saat verifikasi administrasi.'}
-                            </p>
+                        {/* Itemized Breakdown List */}
+                        <div className="space-y-2.5 rounded-xl bg-white/[0.03] p-3.5 text-xs border border-white/5">
+                            <div className="flex justify-between text-stone-400">
+                                <span>{t('pages.b2c.calculator.breakdown_rate') || 'Harga Acuan Hari Ini'}</span>
+                                <span className="font-mono font-medium text-white">{formatIdr(basePricePerGram)}/g</span>
+                            </div>
+                            <div className="flex justify-between text-stone-400">
+                                <span>{t('pages.b2c.calculator.breakdown_purity') || 'Standar Kemurnian'}</span>
+                                <span className="font-medium text-amber-300">24K (99.99% Fine Gold)</span>
+                            </div>
+                            <div className="flex justify-between text-stone-400">
+                                <span>{t('pages.b2c.calculator.breakdown_cert') || 'Sertifikasi & Segel'}</span>
+                                <span className="font-medium text-emerald-400">{t('pages.b2c.calculator.breakdown_cert_val') || 'Termasuk (Official Assay)'}</span>
+                            </div>
                         </div>
+
+                        {/* Note */}
+                        <p className="mt-4 text-[10px] leading-relaxed text-stone-400">
+                            {t('pages.b2c.calculator.pricing_note') || '* Harga bersifat indikatif mengikuti update pasar live. Kuotasi final dikunci saat verifikasi administrasi resmi.'}
+                        </p>
                     </div>
 
+                    {/* Primary CTA Button */}
                     <div className="mt-6">
                         <button
                             type="button"
@@ -269,7 +290,7 @@ export default function GoldBullionCalculator() {
                                 setRfqStatus('idle');
                                 setIsRfqModalOpen(true);
                             }}
-                            className="group flex h-11 sm:h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 px-6 font-bold text-stone-950 shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                            className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 px-6 font-bold text-stone-950 shadow-lg transition-all active:scale-[0.98] cursor-pointer"
                         >
                             <span>{t('pages.b2c.calculator.cta_rfq') || 'Minta Penawaran Resmi (RFQ)'}</span>
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -288,7 +309,7 @@ export default function GoldBullionCalculator() {
                     role="dialog"
                     aria-modal="true"
                 >
-                    <div className="relative my-auto w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 text-white shadow-2xl sm:p-8 ring-1 ring-white/10">
+                    <div className="relative my-auto w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-[#0f172a] p-6 sm:p-8 text-white shadow-2xl ring-1 ring-white/10">
                         {/* Close button */}
                         <button
                             type="button"
@@ -306,7 +327,7 @@ export default function GoldBullionCalculator() {
                                 <h4 className="text-xl font-bold text-white">
                                     {t('pages.b2c.calculator.success_title') || 'Permintaan Kuotasi Terkirim!'}
                                 </h4>
-                                <p className="mt-2 text-xs sm:text-sm text-stone-300">
+                                <p className="mt-2 text-xs sm:text-sm text-stone-300 leading-relaxed">
                                     {t('pages.b2c.calculator.success_desc') || 'Terima kasih. Tim penjualan Kristalin Ekalestari akan segera mengirimkan konfirmasi kuotasi resmi ke email Anda.'}
                                 </p>
                                 <button
@@ -329,9 +350,14 @@ export default function GoldBullionCalculator() {
                                 </div>
 
                                 {/* Order Summary Pill */}
-                                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-200">
-                                    <span className="font-bold">{t('pages.b2c.calculator.selected_summary') || 'Ringkasan Pilihan:'}</span>{' '}
-                                    {activeGrams} Gram Emas 24K (Estimasi: {formatIdrAmount(estimatedTotal)})
+                                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-xs text-amber-200">
+                                    <div className="flex justify-between items-center">
+                                        <span className="font-bold">{t('pages.b2c.calculator.selected_summary') || 'Ringkasan Pilihan:'}</span>
+                                        <span className="font-bold text-amber-400">{activeGrams} Gram Emas 24K</span>
+                                    </div>
+                                    <p className="mt-1 font-mono text-sm font-bold text-white">
+                                        Estimasi: {formatIdr(estimatedTotal)}
+                                    </p>
                                 </div>
 
                                 <div>
@@ -397,7 +423,7 @@ export default function GoldBullionCalculator() {
                                 <button
                                     type="submit"
                                     disabled={rfqStatus === 'submitting'}
-                                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 font-bold text-stone-950 hover:from-amber-400 hover:to-yellow-400 disabled:opacity-50 transition-all cursor-pointer"
+                                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 font-bold text-stone-950 hover:from-amber-400 hover:to-yellow-400 disabled:opacity-50 transition-all cursor-pointer shadow-md"
                                 >
                                     <Send className="h-4 w-4" />
                                     <span>
