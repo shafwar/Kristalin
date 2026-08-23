@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export type KristalinTvMarket = {
     success?: boolean;
@@ -7,6 +7,7 @@ export type KristalinTvMarket = {
     sgd_idr?: number;
     updated_at?: string;
     source?: string;
+    stale?: boolean;
 };
 
 export type KristalinTvBrandRow = {
@@ -24,6 +25,7 @@ export type KristalinTvBrandPrices = {
     updated_at?: string;
     brands?: KristalinTvBrand[];
     source?: string;
+    stale?: boolean;
 };
 
 export type KristalinTvGoldState = {
@@ -32,11 +34,16 @@ export type KristalinTvGoldState = {
     loading: boolean;
     error: boolean;
     stale: boolean;
+    lastUpdatedText: string;
+    sourceName: string;
     refresh: () => void;
 };
 
 // Poll interval: refresh price every 60 seconds
 const POLL_MS = 60_000;
+
+const LS_MARKET_KEY = 'kristalin_gold_market_cache_v1';
+const LS_BRANDS_KEY = 'kristalin_gold_brands_cache_v1';
 
 async function fetchJson<T>(url: string): Promise<{ data: T; stale: boolean }> {
     const res = await fetch(url, { cache: 'no-store', headers: { Accept: 'application/json' } });
@@ -44,7 +51,7 @@ async function fetchJson<T>(url: string): Promise<{ data: T; stale: boolean }> {
         throw new Error(`HTTP ${res.status}`);
     }
     const data = (await res.json()) as T;
-    return { data, stale: res.headers.get('X-Kristalin-TV-Stale') === '1' };
+    return { data, stale: res.headers.get('X-Kristalin-TV-Stale') === '1' || (data as { stale?: boolean })?.stale === true };
 }
 
 export function getBestSell1g(brands: KristalinTvBrand[] | undefined): { brand: string; sell: number } | null {
@@ -79,10 +86,45 @@ export function formatIdrAmount(value: number, fractionDigits = 0): string {
     }).format(value);
 }
 
+function formatRelativeTime(isoString?: string): string {
+    if (!isoString) return '';
+    try {
+        const date = new Date(isoString);
+        if (isNaN(date.getTime())) return '';
+        const diffSec = Math.max(0, Math.floor((Date.now() - date.getTime()) / 1000));
+        if (diffSec < 60) return 'beberapa detik lalu';
+        const diffMin = Math.floor(diffSec / 60);
+        if (diffMin < 60) return `${diffMin} menit lalu`;
+        const diffHours = Math.floor(diffMin / 60);
+        if (diffHours < 24) return `${diffHours} jam lalu`;
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+    } catch {
+        return '';
+    }
+}
+
 export function useKristalinTvGold(enabled = true): KristalinTvGoldState {
-    const [market, setMarket] = useState<KristalinTvMarket | null>(null);
-    const [brandPrices, setBrandPrices] = useState<KristalinTvBrandPrices | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [market, setMarket] = useState<KristalinTvMarket | null>(() => {
+        if (typeof window === 'undefined') return null;
+        try {
+            const saved = localStorage.getItem(LS_MARKET_KEY);
+            return saved ? JSON.parse(saved) : null;
+        } catch {
+            return null;
+        }
+    });
+
+    const [brandPrices, setBrandPrices] = useState<KristalinTvBrandPrices | null>(() => {
+        if (typeof window === 'undefined') return null;
+        try {
+            const saved = localStorage.getItem(LS_BRANDS_KEY);
+            return saved ? JSON.parse(saved) : null;
+        } catch {
+            return null;
+        }
+    });
+
+    const [loading, setLoading] = useState(!market);
     const [error, setError] = useState(false);
     const [stale, setStale] = useState(false);
     const mountedRef = useRef(true);
@@ -90,9 +132,6 @@ export function useKristalinTvGold(enabled = true): KristalinTvGoldState {
     const load = useCallback(async () => {
         if (!enabled) return;
         try {
-            // Fetch both endpoints in parallel from the Laravel backend proxy.
-            // The proxy first tries Kristalin TV, then falls back to goldprice.org API,
-            // and finally to stale cache — so this is always real-time when possible.
             const [marketRes, brandsRes] = await Promise.all([
                 fetchJson<KristalinTvMarket>('/api/kristalin-tv/gold'),
                 fetchJson<KristalinTvBrandPrices>('/api/kristalin-tv/gold-prices'),
@@ -103,13 +142,28 @@ export function useKristalinTvGold(enabled = true): KristalinTvGoldState {
             setBrandPrices(brandsRes.data);
             setStale(marketRes.stale || brandsRes.stale);
             setError(false);
+
+            if (typeof window !== 'undefined') {
+                try {
+                    localStorage.setItem(LS_MARKET_KEY, JSON.stringify(marketRes.data));
+                    localStorage.setItem(LS_BRANDS_KEY, JSON.stringify(brandsRes.data));
+                } catch {
+                    // Ignore quota errors
+                }
+            }
         } catch {
             if (!mountedRef.current) return;
-            setError(true);
+            // If we already have cached data in state, keep showing it as stale rather than throwing an error state
+            if (market || brandPrices) {
+                setStale(true);
+                setError(false);
+            } else {
+                setError(true);
+            }
         } finally {
             if (mountedRef.current) setLoading(false);
         }
-    }, [enabled]);
+    }, [enabled, market, brandPrices]);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -125,5 +179,23 @@ export function useKristalinTvGold(enabled = true): KristalinTvGoldState {
         };
     }, [enabled, load]);
 
-    return { market, brandPrices, loading, error, stale, refresh: load };
+    const sourceName = useMemo(() => {
+        return market?.source || brandPrices?.source || 'Kristalin TV (Live Reference)';
+    }, [market, brandPrices]);
+
+    const lastUpdatedText = useMemo(() => {
+        const timeStr = market?.updated_at || brandPrices?.updated_at;
+        return formatRelativeTime(timeStr);
+    }, [market, brandPrices]);
+
+    return { 
+        market, 
+        brandPrices, 
+        loading: loading && !market, 
+        error: error && !market, 
+        stale: stale || (market?.stale === true), 
+        lastUpdatedText,
+        sourceName,
+        refresh: load 
+    };
 }
