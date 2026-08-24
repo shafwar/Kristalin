@@ -248,10 +248,10 @@ return [
         ],
 
         'b2c_teaser' => [
-            'badge' => 'B2C GOLD PROGRAM · 24K SIMULATOR',
-            'title' => 'Consumer Gold Purchase Program & 24K Calculator',
-            'body' => 'Review official program terms, transaction flow, and physical delivery schedules — complete with real-time 99.99% gold bullion estimates at live market rates.',
-            'cta' => 'Open Calculator & B2C Program',
+            'badge' => 'B2C · 24K GOLD SIMULATOR',
+            'title' => 'B2C Gold Program & 24K Calculator',
+            'body' => 'Official purchase program terms, delivery timeline, and live 24K gold bullion price simulation.',
+            'cta' => 'View Program & Calculator',
         ],
 
         // Sections
