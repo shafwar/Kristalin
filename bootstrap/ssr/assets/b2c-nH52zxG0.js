@@ -331,12 +331,12 @@ function GoldBullionCalculator() {
   return /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsxs("div", { className: "relative overflow-hidden rounded-3xl border border-stone-200/90 bg-gradient-to-b from-white via-white to-stone-50/70 p-5 sm:p-8 lg:p-10 shadow-2xl shadow-stone-200/60 ring-1 ring-stone-900/5", children: [
     /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl", "aria-hidden": "true" }),
     /* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl", "aria-hidden": "true" }),
-    /* @__PURE__ */ jsxs("div", { className: "relative z-10 mb-6 sm:mb-8 lg:mb-10 text-center sm:text-left", children: [
+    /* @__PURE__ */ jsxs("div", { className: "block lg:hidden relative z-10 mb-6 text-center sm:text-left", children: [
       /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs", children: [
         /* @__PURE__ */ jsx(Sparkles, { className: "h-3.5 w-3.5 text-amber-600 shrink-0" }),
         /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DIRECT REFINERY SUPPLY · KISARA GOLD 24K" })
       ] }),
-      /* @__PURE__ */ jsx("h2", { className: "mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
+      /* @__PURE__ */ jsx("h2", { className: "mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
       /* @__PURE__ */ jsx("p", { className: "mt-2 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari." })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "block lg:hidden relative z-10 space-y-5 mb-2", children: [
@@ -489,6 +489,14 @@ function GoldBullionCalculator() {
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "hidden lg:grid lg:grid-cols-12 lg:gap-8 items-stretch relative z-10", children: [
       /* @__PURE__ */ jsxs("div", { className: "lg:col-span-7 flex flex-col justify-between space-y-6", children: [
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs", children: [
+            /* @__PURE__ */ jsx(Sparkles, { className: "h-3.5 w-3.5 text-amber-600 shrink-0" }),
+            /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DIRECT REFINERY SUPPLY · KISARA GOLD 24K" })
+          ] }),
+          /* @__PURE__ */ jsx("h2", { className: "mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-1.5 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari." })
+        ] }),
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsxs("div", { className: "mb-3.5 flex items-center justify-between", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [

@@ -98,14 +98,14 @@ export default function GoldBullionCalculator() {
                 <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" aria-hidden="true" />
                 <div className="pointer-events-none absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl" aria-hidden="true" />
 
-                {/* Header Area */}
-                <div className="relative z-10 mb-6 sm:mb-8 lg:mb-10 text-center sm:text-left">
+                {/* Mobile-Only Header Area */}
+                <div className="block lg:hidden relative z-10 mb-6 text-center sm:text-left">
                     <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
                         <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
                         <span>{t('pages.b2c.calculator.refinery_badge') || 'DIRECT REFINERY SUPPLY · KISARA GOLD 24K'}</span>
                     </div>
                     
-                    <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight">
+                    <h2 className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 leading-tight">
                         {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K'}
                     </h2>
                     
@@ -284,8 +284,24 @@ export default function GoldBullionCalculator() {
                 {/* ========================================================================= */}
                 <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8 items-stretch relative z-10">
                     
-                    {/* Left Column: Preset Weights + Custom Box + System Note (Balanced Height) */}
+                    {/* Left Column: Header Block + Preset Weights + Custom Box + System Note */}
                     <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                        
+                        {/* 0. Desktop Header Block: Badge, Title & Subtitle (Aligned with Right Card) */}
+                        <div>
+                            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
+                                <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                                <span>{t('pages.b2c.calculator.refinery_badge') || 'DIRECT REFINERY SUPPLY · KISARA GOLD 24K'}</span>
+                            </div>
+                            
+                            <h2 className="mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight">
+                                {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K'}
+                            </h2>
+                            
+                            <p className="mt-1.5 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed">
+                                {t('pages.b2c.calculator.subtitle') || 'Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari.'}
+                            </p>
+                        </div>
                         
                         {/* 1. Weight Preset Selector */}
                         <div>
