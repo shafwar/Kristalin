@@ -582,15 +582,15 @@ function GoldBullionCalculator() {
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ jsx("div", { className: "lg:col-span-5 flex flex-col", children: /* @__PURE__ */ jsxs("div", { className: "h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-7 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20", children: [
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between border-b border-stone-200/80 pb-4", children: [
+      /* @__PURE__ */ jsx("div", { className: "lg:col-span-5 flex flex-col", children: /* @__PURE__ */ jsxs("div", { className: "h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-8 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20", children: [
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col", children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between border-b border-stone-200/90 pb-5", children: [
             /* @__PURE__ */ jsxs("div", { children: [
               /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
                 /* @__PURE__ */ jsx("span", { className: `h-2.5 w-2.5 rounded-full ${stale ? "bg-amber-400" : "animate-pulse bg-emerald-500"}` }),
                 /* @__PURE__ */ jsx("span", { className: "text-[11px] font-bold text-stone-600 uppercase tracking-wider", children: t("pages.b2c.calculator.live_price_per_gram") || "Harga Acuan Pasar Hari Ini" })
               ] }),
-              /* @__PURE__ */ jsxs("p", { className: "mt-1 font-sans text-xl font-black text-stone-900", children: [
+              /* @__PURE__ */ jsxs("p", { className: "mt-1.5 font-sans text-2xl font-black text-stone-950", children: [
                 formatIdr(basePricePerGram),
                 " ",
                 /* @__PURE__ */ jsxs("span", { className: "text-xs font-semibold text-stone-500", children: [
@@ -605,23 +605,23 @@ function GoldBullionCalculator() {
                 type: "button",
                 onClick: refresh,
                 disabled: loading,
-                className: "flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs",
+                className: "flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs",
                 title: t("pages.b2c.calculator.refresh_label") || "Perbarui harga pasar live",
                 "aria-label": t("pages.b2c.calculator.refresh_label") || "Perbarui harga pasar live",
                 children: /* @__PURE__ */ jsx(RefreshCw, { className: `h-4 w-4 ${loading ? "animate-spin" : ""}` })
               }
             )
           ] }),
-          /* @__PURE__ */ jsxs("div", { className: "my-5", children: [
+          /* @__PURE__ */ jsxs("div", { className: "my-6", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
               /* @__PURE__ */ jsx("span", { className: "text-xs font-bold tracking-wider text-stone-500 uppercase", children: t("pages.b2c.calculator.estimated_total") || "Estimasi Total Pembelian" }),
               /* @__PURE__ */ jsx("span", { className: "rounded-full bg-amber-400/25 border border-amber-400/60 px-3 py-0.5 text-xs font-black text-amber-950", children: formattedWeightLabel })
             ] }),
             /* @__PURE__ */ jsxs("div", { className: "mt-3 flex items-baseline gap-1.5 flex-nowrap overflow-hidden", children: [
-              /* @__PURE__ */ jsx("span", { className: "shrink-0 text-2xl font-black tracking-tight text-amber-700", children: "Rp" }),
-              /* @__PURE__ */ jsx("span", { className: "font-sans text-3xl sm:text-4xl font-black tracking-tight text-stone-950 truncate", children: formatIdrAmount(estimatedTotal) })
+              /* @__PURE__ */ jsx("span", { className: "shrink-0 text-2xl lg:text-3xl font-black tracking-tight text-amber-700", children: "Rp" }),
+              /* @__PURE__ */ jsx("span", { className: "font-sans text-3xl sm:text-4xl lg:text-[2.65rem] font-black tracking-tight text-stone-950 truncate", children: formatIdrAmount(estimatedTotal) })
             ] }),
-            /* @__PURE__ */ jsxs("p", { className: "mt-1 text-xs text-stone-500 font-medium", children: [
+            /* @__PURE__ */ jsxs("p", { className: "mt-1.5 text-xs text-stone-500 font-medium", children: [
               formatIdrAmount(activeGrams),
               " ",
               unitGram,
@@ -631,7 +631,7 @@ function GoldBullionCalculator() {
               unitGram
             ] })
           ] }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-2.5 rounded-2xl bg-stone-50/90 p-4 text-xs border border-stone-200/80", children: [
+          /* @__PURE__ */ jsxs("div", { className: "space-y-3 rounded-2xl bg-stone-50/95 p-4.5 text-xs border border-stone-200/90 shadow-2xs", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { className: "font-medium", children: t("pages.b2c.calculator.breakdown_rate") || "Harga Acuan" }),
               /* @__PURE__ */ jsxs("span", { className: "font-bold text-stone-900", children: [
@@ -642,21 +642,21 @@ function GoldBullionCalculator() {
             ] }),
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { className: "font-medium", children: t("pages.b2c.calculator.breakdown_purity") || "Standar Kemurnian" }),
-              /* @__PURE__ */ jsx("span", { className: "font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-2 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_purity_val") || "24K (99.99% Fine Gold)" })
+              /* @__PURE__ */ jsx("span", { className: "font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-2.5 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_purity_val") || "24K (99.99% Emas Murni)" })
             ] }),
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { className: "font-medium", children: t("pages.b2c.calculator.breakdown_cert") || "Sertifikasi & Segel" }),
-              /* @__PURE__ */ jsx("span", { className: "font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/60 px-2 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_cert_val") || "Termasuk (Official Assay)" })
+              /* @__PURE__ */ jsx("span", { className: "font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/60 px-2.5 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_cert_val") || "Termasuk (Official Assay)" })
             ] }),
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center text-stone-600", children: [
               /* @__PURE__ */ jsx("span", { className: "font-medium", children: t("pages.b2c.calculator.breakdown_shipping") || "Pengiriman Fisik" }),
-              /* @__PURE__ */ jsx("span", { className: "font-bold text-blue-800 bg-blue-100/90 border border-blue-300/60 px-2 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_shipping_val") || "Asuransi Penuh 100%" })
+              /* @__PURE__ */ jsx("span", { className: "font-bold text-blue-800 bg-blue-100/90 border border-blue-300/60 px-2.5 py-0.5 rounded-md", children: t("pages.b2c.calculator.breakdown_shipping_val") || "Asuransi Penuh 100%" })
             ] })
           ] }),
-          /* @__PURE__ */ jsxs("div", { className: "mt-3.5 space-y-1", children: [
+          /* @__PURE__ */ jsxs("div", { className: "mt-4 space-y-1.5", children: [
             /* @__PURE__ */ jsx("p", { className: "text-[10px] leading-relaxed text-stone-500", children: t("pages.b2c.calculator.pricing_note") || "* Nilai bersifat indikatif mengikuti harga acuan pasar harian. Kuotasi final dikunci saat transaksi." }),
-            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1 text-[10px] text-stone-500", children: [
-              /* @__PURE__ */ jsxs("span", { children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1.5 text-[10px] text-stone-500", children: [
+              /* @__PURE__ */ jsxs("span", { className: "font-semibold", children: [
                 t("pages.b2c.calculator.source_label") || "Sumber",
                 ":"
               ] }),
@@ -680,12 +680,12 @@ function GoldBullionCalculator() {
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-6 pt-2", children: [
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 pt-3 border-t border-stone-200/60", children: [
           /* @__PURE__ */ jsxs(
             Link,
             {
               href: contactUrl,
-              className: "group flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm text-center",
+              className: "group flex h-14 sm:h-15 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center",
               children: [
                 /* @__PURE__ */ jsxs("span", { children: [
                   t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi",
@@ -693,7 +693,7 @@ function GoldBullionCalculator() {
                   formattedWeightLabel,
                   ")"
                 ] }),
-                /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4 transition-transform group-hover:translate-x-1 shrink-0" })
+                /* @__PURE__ */ jsx(ChevronRight, { className: "h-4.5 w-4.5 transition-transform group-hover:translate-x-1 shrink-0" })
               ]
             }
           ),
@@ -898,7 +898,7 @@ function B2cPage() {
           /* @__PURE__ */ jsx("p", { "data-b2c-reveal": true, className: clsx(reveal, "text-center text-sm text-stone-500"), children: t("pages.b2c.footnote") })
         ] })
       ] }),
-      /* @__PURE__ */ jsx("section", { id: "b2c-calculator", className: "relative z-10 bg-gradient-to-b from-stone-100/90 via-stone-50 to-stone-100/90 border-y border-stone-200/90 px-4 py-14 md:py-20 lg:py-24", children: /* @__PURE__ */ jsx("div", { "data-b2c-reveal": true, className: "mx-auto max-w-6xl", children: /* @__PURE__ */ jsx(GoldBullionCalculator, {}) }) }),
+      /* @__PURE__ */ jsx("section", { id: "b2c-calculator", className: "relative z-10 scroll-mt-20 md:scroll-mt-28 bg-gradient-to-b from-stone-100/90 via-stone-50 to-stone-100/90 border-y border-stone-200/90 px-4 py-14 md:py-20 lg:py-24", children: /* @__PURE__ */ jsx("div", { "data-b2c-reveal": true, className: "mx-auto max-w-6xl", children: /* @__PURE__ */ jsx(GoldBullionCalculator, {}) }) }),
       /* @__PURE__ */ jsx(
         B2cFaqSection,
         {

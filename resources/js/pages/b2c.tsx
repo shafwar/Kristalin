@@ -231,7 +231,7 @@ export default function B2cPage() {
             </section>
 
             {/* Interactive Live Gold Bullion Calculator & Trust Guarantee Section */}
-            <section id="b2c-calculator" className="relative z-10 bg-gradient-to-b from-stone-100/90 via-stone-50 to-stone-100/90 border-y border-stone-200/90 px-4 py-14 md:py-20 lg:py-24">
+            <section id="b2c-calculator" className="relative z-10 scroll-mt-20 md:scroll-mt-28 bg-gradient-to-b from-stone-100/90 via-stone-50 to-stone-100/90 border-y border-stone-200/90 px-4 py-14 md:py-20 lg:py-24">
                 <div data-b2c-reveal className="mx-auto max-w-6xl">
                     <GoldBullionCalculator />
                 </div>

@@ -623,7 +623,7 @@ const Welcome = () => {
           /* @__PURE__ */ jsx("div", { className: "flex w-full md:hidden shrink-0 justify-center border-b border-stone-100/90 bg-gradient-to-b from-stone-50/60 to-white px-4 py-4 sm:px-6 sm:py-5 lg:py-7", children: /* @__PURE__ */ jsxs(
             Link,
             {
-              href: "/b2c",
+              href: "/b2c#b2c-calculator",
               className: "group relative flex w-full max-w-4xl flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200/75 bg-gradient-to-br from-white via-white to-amber-50/[0.35] px-5 py-5 no-underline shadow-[0_1px_0_rgba(15,23,42,0.04),0_14px_44px_-18px_rgba(15,23,42,0.13)] ring-1 ring-stone-900/[0.03] transition-all duration-300 max-sm:from-white max-sm:via-white max-sm:to-white max-sm:border-stone-200/65 max-sm:shadow-sm max-sm:hover:border-stone-300/80 max-sm:hover:shadow-md hover:border-amber-200/70 hover:shadow-[0_1px_0_rgba(15,23,42,0.04),0_20px_50px_-18px_rgba(15,23,42,0.16)] sm:gap-5 sm:px-7 sm:py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6",
               "aria-labelledby": "welcome-b2c-teaser-heading",
               children: [

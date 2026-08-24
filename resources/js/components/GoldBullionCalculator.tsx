@@ -413,13 +413,15 @@ export default function GoldBullionCalculator() {
 
                     </div>
 
-                    {/* Right Column: Desktop Live Pricing Terminal (Aligned & Balanced) */}
+                    {/* Right Column: Desktop Live Pricing Terminal (Aligned & Symmetrical) */}
                     <div className="lg:col-span-5 flex flex-col">
-                        <div className="h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-7 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20">
+                        <div className="h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-8 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20">
                             
-                            {/* Live Reference Rate Header */}
-                            <div>
-                                <div className="flex items-center justify-between border-b border-stone-200/80 pb-4">
+                            {/* Top Section: Live Rate + Estimated Total + Spec Table + Source */}
+                            <div className="flex flex-col">
+                                
+                                {/* Live Reference Rate Header */}
+                                <div className="flex items-center justify-between border-b border-stone-200/90 pb-5">
                                     <div>
                                         <div className="flex items-center gap-2">
                                             <span className={`h-2.5 w-2.5 rounded-full ${stale ? 'bg-amber-400' : 'animate-pulse bg-emerald-500'}`} />
@@ -427,7 +429,7 @@ export default function GoldBullionCalculator() {
                                                 {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan Pasar Hari Ini'}
                                             </span>
                                         </div>
-                                        <p className="mt-1 font-sans text-xl font-black text-stone-900">
+                                        <p className="mt-1.5 font-sans text-2xl font-black text-stone-950">
                                             {formatIdr(basePricePerGram)} <span className="text-xs font-semibold text-stone-500">/ {unitGram}</span>
                                         </p>
                                     </div>
@@ -435,7 +437,7 @@ export default function GoldBullionCalculator() {
                                         type="button"
                                         onClick={refresh}
                                         disabled={loading}
-                                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs"
+                                        className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs"
                                         title={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
                                         aria-label={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
                                     >
@@ -444,7 +446,7 @@ export default function GoldBullionCalculator() {
                                 </div>
 
                                 {/* Estimated Total Display */}
-                                <div className="my-5">
+                                <div className="my-6">
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-bold tracking-wider text-stone-500 uppercase">
                                             {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total Pembelian'}
@@ -455,51 +457,51 @@ export default function GoldBullionCalculator() {
                                     </div>
 
                                     <div className="mt-3 flex items-baseline gap-1.5 flex-nowrap overflow-hidden">
-                                        <span className="shrink-0 text-2xl font-black tracking-tight text-amber-700">
+                                        <span className="shrink-0 text-2xl lg:text-3xl font-black tracking-tight text-amber-700">
                                             Rp
                                         </span>
-                                        <span className="font-sans text-3xl sm:text-4xl font-black tracking-tight text-stone-950 truncate">
+                                        <span className="font-sans text-3xl sm:text-4xl lg:text-[2.65rem] font-black tracking-tight text-stone-950 truncate">
                                             {formatIdrAmount(estimatedTotal)}
                                         </span>
                                     </div>
-                                    <p className="mt-1 text-xs text-stone-500 font-medium">
+                                    <p className="mt-1.5 text-xs text-stone-500 font-medium">
                                         {formatIdrAmount(activeGrams)} {unitGram} × {formatIdr(basePricePerGram)} / {unitGram}
                                     </p>
                                 </div>
 
                                 {/* Itemized Specification Table */}
-                                <div className="space-y-2.5 rounded-2xl bg-stone-50/90 p-4 text-xs border border-stone-200/80">
+                                <div className="space-y-3 rounded-2xl bg-stone-50/95 p-4.5 text-xs border border-stone-200/90 shadow-2xs">
                                     <div className="flex justify-between items-center text-stone-600">
                                         <span className="font-medium">{t('pages.b2c.calculator.breakdown_rate') || 'Harga Acuan'}</span>
                                         <span className="font-bold text-stone-900">{formatIdr(basePricePerGram)}/{unitGram}</span>
                                     </div>
                                     <div className="flex justify-between items-center text-stone-600">
                                         <span className="font-medium">{t('pages.b2c.calculator.breakdown_purity') || 'Standar Kemurnian'}</span>
-                                        <span className="font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-2 py-0.5 rounded-md">
-                                            {t('pages.b2c.calculator.breakdown_purity_val') || '24K (99.99% Fine Gold)'}
+                                        <span className="font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-2.5 py-0.5 rounded-md">
+                                            {t('pages.b2c.calculator.breakdown_purity_val') || '24K (99.99% Emas Murni)'}
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center text-stone-600">
                                         <span className="font-medium">{t('pages.b2c.calculator.breakdown_cert') || 'Sertifikasi & Segel'}</span>
-                                        <span className="font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/60 px-2 py-0.5 rounded-md">
+                                        <span className="font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/60 px-2.5 py-0.5 rounded-md">
                                             {t('pages.b2c.calculator.breakdown_cert_val') || 'Termasuk (Official Assay)'}
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center text-stone-600">
                                         <span className="font-medium">{t('pages.b2c.calculator.breakdown_shipping') || 'Pengiriman Fisik'}</span>
-                                        <span className="font-bold text-blue-800 bg-blue-100/90 border border-blue-300/60 px-2 py-0.5 rounded-md">
+                                        <span className="font-bold text-blue-800 bg-blue-100/90 border border-blue-300/60 px-2.5 py-0.5 rounded-md">
                                             {t('pages.b2c.calculator.breakdown_shipping_val') || 'Asuransi Penuh 100%'}
                                         </span>
                                     </div>
                                 </div>
 
                                 {/* Indicative Note & Source */}
-                                <div className="mt-3.5 space-y-1">
+                                <div className="mt-4 space-y-1.5">
                                     <p className="text-[10px] leading-relaxed text-stone-500">
                                         {t('pages.b2c.calculator.pricing_note') || '* Nilai bersifat indikatif mengikuti harga acuan pasar harian. Kuotasi final dikunci saat transaksi.'}
                                     </p>
-                                    <div className="flex items-center gap-1 text-[10px] text-stone-500">
-                                        <span>{t('pages.b2c.calculator.source_label') || 'Sumber'}:</span>
+                                    <div className="flex items-center gap-1.5 text-[10px] text-stone-500">
+                                        <span className="font-semibold">{t('pages.b2c.calculator.source_label') || 'Sumber'}:</span>
                                         <a 
                                             href="https://livegold-kristalintv.com/" 
                                             target="_blank" 
@@ -514,14 +516,14 @@ export default function GoldBullionCalculator() {
                                 </div>
                             </div>
 
-                            {/* Primary CTA & Footnote at bottom */}
-                            <div className="mt-6 pt-2">
+                            {/* Bottom Section: Primary CTA & Verification Footnote */}
+                            <div className="mt-6 pt-3 border-t border-stone-200/60">
                                 <Link
                                     href={contactUrl}
-                                    className="group flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm text-center"
+                                    className="group flex h-14 sm:h-15 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center"
                                 >
                                     <span>{t('pages.b2c.calculator.cta_btn') || 'Minta Penawaran Resmi'} ({formattedWeightLabel})</span>
-                                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1 shrink-0" />
+                                    <ChevronRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1 shrink-0" />
                                 </Link>
 
                                 <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-stone-500">
