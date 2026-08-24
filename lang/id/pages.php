@@ -301,6 +301,10 @@ return [
                     'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
                     'excerpt' => 'Pengawasan gabungan TKA di Nabire bantu jaga situasi kondusif di area tambang Lagari, Makimi. Aktivitas pada 8 April 2026; dokumen TKA di lapangan lengkap dan valid.',
                 ],
+                'jul26-1' => [
+                    'title' => 'Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga',
+                    'excerpt' => 'Investasi PT Kristalin Ekalestari memberikan manfaat nyata bagi pembangunan dan ekonomi masyarakat Desa Nifasi, didukung penuh oleh para tokoh adat.',
+                ],
                 'dec-3' => [
                     'title' => 'Komitmen pada Praktik Berkelanjutan dan Manfaat Sosial Ekonomi',
                     'excerpt' => 'PT Kristalin Ekalestari meraih pengakuan atas dedikasinya terhadap program Corporate Social Responsibility (CSR) dan praktik lingkungan yang inovatif.',
@@ -1500,6 +1504,10 @@ return [
             'apr26_1' => [
                 'title' => 'Pengawasan Tenaga Kerja Asing di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
                 'excerpt' => 'Pengawasan bersama TKA di Nabire membantu menjaga situasi kondusif di area tambang Lagari, Makimi. Kegiatan pada 8 April 2026; dokumen TKA di lokasi lengkap dan sah.',
+            ],
+            'jul26_1' => [
+                'title' => 'Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga',
+                'excerpt' => 'Investasi PT Kristalin Ekalestari memberikan manfaat nyata bagi pembangunan dan ekonomi masyarakat Desa Nifasi, didukung penuh oleh para tokoh adat.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

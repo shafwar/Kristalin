@@ -299,6 +299,10 @@ return [
                     'title' => 'Foreign Worker Supervision in Nabire Strengthens Compliance and Maintains a Conducive Situation',
                     'excerpt' => 'Joint TKA supervision in Nabire helps maintain a conducive situation in the Lagari mining area, Makimi. Activity on 8 April 2026; on-site TKA documents complete and valid.',
                 ],
+                'jul26-1' => [
+                    'title' => 'PT Kristalin Ekalestari Investment Brings Positive Impact on Community Development and Local Economy',
+                    'excerpt' => 'PT Kristalin Ekalestari\'s investment provides tangible benefits for development and the local economy in Nifasi Village, fully supported by tribal leaders.',
+                ],
                 'dec-3' => [
                     'title' => 'From Field to Market: Rice Milling Facility in Boyolali Strengthens Farmer Prosperity',
                     'excerpt' => 'The rice milling facility in Cepokosawit Village, Boyolali, officially commenced operations, bringing new hope to farmers by enhancing the value of their harvests and ensuring market access.',
@@ -1567,6 +1571,10 @@ return [
             'apr26_1' => [
                 'title' => 'Foreign Worker Supervision in Nabire Strengthens Compliance and Maintains a Conducive Situation',
                 'excerpt' => 'Joint TKA supervision in Nabire helps maintain a conducive situation in the Lagari mining area, Makimi. Activity on 8 April 2026; on-site TKA documents complete and valid.',
+            ],
+            'jul26_1' => [
+                'title' => 'PT Kristalin Ekalestari Investment Brings Positive Impact on Community Development and Local Economy',
+                'excerpt' => 'PT Kristalin Ekalestari\'s investment provides tangible benefits for development and the local economy in Nifasi Village, fully supported by tribal leaders.',
             ],
        ],
         'read_more' => 'Read More',

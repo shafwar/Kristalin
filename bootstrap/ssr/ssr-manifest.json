@@ -7,10 +7,10 @@
     "/build/assets/b2c-BiZvJ6Ax.js"
   ],
   "resources/js/components/CsrSustainabilityPillars.tsx": [
-    "/build/assets/csr-9iUhUpMk.js"
+    "/build/assets/csr-BJRxL_dg.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
-    "/build/assets/welcome-Cj6dQKpv.js"
+    "/build/assets/welcome-Drn3H6jT.js"
   ],
   "resources/js/components/EsmdVerificationModal.tsx": [
     "/build/assets/EsmdVerificationModal-MI5BXMrn.js"
@@ -34,7 +34,7 @@
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
   ],
   "resources/js/components/KristalinTvGoldCard.tsx": [
-    "/build/assets/welcome-Cj6dQKpv.js"
+    "/build/assets/welcome-Drn3H6jT.js"
   ],
   "resources/js/components/MilestoneTimelinePanel.tsx": [
     "/build/assets/milestones-B4xsCUTZ.js"
@@ -46,7 +46,7 @@
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/components/SplashScreen.tsx": [
-    "/build/assets/welcome-Cj6dQKpv.js"
+    "/build/assets/welcome-Drn3H6jT.js"
   ],
   "resources/js/components/WelcomeGridPicture.tsx": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -160,7 +160,7 @@
     "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
-    "/build/assets/welcome-Cj6dQKpv.js"
+    "/build/assets/welcome-Drn3H6jT.js"
   ],
   "resources/js/hooks/useKristalinTvGold.ts": [
     "/build/assets/useKristalinTvGold-BJzELv25.js"
@@ -214,7 +214,7 @@
     "/build/assets/CompanyProfileReport-5Nos2W75.js"
   ],
   "resources/js/pages/NewsDetail.tsx": [
-    "/build/assets/NewsDetail-DiihEiMI.js"
+    "/build/assets/NewsDetail-BWc6cDcK.js"
   ],
   "resources/js/pages/PrivacyPolicy.tsx": [
     "/build/assets/PrivacyPolicy-CTz8Fdce.js"
@@ -268,7 +268,7 @@
     "/build/assets/core-values-B_LFxZdY.js"
   ],
   "resources/js/pages/csr.tsx": [
-    "/build/assets/csr-9iUhUpMk.js"
+    "/build/assets/csr-BJRxL_dg.js"
   ],
   "resources/js/pages/dashboard.tsx": [
     "/build/assets/dashboard-DpKIv9nU.js"
@@ -289,7 +289,7 @@
     "/build/assets/milestones-B4xsCUTZ.js"
   ],
   "resources/js/pages/news.tsx": [
-    "/build/assets/news-B2sCocDH.js"
+    "/build/assets/news-yMtqZERK.js"
   ],
   "resources/js/pages/not-found.tsx": [
     "/build/assets/not-found-Crx35Prz.js"
@@ -310,7 +310,7 @@
     "/build/assets/vision-mission-BjdP612E.js"
   ],
   "resources/js/pages/welcome.tsx": [
-    "/build/assets/welcome-Cj6dQKpv.js"
+    "/build/assets/welcome-Drn3H6jT.js"
   ],
   "resources/js/pages/welcomeBelowFoldCss.ts": [
     "/build/assets/WelcomeBelowFold-D4jfmaUR.js"

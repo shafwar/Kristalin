@@ -298,6 +298,10 @@ return [
                     'title' => '纳比雷外籍劳工监管强化合规并维持局势稳定',
                     'excerpt' => '纳比雷联合外籍劳工监管有助于维持Lagari矿区、Makimi区局势稳定。活动于2026年4月8日；现场外籍劳工证件齐全有效。',
                 ],
+                'jul26-1' => [
+                    'title' => 'PT Kristalin Ekalestari 的投资对当地建设与村民经济带来积极影响',
+                    'excerpt' => 'PT Kristalin Ekalestari 多年来的投资为尼法西村带来了切实的建设与经济红利，并得到当地部族首领的全力支持。',
+                ],
                 'dec-3' => [
                     'title' => '从田间到市场：Boyolali碾米厂加强农民繁荣',
                     'excerpt' => 'Boyolali Cepokosawit村的碾米厂正式投入运营，通过提高收获价值并确保市场准入为农民带来新希望。',
@@ -1576,6 +1580,10 @@ return [
             'apr26_1' => [
                 'title' => '纳比雷外籍劳工监管强化合规并维持局势稳定',
                 'excerpt' => '纳比雷联合外籍劳工监管有助于维持Lagari矿区、Makimi区局势稳定。活动于2026年4月8日；现场外籍劳工证件齐全有效。',
+            ],
+            'jul26_1' => [
+                'title' => 'PT Kristalin Ekalestari 的投资对当地建设与村民经济带来积极影响',
+                'excerpt' => 'PT Kristalin Ekalestari 多年来的投资为尼法西村带来了切实的建设与经济红利，并得到当地部族首领的全力支持。',
             ],
         ],
         'read_more' => '阅读更多',

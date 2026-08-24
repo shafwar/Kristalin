@@ -221,6 +221,14 @@ function VideoSection({ t, videoHeroBg }) {
 function CSRNewsSection({ t }) {
   const csrNews = [
     {
+      id: "jul26-1",
+      title: t("pages.csr.news.jul26_1.title"),
+      excerpt: t("pages.csr.news.jul26_1.excerpt"),
+      date: "8 Jul 2026",
+      image: "/july26-arasvara-nifasi.webp",
+      category: t("pages.csr.categories.community_support")
+    },
+    {
       id: "feb26-1",
       title: t("pages.csr.news.feb26_1.title"),
       excerpt: t("pages.csr.news.feb26_1.excerpt"),

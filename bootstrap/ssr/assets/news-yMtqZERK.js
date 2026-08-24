@@ -16,6 +16,7 @@ const getTranslatedMonth = (monthId, t) => {
     "april-2026": "april",
     "juni-2025": "juni",
     "juli-2025": "juli",
+    "juli-2026": "juli",
     "agustus-2025": "agustus",
     "september-2025": "september",
     "oktober-2025": "oktober",
@@ -76,7 +77,8 @@ const getTranslatedArticleTitle = (articleId, t) => {
     "feb26-3": "feb26_kamtibmas",
     "feb26-4": "feb26_condolence_visit",
     "mar26-1": "mar26_kisa24",
-    "apr26-1": "apr26_tka_nabire"
+    "apr26-1": "apr26_tka_nabire",
+    "jul26-1": "jul26_arasvara_investment"
   };
   const translationKey = articleKeyMap[articleId];
   if (translationKey) {
@@ -127,7 +129,8 @@ const getTranslatedArticleExcerpt = (articleId, t) => {
     "feb26-3": "feb26_kamtibmas",
     "feb26-4": "feb26_condolence_visit",
     "mar26-1": "mar26_kisa24",
-    "apr26-1": "apr26_tka_nabire"
+    "apr26-1": "apr26_tka_nabire",
+    "jul26-1": "jul26_arasvara_investment"
   };
   const translationKey = articleKeyMap[articleId];
   if (translationKey) {
@@ -2141,6 +2144,34 @@ const newsData = normalizeNewsImages([
               source: "MetroTV News",
               sourceUrl: "https://www.metrotvnews.com/read/kM6C4Y92-pengawasan-tka-di-nabire-perkuat-kepatuhan-dan-jaga-situasi-kondusif",
               image: "/kristalin-news-april-1.jpeg",
+              content: ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    month: "JULI",
+    monthId: "juli-2026",
+    categories: [
+      {
+        id: "investasi-ekalestari-ekonomi-warga-nifasi",
+        title: "Dampak Investasi PT Kristalin Ekalestari bagi Masyarakat Nifasi",
+        newsItems: [
+          {
+            id: "jul26-1",
+            title: "Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga",
+            date: "8 Jul 2026",
+            url: "/news/jul26-1",
+            excerpt: "Investasi PT Kristalin Ekalestari memberikan manfaat nyata bagi pembangunan dan penggerak ekonomi masyarakat Desa Nifasi, didukung penuh oleh para tokoh adat setempat.",
+            fullContent: {
+              title: "Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga",
+              date: "8 Juli 2026",
+              author: "Tim Redaksi",
+              source: "ARASVARA.ID",
+              sourceUrl: "https://arasvara.id/news/2026/07/08/investasi-pt-kristalin-ekalestari-berdampak-baik-pembangunan-dan-ekonomi-warga",
+              image: "/july26-arasvara-nifasi.webp",
               content: ""
             }
           }
@@ -7261,7 +7292,8 @@ const KristalinNewsPage = () => {
       "pemberitahuan-bantuan-dana-hak-garap",
       "mobil-operasional-dewan-adat-meyah",
       "insiden-pos-kamtibmas-nabire",
-      "pengawasan-tka-nabire"
+      "pengawasan-tka-nabire",
+      "investasi-ekalestari-ekonomi-warga-nifasi"
     ],
     [t("pages.news.categories.house_construction")]: [
       "pembangunan-rumah-nifasi-feb",

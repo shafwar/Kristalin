@@ -426,6 +426,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.apr26_tka_nabire.date'),
                     content: getApr26TkaNabireTranslatedContent(),
                 };
+            case 'jul26-1':
+                return {
+                    title: t('news_detail.jul26_arasvara_investment.title'),
+                    excerpt: t('news_detail.jul26_arasvara_investment.excerpt'),
+                    categoryTitle: t('news_archive.categories.investasi-ekalestari-ekonomi-warga-nifasi'),
+                    author: t('news_detail.jul26_arasvara_investment.author'),
+                    source: t('news_detail.jul26_arasvara_investment.source'),
+                    date: t('news_detail.jul26_arasvara_investment.date'),
+                    content: getJul26ArasvaraInvestmentTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7918,6 +7928,76 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                 <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <h3 class="mb-3 text-lg font-bold text-gray-900">${t('news_detail.apr26_tka_nabire.results_title')}</h3>
                     <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.apr26_tka_nabire.results_content')}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    const getJul26ArasvaraInvestmentTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <!-- Opening Highlight -->
+                <div class="rounded-2xl border border-amber-200/90 bg-gradient-to-br from-amber-500/15 via-amber-50 to-white p-6 shadow-sm">
+                    <h3 class="mb-3 text-lg font-bold text-amber-950">${t('news_detail.jul26_arasvara_investment.opening_title')}</h3>
+                    <p class="text-stone-800 leading-relaxed text-base">${t('news_detail.jul26_arasvara_investment.opening_content')}</p>
+                </div>
+
+                <!-- Section 1: Kepala Suku Dominggus Monei -->
+                <div class="space-y-4">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.jul26_arasvara_investment.dominggus_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.jul26_arasvara_investment.dominggus_content')}</p>
+                </div>
+
+                <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-800 italic font-medium">"${t('news_detail.jul26_arasvara_investment.dominggus_quote')}"</blockquote>
+                    <cite class="mt-3 block text-sm font-semibold text-amber-900">- ${t('news_detail.jul26_arasvara_investment.dominggus_citation')}</cite>
+                </div>
+
+                <!-- Section 2: Tokoh Perempuan Adat Yantris Monei -->
+                <div class="space-y-4">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.jul26_arasvara_investment.yantris_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.jul26_arasvara_investment.yantris_content')}</p>
+                </div>
+
+                <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-800 italic font-medium">"${t('news_detail.jul26_arasvara_investment.yantris_quote')}"</blockquote>
+                    <cite class="mt-3 block text-sm font-semibold text-amber-900">- ${t('news_detail.jul26_arasvara_investment.yantris_citation')}</cite>
+                </div>
+
+                <!-- Section 3: Perwakilan Suku Dani Romi Wonda -->
+                <div class="space-y-4">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.jul26_arasvara_investment.romi_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.jul26_arasvara_investment.romi_content')}</p>
+                </div>
+
+                <div class="rounded-xl border border-stone-300 bg-stone-50 p-6">
+                    <blockquote class="border-l-4 border-stone-600 pl-4 text-lg text-gray-800 italic font-medium">"${t('news_detail.jul26_arasvara_investment.romi_quote')}"</blockquote>
+                    <cite class="mt-3 block text-sm font-semibold text-stone-700">- ${t('news_detail.jul26_arasvara_investment.romi_citation')}</cite>
+                </div>
+
+                <!-- Section 4: Ecosystem Backlink Card (C1 Requirement) -->
+                <div class="mt-8 rounded-2xl border border-emerald-300/80 bg-gradient-to-br from-emerald-50/80 via-white to-amber-50/50 p-6 sm:p-7 shadow-sm">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+                        <div class="space-y-1.5 min-w-0">
+                            <div class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 border border-emerald-300/80 px-3 py-0.5 text-xs font-bold text-emerald-950 shadow-2xs">
+                                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span>${t('news_detail.jul26_arasvara_investment.ecosystem_badge')}</span>
+                            </div>
+                            <h4 class="text-lg font-black text-stone-900">${t('news_detail.jul26_arasvara_investment.ecosystem_title')}</h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-xl">${t('news_detail.jul26_arasvara_investment.ecosystem_desc')}</p>
+                        </div>
+                        <a
+                            href="https://arasvara.id/news/2026/07/08/investasi-pt-kristalin-ekalestari-berdampak-baik-pembangunan-dan-ekonomi-warga"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold text-xs sm:text-sm px-5 py-3 shadow-md shadow-emerald-600/20 transition-all duration-200 shrink-0 hover:scale-[1.02] active:scale-95"
+                        >
+                            <span>${t('news_detail.jul26_arasvara_investment.ecosystem_cta')}</span>
+                            <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         `;

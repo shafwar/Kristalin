@@ -172,12 +172,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-Bby-DlOl.css",
+    "file": "assets/app-BbrgMsXW.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-l7WpF2En.js",
+    "file": "assets/app-B6dvhRHV.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -222,7 +222,7 @@
       "resources/js/pages/welcome.tsx"
     ],
     "css": [
-      "assets/app-Bby-DlOl.css"
+      "assets/app-BbrgMsXW.css"
     ]
   },
   "resources/js/pages/CompanyProfileReport.tsx": {
@@ -238,7 +238,7 @@
     ]
   },
   "resources/js/pages/NewsDetail.tsx": {
-    "file": "assets/NewsDetail-Bkh8HVGL.js",
+    "file": "assets/NewsDetail-BHl6YzRC.js",
     "name": "NewsDetail",
     "src": "resources/js/pages/NewsDetail.tsx",
     "isDynamicEntry": true,
@@ -512,7 +512,7 @@
     ]
   },
   "resources/js/pages/csr.tsx": {
-    "file": "assets/csr-BLSRd0Hn.js",
+    "file": "assets/csr-CnzjoVgt.js",
     "name": "csr",
     "src": "resources/js/pages/csr.tsx",
     "isDynamicEntry": true,
@@ -619,7 +619,7 @@
     ]
   },
   "resources/js/pages/news.tsx": {
-    "file": "assets/news-LiMx7Pd9.js",
+    "file": "assets/news-ndhmfYzD.js",
     "name": "news",
     "src": "resources/js/pages/news.tsx",
     "isEntry": true,
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-Cz6prv2T.js",
+    "file": "assets/appearance-Bq10BuPM.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -674,7 +674,7 @@
       "_assets-ZAgbBrkL.js"
     ],
     "css": [
-      "assets/app-Bby-DlOl.css"
+      "assets/app-BbrgMsXW.css"
     ]
   },
   "resources/js/pages/settings/password.tsx": {
@@ -723,7 +723,7 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-CNgGBnZR.js",
+    "file": "assets/welcome-DxcKhnaK.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,
