@@ -3,7 +3,7 @@ import { formatIdr, formatIdrAmount, getBestSell1g, useKristalinTvGold } from '@
 import { Link } from '@inertiajs/react';
 import { 
     Award, Check, ChevronRight, Coins, ExternalLink, 
-    Info, Plus, RefreshCw, RotateCcw, ShieldCheck, Sparkles, Truck, X 
+    RefreshCw, RotateCcw, ShieldCheck, Sparkles, Tv, Truck, X 
 } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 
@@ -25,7 +25,7 @@ const PRESETS: PresetItem[] = [
 
 export default function GoldBullionCalculator() {
     const { t } = useTranslation();
-    const { market, brandPrices, loading, stale, lastUpdatedText, sourceName, refresh } = useKristalinTvGold(true);
+    const { market, brandPrices, loading, stale, lastUpdatedText, refresh } = useKristalinTvGold(true);
 
     const [selectedGrams, setSelectedGrams] = useState<number>(5);
     const [customGrams, setCustomGrams] = useState<string>('');
@@ -69,13 +69,6 @@ export default function GoldBullionCalculator() {
         setCustomGrams(e.target.value);
     };
 
-    const handleQuickAdd = (increment: number) => {
-        setIsCustom(true);
-        const current = isCustom && customGrams ? (parseFloat(customGrams) || 0) : activeGrams;
-        const next = Math.max(1, current + increment);
-        setCustomGrams(next.toString());
-    };
-
     const handleResetToPreset = () => {
         setIsCustom(false);
         setSelectedGrams(5);
@@ -98,7 +91,7 @@ export default function GoldBullionCalculator() {
                 <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" aria-hidden="true" />
                 <div className="pointer-events-none absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl" aria-hidden="true" />
 
-                {/* Mobile-Only Header Area */}
+                {/* Mobile Header Area */}
                 <div className="block lg:hidden relative z-10 mb-6 text-center sm:text-left">
                     <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
                         <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
@@ -115,43 +108,65 @@ export default function GoldBullionCalculator() {
                 </div>
 
                 {/* ========================================================================= */}
-                {/* MOBILE VIEW (< lg): Ultra-Clean, Non-Cluttered, Linear Flow              */}
-                {/* [1. Top Output Terminal] -> [2. Presets] -> [3. Custom Input] -> [4. CTA] */}
+                {/* MOBILE VIEW (< lg): Clean, Focused, Non-Redundant Flow                    */}
                 {/* ========================================================================= */}
                 <div className="block lg:hidden relative z-10 space-y-5 mb-2">
                     
-                    {/* 1. Mobile Live Output Card (No premature CTA button) */}
+                    {/* 1. Mobile Kristalin TV Live Price Feed & Estimated Output */}
                     <div className="rounded-2xl border border-amber-300/90 bg-gradient-to-br from-amber-500/15 via-white to-amber-500/5 p-4 sm:p-5 shadow-lg shadow-amber-500/10 ring-1 ring-amber-400/30">
-                        {/* Live Rate Header */}
-                        <div className="flex items-center justify-between border-b border-amber-200/70 pb-2.5">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                                <span className={`h-2 w-2 shrink-0 rounded-full ${stale ? 'bg-amber-400' : 'animate-pulse bg-emerald-500'}`} />
-                                <span className="text-[11px] font-bold text-stone-700 truncate">
-                                    Kristalin TV Live
-                                </span>
-                                {lastUpdatedText && (
-                                    <span className="shrink-0 rounded bg-amber-100 border border-amber-300/50 px-1.5 py-0.2 text-[9px] font-bold text-amber-900">
-                                        {lastUpdatedText}
-                                    </span>
-                                )}
+                        
+                        {/* Prominent Kristalin TV Source Header */}
+                        <div className="flex items-center justify-between border-b border-amber-200/70 pb-3">
+                            <div className="flex items-center gap-2 min-w-0">
+                                <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${stale ? 'bg-amber-400' : 'animate-pulse bg-emerald-500'}`} />
+                                <div className="flex flex-col">
+                                    <div className="flex items-center gap-1.5">
+                                        <Tv className="h-3.5 w-3.5 text-amber-700 shrink-0" />
+                                        <span className="text-xs font-black text-stone-900 tracking-wide uppercase">
+                                            Kristalin TV Live
+                                        </span>
+                                    </div>
+                                    {lastUpdatedText && (
+                                        <span className="text-[10px] text-stone-500 font-medium">
+                                            {lastUpdatedText}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                            <p className="font-sans text-xs sm:text-sm font-black text-stone-900 shrink-0">
-                                {formatIdr(basePricePerGram)}<span className="text-[10px] font-normal text-stone-500">/{unitGram}</span>
-                            </p>
+
+                            <a 
+                                href="https://livegold-kristalintv.com/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 rounded-xl bg-amber-500 hover:bg-amber-600 px-3 py-1.5 text-xs font-black text-stone-950 shadow-xs transition-all active:scale-95 shrink-0"
+                            >
+                                <span>Buka TV</span>
+                                <ExternalLink className="h-3 w-3" />
+                            </a>
                         </div>
 
-                        {/* Prominent Calculation Output */}
-                        <div className="pt-3 pb-1">
+                        {/* Live Price Per Gram Display */}
+                        <div className="mt-3 flex items-center justify-between">
+                            <span className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+                                {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan Pasar'}
+                            </span>
+                            <span className="font-sans text-sm sm:text-base font-black text-stone-900">
+                                {formatIdr(basePricePerGram)} <span className="text-[10px] font-semibold text-stone-500">/{unitGram}</span>
+                            </span>
+                        </div>
+
+                        {/* Prominent Total Calculation Output */}
+                        <div className="mt-4 pt-3 border-t border-amber-200/50">
                             <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-bold tracking-wider text-stone-500 uppercase">
+                                <span className="text-[11px] font-bold tracking-wider text-stone-600 uppercase">
                                     {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total'}
                                 </span>
-                                <span className="rounded-full bg-amber-400/25 border border-amber-400/60 px-2.5 py-0.5 text-xs font-black text-amber-950">
+                                <span className="rounded-full bg-amber-400/30 border border-amber-500/50 px-2.5 py-0.5 text-xs font-black text-amber-950">
                                     {formattedWeightLabel}
                                 </span>
                             </div>
 
-                            <div className="mt-1.5 flex items-baseline gap-1">
+                            <div className="mt-2 flex items-baseline gap-1">
                                 <span className="text-xl font-black text-amber-700">Rp</span>
                                 <span className="font-sans text-3xl font-black tracking-tight text-stone-950">
                                     {formatIdrAmount(estimatedTotal)}
@@ -205,7 +220,7 @@ export default function GoldBullionCalculator() {
                         </div>
                     </div>
 
-                    {/* 3. Mobile Custom Weight Form (Below Output & Presets) */}
+                    {/* 3. Mobile Custom Weight Form (Clean input, no redundant quick add chips) */}
                     <div className="rounded-2xl border border-stone-200/90 bg-white p-3.5 shadow-2xs">
                         <div className="mb-2 flex items-center justify-between">
                             <label className="text-xs font-bold tracking-wider text-stone-700 uppercase">
@@ -215,7 +230,7 @@ export default function GoldBullionCalculator() {
                                 <button
                                     type="button"
                                     onClick={handleResetToPreset}
-                                    className="inline-flex items-center gap-1 rounded-full bg-amber-100 border border-amber-300/80 px-2 py-0.2 text-[10px] font-bold text-amber-900 hover:bg-amber-200 cursor-pointer"
+                                    className="inline-flex items-center gap-1 rounded-full bg-amber-100 border border-amber-300/80 px-2 py-0.5 text-[10px] font-bold text-amber-900 hover:bg-amber-200 cursor-pointer"
                                 >
                                     <X className="h-2.5 w-2.5" />
                                     <span>{t('pages.b2c.calculator.reset') || 'Reset'}</span>
@@ -239,31 +254,10 @@ export default function GoldBullionCalculator() {
                                 </span>
                             </div>
                         </div>
-
-                        {/* Quick Chips */}
-                        <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
-                            {[1, 5, 10, 25, 100].map((inc) => (
-                                <button
-                                    key={inc}
-                                    type="button"
-                                    onClick={() => handleQuickAdd(inc)}
-                                    className="inline-flex items-center gap-0.5 rounded-lg border border-stone-200 bg-stone-50 hover:bg-amber-50 hover:border-amber-300 px-2.5 py-1 text-xs font-bold text-stone-700 transition-all cursor-pointer shadow-2xs active:scale-95"
-                                >
-                                    <Plus className="h-2.5 w-2.5 text-amber-600" />
-                                    <span>+{inc}g</span>
-                                </button>
-                            ))}
-                        </div>
                     </div>
 
                     {/* 4. Mobile Bottom Action & Assurance */}
                     <div className="space-y-3 pt-1">
-                        <div className="flex items-center justify-between text-[10px] text-stone-500 px-1 font-medium">
-                            <span>✓ {t('pages.b2c.calculator.trust_purity_title') || 'Kemurnian 99.99%'}</span>
-                            <span>✓ {t('pages.b2c.calculator.trust_assay_title') || 'Kemasan Segel Assay'}</span>
-                            <span>✓ {t('pages.b2c.calculator.trust_insurance_title') || 'Asuransi 100%'}</span>
-                        </div>
-
                         <Link
                             href={contactUrl}
                             className="group flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-4 font-black text-stone-950 shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98] text-sm text-center"
@@ -272,7 +266,7 @@ export default function GoldBullionCalculator() {
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1 shrink-0" />
                         </Link>
 
-                        <div className="flex items-center justify-center gap-1 text-[10px] text-stone-400">
+                        <div className="flex items-center justify-center gap-1.5 text-[11px] text-stone-500">
                             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
                             <span>{t('pages.b2c.calculator.verified_note') || 'Kuotasi resmi diverifikasi PT Kristalin Ekalestari'}</span>
                         </div>
@@ -280,14 +274,14 @@ export default function GoldBullionCalculator() {
                 </div>
 
                 {/* ========================================================================= */}
-                {/* DESKTOP VIEW (>= lg): Perfectly Balanced, Large & Symmetrical 2-Column   */}
+                {/* DESKTOP VIEW (>= lg): Ultra-Clean, Non-Redundant, Prominent Kristalin TV */}
                 {/* ========================================================================= */}
                 <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8 items-stretch relative z-10">
                     
-                    {/* Left Column: Header Block + Preset Weights + Custom Box + System Note */}
+                    {/* Left Column: Header + Presets + Clean Custom Input (Zero Redundancy) */}
                     <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
                         
-                        {/* 0. Desktop Header Block: Badge, Title & Subtitle (Aligned with Right Card) */}
+                        {/* Header Block: Badge, Title & Subtitle */}
                         <div>
                             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
                                 <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
@@ -362,7 +356,7 @@ export default function GoldBullionCalculator() {
                             </div>
                         </div>
 
-                        {/* 2. Custom Weight Input Box */}
+                        {/* 2. Clean Custom Weight Input Box (No redundant quick add chips) */}
                         <div className="rounded-2xl border border-stone-200/90 bg-gradient-to-b from-stone-50/70 to-white p-5 shadow-sm">
                             <div className="mb-2.5 flex items-center justify-between">
                                 <label className="block text-xs font-bold tracking-wider text-stone-800 uppercase">
@@ -390,7 +384,7 @@ export default function GoldBullionCalculator() {
                                     placeholder={t('pages.b2c.calculator.custom_placeholder') || 'Ketik gram, contoh: 24'}
                                     value={customGrams}
                                     onChange={handleCustomChange}
-                                    className="h-16 w-full rounded-2xl border-2 border-stone-300/90 bg-white px-5 pr-28 text-2xl sm:text-3xl font-black font-sans text-stone-900 placeholder:text-stone-400 placeholder:text-base focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/20 shadow-inner transition-all"
+                                    className="h-15 w-full rounded-2xl border-2 border-stone-300/90 bg-white px-5 pr-28 text-2xl font-black font-sans text-stone-900 placeholder:text-stone-400 placeholder:text-base focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/20 shadow-inner transition-all"
                                 />
                                 <div className="absolute right-3 flex items-center pointer-events-none">
                                     <span className="rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 border border-amber-500/40 px-3.5 py-1.5 text-xs font-black tracking-wider text-stone-950 uppercase shadow-2xs">
@@ -398,71 +392,71 @@ export default function GoldBullionCalculator() {
                                     </span>
                                 </div>
                             </div>
-
-                            {/* Quick Increment Chips */}
-                            <div className="mt-3.5 flex flex-wrap items-center gap-2">
-                                <span className="text-xs font-semibold text-stone-500">
-                                    {t('pages.b2c.calculator.quick_add') || 'Tambah Cepat:'}
-                                </span>
-                                {[1, 5, 10, 25, 100].map((inc) => (
-                                    <button
-                                        key={inc}
-                                        type="button"
-                                        onClick={() => handleQuickAdd(inc)}
-                                        className="inline-flex items-center gap-1 rounded-xl border border-stone-200 bg-white hover:bg-amber-50 hover:border-amber-300 px-3 py-1.5 text-xs font-bold text-stone-700 transition-all cursor-pointer shadow-2xs active:scale-95"
-                                    >
-                                        <Plus className="h-3 w-3 text-amber-600" />
-                                        <span>+{inc}g</span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* 3. System Estimation Note */}
-                        <div className="flex items-start gap-3 rounded-2xl bg-amber-50/80 border border-amber-200/90 p-4 text-xs text-amber-950 shadow-2xs mt-auto">
-                            <Info className="h-4 w-4 shrink-0 text-amber-700 mt-0.5" />
-                            <p className="leading-relaxed text-xs text-amber-950">
-                                <strong className="font-bold">{t('pages.b2c.calculator.estimation_note_title') || 'Catatan Estimasi Sistem:'}</strong>{' '}
-                                {t('pages.b2c.calculator.estimation_note') || 'Dihitung berdasarkan harga acuan pasar spot live. Harga final dan nomor seri segel dikonfirmasi saat penerbitan invoice resmi.'}
-                            </p>
                         </div>
 
                     </div>
 
-                    {/* Right Column: Desktop Live Pricing Terminal (Aligned & Symmetrical) */}
+                    {/* Right Column: Desktop Live Pricing Terminal with Prominent Kristalin TV Showcase */}
                     <div className="lg:col-span-5 flex flex-col">
-                        <div className="h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-8 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20">
+                        <div className="h-full flex flex-col justify-between rounded-3xl border border-amber-300/90 bg-gradient-to-b from-amber-500/10 via-white to-white p-7 sm:p-8 shadow-xl shadow-amber-500/10 ring-1 ring-amber-400/20">
                             
-                            {/* Top Section: Live Rate + Estimated Total + Spec Table + Source */}
-                            <div className="flex flex-col">
+                            {/* Top Section: Highlighted Kristalin TV Live Price Feed Banner */}
+                            <div className="flex flex-col space-y-6">
                                 
-                                {/* Live Reference Rate Header */}
-                                <div className="flex items-center justify-between border-b border-stone-200/90 pb-5">
-                                    <div>
+                                {/* Hero Kristalin TV Feed Card */}
+                                <div className="rounded-2xl border border-amber-300/90 bg-gradient-to-br from-amber-500/20 via-amber-50/70 to-yellow-500/10 p-5 shadow-sm">
+                                    <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
                                             <span className={`h-2.5 w-2.5 rounded-full ${stale ? 'bg-amber-400' : 'animate-pulse bg-emerald-500'}`} />
-                                            <span className="text-[11px] font-bold text-stone-600 uppercase tracking-wider">
-                                                {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan Pasar Hari Ini'}
-                                            </span>
+                                            <div className="flex items-center gap-1.5">
+                                                <Tv className="h-4 w-4 text-amber-800" />
+                                                <span className="text-xs font-black tracking-wider text-stone-900 uppercase">
+                                                    Kristalin TV Live Feed
+                                                </span>
+                                            </div>
                                         </div>
-                                        <p className="mt-1.5 font-sans text-2xl font-black text-stone-950">
-                                            {formatIdr(basePricePerGram)} <span className="text-xs font-semibold text-stone-500">/ {unitGram}</span>
-                                        </p>
+
+                                        <button
+                                            type="button"
+                                            onClick={refresh}
+                                            disabled={loading}
+                                            className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/90 border border-amber-300/80 text-stone-700 transition-all hover:bg-amber-100 hover:text-amber-900 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs"
+                                            title={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
+                                            aria-label={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
+                                        >
+                                            <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
+                                        </button>
                                     </div>
-                                    <button
-                                        type="button"
-                                        onClick={refresh}
-                                        disabled={loading}
-                                        className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs"
-                                        title={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
-                                        aria-label={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
-                                    >
-                                        <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-                                    </button>
+
+                                    {/* Market Rate Highlight */}
+                                    <div className="mt-3 flex items-baseline justify-between border-t border-amber-200/70 pt-3">
+                                        <div className="text-[11px] font-bold text-stone-600 uppercase tracking-wide">
+                                            {t('pages.b2c.calculator.live_price_per_gram') || 'Harga Acuan Pasar'}
+                                        </div>
+                                        <div className="font-sans text-xl font-black text-stone-950">
+                                            {formatIdr(basePricePerGram)} <span className="text-xs font-semibold text-stone-500">/ {unitGram}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Highlighted Direct Link to Kristalin TV */}
+                                    <div className="mt-3 pt-2.5 border-t border-amber-200/60 flex items-center justify-between">
+                                        <span className="text-[10px] text-stone-500 font-medium">
+                                            {lastUpdatedText || 'Data diperbarui real-time'}
+                                        </span>
+                                        <a 
+                                            href="https://livegold-kristalintv.com/" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 text-xs font-black text-amber-900 hover:text-amber-950 underline decoration-amber-400 decoration-2 underline-offset-2 transition-colors"
+                                        >
+                                            <span>Buka Live Kristalin TV</span>
+                                            <ExternalLink className="h-3.5 w-3.5" />
+                                        </a>
+                                    </div>
                                 </div>
 
-                                {/* Estimated Total Display */}
-                                <div className="my-6">
+                                {/* Estimated Total Display (Spacious, Clean) */}
+                                <div className="rounded-2xl border border-stone-200/80 bg-stone-50/60 p-5 shadow-2xs">
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-bold tracking-wider text-stone-500 uppercase">
                                             {t('pages.b2c.calculator.estimated_total') || 'Estimasi Total Pembelian'}
@@ -485,55 +479,10 @@ export default function GoldBullionCalculator() {
                                     </p>
                                 </div>
 
-                                {/* Itemized Specification Table */}
-                                <div className="space-y-3 rounded-2xl bg-stone-50/95 p-4.5 text-xs border border-stone-200/90 shadow-2xs">
-                                    <div className="flex justify-between items-center text-stone-600">
-                                        <span className="font-medium">{t('pages.b2c.calculator.breakdown_rate') || 'Harga Acuan'}</span>
-                                        <span className="font-bold text-stone-900">{formatIdr(basePricePerGram)}/{unitGram}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center text-stone-600">
-                                        <span className="font-medium">{t('pages.b2c.calculator.breakdown_purity') || 'Standar Kemurnian'}</span>
-                                        <span className="font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-2.5 py-0.5 rounded-md">
-                                            {t('pages.b2c.calculator.breakdown_purity_val') || '24K (99.99% Emas Murni)'}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center text-stone-600">
-                                        <span className="font-medium">{t('pages.b2c.calculator.breakdown_cert') || 'Sertifikasi & Segel'}</span>
-                                        <span className="font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300/60 px-2.5 py-0.5 rounded-md">
-                                            {t('pages.b2c.calculator.breakdown_cert_val') || 'Termasuk (Official Assay)'}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center text-stone-600">
-                                        <span className="font-medium">{t('pages.b2c.calculator.breakdown_shipping') || 'Pengiriman Fisik'}</span>
-                                        <span className="font-bold text-blue-800 bg-blue-100/90 border border-blue-300/60 px-2.5 py-0.5 rounded-md">
-                                            {t('pages.b2c.calculator.breakdown_shipping_val') || 'Asuransi Penuh 100%'}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* Indicative Note & Source */}
-                                <div className="mt-4 space-y-1.5">
-                                    <p className="text-[10px] leading-relaxed text-stone-500">
-                                        {t('pages.b2c.calculator.pricing_note') || '* Nilai bersifat indikatif mengikuti harga acuan pasar harian. Kuotasi final dikunci saat transaksi.'}
-                                    </p>
-                                    <div className="flex items-center gap-1.5 text-[10px] text-stone-500">
-                                        <span className="font-semibold">{t('pages.b2c.calculator.source_label') || 'Sumber'}:</span>
-                                        <a 
-                                            href="https://livegold-kristalintv.com/" 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="font-bold text-amber-800 hover:underline inline-flex items-center gap-0.5"
-                                        >
-                                            Kristalin TV
-                                            <ExternalLink className="h-2.5 w-2.5" />
-                                        </a>
-                                        {lastUpdatedText && <span>· {lastUpdatedText}</span>}
-                                    </div>
-                                </div>
                             </div>
 
                             {/* Bottom Section: Primary CTA & Verification Footnote */}
-                            <div className="mt-6 pt-3 border-t border-stone-200/60">
+                            <div className="mt-6 pt-4 border-t border-stone-200/60">
                                 <Link
                                     href={contactUrl}
                                     className="group flex h-14 sm:h-15 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center"
