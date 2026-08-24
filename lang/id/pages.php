@@ -237,10 +237,10 @@ return [
         ],
 
         'b2c_teaser' => [
-            'badge' => 'SIMULATOR EMAS 24K',
-            'title' => 'Simulasi Pembelian Emas Batangan 24K',
-            'body' => 'Hitung estimasi nilai emas murni 99.99% langsung dengan acuan harga pasar live harian dan jaminan resmi.',
-            'cta' => 'Buka Kalkulator Emas',
+            'badge' => 'PROGRAM EMAS B2C · SIMULATOR 24K',
+            'title' => 'Program Pembelian Emas Konsumen & Kalkulator 24K',
+            'body' => 'Pelajari ketentuan program, alur transaksi, dan jadwal pengiriman fisik — lengkap dengan simulasi hitung nilai emas murni 99.99% langsung dari harga pasar live.',
+            'cta' => 'Buka Kalkulator & Program B2C',
         ],
 
         'board' => [

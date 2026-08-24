@@ -784,6 +784,27 @@ function B2cPage() {
       ctx.revert();
     };
   }, []);
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (!hash) return;
+    const targetId = hash.replace("#", "");
+    const performScroll = () => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    performScroll();
+    const t1 = setTimeout(performScroll, 80);
+    const t2 = setTimeout(performScroll, 300);
+    const t3 = setTimeout(performScroll, 700);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
   const faqItems = useMemo(
     () => [
       { id: "location", question: t("pages.b2c.faq.location.q"), answer: t("pages.b2c.faq.location.a") },
