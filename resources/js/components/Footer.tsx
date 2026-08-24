@@ -61,7 +61,7 @@ export default function Footer({ className = '', minimal = false }) {
                                 </div>
                             </Link>
                             <p className="text-stone-400 text-sm md:text-base leading-relaxed max-w-md mb-8">
-                                Trusted partner in integrated gold exploration, refining, and trading since 1989. Committed to sustainable operations and community development across Papua and Indonesia.
+                                {t('pages.footer.description') || 'Trusted partner in integrated gold exploration, refining, and trading since 1989. Committed to sustainable operations and community development across Papua and Indonesia.'}
                             </p>
                             <div className="flex gap-4">
                                 <a 

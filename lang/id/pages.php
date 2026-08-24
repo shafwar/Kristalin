@@ -2974,6 +2974,9 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
             'trust_insurance_desc' => 'Pengiriman fisik aman terproteksi.',
             'trust_buyback_title' => 'Jaminan Buyback',
             'trust_buyback_desc' => 'Jaminan likuiditas pembelian kembali.',
+            'reset' => 'Reset',
+            'source_label' => 'Sumber',
+            'refresh_label' => 'Perbarui harga pasar live',
         ],
     ],
 
@@ -3012,6 +3015,7 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
 
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. Semua hak dilindungi.',
+        'description' => 'Mitra terpercaya dalam eksplorasi, pemurnian, dan perdagangan emas terpadu sejak 1989. Berkomitmen pada operasional berkelanjutan dan pemberdayaan masyarakat di Papua dan seluruh Indonesia.',
         'privacy_policy' => 'Kebijakan Privasi',
         'terms_of_service' => 'Syarat dan Ketentuan',
         'whistleblower' => 'Whistleblower',
@@ -3136,6 +3140,10 @@ Melalui program Corporate Social Responsibility (CSR) membantu warga yang belum 
         'contact_email_label' => 'Email Institusional',
         'contact_hq_label' => 'Kantor Pusat',
         'contact_hq_val' => 'Jakarta Selatan, Indonesia',
+        'action_cta_title' => 'Siap Mengembangkan Ekosistem?',
+        'action_cta_desc' => 'Kunjungi formulir kontak resmi kami untuk mengajukan proposal atau menjadwalkan diskusi kemitraan bersama manajemen.',
+        'action_cta_btn' => 'Hubungi Tim Kemitraan',
+        'action_cta_note' => '* Kategori form otomatis diatur ke Partnership',
     ],
 
     'inquiry_form' => [

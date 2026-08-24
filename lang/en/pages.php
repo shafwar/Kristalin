@@ -1077,6 +1077,9 @@ return [
             'trust_insurance_desc' => 'Fully protected door-to-door delivery.',
             'trust_buyback_title' => 'Buyback Guarantee',
             'trust_buyback_desc' => 'Instant liquidation guarantee.',
+            'reset' => 'Reset',
+            'source_label' => 'Source',
+            'refresh_label' => 'Refresh live market rate',
         ],
     ],
 
@@ -2817,6 +2820,7 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
     // Footer
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. All rights reserved.',
+        'description' => 'Trusted partner in integrated gold exploration, refining, and trading since 1989. Committed to sustainable operations and community development across Papua and Indonesia.',
         'privacy_policy' => 'Privacy Policy',
         'terms_of_service' => 'Terms of Service',
         'whistleblower' => 'Whistleblower',
@@ -2869,6 +2873,10 @@ Through the Corporate Social Responsibility (CSR) program helping residents who 
         'contact_email_label' => 'Institutional Email',
         'contact_hq_label' => 'Headquarters',
         'contact_hq_val' => 'South Jakarta, Indonesia',
+        'action_cta_title' => 'Ready to Expand the Ecosystem?',
+        'action_cta_desc' => 'Visit our official contact form to submit proposals or schedule executive partnership discussions with our management.',
+        'action_cta_btn' => 'Contact Partnership Team',
+        'action_cta_note' => '* Form category is automatically set to Partnership',
     ],
 
     'inquiry_form' => [

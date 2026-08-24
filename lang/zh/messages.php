@@ -17,6 +17,7 @@ return [
         'line_of_business' => '业务范围',
         'line_of_business_short' => '业务',
         'b2c' => 'B2C 黄金购买',
+        'investor' => '投资者',
         'business_activities' => '商业活动',
         'business_activities_short' => '活动',
         'csr' => '企业社会责任',

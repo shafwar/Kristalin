@@ -218,7 +218,7 @@ export default function GoldBullionCalculator() {
                                     className="inline-flex items-center gap-1 rounded-full bg-amber-100 border border-amber-300/80 px-2 py-0.2 text-[10px] font-bold text-amber-900 hover:bg-amber-200 cursor-pointer"
                                 >
                                     <X className="h-2.5 w-2.5" />
-                                    <span>Reset</span>
+                                    <span>{t('pages.b2c.calculator.reset') || 'Reset'}</span>
                                 </button>
                             )}
                         </div>
@@ -259,9 +259,9 @@ export default function GoldBullionCalculator() {
                     {/* 4. Mobile Bottom Action & Assurance */}
                     <div className="space-y-3 pt-1">
                         <div className="flex items-center justify-between text-[10px] text-stone-500 px-1 font-medium">
-                            <span>✓ Kemurnian 99.99%</span>
-                            <span>✓ Kemasan Segel Assay</span>
-                            <span>✓ Asuransi 100%</span>
+                            <span>✓ {t('pages.b2c.calculator.trust_purity_title') || 'Kemurnian 99.99%'}</span>
+                            <span>✓ {t('pages.b2c.calculator.trust_assay_title') || 'Kemasan Segel Assay'}</span>
+                            <span>✓ {t('pages.b2c.calculator.trust_insurance_title') || 'Asuransi 100%'}</span>
                         </div>
 
                         <Link
@@ -274,7 +274,7 @@ export default function GoldBullionCalculator() {
 
                         <div className="flex items-center justify-center gap-1 text-[10px] text-stone-400">
                             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                            <span>Diverifikasi resmi PT Kristalin Ekalestari</span>
+                            <span>{t('pages.b2c.calculator.verified_note') || 'Kuotasi resmi diverifikasi PT Kristalin Ekalestari'}</span>
                         </div>
                     </div>
                 </div>
@@ -436,8 +436,8 @@ export default function GoldBullionCalculator() {
                                         onClick={refresh}
                                         disabled={loading}
                                         className="flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-stone-200 text-stone-700 transition-all hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 active:scale-95 disabled:opacity-50 cursor-pointer shadow-2xs"
-                                        title="Perbarui harga pasar live"
-                                        aria-label="Perbarui harga pasar live"
+                                        title={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
+                                        aria-label={t('pages.b2c.calculator.refresh_label') || 'Perbarui harga pasar live'}
                                     >
                                         <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                                     </button>
@@ -499,7 +499,7 @@ export default function GoldBullionCalculator() {
                                         {t('pages.b2c.calculator.pricing_note') || '* Nilai bersifat indikatif mengikuti harga acuan pasar harian. Kuotasi final dikunci saat transaksi.'}
                                     </p>
                                     <div className="flex items-center gap-1 text-[10px] text-stone-500">
-                                        <span>Sumber:</span>
+                                        <span>{t('pages.b2c.calculator.source_label') || 'Sumber'}:</span>
                                         <a 
                                             href="https://livegold-kristalintv.com/" 
                                             target="_blank" 

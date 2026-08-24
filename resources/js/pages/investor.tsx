@@ -369,10 +369,10 @@ export default function InvestorPage() {
                                 className="lg:col-span-5 flex flex-col justify-center rounded-2xl border border-amber-500/30 bg-gradient-to-b from-stone-950/90 to-stone-900/90 p-6 sm:p-8 text-center sm:text-left shadow-xl"
                             >
                                 <h3 className="text-xl font-bold text-white">
-                                    Siap Mengembangkan Ekosistem?
+                                    {t('pages.investor.action_cta_title') || 'Siap Mengembangkan Ekosistem?'}
                                 </h3>
                                 <p className="mt-2 text-sm text-stone-400 leading-relaxed">
-                                    Kunjungi formulir kontak resmi kami untuk mengajukan proposal atau menjadwalkan diskusi kemitraan bersama manajemen.
+                                    {t('pages.investor.action_cta_desc') || 'Kunjungi formulir kontak resmi kami untuk mengajukan proposal atau menjadwalkan diskusi kemitraan bersama manajemen.'}
                                 </p>
 
                                 <div className="mt-6">
@@ -380,13 +380,13 @@ export default function InvestorPage() {
                                         href="/contact?subject=partnership"
                                         className="group relative flex h-14 w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 px-6 font-bold text-stone-950 shadow-lg shadow-amber-500/20 transition-all duration-200 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.98]"
                                     >
-                                        <span>Hubungi Tim Kemitraan</span>
+                                        <span>{t('pages.investor.action_cta_btn') || 'Hubungi Tim Kemitraan'}</span>
                                         <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                                     </Link>
                                 </div>
 
                                 <p className="mt-3.5 text-center text-[11px] text-stone-400">
-                                    * Kategori form otomatis diatur ke <strong>Partnership</strong>
+                                    {t('pages.investor.action_cta_note') || '* Kategori form otomatis diatur ke Partnership'}
                                 </p>
                             </motion.div>
 

@@ -1090,6 +1090,9 @@ return [
             'trust_insurance_desc' => '全程投保，实物安全交付。',
             'trust_buyback_title' => '回购保障',
             'trust_buyback_desc' => '官方高流动性回购支持。',
+            'reset' => '重置',
+            'source_label' => '来源',
+            'refresh_label' => '刷新实时市场金价',
         ],
     ],
 
@@ -2818,6 +2821,7 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
 
     'footer' => [
         'copyright' => '© 2026 PT Kristalin Ekalestari. 版权所有。',
+        'description' => '自1989年以来值得信赖的综合黄金勘探、提炼与贸易合作伙伴。致力于巴布亚及全印度尼西亚的可持续运营与社区赋能发展。',
         'privacy_policy' => '隐私政策',
         'terms_of_service' => '服务条款',
         'whistleblower' => '举报人系统',
@@ -2870,6 +2874,10 @@ Yuliana 很感激，因为她确实还没有房子。"非常感谢PT Kristalin E
         'contact_email_label' => '机构邮箱',
         'contact_hq_label' => '总部',
         'contact_hq_val' => '印度尼西亚，南雅加达',
+        'action_cta_title' => '准备好拓展产业生态了吗？',
+        'action_cta_desc' => '访问我们的官方联系表单提交合作提案，或与管理层安排高管商务洽谈。',
+        'action_cta_btn' => '联系战略合作团队',
+        'action_cta_note' => '* 表单类别已自动设置为 Partnership',
     ],
 
     'inquiry_form' => [
