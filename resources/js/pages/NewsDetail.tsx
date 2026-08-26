@@ -8077,11 +8077,11 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                 </div>
 
                 <!-- Section 3: Instagram Attribution Card -->
-                <div class="mt-8 rounded-2xl border border-purple-200/80 bg-gradient-to-br from-pink-50/50 via-purple-50/30 to-white p-6 sm:p-7 shadow-sm">
+                <div class="mt-8 rounded-2xl border border-amber-200/90 bg-gradient-to-br from-amber-500/10 via-amber-50/60 to-white p-6 sm:p-7 shadow-sm">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
                         <div class="space-y-1.5 min-w-0">
-                            <div class="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-pink-100 to-purple-100 border border-purple-200 px-3 py-0.5 text-xs font-bold text-purple-950 shadow-2xs">
-                                <span class="h-2 w-2 rounded-full bg-pink-500 animate-pulse"></span>
+                            <div class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 border border-amber-300 px-3 py-0.5 text-xs font-bold text-amber-950 shadow-2xs">
+                                <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>
                                 <span>${t('news_detail.aug26_sany_dumptruck.social_badge')}</span>
                             </div>
                             <h4 class="text-lg font-black text-stone-900">${t('news_detail.aug26_sany_dumptruck.social_title')}</h4>
@@ -8091,7 +8091,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                             href="https://www.instagram.com/p/DcgDfa4k_wI/?hl=en&img_index=1"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:from-pink-700 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm px-5 py-3 shadow-md shadow-purple-600/20 transition-all duration-200 shrink-0 hover:scale-[1.02] active:scale-95"
+                            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-bold text-xs sm:text-sm px-5 py-3 shadow-md shadow-amber-500/25 transition-all duration-200 shrink-0 hover:scale-[1.02] active:scale-95"
                         >
                             <span>${t('news_detail.aug26_sany_dumptruck.social_cta')}</span>
                             <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
