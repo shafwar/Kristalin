@@ -2,7 +2,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Head, Link } from '@inertiajs/react';
-import { Building2, ChevronRight, Eye, LineChart, Mail, Sparkles, Target } from 'lucide-react';
+import { Building2, ChevronRight, Download, Eye, LineChart, Mail, Sparkles, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
@@ -106,18 +106,25 @@ export default function InvestorPage() {
                         <motion.div 
                             variants={fadeInUp}
                             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                            className="flex items-center justify-center"
+                            className="flex flex-col sm:flex-row items-center justify-center gap-4"
                         >
+                            {/* Direct PDF Brochure Download */}
+                            <a
+                                href="/download-company-profile"
+                                download="Company-Profile-PT-Kristalin-Ekalestari.pdf"
+                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 px-8 text-base font-black text-stone-950 shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-105 hover:shadow-2xl active:scale-95 cursor-pointer"
+                            >
+                                <Download className="h-5 w-5 text-stone-950 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                                <span>{t('pages.investor.download_btn') || 'Unduh Brosur PDF'}</span>
+                            </a>
+
+                            {/* Interactive Web Report View */}
                             <Link
                                 href="/company-profile-report"
-                                className="group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
+                                className="group inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border-2 border-stone-600/80 bg-stone-900/60 px-7 text-base font-semibold text-stone-200 backdrop-blur-md transition-all duration-200 hover:border-amber-400 hover:bg-stone-900/90 hover:text-white active:scale-95"
                             >
-                                <span className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0"></span>
-                                <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                                <span className="relative z-10 flex items-center gap-3">
-                                    <Eye className="h-5 w-5 text-amber-200 transition-transform duration-300 group-hover:scale-110" />
-                                    <span>{t('pages.investor.view_profile_btn') || 'Lihat & Unduh Company Profile'}</span>
-                                </span>
+                                <Eye className="h-5 w-5 text-amber-400 transition-transform duration-300 group-hover:scale-110" />
+                                <span>{t('pages.investor.preview_btn') || 'Lihat Versi Web Interaktif'}</span>
                             </Link>
                         </motion.div>
                     </motion.div>

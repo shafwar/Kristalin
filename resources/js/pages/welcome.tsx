@@ -32,6 +32,15 @@ const Welcome = () => {
     // Menggunakan translation keys untuk konsistensi bahasa
     const newsItems = [
         {
+            id: 'aug26-1',
+            date: '24 Agu 2026',
+            title: t('pages.welcome.news.items.aug26-1.title'),
+            excerpt: t('pages.welcome.news.items.aug26-1.excerpt'),
+            image: imageUrl('/aug26-sany-dumptruck-kepri.webp'),
+            url: '/news/aug26-1',
+            priority: 'high',
+        },
+        {
             id: 'jul26-1',
             date: '8 Jul 2026',
             title: t('pages.welcome.news.items.jul26-1.title'),

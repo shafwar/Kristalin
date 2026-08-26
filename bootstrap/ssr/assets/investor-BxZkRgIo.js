@@ -2,7 +2,7 @@ import { jsxs, jsx } from "react/jsx-runtime";
 import { H as Header, F as Footer } from "./Header-B2-5It5j.js";
 import { u as useTranslation } from "./useTranslation-DutJeAb2.js";
 import { Head, Link } from "@inertiajs/react";
-import { Eye, Target, Building2, LineChart, Sparkles, Mail, ChevronRight } from "lucide-react";
+import { Download, Eye, Target, Building2, LineChart, Sparkles, Mail, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import "react-dom";
@@ -103,27 +103,37 @@ function InvestorPage() {
                 children: t("pages.investor.hero_description") || "Bergabunglah bersama kami membangun ekosistem pertambangan emas terintegrasi yang berkelanjutan. Unduh dokumen profil perusahaan dan skema kemitraan kami."
               }
             ),
-            /* @__PURE__ */ jsx(
+            /* @__PURE__ */ jsxs(
               motion.div,
               {
                 variants: fadeInUp,
                 transition: { duration: 0.8, delay: 0.3, ease: "easeOut" },
-                className: "flex items-center justify-center",
-                children: /* @__PURE__ */ jsxs(
-                  Link,
-                  {
-                    href: "/company-profile-report",
-                    className: "group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-amber-500 px-8 text-base font-semibold text-white shadow-xl transition-all duration-200 hover:scale-105 active:scale-95",
-                    children: [
-                      /* @__PURE__ */ jsx("span", { className: "absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-opacity duration-300 group-hover:opacity-0" }),
-                      /* @__PURE__ */ jsx("span", { className: "absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" }),
-                      /* @__PURE__ */ jsxs("span", { className: "relative z-10 flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsx(Eye, { className: "h-5 w-5 text-amber-200 transition-transform duration-300 group-hover:scale-110" }),
-                        /* @__PURE__ */ jsx("span", { children: t("pages.investor.view_profile_btn") || "Lihat & Unduh Company Profile" })
-                      ] })
-                    ]
-                  }
-                )
+                className: "flex flex-col sm:flex-row items-center justify-center gap-4",
+                children: [
+                  /* @__PURE__ */ jsxs(
+                    "a",
+                    {
+                      href: "/download-company-profile",
+                      download: "Company-Profile-PT-Kristalin-Ekalestari.pdf",
+                      className: "group relative inline-flex h-14 w-full sm:w-auto items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 px-8 text-base font-black text-stone-950 shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-105 hover:shadow-2xl active:scale-95 cursor-pointer",
+                      children: [
+                        /* @__PURE__ */ jsx(Download, { className: "h-5 w-5 text-stone-950 transition-transform duration-300 group-hover:-translate-y-0.5" }),
+                        /* @__PURE__ */ jsx("span", { children: t("pages.investor.download_btn") || "Unduh Brosur PDF" })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxs(
+                    Link,
+                    {
+                      href: "/company-profile-report",
+                      className: "group inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border-2 border-stone-600/80 bg-stone-900/60 px-7 text-base font-semibold text-stone-200 backdrop-blur-md transition-all duration-200 hover:border-amber-400 hover:bg-stone-900/90 hover:text-white active:scale-95",
+                      children: [
+                        /* @__PURE__ */ jsx(Eye, { className: "h-5 w-5 text-amber-400 transition-transform duration-300 group-hover:scale-110" }),
+                        /* @__PURE__ */ jsx("span", { children: t("pages.investor.preview_btn") || "Lihat Versi Web Interaktif" })
+                      ]
+                    }
+                  )
+                ]
               }
             )
           ]

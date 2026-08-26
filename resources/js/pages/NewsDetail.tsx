@@ -436,6 +436,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                     date: t('news_detail.jul26_arasvara_investment.date'),
                     content: getJul26ArasvaraInvestmentTranslatedContent(),
                 };
+            case 'aug26-1':
+                return {
+                    title: t('news_detail.aug26_sany_dumptruck.title'),
+                    excerpt: t('news_detail.aug26_sany_dumptruck.excerpt'),
+                    categoryTitle: t('news_archive.categories.pengadaan-dump-truck-sany-kepri'),
+                    author: t('news_detail.aug26_sany_dumptruck.author'),
+                    source: t('news_detail.aug26_sany_dumptruck.source'),
+                    date: t('news_detail.aug26_sany_dumptruck.date'),
+                    content: getAug26SanyDumpTruckTranslatedContent(),
+                };
             default:
                 return null;
         }
@@ -7993,6 +8003,97 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ id }) => {
                             class="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold text-xs sm:text-sm px-5 py-3 shadow-md shadow-emerald-600/20 transition-all duration-200 shrink-0 hover:scale-[1.02] active:scale-95"
                         >
                             <span>${t('news_detail.jul26_arasvara_investment.ecosystem_cta')}</span>
+                            <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    const getAug26SanyDumpTruckTranslatedContent = () => {
+        return `
+            <div class="space-y-8">
+                <!-- Opening Highlight Banner -->
+                <div class="rounded-2xl border border-amber-200/90 bg-gradient-to-br from-amber-500/15 via-amber-50 to-white p-6 shadow-sm">
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 border border-amber-400/60 px-3 py-0.5 text-xs font-bold text-amber-950">
+                            <span class="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
+                            <span>CMS - Concession Management</span>
+                        </span>
+                        <span class="inline-flex items-center rounded-full bg-stone-100 border border-stone-300 px-3 py-0.5 text-xs font-semibold text-stone-700">
+                            Kepulauan Riau
+                        </span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-amber-950">${t('news_detail.aug26_sany_dumptruck.opening_title')}</h3>
+                    <p class="text-stone-800 leading-relaxed text-base">${t('news_detail.aug26_sany_dumptruck.opening_content')}</p>
+                </div>
+
+                <!-- Section 1: Fleet Expansion & Productivity -->
+                <div class="space-y-4">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.aug26_sany_dumptruck.fleet_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.aug26_sany_dumptruck.fleet_content')}</p>
+                </div>
+
+                <!-- Fleet Specification Grid -->
+                <div class="rounded-2xl border border-stone-200 bg-stone-50/80 p-6">
+                    <h4 class="mb-4 text-base font-bold text-stone-900 flex items-center gap-2">
+                        <svg class="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        ${t('news_detail.aug26_sany_dumptruck.specs_title')}
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="rounded-xl border border-white bg-white p-4 shadow-2xs">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">${t('news_detail.aug26_sany_dumptruck.specs_item1_label')}</p>
+                            <p class="mt-1 text-sm font-bold text-stone-900">${t('news_detail.aug26_sany_dumptruck.specs_item1_val')}</p>
+                        </div>
+                        <div class="rounded-xl border border-white bg-white p-4 shadow-2xs">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">${t('news_detail.aug26_sany_dumptruck.specs_item2_label')}</p>
+                            <p class="mt-1 text-sm font-bold text-stone-900">${t('news_detail.aug26_sany_dumptruck.specs_item2_val')}</p>
+                        </div>
+                        <div class="rounded-xl border border-white bg-white p-4 shadow-2xs">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">${t('news_detail.aug26_sany_dumptruck.specs_item3_label')}</p>
+                            <p class="mt-1 text-sm font-bold text-stone-900">${t('news_detail.aug26_sany_dumptruck.specs_item3_val')}</p>
+                        </div>
+                        <div class="rounded-xl border border-white bg-white p-4 shadow-2xs">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">${t('news_detail.aug26_sany_dumptruck.specs_item4_label')}</p>
+                            <p class="mt-1 text-sm font-bold text-stone-900">${t('news_detail.aug26_sany_dumptruck.specs_item4_val')}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Safety & Quote -->
+                <div class="space-y-4">
+                    <h3 class="border-b-2 border-amber-500 pb-2 text-2xl font-bold text-gray-900">${t('news_detail.aug26_sany_dumptruck.safety_title')}</h3>
+                    <p class="text-gray-800 leading-relaxed text-base">${t('news_detail.aug26_sany_dumptruck.safety_content')}</p>
+                </div>
+
+                <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50/70 to-white p-6 shadow-2xs">
+                    <blockquote class="border-l-4 border-amber-500 pl-4 text-lg text-gray-800 italic font-medium">"${t('news_detail.aug26_sany_dumptruck.safety_quote')}"</blockquote>
+                    <cite class="mt-3 block text-sm font-semibold text-amber-900">- ${t('news_detail.aug26_sany_dumptruck.safety_citation')}</cite>
+                </div>
+
+                <!-- Section 3: Instagram Attribution Card -->
+                <div class="mt-8 rounded-2xl border border-purple-200/80 bg-gradient-to-br from-pink-50/50 via-purple-50/30 to-white p-6 sm:p-7 shadow-sm">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+                        <div class="space-y-1.5 min-w-0">
+                            <div class="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-pink-100 to-purple-100 border border-purple-200 px-3 py-0.5 text-xs font-bold text-purple-950 shadow-2xs">
+                                <span class="h-2 w-2 rounded-full bg-pink-500 animate-pulse"></span>
+                                <span>${t('news_detail.aug26_sany_dumptruck.social_badge')}</span>
+                            </div>
+                            <h4 class="text-lg font-black text-stone-900">${t('news_detail.aug26_sany_dumptruck.social_title')}</h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-xl">${t('news_detail.aug26_sany_dumptruck.social_desc')}</p>
+                        </div>
+                        <a
+                            href="https://www.instagram.com/p/DcgDfa4k_wI/?hl=en&img_index=1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:from-pink-700 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm px-5 py-3 shadow-md shadow-purple-600/20 transition-all duration-200 shrink-0 hover:scale-[1.02] active:scale-95"
+                        >
+                            <span>${t('news_detail.aug26_sany_dumptruck.social_cta')}</span>
                             <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>

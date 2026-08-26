@@ -301,6 +301,10 @@ return [
                     'title' => 'Pengawasan TKA di Nabire Perkuat Kepatuhan dan Jaga Situasi Kondusif',
                     'excerpt' => 'Pengawasan gabungan TKA di Nabire bantu jaga situasi kondusif di area tambang Lagari, Makimi. Aktivitas pada 8 April 2026; dokumen TKA di lapangan lengkap dan valid.',
                 ],
+                'aug26-1' => [
+                    'title' => 'Pengadaan 3 Unit Dump Truck SANY Baru untuk Operasional Konsesi di Kepulauan Riau',
+                    'excerpt' => 'Kristalin Group merealisasikan pengadaan 3 unit Dump Truck SANY baru guna memperkuat kegiatan operasional konsesi di Kepulauan Riau, meningkatkan kapasitas, produktivitas, dan keselamatan kerja.',
+                ],
                 'jul26-1' => [
                     'title' => 'Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga',
                     'excerpt' => 'Investasi PT Kristalin Ekalestari memberikan manfaat nyata bagi pembangunan dan ekonomi masyarakat Desa Nifasi, didukung penuh oleh para tokoh adat.',
@@ -1508,6 +1512,10 @@ return [
             'jul26_1' => [
                 'title' => 'Investasi PT Kristalin Ekalestari Berdampak Baik Pembangunan dan Ekonomi Warga',
                 'excerpt' => 'Investasi PT Kristalin Ekalestari memberikan manfaat nyata bagi pembangunan dan ekonomi masyarakat Desa Nifasi, didukung penuh oleh para tokoh adat.',
+            ],
+            'aug26_1' => [
+                'title' => 'Pengadaan 3 Unit Dump Truck SANY Baru untuk Operasional Konsesi di Kepulauan Riau',
+                'excerpt' => 'Kristalin Group merealisasikan pengadaan 3 unit Dump Truck SANY baru guna memperkuat kegiatan operasional konsesi di Kepulauan Riau, meningkatkan kapasitas, produktivitas, dan keselamatan kerja.',
             ],
         ],
         'read_more' => 'Baca Selengkapnya',

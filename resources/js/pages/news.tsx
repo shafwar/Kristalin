@@ -19,6 +19,7 @@ const getTranslatedMonth = (monthId: string, t: any) => {
         'juli-2025': 'juli',
         'juli-2026': 'juli',
         'agustus-2025': 'agustus',
+        'agustus-2026': 'agustus',
         'september-2025': 'september',
         'oktober-2025': 'oktober',
         'desember-2025': 'desember',
@@ -103,6 +104,7 @@ const getTranslatedArticleTitle = (articleId: string, t: any) => {
         'mar26-1': 'mar26_kisa24',
         'apr26-1': 'apr26_tka_nabire',
         'jul26-1': 'jul26_arasvara_investment',
+        'aug26-1': 'aug26_sany_dumptruck',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -163,6 +165,7 @@ const getTranslatedArticleExcerpt = (articleId: string, t: any) => {
         'mar26-1': 'mar26_kisa24',
         'apr26-1': 'apr26_tka_nabire',
         'jul26-1': 'jul26_arasvara_investment',
+        'aug26-1': 'aug26_sany_dumptruck',
     };
 
     const translationKey = articleKeyMap[articleId];
@@ -2263,6 +2266,35 @@ export const newsData: NewsMonth[] = normalizeNewsImages([
                             sourceUrl:
                                 'https://arasvara.id/news/2026/07/08/investasi-pt-kristalin-ekalestari-berdampak-baik-pembangunan-dan-ekonomi-warga',
                             image: '/july26-arasvara-nifasi.webp',
+                            content: '',
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        month: 'AGUSTUS',
+        monthId: 'agustus-2026',
+        categories: [
+            {
+                id: 'pengadaan-dump-truck-sany-kepri',
+                title: 'Pengadaan Dump Truck SANY untuk Operasional Konsesi Kepulauan Riau',
+                newsItems: [
+                    {
+                        id: 'aug26-1',
+                        title: 'Pengadaan 3 Unit Dump Truck SANY Baru untuk Operasional Konsesi Kristalin Group di Kepulauan Riau',
+                        date: '24 Agu 2026',
+                        url: '/news/aug26-1',
+                        excerpt:
+                            'Kristalin Group merealisasikan pengadaan 3 unit Dump Truck SANY baru guna memperkuat kegiatan operasional konsesi di Kepulauan Riau, meningkatkan kapasitas, produktivitas, dan keselamatan kerja.',
+                        fullContent: {
+                            title: 'Pengadaan 3 Unit Dump Truck SANY Baru untuk Operasional Konsesi Kristalin Group di Kepulauan Riau',
+                            date: '24 Agustus 2026',
+                            author: 'Tim Media Kristalin Group',
+                            source: 'Instagram @kristalin_ekalestari & @cidatamining',
+                            sourceUrl: 'https://www.instagram.com/p/DcgDfa4k_wI/?hl=en&img_index=1',
+                            image: '/aug26-sany-dumptruck-kepri.webp',
                             content: '',
                         },
                     },

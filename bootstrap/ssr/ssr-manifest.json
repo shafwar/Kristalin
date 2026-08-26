@@ -10,7 +10,7 @@
     "/build/assets/csr-B2XMcUvJ.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
-    "/build/assets/welcome-Drn3H6jT.js"
+    "/build/assets/welcome-CFRLW8Hj.js"
   ],
   "resources/js/components/EsmdVerificationModal.tsx": [
     "/build/assets/EsmdVerificationModal-MI5BXMrn.js"
@@ -34,7 +34,7 @@
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
   ],
   "resources/js/components/KristalinTvGoldCard.tsx": [
-    "/build/assets/welcome-Drn3H6jT.js"
+    "/build/assets/welcome-CFRLW8Hj.js"
   ],
   "resources/js/components/MilestoneTimelinePanel.tsx": [
     "/build/assets/milestones-B4xsCUTZ.js"
@@ -46,7 +46,7 @@
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/components/SplashScreen.tsx": [
-    "/build/assets/welcome-Drn3H6jT.js"
+    "/build/assets/welcome-CFRLW8Hj.js"
   ],
   "resources/js/components/WelcomeGridPicture.tsx": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -160,7 +160,7 @@
     "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
-    "/build/assets/welcome-Drn3H6jT.js"
+    "/build/assets/welcome-CFRLW8Hj.js"
   ],
   "resources/js/hooks/useKristalinTvGold.ts": [
     "/build/assets/useKristalinTvGold-BJzELv25.js"
@@ -211,10 +211,10 @@
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
   ],
   "resources/js/pages/CompanyProfileReport.tsx": [
-    "/build/assets/CompanyProfileReport-5Nos2W75.js"
+    "/build/assets/CompanyProfileReport-DIH-k5bE.js"
   ],
   "resources/js/pages/NewsDetail.tsx": [
-    "/build/assets/NewsDetail-BWc6cDcK.js"
+    "/build/assets/NewsDetail-D_TJiLa3.js"
   ],
   "resources/js/pages/PrivacyPolicy.tsx": [
     "/build/assets/PrivacyPolicy-CTz8Fdce.js"
@@ -277,7 +277,7 @@
     "/build/assets/internal-feedback-BWZADEEl.js"
   ],
   "resources/js/pages/investor.tsx": [
-    "/build/assets/investor-Bro5McXg.js"
+    "/build/assets/investor-BxZkRgIo.js"
   ],
   "resources/js/pages/leadership-traits.tsx": [
     "/build/assets/leadership-traits-DyK3zRjS.js"
@@ -289,7 +289,7 @@
     "/build/assets/milestones-B4xsCUTZ.js"
   ],
   "resources/js/pages/news.tsx": [
-    "/build/assets/news-yMtqZERK.js"
+    "/build/assets/news-BkOGgrRd.js"
   ],
   "resources/js/pages/not-found.tsx": [
     "/build/assets/not-found-Crx35Prz.js"
@@ -310,7 +310,7 @@
     "/build/assets/vision-mission-BjdP612E.js"
   ],
   "resources/js/pages/welcome.tsx": [
-    "/build/assets/welcome-Drn3H6jT.js"
+    "/build/assets/welcome-CFRLW8Hj.js"
   ],
   "resources/js/pages/welcomeBelowFoldCss.ts": [
     "/build/assets/WelcomeBelowFold-D4jfmaUR.js"

@@ -299,6 +299,10 @@ return [
                     'title' => 'Foreign Worker Supervision in Nabire Strengthens Compliance and Maintains a Conducive Situation',
                     'excerpt' => 'Joint TKA supervision in Nabire helps maintain a conducive situation in the Lagari mining area, Makimi. Activity on 8 April 2026; on-site TKA documents complete and valid.',
                 ],
+                'aug26-1' => [
+                    'title' => 'Procurement of 3 New SANY Dump Trucks for Concession Operations in Riau Islands',
+                    'excerpt' => 'Kristalin Group has procured 3 new SANY Dump Trucks to strengthen concession operations in Riau Islands, enhancing capacity, productivity, and workplace safety.',
+                ],
                 'jul26-1' => [
                     'title' => 'PT Kristalin Ekalestari Investment Brings Positive Impact on Community Development and Local Economy',
                     'excerpt' => 'PT Kristalin Ekalestari\'s investment provides tangible benefits for development and the local economy in Nifasi Village, fully supported by tribal leaders.',
@@ -1575,6 +1579,10 @@ return [
             'jul26_1' => [
                 'title' => 'PT Kristalin Ekalestari Investment Brings Positive Impact on Community Development and Local Economy',
                 'excerpt' => 'PT Kristalin Ekalestari\'s investment provides tangible benefits for development and the local economy in Nifasi Village, fully supported by tribal leaders.',
+            ],
+            'aug26_1' => [
+                'title' => 'Procurement of 3 New SANY Dump Trucks for Concession Operations in Riau Islands',
+                'excerpt' => 'Kristalin Group has procured 3 new SANY Dump Trucks to strengthen concession operations in Riau Islands, enhancing capacity, productivity, and workplace safety.',
             ],
        ],
         'read_more' => 'Read More',

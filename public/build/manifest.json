@@ -172,12 +172,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-BJkKHL8G.css",
+    "file": "assets/app-Cwk81APl.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-Bra1ZVH1.js",
+    "file": "assets/app-BCgvVbxX.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -222,11 +222,11 @@
       "resources/js/pages/welcome.tsx"
     ],
     "css": [
-      "assets/app-BJkKHL8G.css"
+      "assets/app-Cwk81APl.css"
     ]
   },
   "resources/js/pages/CompanyProfileReport.tsx": {
-    "file": "assets/CompanyProfileReport-xZALBCze.js",
+    "file": "assets/CompanyProfileReport-CNHSDQqK.js",
     "name": "CompanyProfileReport",
     "src": "resources/js/pages/CompanyProfileReport.tsx",
     "isDynamicEntry": true,
@@ -238,7 +238,7 @@
     ]
   },
   "resources/js/pages/NewsDetail.tsx": {
-    "file": "assets/NewsDetail-CMla3ZTj.js",
+    "file": "assets/NewsDetail-D5PzUIvo.js",
     "name": "NewsDetail",
     "src": "resources/js/pages/NewsDetail.tsx",
     "isDynamicEntry": true,
@@ -560,7 +560,7 @@
     ]
   },
   "resources/js/pages/investor.tsx": {
-    "file": "assets/investor-DZBrFID9.js",
+    "file": "assets/investor-CmvU0Z7Q.js",
     "name": "investor",
     "src": "resources/js/pages/investor.tsx",
     "isDynamicEntry": true,
@@ -619,7 +619,7 @@
     ]
   },
   "resources/js/pages/news.tsx": {
-    "file": "assets/news-CBZgpaQX.js",
+    "file": "assets/news-CdrwIIT2.js",
     "name": "news",
     "src": "resources/js/pages/news.tsx",
     "isEntry": true,
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-pqOthfVV.js",
+    "file": "assets/appearance-D_a4YfUJ.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -674,7 +674,7 @@
       "_assets-ZAgbBrkL.js"
     ],
     "css": [
-      "assets/app-BJkKHL8G.css"
+      "assets/app-Cwk81APl.css"
     ]
   },
   "resources/js/pages/settings/password.tsx": {
@@ -723,7 +723,7 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-EgW_5XUF.js",
+    "file": "assets/welcome-BLTMQMPd.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,

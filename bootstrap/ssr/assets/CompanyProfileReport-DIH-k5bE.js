@@ -74,8 +74,6 @@ function CompanyProfileReport() {
         "a",
         {
           href: "/download-company-profile",
-          target: "_blank",
-          rel: "noopener noreferrer",
           download: "Company-Profile-PT-Kristalin-Ekalestari.pdf",
           className: "group flex h-11 flex-1 sm:flex-none items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-500 via-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-5 sm:px-6 font-bold text-stone-950 shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98] md:h-12 md:shadow-xl text-xs sm:text-sm cursor-pointer",
           children: [
