@@ -141,8 +141,18 @@ export default function B2cPage() {
                             heroMicroReady ? 'translate-y-0' : 'translate-y-2',
                         )}
                     >
-                        <div className="mb-4">
+                        <div className="mb-4 flex flex-wrap items-center gap-2.5">
                             <EsmdVerificationBadge variant="compact" theme="dark" />
+                            <a
+                                href="https://atrina.id"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-500/20 px-3 py-1 text-xs font-bold text-amber-200 backdrop-blur-md transition-all hover:bg-amber-500/30 hover:border-amber-400/70"
+                            >
+                                <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse"></span>
+                                <span>IUP-OPK No. 760/1/IUP/PMDN/2021 · ATRINA</span>
+                                <ArrowDownRight className="h-3 w-3 -rotate-45 text-amber-300 transition-transform group-hover:translate-x-0.5" />
+                            </a>
                         </div>
                         <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-amber-300/95 uppercase">
                             {t('pages.b2c.hero_kicker')}
@@ -162,6 +172,15 @@ export default function B2cPage() {
                                 {t('pages.b2c.cta_scroll')}
                                 <ArrowDownRight className="h-4 w-4 shrink-0" aria-hidden />
                             </button>
+                            <a
+                                href="https://atrina.id"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-amber-300/50 bg-amber-500/15 px-6 text-sm font-semibold text-amber-200 backdrop-blur-sm transition-all duration-200 hover:bg-amber-500/25 hover:border-amber-300"
+                            >
+                                <span>{t('pages.b2c.atrina_portal_cta') || 'Buka Website ATRINA (atrina.id)'}</span>
+                                <ArrowDownRight className="h-4 w-4 -rotate-45 shrink-0" aria-hidden />
+                            </a>
                             <Link
                                 href="/contact"
                                 className="inline-flex h-12 items-center justify-center rounded-xl border border-white/40 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/20"
@@ -175,6 +194,31 @@ export default function B2cPage() {
 
             <div ref={scrollAnimScopeRef}>
             <section id="b2c-process" className="relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20">
+                
+                {/* ATRINA Ecosystem Bridge Card */}
+                <div data-b2c-reveal className="mx-auto max-w-3xl mb-12 rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-500/10 via-amber-50/50 to-white p-6 shadow-sm">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div className="space-y-1">
+                            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 border border-amber-300/80 px-3 py-0.5 text-xs font-bold text-amber-950">
+                                <Building2 className="h-3.5 w-3.5 text-amber-700" />
+                                <span>Rantai Pasok Grup Terintegrasi (Upstream to Downstream)</span>
+                            </div>
+                            <p className="text-sm text-stone-700 leading-relaxed pt-1">
+                                <strong className="text-stone-900">PT Kristalin Ekalestari (IUP OP 561/2021/DESDM)</strong> menambang emas murni hulu di Nabire, Papua &rarr; <strong className="text-amber-900">PT Agaro Tri Niaga / ATRINA (IUP-OPK 760/1/IUP/PMDN/2021)</strong> mendistribusikan emas fisik 24K KISA24 berstandar Sucofindo ke pasar konsumen.
+                            </p>
+                        </div>
+                        <a
+                            href="https://atrina.id"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 shrink-0 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-stone-950 text-xs font-bold px-4 py-2.5 shadow-sm transition-transform hover:scale-105"
+                        >
+                            <span>Kunjungi atrina.id</span>
+                            <ArrowDownRight className="h-3.5 w-3.5 -rotate-45" />
+                        </a>
+                    </div>
+                </div>
+
                 <div className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold tracking-wide text-amber-700/90 uppercase">{t('pages.b2c.section_process_kicker')}</p>
                     <h2 className="mt-2 text-2xl font-bold text-stone-900 md:text-3xl">{t('pages.b2c.section_process_title')}</h2>

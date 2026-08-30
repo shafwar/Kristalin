@@ -328,10 +328,10 @@ function GoldBullionCalculator() {
     /* @__PURE__ */ jsxs("div", { className: "block lg:hidden relative z-10 mb-6 text-center sm:text-left", children: [
       /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs", children: [
         /* @__PURE__ */ jsx(Sparkles, { className: "h-3.5 w-3.5 text-amber-600 shrink-0" }),
-        /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DIRECT REFINERY SUPPLY · KISARA GOLD 24K" })
+        /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DISTRIBUSI RESMI ATRINA · KISA24 GOLD 24K" })
       ] }),
-      /* @__PURE__ */ jsx("h2", { className: "mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
-      /* @__PURE__ */ jsx("p", { className: "mt-2 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari." })
+      /* @__PURE__ */ jsx("h2", { className: "mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K ATRINA" }),
+      /* @__PURE__ */ jsx("p", { className: "mt-2 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Estimasi real-time emas murni 24K (99.99%) berstandar SNI & Sucofindo, bersumber dari tambang PT Kristalin Ekalestari dan didistribusikan resmi oleh ATRINA (PT Agaro Tri Niaga)." })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "block lg:hidden relative z-10 space-y-5 mb-2", children: [
       /* @__PURE__ */ jsxs("div", { className: "rounded-2xl border border-amber-300/90 bg-gradient-to-br from-amber-500/15 via-white to-amber-500/5 p-4 sm:p-5 shadow-lg shadow-amber-500/10 ring-1 ring-amber-400/30", children: [
@@ -449,7 +449,7 @@ function GoldBullionCalculator() {
           /* @__PURE__ */ jsx("div", { className: "absolute right-2.5 flex items-center pointer-events-none", children: /* @__PURE__ */ jsx("span", { className: "rounded-lg bg-amber-400 border border-amber-500/40 px-2.5 py-1 text-[11px] font-black tracking-wider text-stone-950 uppercase shadow-2xs", children: unitGram }) })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-3 pt-1", children: [
+      /* @__PURE__ */ jsxs("div", { className: "space-y-2.5 pt-1", children: [
         /* @__PURE__ */ jsxs(
           Link,
           {
@@ -457,7 +457,7 @@ function GoldBullionCalculator() {
             className: "group flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-4 font-black text-stone-950 shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98] text-sm text-center",
             children: [
               /* @__PURE__ */ jsxs("span", { children: [
-                t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi",
+                t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi ATRINA",
                 " (",
                 formattedWeightLabel,
                 ")"
@@ -466,9 +466,22 @@ function GoldBullionCalculator() {
             ]
           }
         ),
-        /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center gap-1.5 text-[11px] text-stone-500", children: [
+        /* @__PURE__ */ jsxs(
+          "a",
+          {
+            href: "https://atrina.id",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "flex h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-amber-300/80 bg-amber-50/70 hover:bg-amber-100/90 text-xs font-bold text-amber-950 transition-colors",
+            children: [
+              /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.atrina_portal_btn") || "Buka Website ATRINA.ID" }),
+              /* @__PURE__ */ jsx(ExternalLink, { className: "h-3.5 w-3.5 text-amber-800" })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center gap-1.5 text-[11px] text-stone-500 text-center px-2", children: [
           /* @__PURE__ */ jsx(ShieldCheck, { className: "h-3.5 w-3.5 text-emerald-600 shrink-0" }),
-          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.verified_note") || "Kuotasi resmi diverifikasi PT Kristalin Ekalestari" })
+          /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.verified_note") || "Distribusi resmi berizin IUP-OPK No. 760/1/IUP/PMDN/2021 · PT Agaro Tri Niaga (Grup Kristalin)" })
         ] })
       ] })
     ] }),
@@ -477,10 +490,10 @@ function GoldBullionCalculator() {
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs", children: [
             /* @__PURE__ */ jsx(Sparkles, { className: "h-3.5 w-3.5 text-amber-600 shrink-0" }),
-            /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DIRECT REFINERY SUPPLY · KISARA GOLD 24K" })
+            /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.refinery_badge") || "DISTRIBUSI RESMI ATRINA · KISA24 GOLD 24K" })
           ] }),
-          /* @__PURE__ */ jsx("h2", { className: "mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K" }),
-          /* @__PURE__ */ jsx("p", { className: "mt-1.5 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari." })
+          /* @__PURE__ */ jsx("h2", { className: "mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight", children: t("pages.b2c.calculator.title") || "Simulasi Pemesanan Emas Batangan 24K ATRINA" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-1.5 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed", children: t("pages.b2c.calculator.subtitle") || "Estimasi real-time emas murni 24K (99.99%) berstandar SNI & Sucofindo, bersumber dari tambang PT Kristalin Ekalestari dan didistribusikan resmi oleh ATRINA (PT Agaro Tri Niaga)." })
         ] }),
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsxs("div", { className: "mb-3.5 flex items-center justify-between", children: [
@@ -619,15 +632,15 @@ function GoldBullionCalculator() {
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-6 pt-4 border-t border-stone-200/60", children: [
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 pt-4 border-t border-stone-200/60 space-y-3", children: [
           /* @__PURE__ */ jsxs(
             Link,
             {
               href: contactUrl,
-              className: "group flex h-14 sm:h-15 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center",
+              className: "group flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center",
               children: [
                 /* @__PURE__ */ jsxs("span", { children: [
-                  t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi",
+                  t("pages.b2c.calculator.cta_btn") || "Minta Penawaran Resmi ATRINA",
                   " (",
                   formattedWeightLabel,
                   ")"
@@ -636,9 +649,22 @@ function GoldBullionCalculator() {
               ]
             }
           ),
-          /* @__PURE__ */ jsxs("div", { className: "mt-3 flex items-center justify-center gap-1.5 text-[11px] text-stone-500", children: [
+          /* @__PURE__ */ jsxs(
+            "a",
+            {
+              href: "https://atrina.id",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-50/70 hover:bg-amber-100/90 text-xs font-bold text-amber-950 transition-colors",
+              children: [
+                /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.atrina_portal_btn") || "Buka Website ATRINA.ID" }),
+                /* @__PURE__ */ jsx(ExternalLink, { className: "h-3.5 w-3.5 text-amber-800" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxs("div", { className: "pt-1 flex items-center justify-center gap-1.5 text-[11px] text-stone-500 text-center", children: [
             /* @__PURE__ */ jsx(ShieldCheck, { className: "h-3.5 w-3.5 text-emerald-600 shrink-0" }),
-            /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.verified_note") || "Kuotasi resmi diverifikasi PT Kristalin Ekalestari" })
+            /* @__PURE__ */ jsx("span", { children: t("pages.b2c.calculator.verified_note") || "Distribusi resmi berizin IUP-OPK No. 760/1/IUP/PMDN/2021 · PT Agaro Tri Niaga (Grup Kristalin)" })
           ] })
         ] })
       ] }) })
@@ -776,7 +802,23 @@ function B2cPage() {
             heroMicroReady ? "translate-y-0" : "translate-y-2"
           ),
           children: [
-            /* @__PURE__ */ jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsx(EsmdVerificationBadge, { variant: "compact", theme: "dark" }) }),
+            /* @__PURE__ */ jsxs("div", { className: "mb-4 flex flex-wrap items-center gap-2.5", children: [
+              /* @__PURE__ */ jsx(EsmdVerificationBadge, { variant: "compact", theme: "dark" }),
+              /* @__PURE__ */ jsxs(
+                "a",
+                {
+                  href: "https://atrina.id",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "group inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-500/20 px-3 py-1 text-xs font-bold text-amber-200 backdrop-blur-md transition-all hover:bg-amber-500/30 hover:border-amber-400/70",
+                  children: [
+                    /* @__PURE__ */ jsx("span", { className: "h-2 w-2 rounded-full bg-amber-400 animate-pulse" }),
+                    /* @__PURE__ */ jsx("span", { children: "IUP-OPK No. 760/1/IUP/PMDN/2021 · ATRINA" }),
+                    /* @__PURE__ */ jsx(ArrowDownRight, { className: "h-3 w-3 -rotate-45 text-amber-300 transition-transform group-hover:translate-x-0.5" })
+                  ]
+                }
+              )
+            ] }),
             /* @__PURE__ */ jsx("p", { className: "mb-3 text-xs font-semibold tracking-[0.2em] text-amber-300/95 uppercase", children: t("pages.b2c.hero_kicker") }),
             /* @__PURE__ */ jsx("h1", { className: "mb-4 text-3xl leading-tight font-bold text-white drop-shadow-md sm:text-4xl md:text-5xl", children: t("pages.b2c.hero_title") }),
             /* @__PURE__ */ jsx("p", { className: "mb-8 max-w-2xl text-base leading-relaxed text-stone-200/95 sm:text-lg", children: t("pages.b2c.hero_subtitle") }),
@@ -790,6 +832,19 @@ function B2cPage() {
                   children: [
                     t("pages.b2c.cta_scroll"),
                     /* @__PURE__ */ jsx(ArrowDownRight, { className: "h-4 w-4 shrink-0", "aria-hidden": true })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxs(
+                "a",
+                {
+                  href: "https://atrina.id",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-amber-300/50 bg-amber-500/15 px-6 text-sm font-semibold text-amber-200 backdrop-blur-sm transition-all duration-200 hover:bg-amber-500/25 hover:border-amber-300",
+                  children: [
+                    /* @__PURE__ */ jsx("span", { children: t("pages.b2c.atrina_portal_cta") || "Buka Website ATRINA (atrina.id)" }),
+                    /* @__PURE__ */ jsx(ArrowDownRight, { className: "h-4 w-4 -rotate-45 shrink-0", "aria-hidden": true })
                   ]
                 }
               ),
@@ -808,6 +863,33 @@ function B2cPage() {
     ] }),
     /* @__PURE__ */ jsxs("div", { ref: scrollAnimScopeRef, children: [
       /* @__PURE__ */ jsxs("section", { id: "b2c-process", className: "relative z-10 -mt-6 scroll-mt-24 rounded-t-3xl bg-stone-50 px-4 py-14 md:py-20", children: [
+        /* @__PURE__ */ jsx("div", { "data-b2c-reveal": true, className: "mx-auto max-w-3xl mb-12 rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-500/10 via-amber-50/50 to-white p-6 shadow-sm", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4", children: [
+          /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-1.5 rounded-full bg-amber-100 border border-amber-300/80 px-3 py-0.5 text-xs font-bold text-amber-950", children: [
+              /* @__PURE__ */ jsx(Building2, { className: "h-3.5 w-3.5 text-amber-700" }),
+              /* @__PURE__ */ jsx("span", { children: "Rantai Pasok Grup Terintegrasi (Upstream to Downstream)" })
+            ] }),
+            /* @__PURE__ */ jsxs("p", { className: "text-sm text-stone-700 leading-relaxed pt-1", children: [
+              /* @__PURE__ */ jsx("strong", { className: "text-stone-900", children: "PT Kristalin Ekalestari (IUP OP 561/2021/DESDM)" }),
+              " menambang emas murni hulu di Nabire, Papua → ",
+              /* @__PURE__ */ jsx("strong", { className: "text-amber-900", children: "PT Agaro Tri Niaga / ATRINA (IUP-OPK 760/1/IUP/PMDN/2021)" }),
+              " mendistribusikan emas fisik 24K KISA24 berstandar Sucofindo ke pasar konsumen."
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs(
+            "a",
+            {
+              href: "https://atrina.id",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "inline-flex items-center gap-1.5 shrink-0 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-stone-950 text-xs font-bold px-4 py-2.5 shadow-sm transition-transform hover:scale-105",
+              children: [
+                /* @__PURE__ */ jsx("span", { children: "Kunjungi atrina.id" }),
+                /* @__PURE__ */ jsx(ArrowDownRight, { className: "h-3.5 w-3.5 -rotate-45" })
+              ]
+            }
+          )
+        ] }) }),
         /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-3xl text-center", children: [
           /* @__PURE__ */ jsx("p", { className: "text-sm font-semibold tracking-wide text-amber-700/90 uppercase", children: t("pages.b2c.section_process_kicker") }),
           /* @__PURE__ */ jsx("h2", { className: "mt-2 text-2xl font-bold text-stone-900 md:text-3xl", children: t("pages.b2c.section_process_title") }),

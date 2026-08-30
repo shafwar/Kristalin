@@ -95,15 +95,15 @@ export default function GoldBullionCalculator() {
                 <div className="block lg:hidden relative z-10 mb-6 text-center sm:text-left">
                     <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
                         <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
-                        <span>{t('pages.b2c.calculator.refinery_badge') || 'DIRECT REFINERY SUPPLY · KISARA GOLD 24K'}</span>
+                        <span>{t('pages.b2c.calculator.refinery_badge') || 'DISTRIBUSI RESMI ATRINA · KISA24 GOLD 24K'}</span>
                     </div>
                     
                     <h2 className="mt-3 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 leading-tight">
-                        {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K'}
+                        {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K ATRINA'}
                     </h2>
                     
                     <p className="mt-2 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed">
-                        {t('pages.b2c.calculator.subtitle') || 'Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari.'}
+                        {t('pages.b2c.calculator.subtitle') || 'Estimasi real-time emas murni 24K (99.99%) berstandar SNI & Sucofindo, bersumber dari tambang PT Kristalin Ekalestari dan didistribusikan resmi oleh ATRINA (PT Agaro Tri Niaga).'}
                     </p>
                 </div>
 
@@ -257,18 +257,28 @@ export default function GoldBullionCalculator() {
                     </div>
 
                     {/* 4. Mobile Bottom Action & Assurance */}
-                    <div className="space-y-3 pt-1">
+                    <div className="space-y-2.5 pt-1">
                         <Link
                             href={contactUrl}
                             className="group flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-4 font-black text-stone-950 shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98] text-sm text-center"
                         >
-                            <span>{t('pages.b2c.calculator.cta_btn') || 'Minta Penawaran Resmi'} ({formattedWeightLabel})</span>
+                            <span>{t('pages.b2c.calculator.cta_btn') || 'Minta Penawaran Resmi ATRINA'} ({formattedWeightLabel})</span>
                             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1 shrink-0" />
                         </Link>
 
-                        <div className="flex items-center justify-center gap-1.5 text-[11px] text-stone-500">
+                        <a
+                            href="https://atrina.id"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-amber-300/80 bg-amber-50/70 hover:bg-amber-100/90 text-xs font-bold text-amber-950 transition-colors"
+                        >
+                            <span>{t('pages.b2c.calculator.atrina_portal_btn') || 'Buka Website ATRINA.ID'}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-amber-800" />
+                        </a>
+
+                        <div className="flex items-center justify-center gap-1.5 text-[11px] text-stone-500 text-center px-2">
                             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                            <span>{t('pages.b2c.calculator.verified_note') || 'Kuotasi resmi diverifikasi PT Kristalin Ekalestari'}</span>
+                            <span>{t('pages.b2c.calculator.verified_note') || 'Distribusi resmi berizin IUP-OPK No. 760/1/IUP/PMDN/2021 · PT Agaro Tri Niaga (Grup Kristalin)'}</span>
                         </div>
                     </div>
                 </div>
@@ -285,15 +295,15 @@ export default function GoldBullionCalculator() {
                         <div>
                             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-yellow-500/15 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-950 tracking-wide shadow-2xs">
                                 <Sparkles className="h-3.5 w-3.5 text-amber-600 shrink-0" />
-                                <span>{t('pages.b2c.calculator.refinery_badge') || 'DIRECT REFINERY SUPPLY · KISARA GOLD 24K'}</span>
+                                <span>{t('pages.b2c.calculator.refinery_badge') || 'DISTRIBUSI RESMI ATRINA · KISA24 GOLD 24K'}</span>
                             </div>
                             
                             <h2 className="mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-stone-900 leading-tight">
-                                {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K'}
+                                {t('pages.b2c.calculator.title') || 'Simulasi Pemesanan Emas Batangan 24K ATRINA'}
                             </h2>
                             
                             <p className="mt-1.5 text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed">
-                                {t('pages.b2c.calculator.subtitle') || 'Akses langsung likuiditas emas murni 99.99% standar bersertifikat resmi dari ekosistem pemurnian PT Kristalin Ekalestari.'}
+                                {t('pages.b2c.calculator.subtitle') || 'Estimasi real-time emas murni 24K (99.99%) berstandar SNI & Sucofindo, bersumber dari tambang PT Kristalin Ekalestari dan didistribusikan resmi oleh ATRINA (PT Agaro Tri Niaga).'}
                             </p>
                         </div>
                         
@@ -481,19 +491,29 @@ export default function GoldBullionCalculator() {
 
                             </div>
 
-                            {/* Bottom Section: Primary CTA & Verification Footnote */}
-                            <div className="mt-6 pt-4 border-t border-stone-200/60">
+                            {/* Bottom Section: Primary CTA, ATRINA Portal Link & Verification Footnote */}
+                            <div className="mt-6 pt-4 border-t border-stone-200/60 space-y-3">
                                 <Link
                                     href={contactUrl}
-                                    className="group flex h-14 sm:h-15 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center"
+                                    className="group flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 px-6 font-black text-stone-950 shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.01] active:scale-[0.98] cursor-pointer text-sm sm:text-base text-center"
                                 >
-                                    <span>{t('pages.b2c.calculator.cta_btn') || 'Minta Penawaran Resmi'} ({formattedWeightLabel})</span>
+                                    <span>{t('pages.b2c.calculator.cta_btn') || 'Minta Penawaran Resmi ATRINA'} ({formattedWeightLabel})</span>
                                     <ChevronRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1 shrink-0" />
                                 </Link>
 
-                                <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-stone-500">
+                                <a
+                                    href="https://atrina.id"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-50/70 hover:bg-amber-100/90 text-xs font-bold text-amber-950 transition-colors"
+                                >
+                                    <span>{t('pages.b2c.calculator.atrina_portal_btn') || 'Buka Website ATRINA.ID'}</span>
+                                    <ExternalLink className="h-3.5 w-3.5 text-amber-800" />
+                                </a>
+
+                                <div className="pt-1 flex items-center justify-center gap-1.5 text-[11px] text-stone-500 text-center">
                                     <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                                    <span>{t('pages.b2c.calculator.verified_note') || 'Kuotasi resmi diverifikasi PT Kristalin Ekalestari'}</span>
+                                    <span>{t('pages.b2c.calculator.verified_note') || 'Distribusi resmi berizin IUP-OPK No. 760/1/IUP/PMDN/2021 · PT Agaro Tri Niaga (Grup Kristalin)'}</span>
                                 </div>
                             </div>
 

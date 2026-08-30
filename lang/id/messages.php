@@ -16,7 +16,7 @@ return [
         'news' => 'Berita',
         'line_of_business' => 'Bidang Usaha',
         'line_of_business_short' => 'Bidang Usaha',
-        'b2c' => 'Pembelian Emas B2C',
+        'b2c' => 'Distribusi Emas ATRINA',
         'investor' => 'Investor',
         'business_activities' => 'Aktivitas Bisnis',
         'business_activities_short' => 'Aktivitas',
