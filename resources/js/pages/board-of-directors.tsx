@@ -10,14 +10,6 @@ import Header from '../components/Header';
 const directorsData = [
     { id: 17, name: 'Arif Budi Setiawan', positionKey: 'position_chairman', company: '', image: '' },
     { id: 4, name: 'Andito Prasetyowan', positionKey: 'position_president_director', company: 'PT Kristalin Ekalestari', image: '/IMG_9970.JPG' },
-    {
-        id: 11,
-        name: 'Asri Dyah Wijayanti',
-        positionKey: 'position_president_director',
-        company: 'PT Nusamineral Mining Services',
-        image: '/IMG_4701.JPG',
-    },
-    { id: 5, name: 'Muhamad Luqman Baskara', positionKey: 'position_commissioner', company: 'PT Torindo Jaya Persada', image: '/IMG_0036.JPG' },
     { id: 12, name: 'Dony Rivai', positionKey: 'position_commissioner_pt_kristalin', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
     { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0188.JPG' },
     { id: 7, name: 'Reza Rizky Darmawan', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0272.JPG' },

@@ -172,12 +172,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-CtFIbyIb.css",
+    "file": "assets/app-CG_ZeN_H.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-BSDe6tyh.js",
+    "file": "assets/app-Bbqp29ep.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -222,7 +222,7 @@
       "resources/js/pages/welcome.tsx"
     ],
     "css": [
-      "assets/app-CtFIbyIb.css"
+      "assets/app-CG_ZeN_H.css"
     ]
   },
   "resources/js/pages/CompanyProfileReport.tsx": {
@@ -419,7 +419,7 @@
     ]
   },
   "resources/js/pages/board-of-directors.tsx": {
-    "file": "assets/board-of-directors-UK626dgN.js",
+    "file": "assets/board-of-directors-CFmrhJxH.js",
     "name": "board-of-directors",
     "src": "resources/js/pages/board-of-directors.tsx",
     "isDynamicEntry": true,
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-Dky7m_eC.js",
+    "file": "assets/appearance-y2BsBBnX.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -674,7 +674,7 @@
       "_assets-ZAgbBrkL.js"
     ],
     "css": [
-      "assets/app-CtFIbyIb.css"
+      "assets/app-CG_ZeN_H.css"
     ]
   },
   "resources/js/pages/settings/password.tsx": {
