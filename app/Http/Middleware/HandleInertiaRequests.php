@@ -32,13 +32,12 @@ class HandleInertiaRequests extends Middleware
      * Define the props that are shared by default.
      *
      * Performance notes:
-     *   - `translations` uses Inertia::lazy() so it is only included on full
-     *     page loads and explicit refreshes — NOT on every partial Inertia
-     *     navigation or API request. This reduces payload size and server CPU
-     *     on every route transition.
-     *   - `ziggy` uses a closure (lazy evaluation) — only computed when needed.
-     *   - `quote` is removed from shared props as it was only used decoratively
-     *     and called Inspiring::quotes() (disk read) on every single request.
+     *   - `translations` is always included — required on every page load AND
+     *     on every Inertia partial navigation (language switcher depends on it).
+     *     DO NOT make this lazy — it will break the multilanguage system.
+     *   - `ziggy` uses a closure — only computed when actually serialized.
+     *   - `Inspiring::quotes()` has been intentionally removed — it performed
+     *     a disk read on every single request for a decorative quote unused in UI.
      *
      * @see https://inertiajs.com/shared-data
      *
@@ -94,7 +93,7 @@ class HandleInertiaRequests extends Middleware
             'locale' => app()->getLocale() ?: 'en',
 
             // ----------------------------------------------------------------
-            // Ziggy routes — lazy closure, computed only when needed
+            // Ziggy routes — closure, computed once per request only when needed
             // ----------------------------------------------------------------
             'ziggy' => fn (): array => $this->resolveZiggy($request),
 
@@ -105,15 +104,15 @@ class HandleInertiaRequests extends Middleware
                 || $request->cookie('sidebar_state') === 'true',
 
             // ----------------------------------------------------------------
-            // Translations — LAZY: only sent on full page load, not on every
-            // partial Inertia navigation request. Saves ~15-30KB per transition.
+            // Translations — ALWAYS INCLUDED (never lazy).
+            // The multilanguage system reads this on every page load AND on
+            // every Inertia partial navigation when the user switches language.
+            // Making this lazy would break all text rendering across the site.
             // ----------------------------------------------------------------
-            'translations' => \Inertia\Inertia::lazy(function () {
-                return [
-                    'messages' => trans('messages') ?: [],
-                    'pages'    => trans('pages')    ?: [],
-                ];
-            }),
+            'translations' => [
+                'messages' => trans('messages') ?: [],
+                'pages'    => trans('pages')    ?: [],
+            ],
         ];
     }
 
