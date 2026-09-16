@@ -11,11 +11,27 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\KristalinTvProxyController;
 use App\Http\Controllers\SearchController;
 
-Route::get('/', function () {
+// ---------------------------------------------------------------------------
+// HTTP Cache Helper
+// ---------------------------------------------------------------------------
+// Applies browser + CDN cache headers to static Inertia page responses.
+// - max-age=300        : browser caches for 5 minutes
+// - stale-while-revalidate=60 : serve stale while revalidating in background
+// This reduces Network Egress on Railway for repeated page visits.
+// Do NOT apply to: form endpoints, auth routes, API routes, health checks.
+// ---------------------------------------------------------------------------
+$withPageCache = function (\Symfony\Component\HttpFoundation\Response $response) {
+    return $response->header(
+        'Cache-Control',
+        'public, max-age=300, stale-while-revalidate=60'
+    );
+};
+
+Route::get('/', function () use ($withPageCache) {
     if (request()->has('p') || request()->has('page_id') || request()->has('post_type')) {
         return redirect('/', 301);
     }
-    return Inertia::render('welcome');
+    return $withPageCache(Inertia::render('welcome')->toResponse(request()));
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -24,44 +40,44 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/about', function () {
-    return Inertia::render('about');
+Route::get('/about', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('about')->toResponse(request()));
 })->name('about');
 
-Route::get('/company-overview', function () {
-    return Inertia::render('company-overview');
+Route::get('/company-overview', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('company-overview')->toResponse(request()));
 })->name('company-overview');
 
-Route::get('/milestones', function () {
-    return Inertia::render('milestones');
+Route::get('/milestones', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('milestones')->toResponse(request()));
 })->name('milestones');
 
-Route::get('/vision-mission', function () {
-    return Inertia::render('vision-mission');
+Route::get('/vision-mission', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('vision-mission')->toResponse(request()));
 })->name('vision-mission');
 
-Route::get('/core-values', function () {
-    return Inertia::render('core-values');
+Route::get('/core-values', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('core-values')->toResponse(request()));
 })->name('core-values');
 
-Route::get('/leadership-traits', function () {
-    return Inertia::render('leadership-traits');
+Route::get('/leadership-traits', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('leadership-traits')->toResponse(request()));
 })->name('leadership-traits');
 
-Route::get('/board-of-directors', function () {
-    return Inertia::render('board-of-directors');
+Route::get('/board-of-directors', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('board-of-directors')->toResponse(request()));
 })->name('board-of-directors');
 
-Route::get('/investor', function () {
-    return Inertia::render('investor');
+Route::get('/investor', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('investor')->toResponse(request()));
 })->name('investor');
 
-Route::get('/company-profile-report', function () {
-    return Inertia::render('CompanyProfileReport');
+Route::get('/company-profile-report', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('CompanyProfileReport')->toResponse(request()));
 })->name('company-profile-report');
 
-Route::get('/company-profile', function () {
-    return Inertia::render('CompanyProfileReport');
+Route::get('/company-profile', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('CompanyProfileReport')->toResponse(request()));
 })->name('company-profile');
 
 Route::get('/download-company-profile', function () {
@@ -89,40 +105,43 @@ Route::get('/download-company-profile', function () {
     return redirect('/Company-Profile-PT-Kristalin-Ekalestari.pdf');
 })->name('download-company-profile');
 
-Route::get('/line-of-business', function () {
-    return Inertia::render('line-of-business');
+Route::get('/line-of-business', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('line-of-business')->toResponse(request()));
 })->name('line-of-business');
 
-Route::get('/b2c', function () {
-    return Inertia::render('b2c');
+Route::get('/b2c', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('b2c')->toResponse(request()));
 })->name('b2c');
 
-Route::get('/news', function () {
-    return Inertia::render('news');
+Route::get('/news', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('news')->toResponse(request()));
 })->name('news');
 
+// News detail: short cache (60s) since content may update
 Route::get('/news/{id}', function ($id) {
-    return Inertia::render('NewsDetail', ['id' => $id]);
+    return Inertia::render('NewsDetail', ['id' => $id])
+        ->toResponse(request())
+        ->header('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
 })->name('news.detail');
 
-Route::get('/business-activity', function () {
-    return Inertia::render('business-activity');
+Route::get('/business-activity', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('business-activity')->toResponse(request()));
 })->name('business-activity');
 
-Route::get('/csr', function () {
-    return Inertia::render('csr');
+Route::get('/csr', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('csr')->toResponse(request()));
 })->name('csr');
 
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
 
-Route::get('/privacy-policy', function () {
-    return Inertia::render('PrivacyPolicy');
+Route::get('/privacy-policy', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('PrivacyPolicy')->toResponse(request()));
 })->name('privacy-policy');
 
-Route::get('/terms', function () {
-    return Inertia::render('TermsOfService');
+Route::get('/terms', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('TermsOfService')->toResponse(request()));
 })->name('terms');
 
 // Search
@@ -131,8 +150,8 @@ Route::get('/api/kristalin-tv/gold-prices', [KristalinTvProxyController::class, 
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
-Route::get('/careers', function () {
-    return Inertia::render('careers');
+Route::get('/careers', function () use ($withPageCache) {
+    return $withPageCache(Inertia::render('careers')->toResponse(request()));
 })->name('careers');
 
 Route::post('/feedback', [FeedbackReportController::class, 'store']);

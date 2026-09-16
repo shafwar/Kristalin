@@ -16,7 +16,13 @@ return [
     */
 
     'ssr' => [
-        'enabled' => true,
+        /*
+         * SSR is disabled by default to reduce RAM/CPU on Railway.
+         * To enable, set INERTIA_SSR_ENABLED=true in your environment.
+         * WARNING: Enabling SSR will start a persistent Node.js daemon
+         * that consumes ~100-200MB RAM even with zero traffic.
+         */
+        'enabled' => env('INERTIA_SSR_ENABLED', false),
         'url' => 'http://127.0.0.1:13714',
         'bundle' => base_path('bootstrap/ssr/ssr.js'),
     ],
