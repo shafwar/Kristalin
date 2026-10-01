@@ -44,17 +44,18 @@ Route::get('/about', function () use ($withPageCache) {
     return $withPageCache(Inertia::render('about')->toResponse(request()));
 })->name('about');
 
-Route::get('/company-overview', function () use ($withPageCache) {
-    return $withPageCache(Inertia::render('company-overview')->toResponse(request()));
-})->name('company-overview');
+// ---------------------------------------------------------------------------
+// SEO Consolidation: Redirect overlapping pages to /about
+// These pages covered similar content (profil perusahaan, visi misi) and
+// were causing keyword cannibalization. 301 redirects preserve backlinks
+// and consolidate ranking signals into the canonical /about page.
+// ---------------------------------------------------------------------------
+Route::get('/company-overview', fn () => redirect('/about', 301))->name('company-overview');
+Route::get('/vision-mission', fn () => redirect('/about', 301))->name('vision-mission');
 
 Route::get('/milestones', function () use ($withPageCache) {
     return $withPageCache(Inertia::render('milestones')->toResponse(request()));
 })->name('milestones');
-
-Route::get('/vision-mission', function () use ($withPageCache) {
-    return $withPageCache(Inertia::render('vision-mission')->toResponse(request()));
-})->name('vision-mission');
 
 Route::get('/core-values', function () use ($withPageCache) {
     return $withPageCache(Inertia::render('core-values')->toResponse(request()));

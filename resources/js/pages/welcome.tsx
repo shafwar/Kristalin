@@ -229,10 +229,10 @@ const Welcome = () => {
     // Main Content
     return (
         <>
-            <Head title="PT Kristalin Ekalestari">
+            <Head title="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
                 <meta name="description" content="PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua." />
-                <meta property="og:title" content="PT Kristalin Ekalestari" />
-                <meta property="og:description" content="PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua." />
+                <meta property="og:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua" />
+                <meta property="og:description" content="Pelopor pertambangan emas dan pengolahan mineral berkelanjutan di Papua sejak 1989. Pemegang IUP OP resmi dengan komitmen ESG dan pemberdayaan masyarakat adat." />
             </Head>
             <SplashScreen />
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">

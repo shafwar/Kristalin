@@ -247,27 +247,25 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             href: '#',
             hasDropdown: true,
             dropdownItems: [
-                { label: t('nav.b2c'), href: '/b2c' },
                 { label: t('nav.about_kristalin'), href: '/about#about-kristalin' },
                 { label: t('nav.board_of_directors'), href: '/board-of-directors' },
-                { label: t('nav.vision_mission'), href: '/vision-mission' },
-                { label: t('nav.company_overview'), href: '/company-overview' },
                 { label: t('nav.milestones'), href: '/milestones' },
                 { label: t('nav.core_values'), href: '/core-values' },
                 { label: t('nav.leadership_traits'), href: '/leadership-traits' },
+                { label: t('nav.b2c'), href: '/b2c' },
                 { label: t('nav.news'), href: '/news' },
                 { label: t('nav.careers'), href: '/careers' },
             ],
         },
         { label: t('nav.modi'), href: 'https://minerbaone.esdm.go.id/publik/badan-usaha/detail/611426748818660096', external: true },
         { label: t('nav.gold_price'), href: 'https://goldprice.org/gold-price-indonesia.html', external: true },
-        { 
+        {
             label: t('nav.investor') || 'Investor',
-            labelDesktop: t('nav.investor') || 'Investor', 
-            href: '/investor' 
+            labelDesktop: t('nav.investor') || 'Investor',
+            href: '/investor'
         },
-        { label: t('nav.line_of_business'), labelCompact: t('nav.line_of_business_short'), href: '/line-of-business' },
-        { label: t('nav.business_activities'), labelCompact: t('nav.business_activities_short'), href: '/business-activity' },
+        { label: t('nav.portfolio'), labelCompact: t('nav.portfolio_short'), href: '/line-of-business' },
+        { label: t('nav.operations'), labelCompact: t('nav.operations_short'), href: '/business-activity' },
         { label: t('nav.csr'), href: '/csr' },
         { label: t('nav.contact'), href: '/contact' },
     ];

@@ -47,7 +47,7 @@
             }
         </style>
 
-        <meta name="keywords" content="PT Kristalin Ekalestari, Kristalin, Pertambangan Emas Papua Barat, Sustainable Mining Indonesia, Tambang Nabire, Emas Batangan Kisara Gold, Investasi Tambang Emas, Dewan Adat Meyah, CSR Papua, PT Torindo, PT Abadi Bersama Sentosa">
+        <meta name="description" content="PT Kristalin Ekalestari — Pelopor pertambangan emas berkelanjutan di Papua sejak 1989. Pemegang IUP Operasi Produksi resmi di Nabire dengan komitmen ESG dan pemberdayaan masyarakat adat.">
         <meta name="author" content="PT Kristalin Ekalestari">
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
         <link rel="canonical" href="{{ url()->current() }}">
@@ -67,18 +67,18 @@
         {{-- SEO & Open Graph --}}
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="PT Kristalin Ekalestari">
-        <meta property="og:title" content="PT Kristalin Ekalestari">
-        <meta property="og:description" content="PT Kristalin Ekalestari adalah pelopor pertambangan emas berkelanjutan di Papua, memadukan keunggulan operasional, inovasi teknologi, dan pemberdayaan masyarakat adat.">
+        <meta property="og:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
+        <meta property="og:description" content="Pelopor pertambangan emas dan pengolahan mineral berkelanjutan di Papua sejak 1989. Pemegang IUP OP resmi dengan komitmen ESG dan pemberdayaan masyarakat adat.">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="{{ asset('kristalin-og-preview.jpg') }}">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-        <meta property="og:locale" content="{{ str_replace('-', '_', app()->getLocale()) }}">
+        <meta property="og:locale" content="id_ID">
 
         {{-- Twitter Card --}}
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="PT Kristalin Ekalestari">
-        <meta name="twitter:description" content="Pelopor pertambangan emas berkelanjutan dan pengolahan mineral bernilai tambah di Indonesia.">
+        <meta name="twitter:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
+        <meta name="twitter:description" content="Pelopor pertambangan emas berkelanjutan dan pengolahan mineral bernilai tambah di Papua, Indonesia sejak 1989.">
         <meta name="twitter:image" content="{{ asset('kristalin-og-preview.jpg') }}">
 
         {{-- Structured Data --}}
@@ -215,13 +215,11 @@
 
                 <h2>Navigasi Halaman</h2>
                 <ul>
-                    <li><a href="/about">Tentang Kami / About Us</a></li>
-                    <li><a href="/company-overview">Company Overview</a></li>
-                    <li><a href="/vision-mission">Visi &amp; Misi</a></li>
+                    <li><a href="/about">Tentang Kami</a></li>
                     <li><a href="/board-of-directors">Dewan Direksi &amp; Manajemen</a></li>
-                    <li><a href="/line-of-business">Lini Bisnis</a></li>
-                    <li><a href="/business-activity">Kegiatan Usaha</a></li>
-                    <li><a href="/csr">Corporate Social Responsibility (CSR)</a></li>
+                    <li><a href="/line-of-business">Portofolio &amp; Anak Usaha</a></li>
+                    <li><a href="/business-activity">Operasional Tambang</a></li>
+                    <li><a href="/csr">Tanggung Jawab Sosial (CSR)</a></li>
                     <li><a href="/news">Berita &amp; Siaran Pers</a></li>
                     <li><a href="/contact">Hubungi Kami</a></li>
                 </ul>
