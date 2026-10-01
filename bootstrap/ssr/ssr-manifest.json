@@ -10,7 +10,7 @@
     "/build/assets/csr-CE9nKyEj.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
-    "/build/assets/welcome-CO7Fp_nC.js"
+    "/build/assets/welcome-DJHWZaQ7.js"
   ],
   "resources/js/components/EsmdVerificationModal.tsx": [
     "/build/assets/EsmdVerificationModal-B8ZsUVP4.js"
@@ -34,7 +34,7 @@
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
   ],
   "resources/js/components/KristalinTvGoldCard.tsx": [
-    "/build/assets/welcome-CO7Fp_nC.js"
+    "/build/assets/welcome-DJHWZaQ7.js"
   ],
   "resources/js/components/MilestoneTimelinePanel.tsx": [
     "/build/assets/milestones-rnpuHTmF.js"
@@ -46,10 +46,7 @@
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/components/SplashScreen.tsx": [
-    "/build/assets/welcome-CO7Fp_nC.js"
-  ],
-  "resources/js/components/TrustCredibilitySection.tsx": [
-    "/build/assets/welcome-CO7Fp_nC.js"
+    "/build/assets/welcome-DJHWZaQ7.js"
   ],
   "resources/js/components/WelcomeGridPicture.tsx": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -163,7 +160,7 @@
     "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
-    "/build/assets/welcome-CO7Fp_nC.js"
+    "/build/assets/welcome-DJHWZaQ7.js"
   ],
   "resources/js/hooks/useKristalinTvGold.ts": [
     "/build/assets/useKristalinTvGold-BJzELv25.js"
@@ -313,7 +310,7 @@
     "/build/assets/vision-mission-BHi7LpBR.js"
   ],
   "resources/js/pages/welcome.tsx": [
-    "/build/assets/welcome-CO7Fp_nC.js"
+    "/build/assets/welcome-DJHWZaQ7.js"
   ],
   "resources/js/pages/welcomeBelowFoldCss.ts": [
     "/build/assets/WelcomeBelowFold-CsK07R5e.js"

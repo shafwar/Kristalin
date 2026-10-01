@@ -14,7 +14,6 @@ import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture
 import { SplashScreen } from '../components/SplashScreen';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 import { EsmdVerificationBadge } from '../components/EsmdVerificationModal';
-import { TrustCredibilitySection } from '../components/TrustCredibilitySection';
 
 
 // Main Welcome Component
@@ -832,9 +831,6 @@ const Welcome = () => {
                                     </Link>
                                     </div>
                                 </section>
-
-                                {/* Trust & Credibility Section */}
-                                <TrustCredibilitySection />
                                 </DeferredBelowFold>
 
                             </div>
