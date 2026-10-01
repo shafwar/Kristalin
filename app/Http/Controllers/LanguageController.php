@@ -21,16 +21,15 @@ class LanguageController extends Controller
             return redirect()->back()->with('error', 'Unsupported language');
         }
         
-        // Store the locale in session
+        // Store the locale in session and set persistent 1-year cookie
         Session::put('locale', $locale);
         
         // Get the current URL and redirect back
         $url = $request->header('referer', '/');
         
-        // If we want to implement URL-based locales in the future,
-        // we could redirect to the locale-prefixed version of the current page
-        
-        return redirect($url)->with('success', 'Language changed successfully');
+        return redirect($url)
+            ->withCookie(cookie('locale', $locale, 60 * 24 * 365, '/', null, false, false))
+            ->with('success', 'Language changed successfully');
     }
     
     /**

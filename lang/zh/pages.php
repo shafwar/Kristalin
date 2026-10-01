@@ -8,6 +8,10 @@ return [
         'goToSearch' => '站内搜索',
     ],
     'careers' => [
+        'meta_title' => '职业发展 | PT Kristalin Ekalestari',
+        'meta_description' => 'PT Kristalin Ekalestari 的职业与专业发展机会。与我们携手建设可持续且具有竞争力的矿业。',
+        'og_title' => '职业发展 — PT Kristalin Ekalestari',
+        'og_description' => 'PT Kristalin Ekalestari 在采矿、冶金、地质工程和企业管理领域的职业机会。',
         'hero' => [
             'badge' => '职业与人才机会',
             'title' => '在 Kristalin Ekalestari 的职业发展',
@@ -135,6 +139,10 @@ return [
         ],
     ],
     'welcome' => [
+        'meta_title' => 'PT Kristalin Ekalestari — 巴布亚可持续金矿开采',
+        'meta_description' => 'PT Kristalin Ekalestari 自1989年起成为印度尼西亚领先的可持续金矿开采与矿物加工企业，持有巴布亚纳比雷官方采矿许可证 IUP OP No. 561/2021/DESDM。',
+        'og_title' => 'PT Kristalin Ekalestari — 巴布亚可持续金矿开采',
+        'og_description' => '自1989年起在巴布亚倡导可持续金矿开采与矿产加工，持有合法采矿运营许可证，致力于ESG与原住民社区赋权。',
         'title' => '欢迎来到 Kristalin Ekalestari',
         'subtitle' => '采矿与贸易的卓越',
         'description' => '以可持续的采矿实践和可靠的贸易解决方案引领行业，专业从事贵金属和自然资源。',
@@ -172,6 +180,69 @@ return [
             'title' => '通过 ATRINA 开展 24K 实物黄金分销',
             'body' => '官方分销经 Sucofindo 认证的 24K KISA24 金条，提供与 Kristalin TV 实时行情联动的模拟测算。',
             'cta' => '查看 ATRINA 门户与测算金价',
+        ],
+
+        // TODO: 在生产环境上线前，需核对官方文件以确认各项信誉数据
+        'trust_credibility' => [
+            'badge' => '企业信誉与运营实力',
+            'title' => '合规透明度、法定资质与运营绩效',
+            'subtitle' => '坚定践行合规经营、高标准安全管理与地方社区福祉承诺。',
+            'metrics' => [
+                'production' => [
+                    'label' => '生产规模 / 实际产能',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+                'concession_area' => [
+                    'label' => '矿区许可面积',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+                'workforce' => [
+                    'label' => '员工总数',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+            ],
+            'legality' => [
+                'title' => '官方许可与合法资质',
+                'iup_number' => [
+                    'label' => '采矿许可证 (IUP OP) 编号',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+                'validity_period' => [
+                    'label' => '有效期限',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+                'authority' => [
+                    'label' => '颁发机构',
+                    'placeholder' => '[需客户官方文件核实]',
+                ],
+            ],
+            'certifications' => [
+                'title' => '专业认证与安全标准',
+                'placeholder' => '[需客户官方文件核实 - ISO / 安全生产 / 环保评级]',
+            ],
+            'csr_impact' => [
+                'title' => '量化企业社会责任 (CSR)',
+                'placeholder' => '[需客户官方文件核实 - 实际投入与受益群体]',
+            ],
+            'reports' => [
+                'title' => '可持续发展报告',
+                'placeholder' => '[需客户官方文件核实 - 下载 PDF 报告]',
+            ],
+            'partners' => [
+                'title' => '原住民理事会与地方合作伙伴',
+                'placeholder' => '[需客户官方文件核实 - 传统社区机构 / 地方合作社]',
+            ],
+            'cta' => [
+                'investor' => '投资者关系与业务合作',
+                'investor_tag' => '投资与资本合作',
+                'investor_desc' => '投资结构、公司治理与战略合作前景信息。',
+                'contact' => '联系我们',
+                'contact_tag' => '官方垂询',
+                'contact_desc' => '雅加达 Menara 165 总部及巴布亚纳比雷矿区运营办公室。',
+                'kisara' => 'KISA24 黄金产品 (Kisara Gold)',
+                'kisara_tag' => '24K 认证投资金条',
+                'kisara_desc' => '通过 ATRINA 官方分销 Sucofindo 认证的 24K 纯金投资金条。',
+            ],
         ],
 
         // Sections
@@ -398,6 +469,10 @@ return [
     ],
 
     'about' => [
+        'meta_title' => '关于我们 | PT Kristalin Ekalestari',
+        'meta_description' => 'PT Kristalin Ekalestari 完整介绍，自1989年起在巴布亚倡导可持续金矿开采，持有 IUP OP No. 561/2021/DESDM 采矿许可证及原住民伙伴关系。',
+        'og_title' => '关于我们 — PT Kristalin Ekalestari',
+        'og_description' => 'PT Kristalin Ekalestari 完整介绍，自1989年起在巴布亚倡导可持续金矿开采。',
         'title' => '关于 Kristalin Ekalestari',
         'description' => '了解更多关于我们公司、历史和对采矿贸易行业卓越的承诺。',
         'section_history' => '我们的历史',

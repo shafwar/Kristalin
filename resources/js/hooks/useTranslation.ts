@@ -60,9 +60,10 @@ export function useTranslation(): UseTranslationReturn {
         return result;
     };
 
-    // Helper function to switch language
+    // Helper function to switch language with client-side cookie persistence
     const switchLanguage = (newLocale: string) => {
         if (typeof window !== 'undefined') {
+            document.cookie = `locale=${newLocale};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`;
             window.location.href = `/language/${newLocale}`;
         }
     };
@@ -77,7 +78,7 @@ export function useTranslation(): UseTranslationReturn {
             case 'zh':
                 return 'ZH';
             default:
-                return 'EN';
+                return 'ID';
         }
     };
 

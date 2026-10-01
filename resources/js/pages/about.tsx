@@ -191,10 +191,10 @@ export default function AboutPage() {
 
     return (
         <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white">
-            <Head title="About Us | PT Kristalin Ekalestari">
-                <meta name="description" content="Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat dengan izin IUP OP resmi No. 561/2021/DESDM dan kemitraan masyarakat adat." />
-                <meta property="og:title" content="About Us - PT Kristalin Ekalestari" />
-                <meta property="og:description" content="Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat." />
+            <Head title={t('pages.about.meta_title') || 'About Us | PT Kristalin Ekalestari'}>
+                <meta name="description" content={t('pages.about.meta_description') || 'Complete profile of PT Kristalin Ekalestari, pioneering sustainable gold and mineral mining since 1989 in Papua with official IUP OP permit No. 561/2021/DESDM.'} />
+                <meta property="og:title" content={t('pages.about.og_title') || 'About Us — PT Kristalin Ekalestari'} />
+                <meta property="og:description" content={t('pages.about.og_description') || 'Complete profile of PT Kristalin Ekalestari, pioneering sustainable gold and mineral mining since 1989 in Papua.'} />
             </Head>
             <Header sticky={true} transparent={false} />
             <div className="z-10 flex flex-1 flex-col pt-16 sm:pt-20">

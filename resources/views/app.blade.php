@@ -47,7 +47,7 @@
             }
         </style>
 
-        <meta name="description" content="PT Kristalin Ekalestari — Pelopor pertambangan emas berkelanjutan di Papua sejak 1989. Pemegang IUP Operasi Produksi resmi di Nabire dengan komitmen ESG dan pemberdayaan masyarakat adat.">
+        <meta name="description" content="PT Kristalin Ekalestari — Pioneering sustainable gold mining in Papua since 1989. Licensed IUP Production Operation holder in Nabire with strong ESG commitment and indigenous community empowerment.">
         <meta name="author" content="PT Kristalin Ekalestari">
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
         <link rel="canonical" href="{{ url()->current() }}">
@@ -67,18 +67,31 @@
         {{-- SEO & Open Graph --}}
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="PT Kristalin Ekalestari">
-        <meta property="og:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
-        <meta property="og:description" content="Pelopor pertambangan emas dan pengolahan mineral berkelanjutan di Papua sejak 1989. Pemegang IUP OP resmi dengan komitmen ESG dan pemberdayaan masyarakat adat.">
+        <meta property="og:title" content="PT Kristalin Ekalestari — Sustainable Gold Mining in Papua">
+        <meta property="og:description" content="Pioneering sustainable gold mining and mineral processing in Papua since 1989. Licensed IUP Production Operation holder with strong ESG commitment and indigenous community empowerment.">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="{{ asset('kristalin-og-preview.jpg') }}">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
-        <meta property="og:locale" content="id_ID">
+        @php
+            $currentAppLocale = app()->getLocale();
+            $localeToOgMap = [
+                'id' => 'id_ID',
+                'en' => 'en_US',
+                'zh' => 'zh_CN',
+            ];
+            $currentOgLocale = $localeToOgMap[$currentAppLocale] ?? 'en_US';
+            $alternateOgLocales = array_values(array_filter($localeToOgMap, fn ($loc) => $loc !== $currentOgLocale));
+        @endphp
+        <meta property="og:locale" content="{{ $currentOgLocale }}">
+        @foreach ($alternateOgLocales as $altOgLocale)
+        <meta property="og:locale:alternate" content="{{ $altOgLocale }}">
+        @endforeach
 
         {{-- Twitter Card --}}
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
-        <meta name="twitter:description" content="Pelopor pertambangan emas berkelanjutan dan pengolahan mineral bernilai tambah di Papua, Indonesia sejak 1989.">
+        <meta name="twitter:title" content="PT Kristalin Ekalestari — Sustainable Gold Mining in Papua">
+        <meta name="twitter:description" content="Pioneering sustainable gold mining and value-added mineral processing in Papua, Indonesia since 1989.">
         <meta name="twitter:image" content="{{ asset('kristalin-og-preview.jpg') }}">
 
         {{-- Structured Data --}}
@@ -97,7 +110,7 @@
                 'url' => asset('kristalin-logo-seo.png'),
               ],
               'image' => asset('kristalin-og-preview.jpg'),
-              'description' => 'Perusahaan pertambangan emas dan pengolahan mineral berkelanjutan terkemuka di Indonesia yang memegang Izin Usaha Pertambangan Operasi Produksi (IUP OP) resmi di Nabire, Papua.',
+              'description' => 'A leading sustainable gold mining and mineral processing company in Indonesia, holding an official Production Operation Mining Permit (IUP OP) in Nabire, Papua.',
               'foundingDate' => '1989',
               'email' => 'info@kristalin.co.id',
               'telephone' => '+622122978900',
@@ -202,26 +215,26 @@
         <noscript>
             <div style="padding: 2rem; font-family: sans-serif; background: #fafafa; color: #111; max-width: 900px; margin: 0 auto;">
                 <h1>PT Kristalin Ekalestari</h1>
-                <p><strong>Pelopor Pertambangan Emas &amp; Mineral Berkelanjutan di Papua Barat, Indonesia.</strong></p>
-                <p>PT Kristalin Ekalestari adalah perusahaan pertambangan dan pengolahan mineral yang berkomitmen menghadirkan nilai tambah ekonomi melalui praktik penambangan yang bertanggung jawab, pemanfaatan teknologi ramah lingkungan, serta program CSR terstruktur untuk masyarakat adat di Papua Barat.</p>
+                <p><strong>Pioneering Sustainable Gold &amp; Mineral Mining in Papua, Indonesia.</strong></p>
+                <p>PT Kristalin Ekalestari is a mining and mineral processing company committed to delivering economic value through responsible mining practices, environmentally friendly technology, and structured CSR programs for indigenous communities in Papua.</p>
                 
-                <h2>Lini Usaha &amp; Portofolio Bisnis</h2>
+                <h2>Business Lines &amp; Portfolio</h2>
                 <ul>
-                    <li><strong>Eksplorasi &amp; Penambangan Emas:</strong> Operasi tambang berwawasan lingkungan di Papua Barat dengan standar keselamatan dan ESG tertinggi.</li>
-                    <li><strong>Logam Mulia (Kisara Gold):</strong> Produk emas batangan berkualitas tinggi dan terpercaya untuk pasar ritel dan institusi.</li>
-                    <li><strong>Alat Berat &amp; Logistik (PT Torindo):</strong> Armada alat berat terpadu untuk efisiensi operasional dan infrastruktur.</li>
-                    <li><strong>Agribisnis (PT Abadi Bersama Sentosa):</strong> Penggilingan padi modern di Boyolali untuk ketahanan pangan nasional.</li>
+                    <li><strong>Gold Exploration &amp; Mining:</strong> Environmentally conscious mining operations in Papua with the highest safety and ESG standards.</li>
+                    <li><strong>Precious Metals (Kisara Gold):</strong> High-quality and trusted gold bullion products for retail and institutional markets.</li>
+                    <li><strong>Heavy Equipment &amp; Logistics (PT Torindo):</strong> Integrated heavy equipment fleet for operational efficiency and infrastructure.</li>
+                    <li><strong>Agribusiness (PT Abadi Bersama Sentosa):</strong> Modern rice milling in Boyolali for national food security.</li>
                 </ul>
 
-                <h2>Navigasi Halaman</h2>
+                <h2>Site Navigation</h2>
                 <ul>
-                    <li><a href="/about">Tentang Kami</a></li>
-                    <li><a href="/board-of-directors">Dewan Direksi &amp; Manajemen</a></li>
-                    <li><a href="/line-of-business">Portofolio &amp; Anak Usaha</a></li>
-                    <li><a href="/business-activity">Operasional Tambang</a></li>
-                    <li><a href="/csr">Tanggung Jawab Sosial (CSR)</a></li>
-                    <li><a href="/news">Berita &amp; Siaran Pers</a></li>
-                    <li><a href="/contact">Hubungi Kami</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/board-of-directors">Board of Directors &amp; Management</a></li>
+                    <li><a href="/line-of-business">Business Portfolio &amp; Subsidiaries</a></li>
+                    <li><a href="/business-activity">Mining Operations</a></li>
+                    <li><a href="/csr">Corporate Social Responsibility (CSR)</a></li>
+                    <li><a href="/news">News &amp; Press Releases</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
                 </ul>
             </div>
         </noscript>

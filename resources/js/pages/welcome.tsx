@@ -14,6 +14,7 @@ import { PapuaChildrenHeroPicture } from '../components/PapuaChildrenHeroPicture
 import { SplashScreen } from '../components/SplashScreen';
 import { WelcomeGridPicture } from '../components/WelcomeGridPicture';
 import { EsmdVerificationBadge } from '../components/EsmdVerificationModal';
+import { TrustCredibilitySection } from '../components/TrustCredibilitySection';
 
 
 // Main Welcome Component
@@ -229,10 +230,10 @@ const Welcome = () => {
     // Main Content
     return (
         <>
-            <Head title="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua">
-                <meta name="description" content="PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua." />
-                <meta property="og:title" content="PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua" />
-                <meta property="og:description" content="Pelopor pertambangan emas dan pengolahan mineral berkelanjutan di Papua sejak 1989. Pemegang IUP OP resmi dengan komitmen ESG dan pemberdayaan masyarakat adat." />
+            <Head title={t('pages.welcome.meta_title') || 'PT Kristalin Ekalestari — Sustainable Gold Mining in Papua'}>
+                <meta name="description" content={t('pages.welcome.meta_description') || 'PT Kristalin Ekalestari is a leading sustainable gold mining and mineral processing company in Indonesia since 1989, operating under official IUP OP No. 561/2021/DESDM in Nabire, Papua.'} />
+                <meta property="og:title" content={t('pages.welcome.og_title') || 'PT Kristalin Ekalestari — Sustainable Gold Mining in Papua'} />
+                <meta property="og:description" content={t('pages.welcome.og_description') || 'Pioneering sustainable gold mining and mineral processing in Papua since 1989. Licensed IUP Production Operation holder with strong ESG commitment and indigenous community empowerment.'} />
             </Head>
             <SplashScreen />
             <div className="welcome-page relative flex min-h-screen flex-col overflow-x-hidden bg-white">
@@ -831,6 +832,9 @@ const Welcome = () => {
                                     </Link>
                                     </div>
                                 </section>
+
+                                {/* Trust & Credibility Section */}
+                                <TrustCredibilitySection />
                                 </DeferredBelowFold>
 
                             </div>

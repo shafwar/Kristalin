@@ -19,29 +19,34 @@ class SetLocale
     {
         // Define supported locales
         $supportedLocales = ['en', 'id', 'zh'];
-        $defaultLocale = 'en';
+        $defaultLocale = config('app.locale', 'en');
         
-        // Get locale from request (URL segment, query parameter, or session)
+        // Get locale from request (URL segment, query parameter, session, or cookie)
         $locale = null;
         
-        // Check if locale is in URL path (e.g., /en/about, /id/tentang)
+        // 1. Check if locale is in URL path (e.g., /en/about, /id/tentang)
         $segments = $request->segments();
-        if (!empty($segments) && in_array($segments[0], $supportedLocales)) {
+        if (!empty($segments) && in_array($segments[0], $supportedLocales, true)) {
             $locale = $segments[0];
         }
         
-        // Check if locale is in query parameter (e.g., ?lang=en)
-        if (!$locale && $request->has('lang') && in_array($request->get('lang'), $supportedLocales)) {
+        // 2. Check if locale is in query parameter (e.g., ?lang=id)
+        if (!$locale && $request->has('lang') && in_array($request->get('lang'), $supportedLocales, true)) {
             $locale = $request->get('lang');
         }
         
-        // Check session for stored locale
-        if (!$locale && Session::has('locale') && in_array(Session::get('locale'), $supportedLocales)) {
+        // 3. Check session for stored locale
+        if (!$locale && Session::has('locale') && in_array(Session::get('locale'), $supportedLocales, true)) {
             $locale = Session::get('locale');
         }
+
+        // 4. Check persistent cookie for stored locale
+        if (!$locale && $request->hasCookie('locale') && in_array($request->cookie('locale'), $supportedLocales, true)) {
+            $locale = $request->cookie('locale');
+        }
         
-        // Fall back to default locale
-        if (!$locale || !in_array($locale, $supportedLocales)) {
+        // 5. Fall back to application default locale ('id')
+        if (!$locale || !in_array($locale, $supportedLocales, true)) {
             $locale = $defaultLocale;
         }
         
@@ -50,6 +55,11 @@ class SetLocale
         
         // Store locale in session for future requests
         Session::put('locale', $locale);
+        
+        // Only refresh cookie when the value has changed (avoids redundant Set-Cookie on every response)
+        if ($request->cookie('locale') !== $locale) {
+            cookie()->queue(cookie('locale', $locale, 60 * 24 * 365, '/', null, false, false));
+        }
         
         // Share locale with all views (including Inertia)
         $request->attributes->set('locale', $locale);

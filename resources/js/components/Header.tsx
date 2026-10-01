@@ -275,14 +275,14 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
             <div className="site-large-shell flex h-full w-full min-w-0 items-center">
             {/* Logo Section */}
             <div className="flex shrink-0 items-center pr-2 pl-2 sm:pr-4 sm:pl-3 lg:pr-6 lg:pl-4">
-                <a href="/" className="flex items-center" aria-label="Company Logo">
+                <Link href="/" className="flex items-center" aria-label="Company Logo">
                     <img
                         src={getLogoSrc()}
                         alt="Kristalin Eka Lestari Logo"
                         className="h-8 w-auto object-contain py-0.5 transition-all duration-700 ease-out sm:h-9 md:h-10 lg:h-11 xl:h-11"
                         style={{ filter: getLogoFilter() }}
                     />
-                </a>
+                </Link>
             </div>
 
             {/* Desktop Navigation */}
@@ -329,13 +329,14 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                         <div className="px-4 py-4">
                                             <div className="space-y-1">
                                                 {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                                                    <a
+                                                    <Link
                                                         key={dropdownIndex}
                                                         href={dropdownItem.href}
+                                                        onClick={() => setAboutDropdownOpen(false)}
                                                         className="hover:bg-opacity-10 block rounded px-3 py-2.5 text-xs transition-all duration-300 ease-out hover:translate-x-1 hover:scale-105 hover:bg-white hover:text-yellow-300"
                                                     >
                                                         {dropdownItem.label}
-                                                    </a>
+                                                    </Link>
                                                 ))}
                                             </div>
                                         </div>
@@ -688,7 +689,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                             }`}
                                         >
                                             {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                                                <a
+                                                <Link
                                                     key={dropdownIndex}
                                                     href={dropdownItem.href}
                                                     className="group ml-6 block rounded-lg px-4 py-2 text-sm text-gray-600 uppercase transition-all duration-300 hover:bg-amber-50 hover:text-amber-600"
@@ -698,7 +699,7 @@ export default function Header({ sticky = false, transparent = false }: HeaderPr
                                                         <div className="mr-3 h-2 w-2 rounded-full bg-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                                         <span>{dropdownItem.label}</span>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>

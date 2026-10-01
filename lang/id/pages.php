@@ -2,6 +2,10 @@
 
 return [
     'careers' => [
+        'meta_title' => 'Karir | PT Kristalin Ekalestari',
+        'meta_description' => 'Peluang karir dan pengembangan profesional di PT Kristalin Ekalestari. Bergabung bersama kami membangun industri pertambangan yang berkelanjutan dan berdaya saing.',
+        'og_title' => 'Karir — PT Kristalin Ekalestari',
+        'og_description' => 'Peluang karir di bidang pertambangan, metalurgi, teknik geologi, dan manajemen di PT Kristalin Ekalestari.',
         'hero' => [
             'badge' => 'Peluang Karir & Talenta',
             'title' => 'Karir di Kristalin Ekalestari',
@@ -130,6 +134,10 @@ return [
     ],
 
     'welcome' => [
+        'meta_title' => 'PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua',
+        'meta_description' => 'PT Kristalin Ekalestari adalah perusahaan pertambangan emas dan pengolahan mineral terkemuka di Indonesia sejak 1989. Beroperasi dengan izin resmi IUP Operasi Produksi No. 561/2021/DESDM di Nabire, Papua.',
+        'og_title' => 'PT Kristalin Ekalestari — Pertambangan Emas Berkelanjutan di Papua',
+        'og_description' => 'Pelopor pertambangan emas dan pengolahan mineral berkelanjutan di Papua sejak 1989. Pemegang IUP OP resmi dengan komitmen ESG dan pemberdayaan masyarakat adat.',
         'title' => 'Selamat Datang di Kristalin Ekalestari',
         'subtitle' => 'Keunggulan dalam Pertambangan dan Perdagangan',
         'description' => 'Memimpin industri dengan praktik pertambangan berkelanjutan dan solusi perdagangan yang andal untuk logam mulia dan sumber daya alam.',
@@ -163,6 +171,69 @@ return [
             'title' => 'Distribusi Emas Fisik 24K via ATRINA',
             'body' => 'Distribusi resmi emas batangan 24K KISA24 bersertifikat Sucofindo dengan simulasi harga real-time terhubung Kristalin TV.',
             'cta' => 'Buka Layanan ATRINA & Kalkulator',
+        ],
+
+        // TODO: Konfirmasi seluruh data kredibilitas ke dokumen resmi klien sebelum ditampilkan di production
+        'trust_credibility' => [
+            'badge' => 'Bukti & Kredibilitas Perusahaan',
+            'title' => 'Transparansi, Legalitas & Kinerja Operasional',
+            'subtitle' => 'Komitmen pada kepatuhan hukum, standar keselamatan kerja, dan dampak positif bagi masyarakat.',
+            'metrics' => [
+                'production' => [
+                    'label' => 'Kapasitas / Realisasi Produksi',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+                'concession_area' => [
+                    'label' => 'Luas Wilayah Konsesi',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+                'workforce' => [
+                    'label' => 'Total Tenaga Kerja',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+            ],
+            'legality' => [
+                'title' => 'Legalitas & Perizinan Resmi',
+                'iup_number' => [
+                    'label' => 'Nomor IUP OP',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+                'validity_period' => [
+                    'label' => 'Masa Berlaku',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+                'authority' => [
+                    'label' => 'Instansi Penerbit',
+                    'placeholder' => '[ISI DARI DOKUMEN KLIEN]',
+                ],
+            ],
+            'certifications' => [
+                'title' => 'Sertifikasi & Standar',
+                'placeholder' => '[ISI DARI DOKUMEN KLIEN - ISO / K3 / PROPER]',
+            ],
+            'csr_impact' => [
+                'title' => 'Program CSR Terukur',
+                'placeholder' => '[ISI DARI DOKUMEN KLIEN - Realisasi Program & Penerima Manfaat]',
+            ],
+            'reports' => [
+                'title' => 'Laporan Keberlanjutan',
+                'placeholder' => '[ISI DARI DOKUMEN KLIEN - Unduh Laporan PDF]',
+            ],
+            'partners' => [
+                'title' => 'Mitra Lembaga Adat & Komunitas',
+                'placeholder' => '[ISI DARI DOKUMEN KLIEN - Lembaga Masyarakat Adat / Koperasi Lokal]',
+            ],
+            'cta' => [
+                'investor' => 'Hubungan Investor & Kemitraan',
+                'investor_tag' => 'Kemitraan & Permodalan',
+                'investor_desc' => 'Informasi struktur investasi, tata kelola, dan prospek kemitraan strategis.',
+                'contact' => 'Hubungi Kantor Kami',
+                'contact_tag' => 'Komunikasi Resmi',
+                'contact_desc' => 'Menara 165 Jakarta Selatan & Kantor Operasional Site Nabire, Papua.',
+                'kisara' => 'Produk Logam Mulia KISA24 (Kisara Gold)',
+                'kisara_tag' => 'Emas Batangan 24K Bersertifikat',
+                'kisara_desc' => 'Distribusi resmi emas batangan 24K bersertifikat Sucofindo via ATRINA.',
+            ],
         ],
 
         'board' => [
@@ -392,6 +463,10 @@ return [
     ],
 
     'about' => [
+        'meta_title' => 'Tentang Kami | PT Kristalin Ekalestari',
+        'meta_description' => 'Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat dengan izin IUP OP resmi No. 561/2021/DESDM dan kemitraan masyarakat adat.',
+        'og_title' => 'Tentang Kami — PT Kristalin Ekalestari',
+        'og_description' => 'Profil lengkap PT Kristalin Ekalestari, pelopor pertambangan emas dan mineral berkelanjutan sejak 1989 di Papua Barat.',
         'title' => 'Tentang Kristalin Ekalestari',
         'description' => 'Pelajari lebih lanjut tentang perusahaan kami, sejarah, dan komitmen terhadap keunggulan dalam industri pertambangan dan perdagangan.',
         'section_history' => 'Sejarah Kami',

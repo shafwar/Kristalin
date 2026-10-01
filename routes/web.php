@@ -21,10 +21,9 @@ use App\Http\Controllers\SearchController;
 // Do NOT apply to: form endpoints, auth routes, API routes, health checks.
 // ---------------------------------------------------------------------------
 $withPageCache = function (\Symfony\Component\HttpFoundation\Response $response) {
-    return $response->header(
-        'Cache-Control',
-        'public, max-age=300, stale-while-revalidate=60'
-    );
+    return $response
+        ->header('Cache-Control', 'private, no-cache, must-revalidate')
+        ->header('Vary', 'X-Inertia, Cookie, Accept-Language');
 };
 
 Route::get('/', function () use ($withPageCache) {
@@ -309,8 +308,8 @@ Route::get('/build/{path}', function ($path) {
 Route::redirect('/about-us', '/about', 301);
 Route::redirect('/about-kristalin', '/about', 301);
 Route::redirect('/tentang-kami', '/about', 301);
-Route::redirect('/profile', '/company-overview', 301);
-Route::redirect('/tentang-perusahaan', '/company-overview', 301);
+Route::redirect('/profile', '/about', 301);
+Route::redirect('/tentang-perusahaan', '/about', 301);
 Route::redirect('/contact-us', '/contact', 301);
 Route::redirect('/hubungi-kami', '/contact', 301);
 Route::redirect('/kontak', '/contact', 301);

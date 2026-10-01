@@ -53,17 +53,21 @@ class SearchController extends Controller
         $routeMap = [
             'welcome' => '/',
             'about' => '/about',
-            'company_overview' => '/company-overview',
+            'company_overview' => '/about',
             'milestones' => '/milestones',
-            'vision_mission' => '/vision-mission',
+            'vision_mission' => '/about',
             'core_values' => '/core-values',
             'leadership_traits' => '/leadership-traits',
             'line_of_business' => '/line-of-business',
             'business_activity' => '/business-activity',
             'csr' => '/csr',
             'news' => '/news',
+            'careers' => '/careers',
+            'investor' => '/investor',
             'contact' => '/contact',
             'message_from_founder' => '/message-from-founder',
+            'privacy_policy' => '/privacy-policy',
+            'terms_of_service' => '/terms-of-service',
         ];
 
         $results = [];

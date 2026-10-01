@@ -9,6 +9,10 @@ return [
     ],
 
     'careers' => [
+        'meta_title' => 'Careers | PT Kristalin Ekalestari',
+        'meta_description' => 'Career and professional development opportunities at PT Kristalin Ekalestari. Join us in building a sustainable and competitive mining industry in Indonesia.',
+        'og_title' => 'Careers — PT Kristalin Ekalestari',
+        'og_description' => 'Career opportunities in mining, metallurgy, geological engineering, and corporate management at PT Kristalin Ekalestari.',
         'hero' => [
             'badge' => 'Career & Talent Opportunities',
             'title' => 'Careers at Kristalin Ekalestari',
@@ -136,6 +140,10 @@ return [
         ],
     ],
     'welcome' => [
+        'meta_title' => 'PT Kristalin Ekalestari — Sustainable Gold Mining in Papua',
+        'meta_description' => 'PT Kristalin Ekalestari is a leading sustainable gold mining and mineral processing company in Indonesia since 1989, operating under official IUP OP No. 561/2021/DESDM in Nabire, Papua.',
+        'og_title' => 'PT Kristalin Ekalestari — Sustainable Gold Mining in Papua',
+        'og_description' => 'Pioneering sustainable gold mining and mineral processing in Papua since 1989. Licensed IUP Production Operation holder with strong ESG commitment and indigenous community empowerment.',
         'title' => 'Welcome to Kristalin Ekalestari',
         'subtitle' => 'Excellence in Mining and Trading',
         'description' => 'Leading the industry with sustainable mining practices and reliable trading solutions for precious metals and natural resources.',
@@ -173,6 +181,69 @@ return [
             'title' => '24K Physical Gold Distribution via ATRINA',
             'body' => 'Official Sucofindo-certified 24K KISA24 gold bullion distribution with real-time price simulation linked to Kristalin TV.',
             'cta' => 'View ATRINA Gateway & Calculator',
+        ],
+
+        // TODO: Verify all credibility metrics with official client documents before production display
+        'trust_credibility' => [
+            'badge' => 'Trust & Operational Credibility',
+            'title' => 'Transparency, Legality & Operational Performance',
+            'subtitle' => 'Committed to full regulatory compliance, workplace safety standards, and tangible community impact.',
+            'metrics' => [
+                'production' => [
+                    'label' => 'Production Capacity / Output',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+                'concession_area' => [
+                    'label' => 'Concession Area',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+                'workforce' => [
+                    'label' => 'Total Workforce',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+            ],
+            'legality' => [
+                'title' => 'Official Licensing & Permits',
+                'iup_number' => [
+                    'label' => 'Mining License (IUP OP) Number',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+                'validity_period' => [
+                    'label' => 'Validity Period',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+                'authority' => [
+                    'label' => 'Issuing Authority',
+                    'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED]',
+                ],
+            ],
+            'certifications' => [
+                'title' => 'Certifications & Standards',
+                'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED - ISO / OHS / PROPER]',
+            ],
+            'csr_impact' => [
+                'title' => 'Measured CSR Impact',
+                'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED - Realized Budget & Beneficiaries]',
+            ],
+            'reports' => [
+                'title' => 'Sustainability Reports',
+                'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED - PDF Download]',
+            ],
+            'partners' => [
+                'title' => 'Customary Councils & Community Partners',
+                'placeholder' => '[CLIENT DOCUMENT DATA REQUIRED - Indigenous Institutions / Local Coops]',
+            ],
+            'cta' => [
+                'investor' => 'Investor Relations & Partnerships',
+                'investor_tag' => 'Partnership & Capital',
+                'investor_desc' => 'Investment structure, corporate governance, and strategic partnership prospects.',
+                'contact' => 'Contact Our Offices',
+                'contact_tag' => 'Official Inquiries',
+                'contact_desc' => 'Menara 165 South Jakarta & Nabire Mine Site Operational Office, Papua.',
+                'kisara' => 'KISA24 Gold Products (Kisara Gold)',
+                'kisara_tag' => '24K Certified Bullion',
+                'kisara_desc' => 'Official distribution of Sucofindo-certified 24K gold bullion via ATRINA.',
+            ],
         ],
 
         // Sections
@@ -397,6 +468,10 @@ return [
     ],
 
     'about' => [
+        'meta_title' => 'About Us | PT Kristalin Ekalestari',
+        'meta_description' => 'Complete profile of PT Kristalin Ekalestari, pioneering sustainable gold and mineral mining since 1989 in Papua with official IUP OP permit No. 561/2021/DESDM.',
+        'og_title' => 'About Us — PT Kristalin Ekalestari',
+        'og_description' => 'Complete profile of PT Kristalin Ekalestari, pioneering sustainable gold and mineral mining since 1989 in Papua.',
         'title' => 'About Kristalin Ekalestari',
         'description' => 'Learn more about our company, history, and commitment to excellence in the mining and trading industry.',
         'section_history' => 'Our History',
