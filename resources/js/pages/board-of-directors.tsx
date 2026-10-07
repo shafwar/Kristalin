@@ -11,7 +11,6 @@ const directorsData = [
     { id: 17, name: 'Arif Budi Setiawan', positionKey: 'position_chairman', company: '', image: '' },
     { id: 4, name: 'Andito Prasetyowan', positionKey: 'position_president_director', company: 'PT Kristalin Ekalestari', image: '/IMG_9970.JPG' },
     { id: 12, name: 'Dony Rivai', positionKey: 'position_commissioner_pt_kristalin', company: 'PT Kristalin Ekalestari', image: '/IMG_4802.JPG' },
-    { id: 6, name: 'Joshua Krisekaputra', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0188.JPG' },
     { id: 7, name: 'Reza Rizky Darmawan', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_0272.JPG' },
     { id: 10, name: 'Prasetyo Nugroho', positionKey: 'position_managing_partner', company: 'Kisara Holdings', image: '/IMG_4546.JPG' },
     { id: 14, name: 'Teguh Arief Herlambang', positionKey: 'position_group_head_compliance', company: '', image: '/IMG_4987.JPG' },
