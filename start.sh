@@ -97,6 +97,7 @@ echo ""
 
 export PHP_FCGI_MAX_REQUESTS=500
 export PHP_CLI_SERVER_WORKERS="${PHP_WORKERS}"
+export KRISTALIN_INTERNAL_SERVE=1
 
 # Trap signals to ensure graceful shutdown of all processes on Railway container restart
 trap 'kill $(jobs -p) 2>/dev/null' EXIT TERM INT
@@ -115,6 +116,6 @@ php \
     -d error_reporting=E_ALL \
     -d display_errors=Off \
     -d log_errors=On \
-    artisan serve --host=0.0.0.0 --port="${PORT_TO_USE}" 2>&1 \
+    artisan serve --no-reload --host=0.0.0.0 --port="${PORT_TO_USE}" 2>&1 \
     | php scripts/railway-log-formatter.php
 

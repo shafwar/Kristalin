@@ -4,6 +4,20 @@
 use Illuminate\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
+// When running on Railway and someone executes `php artisan serve` directly,
+// auto-delegate to start.sh so logs are 100% formatted to STDOUT like Arasvara.
+if (
+    PHP_SAPI === 'cli' &&
+    isset($argv[1]) &&
+    $argv[1] === 'serve' &&
+    !getenv('KRISTALIN_INTERNAL_SERVE') &&
+    (getenv('RAILWAY_ENVIRONMENT') || getenv('RAILWAY_PROJECT_ID') || getenv('PORT'))
+) {
+    putenv('KRISTALIN_INTERNAL_SERVE=1');
+    passthru('bash ' . __DIR__ . '/start.sh 2>&1', $exitCode);
+    exit($exitCode);
+}
+
 define('LARAVEL_START', microtime(true));
 
 // Register the Composer autoloader...

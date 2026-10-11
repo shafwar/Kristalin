@@ -49,10 +49,10 @@ while (($rawLine = fgets($stdin)) !== false) {
         continue;
     }
 
-    // C. Ignore static asset chunks (.js, .css, .webp, .png, .jpg, .svg, .ico, .woff, .woff2, .map)
+    // C. Ignore static asset chunks (.js, .css, .webp, .avif, .png, .jpg, .svg, .ico, etc.)
     if (
-        preg_match('#\[(200|304)\]: GET /build/assets/#', $line) ||
-        preg_match('#\.(js|css|webp|png|jpg|jpeg|svg|ico|woff|woff2|map|pdf)(\s|\?|$)#i', $line)
+        preg_match('#\[(200|304)\]:\s*GET\s+/(build|kristalin-assets|images|favicon)#i', $line) ||
+        preg_match('#\.(js|css|webp|avif|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|map|pdf|mp4|webm)(\s|\?|$)#i', $line)
     ) {
         continue;
     }
@@ -64,6 +64,12 @@ while (($rawLine = fgets($stdin)) !== false) {
         $uri    = $matches[3];
 
         $cleanPath = explode('?', $uri, 2)[0];
+
+        // Also ignore static asset paths if not caught by extension
+        if (preg_match('#^/(build|kristalin-assets|images)/#i', $cleanPath)) {
+            continue;
+        }
+
         $statusLabel = match ($status) {
             '200' => '200 OK',
             '301' => '301 Moved',
@@ -94,8 +100,14 @@ while (($rawLine = fgets($stdin)) !== false) {
                     : 'Request processed successfully')),
         };
 
-        $timeStr = date('Y-m-d H:i:s');
-        fwrite(STDOUT, "{$method} {$cleanPath} — {$statusLabel} ({$context}) [{$timeStr}]" . PHP_EOL);
+        $icon = match (substr($status, 0, 1)) {
+            '2' => '✓',
+            '3' => '→',
+            '4' => ($context === 'Shield: Malicious probe dropped' ? '🛡' : 'ℹ'),
+            default => '⚠',
+        };
+
+        fwrite(STDOUT, "{$icon} {$method} {$cleanPath} {$statusLabel} — {$context}" . PHP_EOL);
         fflush(STDOUT);
         continue;
     }
