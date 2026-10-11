@@ -1,1 +1,1 @@
-web: bash start.sh
+web: bash start.sh 2>&1

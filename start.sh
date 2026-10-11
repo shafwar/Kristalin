@@ -10,6 +10,10 @@
 # =============================================================================
 set -e
 
+# Redirect all STDERR to STDOUT for the entire script and all child processes
+# This ensures Railway labels all operational logs as INFO (blue/neutral) and NEVER red error
+exec 2>&1
+
 echo "=== PT Kristalin Ekalestari — Production Server Starting ==="
 
 # ------------------------------------------------------------------------------
@@ -112,5 +116,5 @@ php \
     -d display_errors=Off \
     -d log_errors=On \
     artisan serve --host=0.0.0.0 --port="${PORT_TO_USE}" 2>&1 \
-    | grep --line-buffered -v -E "(Accepted|Closing)$"
+    | grep --line-buffered -v -E "Accepted|Closing" 2>&1
 
