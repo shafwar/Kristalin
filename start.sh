@@ -94,10 +94,12 @@ echo ""
 export PHP_FCGI_MAX_REQUESTS=500
 export PHP_CLI_SERVER_WORKERS="${PHP_WORKERS}"
 
-# Redirect stderr to stdout so Railway doesn't flag normal PHP access logs as error severity
-exec 2>&1
+# Trap signals to ensure graceful shutdown of all processes on Railway container restart
+trap 'kill $(jobs -p) 2>/dev/null' EXIT TERM INT
 
-exec php \
+# Start server and filter out noisy socket connection/disconnection lines (Accepted / Closing)
+# while preserving all HTTP request logs, status codes, and error traces cleanly.
+php \
     -d memory_limit=96M \
     -d opcache.enable=1 \
     -d opcache.enable_cli=1 \
@@ -109,4 +111,6 @@ exec php \
     -d error_reporting=E_ALL \
     -d display_errors=Off \
     -d log_errors=On \
-    artisan serve --host=0.0.0.0 --port="${PORT_TO_USE}"
+    artisan serve --host=0.0.0.0 --port="${PORT_TO_USE}" 2>&1 \
+    | grep --line-buffered -v -E "(Accepted|Closing)$"
+

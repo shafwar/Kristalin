@@ -136,8 +136,8 @@
     "file": "assets/ui-DW48STyt.js",
     "name": "ui"
   },
-  "_useKristalinTvGold-DJ81Ov4h.js": {
-    "file": "assets/useKristalinTvGold-DJ81Ov4h.js",
+  "_useKristalinTvGold-ODIQA7yV.js": {
+    "file": "assets/useKristalinTvGold-ODIQA7yV.js",
     "name": "useKristalinTvGold",
     "imports": [
       "_vendor-CmWu0-PX.js"
@@ -177,7 +177,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-sSNeimtV.js",
+    "file": "assets/app-DnO8xnQd.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -400,7 +400,7 @@
     ]
   },
   "resources/js/pages/b2c.tsx": {
-    "file": "assets/b2c-DPPXTY-5.js",
+    "file": "assets/b2c-Bdxas1qD.js",
     "name": "b2c",
     "src": "resources/js/pages/b2c.tsx",
     "isDynamicEntry": true,
@@ -409,7 +409,7 @@
       "_KristalinMapEmbed-B6fwqJkz.js",
       "_useNetworkProfile-bTr2iCrX.js",
       "_assets-ZAgbBrkL.js",
-      "_useKristalinTvGold-DJ81Ov4h.js",
+      "_useKristalinTvGold-ODIQA7yV.js",
       "_useTranslation-C40RlSMM.js",
       "_index-CMFigVup.js",
       "_ScrollTrigger-6qCihK2t.js",
@@ -660,7 +660,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-CFI3yfrh.js",
+    "file": "assets/appearance-mHIxryWX.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -723,13 +723,13 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-Dzti-n1i.js",
+    "file": "assets/welcome-CXTsvEex.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_vendor-CmWu0-PX.js",
-      "_useKristalinTvGold-DJ81Ov4h.js",
+      "_useKristalinTvGold-ODIQA7yV.js",
       "_useNetworkProfile-bTr2iCrX.js",
       "_useTranslation-C40RlSMM.js",
       "_assets-ZAgbBrkL.js",

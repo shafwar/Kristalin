@@ -29,42 +29,45 @@ class KristalinTvProxyController extends Controller
         $backupKey = $cacheKey . '_backup';
         $backupTimeKey = $cacheKey . '_backup_time';
 
-        try {
-            // 1. Try to fetch from Kristalin TV upstream (Cached for 15s)
-            $data = Cache::remember($cacheKey, 15, function () use ($path, $backupKey, $backupTimeKey) {
-                $response = Http::timeout(4)
-                    ->acceptJson()
-                    ->get(self::UPSTREAM . $path);
-
-                if (! $response->successful()) {
-                    throw new \RuntimeException('Kristalin TV upstream HTTP ' . $response->status());
-                }
-
-                $json = $response->json();
-                if (! is_array($json)) {
-                    throw new \RuntimeException('Kristalin TV upstream invalid JSON');
-                }
-
-                // Store long-term 60-day backup with timestamp
-                Cache::put($backupKey, $json, 3600 * 24 * 60);
-                Cache::put($backupTimeKey, now()->toIso8601String(), 3600 * 24 * 60);
-
-                return $json;
-            });
-
-            $data['source'] = 'Kristalin TV (Live)';
-            $data['success'] = true;
-            $data['stale'] = false;
-            $data['updated_at'] = $data['updated_at'] ?? now()->toIso8601String();
-
+        // 1. Return active cache immediately if available (< 0.1ms, zero worker blocking)
+        $cached = Cache::get($cacheKey);
+        if (is_array($cached)) {
             return response()
-                ->json($data)
-                ->header('Cache-Control', 'public, max-age=15');
+                ->json($cached)
+                ->header('Cache-Control', 'public, max-age=60, s-maxage=120, stale-while-revalidate=30');
+        }
 
+        $payload = null;
+        $ttl = 60; // default cache 60 seconds
+
+        try {
+            // 2. Fetch from upstream with 1.5s timeout (prevents long worker lock)
+            $response = Http::timeout(1.5)
+                ->acceptJson()
+                ->get(self::UPSTREAM . $path);
+
+            if ($response->successful()) {
+                $json = $response->json();
+                if (is_array($json)) {
+                    $json['source'] = 'Kristalin TV (Live)';
+                    $json['success'] = true;
+                    $json['stale'] = false;
+                    $json['updated_at'] = $json['updated_at'] ?? now()->toIso8601String();
+
+                    $payload = $json;
+                    $ttl = 60;
+
+                    // Store long-term 60-day backup
+                    Cache::put($backupKey, $json, 3600 * 24 * 60);
+                    Cache::put($backupTimeKey, now()->toIso8601String(), 3600 * 24 * 60);
+                }
+            }
         } catch (\Throwable $e) {
-            Log::warning('Kristalin TV proxy primary fetch failed: ' . $e->getMessage(), ['path' => $path]);
+            // Upstream unreachable or timed out
+        }
 
-            // 2. Secondary Fallback: fetch live data from goldprice.org API
+        if ($payload === null) {
+            // 3. Secondary Fallback: goldprice.org API
             $fallbackData = $this->getGoldpriceFallback();
 
             if ($type === 'market' && $fallbackData !== null) {
@@ -77,57 +80,47 @@ class KristalinTvProxyController extends Controller
                     'updated_at'        => now()->toIso8601String(),
                     'source'            => 'Gold Price Global (Live Sync)',
                 ];
-
-                Cache::put($backupKey, $payload, 3600 * 24 * 60);
-                Cache::put($backupTimeKey, now()->toIso8601String(), 3600 * 24 * 60);
-
-                return response()->json($payload)->header('Cache-Control', 'public, max-age=60');
-            }
-
-            if ($type === 'brands' && $fallbackData !== null) {
+                $ttl = 120;
+            } elseif ($type === 'brands' && $fallbackData !== null) {
                 $base = $fallbackData['gold_idr_per_gram'];
-                $brands = [
-                    [
-                        'brand' => 'Kisara Gold 24K',
-                        'rows'  => [
-                            '1' => ['sell' => (int) round($base), 'buy' => (int) round($base - 30_000)],
-                        ],
-                    ],
-                    [
-                        'brand' => 'Antam',
-                        'rows'  => [
-                            '1' => ['sell' => (int) round($base + 115_000), 'buy' => (int) round($base - 25_000)],
-                        ],
-                    ],
-                    [
-                        'brand' => 'UBS',
-                        'rows'  => [
-                            '1' => ['sell' => (int) round($base + 95_000), 'buy' => (int) round($base - 30_000)],
-                        ],
-                    ],
-                    [
-                        'brand' => 'HRTAGOLD',
-                        'rows'  => [
-                            '1' => ['sell' => (int) round($base + 85_000), 'buy' => (int) round($base - 35_000)],
-                        ],
-                    ],
-                ];
-
                 $payload = [
                     'success'    => true,
                     'stale'      => false,
                     'updated_at' => now()->toIso8601String(),
                     'source'     => 'Gold Price Global (Derived)',
-                    'brands'     => $brands,
+                    'brands'     => [
+                        [
+                            'brand' => 'Kisara Gold 24K',
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base), 'buy' => (int) round($base - 30_000)],
+                            ],
+                        ],
+                        [
+                            'brand' => 'Antam',
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 115_000), 'buy' => (int) round($base - 25_000)],
+                            ],
+                        ],
+                        [
+                            'brand' => 'UBS',
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 95_000), 'buy' => (int) round($base - 30_000)],
+                            ],
+                        ],
+                        [
+                            'brand' => 'HRTAGOLD',
+                            'rows'  => [
+                                '1' => ['sell' => (int) round($base + 85_000), 'buy' => (int) round($base - 35_000)],
+                            ],
+                        ],
+                    ],
                 ];
-
-                Cache::put($backupKey, $payload, 3600 * 24 * 60);
-                Cache::put($backupTimeKey, now()->toIso8601String(), 3600 * 24 * 60);
-
-                return response()->json($payload)->header('Cache-Control', 'public, max-age=60');
+                $ttl = 120;
             }
+        }
 
-            // 3. Tertiary Fallback: serve stale cached data from long-term backup
+        if ($payload === null) {
+            // 4. Tertiary Fallback: stale cached data from long-term backup
             $stale = Cache::get($backupKey);
             $lastUpdatedTime = Cache::get($backupTimeKey) ?? now()->subMinutes(5)->toIso8601String();
 
@@ -136,16 +129,16 @@ class KristalinTvProxyController extends Controller
                 $stale['stale'] = true;
                 $stale['updated_at'] = $lastUpdatedTime;
                 $stale['source'] = 'Kristalin TV (Cached)';
-
-                return response()
-                    ->json($stale)
-                    ->header('X-Kristalin-TV-Stale', '1')
-                    ->header('Cache-Control', 'public, max-age=15');
+                $payload = $stale;
+                $ttl = 120;
             }
+        }
 
-            // 4. Quaternary Failsafe: return reliable baseline seed data (NEVER 503)
+        if ($payload === null) {
+            // 5. Quaternary Failsafe: return reliable baseline seed data (NEVER 503)
+            $ttl = 300; // Cache baseline for 5 minutes so workers never lock
             if ($type === 'market') {
-                return response()->json([
+                $payload = [
                     'success'           => true,
                     'stale'             => true,
                     'gold_idr_per_gram' => 1450000,
@@ -153,36 +146,46 @@ class KristalinTvProxyController extends Controller
                     'sgd_idr'           => 12150,
                     'updated_at'        => now()->subMinutes(10)->toIso8601String(),
                     'source'            => 'Market Reference (Offline)',
-                ])->header('X-Kristalin-TV-Stale', '1');
+                ];
+            } else {
+                $payload = [
+                    'success'    => true,
+                    'stale'      => true,
+                    'updated_at' => now()->subMinutes(10)->toIso8601String(),
+                    'source'     => 'Market Reference (Offline)',
+                    'brands'     => [
+                        [
+                            'brand' => 'Kisara Gold 24K',
+                            'rows'  => [
+                                '1' => ['sell' => 1450000, 'buy' => 1420000],
+                            ],
+                        ],
+                        [
+                            'brand' => 'Antam',
+                            'rows'  => [
+                                '1' => ['sell' => 1565000, 'buy' => 1440000],
+                            ],
+                        ],
+                        [
+                            'brand' => 'UBS',
+                            'rows'  => [
+                                '1' => ['sell' => 1545000, 'buy' => 1435000],
+                            ],
+                        ],
+                    ],
+                ];
             }
-
-            return response()->json([
-                'success'    => true,
-                'stale'      => true,
-                'updated_at' => now()->subMinutes(10)->toIso8601String(),
-                'source'     => 'Market Reference (Offline)',
-                'brands'     => [
-                    [
-                        'brand' => 'Kisara Gold 24K',
-                        'rows'  => [
-                            '1' => ['sell' => 1450000, 'buy' => 1420000],
-                        ],
-                    ],
-                    [
-                        'brand' => 'Antam',
-                        'rows'  => [
-                            '1' => ['sell' => 1565000, 'buy' => 1440000],
-                        ],
-                    ],
-                    [
-                        'brand' => 'UBS',
-                        'rows'  => [
-                            '1' => ['sell' => 1545000, 'buy' => 1435000],
-                        ],
-                    ],
-                ],
-            ])->header('X-Kristalin-TV-Stale', '1');
         }
+
+        // Always cache the payload so all subsequent requests are instantaneous (< 0.1ms)
+        Cache::put($cacheKey, $payload, $ttl);
+
+        $response = response()->json($payload);
+        if (!empty($payload['stale'])) {
+            $response->header('X-Kristalin-TV-Stale', '1');
+        }
+
+        return $response->header('Cache-Control', 'public, max-age=60, s-maxage=120, stale-while-revalidate=30');
     }
 
     /**
@@ -190,9 +193,9 @@ class KristalinTvProxyController extends Controller
      */
     private function getGoldpriceFallback(): ?array
     {
-        return Cache::remember('goldprice_fallback_data', 60, function () {
+        return Cache::remember('goldprice_fallback_data', 120, function () {
             try {
-                $response = Http::timeout(4)
+                $response = Http::timeout(1.5)
                     ->withHeaders([
                         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
                         'Referer'    => 'https://goldprice.org/',

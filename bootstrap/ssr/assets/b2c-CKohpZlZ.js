@@ -7,7 +7,7 @@ import { Link, Head } from "@inertiajs/react";
 import { useState, useMemo, useRef, useLayoutEffect } from "react";
 import { u as useNetworkProfile } from "./useNetworkProfile-BaMceDYv.js";
 import { i as imageUrl } from "./assets-CvOUY0DF.js";
-import { u as useKristalinTvGold, g as getBestSell1g, f as formatIdrAmount, a as formatIdr, b as useLcpSafeMicroMotion } from "./useKristalinTvGold-BJzELv25.js";
+import { u as useKristalinTvGold, g as getBestSell1g, f as formatIdrAmount, a as formatIdr, b as useLcpSafeMicroMotion } from "./useKristalinTvGold-CvwAhL5o.js";
 import { u as useTranslation } from "./useTranslation-BoZt_nCq.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";

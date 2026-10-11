@@ -1,5 +1,5 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { u as useKristalinTvGold, g as getBestSell1g, f as formatIdrAmount, b as useLcpSafeMicroMotion } from "./useKristalinTvGold-BJzELv25.js";
+import { u as useKristalinTvGold, g as getBestSell1g, f as formatIdrAmount, b as useLcpSafeMicroMotion } from "./useKristalinTvGold-CvwAhL5o.js";
 import { u as useNetworkProfile } from "./useNetworkProfile-BaMceDYv.js";
 import { u as useTranslation } from "./useTranslation-BoZt_nCq.js";
 import { i as imageUrl } from "./assets-CvOUY0DF.js";

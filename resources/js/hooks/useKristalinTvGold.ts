@@ -46,7 +46,7 @@ const LS_MARKET_KEY = 'kristalin_gold_market_cache_v1';
 const LS_BRANDS_KEY = 'kristalin_gold_brands_cache_v1';
 
 async function fetchJson<T>(url: string): Promise<{ data: T; stale: boolean }> {
-    const res = await fetch(url, { cache: 'no-store', headers: { Accept: 'application/json' } });
+    const res = await fetch(url, { headers: { Accept: 'application/json' } });
     if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
     }
