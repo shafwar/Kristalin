@@ -116,5 +116,5 @@ php \
     -d display_errors=Off \
     -d log_errors=On \
     artisan serve --host=0.0.0.0 --port="${PORT_TO_USE}" 2>&1 \
-    | grep --line-buffered -v -E "Accepted|Closing" 2>&1
+    | php scripts/railway-log-formatter.php
 
