@@ -23,5 +23,6 @@ yarn-error.log
 /.vscode
 /.zed
 *.log
+logs.*.json
 .DS_Store
 Thumbs.db

@@ -16,7 +16,7 @@ echo "=== PT Kristalin Ekalestari — Production Server Starting ==="
 # 1. Environment Defaults
 # ------------------------------------------------------------------------------
 PORT_TO_USE="${PORT:-8000}"
-PHP_WORKERS="${PHP_CLI_SERVER_WORKERS:-2}"
+PHP_WORKERS="${PHP_CLI_SERVER_WORKERS:-5}"
 SSR_ENABLED="${INERTIA_SSR_ENABLED:-false}"
 
 echo "ℹ  Port        : ${PORT_TO_USE}"
@@ -37,6 +37,7 @@ php -d memory_limit=96M artisan config:clear --quiet   || true
 php -d memory_limit=96M artisan cache:clear  --quiet   || true
 php -d memory_limit=96M artisan optimize     --quiet   || true
 php -d memory_limit=96M artisan event:cache  --quiet   || true
+php -d memory_limit=96M artisan view:cache   --quiet   || true
 echo "✅ Laravel caches built."
 
 # ------------------------------------------------------------------------------
@@ -92,6 +93,9 @@ echo ""
 
 export PHP_FCGI_MAX_REQUESTS=500
 export PHP_CLI_SERVER_WORKERS="${PHP_WORKERS}"
+
+# Redirect stderr to stdout so Railway doesn't flag normal PHP access logs as error severity
+exec 2>&1
 
 exec php \
     -d memory_limit=96M \

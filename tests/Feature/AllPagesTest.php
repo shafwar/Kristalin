@@ -14,10 +14,10 @@ test('about page renders successfully', function () {
     $response->assertInertia(fn (Assert $page) => $page->component('about'));
 });
 
-test('vision-mission page renders successfully', function () {
+test('vision-mission redirects to /about for SEO consolidation', function () {
     $response = $this->get('/vision-mission');
-    $response->assertStatus(200);
-    $response->assertInertia(fn (Assert $page) => $page->component('vision-mission'));
+    $response->assertStatus(301);
+    $response->assertRedirect('/about');
 });
 
 test('core-values page renders successfully', function () {
@@ -44,10 +44,10 @@ test('board-of-directors page renders successfully', function () {
     $response->assertInertia(fn (Assert $page) => $page->component('board-of-directors'));
 });
 
-test('company-overview page renders successfully', function () {
+test('company-overview redirects to /about for SEO consolidation', function () {
     $response = $this->get('/company-overview');
-    $response->assertStatus(200);
-    $response->assertInertia(fn (Assert $page) => $page->component('company-overview'));
+    $response->assertStatus(301);
+    $response->assertRedirect('/about');
 });
 
 test('company-profile-report page renders successfully', function () {
