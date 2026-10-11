@@ -12,10 +12,14 @@
  * - Ensures 100% of output routes to STDOUT (blue/neutral badge in Railway, zero red error bars)
  */
 
+// Silence internal warnings and prevent anything from reaching STDERR
+error_reporting(0);
+ini_set('display_errors', '0');
+
 $port = getenv('PORT') ?: '8080';
 $workers = getenv('PHP_CLI_SERVER_WORKERS') ?: '5';
 
-// 1. Initial startup banner (clean & informative like Arasvara)
+// 1. Initial startup banner (clean & informative like Arasvara / Next.js)
 fwrite(STDOUT, "✓ Starting..." . PHP_EOL);
 fwrite(STDOUT, "▲ PT Kristalin Ekalestari Production Server" . PHP_EOL);
 fwrite(STDOUT, "- Network:  http://0.0.0.0:{$port}" . PHP_EOL);

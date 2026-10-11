@@ -11,21 +11,49 @@ export default function Footer({ className = '', minimal = false }) {
         return (
             <>
                 <FloatingActionMenu />
-                <footer className={`relative w-full bg-stone-950 py-3 sm:py-4 text-stone-300 overflow-hidden shrink-0 border-t border-white/5 ${className}`} style={{ zIndex: 100 }}>
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent blur-sm" />
+                <footer className={`relative w-full bg-stone-950 pt-7 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] sm:pt-6 sm:pb-6 md:py-4.5 text-stone-300 overflow-hidden shrink-0 border-t border-white/5 ${className}`} style={{ zIndex: 100 }}>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-amber-500/35 to-transparent" />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent blur-sm" />
                     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 relative z-10">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-                            <div className="text-stone-500 md:text-stone-400 text-[10px] sm:text-sm text-center md:text-left font-medium tracking-wide flex items-center justify-center md:justify-start gap-2 order-2 md:order-1 mt-1 md:mt-0">
-                                <span className="text-amber-500 text-[9px] md:text-[10px]">◆</span> {t('pages.footer.copyright')}
+                        {/* Mobile Brand Signature - Subtle & Prestigious */}
+                        <div className="flex md:hidden items-center justify-center gap-2 mb-3.5">
+                            <img 
+                                src="/kristalin-assets/public/Mark-Gold.webp" 
+                                alt="Kristalin Mark" 
+                                className="h-4 w-auto object-contain opacity-80" 
+                            />
+                            <span className="text-[11px] font-semibold tracking-[0.22em] text-stone-400 uppercase">
+                                Kristalin Ekalestari
+                            </span>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
+                            <div className="text-stone-500 md:text-stone-400 text-xs sm:text-sm text-center md:text-left font-normal tracking-wide flex items-center justify-center md:justify-start gap-2 order-2 md:order-1 mt-2 md:mt-0">
+                                <span className="text-amber-500 text-[9px] md:text-[10px] shrink-0" aria-hidden="true">◆</span>
+                                <span>{t('pages.footer.copyright')}</span>
                             </div>
-                            <div className="flex flex-wrap justify-center md:justify-end items-center gap-x-4 md:gap-x-6 gap-y-2 text-[11px] sm:text-sm text-stone-400 font-medium tracking-wide order-1 md:order-2">
-                                <Link href="/privacy-policy" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.privacy_policy') || 'Privacy Policy'}</Link>
-                                <span className="text-stone-700 hidden sm:inline-block">|</span>
-                                <Link href="/terms" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.terms_of_service') || 'Terms of Service'}</Link>
-                                <span className="text-stone-700 hidden sm:inline-block">|</span>
-                                <Link href="/internal-feedback" className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-0.5 inline-block">{t('pages.footer.whistleblower') || 'Whistleblower'}</Link>
-                            </div>
+                            <nav aria-label="Legal and Compliance" className="flex flex-wrap items-center justify-center md:justify-end gap-x-1 sm:gap-x-2 gap-y-1.5 text-xs sm:text-sm text-stone-400 font-medium tracking-wide order-1 md:order-2">
+                                <Link 
+                                    href="/privacy-policy" 
+                                    className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                                >
+                                    {t('pages.footer.privacy_policy') || 'Privacy Policy'}
+                                </Link>
+                                <span className="text-amber-500/40 text-[8px] select-none px-0.5" aria-hidden="true">◆</span>
+                                <Link 
+                                    href="/terms" 
+                                    className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                                >
+                                    {t('pages.footer.terms_of_service') || 'Terms of Service'}
+                                </Link>
+                                <span className="text-amber-500/40 text-[8px] select-none px-0.5" aria-hidden="true">◆</span>
+                                <Link 
+                                    href="/internal-feedback" 
+                                    className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                                >
+                                    {t('pages.footer.whistleblower') || 'Whistleblower'}
+                                </Link>
+                            </nav>
                         </div>
                     </div>
                 </footer>
@@ -36,7 +64,7 @@ export default function Footer({ className = '', minimal = false }) {
     return (
         <>
             <FloatingActionMenu />
-            <footer className={`relative w-full bg-stone-950 pt-20 pb-8 text-stone-300 overflow-hidden ${className}`} style={{ zIndex: 100 }}>
+            <footer className={`relative w-full bg-stone-950 pt-16 sm:pt-20 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] md:pb-8 text-stone-300 overflow-hidden ${className}`} style={{ zIndex: 100 }}>
                 {/* Decorative Background Glows */}
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
                 <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -140,14 +168,32 @@ export default function Footer({ className = '', minimal = false }) {
 
                     {/* Bottom Bar / Copyright */}
                     <div className="w-full border-t border-stone-800/80 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative z-10">
-                        <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-8 gap-y-2 md:gap-y-3 text-[11px] sm:text-sm text-stone-500 font-medium tracking-wide order-1 md:order-2">
-                            <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">{t('pages.footer.privacy_policy') || 'Privacy Policy'}</Link>
-                            <Link href="/terms" className="hover:text-amber-400 transition-colors">{t('pages.footer.terms_of_service') || 'Terms of Service'}</Link>
-                            <Link href="/internal-feedback" className="hover:text-amber-400 transition-colors">{t('pages.footer.whistleblower') || 'Whistleblower'}</Link>
+                        <div className="text-stone-500 text-xs sm:text-sm text-center md:text-left font-normal tracking-wide flex items-center justify-center md:justify-start gap-2 order-2 md:order-1 mt-1 md:mt-0">
+                            <span className="text-amber-500 text-[9px] md:text-[10px] shrink-0" aria-hidden="true">◆</span>
+                            <span>{t('pages.footer.copyright')}</span>
                         </div>
-                        <div className="text-stone-600 md:text-stone-500 text-[10px] sm:text-sm text-center md:text-left font-medium tracking-wide order-2 md:order-1 mt-1 md:mt-0">
-                            {t('pages.footer.copyright')}
-                        </div>
+                        <nav aria-label="Legal and Compliance" className="flex flex-wrap items-center justify-center md:justify-end gap-x-1 sm:gap-x-2 gap-y-1.5 text-xs sm:text-sm text-stone-400 font-medium tracking-wide order-1 md:order-2">
+                            <Link 
+                                href="/privacy-policy" 
+                                className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                            >
+                                {t('pages.footer.privacy_policy') || 'Privacy Policy'}
+                            </Link>
+                            <span className="text-amber-500/40 text-[8px] select-none px-0.5" aria-hidden="true">◆</span>
+                            <Link 
+                                href="/terms" 
+                                className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                            >
+                                {t('pages.footer.terms_of_service') || 'Terms of Service'}
+                            </Link>
+                            <span className="text-amber-500/40 text-[8px] select-none px-0.5" aria-hidden="true">◆</span>
+                            <Link 
+                                href="/internal-feedback" 
+                                className="px-2.5 py-1.5 rounded-lg hover:text-amber-400 hover:bg-white/[0.04] active:bg-white/[0.08] transition-all duration-200 inline-flex items-center min-h-[36px]"
+                            >
+                                {t('pages.footer.whistleblower') || 'Whistleblower'}
+                            </Link>
+                        </nav>
                     </div>
                 </div>
 

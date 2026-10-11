@@ -1,52 +1,52 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/components/B2cFaqSection.tsx": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/components/B2cHeroPicture.tsx": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/components/CsrSustainabilityPillars.tsx": [
-    "/build/assets/csr-CE9nKyEj.js"
+    "/build/assets/csr-Bzmfqcz3.js"
   ],
   "resources/js/components/DeferredBelowFold.tsx": [
-    "/build/assets/welcome-BJAd83EE.js"
+    "/build/assets/welcome-Qc_YoA8Q.js"
   ],
   "resources/js/components/EsmdVerificationModal.tsx": [
     "/build/assets/EsmdVerificationModal-B8ZsUVP4.js"
   ],
   "resources/js/components/FloatingActionMenu.tsx": [
-    "/build/assets/Header-DQ09yxGd.js"
+    "/build/assets/Header-_0RJ-WA1.js"
   ],
   "resources/js/components/Footer.tsx": [
-    "/build/assets/Header-DQ09yxGd.js"
+    "/build/assets/Header-_0RJ-WA1.js"
   ],
   "resources/js/components/GoldBullionCalculator.tsx": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/components/Header.tsx": [
-    "/build/assets/Header-DQ09yxGd.js"
+    "/build/assets/Header-_0RJ-WA1.js"
   ],
   "resources/js/components/KristalinLocationTabs.tsx": [
-    "/build/assets/contact-DRdYBQw_.js"
+    "/build/assets/contact-PMlKFc_8.js"
   ],
   "resources/js/components/KristalinMapEmbed.tsx": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
   ],
   "resources/js/components/KristalinTvGoldCard.tsx": [
-    "/build/assets/welcome-BJAd83EE.js"
+    "/build/assets/welcome-Qc_YoA8Q.js"
   ],
   "resources/js/components/MilestoneTimelinePanel.tsx": [
-    "/build/assets/milestones-rnpuHTmF.js"
+    "/build/assets/milestones-BJ15mgAa.js"
   ],
   "resources/js/components/MilestoneYearNav.tsx": [
-    "/build/assets/milestones-rnpuHTmF.js"
+    "/build/assets/milestones-BJ15mgAa.js"
   ],
   "resources/js/components/PapuaChildrenHeroPicture.tsx": [
     "/build/assets/PapuaChildrenHeroPicture-D2Fa_1ZV.js"
   ],
   "resources/js/components/SplashScreen.tsx": [
-    "/build/assets/welcome-BJAd83EE.js"
+    "/build/assets/welcome-Qc_YoA8Q.js"
   ],
   "resources/js/components/WelcomeGridPicture.tsx": [
     "/build/assets/WelcomeGridPicture-BBBlV399.js"
@@ -109,7 +109,7 @@
     "/build/assets/checkbox-D07xazED.js"
   ],
   "resources/js/components/ui/collapsible.tsx": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/components/ui/dialog.tsx": [
     "/build/assets/profile-Dfae8-Al.js"
@@ -151,7 +151,7 @@
     "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/use-large-screen.ts": [
-    "/build/assets/milestones-rnpuHTmF.js"
+    "/build/assets/milestones-BJ15mgAa.js"
   ],
   "resources/js/hooks/use-mobile-navigation.ts": [
     "/build/assets/app-layout-9LlwKLMM.js"
@@ -160,7 +160,7 @@
     "/build/assets/app-layout-9LlwKLMM.js"
   ],
   "resources/js/hooks/useJakartaClock.ts": [
-    "/build/assets/welcome-BJAd83EE.js"
+    "/build/assets/welcome-Qc_YoA8Q.js"
   ],
   "resources/js/hooks/useKristalinTvGold.ts": [
     "/build/assets/useKristalinTvGold-CvwAhL5o.js"
@@ -196,7 +196,7 @@
     "/build/assets/assets-CvOUY0DF.js"
   ],
   "resources/js/lib/b2cHeroImage.ts": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/lib/kristalinLocations.ts": [
     "/build/assets/KristalinMapEmbed-yENem0OM.js"
@@ -214,19 +214,19 @@
     "/build/assets/CompanyProfileReport-8OeBYGvP.js"
   ],
   "resources/js/pages/NewsDetail.tsx": [
-    "/build/assets/NewsDetail-x_m4uAKl.js"
+    "/build/assets/NewsDetail-czKg3hho.js"
   ],
   "resources/js/pages/PrivacyPolicy.tsx": [
-    "/build/assets/PrivacyPolicy-DkBblKA4.js"
+    "/build/assets/PrivacyPolicy-Djos_f0R.js"
   ],
   "resources/js/pages/TermsOfService.tsx": [
-    "/build/assets/TermsOfService-DoMx6Oop.js"
+    "/build/assets/TermsOfService-DT2DGvpg.js"
   ],
   "resources/js/pages/WelcomeBelowFold.tsx": [
     "/build/assets/WelcomeBelowFold-CsK07R5e.js"
   ],
   "resources/js/pages/about.tsx": [
-    "/build/assets/about-_LOMv_tX.js"
+    "/build/assets/about-D9yotifh.js"
   ],
   "resources/js/pages/auth/confirm-password.tsx": [
     "/build/assets/confirm-password-Chn-9jkw.js"
@@ -247,55 +247,55 @@
     "/build/assets/verify-email-DTymDeGV.js"
   ],
   "resources/js/pages/b2c.tsx": [
-    "/build/assets/b2c-CKohpZlZ.js"
+    "/build/assets/b2c-BnR-jvRv.js"
   ],
   "resources/js/pages/board-of-directors.tsx": [
-    "/build/assets/board-of-directors-BnFEBMB4.js"
+    "/build/assets/board-of-directors-DiJcQXwI.js"
   ],
   "resources/js/pages/business-activity.tsx": [
-    "/build/assets/business-activity-CZWuicGi.js"
+    "/build/assets/business-activity-B58YbfZD.js"
   ],
   "resources/js/pages/careers.tsx": [
-    "/build/assets/careers-Bpbvi1xf.js"
+    "/build/assets/careers-Bec3mgFm.js"
   ],
   "resources/js/pages/company-overview.tsx": [
-    "/build/assets/company-overview-cI7VfdWd.js"
+    "/build/assets/company-overview-DTVnCe7A.js"
   ],
   "resources/js/pages/contact.tsx": [
-    "/build/assets/contact-DRdYBQw_.js"
+    "/build/assets/contact-PMlKFc_8.js"
   ],
   "resources/js/pages/core-values.tsx": [
-    "/build/assets/core-values-CCQfGXBX.js"
+    "/build/assets/core-values-CDh3Es8g.js"
   ],
   "resources/js/pages/csr.tsx": [
-    "/build/assets/csr-CE9nKyEj.js"
+    "/build/assets/csr-Bzmfqcz3.js"
   ],
   "resources/js/pages/dashboard.tsx": [
     "/build/assets/dashboard-DpKIv9nU.js"
   ],
   "resources/js/pages/internal-feedback.tsx": [
-    "/build/assets/internal-feedback-DG8KyOfO.js"
+    "/build/assets/internal-feedback-E2VToXPv.js"
   ],
   "resources/js/pages/investor.tsx": [
-    "/build/assets/investor-DVWG30vD.js"
+    "/build/assets/investor-BzqQQtLA.js"
   ],
   "resources/js/pages/leadership-traits.tsx": [
-    "/build/assets/leadership-traits-DIN4PBj7.js"
+    "/build/assets/leadership-traits-Ct12AVEs.js"
   ],
   "resources/js/pages/line-of-business.tsx": [
-    "/build/assets/line-of-business-BqafrOdn.js"
+    "/build/assets/line-of-business-Bf1rw-sV.js"
   ],
   "resources/js/pages/milestones.tsx": [
-    "/build/assets/milestones-rnpuHTmF.js"
+    "/build/assets/milestones-BJ15mgAa.js"
   ],
   "resources/js/pages/news.tsx": [
-    "/build/assets/news-tsfhJW6A.js"
+    "/build/assets/news-0biylcPA.js"
   ],
   "resources/js/pages/not-found.tsx": [
-    "/build/assets/not-found-h6IpRdfN.js"
+    "/build/assets/not-found-C_e7X2jK.js"
   ],
   "resources/js/pages/search.tsx": [
-    "/build/assets/search-C022F4HI.js"
+    "/build/assets/search-Ay53XDO9.js"
   ],
   "resources/js/pages/settings/appearance.tsx": [
     "/build/assets/appearance-tEtdChXh.js"
@@ -307,10 +307,10 @@
     "/build/assets/profile-Dfae8-Al.js"
   ],
   "resources/js/pages/vision-mission.tsx": [
-    "/build/assets/vision-mission-BHi7LpBR.js"
+    "/build/assets/vision-mission-DMzVIekO.js"
   ],
   "resources/js/pages/welcome.tsx": [
-    "/build/assets/welcome-BJAd83EE.js"
+    "/build/assets/welcome-Qc_YoA8Q.js"
   ],
   "resources/js/pages/welcomeBelowFoldCss.ts": [
     "/build/assets/WelcomeBelowFold-CsK07R5e.js"
