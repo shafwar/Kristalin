@@ -8,8 +8,9 @@ use Symfony\Component\Console\Input\ArgvInput;
 // auto-delegate to start.sh so logs are 100% formatted to STDOUT like Arasvara.
 if (
     PHP_SAPI === 'cli' &&
-    isset($argv[1]) &&
-    $argv[1] === 'serve' &&
+    in_array('serve', $argv, true) &&
+    !in_array('--help', $argv, true) &&
+    !in_array('-h', $argv, true) &&
     !getenv('KRISTALIN_INTERNAL_SERVE') &&
     (getenv('RAILWAY_ENVIRONMENT') || getenv('RAILWAY_PROJECT_ID') || getenv('PORT'))
 ) {
